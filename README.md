@@ -41,7 +41,7 @@ BobFull(밥풀)은 혼자 방문하기 부담스러운 식당에서 사용자가
 5. 예약이 확정되면 참여자는 WebSocket/STOMP 기반 그룹 채팅을 이용합니다.
 6. 모집 마감·취소·노쇼 상황에 따라 예약 및 환불 상태를 처리합니다.
 
-상세 상태 전이와 정책은 [`PROJECT_CONTEXT.md`](./docs/PROJECT_CONTEXT.md)와 [`BOBFULL_API_SPEC_COMPLETE.md`](./docs/BOBFULL_API_SPEC_COMPLETE.md)를 기준으로 합니다.
+상세 상태 전이와 정책은 [`project-context.md`](docs/product/project-context.md)와 [`bobfull-api-spec-complete.md`](docs/api/bobfull-api-spec-complete.md)를 기준으로 합니다.
 
 ---
 
@@ -105,7 +105,7 @@ BobFull(밥풀)은 혼자 방문하기 부담스러운 식당에서 사용자가
 | Monitoring | Prometheus **3.13.2** · Grafana **13.0.2** · Grafana Alerting · AWS CloudWatch · Slack Alert |
 | Test / Load | JUnit 5 · Testcontainers · k6 |
 
-Backend 의존성은 [`build.gradle`](./build.gradle), Gradle 버전은 [`gradle-wrapper.properties`](./gradle/wrapper/gradle-wrapper.properties), 로컬 인프라는 [`docker-compose.yml`](./docker-compose.yml)을 기준으로 합니다.
+Backend 의존성은 [`build.gradle`](build.gradle), Gradle 버전은 [`gradle-wrapper.properties`](gradle/wrapper/gradle-wrapper.properties), 로컬 인프라는 [`docker-compose.yml`](docker-compose.yml)을 기준으로 합니다.
 
 ---
 
@@ -135,7 +135,7 @@ README에서는 대표 사례와 결과만 요약합니다. 문제 정의부터 
 | Blue-Green 배포 | 외부 요청 `2,787 / 2,787` HTTP 200, 실패 `0`, 관측 다운타임 `0s` | Application Layer 트래픽 전환 검증 |
 | Outbox + Async / Kafka | Async `5.394s`, Kafka `7.210s`, 양쪽 유실/중복 `0 / 0` | Kafka는 속도가 아니라 Broker backlog·Consumer Group·Retry/DLT·운영 경계 때문에 AI에 한정 유지 |
 
-전체 측정 조건과 한계는 [`V3 Final Claim Matrix`](./docs/evidence/v3/FINAL_CLAIM_MATRIX.md)와 각 Evidence 문서를 기준으로 합니다.
+전체 측정 조건과 한계는 [`V3 Final Claim Matrix`](docs/evidence/v3/final-claim-matrix.md)와 각 Evidence 문서를 기준으로 합니다.
 
 ---
 
@@ -149,7 +149,7 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 최종 의도, 비즈니스 정책, 데이터 정합성, 권한·보안, 트랜잭션 경계, 성능 수치는 사람이 코드와 Evidence를 기준으로 검증했습니다.
 
-[▶ AI Workflow](./docs/AI_WORKFLOW.md)
+[▶ AI Workflow](docs/ai/ai-workflow.md)
 
 ---
 
@@ -174,13 +174,13 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 | 문서 | 기준 |
 |---|---|
-| [`PROJECT_CONTEXT.md`](./docs/PROJECT_CONTEXT.md) | 서비스 정책·역할·상태 기준 |
-| [`BOBFULL_API_SPEC_COMPLETE.md`](./docs/BOBFULL_API_SPEC_COMPLETE.md) | HTTP API 계약 |
-| [`ERD.md`](./docs/ERD.md) | 데이터 모델 |
-| [`ARCHITECTURE.md`](./docs/ARCHITECTURE.md) | 논리 아키텍처·책임 경계 |
-| [`DOMAIN_DEPENDENCIES.md`](./docs/DOMAIN_DEPENDENCIES.md) | 도메인 및 패키지 의존 관계 |
-| [`docs/adr`](./docs/adr/README.md) | Backend 공식 번호형 ADR |
-| [`FINAL_CLAIM_MATRIX.md`](./docs/evidence/v3/FINAL_CLAIM_MATRIX.md) | 구현·검증·실측 주장과 Evidence |
+| [`project-context.md`](docs/product/project-context.md) | 서비스 정책·역할·상태 기준 |
+| [`bobfull-api-spec-complete.md`](docs/api/bobfull-api-spec-complete.md) | HTTP API 계약 |
+| [`erd.md`](docs/data/erd.md) | 데이터 모델 |
+| [`architecture.md`](docs/architecture/architecture.md) | 논리 아키텍처·책임 경계 |
+| [`domain-dependencies.md`](docs/architecture/domain-dependencies.md) | 도메인 및 패키지 의존 관계 |
+| [`docs/adr`](docs/architecture/adr/README.md) | Backend 공식 번호형 ADR |
+| [`final-claim-matrix.md`](docs/evidence/v3/final-claim-matrix.md) | 구현·검증·실측 주장과 Evidence |
 
 협업 규칙, 코드/테스트 Convention, AI 작업 가이드는 Backend `docs/`에 유지하되 README의 핵심 탐색 경로와 분리합니다.
 
@@ -236,6 +236,6 @@ docker compose --profile app up --build -d
 ### 더 자세히 보기
 
 - [BobFull Technical Docs](https://github.com/bobfull-project/bobfull-docs)
-- [Backend ADR](./docs/adr/README.md)
-- [Backend Evidence](./docs/evidence/v3/README.md)
+- [Backend ADR](docs/architecture/adr/README.md)
+- [Backend Evidence](docs/evidence/v3/README.md)
 - [Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/)

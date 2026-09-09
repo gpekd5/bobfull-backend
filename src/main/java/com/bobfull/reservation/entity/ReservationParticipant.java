@@ -13,7 +13,7 @@ import jakarta.persistence.UniqueConstraint;
 import java.time.Instant;
 
 /**
- * 예약에 참여하는 회원 1명(1신청 단위)이다(docs/ERD.md 4.6).
+ * 예약에 참여하는 회원 1명(1신청 단위)이다(docs/data/erd.md 4.6).
  * 최초 참여자는 별도 역할 컬럼 없이 Reservation.creatorMemberId와의 일치로 판별한다.
  * 부분 취소는 지원하지 않으며 취소·노쇼는 참여 전체에 적용된다.
  */

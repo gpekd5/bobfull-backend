@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 
 /**
- * OWNER의 참여자 단위 노쇼 처리·해제 이력이다(docs/ERD.md 4.9).
+ * OWNER의 참여자 단위 노쇼 처리·해제 이력이다(docs/data/erd.md 4.9).
  * ReservationParticipant의 하위 이력이라 별도 Repository·Entity를 다른 도메인에 노출하지 않는다.
  */
 @Entity

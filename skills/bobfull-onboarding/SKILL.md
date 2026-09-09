@@ -36,15 +36,15 @@ PR 생성·본문 갱신·`PR #번호 검토하라`·Ready 전 최종 PR 확인�
 
 현재 Issue와 직접 관련된 원본만 읽는다.
 
-- 서비스 정책·버전 범위: [PROJECT_CONTEXT](../../docs/PROJECT_CONTEXT.md)
-- HTTP·WebSocket 계약: [API 명세](../../docs/BOBFULL_API_SPEC_COMPLETE.md)
-- 데이터 모델: [ERD](../../docs/ERD.md)
-- 책임 경계: [ARCHITECTURE](../../docs/ARCHITECTURE.md), [DOMAIN_DEPENDENCIES](../../docs/DOMAIN_DEPENDENCIES.md)
-- 구현·리뷰 절차: [AI_WORKFLOW](../../docs/AI_WORKFLOW.md), [AI_IMPLEMENTATION_GUIDE](../../docs/AI_IMPLEMENTATION_GUIDE.md), [AI_REVIEW_GUIDE](../../docs/AI_REVIEW_GUIDE.md)
-- Human 이해도 질문 난이도·생성 기준: [AI_REVIEW_GUIDE](../../docs/AI_REVIEW_GUIDE.md)
-- Git·Issue·PR 규칙: [GITHUB_RULES](../../docs/GITHUB_RULES.md), [ISSUE_TITLE_RULES](../../docs/ISSUE_TITLE_RULES.md)
-- 공통 구현 기준: [CODE_CONVENTION](../../docs/CODE_CONVENTION.md), [COMMON_SKELETON_GUIDE](../../docs/COMMON_SKELETON_GUIDE.md), [TEST_CONVENTION](../../docs/TEST_CONVENTION.md)
-- 기술 결정: [ADR 목록](../../docs/adr/README.md)과 현재 작업에 관련된 개별 ADR
+- 서비스 정책·버전 범위: [PROJECT_CONTEXT](../../docs/product/project-context.md)
+- HTTP·WebSocket 계약: [API 명세](../../docs/api/bobfull-api-spec-complete.md)
+- 데이터 모델: [ERD](../../docs/data/erd.md)
+- 책임 경계: [ARCHITECTURE](../../docs/architecture/architecture.md), [DOMAIN_DEPENDENCIES](../../docs/architecture/domain-dependencies.md)
+- 구현·리뷰 절차: [AI_WORKFLOW](../../docs/ai/ai-workflow.md), [AI_IMPLEMENTATION_GUIDE](../../docs/ai/ai-implementation-guide.md), [AI_REVIEW_GUIDE](../../docs/ai/ai-review-guide.md)
+- Human 이해도 질문 난이도·생성 기준: [AI_REVIEW_GUIDE](../../docs/ai/ai-review-guide.md)
+- Git·Issue·PR 규칙: [GITHUB_RULES](../../docs/engineering/github-rules.md), [ISSUE_TITLE_RULES](../../docs/engineering/issue-title-rules.md)
+- 공통 구현 기준: [CODE_CONVENTION](../../docs/engineering/code-convention.md), [COMMON_SKELETON_GUIDE](../../docs/engineering/common-skeleton-guide.md), [TEST_CONVENTION](../../docs/engineering/test-convention.md)
+- 기술 결정: [ADR 목록](../../docs/architecture/adr/README.md)과 현재 작업에 관련된 개별 ADR
 - 저장소 공통 지침: [AGENTS.md](../../AGENTS.md)
 
 ## 핵심 실행 규칙

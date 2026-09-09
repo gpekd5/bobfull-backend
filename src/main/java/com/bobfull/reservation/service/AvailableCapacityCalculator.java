@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 테이블 정원에서 결제 완료 참여 인원과 만료되지 않은 READY 임시 선점 인원을 차감해
- * 남은 참여 가능 인원을 계산한다(ADR 0001, docs/DOMAIN_DEPENDENCIES.md §4).
+ * 남은 참여 가능 인원을 계산한다(ADR 0001, docs/architecture/domain-dependencies.md §4).
  */
 @Service
 public class AvailableCapacityCalculator {

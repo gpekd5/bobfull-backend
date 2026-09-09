@@ -1,5 +1,5 @@
 // #63 공통 K6 Harness — 시나리오가 필요한 Restaurant/SharedTable/DiningSession Fixture를
-// 실제 API 호출로 만든다(docs/BOBFULL_API_SPEC_COMPLETE.md 3-x, 4-x, 5-4절).
+// 실제 API 호출로 만든다(docs/api/bobfull-api-spec-complete.md 3-x, 4-x, 5-4절).
 //
 // 상태를 소비하는 예약 준비(CREATE) 시나리오는 반복 호출마다 "아직 아무도 선점하지 않은"
 // DiningSession이 필요하다(같은 세션에 두 번째 CREATE는 409 ACTIVE_RESERVATION_ALREADY_EXISTS,

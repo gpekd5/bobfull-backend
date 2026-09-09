@@ -12,7 +12,7 @@ import java.time.Instant;
 import org.hibernate.annotations.GeneratedColumn;
 
 /**
- * 합석 테이블에서 예약 가능한 단일 회차다(docs/ERD.md 4.4).
+ * 합석 테이블에서 예약 가능한 단일 회차다(docs/data/erd.md 4.4).
  */
 @Entity
 @Table(

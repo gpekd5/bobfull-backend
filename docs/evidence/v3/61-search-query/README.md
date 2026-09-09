@@ -80,7 +80,7 @@
 - `SharedTable` 엔티티에 `@Table(indexes = @Index(name = "idx_shared_table_restaurant_id", columnList = "restaurant_id"))`를 추가했다.
 - 컬럼 순서: 단일 컬럼 인덱스라 순서 이슈는 없다. `restaurant_id`를 선택한 이유는 date/time 필터 3-way join의 실제 join 조건(`shared_table.restaurant_id = restaurant.id`)이 EXPLAIN에서 확인된 그 컬럼이기 때문이다.
 - 중복 Index 여부: `shared_table`의 기존 인덱스는 `PRIMARY(shared_table_id)` 하나뿐이었다. `restaurant_id`를 커버하는 인덱스가 없었으므로 중복이 아니다.
-- 이 인덱스는 `docs/ERD.md` §10 "인덱스 후보"에 이미 `shared_table (restaurant_id)`로 후보 등재되어 있었다(이번에 실제 실행 계획 근거로 확정·구현).
+- 이 인덱스는 `docs/data/erd.md` §10 "인덱스 후보"에 이미 `shared_table (restaurant_id)`로 후보 등재되어 있었다(이번에 실제 실행 계획 근거로 확정·구현).
 - 반영 방식: Human 결정 Q3에 따라 `@Table(indexes=...)` 선언 + 기존 `ddl-auto: update`. 별도 마이그레이션 스크립트·Flyway/Liquibase 도입 없음.
 - keyword LIKE·hour/minute 함수 래핑에는 Before 측정 결과 실제 병목 근거가 없어 **인덱스·쿼리 변경을 적용하지 않았다**(Issue 원칙: "실제 병목이 없으면 Index/Query 미변경 결론도 허용한다"). Full Text Search 등 검색 의미 변경은 Human 결정 Q2에 따라 이번 Issue에서 다루지 않고 후속 검토로 남긴다.
 - 쓰기 비용·저장 공간: 단일 컬럼 비고유 BTree 인덱스라 INSERT/UPDATE마다 리프 엔트리 갱신 비용이 추가되지만, 이번 Issue에서 별도 쓰기-처리량 벤치마크는 수행하지 않았다(측정하지 않은 값을 있는 것처럼 기록하지 않는다). `shared_table`은 OWNER가 테이블을 등록할 때만 쓰는 낮은 쓰기 빈도 테이블이라 조회 개선 대비 쓰기 비용 증가가 클 것으로 보이지 않는다는 정성적 판단만 남긴다.

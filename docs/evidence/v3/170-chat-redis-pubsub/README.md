@@ -103,5 +103,5 @@ Phase A는 Redis Pub/Sub의 인스턴스 간 전달, 두 Spring Boot 프로세�
 ## 관련
 
 - Issue: #170
-- ADR: [ADR 0011](../../../adr/0011-chat-redis-pubsub.md)
-- AI Outbox/Kafka: [ADR 0010](../../../adr/0010-chat-message-outbox-kafka-pipeline.md)
+- ADR: [ADR 0011](../../../architecture/adr/0011-chat-redis-pubsub.md)
+- AI Outbox/Kafka: [ADR 0010](../../../architecture/adr/0010-chat-message-outbox-kafka-pipeline.md)

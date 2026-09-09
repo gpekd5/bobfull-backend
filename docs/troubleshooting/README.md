@@ -6,7 +6,7 @@
 
 - 실제 해결과 검증이 끝난 항목은 근거를 함께 기록한다.
 - 구현 전 예상 위험은 `검토 중`으로 기록하고, 해결된 것처럼 표현하지 않는다.
-- Human이 AI 제안의 누락을 발견하고 판단을 바꾼 과정은 [AI Human 검토 기록](../AI_휴먼_검토_기록.md)에 남긴다.
+- Human이 AI 제안의 누락을 발견하고 판단을 바꾼 과정은 [AI Human 검토 기록](../ai/records/ai-human-review-record.md)에 남긴다.
 - 성능·신뢰성·동시성·인프라·캐시·Kafka/Outbox·AI처럼 **개선 효과를 주장하는 트러블슈팅은 `docs/evidence/v3/...`를 원본 근거로 연결**한다.
 - 트러블슈팅 문서에는 Evidence 전체를 복사하지 않고 문제 이해에 필요한 핵심 Before/After 지표·현상과 해석만 요약한다.
 - 응답시간이 의미 없는 문제에 억지로 ms를 붙이지 않는다. 문제 유형에 맞는 지표를 선택한다.
@@ -51,10 +51,10 @@ Issue에서 측정 계약
 
 ## 도메인 문서
 
-- [결제 트러블슈팅](결제_트러블슈팅.md)
-- [예약 트러블슈팅](예약_트러블슈팅.md)
-- [AI Moderation 트러블슈팅](AI_모더레이션_트러블슈팅.md)
+- [결제 트러블슈팅](payment-troubleshooting.md)
+- [예약 트러블슈팅](reservation-troubleshooting.md)
+- [AI Moderation 트러블슈팅](ai-moderation-troubleshooting.md)
 
 ## 새 기록 작성
 
-[트러블슈팅 양식](../templates/트러블슈팅_양식.md)을 복사해 사용한다.
+[트러블슈팅 양식](../templates/troubleshooting-template.md)을 복사해 사용한다.

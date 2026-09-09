@@ -188,7 +188,7 @@ Probe를 추가했다. Dataset의 proposed label은 아직 Human이 확정하지
 Provider 실행을 하지 않았다.
 
 - Dataset: 66 Cases (52 single message + 14 split sequence/control)
-- 상세 Human review 표: [STEP1_DATASET_REVIEW.md](STEP1_DATASET_REVIEW.md)
+- 상세 Human review 표: [step1-dataset-review.md](step1-dataset-review.md)
 - Dataset source: `Issue251HardeningDataset`
 - 검증: 중복 caseId, 필수 필드, enum type, split 최소 2 message, same sender/room 및 sender·room·time-window
   control, canonical SHA-256
@@ -203,10 +203,10 @@ Provider 실행을 하지 않았다.
 - baseline commit SHA: `32059bcae3642717e952e424ca4d4bea3f1a9953`
 - context window: 30 seconds (Frozen Dataset 실험 계약이며, 아직 production 구현이 아님)
 - historical draft SHA-256: `73e0eb85a511910e03b356c870f76e8810b20a2ab7580fcad306b3da127866c4`
-- Frozen BEFORE 결과: [BEFORE_RESULT.md](BEFORE_RESULT.md)
-- STEP 3 production 전 Rule routing simulation: [STEP3_RULE_ROUTING_SIMULATION.md](STEP3_RULE_ROUTING_SIMULATION.md)
-- STEP 3B production CLEAR_FLAGGED Rule: [STEP3B_PRODUCTION_RULE.md](STEP3B_PRODUCTION_RULE.md)
-- STEP 3C Frozen Provider AFTER: [AFTER_RULE_RESULT.md](AFTER_RULE_RESULT.md)
+- Frozen BEFORE 결과: [before-result.md](before-result.md)
+- STEP 3 production 전 Rule routing simulation: [step3-rule-routing-simulation.md](step3-rule-routing-simulation.md)
+- STEP 3B production CLEAR_FLAGGED Rule: [step3b-production-rule.md](step3b-production-rule.md)
+- STEP 3C Frozen Provider AFTER: [after-rule-result.md](after-rule-result.md)
 
 ```bash
 # DRAFT Dataset 구조·해시만 검증 (Provider 미호출)
