@@ -7,7 +7,7 @@
 ## 1. 기본 Skill 적용 방식
 
 저장소에 접근할 수 있는 담당자 AI의 기본 경로는
-[`skills/bobfull-onboarding/SKILL.md`](./skills/bobfull-onboarding/SKILL.md)를 직접 읽고 적용하는 방식이다.
+[`skills/bobfull-onboarding/SKILL.md`](skills/bobfull-onboarding/SKILL.md)를 직접 읽고 적용하는 방식이다.
 
 - Skill 등록·자동 매칭 기능을 지원하는 AI 환경에서는 선택적으로 등록할 수 있다.
 - 그러나 등록 여부는 BobFull 작업의 시작 조건이 아니며, 팀원이 별도 온보딩 명령을 먼저 실행할 필요도 없다.
@@ -19,7 +19,7 @@ Issue #번호 구현하라
 이 초안으로 Issue 생성하라
 ```
 
-`새 Issue 초안 작성하라`는 GitHub를 변경하지 않고 대화창에 초안을 제시하는 명령이며, Human이 `이 초안으로 Issue 생성하라`를 명시한 경우에만 실제 Issue를 생성한다. 상세 절차는 `docs/AI_WORKFLOW.md`, 담당자 AI 실행 규칙은 `docs/AI_IMPLEMENTATION_GUIDE.md`를 따른다.
+`새 Issue 초안 작성하라`는 GitHub를 변경하지 않고 대화창에 초안을 제시하는 명령이며, Human이 `이 초안으로 Issue 생성하라`를 명시한 경우에만 실제 Issue를 생성한다. 상세 절차는 `docs/060-ai/ai-workflow.md`, 담당자 AI 실행 규칙은 `docs/060-ai/ai-implementation-guide.md`를 따른다.
 
 ## 2. Issue 단계 실행 명령과 새 Issue 최초 처리
 
@@ -120,7 +120,7 @@ Draft PR 생성 또는 새 Push
 
 자동 Review는 기존 Review 결과나 이전 SHA를 재사용하지 않는다. BLOCKER와 MAJOR만 Merge를 차단하며,
 Before/After Evidence, `NOT_APPLICABLE` 허용 기준, 최신 Head 재검토 기준은
-`skills/bobfull-pr-review/SKILL.md`와 `docs/evidence/v3/README.md`를 따른다.
+`skills/bobfull-pr-review/SKILL.md`와 `docs/110-records/evidence/v3/README.md`를 따른다.
 
 ### `PR #번호 검토하라` 수동 진입
 
@@ -159,7 +159,7 @@ Merge Gate가 아니다. 그러나 다음 판단과 실행은 계속 Human 책�
 
 PR 담당자는 PR 본문의 `Human 이해도` 질문에 직접 답한다.
 
-Human 이해도 질문은 신입 백엔드 기술면접 기본 개념 수준으로 작성하며, 강화 검토도 질문 난이도를 높이지 않는다. 질문 수·난이도·허용·금지·자기 검증·응답 처리의 상세 기준은 `docs/AI_REVIEW_GUIDE.md`를 따른다.
+Human 이해도 질문은 신입 백엔드 기술면접 기본 개념 수준으로 작성하며, 강화 검토도 질문 난이도를 높이지 않는다. 질문 수·난이도·허용·금지·자기 검증·응답 처리의 상세 기준은 `docs/060-ai/ai-review-guide.md`를 따른다.
 
 담당자 AI는 Human 답변을 최신 코드와 대조하고 다음 항목만 작성한다.
 
@@ -183,23 +183,23 @@ PR에 등록된 리뷰·댓글은 공식 선행 단계가 아니다. 담당자 A
 
 | 작업 | 기준 문서 |
 |---|---|
-| 프로젝트 정책·버전·역할 | `docs/PROJECT_CONTEXT.md` |
-| 실제 HTTP API 계약 | `docs/BOBFULL_API_SPEC_COMPLETE.md` |
-| 관계형 데이터 모델·정합성 제약 | `docs/ERD.md` |
-| 논리 구성 요소·책임 경계 | `docs/ARCHITECTURE.md` |
-| 중요한 기술·구조 결정 기록 | `docs/adr/README.md` |
-| AI 전체 절차 | `docs/AI_WORKFLOW.md` |
-| 담당자 AI 실행 | `docs/AI_IMPLEMENTATION_GUIDE.md` |
-| 담당자 AI PR 검토·리뷰 반영 | `docs/AI_REVIEW_GUIDE.md` |
-| V3 자동 독립 Review·Evidence Gate | `skills/bobfull-pr-review/SKILL.md`, `docs/evidence/v3/README.md` |
-| Human 이해도 질문 난이도·생성 | `docs/AI_REVIEW_GUIDE.md` |
-| 코드 작성 | `docs/CODE_CONVENTION.md` |
-| 테스트·증거 | `docs/TEST_CONVENTION.md` |
-| Git·PR·Merge | `docs/GITHUB_RULES.md` |
-| 도메인 영향 | `docs/DOMAIN_DEPENDENCIES.md` |
-| Issue 제목 | `docs/ISSUE_TITLE_RULES.md` |
+| 프로젝트 정책·버전·역할 | `docs/010-product/project-context.md` |
+| 실제 HTTP API 계약 | `docs/020-api/bobfull-api-spec-complete.md` |
+| 관계형 데이터 모델·정합성 제약 | `docs/030-data/erd.md` |
+| 논리 구성 요소·책임 경계 | `docs/040-architecture/architecture.md` |
+| 중요한 기술·구조 결정 기록 | `docs/040-architecture/adr/README.md` |
+| AI 전체 절차 | `docs/060-ai/ai-workflow.md` |
+| 담당자 AI 실행 | `docs/060-ai/ai-implementation-guide.md` |
+| 담당자 AI PR 검토·리뷰 반영 | `docs/060-ai/ai-review-guide.md` |
+| V3 자동 독립 Review·Evidence Gate | `skills/bobfull-pr-review/SKILL.md`, `docs/110-records/evidence/v3/README.md` |
+| Human 이해도 질문 난이도·생성 | `docs/060-ai/ai-review-guide.md` |
+| 코드 작성 | `docs/050-engineering/code-convention.md` |
+| 테스트·증거 | `docs/050-engineering/test-convention.md` |
+| Git·PR·Merge | `docs/050-engineering/github-rules.md` |
+| 도메인 영향 | `docs/040-architecture/domain-dependencies.md` |
+| Issue 제목 | `docs/050-engineering/issue-title-rules.md` |
 
-API 계약은 `docs/BOBFULL_API_SPEC_COMPLETE.md`, 프로젝트 정책·버전·역할은 `docs/PROJECT_CONTEXT.md`, 데이터 모델과 저장값·계산값 구분은 `docs/ERD.md`를 기준으로 한다. 세 문서가 충돌하면 임의로 선택하거나 덮어쓰지 않고 중단한다.
+API 계약은 `docs/020-api/bobfull-api-spec-complete.md`, 프로젝트 정책·버전·역할은 `docs/010-product/project-context.md`, 데이터 모델과 저장값·계산값 구분은 `docs/030-data/erd.md`를 기준으로 한다. 세 문서가 충돌하면 임의로 선택하거나 덮어쓰지 않고 중단한다.
 
 API 변경은 API 명세와 `PROJECT_CONTEXT`, ERD, 영향 문서의 동기화 범위를 확인한다. 도메인 정책 변경은 API 명세·PROJECT_CONTEXT·ERD와 영향 문서를 함께 검토하고, 데이터 모델 변경은 ERD와 관련 API의 Request·Response·계산값·정합성 제약을 함께 검토한다.
 

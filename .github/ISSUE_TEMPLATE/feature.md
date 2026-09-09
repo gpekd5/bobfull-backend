@@ -7,7 +7,7 @@ assignees: ""
 ---
 
 <!--
-Issue 제목은 docs/ISSUE_TITLE_RULES.md의 [v1 | v2 | v3 | project][유형] 작업 내용 형식을 따릅니다.
+Issue 제목은 docs/50-engineering/issue-title-rules.md의 [v1 | v2 | v3 | project][유형] 작업 내용 형식을 따릅니다.
 현재 실행 상태의 유일한 기준은 GitHub `status:*` Label입니다.
 Issue 본문의 상태 문자열은 현재 상태로 사용하지 않습니다.
 AI는 상태 전환 전 기존 `status:*` Label을 모두 제거하고 새 Label 하나만 적용합니다.
@@ -90,7 +90,7 @@ AI 검토·보완 설명·최종 계약은 별도 Issue 댓글에 기록합니�
 
 ## Human 이해도
 
-<!-- 구현 AI가 실제 계약에 필요한 질문을 작성합니다. 질문 수·난이도·생성 기준은 docs/AI_REVIEW_GUIDE.md를 따릅니다. AI 기준 답변은 절대적인 모범 답안이 아니라 현재 확정 계약과 구현 기준의 설명입니다. -->
+<!-- 구현 AI가 실제 계약에 필요한 질문을 작성합니다. 질문 수·난이도·생성 기준은 docs/60-ai/ai-review-guide.md를 따릅니다. AI 기준 답변은 절대적인 모범 답안이 아니라 현재 확정 계약과 구현 기준의 설명입니다. -->
 
 ### Q1. 구체적인 질문
 

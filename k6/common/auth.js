@@ -1,4 +1,4 @@
-// #63 공통 K6 Harness — 로그인/가입 등 인증 준비를 한 곳에서 관리한다(docs/BOBFULL_API_SPEC_COMPLETE.md 2-3, 2-x절).
+// #63 공통 K6 Harness — 로그인/가입 등 인증 준비를 한 곳에서 관리한다(docs/020-api/bobfull-api-spec-complete.md 2-3, 2-x절).
 
 import { post, parseData } from './helpers.js';
 

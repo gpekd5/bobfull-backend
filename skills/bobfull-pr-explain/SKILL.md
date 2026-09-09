@@ -80,7 +80,7 @@ Before/After Commit SHA
 - 실제 검증 범위보다 넓게 `완전 해결`, `유실 0 보장`, `무중단 보장`이라고 표현하기
 - 대용량 로그 전체를 PR 본문에 붙이기
 
-공통 저장 기준은 `docs/evidence/v3/README.md`를 따른다.
+공통 저장 기준은 `docs/110-records/evidence/v3/README.md`를 따른다.
 
 ## 핵심 기능 직접 검증
 

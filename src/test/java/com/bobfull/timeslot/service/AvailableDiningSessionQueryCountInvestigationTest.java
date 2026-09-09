@@ -37,11 +37,11 @@ import org.springframework.boot.test.context.SpringBootTest;
  * 독립적으로 실행해 TimeSlot 20건에 123개 쿼리(평균 6.15개/TimeSlot)가 발생했다.
  * AvailableCapacityCalculator.calculateWithKnownParticipantCount로 중복 조회를 제거한 뒤에는
  * 83개 쿼리(평균 4.15개/TimeSlot, 3 + TIME_SLOT_COUNT*4)로 줄었다
- * (docs/evidence/v3/61-search-query/README.md).</p>
+ * (docs/110-records/evidence/v3/61-search-query/README.md).</p>
  *
  * <p>Issue #235에서는 회차별 반복 조회 4종(활성 예약·참여자 합계·CLOSED 여부·READY 선점 합계)을
  * 전부 배치 쿼리로 바꿔, 쿼리 수가 TimeSlot 건수와 무관한 고정값(7)이 되도록 다시 줄였다
- * (docs/evidence/v3/restaurant-view-hotpath/README.md). 이 테스트는 그 개선이 되돌아가지
+ * (docs/110-records/evidence/v3/restaurant-view-hotpath/README.md). 이 테스트는 그 개선이 되돌아가지
  * 않도록 고정한다.</p>
  *
  * <p>{@code spring.jpa.hibernate.ddl-auto=update}이므로 대상 스키마의 기존 테이블을 지우지 않는다.
