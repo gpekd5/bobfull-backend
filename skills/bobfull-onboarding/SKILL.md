@@ -36,15 +36,15 @@ PR 생성·본문 갱신·`PR #번호 검토하라`·Ready 전 최종 PR 확인�
 
 현재 Issue와 직접 관련된 원본만 읽는다.
 
-- 서비스 정책·버전 범위: [PROJECT_CONTEXT](../../docs/10-product/project-context.md)
-- HTTP·WebSocket 계약: [API 명세](../../docs/20-api/bobfull-api-spec-complete.md)
-- 데이터 모델: [ERD](../../docs/30-data/erd.md)
-- 책임 경계: [ARCHITECTURE](../../docs/40-architecture/architecture.md), [DOMAIN_DEPENDENCIES](../../docs/40-architecture/domain-dependencies.md)
-- 구현·리뷰 절차: [AI_WORKFLOW](../../docs/60-ai/ai-workflow.md), [AI_IMPLEMENTATION_GUIDE](../../docs/60-ai/ai-implementation-guide.md), [AI_REVIEW_GUIDE](../../docs/60-ai/ai-review-guide.md)
-- Human 이해도 질문 난이도·생성 기준: [AI_REVIEW_GUIDE](../../docs/60-ai/ai-review-guide.md)
-- Git·Issue·PR 규칙: [GITHUB_RULES](../../docs/50-engineering/github-rules.md), [ISSUE_TITLE_RULES](../../docs/50-engineering/issue-title-rules.md)
-- 공통 구현 기준: [CODE_CONVENTION](../../docs/50-engineering/code-convention.md), [COMMON_SKELETON_GUIDE](../../docs/50-engineering/common-skeleton-guide.md), [TEST_CONVENTION](../../docs/50-engineering/test-convention.md)
-- 기술 결정: [ADR 목록](../../docs/40-architecture/adr/README.md)과 현재 작업에 관련된 개별 ADR
+- 서비스 정책·버전 범위: [PROJECT_CONTEXT](../../docs/010-product/project-context.md)
+- HTTP·WebSocket 계약: [API 명세](../../docs/020-api/bobfull-api-spec-complete.md)
+- 데이터 모델: [ERD](../../docs/030-data/erd.md)
+- 책임 경계: [ARCHITECTURE](../../docs/040-architecture/architecture.md), [DOMAIN_DEPENDENCIES](../../docs/040-architecture/domain-dependencies.md)
+- 구현·리뷰 절차: [AI_WORKFLOW](../../docs/060-ai/ai-workflow.md), [AI_IMPLEMENTATION_GUIDE](../../docs/060-ai/ai-implementation-guide.md), [AI_REVIEW_GUIDE](../../docs/060-ai/ai-review-guide.md)
+- Human 이해도 질문 난이도·생성 기준: [AI_REVIEW_GUIDE](../../docs/060-ai/ai-review-guide.md)
+- Git·Issue·PR 규칙: [GITHUB_RULES](../../docs/050-engineering/github-rules.md), [ISSUE_TITLE_RULES](../../docs/050-engineering/issue-title-rules.md)
+- 공통 구현 기준: [CODE_CONVENTION](../../docs/050-engineering/code-convention.md), [COMMON_SKELETON_GUIDE](../../docs/050-engineering/common-skeleton-guide.md), [TEST_CONVENTION](../../docs/050-engineering/test-convention.md)
+- 기술 결정: [ADR 목록](../../docs/040-architecture/adr/README.md)과 현재 작업에 관련된 개별 ADR
 - 저장소 공통 지침: [AGENTS.md](../../AGENTS.md)
 
 ## 핵심 실행 규칙

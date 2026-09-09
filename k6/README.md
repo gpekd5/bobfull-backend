@@ -3,7 +3,7 @@
 Issue #63(공통 K6 Harness·주요 API Load/Stress·성능 지도) 구현. 실제 AWS 실행 환경은
 Issue #207에서 별도 Test App EC2 + Test RDS 형태로 준비했다.
 
-AWS 테스트 환경의 구성·접근 방법은 [`docs/90-testing/performance/k6-aws-test-environment.md`](../docs/90-testing/performance/k6-aws-test-environment.md)를 참고한다.
+AWS 테스트 환경의 구성·접근 방법은 [`docs/090-testing/performance/k6-aws-test-environment.md`](../docs/090-testing/performance/k6-aws-test-environment.md)를 참고한다.
 
 ## 구조
 

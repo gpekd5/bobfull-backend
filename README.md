@@ -41,7 +41,7 @@ BobFull(밥풀)은 혼자 방문하기 부담스러운 식당에서 사용자가
 5. 예약이 확정되면 참여자는 WebSocket/STOMP 기반 그룹 채팅을 이용합니다.
 6. 모집 마감·취소·노쇼 상황에 따라 예약 및 환불 상태를 처리합니다.
 
-상세 상태 전이와 정책은 [`project-context.md`](docs/10-product/project-context.md)와 [`bobfull-api-spec-complete.md`](docs/20-api/bobfull-api-spec-complete.md)를 기준으로 합니다.
+상세 상태 전이와 정책은 [`project-context.md`](docs/010-product/project-context.md)와 [`bobfull-api-spec-complete.md`](docs/020-api/bobfull-api-spec-complete.md)를 기준으로 합니다.
 
 ---
 
@@ -149,7 +149,7 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 최종 의도, 비즈니스 정책, 데이터 정합성, 권한·보안, 트랜잭션 경계, 성능 수치는 사람이 코드와 Evidence를 기준으로 검증했습니다.
 
-[▶ AI Workflow](docs/60-ai/ai-workflow.md)
+[▶ AI Workflow](docs/060-ai/ai-workflow.md)
 
 ---
 
@@ -174,12 +174,12 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 | 문서 | 기준 |
 |---|---|
-| [`project-context.md`](docs/10-product/project-context.md) | 서비스 정책·역할·상태 기준 |
-| [`bobfull-api-spec-complete.md`](docs/20-api/bobfull-api-spec-complete.md) | HTTP API 계약 |
-| [`erd.md`](docs/30-data/erd.md) | 데이터 모델 |
-| [`architecture.md`](docs/40-architecture/architecture.md) | 논리 아키텍처·책임 경계 |
-| [`domain-dependencies.md`](docs/40-architecture/domain-dependencies.md) | 도메인 및 패키지 의존 관계 |
-| [`docs/adr`](docs/40-architecture/adr/README.md) | Backend 공식 번호형 ADR |
+| [`project-context.md`](docs/010-product/project-context.md) | 서비스 정책·역할·상태 기준 |
+| [`bobfull-api-spec-complete.md`](docs/020-api/bobfull-api-spec-complete.md) | HTTP API 계약 |
+| [`erd.md`](docs/030-data/erd.md) | 데이터 모델 |
+| [`architecture.md`](docs/040-architecture/architecture.md) | 논리 아키텍처·책임 경계 |
+| [`domain-dependencies.md`](docs/040-architecture/domain-dependencies.md) | 도메인 및 패키지 의존 관계 |
+| [`docs/adr`](docs/040-architecture/adr/README.md) | Backend 공식 번호형 ADR |
 | [`final-claim-matrix.md`](docs/110-records/evidence/v3/final-claim-matrix.md) | 구현·검증·실측 주장과 Evidence |
 
 협업 규칙, 코드/테스트 Convention, AI 작업 가이드는 Backend `docs/`에 유지하되 README의 핵심 탐색 경로와 분리합니다.
@@ -236,6 +236,6 @@ docker compose --profile app up --build -d
 ### 더 자세히 보기
 
 - [BobFull Technical Docs](https://github.com/bobfull-project/bobfull-docs)
-- [Backend ADR](docs/40-architecture/adr/README.md)
+- [Backend ADR](docs/040-architecture/adr/README.md)
 - [Backend Evidence](docs/110-records/evidence/v3/README.md)
 - [System Flow](https://bobfull-project.github.io/bobfull-docs/100-learning/system-flow/v3/operations-system-flow/)

@@ -141,7 +141,7 @@ Parameter Store 이름은 kebab-case로 저장하고, `scripts/aws/deploy-backen
 - Prometheus는 `BOBFULL_BACKEND_METRICS_TARGETS`로 `bobfull-backend` file_sd target을 만들고, Blue-Green 배포 성공 후 GitHub Actions가 Monitoring EC2에 SSM 명령을 보내 새 Active EC2 2대의 private IP로 target을 갱신한 뒤 `/-/reload`를 호출한다. 운영에서 env 파일과 compose/config 경로가 분리될 수 있으므로 env 파일은 `BACKEND_MONITORING_ENV_FILE`, compose/config 위치는 `BACKEND_MONITORING_COMPOSE_DIR`로 각각 받는다.
 - App EC2 보안 그룹은 Monitoring EC2 보안 그룹에서 들어오는 `8080` 접근만 허용한다. Grafana 외부 접속 포트(`3000`)는 운영 접근 주체로 제한한다.
 - Slack Alert Contact Point는 실제 모니터링 채널 Webhook URL을 `BACKEND_MONITORING_ENV_FILE` 경로의 env 파일 또는 운영 비밀 저장소로 주입하고, 배포 직후 Grafana Contact Point `Test` 수신을 확인한다.
-- Prometheus/Grafana 구성 파일은 `monitoring/` 아래에 두며, 상세 실행·검증·장애 대응 기준은 [monitoring-runbook.md](../80-operations/monitoring-runbook.md)를 따른다.
+- Prometheus/Grafana 구성 파일은 `monitoring/` 아래에 두며, 상세 실행·검증·장애 대응 기준은 [monitoring-runbook.md](../080-operations/monitoring-runbook.md)를 따른다.
 - 초기 Alert Rule 임계값은 테스트 기준으로 시작한다. p95, 오류율, 로그인 실패 임계값은 실제 AWS 단일 App EC2 k6 기준선 측정 후 [monitoring-baseline-template.md](../120-templates/monitoring-baseline-template.md)에 기록한 값으로 조정한다.
 
 ## GitHub Actions 백엔드 CI와 CD

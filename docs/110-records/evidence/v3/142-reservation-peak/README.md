@@ -24,7 +24,7 @@ DB Pool 병목 신호가 관측되지 않아 이 재검토 조건도 트리거�
 
 - 기준 Branch·Commit: `feature/142-peak-load-test`, 이 문서 갱신 시점 최신 커밋(PR #220 Conversation 참고)
 - 애플리케이션 인스턴스: `bobfull-k6-test-app` EC2 1대, t3.small(2 vCPU, 버스터블) — 인스턴스 CPU 크레딧 소진 여부는 미확인(위 "이 결론의 한계" 참고)
-- MySQL: 버전·인스턴스 세부사항 미확인(Test RDS, `bobfull_test` 스키마 사용 — `docs/90-testing/performance/k6-aws-test-environment.md` 참고). 테스트 데이터 규모는 시나리오별 `setup()`이 그때그때 만드는 합성 데이터뿐(수십~수백 건 수준, 대량 사전 시딩 없음)
+- MySQL: 버전·인스턴스 세부사항 미확인(Test RDS, `bobfull_test` 스키마 사용 — `docs/090-testing/performance/k6-aws-test-environment.md` 참고). 테스트 데이터 규모는 시나리오별 `setup()`이 그때그때 만드는 합성 데이터뿐(수십~수백 건 수준, 대량 사전 시딩 없음)
 - DB Connection Pool 크기: HikariCP 기본값 `maximum-pool-size=10`(코드에 명시적 설정이 없었음, 이번 PR에서 `DB_POOL_MAX_SIZE` env var로 오버라이드 가능하게 함 — 이번 측정 시점에는 여전히 10)
 - K6 VU·arrival-rate·duration: 시나리오 A는 `constant-arrival-rate`(Load, 20 iter/s·5분)/`ramping-arrival-rate`(Stress, 20→320 iter/s 계단식·13분, `preAllocatedVUs=50~300`). 시나리오 B는 `per-vu-iterations`(VU=`CONCURRENT_USERS`, 1인당 1회)
 - 워밍업: 별도 워밍업 단계 없음(Load/Stress 자체의 첫 구간이 사실상 워밍업 역할). 본 측정은 각 설정별 1~2회(재현성 확인용 반복 포함)

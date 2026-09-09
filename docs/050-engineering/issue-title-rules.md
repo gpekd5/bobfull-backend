@@ -20,7 +20,7 @@
 
 ## 2. 범위 토큰
 
-첫 번째 토큰은 작업 유형이 아니라 작업 결과가 귀속되는 범위다. `v1`, `v2`, `v3`는 `docs/10-product/project-context.md`에 확정된 범위를 따른다.
+첫 번째 토큰은 작업 유형이 아니라 작업 결과가 귀속되는 범위다. `v1`, `v2`, `v3`는 `docs/010-product/project-context.md`에 확정된 범위를 따른다.
 
 | 버전 | 기준 |
 |---|---|
@@ -107,21 +107,21 @@ Issue 제목은 범위와 작업 유형을 함께 표시한다. `[project]`만 �
 [v1][feat] 회원가입 구현
 ```
 
-PR과 Commit 제목은 `docs/50-engineering/github-rules.md`의 Conventional Commit 형식을 따른다.
+PR과 Commit 제목은 `docs/050-engineering/github-rules.md`의 Conventional Commit 형식을 따른다.
 
 ```text
 feat: 회원가입 구현
 ```
 
 Issue와 PR·Commit에서 동일한 유형을 지원하고 작업의 핵심 성격이 같다면 타입을 일치시킨다.
-PR·Commit에만 존재하는 타입은 `docs/50-engineering/github-rules.md`를 따르며 Issue 유형에는 사용하지 않는다.
+PR·Commit에만 존재하는 타입은 `docs/050-engineering/github-rules.md`를 따르며 Issue 유형에는 사용하지 않는다.
 
 ## 7. AI Issue 작성 규칙
 
 AI가 Issue 초안을 만들 때 다음을 확인한다.
 
 1. 실제 GitHub Issue와 확정 문서에서 동일·유사 작업을 먼저 검색한다. 중복이면 새 Issue를 만들지 않고 기존 Issue를 보고한다.
-2. `docs/10-product/project-context.md`와 관련 기존 기능·Issue·마일스톤에서 `v1 | v2 | v3 | project` 범위를 판단하고 근거를 기록한다.
+2. `docs/010-product/project-context.md`와 관련 기존 기능·Issue·마일스톤에서 `v1 | v2 | v3 | project` 범위를 판단하고 근거를 기록한다.
 3. 실제 작업 성격에 맞는 유형을 선택한다.
 4. 제목을 `[범위][유형] 작업 내용`으로 작성한다.
 5. 범위나 유형이 불명확하면 추정하지 않고 Human에게 확인한다.

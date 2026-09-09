@@ -72,7 +72,7 @@ Payment → Reservation → TimeSlot
 
 ## 검증 방법
 
-동일 TimeSlot의 동시 최초 예약 요청에서 활성 Reservation 또는 유효 CREATE READY의 성공 건수가 최대 1건인지 검증한다. 좌석 계산과 상태의 상세 계약은 [project-context.md](../../10-product/project-context.md), [erd.md](../../30-data/erd.md), [API 명세](../../20-api/bobfull-api-spec-complete.md)를 따른다.
+동일 TimeSlot의 동시 최초 예약 요청에서 활성 Reservation 또는 유효 CREATE READY의 성공 건수가 최대 1건인지 검증한다. 좌석 계산과 상태의 상세 계약은 [project-context.md](../../010-product/project-context.md), [erd.md](../../030-data/erd.md), [API 명세](../../020-api/bobfull-api-spec-complete.md)를 따른다.
 
 ## 재검토 조건
 

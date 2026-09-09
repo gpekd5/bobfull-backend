@@ -36,8 +36,8 @@ Sprint Mode에서도 다음은 생략하지 않는다.
 세부 기준은 다음 원본을 따른다.
 
 - `AGENTS.md`
-- `docs/50-engineering/github-rules.md`
-- `docs/50-engineering/test-convention.md`
+- `docs/050-engineering/github-rules.md`
+- `docs/050-engineering/test-convention.md`
 - `skills/bobfull-onboarding/SKILL.md`
 
 ## 3. 역할

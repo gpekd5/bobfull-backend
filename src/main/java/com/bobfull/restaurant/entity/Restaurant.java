@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import java.time.Instant;
 
 /**
- * OWNER가 소유·관리하는 식당이다(docs/30-data/erd.md 4.2).
+ * OWNER가 소유·관리하는 식당이다(docs/030-data/erd.md 4.2).
  * 삭제는 소프트 딜리트이며, 연결된 테이블·회차·예약이 있을 때의 삭제 제한(Issue #31 결정 2,
  * RestaurantErrorCode.RESTAURANT_DELETE_NOT_ALLOWED)은 해당 도메인이 아직 없어 이번 Issue에서는
  * 검사하지 않는다. 합석 테이블·회차·예약 도메인 구현 시 softDelete 호출 전에 활성 데이터 여부를

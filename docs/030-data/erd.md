@@ -4,7 +4,7 @@
 
 이 문서는 확정된 API와 프로젝트 정책을 구현 가능한 관계형 데이터 모델로 표현한다. 현재 정적 스키마의 최종 기준은 실제 `Entity / @Table / @Column / @ElementCollection / Repository / Migration / Index` 정의이며, ERD는 그 구현을 사람이 검토할 수 있는 형태로 기록한다.
 
-- 기준: [`bobfull-api-spec-complete.md`](../20-api/bobfull-api-spec-complete.md), [`project-context.md`](../10-product/project-context.md)
+- 기준: [`bobfull-api-spec-complete.md`](../020-api/bobfull-api-spec-complete.md), [`project-context.md`](../010-product/project-context.md)
 - 범위: V1 예약·결제·환불 조회와 V2 취소·노쇼·채팅·운영 조회, V3 채팅 AI Moderation·Outbox·Restaurant Feedback Insight에 필요한 영속 데이터
 - 비범위: Redis, Kafka, 실제 계좌 송금 및 아직 도입하지 않은 별도 영속 모델. Redis와 Kafka는 운영 인프라이며 ERD 엔티티가 아니다.
 - 원칙: API Response DTO를 테이블로 만들지 않고, 기준 문서에 없는 정책은 확정하지 않는다. Mermaid의 표현 한계가 있으면 아래 엔티티 상세 표를 기준으로 한다.

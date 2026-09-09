@@ -201,7 +201,7 @@ Raw: `raw/peak-restaurant-view-AWS-stress-after-batch.{log,json}`,
 
 - 320 iter/s를 넘는 부하(더 큰 Stress 목표치)에서 새 포화점이 어디인지, 그 시점에도 Pool
   조정으로 대응 가능한지는 실제 트래픽 규모 전망이 나오면 후속으로 확인한다.
-- `docs/40-architecture/adr/README.md`에 이번 결정(회차 조회 배치화, 320 iter/s까지는 Pool 미조정)을
+- `docs/040-architecture/adr/README.md`에 이번 결정(회차 조회 배치화, 320 iter/s까지는 Pool 미조정)을
   ADR-0001 보강 근거로 추가할지는 Human 판단 필요.
 - **시나리오 D(통합 피크, A+B 동시 실행)는 이번 범위에서 진행하지 않기로 결정**(대화창 논의,
   Human 결정). A(최대 320 iter/s까지 개별 확인)·B(#60으로 최종 확정, 500명까지 락 경합 없음)

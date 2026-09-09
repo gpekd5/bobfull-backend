@@ -53,7 +53,7 @@ Draft PR 생성 또는 담당 구현 AI의 새 Push
 - `PR #번호 검토하라`는 자동 Review의 선행 조건이 아니라, Human이 재검토·외부 Review 반영·추가 수정 검토를 명시적으로 요청할 때 쓰는 수동 진입점이다.
 - BLOCKER와 MAJOR만 Merge를 차단한다. MINOR와 SUGGESTION은 기록하되 단독으로 Merge를 막지 않는다.
 - 자동 AI Review는 정책·API 계약·DB/상태 모델·권한/보안·트랜잭션 경계의 Human 판단이나 최종 Merge를 대체하지 않는다.
-- V3 Sprint Mode의 세부 검증·Evidence·최신 Head 재검토 기준은 `AGENTS.md`, `docs/60-ai/ai-workflow.md`, `docs/60-ai/ai-review-guide.md`, `skills/bobfull-pr-review/SKILL.md`를 따른다.
+- V3 Sprint Mode의 세부 검증·Evidence·최신 Head 재검토 기준은 `AGENTS.md`, `docs/060-ai/ai-workflow.md`, `docs/060-ai/ai-review-guide.md`, `skills/bobfull-pr-review/SKILL.md`를 따른다.
 
 ### 초기 저장소 설정 예외
 
@@ -156,7 +156,7 @@ asdfasdf
 
 ### Issue 생성
 
-- 새 Issue 제목은 `docs/50-engineering/issue-title-rules.md`의 범위·유형 규칙을 따른다.
+- 새 Issue 제목은 `docs/050-engineering/issue-title-rules.md`의 범위·유형 규칙을 따른다.
 - `blank_issues_enabled: false`는 GitHub 웹 UI에서 빈 Issue 생성을 막아 템플릿 사용을 유도하는 최소 가드레일이다. CLI·API·자동화 도구의 제목·본문 형식까지 검증하거나 완전히 강제하지는 않는다.
 - AI는 `새 Issue 초안 작성하라`로 `.github/ISSUE_TEMPLATE/feature.md` 전체 구조의 초안을 먼저 제시하며, Human이 `이 초안으로 Issue 생성하라`고 승인한 경우에만 생성한다.
 

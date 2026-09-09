@@ -40,7 +40,7 @@ V3 Sprint Mode에서는 **필수 Human Approve 인원은 0명**으로 운영한�
 
 Sprint Mode는 기존 안전 규칙을 폐기하지 않는다. 다음은 그대로 유지한다.
 
-- `AGENTS.md`와 `docs/50-engineering/github-rules.md`의 브랜치 안전 규칙
+- `AGENTS.md`와 `docs/050-engineering/github-rules.md`의 브랜치 안전 규칙
 - `main`, `master`, `develop` 직접 수정 금지
 - 다른 Issue 작업 브랜치에서 새 작업 시작 금지
 - 새 Issue 브랜치는 최신 `develop` 기준 생성
@@ -53,9 +53,9 @@ Sprint Mode는 기존 안전 규칙을 폐기하지 않는다. 다음은 그대�
 
 새 Issue 초안·생성, 브랜치 명명, 테스트 컨벤션 등 세부 규칙은 기존 전용 문서를 따른다.
 
-- `docs/50-engineering/issue-title-rules.md`
-- `docs/50-engineering/github-rules.md`
-- `docs/50-engineering/test-convention.md`
+- `docs/050-engineering/issue-title-rules.md`
+- `docs/050-engineering/github-rules.md`
+- `docs/050-engineering/test-convention.md`
 - `skills/bobfull-onboarding/SKILL.md`
 
 Sprint Mode에서 바뀌는 것은 **Human 대기와 리뷰 깊이, Merge 차단 기준**이지 이 안전 규칙들이 아니다.

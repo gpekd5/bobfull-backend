@@ -26,7 +26,7 @@ ADR(Architecture Decision Record)은 여러 대안을 비교한 뒤 프로젝트
 ## 3. 파일명과 상태
 
 - 파일명은 `NNNN-간결한-kebab-case-제목.md` 형식을 사용한다. 예: `0001-payment-webhook-idempotency.md`
-- 번호는 `docs/40-architecture/adr/` 안에서 순차 증가한다.
+- 번호는 `docs/040-architecture/adr/` 안에서 순차 증가한다.
 - 상태값은 `Proposed`, `Accepted`, `Superseded`, `Rejected`를 사용한다.
 - `Superseded` 문서는 삭제하지 않고, 대체한 ADR 번호·링크를 남긴다.
 - 기술 자체를 측정 후 미도입한 경우에도 **의사결정 문서가 확정된 것**이라면 ADR 상태는 `Accepted`로 두고 본문에 `MEASURED_AND_REJECTED` 등 결정 유형을 명시할 수 있다.

@@ -1,6 +1,6 @@
 # 밥풀(BobFull) 전체 플로우차트
 
-> 기준: [`bobfull-api-spec-complete.md`](../20-api/bobfull-api-spec-complete.md), [`project-context.md`](../10-product/project-context.md), [`erd.md`](../30-data/erd.md)
+> 기준: [`bobfull-api-spec-complete.md`](../020-api/bobfull-api-spec-complete.md), [`project-context.md`](../010-product/project-context.md), [`erd.md`](../030-data/erd.md)
 >
 > 정책 상세는 API 명세와 PROJECT_CONTEXT를 우선한다.
 > 상태 판단 기준은 참여 사용자 수가 아니라 결제 완료된 `partySize` 합계다.

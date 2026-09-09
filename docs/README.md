@@ -6,17 +6,17 @@
 
 | Directory | Role |
 |---|---|
-| [`10-product`](10-product/project-context.md) | 제품 방향, 프로젝트 정책, 역할, 상태 기준 |
-| [`20-api`](20-api/README.md) | HTTP API, WebSocket, Actuator, Webhook 계약 |
-| [`30-data`](30-data/erd.md) | 관계형 데이터 모델과 migration 기록 |
-| [`40-architecture`](40-architecture/architecture.md) | 논리 아키텍처, 도메인 의존성, ADR |
-| [`50-engineering`](50-engineering/code-convention.md) | 코드, 테스트, GitHub, Issue 규칙 |
-| [`60-ai`](60-ai/ai-workflow.md) | AI 협업 절차, 구현/리뷰 가이드 |
-| [`70-deployment`](70-deployment/aws-v1-backend.md) | AWS 배포, CI/CD, Blue-Green, 배포 설정 기준 |
-| [`80-operations`](80-operations/monitoring-runbook.md) | 배포 이후 모니터링, 환불 정합성 등 운영 대응 절차 |
-| [`90-testing`](90-testing/performance/k6-aws-test-environment.md) | 성능 테스트 환경과 k6 실행 기준 |
+| [`010-product`](010-product/project-context.md) | 제품 방향, 프로젝트 정책, 역할, 상태 기준 |
+| [`020-api`](020-api/README.md) | HTTP API, WebSocket, Actuator, Webhook 계약 |
+| [`030-data`](030-data/erd.md) | 관계형 데이터 모델과 migration 기록 |
+| [`040-architecture`](040-architecture/architecture.md) | 논리 아키텍처, 도메인 의존성, ADR |
+| [`050-engineering`](050-engineering/code-convention.md) | 코드, 테스트, GitHub, Issue 규칙 |
+| [`060-ai`](060-ai/ai-workflow.md) | AI 협업 절차, 구현/리뷰 가이드 |
+| [`070-deployment`](070-deployment/aws-v1-backend.md) | AWS 배포, CI/CD, Blue-Green, 배포 설정 기준 |
+| [`080-operations`](080-operations/monitoring-runbook.md) | 배포 이후 모니터링, 환불 정합성 등 운영 대응 절차 |
+| [`090-testing`](090-testing/performance/k6-aws-test-environment.md) | 성능 테스트 환경과 k6 실행 기준 |
 | [`100-learning`](100-learning/system-flow/v3/operations-system-flow/README.md) | 실제 코드와 Evidence 기반 System Flow 학습 산출물 |
-| [`110-records`](110-records/evidence/v3/README.md) | Evidence, troubleshooting, TIL, Human 검토 기록 |
+| [`110-records`](110-records/evidence/v3/README.md) | Evidence와 troubleshooting 기록 |
 | [`120-templates`](120-templates/troubleshooting-template.md) | 문서 작성 양식 |
 
 ## Naming

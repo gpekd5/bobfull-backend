@@ -42,7 +42,7 @@ Refresh Token·Blacklist 후보는 모두 "특정 시점 이후 자동 소멸해
 
 ## 검증 방법
 
-로그인 → 재발급(회전) → 로그아웃 → 재발급 거부 흐름과, TTL 만료 후 자동 삭제, Redis 연결 실패 시 재발급 거부를 실제 Redis(Docker)로 검증한다. 상세 계약은 [project-context.md](../../10-product/project-context.md), [API 명세](../../20-api/bobfull-api-spec-complete.md)를 따른다.
+로그인 → 재발급(회전) → 로그아웃 → 재발급 거부 흐름과, TTL 만료 후 자동 삭제, Redis 연결 실패 시 재발급 거부를 실제 Redis(Docker)로 검증한다. 상세 계약은 [project-context.md](../../010-product/project-context.md), [API 명세](../../020-api/bobfull-api-spec-complete.md)를 따른다.
 
 ## 재검토 조건
 

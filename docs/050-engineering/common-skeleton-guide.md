@@ -1,7 +1,7 @@
 # 공통 개발 골격 사용 가이드
 
 이 문서는 `common` 패키지에서 제공하는 공통 응답·예외·시간·보안 골격을 다른 도메인에서 사용하는 방법을 설명한다.
-[docs/50-engineering/code-convention.md](code-convention.md)의 §10~§12 규칙을 실제 클래스와 연결한 실행 가이드다.
+[docs/050-engineering/code-convention.md](code-convention.md)의 §10~§12 규칙을 실제 클래스와 연결한 실행 가이드다.
 
 ## 1. 공통 응답 — `common.response.ApiResponse`
 

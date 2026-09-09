@@ -431,7 +431,7 @@ INTERNAL_SERVER_ERROR
 - 예약 생성, 예약 참여, 결제, 환불, 노쇼 상태 변경은 우선 테스트 대상으로 한다.
 - 동일 예약에 여러 사용자가 동시에 참여하는 상황은 동시성 테스트를 작성한다.
 - 동시성 해결 전 실패 테스트와 해결 후 성공 테스트를 기록한다.
-- 상세 테스트 작성·실행·증거 규칙은 `docs/50-engineering/test-convention.md`를 따른다.
+- 상세 테스트 작성·실행·증거 규칙은 `docs/050-engineering/test-convention.md`를 따른다.
 
 테스트 구조 예시:
 
@@ -491,7 +491,7 @@ EC2 배포
 
 ## 16. AI 활용 규칙
 
-- AI의 작업 가능 범위는 `AGENTS.md`, `docs/60-ai/ai-workflow.md`, `docs/60-ai/ai-implementation-guide.md`를 따른다.
+- AI의 작업 가능 범위는 `AGENTS.md`, `docs/060-ai/ai-workflow.md`, `docs/060-ai/ai-implementation-guide.md`를 따른다.
 - Human이 `READY`로 승인한 Issue에서는 AI가 구현 계획, 코드, 테스트, 검증, 문서와 Draft PR을 작성할 수 있다.
 - AI가 생성한 코드와 테스트는 담당자가 실제 Diff와 실행 결과를 확인하고 설명할 수 있어야 한다.
 - AI가 사용된 작업과 Human이 직접 확인한 범위는 PR 템플릿에 간단히 기록한다.

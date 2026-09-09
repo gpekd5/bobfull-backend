@@ -6,9 +6,9 @@
 
 기준 문서 우선순위는 다음과 같다.
 
-1. [API 명세](../20-api/bobfull-api-spec-complete.md): HTTP·WebSocket·Actuator 계약
-2. [프로젝트 컨텍스트](../10-product/project-context.md): 서비스 정책·역할·버전 범위
-3. [ERD](../30-data/erd.md): 영속 데이터·관계·저장값과 계산값
+1. [API 명세](../020-api/bobfull-api-spec-complete.md): HTTP·WebSocket·Actuator 계약
+2. [프로젝트 컨텍스트](../010-product/project-context.md): 서비스 정책·역할·버전 범위
+3. [ERD](../030-data/erd.md): 영속 데이터·관계·저장값과 계산값
 
 세 문서가 충돌하면 이 문서에서 해석하거나 정책을 정하지 않고 작업을 중단해 Human 판단을 요청한다.
 
@@ -96,7 +96,7 @@ OWNER는 백엔드에서 Presigned PUT URL을 발급받아 `temp/restaurants/{ow
 
 ### 인증 세션(Access·Refresh Token)
 
-Access Token은 HS256 JWT로 서명·만료를 검증하는 무상태 토큰이며 서버에 상태를 저장하지 않는다. 다만 발급 시 부여하는 `jti` Claim으로 로그아웃된 토큰만 예외적으로 즉시 폐기할 수 있다(Access Token Blacklist, Issue #186). Refresh Token은 발급·재발급·로그아웃의 폐기가 가능해야 하므로 Redis에만 저장한다(DB 테이블 아님, `docs/50-engineering/code-convention.md` 기준). 회원당 Refresh Token은 항상 1건이며, 로그인·재발급마다 기존 키를 지우고 새로 발급한다(회전). 로그아웃은 인증된 memberId로 그 회원의 Refresh Token 키를 즉시 삭제하고, 그 Access Token의 `jti`를 남은 유효시간만큼 Blacklist에 등록한다. 인증 필터는 서명·만료 검증을 통과한 모든 요청마다 이 Blacklist를 조회해 로그아웃된 토큰을 차단한다. Redis 조회 실패 시 재발급은 새 토큰을 내주지 않고 401로 거부한다. 로그아웃 자체(Blacklist 등록·Refresh Token 삭제)의 Redis 실패는 감추지 않고 그대로 전파한다. 반면 Blacklist 조회는 인증 필터를 거치는 모든 요청에 실행되므로, Redis 장애가 전체 API 장애로 번지지 않게 요청을 막지 않는다. 이때 노출되는 위험은 직전 로그아웃한 토큰이 만료 시각까지 잠시 재사용되는 범위로 제한된다. 이 기능 배포 이전에 발급돼 `jti`가 없는 토큰은 Blacklist 조회를 건너뛰고 인증만 정상 처리한다. Refresh Token 재사용 탐지(탈취 시 전체 세션 무효화)는 아직 도입하지 않는다 — ADMIN 역할처럼 탈취 시 위험도가 높은 대상이 추가되면 별도 Issue로 재검토한다(`docs/40-architecture/adr/0006-refresh-token-redis.md`).
+Access Token은 HS256 JWT로 서명·만료를 검증하는 무상태 토큰이며 서버에 상태를 저장하지 않는다. 다만 발급 시 부여하는 `jti` Claim으로 로그아웃된 토큰만 예외적으로 즉시 폐기할 수 있다(Access Token Blacklist, Issue #186). Refresh Token은 발급·재발급·로그아웃의 폐기가 가능해야 하므로 Redis에만 저장한다(DB 테이블 아님, `docs/050-engineering/code-convention.md` 기준). 회원당 Refresh Token은 항상 1건이며, 로그인·재발급마다 기존 키를 지우고 새로 발급한다(회전). 로그아웃은 인증된 memberId로 그 회원의 Refresh Token 키를 즉시 삭제하고, 그 Access Token의 `jti`를 남은 유효시간만큼 Blacklist에 등록한다. 인증 필터는 서명·만료 검증을 통과한 모든 요청마다 이 Blacklist를 조회해 로그아웃된 토큰을 차단한다. Redis 조회 실패 시 재발급은 새 토큰을 내주지 않고 401로 거부한다. 로그아웃 자체(Blacklist 등록·Refresh Token 삭제)의 Redis 실패는 감추지 않고 그대로 전파한다. 반면 Blacklist 조회는 인증 필터를 거치는 모든 요청에 실행되므로, Redis 장애가 전체 API 장애로 번지지 않게 요청을 막지 않는다. 이때 노출되는 위험은 직전 로그아웃한 토큰이 만료 시각까지 잠시 재사용되는 범위로 제한된다. 이 기능 배포 이전에 발급돼 `jti`가 없는 토큰은 Blacklist 조회를 건너뛰고 인증만 정상 처리한다. Refresh Token 재사용 탐지(탈취 시 전체 세션 무효화)는 아직 도입하지 않는다 — ADMIN 역할처럼 탈취 시 위험도가 높은 대상이 추가되면 별도 Issue로 재검토한다(`docs/040-architecture/adr/0006-refresh-token-redis.md`).
 
 ### 식당 검색 Cache
 
@@ -132,7 +132,7 @@ sequenceDiagram
 - MEMBER·OWNER 취소와 환불은 예약·참여·결제 상태를 함께 반영하는 경계다.
 - OWNER는 식사 종료 후 `RESERVED` 참여자를 노쇼 처리·해제하며, `NoShowHistory`에 처리 이력을 남긴다. 노쇼는 취소나 환불을 대신하지 않는다.
 
-취소 가능 시점, 전체·참여자 단위 환불, 상태 전이와 TimeSlot 재사용 조건은 [프로젝트 컨텍스트](../10-product/project-context.md)와 [API 명세](../20-api/bobfull-api-spec-complete.md)를, 환불·노쇼 데이터 관계는 [ERD](../30-data/erd.md)를 따른다.
+취소 가능 시점, 전체·참여자 단위 환불, 상태 전이와 TimeSlot 재사용 조건은 [프로젝트 컨텍스트](../010-product/project-context.md)와 [API 명세](../020-api/bobfull-api-spec-complete.md)를, 환불·노쇼 데이터 관계는 [ERD](../030-data/erd.md)를 따른다.
 
 ## 6-1. 예약 결과·결제 완료 이메일 알림
 
@@ -180,7 +180,7 @@ ChatMessage는 저장과 동시에 AI 분석용 `CHAT_MESSAGE_CREATED` Outbox를
 
 결제 완료 후 취소되지 않은 유효 참여자만 접근할 수 있고 OWNER와 ADMIN은 참여하지 않는다. 예약 또는 참여가 취소되면 해당 참여자의 접근은 종료되며, 예약이 `CANCELLED` 또는 `CLOSED`가 되면 새 메시지 전송을 종료한다. 기존 `ChatMessage`는 DB에 보관하고 cursor 기반으로 조회한다.
 
-STOMP 전송·구독 경로와 HTTP 메시지 조회의 상세 계약은 [API 명세](../20-api/bobfull-api-spec-complete.md)를 참조한다.
+STOMP 전송·구독 경로와 HTTP 메시지 조회의 상세 계약은 [API 명세](../020-api/bobfull-api-spec-complete.md)를 참조한다.
 
 ### AI Moderation Core
 
@@ -273,8 +273,8 @@ API 명세의 운영 요구사항은 요청 ID(MDC), 인증 사용자 ID, API �
 
 ## 10. 관련 문서
 
-- [프로젝트 컨텍스트](../10-product/project-context.md)
-- [전체 API 명세](../20-api/bobfull-api-spec-complete.md)
-- [ERD](../30-data/erd.md)
+- [프로젝트 컨텍스트](../010-product/project-context.md)
+- [전체 API 명세](../020-api/bobfull-api-spec-complete.md)
+- [ERD](../030-data/erd.md)
 - [도메인 의존성과 변경 영향](domain-dependencies.md)
 - [ADR 운영 기준](adr/README.md)

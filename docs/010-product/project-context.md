@@ -1,7 +1,7 @@
 # 밥풀(BobFull) 프로젝트 컨텍스트
 
 > 기준일: 2026-08-18 Final QA 기준
-> API 계약의 최우선 기준은 [`bobfull-api-spec-complete.md`](../20-api/bobfull-api-spec-complete.md)다. 이 문서가 API 명세와 충돌하면 API 명세를 따른다.
+> API 계약의 최우선 기준은 [`bobfull-api-spec-complete.md`](../020-api/bobfull-api-spec-complete.md)다. 이 문서가 API 명세와 충돌하면 API 명세를 따른다.
 
 ## 1. 프로젝트 개요
 
@@ -218,7 +218,7 @@ V3 인프라 판단은 Evidence 기준으로 구분한다. ALB 뒤 Active App EC
 ## 11. 관련 문서
 
 - 제품 방향·초기 타깃·MVP 범위: [`prd.md`](prd.md)
-- API 명세: [`bobfull-api-spec-complete.md`](../20-api/bobfull-api-spec-complete.md)
-- 데이터 모델: [`erd.md`](../30-data/erd.md)
-- 논리 책임 경계: [`architecture.md`](../40-architecture/architecture.md)
-- 도메인 변경 영향: [`domain-dependencies.md`](../40-architecture/domain-dependencies.md)
+- API 명세: [`bobfull-api-spec-complete.md`](../020-api/bobfull-api-spec-complete.md)
+- 데이터 모델: [`erd.md`](../030-data/erd.md)
+- 논리 책임 경계: [`architecture.md`](../040-architecture/architecture.md)
+- 도메인 변경 영향: [`domain-dependencies.md`](../040-architecture/domain-dependencies.md)

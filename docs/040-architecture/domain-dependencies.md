@@ -6,7 +6,7 @@
 
 예약·모집·참여·좌석·결제·취소·환불·노쇼·지급 예정 예약금이 서로 어떻게 연결되는지 확인하고, 한 영역의 변경이 다른 담당 영역과 문서·테스트에 누락되지 않도록 사용하는 변경 영향 기준이다.
 
-정책이 이 문서와 충돌하면 [`bobfull-api-spec-complete.md`](../20-api/bobfull-api-spec-complete.md), [`project-context.md`](../10-product/project-context.md), [`erd.md`](../30-data/erd.md)의 순서로 확인한다. 이 세 문서가 충돌하면 임의로 선택하지 않고 Human 판단을 요청한다.
+정책이 이 문서와 충돌하면 [`bobfull-api-spec-complete.md`](../020-api/bobfull-api-spec-complete.md), [`project-context.md`](../010-product/project-context.md), [`erd.md`](../030-data/erd.md)의 순서로 확인한다. 이 세 문서가 충돌하면 임의로 선택하지 않고 Human 판단을 요청한다.
 
 ## 2. 도메인 연결 요약
 
@@ -63,7 +63,7 @@
 
 ## 3. 핵심 공동 작업 경계
 
-아래 흐름은 공동 검토가 필요한 도메인 연결을 나타낸다. 상태 전이, 결제·환불, 좌석 정합성의 상세 정책은 [API 명세](../20-api/bobfull-api-spec-complete.md), [프로젝트 컨텍스트](../10-product/project-context.md), [ERD](../30-data/erd.md)를 따른다.
+아래 흐름은 공동 검토가 필요한 도메인 연결을 나타낸다. 상태 전이, 결제·환불, 좌석 정합성의 상세 정책은 [API 명세](../020-api/bobfull-api-spec-complete.md), [프로젝트 컨텍스트](../010-product/project-context.md), [ERD](../030-data/erd.md)를 따른다.
 
 ### 예약 생성
 
@@ -149,7 +149,7 @@ OWNER 인증
 - 결제 완료 API와 웹훅은 동일 Payment 행 비관적 락과 `ReservationConfirmationService(MANDATORY)`의 한 트랜잭션으로 수렴해 예약·참여·결제 결과를 한 번만 반영한다. 웹훅 영구 업무 실패는 200, 인프라 실패는 5xx다.
 - 외부 PAID·내부 EXPIRED 또는 만료 READY는 `PAYMENT_COMPENSATION_REQUIRED` 구조화 로그를 남기며 예약 확정·자동 취소·환불은 수행하지 않는다.
 - `READY && expiresAt <= cutoff` 후보는 `(expiresAt, paymentId 내부 PK)` 순서로 최대 100건만 조회하고, 각 건은 별도 트랜잭션의 내부 PK 행 락으로 EXPIRED 정규화한다. 스케줄러는 예약 확정이나 외부 보상을 호출하지 않는다.
-- 환불 완료 상태와 결제 취소 상태는 함께 반영한다. 상세 상태 관계는 [프로젝트 컨텍스트](../10-product/project-context.md)와 [ERD](../30-data/erd.md)를 따른다.
+- 환불 완료 상태와 결제 취소 상태는 함께 반영한다. 상세 상태 관계는 [프로젝트 컨텍스트](../010-product/project-context.md)와 [ERD](../030-data/erd.md)를 따른다.
 
 ### 예약 확정과 모집 마감
 
@@ -168,7 +168,7 @@ OWNER 인증
 - 김홍기: 테이블 정원·회차 시작 시각
 - 김현승: 모집 실패 환불 대상과 금액
 
-- 모집 마감 자체는 TimeSlot을 재사용 가능 상태로 바꾸지 않으며, Reservation 전체가 취소된 뒤에만 재사용 여부를 판단한다. 상세 상태·시간 조건은 [프로젝트 컨텍스트](../10-product/project-context.md)와 [API 명세](../20-api/bobfull-api-spec-complete.md)를 따른다.
+- 모집 마감 자체는 TimeSlot을 재사용 가능 상태로 바꾸지 않으며, Reservation 전체가 취소된 뒤에만 재사용 여부를 판단한다. 상세 상태·시간 조건은 [프로젝트 컨텍스트](../010-product/project-context.md)와 [API 명세](../020-api/bobfull-api-spec-complete.md)를 따른다.
 
 ### MEMBER 취소·환불
 
@@ -187,7 +187,7 @@ OWNER 인증
 → CANCELLING 전환 시점부터 ChatRoom 신규 메시지 전송 종료, 지급 예정금은 환불 COMPLETED 반영 시점에 갱신
 ```
 
-(#44, #45) 취소는 접수·외부 환불 실행·완료 확정 세 단계로 나뉜다. `RefundStatus`의 결과 불명확 표현은 `UNKNOWN`을 새로 도입하지 않고 `REQUESTED` 유지로 표현하는 것으로 2026-08-05 확정됐다(자세한 내용은 [PROJECT_CONTEXT](../10-product/project-context.md), [ERD](../30-data/erd.md) 참고).
+(#44, #45) 취소는 접수·외부 환불 실행·완료 확정 세 단계로 나뉜다. `RefundStatus`의 결과 불명확 표현은 `UNKNOWN`을 새로 도입하지 않고 `REQUESTED` 유지로 표현하는 것으로 2026-08-05 확정됐다(자세한 내용은 [PROJECT_CONTEXT](../010-product/project-context.md), [ERD](../030-data/erd.md) 참고).
 
 필수 공동 검토:
 
@@ -196,7 +196,7 @@ OWNER 인증
 - 배지현: 최초·추가 참여자 분기, 참여 인원·예약 상태·모집 상태·채팅 종료 반영
 - 김홍기: `CANCELLED` 예약·시작 2시간 전·활성 예약 없음·OWNER 제한 없음 조건의 TimeSlot 복구
 
-- MEMBER 취소는 허용 시점 안에서만 처리하며, 취소 후 재모집은 지원하지 않는다. 상세 시점·참여자 분기·환불 조건은 [프로젝트 컨텍스트](../10-product/project-context.md)와 [API 명세](../20-api/bobfull-api-spec-complete.md)를 따른다.
+- MEMBER 취소는 허용 시점 안에서만 처리하며, 취소 후 재모집은 지원하지 않는다. 상세 시점·참여자 분기·환불 조건은 [프로젝트 컨텍스트](../010-product/project-context.md)와 [API 명세](../020-api/bobfull-api-spec-complete.md)를 따른다.
 
 ### TimeSlot 활성 예약 정합성
 
@@ -209,7 +209,7 @@ OWNER 인증
 → 트랜잭션 종료까지 TimeSlot 잠금 유지
 ```
 
-- 활성 Reservation 또는 유효한 CREATE READY는 같은 TimeSlot에서 동시에 하나만 성공해야 한다. 상세 잠금·만료·JOIN 처리 조건은 [프로젝트 컨텍스트](../10-product/project-context.md)와 [ERD](../30-data/erd.md)를 따른다.
+- 활성 Reservation 또는 유효한 CREATE READY는 같은 TimeSlot에서 동시에 하나만 성공해야 한다. 상세 잠금·만료·JOIN 처리 조건은 [프로젝트 컨텍스트](../010-product/project-context.md)와 [ERD](../030-data/erd.md)를 따른다.
 
 ### 노쇼와 예약 종료
 
@@ -223,7 +223,7 @@ OWNER 인증
 → 지급 예정 예약금과 노쇼율 반영
 ```
 
-- OWNER의 노쇼 처리·해제는 참여자 단위로 수행하고 처리 이력을 남긴다. 상세 허용 상태와 저장 관계는 [프로젝트 컨텍스트](../10-product/project-context.md), [API 명세](../20-api/bobfull-api-spec-complete.md), [ERD](../30-data/erd.md)를 따른다.
+- OWNER의 노쇼 처리·해제는 참여자 단위로 수행하고 처리 이력을 남긴다. 상세 허용 상태와 저장 관계는 [프로젝트 컨텍스트](../010-product/project-context.md), [API 명세](../020-api/bobfull-api-spec-complete.md), [ERD](../030-data/erd.md)를 따른다.
 - `예약 CLOSED`는 스케줄러가 `CONFIRMED` 예약을 대상으로 `TimeSlot.endAt` 도달 후보를 조회해 전이한다. 채팅 SEND 차단과 노쇼 처리 허용은 스케줄러 처리 시점과 무관하게 `now >= TimeSlot.endAt`을 직접 비교해 같은 기준으로 즉시 판단한다(Issue #175).
 
 ### 예약 참여자 채팅
@@ -238,7 +238,7 @@ OWNER 인증
 → 기존 ChatMessage는 조회 가능
 ```
 
-- 결제 완료 후 취소되지 않은 참여자만 채팅에 접근하며, 취소된 참여자는 즉시 접근이 종료된다. 상세 접근·전송 조건은 [프로젝트 컨텍스트](../10-product/project-context.md)와 [API 명세](../20-api/bobfull-api-spec-complete.md)를 따른다.
+- 결제 완료 후 취소되지 않은 참여자만 채팅에 접근하며, 취소된 참여자는 즉시 접근이 종료된다. 상세 접근·전송 조건은 [프로젝트 컨텍스트](../010-product/project-context.md)와 [API 명세](../020-api/bobfull-api-spec-complete.md)를 따른다.
 - Redis Pub/Sub은 메시지를 저장하거나 다시 보내주는 경로가 아니며, 발행 실패는 이미 저장된 ChatMessage를 롤백하지 않는다.
 
 ### ChatMessage 후속 처리와 Restaurant Feedback Insight
@@ -295,7 +295,7 @@ ChatMessage 저장
 
 ## 6. 문서와 구현 변경 체크리스트
 
-- [ ] [`project-context.md`](../10-product/project-context.md)의 확정 정책과 충돌하지 않는가
+- [ ] [`project-context.md`](../010-product/project-context.md)의 확정 정책과 충돌하지 않는가
 - [ ] 영향을 받는 도메인과 담당자를 Issue에 적었는가
 - [ ] API Base URL `/api/**`, Actuator `/actuator/**`, WebSocket `/ws`, 공통 응답, 역할 계약이 바뀌는가
 - [ ] `partySize`, 정원, 확정 기준과 모집 상태가 DB 모델에 반영되는가

@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * 하나의 TimeSlot에 대한 합석 예약이다(docs/30-data/erd.md 4.5).
+ * 하나의 TimeSlot에 대한 합석 예약이다(docs/030-data/erd.md 4.5).
  * 결제 검증 전에는 생성하지 않으며(ADR 0001), 취소 이력 보존을 위해 CANCELLED 상태도
  * TimeSlot 연결을 유지한다.
  */
@@ -53,7 +53,7 @@ public class Reservation extends BaseTimeEntity {
     }
 
     /**
-     * 확정 기준(docs/20-api/bobfull-api-spec-complete.md §0.8) 도달 시 RECRUITING에서 CONFIRMED로 전이한다.
+     * 확정 기준(docs/020-api/bobfull-api-spec-complete.md §0.8) 도달 시 RECRUITING에서 CONFIRMED로 전이한다.
      */
     public void confirm() {
         if (reservationStatus == ReservationStatus.RECRUITING) {

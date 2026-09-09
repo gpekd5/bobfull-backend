@@ -56,5 +56,5 @@ MVP는 회원·인증, 식당·테이블·회차 관리와 사용자 조회, 예
 ## 9. 관련 기준 문서
 
 - 운영 정책·역할·상태·버전 범위: [project-context.md](project-context.md)
-- HTTP·WebSocket·Actuator 계약: [bobfull-api-spec-complete.md](../20-api/bobfull-api-spec-complete.md)
-- 데이터 모델과 정합성 제약: [erd.md](../30-data/erd.md)
+- HTTP·WebSocket·Actuator 계약: [bobfull-api-spec-complete.md](../020-api/bobfull-api-spec-complete.md)
+- 데이터 모델과 정합성 제약: [erd.md](../030-data/erd.md)

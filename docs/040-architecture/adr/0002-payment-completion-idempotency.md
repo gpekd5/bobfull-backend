@@ -62,7 +62,7 @@ PAID 전환, `Reservation`·`ReservationParticipant` 생성, Payment 결과 ID �
 
 ## 검증 방법
 
-완료 검증 API와 웹훅이 동시에 도착하거나 반복될 때 결과가 한 번만 반영되는지 검증한다. 상세 API·상태 계약은 [project-context.md](../../10-product/project-context.md), [API 명세](../../20-api/bobfull-api-spec-complete.md), [erd.md](../../30-data/erd.md)를 따른다.
+완료 검증 API와 웹훅이 동시에 도착하거나 반복될 때 결과가 한 번만 반영되는지 검증한다. 상세 API·상태 계약은 [project-context.md](../../010-product/project-context.md), [API 명세](../../020-api/bobfull-api-spec-complete.md), [erd.md](../../030-data/erd.md)를 따른다.
 
 ## 재검토 조건
 
