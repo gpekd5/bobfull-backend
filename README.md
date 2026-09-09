@@ -4,7 +4,7 @@
 
 BobFull(밥풀)은 혼자 방문하기 부담스러운 식당에서 사용자가 **필요한 좌석만 예약하고**, 같은 시간대의 여행객과 자연스럽게 함께 식사할 수 있도록 연결하는 합석 예약 서비스입니다.
 
-[🏠 Project Home](https://github.com/bobfull-project) · [📚 Technical Docs](https://github.com/bobfull-project/bobfull-docs) · [🖥️ Frontend](https://github.com/bobfull-project/bobfull-frontend) · [🔬 Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/)
+[🏠 Project Home](https://github.com/bobfull-project) · [📚 Technical Docs](https://github.com/bobfull-project/bobfull-docs) · [🖥️ Frontend](https://github.com/bobfull-project/bobfull-frontend) · [🔬 System Flow](https://bobfull-project.github.io/bobfull-docs/100-learning/system-flow/v3/operations-system-flow/)
 
 ```text
 식당·회차 탐색 → 모임 생성·참여 → 예약금 결제 → 합석 확정 → 참여자 채팅
@@ -41,7 +41,7 @@ BobFull(밥풀)은 혼자 방문하기 부담스러운 식당에서 사용자가
 5. 예약이 확정되면 참여자는 WebSocket/STOMP 기반 그룹 채팅을 이용합니다.
 6. 모집 마감·취소·노쇼 상황에 따라 예약 및 환불 상태를 처리합니다.
 
-상세 상태 전이와 정책은 [`project-context.md`](docs/product/project-context.md)와 [`bobfull-api-spec-complete.md`](docs/api/bobfull-api-spec-complete.md)를 기준으로 합니다.
+상세 상태 전이와 정책은 [`project-context.md`](docs/10-product/project-context.md)와 [`bobfull-api-spec-complete.md`](docs/20-api/bobfull-api-spec-complete.md)를 기준으로 합니다.
 
 ---
 
@@ -135,7 +135,7 @@ README에서는 대표 사례와 결과만 요약합니다. 문제 정의부터 
 | Blue-Green 배포 | 외부 요청 `2,787 / 2,787` HTTP 200, 실패 `0`, 관측 다운타임 `0s` | Application Layer 트래픽 전환 검증 |
 | Outbox + Async / Kafka | Async `5.394s`, Kafka `7.210s`, 양쪽 유실/중복 `0 / 0` | Kafka는 속도가 아니라 Broker backlog·Consumer Group·Retry/DLT·운영 경계 때문에 AI에 한정 유지 |
 
-전체 측정 조건과 한계는 [`V3 Final Claim Matrix`](docs/evidence/v3/final-claim-matrix.md)와 각 Evidence 문서를 기준으로 합니다.
+전체 측정 조건과 한계는 [`V3 Final Claim Matrix`](docs/110-records/evidence/v3/final-claim-matrix.md)와 각 Evidence 문서를 기준으로 합니다.
 
 ---
 
@@ -149,7 +149,7 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 최종 의도, 비즈니스 정책, 데이터 정합성, 권한·보안, 트랜잭션 경계, 성능 수치는 사람이 코드와 Evidence를 기준으로 검증했습니다.
 
-[▶ AI Workflow](docs/ai/ai-workflow.md)
+[▶ AI Workflow](docs/60-ai/ai-workflow.md)
 
 ---
 
@@ -166,7 +166,7 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 | [Troubleshooting](https://github.com/bobfull-project/bobfull-docs/tree/main/troubleshooting) | 개별 장애·버그·정합성 문제 해결 기록 |
 | [Performance](https://github.com/bobfull-project/bobfull-docs/tree/main/performance) | 실제 측정 기반 성능 결과 |
 | [Engineering Records](https://github.com/bobfull-project/bobfull-docs/tree/main/engineering-records) | 인프라·배포·모니터링의 발전 과정 |
-| [Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/) | 실제 코드/Evidence 기반 핵심 Backend 흐름 시뮬레이션 |
+| [System Flow](https://bobfull-project.github.io/bobfull-docs/100-learning/system-flow/v3/operations-system-flow/) | 실제 코드/Evidence 기반 핵심 Backend 흐름 시뮬레이션 |
 
 ### Backend Source of Truth
 
@@ -174,13 +174,13 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 | 문서 | 기준 |
 |---|---|
-| [`project-context.md`](docs/product/project-context.md) | 서비스 정책·역할·상태 기준 |
-| [`bobfull-api-spec-complete.md`](docs/api/bobfull-api-spec-complete.md) | HTTP API 계약 |
-| [`erd.md`](docs/data/erd.md) | 데이터 모델 |
-| [`architecture.md`](docs/architecture/architecture.md) | 논리 아키텍처·책임 경계 |
-| [`domain-dependencies.md`](docs/architecture/domain-dependencies.md) | 도메인 및 패키지 의존 관계 |
-| [`docs/adr`](docs/architecture/adr/README.md) | Backend 공식 번호형 ADR |
-| [`final-claim-matrix.md`](docs/evidence/v3/final-claim-matrix.md) | 구현·검증·실측 주장과 Evidence |
+| [`project-context.md`](docs/10-product/project-context.md) | 서비스 정책·역할·상태 기준 |
+| [`bobfull-api-spec-complete.md`](docs/20-api/bobfull-api-spec-complete.md) | HTTP API 계약 |
+| [`erd.md`](docs/30-data/erd.md) | 데이터 모델 |
+| [`architecture.md`](docs/40-architecture/architecture.md) | 논리 아키텍처·책임 경계 |
+| [`domain-dependencies.md`](docs/40-architecture/domain-dependencies.md) | 도메인 및 패키지 의존 관계 |
+| [`docs/adr`](docs/40-architecture/adr/README.md) | Backend 공식 번호형 ADR |
+| [`final-claim-matrix.md`](docs/110-records/evidence/v3/final-claim-matrix.md) | 구현·검증·실측 주장과 Evidence |
 
 협업 규칙, 코드/테스트 Convention, AI 작업 가이드는 Backend `docs/`에 유지하되 README의 핵심 탐색 경로와 분리합니다.
 
@@ -236,6 +236,6 @@ docker compose --profile app up --build -d
 ### 더 자세히 보기
 
 - [BobFull Technical Docs](https://github.com/bobfull-project/bobfull-docs)
-- [Backend ADR](docs/architecture/adr/README.md)
-- [Backend Evidence](docs/evidence/v3/README.md)
-- [Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/)
+- [Backend ADR](docs/40-architecture/adr/README.md)
+- [Backend Evidence](docs/110-records/evidence/v3/README.md)
+- [System Flow](https://bobfull-project.github.io/bobfull-docs/100-learning/system-flow/v3/operations-system-flow/)

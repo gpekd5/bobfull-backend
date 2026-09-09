@@ -3,7 +3,7 @@
 Issue #63(공통 K6 Harness·주요 API Load/Stress·성능 지도) 구현. 실제 AWS 실행 환경은
 Issue #207에서 별도 Test App EC2 + Test RDS 형태로 준비했다.
 
-AWS 테스트 환경의 구성·접근 방법은 [`docs/operations/infra/k6-aws-test-environment.md`](../docs/operations/infra/k6-aws-test-environment.md)를 참고한다.
+AWS 테스트 환경의 구성·접근 방법은 [`docs/90-testing/performance/k6-aws-test-environment.md`](../docs/90-testing/performance/k6-aws-test-environment.md)를 참고한다.
 
 ## 구조
 
@@ -88,10 +88,10 @@ k6 run -e STAGE=stress -e BASE_URL=http://<test-ec2-public-ip>:8080 k6/scenarios
 ## 결과 저장
 
 ```text
-docs/evidence/v3/63-api-k6/README.md    #63 결과표·병목 전환점·비교 조건
-docs/evidence/v3/63-api-k6/raw/         #63 k6 JSON/요약, Prometheus 쿼리 결과
-docs/evidence/v3/142-reservation-peak/README.md   #142 결과표·병목 전환점·비교 조건
-docs/evidence/v3/142-reservation-peak/raw/        #142 k6 JSON/요약, Prometheus 쿼리 결과
+docs/110-records/evidence/v3/63-api-k6/README.md    #63 결과표·병목 전환점·비교 조건
+docs/110-records/evidence/v3/63-api-k6/raw/         #63 k6 JSON/요약, Prometheus 쿼리 결과
+docs/110-records/evidence/v3/142-reservation-peak/README.md   #142 결과표·병목 전환점·비교 조건
+docs/110-records/evidence/v3/142-reservation-peak/raw/        #142 k6 JSON/요약, Prometheus 쿼리 결과
 ```
 
 Fixture 시딩과 실제 Smoke/Load/Stress 실행·Grafana Evidence 작성은 각 성능 테스트 작업에서 이어서 진행한다.
@@ -115,4 +115,4 @@ k6 run -e CONCURRENT_USERS=10 k6/scenarios/peak-reservation-create-race.js
 
 **범위 한계**: 이 시나리오는 CREATE 경쟁만 다룬다. JOIN 기반 좌석초과 테스트는 결제 완료가
 전제(`ReservationPreparationService` Javadoc)라 Fake 결제 확인 어댑터 없이는 k6로 자동화할 수
-없다. 상세 근거와 로컬 검증 결과는 `docs/evidence/v3/142-reservation-peak/README.md` 참고.
+없다. 상세 근거와 로컬 검증 결과는 `docs/110-records/evidence/v3/142-reservation-peak/README.md` 참고.

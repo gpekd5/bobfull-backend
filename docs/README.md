@@ -6,22 +6,23 @@
 
 | Directory | Role |
 |---|---|
-| [`product`](product/project-context.md) | 제품 방향, 프로젝트 정책, 역할, 상태 기준 |
-| [`api`](api/README.md) | HTTP API, WebSocket, Actuator, Webhook 계약 |
-| [`data`](data/erd.md) | 관계형 데이터 모델과 migration 기록 |
-| [`architecture`](architecture/architecture.md) | 논리 아키텍처, 도메인 의존성, ADR |
-| [`engineering`](engineering/code-convention.md) | 코드, 테스트, GitHub, Issue 규칙 |
-| [`ai`](ai/ai-workflow.md) | AI 협업 절차, 구현/리뷰 가이드, Human 검토 기록 |
-| [`operations`](operations/monitoring-runbook.md) | 배포, 인프라, 모니터링, 운영 runbook |
-| [`evidence`](evidence/v3/README.md) | V3 실측 Evidence와 raw 산출물 |
-| [`labs`](labs/flow-lab/v3/operations-flow-lab/README.md) | Flow Lab 등 학습/발표용 정적 산출물 |
-| [`troubleshooting`](troubleshooting/README.md) | 문제 원인, 해결 과정, 재발 방지 기록 |
-| [`templates`](templates/troubleshooting-template.md) | 문서 작성 양식 |
-| [`records`](records/til/README.md) | TIL 등 회고성 기록 |
+| [`10-product`](10-product/project-context.md) | 제품 방향, 프로젝트 정책, 역할, 상태 기준 |
+| [`20-api`](20-api/README.md) | HTTP API, WebSocket, Actuator, Webhook 계약 |
+| [`30-data`](30-data/erd.md) | 관계형 데이터 모델과 migration 기록 |
+| [`40-architecture`](40-architecture/architecture.md) | 논리 아키텍처, 도메인 의존성, ADR |
+| [`50-engineering`](50-engineering/code-convention.md) | 코드, 테스트, GitHub, Issue 규칙 |
+| [`60-ai`](60-ai/ai-workflow.md) | AI 협업 절차, 구현/리뷰 가이드 |
+| [`70-deployment`](70-deployment/aws-v1-backend.md) | AWS 배포, CI/CD, Blue-Green, 배포 설정 기준 |
+| [`80-operations`](80-operations/monitoring-runbook.md) | 배포 이후 모니터링, 환불 정합성 등 운영 대응 절차 |
+| [`90-testing`](90-testing/performance/k6-aws-test-environment.md) | 성능 테스트 환경과 k6 실행 기준 |
+| [`100-learning`](100-learning/system-flow/v3/operations-system-flow/README.md) | 실제 코드와 Evidence 기반 System Flow 학습 산출물 |
+| [`110-records`](110-records/evidence/v3/README.md) | Evidence, troubleshooting, TIL, Human 검토 기록 |
+| [`120-templates`](120-templates/troubleshooting-template.md) | 문서 작성 양식 |
 
 ## Naming
 
-- 디렉터리는 lowercase kebab-case를 사용한다.
+- 최상위 `docs` 디렉터리는 번호 체계를 사용한다.
+- 내부 디렉터리는 lowercase kebab-case를 사용한다.
 - 사람이 직접 관리하는 Markdown 파일은 lowercase kebab-case를 사용한다.
 - `README.md`는 디렉터리 인덱스 예외로 유지한다.
 - ADR은 기존 번호 체계를 유지한다.

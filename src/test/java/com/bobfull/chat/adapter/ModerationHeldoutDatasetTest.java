@@ -75,7 +75,7 @@ class ModerationHeldoutDatasetTest {
 
     /**
      * Issue #213 Human 최종 승인(2026-08-11)으로 동결된 Held-out/Challenge Dataset 내용 해시다.
-     * docs/evidence/v3/213-ai-moderation-heldout/README.md "Dataset Freeze" 절과 동일한 값이며,
+     * docs/110-records/evidence/v3/213-ai-moderation-heldout/README.md "Dataset Freeze" 절과 동일한 값이며,
      * 이 상수는 Provider 실행 기준을 고정하는 SSOT다. Held-out v1의 expected 라벨은 이 값이 존재하는 한
      * 다시 바꾸지 않는다 — 정당한 라벨 변경이 필요하면 이 상수를 그대로 두고 별도 Held-out v2 +
      * 새 Evidence로 분리한다(PR #217 리뷰 MAJOR 반영).

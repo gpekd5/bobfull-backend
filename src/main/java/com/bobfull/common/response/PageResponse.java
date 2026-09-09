@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 /**
- * 공통 페이징 응답 형식이다(docs/api/bobfull-api-spec-complete.md 0.5).
+ * 공통 페이징 응답 형식이다(docs/20-api/bobfull-api-spec-complete.md 0.5).
  */
 public record PageResponse<T>(
         List<T> content,

@@ -30,7 +30,7 @@ Issue #63 "테스트 데이터 계약"에 따라, 시나리오별로 필요한 F
   - `buildCreateTargetPool()`이 필요한 만큼 **여러 테이블**에 나눠 회차를 만든다(`FIXTURE_INTERVAL_MINUTES` 기본 15분·`FIXTURE_MAX_DAYS` 기본 60일·`FIXTURE_MAX_TABLES` 기본 30개 — 기본값 기준 최대 약 17만 건까지 확보 가능). 요청한 `SESSION_POOL_SIZE`가 이 상한을 넘으면 API를 하나도 부르지 않고 즉시 실패한다.
   - `reservation-prepare.js`의 load/stress 단계에는 실제 사용자의 "생각하는 시간"에 해당하는 `THINK_TIME_SECONDS`(기본 1초) sleep을 넣어 소비 속도 자체를 낮췄다.
   - 그래도 `SESSION_POOL_SIZE`는 실제 계획한 VU×duration/(응답시간+think-time) 이상으로 넉넉히 잡아야 한다. 부족하면 스크립트가 예외로 즉시 실패한다(조용히 409만 쌓이는 것보다 실행 실패가 안전하다는 판단). #207에서 실제 실행 전에 이 값을 다시 계산해 조정한다.
-- Cleanup: 이번 시나리오가 만든 Reservation/Payment(READY)는 시간이 지나면 만료 스케줄러가 정리하거나(`docs/product/project-context.md`의 READY 만료 정책 참고), 별도 테스트 스택이면 스택 자체를 폐기해도 된다. 운영 DB에서는 절대 실행하지 않는다.
+- Cleanup: 이번 시나리오가 만든 Reservation/Payment(READY)는 시간이 지나면 만료 스케줄러가 정리하거나(`docs/10-product/project-context.md`의 READY 만료 정책 참고), 별도 테스트 스택이면 스택 자체를 폐기해도 된다. 운영 DB에서는 절대 실행하지 않는다.
 
 ## 실행 후 정합성 확인 (Issue #63 "정합성 검증")
 
@@ -50,7 +50,7 @@ Issue #63 "테스트 데이터 계약"에 따라, 시나리오별로 필요한 F
 - **범위 한계**: 결제 완료 전에는 `Reservation`이 생성되지 않으므로(`ReservationPreparationService` 클래스 Javadoc), JOIN 대상이 되려면 최초 참여자의 결제가 실제로 완료돼야 한다. 이 저장소엔 PortOne을 대신할 Fake 결제 확인 어댑터가 없어(실제 구현체는 `PortOneSdkPaymentReader` 하나) k6로 결제 완료를 자동화할 수 없고, Issue #142 "제외 범위"의 "PortOne 실서비스 반복 결제 요청"과도 충돌한다. 그래서 이 시나리오는 **CREATE 경쟁만** 다룬다 — JOIN 기반 좌석초과 테스트는 별도 Issue(Fake 결제 확인 어댑터 추가)가 필요하다.
 - `setup()`에서 Owner 1명 + Restaurant 1개 + SharedTable 1개(capacity 4) + 경쟁 대상 회차 1개, 그리고 `CONCURRENT_USERS`명의 회원 계정 + 검증용 회원 1명을 만든다.
 - `default()`에서 `CONCURRENT_USERS`명이 정확히 같은 sessionId로 동시에 CREATE를 시도한다(회차를 여러 개 나눠 쓰는 다른 시나리오와 반대로, 이 시나리오는 의도적으로 "같은 대상에 몰리는" 경쟁을 만든다).
-- `teardown()`에서 검증용 회원으로 같은 회차에 CREATE를 한 번 더 시도해 409가 나는지로, 경쟁 종료 후에도 CREATE 배타 선점이 유지되는지 독립 검증한다. 최초 시도 때 GET 회차 조회의 `reservationId`로 검증하려 했으나, CREATE 성공(200)은 결제 완료 전이라 `reservationId`가 채워지지 않아 오탐이 났다(문서 `docs/evidence/v3/142-reservation-peak/README.md` "트러블슈팅" 참고).
+- `teardown()`에서 검증용 회원으로 같은 회차에 CREATE를 한 번 더 시도해 409가 나는지로, 경쟁 종료 후에도 CREATE 배타 선점이 유지되는지 독립 검증한다. 최초 시도 때 GET 회차 조회의 `reservationId`로 검증하려 했으나, CREATE 성공(200)은 결제 완료 전이라 `reservationId`가 채워지지 않아 오탐이 났다(문서 `docs/110-records/evidence/v3/142-reservation-peak/README.md` "트러블슈팅" 참고).
 
 ## AWS 실행 시 추가 사항
 

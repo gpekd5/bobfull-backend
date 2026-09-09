@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * MySQL EXPLAIN ANALYZE로 직접 실행해 실행 계획과 실제 처리 행 수를 확인하는 선택적 통합
  * 테스트다. BOBFULL_MYSQL_PERF_TEST=true 일 때만 실행하며, 개발 DB가 아닌 별도 스키마
  * (BOBFULL_TEST_MYSQL_URL)를 사용한다. 결과 판정을 이 테스트의 assert로 하지 않고
- * System.out으로 출력해 docs/evidence/v3/61-search-query/README.md에 근거로 남긴다
+ * System.out으로 출력해 docs/110-records/evidence/v3/61-search-query/README.md에 근거로 남긴다
  * (H2가 아닌 실제 MySQL 실행 계획만 근거로 인정한다는 Issue 원칙). 옵티마이저의 EXPLAIN
  * 추정 rows는 ORDER BY+LIMIT 조합에서 실제 스캔 행 수와 크게 다를 수 있어 EXPLAIN ANALYZE의
  * actual rows/loops를 함께 확인한다.
@@ -98,7 +98,7 @@ class RestaurantSearchExplainInvestigationTest {
                             + "ORDER BY r.restaurant_id ASC LIMIT 20");
 
             // Issue #61 최소 조합 보완(date+time / 정렬 / pagination). raw Before/After는
-            // docs/evidence/v3/61-search-query/README.md와 raw/explain-*-trackA.txt에 기록됨.
+            // docs/110-records/evidence/v3/61-search-query/README.md와 raw/explain-*-trackA.txt에 기록됨.
             explain(connection, "date + time 필터(정확 시각 일치)",
                     "SELECT DISTINCT r.restaurant_id FROM restaurant r, shared_table st, time_slot ts "
                             + "WHERE r.deleted_at IS NULL AND r.status = 'ACTIVE' "
