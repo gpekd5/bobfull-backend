@@ -14,7 +14,7 @@ production 동작을 바꾸지 않은 채 테스트 데이터의 시간 의존�
 ## 기준 코드
 
 - Before SHA: `7f4c1fee6dbe073533031f1f224279cd047c2b50`
-- After SHA: 검증 후 기록
+- After code SHA: `c7f8da89716efa971a039286fc8709a1fea5b0dc`
 
 ## 환경·데이터·실행 조건
 
@@ -42,11 +42,27 @@ production 동작을 바꾸지 않은 채 테스트 데이터의 시간 의존�
 
 ## After 결과
 
-검증 후 기록한다.
+```powershell
+.\gradlew.bat clean :test --tests "com.bobfull.payment.service.PaymentCompletionIdempotencyIntegrationTest" --tests "com.bobfull.payment.service.PaymentReservationConfirmationTransactionIntegrationTest"
+```
+
+- 결과: `PASS` (`BUILD SUCCESSFUL`)
+- 테스트: 13 completed, 0 failed
+- 참고: 루트 프로젝트의 대상 테스트만 실행하도록 `:test` task를 명시했다. `test` task를 사용하면 동일한 필터가 테스트 클래스가 없는 Lambda 하위 프로젝트에도 적용된다.
+
+```powershell
+.\gradlew.bat clean build
+```
+
+- 결과: `PASS` (`BUILD SUCCESSFUL`, 3m 44s)
+- 테스트: 955 completed, 0 failed, 0 errors, 64 skipped
+- Gradle tasks: 14 actionable tasks (13 executed, 1 up-to-date)
 
 ## 정합성 회귀 검증
 
-검증 후 기록한다.
+- Markdown 상대 링크: `PASS` (111 files, 181 links, 0 broken)
+- `git diff --check`: `PASS`
+- production source 변경: 없음
 
 ## 결과 해석
 
