@@ -1,0 +1,16 @@
+services:
+  sonarqube:
+    image: sonarqube:26.9.0.129388-community
+    ports:
+      - "${SONARQUBE_PORT:-9000}:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - bobfull-sonarqube-data:/opt/sonarqube/data
+      - bobfull-sonarqube-extensions:/opt/sonarqube/extensions
+      - bobfull-sonarqube-logs:/opt/sonarqube/logs
+
+volumes:
+  bobfull-sonarqube-data:
+  bobfull-sonarqube-extensions:
+  bobfull-sonarqube-logs:
