@@ -77,6 +77,26 @@
 
 -
 
+### Refactor Before / After
+
+- 적용 여부: `해당 | N/A`
+
+#### Before
+
+- 변경 전 구조/책임/의존성:
+
+#### After
+
+- 변경 후 구조/책임/의존성:
+
+#### 변경하지 않은 것
+
+- API / DB / 비즈니스 동작 / Transaction 등:
+
+#### 후속 설계 부채
+
+- 이번 PR에서 발견했지만 의도적으로 건드리지 않은 항목:
+
 ### 현재 제한사항과 후속 개선
 
 -
@@ -136,7 +156,7 @@
 
 -
 
-## V3 Sprint 필수 검증
+## 필수 검증
 
 <!-- 기능 PR은 아래 항목을 우선합니다. 문서·설정 전용이면 해당하지 않는 항목에 NOT_RUN/N/A 이유를 적습니다. -->
 
@@ -158,7 +178,7 @@
 
 ### Human 이해도
 
-<!-- 기본: 질문 0개, 아래 문구 유지. 강화: 아래 문구를 제거하고 정확히 3문항을 삽입합니다. -->
+<!-- 기본: 질문 0개, 아래 문구 유지. 강화: 아래 문구를 제거하고 정확히 3문항을 삽입합니다. Refactor Learning Mode에서 Issue 단계의 이해 질문을 완료했다면 PR에서 같은 질문을 반복하지 않습니다. -->
 
 해당 없음: 기본 검토
 
@@ -187,17 +207,13 @@
 - [ ] 중요한 기술 개념과 주요 트레이드오프가 있다면 어디에 왜 적용됐는지 이해했다.
 - [ ] 전체 build·직접 검증·필요한 Before/After Evidence·담당 구현 AI Review 결과와 남은 위험을 확인했다.
 
-## V3 Sprint Merge Gate
+## Merge Gate
 
 <!-- 필수 Human Approve: 0명 -->
 
-- [ ] 전체 build `PASS` 또는 해당 없음 근거 명확
-- [ ] 변경 핵심 기능 직접 검증 `PASS` 또는 해당 없음 근거 명확
-- [ ] 고도화 PR이면 Before/After Evidence `PASS` 또는 `NOT_APPLICABLE` 근거 명확
-- [ ] 최신 Head 담당 구현 AI Review 완료
-- [ ] 미해결 `BLOCKER` 없음
-- [ ] 미해결 `MAJOR` 없음
+- [ ] 변경 범위에 필요한 테스트·build·직접 검증 `PASS` 또는 미실행 근거 명확
+- [ ] 최신 Head 기준 담당 구현 AI Review 완료 및 미해결 `BLOCKER / MAJOR` 없음
 - [ ] Human 결정 필요 사항 없음
-- [ ] 강화 PR인 경우 Human 이해도 3문항 완료
+- [ ] 리팩토링이면 기존 동작 유지 확인, 개선 효과를 주장하면 Before / After Evidence 확인
 
 `MINOR`와 `SUGGESTION`은 기록 후 Merge를 막지 않습니다.

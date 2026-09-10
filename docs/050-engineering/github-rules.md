@@ -158,7 +158,7 @@ asdfasdf
 
 - 새 Issue 제목은 `docs/050-engineering/issue-title-rules.md`의 범위·유형 규칙을 따른다.
 - `blank_issues_enabled: false`는 GitHub 웹 UI에서 빈 Issue 생성을 막아 템플릿 사용을 유도하는 최소 가드레일이다. CLI·API·자동화 도구의 제목·본문 형식까지 검증하거나 완전히 강제하지는 않는다.
-- AI는 `새 Issue 초안 작성하라`로 `.github/ISSUE_TEMPLATE/feature.md` 전체 구조의 초안을 먼저 제시하며, Human이 `이 초안으로 Issue 생성하라`고 승인한 경우에만 생성한다.
+- AI는 `새 Issue 초안 작성하라`로 작업 성격에 맞는 Issue template의 전체 구조를 먼저 제시하며, Human이 `이 초안으로 Issue 생성하라`고 승인한 경우에만 생성한다. 일반 기능·문서·설정·단순 리팩토링 작업은 `.github/ISSUE_TEMPLATE/feature.md`를 사용하고, `docs/060-ai/ai-workflow.md`의 Refactor Learning Mode에 해당하는 의미 있는 리팩토링은 `.github/ISSUE_TEMPLATE/refactor.md`를 사용한다.
 
 ### Draft PR 생성
 

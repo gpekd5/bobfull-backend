@@ -247,8 +247,9 @@ HTTP/API 변경은 Postman, curl 또는 동등한 실제 요청을 우선한다.
 
 ### Issue 단계
 
-V3 Sprint Mode에서는 학습용 질문을 구현 착수 조건으로 사용하지 않는다.
-Human 질문은 실제 결정이 필요할 때만 한다.
+일반 Feature Issue에서는 V3 Sprint Mode의 기존 규칙을 유지한다. 학습용 질문을 구현 착수 조건으로 사용하지 않고, Human 질문은 실제 결정이 필요할 때만 한다.
+
+예외적으로 [AI_WORKFLOW](ai-workflow.md)의 Refactor Learning Mode에 해당하는 의미 있는 리팩토링 Issue는 구현 전 Human 이해 질문 3개를 사용한다. 이는 별도 승인 절차가 아니라 리팩토링 학습을 위한 이해 확인이며, 답변 확인 후 기존 V3 Sprint 구현·검증·PR 흐름으로 복귀한다.
 
 ### PR 기본
 
@@ -267,21 +268,16 @@ Human 이해도 질문: 정확히 3개
 3. 설계 선택 이유, 주요 실패 처리와 남은 한계
 
 목표는 클래스·메서드 암기가 아니라 **담당자가 자신이 만든 기능을 설명할 수 있는 상태**다.
+Refactor Learning Mode에서 Issue 단계의 3개 이해 질문을 이미 완료한 리팩토링 PR은 PR 단계에서 동일 질문을 반복하지 않는다. 강화 검토가 필요하면 최신 Diff·검증 결과·남은 한계처럼 PR에서 새로 확인해야 하는 내용으로 질문을 작성한다.
 
-## 13. V3 Sprint Merge 전 확인
+## 13. Merge 전 확인
 
 Merge 차단 조건은 다음으로 제한한다.
 
-```text
-전체 build FAIL 또는 필요한데 미실행
-핵심 기능 직접 검증 FAIL 또는 필요한데 미실행
-고도화 PR의 Before/After Evidence FAIL 또는 필요한데 미작성
-최신 Head 담당 구현 AI Review 미완료
-미해결 BLOCKER
-미해결 MAJOR
-Human 결정 필요 사항 미해결
-강화 PR Human 3문항 미완료
-```
+- 변경 범위에 필요한 테스트·build·직접 검증 `PASS` 또는 미실행 근거 명확
+- 최신 Head 기준 담당 구현 AI Review 완료 및 미해결 `BLOCKER / MAJOR` 없음
+- Human 결정 필요 사항 없음
+- 리팩토링이면 기존 동작 유지 확인, 개선 효과를 주장하면 Before / After Evidence 확인
 
 그 외 MINOR·SUGGESTION은 기록 후 Merge 가능하다.
 필수 Human Approve 수는 `0`이다.
