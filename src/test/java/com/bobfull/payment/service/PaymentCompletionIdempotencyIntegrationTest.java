@@ -18,6 +18,7 @@ import com.bobfull.sharedtable.repository.SharedTableRepository;
 import com.bobfull.timeslot.entity.TimeSlot;
 import com.bobfull.timeslot.repository.TimeSlotRepository;
 import java.math.BigDecimal;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
@@ -133,7 +134,7 @@ class PaymentCompletionIdempotencyIntegrationTest {
         TimeSlot timeSlot = timeSlotRepository.saveAndFlush(TimeSlot.create(table.getId(),
                 Instant.parse("2026-08-01T02:00:00Z"), Instant.parse("2026-08-01T04:00:00Z")));
         return paymentRepository.saveAndFlush(Payment.createReady("payment-" + UUID.randomUUID(), 10L, timeSlot.getId(), null,
-                PaymentPurpose.CREATE, 1, BigDecimal.valueOf(10000), Instant.parse("2026-09-01T00:00:00Z")));
+                PaymentPurpose.CREATE, 1, BigDecimal.valueOf(10000), Instant.now().plus(Duration.ofMinutes(10))));
     }
 
     @TestConfiguration(proxyBeanMethods = false)
