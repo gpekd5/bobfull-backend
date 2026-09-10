@@ -13,7 +13,6 @@ V3 마무리 기간에는 **속도를 우선하되 치명적인 결함은 담당
 - 성능·신뢰성·동시성·인프라·캐시·이벤트·AI 등 **고도화 효과를 주장하지만 필요한 Before/After Evidence가 없거나 비교 조건이 불명확한 경우**
 - 최신 담당 구현 AI Review의 미해결 `BLOCKER` 또는 `MAJOR`
 - 정책·API·DB·상태·권한·트랜잭션처럼 Human 결정이 필요한 미확정 사항
-- 강화 PR의 Human 이해도 3문항 미완료
 
 ### Merge를 막지 않는 항목
 
@@ -325,20 +324,14 @@ Refactor Learning Mode에서 Issue 단계의 3개 이해 질문을 이미 완료
 
 수정 Push 뒤에는 같은 담당 구현 AI가 최신 Head를 다시 리뷰하고 새 댓글을 남긴다.
 
-## 11. V3 Sprint Merge 전 확인
+## 11. Merge 전 확인
 
 다음만 모두 만족하면 Merge 가능하다.
 
-```text
-[필수] 전체 build PASS 또는 해당 없음 근거 명확
-[필수] 변경 핵심 기능 직접 검증 PASS 또는 해당 없음 근거 명확
-[고도화 PR] Before/After Evidence PASS 또는 NOT_APPLICABLE 근거 명확
-[필수] 최신 Head 담당 구현 AI Review 완료
-[필수] 미해결 BLOCKER 없음
-[필수] 미해결 MAJOR 없음
-[필수] Human 결정 필요 사항 없음
-[강화 PR만] Human 이해도 3문항 완료
-```
+- 변경 범위에 필요한 테스트·build·직접 검증 `PASS` 또는 미실행 근거 명확
+- 최신 Head 기준 담당 구현 AI Review 완료 및 미해결 `BLOCKER / MAJOR` 없음
+- Human 결정 필요 사항 없음
+- 리팩토링이면 기존 동작 유지 확인, 개선 효과를 주장하면 Before / After Evidence 확인
 
 필수 Human Approve 수는 `0`이다.
 MINOR/SUGGESTION은 Merge를 막지 않는다.
