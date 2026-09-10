@@ -89,9 +89,10 @@ Git·Issue·Commit·PR 세부 형식은 `docs/050-engineering/github-rules.md`�
 - 권한·보안 정책 결정
 - 트랜잭션 경계 재결정
 - Human 답변이 필요한 Issue 결정
+- Draft PR의 Ready 전환
 - 최종 Merge
 
-담당자 AI는 Human 답변이나 Human Review를 대신 작성하지 않는다. AI 보완은 `AI 보완 설명`으로 구분하며 Approve와 Merge를 수행하지 않는다. 별도 GitHub Human Approve는 현재 필수 Merge Gate가 아니지만 Human의 판단과 최종 Merge 책임은 유지된다.
+담당자 AI는 Human 답변이나 Human Review를 대신 작성하지 않는다. AI 보완은 `AI 보완 설명`으로 구분하며 Ready 전환, Approve, Merge를 수행하지 않는다. 별도 GitHub Human Approve는 현재 필수 Merge Gate가 아니지만 Human의 판단과 최종 Merge 책임은 유지된다.
 
 다른 팀원 AI Review의 존재 여부를 작업 시작·수정·Merge 조건으로 사용하지 않는다.
 
