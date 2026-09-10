@@ -59,17 +59,25 @@ $env:SONAR_HOST_URL = 'http://localhost:9000'
 
 토큰, 변경한 관리자 비밀번호, SonarQube 데이터 파일은 Commit하지 않는다.
 
-## Run Build And Analysis
+## Run Analysis
 
-Java 분석에는 컴파일된 bytecode가 필요하므로 테스트를 먼저 실행한 뒤 같은 명령에서 `sonar` task를 실행한다.
+Java 분석에는 main과 test의 컴파일된 bytecode가 필요하다. 테스트 실행 결과와 분석 성공 여부를 분리하기 위해
+`classes`, `testClasses`, `sonar` task를 실행한다.
 
 ```powershell
 $revision = git rev-parse HEAD
-.\gradlew.bat clean test sonar "-Dsonar.host.url=$env:SONAR_HOST_URL" "-Dsonar.token=$env:SONAR_TOKEN" "-Dsonar.scm.revision=$revision"
+.\gradlew.bat clean classes testClasses sonar "-Dsonar.host.url=$env:SONAR_HOST_URL" "-Dsonar.token=$env:SONAR_TOKEN" "-Dsonar.scm.revision=$revision"
 ```
 
 macOS와 Linux에서는 `./gradlew`를 사용한다. 분석 완료 후 출력된 dashboard URL 또는 SonarQube Web API에서
 Quality Gate와 주요 지표를 확인한다.
+
+기존 테스트와 build는 분석 명령과 별도로 실행한다. 실패한 검증은 Sonar 분석 성공으로 덮어쓰지 않고 원인과
+실행 범위를 Evidence에 기록한다.
+
+```powershell
+.\gradlew.bat clean build
+```
 
 현재 프로젝트에는 JaCoCo 등 Coverage report 생성 설정이 없다. Coverage는 이 절차만으로 수집되지 않으며,
 Coverage 체계 도입은 별도 Issue에서 결정한다.
@@ -79,7 +87,7 @@ Coverage 체계 도입은 별도 Issue에서 결정한다.
 1. 이 문서의 고정 버전과 동일한 Compose 환경을 사용한다.
 2. 비교할 Commit을 checkout하고 작업 트리가 깨끗한지 확인한다.
 3. 동일한 `sonar.projectKey`와 Quality Profile, Quality Gate를 유지한다.
-4. 위의 build와 분석 명령을 실행하고 대상 Commit SHA를 함께 기록한다.
+4. 위의 분석 명령과 별도 build 검증을 실행하고 대상 Commit SHA를 함께 기록한다.
 5. Reliability, Security, Maintainability, Security Hotspots, Duplication, Quality Gate를 같은 API와 단위로 비교한다.
 6. 버전, Profile, Gate 또는 실행 환경이 달라졌다면 직접 개선율을 계산하지 않고 차이를 기록한다.
 
