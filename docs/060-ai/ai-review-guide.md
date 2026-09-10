@@ -4,12 +4,13 @@
 
 ## 1. 사용 시점
 
-- Issue에서 Human 결정이나 이해 확인이 필요할 때
-- Refactor Learning Mode의 Human 답변을 검토할 때
-- PR 검토 수준에 따른 Human 이해 질문을 작성할 때
+- Refactor Learning Mode의 Human 답변을 실제 검토할 때
+- Refactor 외 Issue에서 별도 Human 질문 기준이 필요할 때
+- 강화 PR의 Human 이해 질문을 작성하거나 답변을 검토할 때
 - Human 또는 외부 Review 의견의 처리 방향을 판단할 때
 
-일반 구현, PR 본문 작성, AI Review만 수행할 때는 이 문서를 선행 로딩하지 않는다.
+Refactor Learning Mode 최초 질문 3개는 `ai-workflow.md`만으로 작성한다. 일반 구현, 질문이 0개인 PR 기본 검토,
+PR 본문 작성, AI Review만 수행할 때는 이 문서를 선행 로딩하지 않는다.
 
 ## 2. 공통 질문 원칙
 
@@ -24,7 +25,8 @@
 
 일반 Feature Issue는 학습 질문을 구현 Gate로 사용하지 않는다. 실제 Human 결정이 필요한 경우에만 질문한다.
 
-Refactor Learning Mode의 적용 대상, 최초 중단, 질문 3축과 재개 조건은 `ai-workflow.md`만 따른다. 이 문서에서는 질문 난이도와 답변 검토 방식만 적용한다.
+Refactor Learning Mode의 적용 대상, 최초 중단, 질문 3축과 재개 조건은 `ai-workflow.md`만 따른다.
+최초 질문 작성에는 이 문서를 추가로 읽지 않고, Human 답변을 실제 검토하는 재개 단계부터 아래 기준을 적용한다.
 
 Human 답변은 다음처럼 검토한다.
 

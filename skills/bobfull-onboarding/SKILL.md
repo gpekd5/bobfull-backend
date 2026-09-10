@@ -36,7 +36,8 @@ description: BobFull 저장소의 새 Issue를 처음 처리할 때 현재 단�
 |---|---|
 | 일반 Issue의 구현 착수 | `docs/060-ai/ai-implementation-guide.md` |
 | 의미 있는 Refactor Issue 최초 처리·재개 | `docs/060-ai/ai-workflow.md` |
-| Human 이해 질문 작성·검토 | `docs/060-ai/ai-review-guide.md` |
+| Human 답변 실제 검토 | `docs/060-ai/ai-review-guide.md` |
+| Refactor 외 별도 Human 질문 기준 필요 | `docs/060-ai/ai-review-guide.md` |
 | Branch·Issue·Commit·PR 규칙 필요 | `docs/050-engineering/github-rules.md` |
 | 코드 작성 | `docs/050-engineering/code-convention.md`, 필요 시 `common-skeleton-guide.md` |
 | 테스트 작성·결과 기록 | `docs/050-engineering/test-convention.md` |
@@ -59,6 +60,7 @@ PR 단계는 이 Skill의 범위가 아니다.
 - 링크가 아니라 실제 변경 영향으로 문서를 선택한다.
 - 과거 Evidence, 전체 ADR, API 상세 문서 전체를 선행 로딩하지 않는다.
 - 구현·PR·Review 문서를 한 번에 묶어 읽지 않는다.
+- Refactor Learning Mode 최초 질문은 `ai-workflow.md`의 3축으로 작성하고 `ai-review-guide.md`를 추가 로딩하지 않는다.
 - 원본 규칙을 이 Skill에 복제하지 않는다.
 - Issue 범위 밖 문서 충돌을 찾기 위해 탐색을 무한히 확장하지 않는다.
 

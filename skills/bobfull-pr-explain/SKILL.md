@@ -53,7 +53,9 @@ Before/After가 의미 없는 변경은 `NOT_APPLICABLE` 이유를 적는다. �
 
 ## Human 이해도
 
-질문 수와 작성 기준은 `docs/060-ai/ai-review-guide.md`를 따른다. Refactor Learning Mode에서 Issue 단계와 같은 질문을 반복하지 않는다.
+기본 검토는 최신 PR template의 `질문 0개` 문구를 유지하고 `ai-review-guide.md`를 선행 로딩하지 않는다.
+강화 질문을 작성하거나 Human 답변을 검토할 때만 `docs/060-ai/ai-review-guide.md`를 읽는다.
+Refactor Learning Mode에서 Issue 단계와 같은 질문을 반복하지 않는다.
 
 ## AI Review 인계
 
