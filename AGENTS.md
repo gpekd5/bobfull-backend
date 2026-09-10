@@ -104,7 +104,16 @@ Human이 답변을 작성한 뒤 `Issue #번호 구현하라`를 입력하는 �
 충돌이 없을 때 같은 실행의 구현 진행을 요청하는 신호다. 별도의 `AI_FINALIZED → HUMAN_APPROVED`
 명령 왕복은 사용하지 않는다. Ready 전환, Approve와 Merge는 계속 Human 책임이다.
 
-## 5. V3 Sprint Mode PR 검토와 수동 진입 명령
+## 5. Refactor Learning Mode
+
+Refactor Learning Mode의 단일 기준 정의는 `docs/060-ai/ai-workflow.md`를 따른다. 이 파일은 담당자 AI의 진입점에서 지켜야 할 핵심 경계만 둔다.
+
+- `.github/ISSUE_TEMPLATE/refactor.md`를 사용하는 의미 있는 리팩토링은 최초 `Issue #번호 구현하라` 실행에서 분석과 Human 이해 질문만 수행하고 파일을 수정하지 않는다.
+- 적용 대상, 단순 기계 작업 제외 기준, 질문 3축, Human 답변 후 재개 흐름은 `docs/060-ai/ai-workflow.md`의 Refactor Learning Mode 절을 따른다.
+- Human 이해 질문 완료 전에는 기존 `status:human-answer-required`를 사용하며, 새로운 status Label이나 approval 단계, Reviewer 역할을 만들지 않는다.
+- 정책·API·DB·보안·권한·트랜잭션 결정, Human 답변 대리 작성 금지, AI Merge 금지는 기존 Human 책임 규칙을 그대로 따른다.
+
+## 6. V3 Sprint Mode PR 검토와 수동 진입 명령
 
 ### 자동 독립 Review
 
@@ -137,7 +146,7 @@ PR을 읽고 보고만 할 때는 기존 Label을 유지한다. 실제 파일 �
 기존 `status:*` Label을 제거하고 `status:in-progress` 하나를 적용한다. 수정·검증·Push·최신 Head
 자체 검토가 끝나면 연결된 모든 Issue에서 `status:final-human-review` 하나만 적용한다.
 
-## 6. Human 경계와 담당자 AI 검토
+## 7. Human 경계와 담당자 AI 검토
 
 ### V3 Sprint Mode의 Human 책임
 
@@ -179,7 +188,7 @@ PR에 등록된 리뷰·댓글은 공식 선행 단계가 아니다. 담당자 A
 - 정책·API·DB·권한·트랜잭션 재결정: Human 판단 요청
 - 근거 없음·범위 밖 제안: 반영하지 않고 이유 기록
 
-## 7. 문서 라우팅
+## 8. 문서 라우팅
 
 | 작업 | 기준 문서 |
 |---|---|
@@ -203,7 +212,7 @@ API 계약은 `docs/020-api/bobfull-api-spec-complete.md`, 프로젝트 정책·
 
 API 변경은 API 명세와 `PROJECT_CONTEXT`, ERD, 영향 문서의 동기화 범위를 확인한다. 도메인 정책 변경은 API 명세·PROJECT_CONTEXT·ERD와 영향 문서를 함께 검토하고, 데이터 모델 변경은 ERD와 관련 API의 Request·Response·계산값·정합성 제약을 함께 검토한다.
 
-## 8. 필수 경계
+## 9. 필수 경계
 
 - 한 번에 하나의 Issue만 처리한다.
 - AI가 Human 답변이나 Human 리뷰를 대신 작성한 것처럼 표시하지 않는다.
@@ -221,14 +230,14 @@ API 변경은 API 명세와 `PROJECT_CONTEXT`, ERD, 영향 문서의 동기화 �
 - API Response의 계산값을 근거 없이 DB 컬럼으로 중복 저장하지 않는다. 저장이 필요하면 갱신 책임·정합성·동시성 전략을 Human과 별도 결정한다.
 - `READY` Payment의 임시 좌석 선점·만료 정책을 바꾸거나, `Settlement`, `SeatHold`, `WebhookEvent` 엔티티를 추가하려면 Human 승인과 기준 문서 반영이 필요하다.
 
-## 9. 파일 수정 안전 규칙
+## 10. 파일 수정 안전 규칙
 
 - 기존 문서 수정 요청은 별도 `SUMMARY`, `UPDATED`, `FINAL` 파일을 만들지 않고 기존 파일을 직접 수정한다.
 - 사용자의 사전 승인 없이 임시 폴더, 압축·Base64 파일, trigger 파일, 일회성 GitHub Actions Workflow를 저장소에 추가하지 않는다.
 - 완료 보고 전 대상 파일을 다시 읽고, PR 최종 변경 목록에 요청하지 않은 파일이 없는지 확인한다.
 - 도구 제한으로 정상 수정이 불가능하면 임의 우회하지 말고 작업을 중단하여 사용자에게 보고한다.
 
-## 10. 즉시 중단 조건
+## 11. 즉시 중단 조건
 
 - 확정 문서·Issue·코드가 충돌함
 - 필요한 Human 답변이 모호하거나 핵심 미결정 사항이 남음

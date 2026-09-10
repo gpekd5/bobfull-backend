@@ -64,6 +64,7 @@ Issue 분석
 ## 4. Issue 실행 — 결정이 없으면 바로 진행
 
 Issue 단계에서 학습용 질문을 구현 착수 조건으로 만들지 않는다.
+단, [AI_WORKFLOW](ai-workflow.md)의 Refactor Learning Mode에 해당하는 의미 있는 리팩토링 Issue는 예외로 한다.
 
 다음이 확정돼 있으면 바로 구현한다.
 
@@ -79,6 +80,7 @@ Human 질문은 실제로 선택이 필요한 경우에만 한다.
 - 다른 담당자 범위 충돌
 
 불필요한 질문으로 구현을 대기시키지 않는다.
+Refactor Learning Mode 예외에 해당하는 최초 실행과 Human 답변 후 재개 흐름은 [AI_WORKFLOW](ai-workflow.md)의 기준을 따른다.
 
 ### 고도화 Issue 착수 전 확인
 

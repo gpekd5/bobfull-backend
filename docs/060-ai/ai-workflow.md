@@ -73,7 +73,8 @@ GitHub Copilot Code Review나 별도 외부 리뷰 서비스는 필수 구성요
 ```text
 Issue 분석
 → 고도화 Issue면 Evidence 유형·Before/After 검증 계획 확인
-→ 미결정 정책이 없으면 바로 구현 착수
+→ Refactor Learning Mode 대상이면 최초 실행에서 분석·Human 이해 확인 후 중단
+→ 일반 Issue는 미결정 정책이 없으면 바로 구현 착수
 → status:in-progress
 → Before 재현 또는 기준값 확보
 → 구현·관련 테스트
@@ -111,6 +112,45 @@ Human 질문은 다음처럼 실제 결정이 필요한 경우에만 한다.
 - API·DB·상태 계약 변경
 - 권한·금액·트랜잭션·보상 정책 재결정
 - 다른 담당자 범위와 충돌
+
+### Refactor Learning Mode
+
+이 절을 Refactor Learning Mode의 단일 기준 정의로 사용한다. 다른 문서와 템플릿은 이 절을 참조하고, 적용 대상·질문 축·상태 흐름을 중복 정의하지 않는다.
+
+Refactor Learning Mode는 `.github/ISSUE_TEMPLATE/refactor.md`를 사용하는 의미 있는 리팩토링 Issue에만 적용한다.
+
+적용 대상은 다음처럼 설계 판단이 필요한 리팩토링이다.
+
+- 패키지 구조 변경
+- 클래스 책임 분리
+- 도메인 간 의존성 변경
+- Port / Adapter 구조 변경
+- `common`, `kafka`, `outbox` 등 코드 소유 위치 변경
+- 모듈 경계 변경
+- 객체 설계 변경
+
+다음처럼 이미 결정된 설계를 적용하는 단순 기계 작업에는 적용하지 않는다.
+
+- 이미 Human이 결정한 구조에 따른 import 수정
+- package declaration 일괄 변경
+- 파일 rename
+- 주석·경로 수정
+- formatting
+- 이미 승인된 리팩토링에 딸린 단순 이동 작업
+
+의미 있는 리팩토링 Issue의 최초 `Issue #번호 구현하라` 실행에서는 AI가 바로 파일을 수정하지 않는다. AI는 현재 코드·문서·테스트를 분석해 현재 구조, 문제점, 목표 구조 또는 변경 후보, 선택 이유와 트레이드오프, 변경 범위와 제외 범위, 유지해야 할 기존 동작을 설명한 뒤 Human 이해 질문 3개를 남기고 `status:human-answer-required`로 중단한다.
+
+Human 이해 질문은 매 Issue의 실제 코드와 변경 내용에 맞게 작성하되 다음 세 축을 유지한다.
+
+1. 현재 구조에서 무엇이 문제인가?
+2. 왜 이번 목표 구조 또는 변경 방향을 선택하는가?
+3. 이번 Issue에서 무엇을 변경하고 무엇을 의도적으로 유지하는가?
+
+Human 답변 후 같은 `Issue #번호 구현하라`를 다시 실행하면 AI는 답변을 실제 코드·문서와 대조한다. 이해가 충분하면 기존 `status:*` Label을 제거하고 `status:in-progress` 하나를 적용한 뒤 일반 V3 Sprint 구현·검증·Draft PR 흐름으로 복귀한다. 중요한 오해나 새 설계 판단이 남아 있으면 실제 코드 기준으로 보완 설명을 남기고 필요한 부분만 다시 질문하며 `status:human-answer-required`를 유지한다.
+
+이 모드는 별도 승인 절차가 아니며 새 status Label, 새 approval 단계, 새 Reviewer 역할을 만들지 않는다. 정책·API·DB·권한·보안·트랜잭션 결정은 기존 Human 책임 규칙을 그대로 따른다. AI는 Human 답변을 대신 작성하지 않고 최종 Merge도 수행하지 않는다.
+
+Refactor Learning Mode 자체를 추가·수정하는 문서·템플릿 Issue는 Issue 계약이 별도로 요구하지 않는 한 일반 V3 Sprint Mode로 처리한다.
 
 ### 고도화 Issue의 Evidence 계약
 
@@ -263,6 +303,7 @@ Human 이해도 질문: 정확히 3개
 3. 설계 선택 이유, 주요 실패 처리와 남은 한계
 
 질문은 코드 암기가 아니라 실제 기능을 이해하는 수준으로 작성한다.
+Refactor Learning Mode에서 Issue 단계의 3개 이해 질문을 이미 완료한 경우, PR 단계에서는 같은 질문을 그대로 반복하지 않고 최신 Diff·검증 결과·남은 위험 중심으로 필요한 이해 확인만 작성한다.
 
 ## 10. 리뷰 반영
 
