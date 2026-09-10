@@ -1,73 +1,74 @@
 ---
 name: bobfull-onboarding
-description: BobFull 저장소에서 처음 작업하거나 새로운 Issue를 처음 인계받아, 현재 작업에 필요한 기준 문서와 다음 Human 게이트를 선택적으로 확인할 때 사용한다.
+description: BobFull 저장소의 새 Issue를 처음 처리할 때 현재 단계와 작업 유형에 필요한 기준 문서만 선택한다.
 ---
 
 # BobFull 최초 온보딩
-
-이 파일은 저장소에서 버전 관리하는 Skill 원본이다. 저장소에 존재한다는 사실만으로 Codex 또는 ChatGPT에 자동 설치·자동 적용된다고 간주하지 않는다.
 
 ## 사용 시점
 
 - BobFull 저장소에서 처음 작업할 때
 - 새로운 Issue를 처음 인계받았을 때
-- 현재 작업에 필요한 기준 문서를 판단해야 할 때
+- Issue 계약 변경으로 기준 문서를 다시 선택해야 할 때
 
-PR 생성·본문 갱신·`PR #번호 검토하라`·Ready 전 최종 PR 확인은 이 Skill의 범위가 아니다. 해당 요청은 [bobfull-pr-explain](../bobfull-pr-explain/SKILL.md)을 직접 읽어 실행 흐름 설명·Mermaid·최신 Head 정합성을 처리한다.
+같은 Issue 재처리, PR 생성·본문 갱신, `PR #번호 검토하라`, Ready 전 확인에는 사용하지 않는다.
 
 ## 필수 입력
 
-- 대상 Issue 번호
+- 대상 Issue 번호와 실제 본문·댓글·`status:*` Label
 - 요청받은 현재 단계
 - 사용자가 명시한 작업 범위
+- 현재 저장소·브랜치·작업 트리
 
-정보가 없으면 추측하지 말고 누락된 정보를 보고한다.
+정보가 없으면 추측하지 않고 누락을 보고한다.
 
-## 최초 온보딩 순서
+## 실행 순서
 
-1. 저장소·현재 브랜치·작업 트리를 [AGENTS.md](../../AGENTS.md)의 브랜치 안전 규칙에 따라 확인한다.
-2. [AGENTS.md](../../AGENTS.md)와 대상 Issue를 확인한다.
-3. Issue 상태와 승인 여부를 확인한다.
-4. 작업 종류에 필요한 문서만 선택한다.
-5. Issue·문서·코드 사이의 직접 충돌을 확인한다.
-6. 현재 상태와 다음 Human 게이트를 보고한다.
+1. 이미 읽은 `AGENTS.md`의 브랜치·상태 안전 규칙으로 현재 저장소와 작업 트리를 확인한다.
+2. 대상 Issue와 연결 PR 유무를 확인한다.
+3. 아래 표에서 현재 단계와 변경 대상에 필요한 문서만 선택한다.
+4. 선택한 문서, 실제 코드·테스트와 Issue 사이의 직접 충돌만 확인한다.
+5. 현재 수행 가능한 단계와 다음 Human 게이트를 보고한다.
 
-## 문서 선택 기준
+## 문서 선택
 
-현재 Issue와 직접 관련된 원본만 읽는다.
+| 조건 | 읽는 문서 |
+|---|---|
+| 일반 Issue의 구현 착수 | `docs/060-ai/ai-implementation-guide.md` |
+| 의미 있는 Refactor Issue 최초 처리·재개 | `docs/060-ai/ai-workflow.md` |
+| Human 답변 실제 검토 | `docs/060-ai/ai-review-guide.md` |
+| Refactor 외 별도 Human 질문 기준 필요 | `docs/060-ai/ai-review-guide.md` |
+| Branch·Issue·Commit·PR 규칙 필요 | `docs/050-engineering/github-rules.md` |
+| 코드 작성 | `docs/050-engineering/code-convention.md`, 필요 시 `common-skeleton-guide.md` |
+| 테스트 작성·결과 기록 | `docs/050-engineering/test-convention.md` |
+| 개선 효과 주장 | `docs/110-records/evidence/v3/README.md`와 해당 Issue Evidence |
+| 정책·버전·역할 변경 | `docs/010-product/project-context.md` |
+| HTTP·WebSocket 계약 변경 | `docs/020-api/bobfull-api-spec-complete.md`와 관련 상세 문서 |
+| DB·데이터 정합성 변경 | `docs/030-data/erd.md` |
+| 책임·도메인 경계 변경 | `docs/040-architecture/architecture.md`, 필요 시 `domain-dependencies.md` |
+| 중요한 기술 선택 | `docs/040-architecture/adr/README.md`와 관련 ADR만 |
+| Issue 제목 작성 | `docs/050-engineering/issue-title-rules.md` |
 
-- 서비스 정책·버전 범위: [PROJECT_CONTEXT](../../docs/010-product/project-context.md)
-- HTTP·WebSocket 계약: [API 명세](../../docs/020-api/bobfull-api-spec-complete.md)
-- 데이터 모델: [ERD](../../docs/030-data/erd.md)
-- 책임 경계: [ARCHITECTURE](../../docs/040-architecture/architecture.md), [DOMAIN_DEPENDENCIES](../../docs/040-architecture/domain-dependencies.md)
-- 구현·리뷰 절차: [AI_WORKFLOW](../../docs/060-ai/ai-workflow.md), [AI_IMPLEMENTATION_GUIDE](../../docs/060-ai/ai-implementation-guide.md), [AI_REVIEW_GUIDE](../../docs/060-ai/ai-review-guide.md)
-- Human 이해도 질문 난이도·생성 기준: [AI_REVIEW_GUIDE](../../docs/060-ai/ai-review-guide.md)
-- Git·Issue·PR 규칙: [GITHUB_RULES](../../docs/050-engineering/github-rules.md), [ISSUE_TITLE_RULES](../../docs/050-engineering/issue-title-rules.md)
-- 공통 구현 기준: [CODE_CONVENTION](../../docs/050-engineering/code-convention.md), [COMMON_SKELETON_GUIDE](../../docs/050-engineering/common-skeleton-guide.md), [TEST_CONVENTION](../../docs/050-engineering/test-convention.md)
-- 기술 결정: [ADR 목록](../../docs/040-architecture/adr/README.md)과 현재 작업에 관련된 개별 ADR
-- 저장소 공통 지침: [AGENTS.md](../../AGENTS.md)
+PR 단계는 이 Skill의 범위가 아니다.
 
-## 핵심 실행 규칙
+- PR 생성·본문 갱신: `skills/bobfull-pr-explain/SKILL.md`와 최신 PR template
+- Draft PR 생성 또는 새 Push 뒤 Review: `skills/bobfull-pr-review/SKILL.md`
 
-- 최초 처리와 재처리 모두 파일 수정 전에 현재 브랜치와 작업 트리를 다시 확인한다. 현재 브랜치가 대상 Issue 전용 브랜치가 아니면(보호 브랜치이거나 다른 Issue의 작업 브랜치여도) [AGENTS.md](../../AGENTS.md) 브랜치 안전 규칙에 따라 기존 Issue 브랜치로 전환하거나 최신 `develop` 기준으로 새 Issue 브랜치를 생성한 뒤에만 수정을 진행한다. 다른 Issue의 작업 브랜치에 있던 미커밋 변경은 새 Issue 브랜치로 임의 이동하지 않는다.
+## 선택 원칙
+
 - 모든 문서를 무조건 읽지 않는다.
-- 원본 문서 내용을 이 Skill에 길게 복제하지 않는다.
-- 현재 Issue와 직접 관련된 문서만 선택한다.
-- 완료 여부, 테스트 결과, 일정, 상태를 추측하지 않는다.
-- Human 승인이 필요한 게이트를 임의로 넘지 않는다.
-- Issue에서 허용하지 않은 파일을 수정하지 않는다.
-- 문서 간 표현 차이와 실제 계약 충돌을 구분한다.
-- 치명적인 충돌이 없으면 불필요한 수정 작업을 만들지 않는다.
-- 구현 또는 리뷰 Skill의 역할까지 확장하지 않는다.
+- 링크가 아니라 실제 변경 영향으로 문서를 선택한다.
+- 과거 Evidence, 전체 ADR, API 상세 문서 전체를 선행 로딩하지 않는다.
+- 구현·PR·Review 문서를 한 번에 묶어 읽지 않는다.
+- Refactor Learning Mode 최초 질문은 `ai-workflow.md`의 3축으로 작성하고 `ai-review-guide.md`를 추가 로딩하지 않는다.
+- 원본 규칙을 이 Skill에 복제하지 않는다.
+- Issue 범위 밖 문서 충돌을 찾기 위해 탐색을 무한히 확장하지 않는다.
 
-## 최초 보고 형식
-
-다음 항목만 간단하게 보고한다.
+## 최초 보고
 
 - 대상 Issue와 현재 상태
 - 현재 브랜치와 작업 트리
-- 이번 작업에서 선택한 기준 문서
-- 확인된 직접 충돌
+- 선택한 기준 문서와 선택 이유
+- 직접 충돌
 - 현재 수행 가능한 단계
-- 다음 Human 게이트
-- HOLD 사유가 있다면 그 사유
+- 다음 Human 게이트 또는 HOLD 사유

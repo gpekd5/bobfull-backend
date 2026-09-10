@@ -53,7 +53,7 @@ Draft PR 생성 또는 담당 구현 AI의 새 Push
 - `PR #번호 검토하라`는 자동 Review의 선행 조건이 아니라, Human이 재검토·외부 Review 반영·추가 수정 검토를 명시적으로 요청할 때 쓰는 수동 진입점이다.
 - BLOCKER와 MAJOR만 Merge를 차단한다. MINOR와 SUGGESTION은 기록하되 단독으로 Merge를 막지 않는다.
 - 자동 AI Review는 정책·API 계약·DB/상태 모델·권한/보안·트랜잭션 경계의 Human 판단이나 최종 Merge를 대체하지 않는다.
-- V3 Sprint Mode의 세부 검증·Evidence·최신 Head 재검토 기준은 `AGENTS.md`, `docs/060-ai/ai-workflow.md`, `docs/060-ai/ai-review-guide.md`, `skills/bobfull-pr-review/SKILL.md`를 따른다.
+- 현재 Merge Gate는 `.github/pull_request_template.md`, 최신 Head AI Review와 중요도 판정은 `skills/bobfull-pr-review/SKILL.md`를 따른다.
 
 ### 초기 저장소 설정 예외
 
