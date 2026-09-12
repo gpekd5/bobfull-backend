@@ -18,16 +18,19 @@
 
 - Before SHA: `2fd977dc25a5d6cec02dbb9758dc0682b0714fef`
 - After SHA: `971f2e5cd96ccd1d8454328463070f2657bc5a1a`
+- SonarQube After 검증 SHA: `3c888ccc6b61ae15dfb1ac8c3f107e58299a9e11`
 - 기준 브랜치: fork `origin/develop`에서 생성한 `refactor/2-reservation-package-structure`
 
 ## 환경·데이터·실행 조건
 
-- 측정일: 2026-09-12 KST
+- 구조·테스트 측정일: 2026-09-12 KST
+- SonarQube 회귀 측정일: 2026-09-13 KST
 - OS: Windows 11 amd64
 - Gradle Wrapper: 9.5.1
 - Java toolchain: 17
 - 테스트 필터: `com.bobfull.reservation.*`
-- SonarQube 목표 환경: `sonarqube:26.9.0.129388-community`, Gradle plugin 7.5.0.8588
+- SonarQube 환경: `sonarqube:26.9.0.129388-community`, Gradle plugin 7.5.0.8588,
+  Docker Engine 29.6.1, Docker Compose 5.1.4, project key `bobfull-backend`
 
 ## 측정 방법
 
@@ -102,10 +105,19 @@ Gradle 출력과 `build/test-results/test/TEST-com.bobfull.reservation*.xml` 합
 ```powershell
 docker version
 docker-compose -f docker-compose.sonar.yml ps
+$revision = git rev-parse HEAD
+.\gradlew.bat clean classes testClasses sonar `
+  "-Dsonar.host.url=$env:SONAR_HOST_URL" `
+  "-Dsonar.token=$env:SONAR_TOKEN" `
+  "-Dsonar.scm.revision=$revision" --no-daemon
 ```
 
-서버가 기동되면 PR #11과 같은 project key, scanner, image와 API scope로 Reservation component의 Issue 수와
-유형을 조회한다. 서버가 없으면 전체 Baseline 수치에서 Reservation 값을 추정하지 않는다.
+Before SHA는 현재 작업 트리와 분리한 임시 Git worktree에서 분석하고 After SHA는 PR 작업 트리에서 분석한다.
+두 분석 모두 PR #11과 같은 project key, scanner, image, Java Quality Profile과 Quality Gate를 사용한다.
+Compute Engine `SUCCESS` 뒤 `api/issues/search`의 미해결 Issue 중 component 경로가
+`src/main/java/com/bobfull/reservation/` 또는 `src/test/java/com/bobfull/reservation/`인 항목을 집계한다.
+유형·심각도·규칙 분포를 비교하고, 파일명·rule·line·message 조합으로 신규/소멸 항목을 대조한다.
+Quality Gate의 new violation은 `inNewCodePeriod=true` 조회와 CLOSED 이력으로 실제 신규 결함인지 확인한다.
 
 ## Before 결과
 
@@ -178,10 +190,20 @@ Port 소비 import는 `ReservationCancellationRefundPort 4`, `ReservationCapacit
 
 ### SonarQube
 
-- Reservation 범위 Issue 수와 유형: `NOT_AVAILABLE`
-- 원인: Docker Desktop Linux Engine named pipe가 없어 `docker version`과 Compose 상태 조회 실패
-- 추가 시도: Docker Desktop 백그라운드 실행이 유지되지 않음
-- 제한: PR #11 전체 미해결 Issue 329건을 Reservation 전용 수치로 추정하지 않음
+- 분석 SHA: `2fd977dc25a5d6cec02dbb9758dc0682b0714fef`
+- Gradle 분석: `BUILD SUCCESSFUL`
+- Compute Engine: `SUCCESS` (`e075fcec-0f39-4e04-b74b-8afc4db890ff`)
+- Quality Gate: `OK`
+
+| Reservation 미해결 Issue | Before |
+|---|---:|
+| 전체 | 29 |
+| main / test | 2 / 27 |
+| Bug / Code Smell | 1 / 28 |
+| Blocker / Major / Minor | 2 / 9 / 18 |
+
+규칙별 수치는 `S1128 6`, `S1481 1`, `S2699 2`, `S2925 1`, `S5778 8`, `S5838 4`,
+`S5841 1`, `S6068 6`이다.
 
 ## 변경 내용
 
@@ -211,9 +233,36 @@ Before에서 실패한 `PerformanceTestReservationCompletionHookTest`의 시간 
 통과했다. 이 테스트의 기준이나 production hook 구현은 변경하지 않았으므로 실행 환경에 민감한 기존 변동성으로
 판단한다.
 
-SonarQube Reservation 범위 회귀 분석은 `NOT_RUN`이다. Docker Desktop 서비스는 설치돼 있지만 현재 실행
-권한으로 시작할 수 없었고 local Sonar token도 현재 shell에 없었다. 기존 전체 329건 또는 다른 SHA의 수치를
-After Reservation 결과로 사용하지 않았다.
+### SonarQube 회귀
+
+- 분석 SHA: `3c888ccc6b61ae15dfb1ac8c3f107e58299a9e11`
+- Gradle 분석: `BUILD SUCCESSFUL`
+- Compute Engine: `SUCCESS` (`ec2d330e-6adf-4eae-9e63-a31ebfe94f71`)
+
+| 지표 | Before | After | 판정 |
+|---|---:|---:|---|
+| Reservation 미해결 Issue | 29 | 29 | PASS |
+| main / test | 2 / 27 | 2 / 27 | PASS |
+| Bug / Code Smell | 1 / 28 | 1 / 28 | PASS |
+| Blocker / Major / Minor | 2 / 9 / 18 | 2 / 9 / 18 | PASS |
+| 규칙별 분포 | 동일 | 동일 | PASS |
+| 전체 project 미해결 Issue | 328 | 328 | PASS |
+
+After Quality Gate는 `ERROR`이며 조건은 `new_violations = 4`다. 네 항목은 모두 `java:S1128` 미사용 import로,
+패키지 이동 때문에 import의 fully qualified name이 바뀌면서 SonarQube가 기존 이슈를 CLOSED 처리하고 새
+이슈로 등록한 결과다. 기존 이슈와 After 이슈는 같은 파일·line에 1:1로 대응한다.
+
+| 파일 | line | Before import suffix | After import suffix |
+|---|---:|---|---|
+| `AdminReservationRepositoryImplTest.java` | 6 | `reservation.entity.ParticipationStatus` | `reservation.domain.entity.ParticipationStatus` |
+| `RefundCancellationIdGapLockMySqlConcurrencyIntegrationTest.java` | 14 | `reservation.entity.ReservationStatus` | `reservation.domain.entity.ReservationStatus` |
+| `OwnerReservationQueryServiceTest.java` | 22 | `reservation.entity.ParticipationStatus` | `reservation.domain.entity.ParticipationStatus` |
+| `OwnerReservationRepositoryImplTest.java` | 11 | `reservation.entity.ParticipationStatus` | `reservation.domain.entity.ParticipationStatus` |
+
+앞의 두 파일은 Reservation 외부 테스트지만 이번 패키지 이동에 필요한 import 수정 대상이다. 네 import 모두
+Before부터 같은 위치에서 `S1128` 이슈였으며 전체·Reservation 범위 Issue 수와 유형·심각도·규칙 분포는
+증가하지 않았다. 따라서 Quality Gate 상태 변화는 issue identity 재생성으로 기록하고 실제 신규 정적 분석
+회귀는 0건으로 판정한다.
 
 ## 정합성 회귀 검증
 
@@ -228,7 +277,7 @@ After Reservation 결과로 사용하지 않았다.
 | 기존 package 참조 검색 | PASS | 기존 8개 최상위 package 참조 0건 |
 | Java diff 내용 제한 | PASS | 변경된 Java diff line은 모두 Reservation package/import 경로 변경 |
 | whitespace 검사 | PASS | `git diff --cached --check` 출력 없음 |
-| SonarQube 회귀 | NOT_RUN | Docker service 시작 권한과 local token 부재 |
+| SonarQube 회귀 | PASS | 동일 환경 Before/After 분석, 실제 신규 회귀 0건; package import 문자열 변경으로 Quality Gate new violation 4건 재식별 |
 
 ## 결과 해석
 
@@ -236,12 +285,17 @@ production/test Java 파일 수를 유지한 채 목표 4개 책임 패키지로
 Port 접근과 Transaction annotation 수가 Before와 같고 Java diff에도 package/import 경로 외 변경이 없어
 이번 결과는 동작이나 의존성 감소가 아니라 구조 정리와 기존 경계 보존으로 해석한다.
 
+SonarQube의 Reservation 미해결 Issue는 29건으로 동일하고 모든 분포도 유지됐다. Quality Gate가 표시한
+new violation 4건은 새 문제 추가가 아니라 기존 미사용 import의 package 문자열 변경에 따른 재식별이다.
+기존 SonarQube Issue 자체를 수정하는 일은 이번 리팩토링 범위에 포함하지 않는다.
+
 ## 검증 한계
 
-- Before SonarQube Reservation component 수치는 로컬 분석 서버를 기동하지 못해 수집하지 못했다.
 - 시간 임계값 기반 기존 테스트 1건이 Before부터 재현 가능하게 실패한다.
 - Reservation wildcard 실행에서 위 특수 테스트 2개는 자동 결과에 포함되지 않아 MANDATORY test는 명시 실행하고
   MySQL 성능 조사는 환경 조건 미충족으로 `NOT_RUN` 처리했다.
+- SonarQube Quality Gate는 import package 문자열이 달라진 기존 `S1128` 4건을 new violation으로 재등록해
+  `ERROR`다. Aggregate와 CLOSED 이력 비교로 실제 신규 회귀가 없음을 확인했지만 Gate 표시 자체를 변경하지 않았다.
 - 이 리팩토링은 외부 직접 참조나 Transaction 수 감소를 효과로 주장하지 않는다.
 
 ## 관련
