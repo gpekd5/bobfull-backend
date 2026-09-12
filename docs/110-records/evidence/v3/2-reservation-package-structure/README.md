@@ -17,7 +17,7 @@
 ## 기준 코드
 
 - Before SHA: `2fd977dc25a5d6cec02dbb9758dc0682b0714fef`
-- After SHA: `PENDING`
+- After SHA: `971f2e5cd96ccd1d8454328463070f2657bc5a1a`
 - 기준 브랜치: fork `origin/develop`에서 생성한 `refactor/2-reservation-package-structure`
 
 ## 환경·데이터·실행 조건
