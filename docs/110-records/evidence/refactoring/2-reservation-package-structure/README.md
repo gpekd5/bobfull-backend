@@ -301,5 +301,5 @@ new violation 4건은 새 문제 추가가 아니라 기존 미사용 import의 
 ## 관련
 
 - [Issue #2](https://github.com/gpekd5/bobfull-backend/issues/2)
-- [Issue #10 SonarQube Baseline](../10-sonarqube-baseline/README.md)
-- [ADR 0005](../../../040-architecture/adr/0005-domain-boundary-dependency-policy.md)
+- [Issue #10 SonarQube Baseline](../../v3/10-sonarqube-baseline/README.md)
+- [ADR 0005](../../../../040-architecture/adr/0005-domain-boundary-dependency-policy.md)

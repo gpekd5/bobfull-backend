@@ -122,10 +122,12 @@
 ## Before / After Evidence
 
 <!--
+Refactor Learning Mode의 구조 변경·동작 보존 Evidence는 작성합니다.
 성능·신뢰성·동시성·인프라·캐시·Kafka/Outbox·AI 등 개선 효과를 주장하는 PR은 작성합니다.
 단순 CRUD·문서·DTO처럼 Before/After 비교가 의미 없으면 `NOT_APPLICABLE`과 이유를 작성합니다.
 실제 측정 전 임의 수치를 채우지 않습니다.
-공통 규칙: docs/110-records/evidence/v3/README.md
+구조 리팩터링 기준: docs/110-records/evidence/refactoring/README.md
+개선 효과 기준: docs/110-records/evidence/v3/README.md
 -->
 
 ### 측정 계약
@@ -152,7 +154,7 @@
 
 ### 정합성 회귀 확인
 
-<!-- 성능·격리·확장 개선 뒤 기존 기능·상태·멱등성·정합성이 깨지지 않았는지 기록합니다. -->
+<!-- 구조 변경 또는 개선 뒤 기존 기능·상태·멱등성·정합성이 깨지지 않았는지 기록합니다. -->
 
 -
 
@@ -165,7 +167,7 @@
 | 관련 테스트 |  | `PASS | FAIL | NOT_RUN` |  |
 | 전체 build |  | `PASS | FAIL | NOT_RUN` |  |
 | 핵심 기능 직접 검증 | Postman/curl/직접 트리거 등 | `PASS | FAIL | NOT_RUN` |  |
-| Before/After Evidence | `docs/110-records/evidence/v3/...` 또는 N/A 근거 | `PASS | FAIL | NOT_APPLICABLE` |  |
+| Before/After Evidence | `docs/110-records/evidence/refactoring/...`, `docs/110-records/evidence/v3/...` 또는 N/A 근거 | `PASS | FAIL | NOT_APPLICABLE` |  |
 | 담당 구현 AI Review | PR Conversation 댓글 | `MERGEABLE | BLOCK | 미실행` |  |
 
 - 최신 검증 Commit SHA:
