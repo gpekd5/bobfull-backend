@@ -1,6 +1,6 @@
 package com.bobfull.chat.port;
-import com.bobfull.reservation.entity.ParticipationStatus;
-import com.bobfull.reservation.entity.ReservationStatus;
+import com.bobfull.reservation.domain.entity.ParticipationStatus;
+import com.bobfull.reservation.domain.entity.ReservationStatus;
 import java.time.Instant;
 public interface ReservationChatAccessReader {
     ChatAccess read(Long reservationId, Long memberId);

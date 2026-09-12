@@ -2,10 +2,10 @@ package com.bobfull.admin.repository;
 
 import com.bobfull.admin.dto.AdminNoShowResult;
 import com.bobfull.member.entity.QMember;
-import com.bobfull.reservation.entity.ParticipationStatus;
-import com.bobfull.reservation.entity.QNoShowHistory;
-import com.bobfull.reservation.entity.QReservation;
-import com.bobfull.reservation.entity.QReservationParticipant;
+import com.bobfull.reservation.domain.entity.ParticipationStatus;
+import com.bobfull.reservation.domain.entity.QNoShowHistory;
+import com.bobfull.reservation.domain.entity.QReservation;
+import com.bobfull.reservation.domain.entity.QReservationParticipant;
 import com.bobfull.restaurant.entity.QRestaurant;
 import com.bobfull.sharedtable.entity.QSharedTable;
 import com.bobfull.timeslot.entity.QTimeSlot;

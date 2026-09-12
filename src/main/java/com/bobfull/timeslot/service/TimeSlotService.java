@@ -7,12 +7,12 @@ import com.bobfull.common.exception.SharedTableErrorCode;
 import com.bobfull.common.exception.TimeSlotErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.payment.service.PaymentHoldReader;
-import com.bobfull.reservation.entity.ParticipationStatus;
-import com.bobfull.reservation.entity.Reservation;
-import com.bobfull.reservation.entity.ReservationStatus;
-import com.bobfull.reservation.policy.ReservationCapacityPolicy;
-import com.bobfull.reservation.repository.ReservationParticipantRepository;
-import com.bobfull.reservation.repository.ReservationRepository;
+import com.bobfull.reservation.domain.entity.ParticipationStatus;
+import com.bobfull.reservation.domain.entity.Reservation;
+import com.bobfull.reservation.domain.entity.ReservationStatus;
+import com.bobfull.reservation.domain.policy.ReservationCapacityPolicy;
+import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
+import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.entity.Restaurant;
 import com.bobfull.restaurant.repository.RestaurantRepository;
 import com.bobfull.sharedtable.entity.SharedTable;
@@ -244,7 +244,7 @@ public class TimeSlotService {
      * "1. 병목 Hot-path 분리"). 회차 ID를 미리 다 알고 있으므로, 이 4개를 회차 수와 무관하게
      * 고정된 배치 쿼리로 한 번씩만 실행해 앞에서 모아두고 Java에서 회차별로 조립한다 —
      * `availableCapacity` 계산식 자체(닫힘이면 0, 아니면 {@link ReservationCapacityPolicy})는
-     * {@link com.bobfull.reservation.service.AvailableCapacityCalculator}와 동일하게 유지한다.
+     * {@link com.bobfull.reservation.application.service.AvailableCapacityCalculator}와 동일하게 유지한다.
      */
     private AvailableDiningSessionBatchContext loadAvailableDiningSessionBatchContext(List<TimeSlot> timeSlots) {
         List<Long> timeSlotIds = timeSlots.stream().map(TimeSlot::getId).toList();

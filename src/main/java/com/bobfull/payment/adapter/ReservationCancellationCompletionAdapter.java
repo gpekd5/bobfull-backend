@@ -1,7 +1,7 @@
 package com.bobfull.payment.adapter;
 
 import com.bobfull.payment.port.ReservationCancellationCompletionPort;
-import com.bobfull.reservation.service.ReservationCancellationCompletionService;
+import com.bobfull.reservation.application.service.ReservationCancellationCompletionService;
 import java.time.Instant;
 import org.springframework.stereotype.Component;
 

@@ -6,7 +6,7 @@ import com.bobfull.outbox.entity.OutboxEvent;
 import com.bobfull.outbox.entity.OutboxEventType;
 import com.bobfull.outbox.repository.EmailOutboxDeliveryRepository;
 import com.bobfull.outbox.repository.OutboxEventRepository;
-import com.bobfull.reservation.entity.ReservationParticipant;
+import com.bobfull.reservation.domain.entity.ReservationParticipant;
 import java.time.Clock;
 import java.util.List;
 import org.springframework.stereotype.Service;

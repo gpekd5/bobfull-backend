@@ -3,8 +3,8 @@ package com.bobfull.notification.adapter;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
-import com.bobfull.reservation.port.ReservationNotificationPort.Recipient;
-import com.bobfull.reservation.port.ReservationNotificationPort.ReservationResultNotification;
+import com.bobfull.reservation.application.port.ReservationNotificationPort.Recipient;
+import com.bobfull.reservation.application.port.ReservationNotificationPort.ReservationResultNotification;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

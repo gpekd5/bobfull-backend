@@ -3,8 +3,8 @@ package com.bobfull.kafka.consumer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.chat.port.ReservationChatAccessReader;
-import com.bobfull.reservation.entity.ParticipationStatus;
-import com.bobfull.reservation.entity.ReservationStatus;
+import com.bobfull.reservation.domain.entity.ParticipationStatus;
+import com.bobfull.reservation.domain.entity.ReservationStatus;
 import java.util.Collection;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

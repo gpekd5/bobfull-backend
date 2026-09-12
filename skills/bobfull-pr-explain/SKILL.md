@@ -21,7 +21,7 @@ description: 최신 Issue, Diff와 검증 결과를 저장소 PR template에 맞
 - 최신 `.github/pull_request_template.md`
 - base 대비 실제 Diff
 - 테스트·build·직접 검증 결과와 미실행 근거
-- 개선 효과를 주장하면 해당 Before/After Evidence와 한계
+- 구조 리팩터링의 동작 보존을 기록하거나 개선 효과를 주장하면 해당 Before/After Evidence와 한계
 - 최신 담당 구현 AI Review 결과가 있으면 그 결과
 
 ## 작성 원칙
@@ -40,7 +40,10 @@ template의 필드 목록과 Merge Gate를 이 Skill에 복제하지 않는다. 
 
 ## Evidence
 
-개선 효과를 주장할 때만 `docs/110-records/evidence/v3/README.md`와 해당 Issue Evidence를 읽는다.
+- 구조 리팩터링의 Before/After와 동작 보존: `docs/110-records/evidence/refactoring/README.md`
+- 성능·신뢰성·동시성·인프라·캐시·Kafka/Outbox·AI 개선 효과: `docs/110-records/evidence/v3/README.md`
+
+작업 성격에 맞는 기준과 해당 Issue Evidence만 읽는다.
 
 PR에는 원본 전체가 아니라 다음만 요약한다.
 

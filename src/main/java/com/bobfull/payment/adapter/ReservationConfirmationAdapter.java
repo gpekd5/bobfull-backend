@@ -2,7 +2,7 @@ package com.bobfull.payment.adapter;
 
 import com.bobfull.payment.entity.Payment;
 import com.bobfull.payment.port.ReservationConfirmationPort;
-import com.bobfull.reservation.service.ReservationConfirmationService;
+import com.bobfull.reservation.application.service.ReservationConfirmationService;
 import org.springframework.stereotype.Component;
 
 @Component

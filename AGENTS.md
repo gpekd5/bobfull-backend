@@ -14,11 +14,12 @@
 | PR 생성·본문 갱신 | `skills/bobfull-pr-explain/SKILL.md`, `.github/pull_request_template.md` |
 | Draft PR 생성 또는 새 Push 뒤 AI Review | `skills/bobfull-pr-review/SKILL.md` |
 | Human 답변 실제 검토 또는 별도 Human 질문 기준 필요 | `docs/060-ai/ai-review-guide.md` |
+| 구조 리팩터링 Before/After·동작 보존 Evidence | `docs/110-records/evidence/refactoring/README.md` |
 | 개선 효과를 주장하는 작업 | `docs/110-records/evidence/v3/README.md` |
 
 - 같은 Issue를 재처리할 때 onboarding Skill을 형식적으로 다시 읽지 않는다. 계약이 크게 바뀌어 필요한 기준 문서를 다시 선택해야 할 때만 재확인한다.
 - 구현 전에는 PR Explain·AI Review 문서를 선행 로딩하지 않는다.
-- 비고도화 작업에서는 Evidence 표준과 과거 Evidence를 읽지 않는다.
+- 구조 리팩터링 Evidence는 `refactoring`, 개선 효과 Evidence는 `v3` 기준만 선택해 읽는다. Evidence가 필요 없는 작업에서는 표준과 과거 Evidence를 읽지 않는다.
 - PR 단계에서는 Issue 계약, 최신 Diff, 검증 결과와 PR 전용 문서를 중심으로 읽고 구현 문서를 처음부터 다시 읽지 않는다.
 - Refactor Learning Mode 최초 질문 3개는 `ai-workflow.md`의 3축만으로 작성한다. Human 답변을 실제 검토하거나 별도 질문 기준이 필요할 때만 `ai-review-guide.md`를 읽으며, 질문이 0개인 PR 기본 검토에서는 선행 로딩하지 않는다.
 - 링크되어 있다는 이유만으로 문서 전체를 읽지 않는다. 아래 문서 라우팅에서 현재 작업과 직접 관련된 원본만 선택한다.
@@ -113,9 +114,12 @@ PR 댓글은 작성 주체와 관계없이 실제 코드 근거로 처리한다.
 
 실제 구현 절차는 `docs/060-ai/ai-implementation-guide.md`, 코드 규칙은 `docs/050-engineering/code-convention.md`, 테스트 규칙은 `docs/050-engineering/test-convention.md`에서 현재 변경에 필요한 부분만 읽는다.
 
-### Enhancement와 Evidence
+### Refactoring과 Enhancement Evidence
 
-성능·신뢰성·동시성·인프라·캐시·Kafka/Outbox·AI 등 개선 효과를 주장할 때만 `docs/110-records/evidence/v3/README.md`와 해당 Issue Evidence를 읽는다. 실행하지 않은 결과를 만들거나 과거 Evidence 전체를 선행 로딩하지 않는다.
+- Refactor Learning Mode의 구조 변경과 기존 동작 보존을 Before/After로 기록할 때는 `docs/110-records/evidence/refactoring/README.md`와 해당 Issue Evidence를 읽는다.
+- 성능·신뢰성·동시성·인프라·캐시·Kafka/Outbox·AI 등 개선 효과를 주장할 때는 `docs/110-records/evidence/v3/README.md`와 해당 Issue Evidence를 읽는다.
+
+실행하지 않은 결과를 만들거나 관련 없는 과거 Evidence 전체를 선행 로딩하지 않는다.
 
 ### PR Explain과 AI Review
 

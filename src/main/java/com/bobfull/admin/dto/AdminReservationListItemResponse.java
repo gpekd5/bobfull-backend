@@ -1,7 +1,7 @@
 package com.bobfull.admin.dto;
 
-import com.bobfull.reservation.entity.RecruitmentStatus;
-import com.bobfull.reservation.entity.ReservationStatus;
+import com.bobfull.reservation.domain.entity.RecruitmentStatus;
+import com.bobfull.reservation.domain.entity.ReservationStatus;
 import java.time.OffsetDateTime;
 
 public record AdminReservationListItemResponse(

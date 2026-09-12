@@ -1,6 +1,6 @@
 package com.bobfull.notification.adapter;
 
-import com.bobfull.reservation.port.ReservationNotificationPort;
+import com.bobfull.reservation.application.port.ReservationNotificationPort;
 import java.util.ArrayList;
 import java.util.List;
 

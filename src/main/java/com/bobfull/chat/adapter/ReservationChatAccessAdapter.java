@@ -1,7 +1,7 @@
 package com.bobfull.chat.adapter;
 import com.bobfull.chat.port.ReservationChatAccessReader;
-import com.bobfull.reservation.repository.ReservationParticipantRepository;
-import com.bobfull.reservation.repository.ReservationRepository;
+import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
+import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.timeslot.repository.TimeSlotRepository;
 import org.springframework.stereotype.Component;
 @Component

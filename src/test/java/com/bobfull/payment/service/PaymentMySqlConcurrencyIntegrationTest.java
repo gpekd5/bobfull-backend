@@ -10,12 +10,12 @@ import com.bobfull.payment.entity.PaymentPurpose;
 import com.bobfull.payment.entity.PaymentStatus;
 import com.bobfull.payment.port.PortOnePaymentReader;
 import com.bobfull.payment.repository.PaymentRepository;
-import com.bobfull.reservation.repository.ReservationParticipantRepository;
-import com.bobfull.reservation.repository.ReservationRepository;
-import com.bobfull.reservation.entity.Reservation;
-import com.bobfull.reservation.entity.ReservationParticipant;
-import com.bobfull.reservation.entity.ReservationStatus;
-import com.bobfull.reservation.entity.RecruitmentStatus;
+import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
+import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
+import com.bobfull.reservation.domain.entity.Reservation;
+import com.bobfull.reservation.domain.entity.ReservationParticipant;
+import com.bobfull.reservation.domain.entity.ReservationStatus;
+import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.sharedtable.entity.SharedTable;
 import com.bobfull.sharedtable.repository.SharedTableRepository;
 import com.bobfull.timeslot.entity.TimeSlot;
@@ -204,7 +204,7 @@ class PaymentMySqlConcurrencyIntegrationTest {
         assertThat(paidFirst.getStatus()).isEqualTo(PaymentStatus.PAID);
         assertThat(paidSecond.getStatus()).isEqualTo(PaymentStatus.PAID);
         assertThat(participantRepository.count()).isEqualTo(4);
-        assertThat(participantRepository.sumPartySize(reservation.getId(), com.bobfull.reservation.entity.ParticipationStatus.RESERVED)).isEqualTo(4);
+        assertThat(participantRepository.sumPartySize(reservation.getId(), com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED)).isEqualTo(4);
         assertThat(completed.getReservationStatus()).isEqualTo(ReservationStatus.CONFIRMED);
         assertThat(completed.getRecruitmentStatus()).isEqualTo(RecruitmentStatus.CLOSED);
     }

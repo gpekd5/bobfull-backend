@@ -6,7 +6,7 @@ import static org.mockito.BDDMockito.given;
 import com.bobfull.chat.entity.ChatRoom;
 import com.bobfull.chat.port.ReservationChatAccessReader;
 import com.bobfull.chat.repository.ChatRoomRepository;
-import com.bobfull.reservation.entity.ParticipationStatus;
+import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import java.util.Optional;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
