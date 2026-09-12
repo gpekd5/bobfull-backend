@@ -1,7 +1,7 @@
 package com.bobfull.admin.dto;
 
-import com.bobfull.reservation.entity.RecruitmentStatus;
-import com.bobfull.reservation.entity.ReservationStatus;
+import com.bobfull.reservation.domain.entity.RecruitmentStatus;
+import com.bobfull.reservation.domain.entity.ReservationStatus;
 import java.time.Instant;
 
 /** ADMIN 전체 예약 현황 조회 결과 1건이다(Issue #49 §11-5). */

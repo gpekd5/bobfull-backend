@@ -8,7 +8,7 @@ import com.bobfull.payment.entity.Refund;
 import com.bobfull.payment.port.PortOneRefundRequester;
 import com.bobfull.payment.service.RefundCompletionService;
 import com.bobfull.payment.service.RefundTransactionService;
-import com.bobfull.reservation.port.ReservationCancellationRefundPort;
+import com.bobfull.reservation.application.port.ReservationCancellationRefundPort;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;

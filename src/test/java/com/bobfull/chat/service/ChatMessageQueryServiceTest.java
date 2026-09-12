@@ -35,7 +35,7 @@ class ChatMessageQueryServiceTest {
         ChatMessage m104 = message(104L, 1L, "104");
         ChatMessage m103 = message(103L, 1L, "103");
         given(rooms.findById(1L)).willReturn(java.util.Optional.of(room));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(8L, com.bobfull.reservation.entity.ParticipationStatus.RESERVED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(8L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
         given(messages.findByChatRoomIdOrderByIdDesc(any(), any())).willReturn(List.of(m105, m104, m103));
         given(names.readNames(any())).willReturn(Map.of(1L, "회원"));
 
@@ -54,7 +54,7 @@ class ChatMessageQueryServiceTest {
     void cursor_다음_마지막_페이지는_작은_ID만_반환하고_nextCursor가_null이다() {
         // given
         given(rooms.findById(1L)).willReturn(java.util.Optional.of(room(1L, 10L)));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(8L, com.bobfull.reservation.entity.ParticipationStatus.RESERVED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(8L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
         given(messages.findByChatRoomIdAndIdLessThanOrderByIdDesc(org.mockito.ArgumentMatchers.eq(1L), org.mockito.ArgumentMatchers.eq(104L), any()))
                 .willReturn(List.of(message(103L, 1L, "103")));
         given(names.readNames(any())).willReturn(Map.of(1L, "회원"));

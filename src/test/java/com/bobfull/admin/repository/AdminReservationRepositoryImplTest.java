@@ -3,12 +3,12 @@ package com.bobfull.admin.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.admin.dto.AdminReservationResult;
-import com.bobfull.reservation.entity.ParticipationStatus;
-import com.bobfull.reservation.entity.Reservation;
-import com.bobfull.reservation.entity.ReservationParticipant;
-import com.bobfull.reservation.entity.ReservationStatus;
-import com.bobfull.reservation.repository.ReservationParticipantRepository;
-import com.bobfull.reservation.repository.ReservationRepository;
+import com.bobfull.reservation.domain.entity.ParticipationStatus;
+import com.bobfull.reservation.domain.entity.Reservation;
+import com.bobfull.reservation.domain.entity.ReservationParticipant;
+import com.bobfull.reservation.domain.entity.ReservationStatus;
+import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
+import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.entity.Restaurant;
 import com.bobfull.restaurant.repository.RestaurantRepository;
 import com.bobfull.sharedtable.entity.SharedTable;

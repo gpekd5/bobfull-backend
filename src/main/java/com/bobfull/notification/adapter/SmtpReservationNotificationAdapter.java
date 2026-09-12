@@ -1,6 +1,6 @@
 package com.bobfull.notification.adapter;
 
-import com.bobfull.reservation.port.ReservationNotificationPort;
+import com.bobfull.reservation.application.port.ReservationNotificationPort;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.time.ZoneId;

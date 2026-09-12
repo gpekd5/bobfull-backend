@@ -13,7 +13,7 @@ import com.bobfull.outbox.entity.EmailDeliveryStatus;
 import com.bobfull.outbox.entity.EmailOutboxDelivery;
 import com.bobfull.outbox.repository.EmailOutboxDeliveryRepository;
 import com.bobfull.outbox.repository.OutboxEventRepository;
-import com.bobfull.reservation.service.ReservationNotificationService;
+import com.bobfull.reservation.application.service.ReservationNotificationService;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;

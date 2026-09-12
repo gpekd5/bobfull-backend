@@ -66,7 +66,7 @@ class ChatStompInterceptorTest {
         // then: 세션이 채워준 Principal을 SUBSCRIBE에서 수동 재주입 없이 그대로 읽을 수 있는 구조다
         given(rooms.findById(3L)).willReturn(Optional.of(room(3L, 10L)));
         given(access.read(10L, 7L)).willReturn(
-                new ReservationChatAccessReader.ChatAccess(4L, com.bobfull.reservation.entity.ParticipationStatus.RESERVED));
+                new ReservationChatAccessReader.ChatAccess(4L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
         StompHeaderAccessor subscribeAccessor = StompHeaderAccessor.create(StompCommand.SUBSCRIBE);
         subscribeAccessor.setDestination("/sub/chat/rooms/3");
         subscribeAccessor.setUser(sameAccessor.getUser());
@@ -106,7 +106,7 @@ class ChatStompInterceptorTest {
         given(rooms.findById(3L)).willReturn(Optional.of(room(3L, 10L)));
         given(access.read(10L, 7L)).willReturn(null);
         assertAccessDenied(() -> interceptor.preSend(subscribe(7L, "/sub/chat/rooms/3"), null));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(4L, com.bobfull.reservation.entity.ParticipationStatus.CANCELLED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(4L, com.bobfull.reservation.domain.entity.ParticipationStatus.CANCELLED));
         assertAccessDenied(() -> interceptor.preSend(subscribe(7L, "/sub/chat/rooms/3"), null));
         given(rooms.findById(4L)).willReturn(Optional.of(room(4L, 20L)));
         given(access.read(20L, 7L)).willReturn(null);
@@ -131,5 +131,5 @@ class ChatStompInterceptorTest {
     private ChatRoom room(Long id, Long reservationId) { ChatRoom room=ChatRoom.create(reservationId); ReflectionTestUtils.setField(room,"id",id); return room; }
     private void assertReason(org.assertj.core.api.ThrowableAssert.ThrowingCallable action, StompAuthenticationException.Reason reason) { assertThatThrownBy(action).isInstanceOf(StompAuthenticationException.class).extracting(e -> ((StompAuthenticationException)e).getReason()).isEqualTo(reason); }
     private void assertAccessDenied(org.assertj.core.api.ThrowableAssert.ThrowingCallable action) { assertThatThrownBy(action).isInstanceOf(CustomException.class).extracting(e -> ((CustomException)e).getErrorCode()).isEqualTo(CommonErrorCode.ACCESS_DENIED); }
-    private enum ParticipationStatusCase { RESERVED(com.bobfull.reservation.entity.ParticipationStatus.RESERVED), CANCEL_REQUESTED(com.bobfull.reservation.entity.ParticipationStatus.CANCEL_REQUESTED), NO_SHOW(com.bobfull.reservation.entity.ParticipationStatus.NO_SHOW); final com.bobfull.reservation.entity.ParticipationStatus value; ParticipationStatusCase(com.bobfull.reservation.entity.ParticipationStatus value){this.value=value;} }
+    private enum ParticipationStatusCase { RESERVED(com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED), CANCEL_REQUESTED(com.bobfull.reservation.domain.entity.ParticipationStatus.CANCEL_REQUESTED), NO_SHOW(com.bobfull.reservation.domain.entity.ParticipationStatus.NO_SHOW); final com.bobfull.reservation.domain.entity.ParticipationStatus value; ParticipationStatusCase(com.bobfull.reservation.domain.entity.ParticipationStatus value){this.value=value;} }
 }

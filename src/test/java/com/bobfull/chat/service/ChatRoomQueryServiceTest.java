@@ -15,7 +15,7 @@ import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.common.security.MemberRole;
-import com.bobfull.reservation.entity.ParticipationStatus;
+import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;

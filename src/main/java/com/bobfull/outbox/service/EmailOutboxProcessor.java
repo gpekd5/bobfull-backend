@@ -5,7 +5,7 @@ import com.bobfull.outbox.entity.EmailOutboxDelivery;
 import com.bobfull.outbox.entity.OutboxEventStatus;
 import com.bobfull.outbox.repository.EmailOutboxDeliveryRepository;
 import com.bobfull.outbox.repository.OutboxEventRepository;
-import com.bobfull.reservation.service.ReservationNotificationService;
+import com.bobfull.reservation.application.service.ReservationNotificationService;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
