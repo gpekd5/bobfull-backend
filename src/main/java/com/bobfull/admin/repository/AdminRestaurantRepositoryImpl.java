@@ -2,8 +2,8 @@ package com.bobfull.admin.repository;
 
 import com.bobfull.admin.dto.AdminRestaurantResult;
 import com.bobfull.member.domain.entity.QMember;
-import com.bobfull.restaurant.entity.QRestaurant;
-import com.bobfull.restaurant.entity.RestaurantStatus;
+import com.bobfull.restaurant.restaurant.domain.entity.QRestaurant;
+import com.bobfull.restaurant.restaurant.domain.entity.RestaurantStatus;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;

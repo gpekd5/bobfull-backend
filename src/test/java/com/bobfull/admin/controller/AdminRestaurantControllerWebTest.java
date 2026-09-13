@@ -16,7 +16,7 @@ import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
-import com.bobfull.restaurant.entity.RestaurantStatus;
+import com.bobfull.restaurant.restaurant.domain.entity.RestaurantStatus;
 import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
 import java.time.OffsetDateTime;
 import java.util.List;
