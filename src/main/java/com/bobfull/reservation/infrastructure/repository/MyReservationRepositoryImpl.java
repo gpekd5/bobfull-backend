@@ -1,6 +1,6 @@
 package com.bobfull.reservation.infrastructure.repository;
 
-import com.bobfull.payment.entity.QPayment;
+import com.bobfull.payment.domain.entity.QPayment;
 import com.bobfull.reservation.application.dto.MyReservationResult;
 import com.bobfull.reservation.domain.entity.QReservation;
 import com.bobfull.reservation.domain.entity.QReservationParticipant;

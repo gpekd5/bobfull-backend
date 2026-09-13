@@ -14,7 +14,7 @@ import com.bobfull.common.config.ClockConfig;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
-import com.bobfull.payment.entity.PaymentStatus;
+import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.reservation.presentation.dto.MyReservationDetailResponse;
 import com.bobfull.reservation.presentation.dto.MyReservationListItemResponse;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;

@@ -7,7 +7,7 @@ import com.bobfull.common.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
-import com.bobfull.payment.service.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldReader;
 import com.bobfull.reservation.presentation.dto.OwnerReservationDetailResponse;
 import com.bobfull.reservation.presentation.dto.OwnerReservationListItemResponse;
 import com.bobfull.reservation.presentation.dto.OwnerReservationParticipantResponse;

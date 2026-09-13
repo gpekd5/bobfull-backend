@@ -2,10 +2,10 @@ package com.bobfull.reservation.infrastructure.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bobfull.payment.entity.Payment;
-import com.bobfull.payment.entity.PaymentPurpose;
-import com.bobfull.payment.entity.PaymentStatus;
-import com.bobfull.payment.repository.PaymentRepository;
+import com.bobfull.payment.domain.entity.Payment;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
+import com.bobfull.payment.domain.entity.PaymentStatus;
+import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.reservation.application.dto.MyReservationResult;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;

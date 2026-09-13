@@ -9,8 +9,8 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.payment.entity.PaymentStatus;
-import com.bobfull.payment.repository.PaymentRepository;
+import com.bobfull.payment.domain.entity.PaymentStatus;
+import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -43,7 +43,7 @@ class AdminPaymentQueryServiceTest {
     @Test
     void 필터가_없으면_전체_결제를_조회한다() {
         Pageable pageable = PageRequest.of(0, 20);
-        Page<com.bobfull.payment.entity.Payment> emptyPage = new PageImpl<>(java.util.List.of(), pageable, 0);
+        Page<com.bobfull.payment.domain.entity.Payment> emptyPage = new PageImpl<>(java.util.List.of(), pageable, 0);
         given(paymentRepository.findAll(any(Pageable.class))).willReturn(emptyPage);
 
         service.getPayments(null, pageable);
@@ -54,7 +54,7 @@ class AdminPaymentQueryServiceTest {
     @Test
     void PAID_필터가_있으면_상태별로_조회한다() {
         Pageable pageable = PageRequest.of(0, 20);
-        Page<com.bobfull.payment.entity.Payment> emptyPage = new PageImpl<>(java.util.List.of(), pageable, 0);
+        Page<com.bobfull.payment.domain.entity.Payment> emptyPage = new PageImpl<>(java.util.List.of(), pageable, 0);
         given(paymentRepository.findAllByStatus(eq(PaymentStatus.PAID), any(Pageable.class))).willReturn(emptyPage);
 
         service.getPayments("PAID", pageable);
@@ -65,7 +65,7 @@ class AdminPaymentQueryServiceTest {
     @Test
     void 필터_유무와_관계없이_생성일_역순_id_역순으로_정렬한다() {
         Pageable pageable = PageRequest.of(0, 20);
-        Page<com.bobfull.payment.entity.Payment> emptyPage = new PageImpl<>(java.util.List.of(), pageable, 0);
+        Page<com.bobfull.payment.domain.entity.Payment> emptyPage = new PageImpl<>(java.util.List.of(), pageable, 0);
         given(paymentRepository.findAll(any(Pageable.class))).willReturn(emptyPage);
         given(paymentRepository.findAllByStatus(eq(PaymentStatus.PAID), any(Pageable.class))).willReturn(emptyPage);
 

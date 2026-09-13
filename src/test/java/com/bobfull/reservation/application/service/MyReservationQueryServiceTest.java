@@ -11,7 +11,7 @@ import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.exception.ReservationErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.entity.PaymentStatus;
+import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.reservation.presentation.dto.MyReservationDetailResponse;
 import com.bobfull.reservation.presentation.dto.MyReservationListItemResponse;
 import com.bobfull.reservation.application.dto.MyReservationResult;

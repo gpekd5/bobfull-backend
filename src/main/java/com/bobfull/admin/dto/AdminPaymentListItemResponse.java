@@ -1,7 +1,7 @@
 package com.bobfull.admin.dto;
 
-import com.bobfull.payment.entity.Payment;
-import com.bobfull.payment.entity.PaymentStatus;
+import com.bobfull.payment.domain.entity.Payment;
+import com.bobfull.payment.domain.entity.PaymentStatus;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;

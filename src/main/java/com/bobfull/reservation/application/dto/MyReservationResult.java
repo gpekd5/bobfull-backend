@@ -1,6 +1,6 @@
 package com.bobfull.reservation.application.dto;
 
-import com.bobfull.payment.entity.PaymentStatus;
+import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.ReservationStatus;

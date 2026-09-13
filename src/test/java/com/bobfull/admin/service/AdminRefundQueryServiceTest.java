@@ -9,9 +9,9 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.payment.entity.Refund;
-import com.bobfull.payment.entity.RefundStatus;
-import com.bobfull.payment.repository.RefundRepository;
+import com.bobfull.payment.domain.entity.Refund;
+import com.bobfull.payment.domain.entity.RefundStatus;
+import com.bobfull.payment.infrastructure.repository.RefundRepository;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

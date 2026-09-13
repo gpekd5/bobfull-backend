@@ -1,9 +1,9 @@
 package com.bobfull.performance;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import com.bobfull.payment.entity.Payment;
-import com.bobfull.payment.entity.PaymentPurpose;
-import com.bobfull.payment.repository.PaymentRepository;
+import com.bobfull.payment.domain.entity.Payment;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
+import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
@@ -13,7 +13,7 @@ import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableR
 import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
 import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import com.bobfull.restaurant.timeslot.application.service.TimeSlotService;
-import com.bobfull.payment.service.SettlementQueryService;
+import com.bobfull.payment.application.service.SettlementQueryService;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;

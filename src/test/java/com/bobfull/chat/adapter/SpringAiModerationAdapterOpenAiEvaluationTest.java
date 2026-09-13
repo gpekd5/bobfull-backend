@@ -172,8 +172,8 @@ class SpringAiModerationAdapterOpenAiEvaluationTest {
 
     @Test
     void Evaluation_환경에서는_background_job_bean을_생성하지_않는다() {
-        assertThat(applicationContext.getBeansOfType(com.bobfull.payment.service.PaymentExpirationScheduler.class)).isEmpty();
-        assertThat(applicationContext.getBeansOfType(com.bobfull.payment.service.RefundReconciliationScheduler.class)).isEmpty();
+        assertThat(applicationContext.getBeansOfType(com.bobfull.payment.infrastructure.scheduler.PaymentExpirationScheduler.class)).isEmpty();
+        assertThat(applicationContext.getBeansOfType(com.bobfull.payment.infrastructure.scheduler.RefundReconciliationScheduler.class)).isEmpty();
         assertThat(applicationContext.getBeansOfType(com.bobfull.reservation.infrastructure.scheduler.RecruitmentDeadlineScheduler.class)).isEmpty();
         assertThat(applicationContext.getBeansOfType(com.bobfull.reservation.infrastructure.scheduler.ReservationClosingScheduler.class)).isEmpty();
         assertThat(applicationContext.getBeansOfType(com.bobfull.outbox.service.ChatRoomOutboxScheduler.class)).isEmpty();
