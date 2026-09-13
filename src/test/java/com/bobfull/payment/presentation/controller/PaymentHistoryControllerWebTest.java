@@ -17,7 +17,6 @@ import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
-import com.bobfull.payment.presentation.dto.PaymentDetailResponse;
 import com.bobfull.payment.presentation.dto.PaymentListResponse;
 import com.bobfull.payment.presentation.dto.RefundResponse;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
