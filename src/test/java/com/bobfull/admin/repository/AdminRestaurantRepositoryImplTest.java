@@ -3,8 +3,8 @@ package com.bobfull.admin.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.admin.dto.AdminRestaurantResult;
-import com.bobfull.member.entity.Member;
-import com.bobfull.member.repository.MemberRepository;
+import com.bobfull.member.domain.entity.Member;
+import com.bobfull.member.infrastructure.repository.MemberRepository;
 import com.bobfull.restaurant.entity.Restaurant;
 import com.bobfull.restaurant.entity.RestaurantStatus;
 import com.bobfull.restaurant.repository.RestaurantRepository;

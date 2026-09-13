@@ -1,7 +1,7 @@
 package com.bobfull.restaurant.image.controller;
 
 import com.bobfull.common.response.ApiResponse;
-import com.bobfull.common.security.AuthMember;
+import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.restaurant.image.dto.RestaurantImageUploadUrlRequest;
 import com.bobfull.restaurant.image.dto.RestaurantImageUploadUrlResponse;
 import com.bobfull.restaurant.image.service.RestaurantImageService;

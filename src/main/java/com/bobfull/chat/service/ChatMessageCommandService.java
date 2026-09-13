@@ -5,7 +5,7 @@ import com.bobfull.chat.entity.*;
 import com.bobfull.chat.port.*;
 import com.bobfull.chat.repository.*;
 import com.bobfull.common.exception.*;
-import com.bobfull.common.security.*;
+import com.bobfull.auth.application.model.AuthMember; import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.common.transaction.AfterCommitExecutor;
 import com.bobfull.outbox.entity.OutboxEvent;
 import com.bobfull.outbox.repository.OutboxEventRepository;

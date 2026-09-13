@@ -3,8 +3,8 @@ package com.bobfull.reservation.infrastructure.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.member.entity.Member;
-import com.bobfull.member.repository.MemberRepository;
+import com.bobfull.member.domain.entity.Member;
+import com.bobfull.member.infrastructure.repository.MemberRepository;
 import com.bobfull.payment.dto.SettlementReservationResponse;
 import com.bobfull.payment.entity.Payment;
 import com.bobfull.payment.entity.PaymentPurpose;

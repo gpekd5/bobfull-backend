@@ -2,7 +2,7 @@ package com.bobfull.restaurant.controller;
 
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.common.security.AuthMember;
+import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.restaurant.dto.OwnerRestaurantDetailResponse;
 import com.bobfull.restaurant.dto.OwnerRestaurantListResponse;
 import com.bobfull.restaurant.dto.RestaurantCreateRequest;

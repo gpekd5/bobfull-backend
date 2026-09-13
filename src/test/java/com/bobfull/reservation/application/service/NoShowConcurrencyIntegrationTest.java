@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.exception.ReservationErrorCode;
-import com.bobfull.member.entity.Member;
-import com.bobfull.member.repository.MemberRepository;
+import com.bobfull.member.domain.entity.Member;
+import com.bobfull.member.infrastructure.repository.MemberRepository;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;
 import com.bobfull.reservation.infrastructure.repository.NoShowHistoryRepository;

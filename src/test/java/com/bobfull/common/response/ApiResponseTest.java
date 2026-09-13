@@ -3,7 +3,7 @@ package com.bobfull.common.response;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.common.exception.BaseErrorCode;
-import com.bobfull.common.exception.MemberErrorCode;
+import com.bobfull.member.domain.exception.MemberErrorCode;
 import org.junit.jupiter.api.Test;
 
 class ApiResponseTest {

@@ -1,7 +1,7 @@
 package com.bobfull.admin.repository;
 
 import com.bobfull.admin.dto.AdminMemberResult;
-import com.bobfull.common.security.MemberRole;
+import com.bobfull.member.domain.entity.MemberRole;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

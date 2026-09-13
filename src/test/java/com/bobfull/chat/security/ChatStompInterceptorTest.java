@@ -10,8 +10,8 @@ import com.bobfull.chat.port.ReservationChatAccessReader;
 import com.bobfull.chat.repository.ChatRoomRepository;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.security.JwtTokenProvider;
-import com.bobfull.common.security.MemberRole;
+import com.bobfull.auth.infrastructure.jwt.JwtTokenProvider;
+import com.bobfull.member.domain.entity.MemberRole;
 import java.security.Principal;
 import java.time.Clock;
 import java.time.Instant;
@@ -124,9 +124,9 @@ class ChatStompInterceptorTest {
 
     private void allow(ParticipationStatusCase status) { given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(4L, status.value)); }
     private Message<?> connect(String header) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.CONNECT); a.setLeaveMutable(true); if(header!=null)a.setNativeHeader("Authorization",header); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
-    private Message<?> subscribe(Long memberId, String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SUBSCRIBE); a.setDestination(destination); a.setUser(new StompPrincipal(new com.bobfull.common.security.AuthMember(memberId, MemberRole.MEMBER))); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
+    private Message<?> subscribe(Long memberId, String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SUBSCRIBE); a.setDestination(destination); a.setUser(new StompPrincipal(new com.bobfull.auth.application.model.AuthMember(memberId, MemberRole.MEMBER))); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
     private Message<?> subscribeWithoutPrincipal(String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SUBSCRIBE); a.setDestination(destination); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
-    private Message<?> send(Long memberId, String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SEND); a.setDestination(destination); a.setUser(new StompPrincipal(new com.bobfull.common.security.AuthMember(memberId, MemberRole.MEMBER))); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
+    private Message<?> send(Long memberId, String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SEND); a.setDestination(destination); a.setUser(new StompPrincipal(new com.bobfull.auth.application.model.AuthMember(memberId, MemberRole.MEMBER))); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
     private Message<?> sendWithoutPrincipal(String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SEND); a.setDestination(destination); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
     private ChatRoom room(Long id, Long reservationId) { ChatRoom room=ChatRoom.create(reservationId); ReflectionTestUtils.setField(room,"id",id); return room; }
     private void assertReason(org.assertj.core.api.ThrowableAssert.ThrowingCallable action, StompAuthenticationException.Reason reason) { assertThatThrownBy(action).isInstanceOf(StompAuthenticationException.class).extracting(e -> ((StompAuthenticationException)e).getReason()).isEqualTo(reason); }

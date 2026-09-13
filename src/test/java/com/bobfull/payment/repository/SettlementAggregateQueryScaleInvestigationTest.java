@@ -2,8 +2,8 @@ package com.bobfull.payment.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bobfull.member.entity.Member;
-import com.bobfull.member.repository.MemberRepository;
+import com.bobfull.member.domain.entity.Member;
+import com.bobfull.member.infrastructure.repository.MemberRepository;
 import com.bobfull.payment.dto.ExpectedSettlementResponse;
 import com.bobfull.payment.entity.Payment;
 import com.bobfull.payment.entity.PaymentPurpose;

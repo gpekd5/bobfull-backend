@@ -2,7 +2,7 @@ package com.bobfull.sharedtable.controller;
 
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.common.security.AuthMember;
+import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.sharedtable.dto.SharedTableIdResponse;
 import com.bobfull.sharedtable.dto.SharedTableBulkRequest;
 import com.bobfull.sharedtable.dto.SharedTableBulkResponse;

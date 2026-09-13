@@ -6,7 +6,7 @@ import com.bobfull.chat.port.MemberNameReader;
 import com.bobfull.chat.port.ReservationChatAccessReader;
 import com.bobfull.chat.repository.*;
 import com.bobfull.common.exception.*;
-import com.bobfull.common.security.MemberRole;
+import com.bobfull.member.domain.entity.MemberRole;
 import java.time.ZoneId;
 import java.util.*;
 import org.springframework.data.domain.PageRequest;
