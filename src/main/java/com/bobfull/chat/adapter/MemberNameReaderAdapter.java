@@ -1,6 +1,6 @@
 package com.bobfull.chat.adapter;
 import com.bobfull.chat.port.MemberNameReader;
-import com.bobfull.member.repository.MemberRepository;
+import com.bobfull.member.infrastructure.repository.MemberRepository;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;

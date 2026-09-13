@@ -1,7 +1,7 @@
 package com.bobfull.admin.repository;
 
 import com.bobfull.admin.dto.AdminRestaurantResult;
-import com.bobfull.member.entity.QMember;
+import com.bobfull.member.domain.entity.QMember;
 import com.bobfull.restaurant.entity.QRestaurant;
 import com.bobfull.restaurant.entity.RestaurantStatus;
 import com.querydsl.core.BooleanBuilder;

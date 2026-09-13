@@ -1,9 +1,9 @@
 package com.bobfull.common.support;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.MemberErrorCode;
+import com.bobfull.member.domain.exception.MemberErrorCode;
 import com.bobfull.common.response.ApiResponse;
-import com.bobfull.common.security.AuthMember;
+import com.bobfull.auth.application.model.AuthMember;
 import jakarta.validation.Valid;
 import java.time.Instant;
 import java.time.ZoneId;

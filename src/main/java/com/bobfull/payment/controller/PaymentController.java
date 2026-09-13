@@ -1,7 +1,7 @@
 package com.bobfull.payment.controller;
 
 import com.bobfull.common.response.ApiResponse;
-import com.bobfull.common.security.AuthMember;
+import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.payment.dto.PaymentCompletionResponse;
 import com.bobfull.payment.dto.PaymentDetailResponse;
 import com.bobfull.payment.service.PaymentCompletionService;

@@ -8,7 +8,7 @@ import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.exception.ChatErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
-import com.bobfull.common.security.MemberRole;
+import com.bobfull.member.domain.entity.MemberRole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

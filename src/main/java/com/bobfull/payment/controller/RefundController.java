@@ -1,7 +1,7 @@
 package com.bobfull.payment.controller;
 
 import com.bobfull.common.response.ApiResponse;
-import com.bobfull.common.security.AuthMember;
+import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.payment.dto.RefundResponse;
 import com.bobfull.payment.service.RefundQueryService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

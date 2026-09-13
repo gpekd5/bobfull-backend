@@ -11,7 +11,7 @@ import com.bobfull.chat.port.MemberNameReader;
 import com.bobfull.chat.port.ReservationChatAccessReader;
 import com.bobfull.chat.repository.ChatMessageRepository;
 import com.bobfull.chat.repository.ChatRoomRepository;
-import com.bobfull.common.security.MemberRole;
+import com.bobfull.member.domain.entity.MemberRole;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;

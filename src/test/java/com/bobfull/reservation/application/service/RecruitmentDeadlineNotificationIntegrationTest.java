@@ -3,8 +3,8 @@ package com.bobfull.reservation.application.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.bobfull.member.entity.Member;
-import com.bobfull.member.repository.MemberRepository;
+import com.bobfull.member.domain.entity.Member;
+import com.bobfull.member.infrastructure.repository.MemberRepository;
 import com.bobfull.notification.adapter.FakeReservationNotificationAdapter;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;

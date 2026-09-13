@@ -1,7 +1,7 @@
 package com.bobfull.chat.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
-import com.bobfull.chat.entity.*; import com.bobfull.chat.port.*; import com.bobfull.chat.repository.*; import com.bobfull.common.exception.*; import com.bobfull.common.security.*; import com.bobfull.reservation.domain.entity.*; import java.time.Clock; import java.time.Instant; import java.time.ZoneOffset; import java.util.*; import org.junit.jupiter.api.Test; import org.springframework.test.util.ReflectionTestUtils;
+import com.bobfull.chat.entity.*; import com.bobfull.chat.port.*; import com.bobfull.chat.repository.*; import com.bobfull.common.exception.*; import com.bobfull.auth.application.model.AuthMember; import com.bobfull.member.domain.entity.MemberRole; import com.bobfull.reservation.domain.entity.*; import java.time.Clock; import java.time.Instant; import java.time.ZoneOffset; import java.util.*; import org.junit.jupiter.api.Test; import org.springframework.test.util.ReflectionTestUtils;
 class ChatMessageCommandServiceTest {
     private static final Instant NOW = Instant.parse("2026-08-06T00:00:00Z");
     private final ChatRoomRepository rooms=org.mockito.Mockito.mock(ChatRoomRepository.class); private final ChatMessageRepository messages=org.mockito.Mockito.mock(ChatMessageRepository.class); private final ReservationChatAccessReader access=org.mockito.Mockito.mock(ReservationChatAccessReader.class); private final MemberNameReader names=org.mockito.Mockito.mock(MemberNameReader.class); private final Clock clock=Clock.fixed(NOW, ZoneOffset.UTC);

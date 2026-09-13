@@ -1,6 +1,6 @@
 package com.bobfull.reservation.infrastructure.repository;
 
-import com.bobfull.member.entity.QMember;
+import com.bobfull.member.domain.entity.QMember;
 import com.bobfull.reservation.application.dto.NoShowCustomerResult;
 import com.bobfull.reservation.application.dto.NoShowHistoryResult;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;

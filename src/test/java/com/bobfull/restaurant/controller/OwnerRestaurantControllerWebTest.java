@@ -12,9 +12,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.bobfull.common.config.ClockConfig;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.common.security.AuthMember;
-import com.bobfull.common.security.MemberRole;
-import com.bobfull.common.security.SecurityConfig;
+import com.bobfull.auth.application.model.AuthMember;
+import com.bobfull.member.domain.entity.MemberRole;
+import com.bobfull.auth.infrastructure.security.SecurityConfig;
 import com.bobfull.restaurant.dto.OwnerRestaurantDetailResponse;
 import com.bobfull.restaurant.dto.OwnerRestaurantListResponse;
 import com.bobfull.restaurant.dto.RestaurantCreateRequest;
@@ -25,7 +25,7 @@ import com.bobfull.restaurant.service.RestaurantService;
 import com.bobfull.restaurantinsight.dto.RestaurantFeedbackInsightListResponse;
 import com.bobfull.restaurantinsight.dto.RestaurantFeedbackInsightResponse;
 import com.bobfull.restaurantinsight.service.RestaurantFeedbackInsightService;
-import com.bobfull.auth.token.AccessTokenBlacklistStore;
+import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

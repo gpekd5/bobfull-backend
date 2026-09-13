@@ -1,7 +1,7 @@
 package com.bobfull.admin.repository;
 
 import com.bobfull.admin.dto.AdminNoShowResult;
-import com.bobfull.member.entity.QMember;
+import com.bobfull.member.domain.entity.QMember;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.QNoShowHistory;
 import com.bobfull.reservation.domain.entity.QReservation;

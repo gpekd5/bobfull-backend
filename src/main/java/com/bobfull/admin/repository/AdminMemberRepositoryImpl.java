@@ -1,8 +1,8 @@
 package com.bobfull.admin.repository;
 
 import com.bobfull.admin.dto.AdminMemberResult;
-import com.bobfull.common.security.MemberRole;
-import com.bobfull.member.entity.QMember;
+import com.bobfull.member.domain.entity.MemberRole;
+import com.bobfull.member.domain.entity.QMember;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.QReservationParticipant;
 import com.querydsl.core.BooleanBuilder;

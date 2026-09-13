@@ -1,6 +1,6 @@
 package com.bobfull.admin.dto;
 
-import com.bobfull.common.security.MemberRole;
+import com.bobfull.member.domain.entity.MemberRole;
 import java.time.OffsetDateTime;
 
 public record AdminMemberDetailResponse(

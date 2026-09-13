@@ -2,8 +2,8 @@ package com.bobfull.reservation.infrastructure.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bobfull.member.entity.Member;
-import com.bobfull.member.repository.MemberRepository;
+import com.bobfull.member.domain.entity.Member;
+import com.bobfull.member.infrastructure.repository.MemberRepository;
 import com.bobfull.reservation.application.dto.NoShowCustomerResult;
 import com.bobfull.reservation.application.dto.NoShowHistoryResult;
 import com.bobfull.reservation.domain.entity.NoShowHistory;
