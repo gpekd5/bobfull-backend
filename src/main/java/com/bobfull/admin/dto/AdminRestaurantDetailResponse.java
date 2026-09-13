@@ -1,6 +1,6 @@
 package com.bobfull.admin.dto;
 
-import com.bobfull.restaurant.entity.RestaurantStatus;
+import com.bobfull.restaurant.restaurant.domain.entity.RestaurantStatus;
 import java.time.OffsetDateTime;
 
 public record AdminRestaurantDetailResponse(

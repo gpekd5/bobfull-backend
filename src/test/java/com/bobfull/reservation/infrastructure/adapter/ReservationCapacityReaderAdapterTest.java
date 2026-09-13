@@ -3,10 +3,10 @@ package com.bobfull.reservation.infrastructure.adapter;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
-import com.bobfull.sharedtable.entity.SharedTable;
-import com.bobfull.sharedtable.repository.SharedTableRepository;
-import com.bobfull.timeslot.entity.TimeSlot;
-import com.bobfull.timeslot.repository.TimeSlotRepository;
+import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
+import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
+import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
+import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Instant;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;

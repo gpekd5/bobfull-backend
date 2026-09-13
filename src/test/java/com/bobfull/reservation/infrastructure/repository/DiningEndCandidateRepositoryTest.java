@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
-import com.bobfull.timeslot.entity.TimeSlot;
-import com.bobfull.timeslot.repository.TimeSlotRepository;
+import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
+import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Instant;
 import java.util.List;
 import org.junit.jupiter.api.Test;

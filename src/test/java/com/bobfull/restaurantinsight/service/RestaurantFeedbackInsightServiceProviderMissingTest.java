@@ -11,13 +11,13 @@ import com.bobfull.chat.repository.ChatMessageRepository;
 import com.bobfull.chat.repository.ChatRoomRepository;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
-import com.bobfull.restaurant.repository.RestaurantRepository;
+import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
 import com.bobfull.restaurantinsight.port.RestaurantFeedbackInsightPort;
 import com.bobfull.restaurantinsight.repository.RestaurantFeedbackInsightRepository;
-import com.bobfull.sharedtable.entity.SharedTable;
-import com.bobfull.sharedtable.repository.SharedTableRepository;
-import com.bobfull.timeslot.entity.TimeSlot;
-import com.bobfull.timeslot.repository.TimeSlotRepository;
+import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
+import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
+import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
+import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
@@ -60,7 +60,7 @@ class RestaurantFeedbackInsightServiceProviderMissingTest {
         when(reservations.findById(any())).thenReturn(Optional.of(reservation));
         when(timeSlots.findById(any())).thenReturn(Optional.of(slot));
         when(tables.findById(any())).thenReturn(Optional.of(table));
-        var restaurant = com.bobfull.restaurant.entity.Restaurant.create(1L, "r", "제주시 애월읍", "한식", "d", "k", 1);
+        var restaurant = com.bobfull.restaurant.restaurant.domain.entity.Restaurant.create(1L, "r", "제주시 애월읍", "한식", "d", "k", 1);
         when(restaurants.findById(any())).thenReturn(Optional.of(restaurant));
 
         RestaurantFeedbackInsightWriter writer = mock(RestaurantFeedbackInsightWriter.class);

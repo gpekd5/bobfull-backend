@@ -6,12 +6,12 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.never;
 
 import com.bobfull.reservation.application.port.ReservationTargetReader;
-import com.bobfull.restaurant.entity.Restaurant;
-import com.bobfull.restaurant.repository.RestaurantRepository;
-import com.bobfull.sharedtable.entity.SharedTable;
-import com.bobfull.sharedtable.repository.SharedTableRepository;
-import com.bobfull.timeslot.entity.TimeSlot;
-import com.bobfull.timeslot.repository.TimeSlotRepository;
+import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
+import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
+import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
+import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
+import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
+import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Instant;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;

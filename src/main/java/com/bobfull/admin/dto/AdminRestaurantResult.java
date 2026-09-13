@@ -1,6 +1,6 @@
 package com.bobfull.admin.dto;
 
-import com.bobfull.restaurant.entity.RestaurantStatus;
+import com.bobfull.restaurant.restaurant.domain.entity.RestaurantStatus;
 import java.time.Instant;
 
 /** ADMIN 식당 목록·상세 조회의 조회 결과 1건이다(Issue #49). */
