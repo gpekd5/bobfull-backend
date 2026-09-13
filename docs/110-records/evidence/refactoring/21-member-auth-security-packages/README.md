@@ -19,7 +19,7 @@ Member와 Auth를 별도 top-level로 유지하면서 기존 Member/Auth/Securit
 ## 기준 코드
 
 - Before SHA: `9d95e57582498359ec6d980e011405116173bea1`
-- After source SHA: `0c733bcd946d4c5a48c5779add7771f578662114`
+- After source SHA: `0b75b4f4ea978052ddf8f540b809de9b6447590e`
 - 기준 브랜치: `origin/develop`에서 생성한 `refactor/21-member-auth-security-packages`
 
 ## 환경·실행 조건
@@ -103,8 +103,8 @@ $revision = git rev-parse HEAD
 ```
 
 Before/After 모두 같은 서버, project key, scanner, Quality Profile과 Quality Gate로 분석한다. Compute Engine
-완료는 SonarQube container log의 task id와 `status=SUCCESS`로 확인했다. 제공된 token은 분석 권한은 있지만
-project Browse 권한이 없어 `api/issues/search`, project measure, Quality Gate 세부 결과 조회는 403으로 차단됐다.
+완료는 SonarQube container log의 task id와 `status=SUCCESS`로 확인했다. 현재 `PROJECT_ANALYSIS_TOKEN`으로
+Issue·Measure·Quality Gate API를 조회하고, token 범위상 403인 Compute Engine API는 container log로 대조한다.
 
 ## Before 결과
 
@@ -156,6 +156,7 @@ project Browse 권한이 없어 `api/issues/search`, project measure, Quality Ga
 - JWT/Security/Redis 구현을 Auth infrastructure로 이동
 - 11개 직접 관련 테스트 package 이동
 - 전체 production/test import와 FQCN reference 갱신
+- 초기 After Sonar 분석에서 확인된 `java:S1128` 불필요한 import 2개 제거
 - 새 Facade/Port/Adapter 또는 비즈니스 로직 변경 없음
 
 ## After 결과
@@ -188,7 +189,7 @@ project Browse 권한이 없어 `api/issues/search`, project measure, Quality Ga
 - 명시적 `Propagation`: 0
 - Member/Auth API mapping: 9
 - Git rename 인식: production 28 files, test 11 files
-- Java 변경선: package 78, import 547, FQCN reference 6, import 구분용 빈 줄 1, 예상 밖 코드 0
+- Java 변경선: package 78, import 545, FQCN reference 6, import 구분용 빈 줄 1, 예상 밖 코드 0
 
 ## build/test/Sonar 회귀 검증
 
@@ -203,16 +204,28 @@ project Browse 권한이 없어 `api/issues/search`, project measure, Quality Ga
 | package/path 정합성 | PASS | 전체 Java source 불일치 0건 |
 | Java 변경 범위 | PASS | package/import/FQCN reference 외 코드 변경 0건, whitespace 오류 0건 |
 | API/DB/Security/Transaction 보존 | PASS | mapping·annotation 수 동일, Entity/Security 본문 변경 없음, 관련 테스트 통과 |
-| Sonar 분석 실행 | PASS | Before/After Gradle 및 Compute Engine 모두 SUCCESS |
-| Sonar 신규 회귀 판정 | NOT_RUN | token에 Browse 권한이 없어 issue/Quality Gate 세부 비교 불가 |
+| Sonar 분석 실행 | PASS | Before/초기 After/수정 After Gradle 및 Compute Engine 모두 SUCCESS |
+| Sonar 신규 회귀 판정 | PASS | 초기 신규 S1128 2건을 수정하고 재분석에서 inserts 0, 두 Issue `CLOSED/FIXED`, 대상 미해결 0건 확인 |
 
-### SonarQube After
+### SonarQube 초기 After
 
 - 분석 SHA: `0c733bcd946d4c5a48c5779add7771f578662114`
 - Gradle 분석: `BUILD SUCCESSFUL`
 - Compute Engine: `SUCCESS` (`061c91c3-83c5-44ae-978d-d28157fe503c`)
 - issue persistence: inserts 2, updates 15
-- 신규 2건의 rule/file/message와 기존 CLOSED 이력 대조: `NOT_RUN` (Web API 403)
+- 신규 2건: `java:S1128` (`JwtAuthenticationFilter.java`의 미사용 `MemberRole` import,
+  `Member.java`의 같은 package `MemberRole` import)
+
+### SonarQube 수정 After
+
+- 분석 SHA: `0b75b4f4ea978052ddf8f540b809de9b6447590e`
+- Gradle 분석: `BUILD SUCCESSFUL`
+- Compute Engine: `SUCCESS` (`3a74af2f-4285-4f31-ab62-32661a14db5a`)
+- issue persistence: inserts 0, updates 4
+- 초기 신규 Issue 2건: 모두 `CLOSED/FIXED`
+- 대상 두 파일의 미해결 `java:S1128`: 0
+- 초기 After 분석 이후 생성된 미해결 Issue: 0
+- 현재 전체 Quality Gate: `ERROR` (기존 전체 Issue를 이번 리팩토링에서 수정하지 않음)
 
 ## 결과 해석
 
@@ -221,13 +234,16 @@ Member/Auth/Security production 파일 수와 테스트 수는 유지됐고, 이
 Java Diff에도 package/import/FQCN reference 외 코드 변경이 없다. 따라서 코드·테스트 기준으로는 위치와
 소유권만 변경되고 기존 동작이 보존됐다.
 
-SonarQube 분석과 Compute Engine 처리는 성공했지만 issue 세부 조회 권한이 없어 inserts 2건이 package 이동에
-따른 기존 issue 재식별인지 실제 신규 회귀인지 확정하지 않는다. 전체 기존 SonarQube Issue를 수정하거나
-추정으로 PASS 처리하지 않는다.
+초기 After SonarQube 분석에서 package 이동 중 추가된 불필요한 import 2개가 신규 `java:S1128`로 확인됐다.
+해당 import만 제거한 같은 환경의 재분석은 inserts 0이었고, 두 Issue가 모두 `CLOSED/FIXED`, 대상 파일과
+초기 After 이후의 미해결 신규 Issue가 0건임을 API로 확인했다. 따라서 이번 package 이동으로 남은 신규
+SonarQube 회귀는 없다. 전체 기존 SonarQube Issue와 현재 Quality Gate `ERROR`는 이번 범위에서 수정하지 않는다.
 
 ## 검증 한계
 
-- SonarQube project Browse 권한이 없어 scope issue 수·유형·심각도·Quality Gate Before/After를 조회하지 못했다.
+- 현재 `PROJECT_ANALYSIS_TOKEN`으로 Issue·Measure·Quality Gate 조회는 가능하지만 Component, Analysis history,
+  Compute Engine API는 403이다. Compute Engine 완료와 issue persistence는 같은 로컬 SonarQube container log로
+  확인했다.
 - 전체 build의 선택적 외부 인프라 테스트 64건은 환경 조건에 따라 skip됐다. Redis 대상 11건은 별도 실제
   실행했으며 Kafka/SMTP/AI/AWS 동작은 이 Issue의 직접 검증 범위가 아니다.
 - 실제 배포 환경의 로그인·JWT·Redis session smoke test는 수행하지 않았고 Web/Service/JWT/Redis 테스트와
