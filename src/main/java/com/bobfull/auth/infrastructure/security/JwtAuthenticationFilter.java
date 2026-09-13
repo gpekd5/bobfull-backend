@@ -4,7 +4,6 @@ import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.auth.infrastructure.jwt.InvalidJwtException;
 import com.bobfull.auth.infrastructure.jwt.JwtTokenProvider;
 import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
-import com.bobfull.member.domain.entity.MemberRole;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

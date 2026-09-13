@@ -1,7 +1,6 @@
 package com.bobfull.member.domain.entity;
 
 import com.bobfull.common.entity.BaseTimeEntity;
-import com.bobfull.member.domain.entity.MemberRole;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
