@@ -3,7 +3,7 @@ package com.bobfull.reservation.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.payment.entity.PaymentPurpose;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.reservation.presentation.dto.ReservationAvailabilityResponse;
 import com.bobfull.reservation.presentation.dto.ReservationCancellationRequest;
 import com.bobfull.reservation.presentation.dto.ReservationCancellationResponse;

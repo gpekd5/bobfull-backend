@@ -1,6 +1,6 @@
 package com.bobfull.reservation.presentation.dto;
 
-import com.bobfull.payment.entity.PaymentPurpose;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 

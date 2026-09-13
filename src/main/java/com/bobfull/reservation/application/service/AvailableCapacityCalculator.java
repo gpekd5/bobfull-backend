@@ -1,6 +1,6 @@
 package com.bobfull.reservation.application.service;
 
-import com.bobfull.payment.service.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldReader;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;

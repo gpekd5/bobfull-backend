@@ -1,7 +1,7 @@
 package com.bobfull.reservation.presentation.dto;
 
-import com.bobfull.payment.dto.CreateReadyPaymentResult;
-import com.bobfull.payment.entity.PaymentStatus;
+import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.domain.entity.PaymentStatus;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;

@@ -10,12 +10,12 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.exception.ReservationErrorCode;
-import com.bobfull.payment.dto.CreateReadyPaymentCommand;
-import com.bobfull.payment.dto.CreateReadyPaymentResult;
-import com.bobfull.payment.entity.PaymentPurpose;
-import com.bobfull.payment.entity.PaymentStatus;
-import com.bobfull.payment.service.PaymentHoldReader;
-import com.bobfull.payment.service.ReadyPaymentCreator;
+import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
+import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
+import com.bobfull.payment.domain.entity.PaymentStatus;
+import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.ReadyPaymentCreator;
 import com.bobfull.reservation.presentation.dto.ReservationAvailabilityResponse;
 import com.bobfull.reservation.presentation.dto.ReservationPrepareRequest;
 import com.bobfull.reservation.presentation.dto.ReservationPrepareResponse;

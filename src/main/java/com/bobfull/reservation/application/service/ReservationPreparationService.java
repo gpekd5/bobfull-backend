@@ -2,11 +2,11 @@ package com.bobfull.reservation.application.service;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.exception.ReservationErrorCode;
-import com.bobfull.payment.dto.CreateReadyPaymentCommand;
-import com.bobfull.payment.dto.CreateReadyPaymentResult;
-import com.bobfull.payment.entity.PaymentPurpose;
-import com.bobfull.payment.service.PaymentHoldReader;
-import com.bobfull.payment.service.ReadyPaymentCreator;
+import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
+import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
+import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.ReadyPaymentCreator;
 import com.bobfull.reservation.presentation.dto.ReservationAvailabilityResponse;
 import com.bobfull.reservation.presentation.dto.ReservationPrepareRequest;
 import com.bobfull.reservation.presentation.dto.ReservationPrepareResponse;
@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 최초 예약 생성과 기존 예약 추가 참여의 예약 가능 여부 확인·결제 준비를 담당한다(Issue #35, ADR 0001).
  * 결제 성공 전에는 Reservation·ReservationParticipant를 생성하지 않으며, 실제 확정은 #93이
- * {@link com.bobfull.payment.port.ReservationConfirmationPort} 구현에서 이 도메인의
+ * {@link com.bobfull.payment.application.port.ReservationConfirmationPort} 구현에서 이 도메인의
  * {@link ReservationConfirmationService}를 호출해 수행한다.
  */
 @Service

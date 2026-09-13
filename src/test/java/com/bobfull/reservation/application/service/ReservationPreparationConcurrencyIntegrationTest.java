@@ -4,10 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.exception.ReservationErrorCode;
-import com.bobfull.payment.entity.Payment;
-import com.bobfull.payment.entity.PaymentPurpose;
-import com.bobfull.payment.entity.PaymentStatus;
-import com.bobfull.payment.repository.PaymentRepository;
+import com.bobfull.payment.domain.entity.Payment;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
+import com.bobfull.payment.domain.entity.PaymentStatus;
+import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.reservation.presentation.dto.ReservationPrepareRequest;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;

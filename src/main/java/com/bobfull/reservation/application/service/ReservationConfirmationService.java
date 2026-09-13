@@ -10,7 +10,7 @@ import com.bobfull.outbox.entity.OutboxEventType;
 import com.bobfull.outbox.repository.OutboxEventRepository;
 import com.bobfull.outbox.service.ChatRoomOutboxProcessor;
 import com.bobfull.outbox.service.EmailOutboxEventService;
-import com.bobfull.payment.entity.PaymentPurpose;
+import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;

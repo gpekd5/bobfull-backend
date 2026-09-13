@@ -6,7 +6,7 @@ import com.bobfull.common.exception.RestaurantErrorCode;
 import com.bobfull.common.exception.SharedTableErrorCode;
 import com.bobfull.common.exception.TimeSlotErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.service.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldReader;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
