@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ImageErrorCode;
+import com.bobfull.restaurant.image.domain.exception.ImageErrorCode;
 import com.bobfull.restaurant.image.domain.policy.RestaurantImagePolicy.ImageUploadSpec;
 import org.junit.jupiter.api.Test;
 

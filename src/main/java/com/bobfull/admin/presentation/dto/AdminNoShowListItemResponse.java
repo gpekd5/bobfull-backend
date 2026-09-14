@@ -1,7 +1,7 @@
 package com.bobfull.admin.presentation.dto;
 
 import com.bobfull.admin.application.model.AdminNoShowResult;
-import com.bobfull.common.support.MemberNameMasker;
+import com.bobfull.common.privacy.MemberNameMasker;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 

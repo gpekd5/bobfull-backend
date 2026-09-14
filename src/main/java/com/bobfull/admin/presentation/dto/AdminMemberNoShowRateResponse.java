@@ -1,7 +1,7 @@
 package com.bobfull.admin.presentation.dto;
 
 import com.bobfull.admin.application.model.AdminMemberNoShowRateResult;
-import com.bobfull.common.support.MemberNameMasker;
+import com.bobfull.common.privacy.MemberNameMasker;
 
 public record AdminMemberNoShowRateResponse(
         Long memberId,

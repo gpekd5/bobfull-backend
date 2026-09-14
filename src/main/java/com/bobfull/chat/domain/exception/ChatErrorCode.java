@@ -1,4 +1,6 @@
-package com.bobfull.common.exception;
+package com.bobfull.chat.domain.exception;
+
+import com.bobfull.common.exception.BaseErrorCode;
 import org.springframework.http.HttpStatus;
 public enum ChatErrorCode implements BaseErrorCode {
     CHAT_ROOM_ID_NOT_FOUND(HttpStatus.NOT_FOUND, "chatRoomId에 해당하는 대상을 찾을 수 없습니다."),

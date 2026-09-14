@@ -2,8 +2,8 @@ package com.bobfull.restaurant.sharedtable.application.service;
 
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.RestaurantErrorCode;
-import com.bobfull.common.exception.SharedTableErrorCode;
+import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
+import com.bobfull.restaurant.sharedtable.domain.exception.SharedTableErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;

@@ -14,7 +14,7 @@ import com.bobfull.payment.application.port.RefundIdempotencyKeyGenerator;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.payment.infrastructure.repository.RefundRepository;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.reservation.application.port.ReservationCancellationRefundPort.RefundRequestCommand;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;

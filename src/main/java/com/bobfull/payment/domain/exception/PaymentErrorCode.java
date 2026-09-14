@@ -1,4 +1,6 @@
-package com.bobfull.common.exception;
+package com.bobfull.payment.domain.exception;
+
+import com.bobfull.common.exception.BaseErrorCode;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,7 +1,7 @@
 package com.bobfull.restaurant.timeslot.application.service;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.TimeSlotErrorCode;
+import com.bobfull.restaurant.timeslot.domain.exception.TimeSlotErrorCode;
 import com.bobfull.restaurant.timeslot.application.port.TimeSlotReservationUsagePort;
 import org.springframework.stereotype.Service;
 

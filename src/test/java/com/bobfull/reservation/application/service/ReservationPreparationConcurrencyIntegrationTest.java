@@ -3,7 +3,7 @@ package com.bobfull.reservation.application.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;

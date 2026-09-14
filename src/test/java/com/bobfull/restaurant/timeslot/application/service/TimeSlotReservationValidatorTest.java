@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.BDDMockito.given;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.TimeSlotErrorCode;
+import com.bobfull.restaurant.timeslot.domain.exception.TimeSlotErrorCode;
 import com.bobfull.restaurant.timeslot.application.port.TimeSlotReservationUsagePort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

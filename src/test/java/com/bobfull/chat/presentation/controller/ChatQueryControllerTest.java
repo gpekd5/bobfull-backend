@@ -13,7 +13,7 @@ import com.bobfull.chat.application.service.ChatMessageQueryService;
 import com.bobfull.chat.application.service.ChatRoomQueryService;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;
-import com.bobfull.common.exception.ChatErrorCode;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import java.util.List;

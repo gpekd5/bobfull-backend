@@ -5,7 +5,7 @@ import com.bobfull.admin.presentation.dto.AdminRestaurantListItemResponse;
 import com.bobfull.admin.application.model.AdminRestaurantResult;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.RestaurantErrorCode;
+import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.restaurant.restaurant.domain.entity.RestaurantStatus;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;

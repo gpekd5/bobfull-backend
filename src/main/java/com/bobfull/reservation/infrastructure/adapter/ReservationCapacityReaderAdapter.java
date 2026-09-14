@@ -1,7 +1,7 @@
 package com.bobfull.reservation.infrastructure.adapter;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.reservation.application.port.ReservationCapacityReader;
 import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
 import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;

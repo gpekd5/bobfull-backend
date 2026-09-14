@@ -1,4 +1,5 @@
 package com.bobfull.chat.application.service;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.chat.presentation.dto.*; import com.bobfull.chat.domain.entity.*; import com.bobfull.chat.infrastructure.repository.*; import com.bobfull.common.exception.*; import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Transactional;
 /** JWT 신고자와 채팅방 참여 이력을 기준으로 사용자 신고를 생성한다. */
 @Service public class ChatRoomMemberReportService {

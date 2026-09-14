@@ -5,7 +5,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verifyNoInteractions;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;

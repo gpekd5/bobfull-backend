@@ -7,7 +7,7 @@ import com.bobfull.chat.domain.entity.ChatModeration;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.application.port.AiModerationPort;
-import com.bobfull.common.exception.ChatErrorCode;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.common.exception.CustomException;
 import java.time.Clock;
 import java.time.Instant;

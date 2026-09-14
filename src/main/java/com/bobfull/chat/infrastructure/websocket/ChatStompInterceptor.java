@@ -3,7 +3,7 @@ package com.bobfull.chat.infrastructure.websocket;
 import com.bobfull.chat.domain.entity.ChatRoom;
 import com.bobfull.chat.application.port.ReservationChatAccessReader;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
-import com.bobfull.common.exception.ChatErrorCode;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.auth.application.model.AuthMember;

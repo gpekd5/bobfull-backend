@@ -1,7 +1,7 @@
 package com.bobfull.payment.infrastructure.adapter;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.application.port.PortOnePaymentReader;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;

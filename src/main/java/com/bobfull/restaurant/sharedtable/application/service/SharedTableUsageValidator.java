@@ -1,7 +1,7 @@
 package com.bobfull.restaurant.sharedtable.application.service;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.SharedTableErrorCode;
+import com.bobfull.restaurant.sharedtable.domain.exception.SharedTableErrorCode;
 import com.bobfull.restaurant.sharedtable.application.port.SharedTableUsagePort;
 import org.springframework.stereotype.Service;
 

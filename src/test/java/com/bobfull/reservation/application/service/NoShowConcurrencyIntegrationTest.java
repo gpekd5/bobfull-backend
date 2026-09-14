@@ -3,7 +3,7 @@ package com.bobfull.reservation.application.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
 import com.bobfull.reservation.domain.entity.Reservation;

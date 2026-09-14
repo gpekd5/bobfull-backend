@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.BDDMockito.given;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.SharedTableErrorCode;
+import com.bobfull.restaurant.sharedtable.domain.exception.SharedTableErrorCode;
 import com.bobfull.restaurant.sharedtable.application.port.SharedTableUsagePort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

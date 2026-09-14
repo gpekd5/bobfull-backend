@@ -8,7 +8,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.when;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.reservation.domain.CancellationScope;
 import com.bobfull.reservation.presentation.dto.ReservationCancellationRequest;
 import com.bobfull.reservation.presentation.dto.ReservationCancellationResponse;

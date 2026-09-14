@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;

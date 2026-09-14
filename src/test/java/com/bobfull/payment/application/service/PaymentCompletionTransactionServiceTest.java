@@ -13,7 +13,7 @@ import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.payment.application.port.ReservationConfirmationPort;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import java.math.BigDecimal;

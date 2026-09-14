@@ -5,7 +5,7 @@ import com.bobfull.chat.application.port.ReservationChatAccessReader;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ChatErrorCode;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.member.domain.entity.MemberRole;

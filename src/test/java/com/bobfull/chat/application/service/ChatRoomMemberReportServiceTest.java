@@ -1,5 +1,6 @@
 package com.bobfull.chat.application.service;
 import static org.assertj.core.api.Assertions.*; import static org.mockito.ArgumentMatchers.*; import static org.mockito.BDDMockito.*;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.chat.presentation.dto.*; import com.bobfull.chat.domain.entity.*; import com.bobfull.chat.infrastructure.repository.*; import com.bobfull.common.exception.*; import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository; import java.util.*; import org.junit.jupiter.api.Test; import org.springframework.test.util.ReflectionTestUtils;
 class ChatRoomMemberReportServiceTest {
  private final ChatRoomRepository rooms=mock(ChatRoomRepository.class); private final ChatMessageRepository messages=mock(ChatMessageRepository.class); private final ChatRoomMemberReportRepository reports=mock(ChatRoomMemberReportRepository.class); private final ReservationParticipantRepository participants=mock(ReservationParticipantRepository.class); private final ChatRoomMemberReportService service=new ChatRoomMemberReportService(rooms,messages,reports,participants);

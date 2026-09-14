@@ -1,4 +1,4 @@
-package com.bobfull.common.support;
+package com.bobfull.common.privacy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
