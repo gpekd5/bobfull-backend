@@ -1,0 +1,30 @@
+package com.bobfull.restaurantinsight.presentation.controller;
+
+import com.bobfull.auth.application.model.AuthMember;
+import com.bobfull.common.response.ApiResponse;
+import com.bobfull.restaurantinsight.application.service.RestaurantFeedbackInsightService;
+import com.bobfull.restaurantinsight.presentation.dto.RestaurantFeedbackInsightListResponse;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/owner/restaurants")
+public class RestaurantFeedbackInsightController {
+
+    private final RestaurantFeedbackInsightService feedbackInsightService;
+
+    public RestaurantFeedbackInsightController(RestaurantFeedbackInsightService feedbackInsightService) {
+        this.feedbackInsightService = feedbackInsightService;
+    }
+
+    @GetMapping("/{restaurantId}/feedback-insights")
+    public ApiResponse<RestaurantFeedbackInsightListResponse> getFeedbackInsights(
+            @AuthenticationPrincipal AuthMember authMember,
+            @PathVariable Long restaurantId
+    ) {
+        return ApiResponse.success(feedbackInsightService.getOwnerInsights(authMember.id(), restaurantId));
+    }
+}

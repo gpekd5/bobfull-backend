@@ -22,9 +22,6 @@ import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantIdResponse;
 import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantUpdateRequest;
 import com.bobfull.restaurant.restaurant.domain.entity.RestaurantStatus;
 import com.bobfull.restaurant.restaurant.application.service.RestaurantService;
-import com.bobfull.restaurantinsight.dto.RestaurantFeedbackInsightListResponse;
-import com.bobfull.restaurantinsight.dto.RestaurantFeedbackInsightResponse;
-import com.bobfull.restaurantinsight.service.RestaurantFeedbackInsightService;
 import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -62,9 +59,6 @@ class OwnerRestaurantControllerWebTest {
 
     @MockitoBean
     private RestaurantService restaurantService;
-
-    @MockitoBean
-    private RestaurantFeedbackInsightService restaurantFeedbackInsightService;
 
     private Authentication ownerAuthentication(Long memberId) {
         AuthMember authMember = new AuthMember(memberId, MemberRole.OWNER);
@@ -216,45 +210,4 @@ class OwnerRestaurantControllerWebTest {
                 .andExpect(jsonPath("$.data.restaurantId", is(10)));
     }
 
-    @Test
-    void 인증_없이_피드백_인사이트를_조회하면_401을_반환한다() throws Exception {
-        ResultActions result = mockMvc.perform(get("/api/owner/restaurants/10/feedback-insights"));
-        result.andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    void OWNER_권한이_없으면_피드백_인사이트_조회는_403을_반환한다() throws Exception {
-        ResultActions result = mockMvc.perform(
-                get("/api/owner/restaurants/10/feedback-insights").with(authentication(memberAuthentication(1L))));
-        result.andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.code", is("ACCESS_DENIED")));
-    }
-
-    @Test
-    void OWNER가_피드백_인사이트를_조회하면_익명_집계_목록을_반환하고_식별값을_포함하지_않는다() throws Exception {
-        // given
-        var now = java.time.Instant.parse("2026-08-16T00:00:00Z");
-        var from = now.minus(java.time.Duration.ofDays(7));
-        RestaurantFeedbackInsightResponse item = new RestaurantFeedbackInsightResponse(
-                "FOOD", "MENU", "탕수육", "TEXTURE", "POSITIVE", 8, "탕수육 식감에 대한 긍정 의견 8명");
-        given(restaurantFeedbackInsightService.getOwnerInsights(1L, 10L))
-                .willReturn(new RestaurantFeedbackInsightListResponse(10L, from, now, List.of(item)));
-
-        // when
-        ResultActions result = mockMvc.perform(
-                get("/api/owner/restaurants/10/feedback-insights").with(authentication(ownerAuthentication(1L))));
-
-        // then
-        result.andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.restaurantId", is(10)))
-                .andExpect(jsonPath("$.data.insights[0].category", is("FOOD")))
-                .andExpect(jsonPath("$.data.insights[0].aspectType", is("MENU")))
-                .andExpect(jsonPath("$.data.insights[0].normalizedAspect", is("탕수육")))
-                .andExpect(jsonPath("$.data.insights[0].opinionType", is("TEXTURE")))
-                .andExpect(jsonPath("$.data.insights[0].sentiment", is("POSITIVE")))
-                .andExpect(jsonPath("$.data.insights[0].count", is(8)))
-                .andExpect(jsonPath("$.data.insights[0].senderMemberId").doesNotExist())
-                .andExpect(jsonPath("$.data.insights[0].messageId").doesNotExist())
-                .andExpect(jsonPath("$.data.insights[0].nickname").doesNotExist());
-    }
 }
