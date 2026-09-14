@@ -201,4 +201,4 @@ Sonar 범위는 이동 대상 파일과 새 소유권 FQCN을 참조하는 main/
 ## 관련
 
 - Issue: https://github.com/gpekd5/bobfull-backend/issues/25
-- PR: Draft PR 생성 후 연결
+- PR: https://github.com/gpekd5/bobfull-backend/pull/34
