@@ -15,7 +15,7 @@ import com.bobfull.common.exception.ReservationErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.outbox.entity.OutboxEvent;
 import com.bobfull.outbox.repository.OutboxEventRepository;
-import com.bobfull.outbox.service.ChatRoomOutboxProcessor;
+import com.bobfull.chat.infrastructure.outbox.ChatRoomOutboxProcessor;
 import com.bobfull.outbox.service.EmailOutboxEventService;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;

@@ -3,8 +3,8 @@ package com.bobfull.restaurantinsight.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.bobfull.chat.entity.ChatMessage;
-import com.bobfull.chat.repository.ChatMessageRepository;
+import com.bobfull.chat.domain.entity.ChatMessage;
+import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;

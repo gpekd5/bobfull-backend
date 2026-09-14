@@ -8,7 +8,7 @@ import com.bobfull.admin.repository.MemberModerationQueryRepository;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.member.domain.exception.MemberErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.chat.entity.RiskLevel;
+import com.bobfull.chat.domain.entity.RiskLevel;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
 import java.util.LinkedHashMap;
 import java.util.Map;

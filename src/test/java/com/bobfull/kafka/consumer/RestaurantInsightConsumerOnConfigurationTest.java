@@ -2,7 +2,7 @@ package com.bobfull.kafka.consumer;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bobfull.chat.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.ReservationChatAccessReader;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import java.util.Collection;

@@ -3,11 +3,11 @@ package com.bobfull.kafka.consumer;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.AdditionalAnswers.delegatesTo;
 
-import com.bobfull.chat.dto.ChatMessageCreatedEvent;
-import com.bobfull.chat.entity.ChatMessage;
-import com.bobfull.chat.entity.ChatRoom;
-import com.bobfull.chat.repository.ChatMessageRepository;
-import com.bobfull.chat.repository.ChatRoomRepository;
+import com.bobfull.chat.application.event.ChatMessageCreatedEvent;
+import com.bobfull.chat.domain.entity.ChatMessage;
+import com.bobfull.chat.domain.entity.ChatRoom;
+import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
+import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.reservation.domain.entity.Reservation;

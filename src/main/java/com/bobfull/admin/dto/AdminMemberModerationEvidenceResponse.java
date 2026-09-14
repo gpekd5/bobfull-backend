@@ -1,7 +1,7 @@
 package com.bobfull.admin.dto;
 
-import com.bobfull.chat.entity.ModerationCategory;
-import com.bobfull.chat.entity.RiskLevel;
+import com.bobfull.chat.domain.entity.ModerationCategory;
+import com.bobfull.chat.domain.entity.RiskLevel;
 import java.time.Instant;
 import java.util.Set;
 
