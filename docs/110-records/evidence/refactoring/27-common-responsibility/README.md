@@ -29,6 +29,7 @@
 - SonarQube Server `26.9.0.129388`, project key `bobfull-backend`
 - Before와 After 모두 같은 로컬 SonarQube 서버, project key, 인증 환경을 사용했다.
 - `SONAR_TOKEN`과 `SONAR_HOST_URL`의 존재 여부만 확인했으며 token 값은 출력하거나 기록하지 않았다.
+- Before Sonar 분석의 source revision은 선행 #26 구현 SHA `b56f82998dc70d0700f038f5840bb516888b1116`이다. 이 revision과 #27 Before SHA 사이에서 이번 비교 대상 Java 코드 차이가 0임을 확인했다.
 
 ## 측정 방법
 
@@ -184,7 +185,7 @@ Sonar 회귀 수정 후에는 직접 영향 테스트도 다시 실행했다.
 | 관련 테스트 | PASS, After 4 classes / 17 tests / failure 0 / error 0 / skipped 0 |
 | Sonar 수정 영향 Payment 테스트 | PASS, 2 classes |
 | `compileJava` / `compileTestJava` | PASS |
-| 최종 Head `clean build` | PASS, root 214 classes / 945 tests / failure 0 / error 0 / skipped 64 |
+| 최종 code SHA `clean build` | PASS, root 214 classes / 945 tests / failure 0 / error 0 / skipped 64 |
 | Lambda build/test | PASS, 3 classes / 11 tests / failure 0 / error 0 / skipped 0 |
 | package/path | PASS, 불일치 0 |
 | 기존 package/FQCN | PASS, 잔존 0 |
