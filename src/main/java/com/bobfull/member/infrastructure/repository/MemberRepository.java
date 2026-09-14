@@ -1,6 +1,6 @@
 package com.bobfull.member.infrastructure.repository;
 
-import com.bobfull.admin.repository.AdminMemberRepository;
+import com.bobfull.admin.infrastructure.query.AdminMemberRepository;
 import com.bobfull.member.domain.entity.Member;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
