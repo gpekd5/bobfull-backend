@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.bobfull.common.config.ClockConfig;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;

@@ -8,7 +8,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.payment.presentation.dto.RefundResponse;
 import com.bobfull.payment.domain.entity.Payment;

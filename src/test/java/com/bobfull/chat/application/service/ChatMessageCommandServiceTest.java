@@ -1,6 +1,7 @@
 package com.bobfull.chat.application.service;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.chat.domain.entity.*; import com.bobfull.chat.application.port.*; import com.bobfull.chat.infrastructure.repository.*; import com.bobfull.common.exception.*; import com.bobfull.auth.application.model.AuthMember; import com.bobfull.member.domain.entity.MemberRole; import com.bobfull.reservation.domain.entity.*; import java.time.Clock; import java.time.Instant; import java.time.ZoneOffset; import java.util.*; import org.junit.jupiter.api.Test; import org.springframework.test.util.ReflectionTestUtils;
 class ChatMessageCommandServiceTest {
     private static final Instant NOW = Instant.parse("2026-08-06T00:00:00Z");

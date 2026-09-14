@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.http.ResponseEntity;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,15 +42,6 @@ public class GlobalExceptionHandler {
     ) {
         return ResponseEntity.status(CommonErrorCode.INVALID_INPUT_VALUE.getHttpStatus())
                 .body(ApiResponse.fail(CommonErrorCode.INVALID_INPUT_VALUE));
-    }
-
-    /** 동시 Human Review에서 진 요청은 이미 확정된 신고로 일관되게 안내한다. */
-    @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
-    public ResponseEntity<ApiResponse<Void>> handleReportOptimisticLockException(
-            ObjectOptimisticLockingFailureException e
-    ) {
-        return ResponseEntity.status(ChatErrorCode.CHAT_ROOM_REPORT_ALREADY_REVIEWED.getHttpStatus())
-                .body(ApiResponse.fail(ChatErrorCode.CHAT_ROOM_REPORT_ALREADY_REVIEWED));
     }
 
     @ExceptionHandler({

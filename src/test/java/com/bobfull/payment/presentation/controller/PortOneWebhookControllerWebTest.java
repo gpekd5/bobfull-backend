@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.bobfull.common.config.ClockConfig;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
 import com.bobfull.payment.application.port.PortOneWebhookVerifier;

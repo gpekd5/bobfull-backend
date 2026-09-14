@@ -2,8 +2,8 @@ package com.bobfull.reservation.application.service;
 
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
-import com.bobfull.common.exception.RestaurantErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
+import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;

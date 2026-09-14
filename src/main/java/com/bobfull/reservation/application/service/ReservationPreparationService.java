@@ -1,7 +1,7 @@
 package com.bobfull.reservation.application.service;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
 import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
 import com.bobfull.payment.domain.entity.PaymentPurpose;

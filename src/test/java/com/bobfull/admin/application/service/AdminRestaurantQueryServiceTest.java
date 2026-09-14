@@ -6,7 +6,7 @@ import static org.mockito.BDDMockito.given;
 
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.RestaurantErrorCode;
+import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;

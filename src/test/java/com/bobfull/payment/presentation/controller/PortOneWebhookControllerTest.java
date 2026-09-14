@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 import com.bobfull.common.exception.*;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
+import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.payment.application.port.PortOneWebhookVerifier;
 import com.bobfull.payment.application.service.PaymentCompletionService;
 import io.portone.sdk.server.errors.WebhookVerificationException;

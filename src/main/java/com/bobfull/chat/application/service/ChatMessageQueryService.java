@@ -1,4 +1,5 @@
 package com.bobfull.chat.application.service;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.chat.presentation.dto.*;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatRoom;

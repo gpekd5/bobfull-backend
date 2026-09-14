@@ -2,7 +2,7 @@ package com.bobfull.reservation.application.service;
 
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.common.outbox.entity.OutboxEventType;
 import com.bobfull.notification.infrastructure.outbox.EmailOutboxEventService;
 import com.bobfull.reservation.domain.CancellationScope;

@@ -1,7 +1,6 @@
 package com.bobfull.payment.domain.exception;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.PaymentErrorCode;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import java.time.Instant;
 

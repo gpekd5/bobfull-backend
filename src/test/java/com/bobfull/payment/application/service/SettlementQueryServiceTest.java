@@ -6,7 +6,7 @@ import static org.mockito.BDDMockito.given;
 
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.RestaurantErrorCode;
+import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.payment.presentation.dto.ExpectedSettlementResponse;
 import com.bobfull.payment.presentation.dto.SettlementReservationDetailResponse;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;

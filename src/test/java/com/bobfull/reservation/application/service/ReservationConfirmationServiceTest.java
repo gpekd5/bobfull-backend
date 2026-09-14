@@ -11,7 +11,7 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ReservationErrorCode;
+import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.common.outbox.entity.OutboxEvent;
 import com.bobfull.common.outbox.repository.OutboxEventRepository;

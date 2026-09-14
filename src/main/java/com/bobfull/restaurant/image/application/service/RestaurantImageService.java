@@ -1,7 +1,7 @@
 package com.bobfull.restaurant.image.application.service;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ImageErrorCode;
+import com.bobfull.restaurant.image.domain.exception.ImageErrorCode;
 import com.bobfull.restaurant.image.domain.policy.RestaurantImagePolicy;
 import com.bobfull.restaurant.image.infrastructure.config.RestaurantImageS3Properties;
 import com.bobfull.restaurant.image.infrastructure.storage.RestaurantImageKeyGenerator;

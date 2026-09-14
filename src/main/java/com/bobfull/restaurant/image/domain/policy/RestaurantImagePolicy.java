@@ -1,7 +1,7 @@
 package com.bobfull.restaurant.image.domain.policy;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ImageErrorCode;
+import com.bobfull.restaurant.image.domain.exception.ImageErrorCode;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;

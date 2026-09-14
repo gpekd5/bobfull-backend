@@ -15,7 +15,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.TimeSlotErrorCode;
+import com.bobfull.restaurant.timeslot.domain.exception.TimeSlotErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.payment.application.port.PaymentHoldReader;
 import com.bobfull.reservation.domain.entity.Reservation;

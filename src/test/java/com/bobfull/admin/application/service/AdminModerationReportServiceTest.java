@@ -1,5 +1,6 @@
 package com.bobfull.admin.application.service;
 import static org.assertj.core.api.Assertions.*; import static org.mockito.BDDMockito.*;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.admin.application.model.MemberModerationSummaryResult; import com.bobfull.admin.presentation.dto.*; import com.bobfull.admin.infrastructure.query.MemberModerationQueryRepository; import com.bobfull.chat.domain.entity.*; import com.bobfull.chat.infrastructure.repository.*; import com.bobfull.common.exception.*; import java.time.*; import java.util.*; import org.junit.jupiter.api.Test; import org.springframework.test.util.ReflectionTestUtils;
 class AdminModerationReportServiceTest {
  private final ChatRoomMemberReportRepository reports=mock(ChatRoomMemberReportRepository.class); private final ChatMessageRepository messages=mock(ChatMessageRepository.class); private final ChatModerationRepository moderations=mock(ChatModerationRepository.class); private final MemberModerationQueryRepository summaries=mock(MemberModerationQueryRepository.class); private final AdminModerationReportService service=new AdminModerationReportService(reports,messages,moderations,summaries,Clock.fixed(Instant.parse("2026-08-11T00:00:00Z"),ZoneOffset.UTC));

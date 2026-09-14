@@ -1,4 +1,4 @@
-package com.bobfull.common.support;
+package com.bobfull.common.privacy;
 
 /**
  * 회원 이름을 노쇼 통계·이력 응답에 노출할 때 가운데 글자를 마스킹한다(API 명세 예시 "홍○동" 기준).

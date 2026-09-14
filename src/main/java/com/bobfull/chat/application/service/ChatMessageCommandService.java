@@ -1,4 +1,5 @@
 package com.bobfull.chat.application.service;
+import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.chat.presentation.dto.ChatMessageSentResponse;
 import com.bobfull.chat.infrastructure.redis.RedisChatMessagePublisher;
 import com.bobfull.chat.domain.entity.*;

@@ -11,7 +11,7 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.ImageErrorCode;
+import com.bobfull.restaurant.image.domain.exception.ImageErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.restaurant.image.infrastructure.config.RestaurantImageS3Properties;
 import java.net.URI;

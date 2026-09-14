@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.bobfull.common.config.ClockConfig;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.common.exception.RestaurantErrorCode;
+import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
 import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantDetailResponse;
