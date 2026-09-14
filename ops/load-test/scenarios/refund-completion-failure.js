@@ -24,7 +24,7 @@
 //     실제 측정 시점에 직접 조회해 확인한다(기존 단위 테스트가 코드 계약은 이미 보장한다).
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/refund-completion-failure.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/refund-completion-failure.js
 
 import exec from 'k6/execution';
 import http from 'k6/http';

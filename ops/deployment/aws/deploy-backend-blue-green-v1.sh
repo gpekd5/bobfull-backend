@@ -1198,7 +1198,7 @@ ensure_inactive_instances_running "${inactive_instance_ids[@]}"
 wait_ssm_online "${inactive_instance_ids[@]}"
 
 BACKEND_EC2_INSTANCE_IDS="${inactive_instance_ids[*]}" \
-  bash scripts/aws/run-ssm-backend-deploy-v1.sh
+  bash ops/deployment/aws/run-ssm-backend-deploy-v1.sh
 
 wait_target_group_healthy "${inactive_target_group_arn}" "${inactive_instance_ids[@]}"
 

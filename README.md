@@ -149,7 +149,7 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 최종 의도, 비즈니스 정책, 데이터 정합성, 권한·보안, 트랜잭션 경계, 성능 수치는 사람이 코드와 Evidence를 기준으로 검증했습니다.
 
-[▶ AI Workflow](docs/060-ai/ai-workflow.md)
+[▶ AI Workflow](docs/060-ai/workflow/ai-workflow.md)
 
 ---
 

@@ -1,6 +1,6 @@
 # BobFull AI Issue 워크플로우
 
-이 문서는 Issue 단계와 Refactor Learning Mode의 기준이다. 공통 안전·상태·Human 책임은 `AGENTS.md`, 실제 구현은 `ai-implementation-guide.md`, PR 설명과 Review는 각 PR Skill을 따른다.
+이 문서는 Issue 단계와 Refactor Learning Mode의 기준이다. 공통 안전·상태·Human 책임은 `AGENTS.md`, 실제 구현은 `docs/060-ai/development/ai-implementation-guide.md`, PR 설명과 Review는 각 PR Task Guide를 따른다.
 
 ## 1. Issue 진입
 
@@ -80,17 +80,17 @@ AI는 파일을 수정하기 전에 현재 코드·문서·테스트를 분석�
 3. 이번 Issue에서 무엇을 변경하고 무엇을 의도적으로 유지하는가?
 
 질문은 일반 이론이나 코드 암기가 아니라 현재 Issue의 구조와 계약을 설명할 수 있는지 확인한다.
-최초 질문 작성에는 이 절의 3축을 사용하며 `ai-review-guide.md`를 추가로 읽지 않는다.
+최초 질문 작성에는 이 절의 3축을 사용하며 `docs/060-ai/review/ai-review-guide.md`를 추가로 읽지 않는다.
 
 ### Human 답변 후 재개
 
-같은 `Issue #번호 구현하라` 명령에서 `ai-review-guide.md`를 읽고 답변을 실제 코드·문서와 대조한다.
+같은 `Issue #번호 구현하라` 명령에서 `docs/060-ai/review/ai-review-guide.md`를 읽고 답변을 실제 코드·문서와 대조한다.
 
 - 충분함: 최종 계약을 Issue 댓글에 기록하고 `status:in-progress`로 전환해 구현한다.
 - 중요한 오해나 결정 누락: AI 보완 설명과 필요한 재질문만 남기고 `status:human-answer-required`를 유지한다.
 - 정책·API·DB·권한·보안·트랜잭션 재결정 필요: Human 판단 전 구현하지 않는다.
 
-이 모드는 별도 approval 단계나 Reviewer 역할을 만들지 않는다. PR에서 Issue 단계와 같은 질문을 반복하지 않으며, PR Human 질문 체계 자체는 `ai-review-guide.md`의 현재 규칙을 유지한다.
+이 모드는 별도 approval 단계나 Reviewer 역할을 만들지 않는다. PR에서 Issue 단계와 같은 질문을 반복하지 않으며, PR Human 질문 체계 자체는 `docs/060-ai/review/ai-review-guide.md`의 현재 규칙을 유지한다.
 
 ## 4. Enhancement와 Evidence
 
@@ -108,7 +108,7 @@ AI는 파일을 수정하기 전에 현재 코드·문서·테스트를 분석�
 
 ## 5. 구현 전환
 
-구현 가능 상태가 되면 `docs/060-ai/ai-implementation-guide.md`를 읽고 현재 Issue에 필요한 코드·테스트·계약 문서만 추가한다.
+구현 가능 상태가 되면 `docs/060-ai/development/ai-implementation-guide.md`를 읽고 현재 Issue에 필요한 코드·테스트·계약 문서만 추가한다.
 
 ```text
 최종 계약 확인

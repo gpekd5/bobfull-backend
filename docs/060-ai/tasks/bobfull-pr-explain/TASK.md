@@ -7,7 +7,7 @@ description: 최신 Issue, Diff와 검증 결과를 저장소 PR template에 맞
 
 ## 역할
 
-이 Skill은 PR 본문 작성·복구·최신화를 담당한다. 구현 절차나 AI Review 등급을 다시 정의하지 않는다.
+이 Task Guide는 PR 본문 작성·복구·최신화를 담당한다. 구현 절차나 AI Review 등급을 다시 정의하지 않는다.
 
 ## 사용 시점
 
@@ -36,7 +36,7 @@ description: 최신 Issue, Diff와 검증 결과를 저장소 PR template에 맞
 8. `MINOR`, `SUGGESTION`, 범위 밖 항목은 비차단 후속 내용으로 구분한다.
 9. 실행하지 않은 검증은 `PASS`로 쓰지 않는다.
 
-template의 필드 목록과 Merge Gate를 이 Skill에 복제하지 않는다. 작성할 때 최신 template을 직접 읽는다.
+template의 필드 목록과 Merge Gate를 이 Task Guide에 복제하지 않는다. 작성할 때 최신 template을 직접 읽는다.
 
 ## Evidence
 
@@ -56,12 +56,12 @@ Before/After가 의미 없는 변경은 `NOT_APPLICABLE` 이유를 적는다. �
 
 ## Human 이해도
 
-기본 검토는 최신 PR template의 `질문 0개` 문구를 유지하고 `ai-review-guide.md`를 선행 로딩하지 않는다.
-강화 질문을 작성하거나 Human 답변을 검토할 때만 `docs/060-ai/ai-review-guide.md`를 읽는다.
+기본 검토는 최신 PR template의 `질문 0개` 문구를 유지하고 `docs/060-ai/review/ai-review-guide.md`를 선행 로딩하지 않는다.
+강화 질문을 작성하거나 Human 답변을 검토할 때만 `docs/060-ai/review/ai-review-guide.md`를 읽는다.
 Refactor Learning Mode에서 Issue 단계와 같은 질문을 반복하지 않는다.
 
 ## AI Review 인계
 
-Draft PR 생성 또는 새 Push 직후 같은 담당 구현 AI가 `skills/bobfull-pr-review/SKILL.md`를 실행한다.
+Draft PR 생성 또는 새 Push 직후 같은 담당 구현 AI가 `docs/060-ai/tasks/bobfull-pr-review/TASK.md`를 실행한다.
 
 PR Explain은 결함 Review를 대신하지 않는다. 최신 Review 결과가 생기면 Head SHA, 판정, 댓글 링크와 재실행 검증을 PR 본문에 반영한다.

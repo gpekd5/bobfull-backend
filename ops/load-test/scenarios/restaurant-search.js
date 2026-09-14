@@ -3,8 +3,8 @@
 // 유지되는지 재검증하는 용도로 재사용한다.
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/restaurant-search.js
-//   k6 run -e STAGE=load  -e BASE_URL=https://<test-stack> k6/scenarios/restaurant-search.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/restaurant-search.js
+//   k6 run -e STAGE=load  -e BASE_URL=https://<test-stack> ops/load-test/scenarios/restaurant-search.js
 //
 // stage별 rate/duration은 절대 성공 기준이 아니라 시작값이다(Issue #63 Q3 Human 결정).
 // 최초 Smoke/Load 실행 결과를 보고 -e LOAD_RATE 등으로 조정한 뒤 Evidence에 실제 값을 기록한다.

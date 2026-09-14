@@ -24,7 +24,7 @@ This issue does not introduce Flyway or Liquibase. The verified scope is the cur
 | performance | `src/test/resources/application-performance.yml` | `create-drop` |
 | prod | `src/main/resources/application-prod.yml` | `${JPA_DDL_AUTO:validate}` |
 | local docker compose app | `docker-compose.yml` | `${JPA_DDL_AUTO:-update}` |
-| AWS deploy 대체값 | `scripts/aws/deploy-backend-v1.sh` | Parameter Store에 `jpa-ddl-auto`가 없으면 `validate` 사용 |
+| AWS deploy 대체값 | `ops/deployment/aws/deploy-backend-v1.sh` | Parameter Store에 `jpa-ddl-auto`가 없으면 `validate` 사용 |
 
 The production default was changed from `update` to `validate` after the operating RDS schema was verified against the current Entity mapping. Local and performance profiles were not changed by this issue.
 

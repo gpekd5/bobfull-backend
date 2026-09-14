@@ -20,7 +20,7 @@
 // 스크립트는 그 위에서 중복 경로가 실제 지연·오류율에 미치는 영향만 측정한다.
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/refund-completion-duplicate-webhook.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/refund-completion-duplicate-webhook.js
 
 import exec from 'k6/execution';
 import http from 'k6/http';

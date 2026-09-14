@@ -18,7 +18,7 @@
 // 회차가 막 공개된 순간이기 때문이다.
 //
 // 실행 예(Issue #142 "초기 후보 단계": 2 → 5 → 10 → 20 → 50):
-//   k6 run -e CONCURRENT_USERS=10 -e SUMMARY_EXPORT_PATH=result.json k6/scenarios/peak-reservation-create-race.js
+//   k6 run -e CONCURRENT_USERS=10 -e SUMMARY_EXPORT_PATH=result.json ops/load-test/scenarios/peak-reservation-create-race.js
 // SUMMARY_EXPORT_PATH를 생략하면 파일을 쓰지 않고 콘솔 요약만 출력한다. 이제 --summary-export
 // CLI 플래그는 쓰지 않는다(handleSummary()가 setup_data의 실제 JWT를 제거해야 하기 때문 — 아래
 // BLOCKER 항목 참고).

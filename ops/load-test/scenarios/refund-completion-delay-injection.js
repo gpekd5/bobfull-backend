@@ -15,7 +15,7 @@
 // 스크립트를 여러 번 실행해 비교한다(Issue 본문 제시 단계: 0(기준)·100·300·500·1000ms).
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke -e RESERVATION_COMPLETION_DELAY_MS=300 k6/scenarios/refund-completion-delay-injection.js
+//   k6 run -e STAGE=smoke -e RESERVATION_COMPLETION_DELAY_MS=300 ops/load-test/scenarios/refund-completion-delay-injection.js
 
 import exec from 'k6/execution';
 import { Trend } from 'k6/metrics';

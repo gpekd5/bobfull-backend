@@ -7,8 +7,8 @@ description: BobFull PR의 담당 구현 AI가 최신 Head를 독립적으로 �
 
 ## 1. 역할
 
-이 Skill은 담당 구현 AI가 구현 단계와 분리된 리뷰 패스로 최신 PR을 검토하는 단일 기준이다.
-Merge Gate는 [PR template](../../.github/pull_request_template.md)을 따른다. Human 이해 질문의 작성·검토는 이 Skill의 범위가 아니다.
+이 Task Guide는 담당 구현 AI가 구현 단계와 분리된 리뷰 패스로 최신 PR을 검토하는 단일 기준이다.
+Merge Gate는 [PR template](../../../../.github/pull_request_template.md)을 따른다. Human 이해 질문의 작성·검토는 이 Task Guide의 범위가 아니다.
 
 담당 구현 AI는 구현 당시의 기억이나 이전 Review 판정을 재사용하지 않고 GitHub의 최신 근거를 다시 읽는다.
 
@@ -54,7 +54,7 @@ Review는 항상 현재 Head 기준이다. 새 Push 뒤에는 이전 Head의 판
 
 ## 5. Evidence 확인
 
-개선 효과를 주장하는 PR은 [Evidence 기준](../../docs/110-records/evidence/v3/README.md)에 따라 다음을 확인한다.
+개선 효과를 주장하는 PR은 [Evidence 기준](../../../110-records/evidence/v3/README.md)에 따라 다음을 확인한다.
 
 - 주장: 무엇이 개선됐다고 하는가
 - Before: 기존 문제나 기준값을 실제로 재현했는가

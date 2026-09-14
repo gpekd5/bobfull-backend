@@ -23,8 +23,8 @@
 | 테스트 작성·결과 기록 | `docs/050-engineering/test-convention.md` |
 | 구조 리팩터링·동작 보존 Evidence | `docs/110-records/evidence/refactoring/README.md`와 해당 Issue Evidence |
 | 개선 효과 주장 | `docs/110-records/evidence/v3/README.md`와 해당 Issue Evidence |
-| PR 생성·본문 갱신 | `skills/bobfull-pr-explain/SKILL.md`, 최신 PR template |
-| Draft PR 생성 또는 Push 뒤 Review | `skills/bobfull-pr-review/SKILL.md` |
+| PR 생성·본문 갱신 | `docs/060-ai/tasks/bobfull-pr-explain/TASK.md`, 최신 PR template |
+| Draft PR 생성 또는 Push 뒤 Review | `docs/060-ai/tasks/bobfull-pr-review/TASK.md` |
 
 PR 문서는 PR 단계 직전에 읽고, Evidence 문서는 구조 리팩터링 기록 또는 개선 효과 주장에 해당할 때 선택해 읽는다. 관련 없는 ADR·API 상세·과거 Evidence 전체를 선행 로딩하지 않는다.
 
@@ -40,8 +40,8 @@ PR 문서는 PR 단계 직전에 읽고, Evidence 문서는 구조 리팩터링 
 8. 변경 범위에 필요한 전체 build를 실행한다.
 9. base 대비 Diff와 변경 파일을 검토한다.
 10. Issue 관련 변경만 Commit·Push한다.
-11. PR Explain Skill로 develop 대상 Draft PR을 작성한다.
-12. Draft PR 생성 또는 새 Push 직후 PR Review Skill로 최신 Head를 검토한다.
+11. PR Explain Task Guide로 develop 대상 Draft PR을 작성한다.
+12. Draft PR 생성 또는 새 Push 직후 PR Review Task Guide로 최신 Head를 검토한다.
 
 문서·설정 작업처럼 build나 런타임 검증이 의미 없으면 `NOT_RUN` 또는 `NOT_APPLICABLE` 이유와 대신 실행한 정적 검증을 기록한다.
 
@@ -78,8 +78,8 @@ Issue 완료 조건과 실제 실패 위험을 우선한다. 범위 밖 시나�
 - 해당하면 Before/After Evidence와 한계
 - 남은 위험·기술부채·범위 밖 항목
 
-PR 본문 구조를 이 문서에 복제하지 않는다. `skills/bobfull-pr-explain/SKILL.md`와 최신 `.github/pull_request_template.md`를 사용한다.
+PR 본문 구조를 이 문서에 복제하지 않는다. `docs/060-ai/tasks/bobfull-pr-explain/TASK.md`와 최신 `.github/pull_request_template.md`를 사용한다.
 
-AI Review 기준·등급·댓글 형식을 이 문서에 복제하지 않는다. Draft PR 생성 또는 새 Push 뒤 `skills/bobfull-pr-review/SKILL.md`를 실행한다.
+AI Review 기준·등급·댓글 형식을 이 문서에 복제하지 않는다. Draft PR 생성 또는 새 Push 뒤 `docs/060-ai/tasks/bobfull-pr-review/TASK.md`를 실행한다.
 
 현재 Merge Gate는 `.github/pull_request_template.md`를 확인한다. 담당자 AI는 Approve 또는 Merge를 수행하지 않는다.

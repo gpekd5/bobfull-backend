@@ -1,6 +1,6 @@
 # BobFull Human 이해·Review 응답 가이드
 
-이 문서는 Human 이해 질문과 답변 검토 기준을 다룬다. 최신 Head AI Review의 결함 등급·댓글 형식·재검토 절차는 `skills/bobfull-pr-review/SKILL.md`가 단일 기준이다.
+이 문서는 Human 이해 질문과 답변 검토 기준을 다룬다. 최신 Head AI Review의 결함 등급·댓글 형식·재검토 절차는 `docs/060-ai/tasks/bobfull-pr-review/TASK.md`가 단일 기준이다.
 
 ## 1. 사용 시점
 
@@ -9,7 +9,7 @@
 - 강화 PR의 Human 이해 질문을 작성하거나 답변을 검토할 때
 - Human 또는 외부 Review 의견의 처리 방향을 판단할 때
 
-Refactor Learning Mode 최초 질문 3개는 `ai-workflow.md`만으로 작성한다. 일반 구현, 질문이 0개인 PR 기본 검토,
+Refactor Learning Mode 최초 질문 3개는 `docs/060-ai/workflow/ai-workflow.md`만으로 작성한다. 일반 구현, 질문이 0개인 PR 기본 검토,
 PR 본문 작성, AI Review만 수행할 때는 이 문서를 선행 로딩하지 않는다.
 
 ## 2. 공통 질문 원칙
@@ -25,7 +25,7 @@ PR 본문 작성, AI Review만 수행할 때는 이 문서를 선행 로딩하�
 
 일반 Feature Issue는 학습 질문을 구현 Gate로 사용하지 않는다. 실제 Human 결정이 필요한 경우에만 질문한다.
 
-Refactor Learning Mode의 적용 대상, 최초 중단, 질문 3축과 재개 조건은 `ai-workflow.md`만 따른다.
+Refactor Learning Mode의 적용 대상, 최초 중단, 질문 3축과 재개 조건은 `docs/060-ai/workflow/ai-workflow.md`만 따른다.
 최초 질문 작성에는 이 문서를 추가로 읽지 않고, Human 답변을 실제 검토하는 재개 단계부터 아래 기준을 적용한다.
 
 Human 답변은 다음처럼 검토한다.
@@ -80,7 +80,7 @@ Human 최종 확인: 이해함 | 추가 설명 필요 | 동의하지 않음
 - 정책·API·DB·권한·트랜잭션 결정: Human 판단 요청
 - 근거 없는 범위 밖 제안: 반영하지 않고 이유 기록
 
-BLOCKER·MAJOR·MINOR·SUGGESTION 판정과 Merge 영향은 `skills/bobfull-pr-review/SKILL.md`를 따른다. 현재 Merge Gate는 `.github/pull_request_template.md`를 기준으로 한다.
+BLOCKER·MAJOR·MINOR·SUGGESTION 판정과 Merge 영향은 `docs/060-ai/tasks/bobfull-pr-review/TASK.md`를 따른다. 현재 Merge Gate는 `.github/pull_request_template.md`를 기준으로 한다.
 
 ## 7. 금지 사항
 

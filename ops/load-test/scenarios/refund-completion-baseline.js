@@ -19,7 +19,7 @@
 // 데이터 계약"과 동일한 전략).
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/refund-completion-baseline.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/refund-completion-baseline.js
 
 import exec from 'k6/execution';
 import { Trend } from 'k6/metrics';

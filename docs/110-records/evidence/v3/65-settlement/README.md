@@ -66,7 +66,7 @@ SQL 횟수는 고정이었지만, 실제 실행 시간이 system-wide 데이터 
 
 ## 시나리오 C — 반복 조회 (핵심 발견 — 세 번째 인덱스 부재)
 
-`k6/scenarios/settlement-repeated-query.js`로 실제 AWS 인스턴스에서 정산 조회를 반복 호출했다.
+`ops/load-test/scenarios/settlement-repeated-query.js`로 실제 AWS 인스턴스에서 정산 조회를 반복 호출했다.
 
 ### 최초 발견 (수정 전, 2개 엔드포인트 결합, Load 20 iter/s·2분)
 
@@ -159,9 +159,9 @@ BOBFULL_MYSQL_PERF_TEST=true BOBFULL_TEST_MYSQL_URL=... BOBFULL_TEST_MYSQL_USERN
 # 시나리오 C: 반복 조회(AWS 실배포)
 k6 run -e STAGE=load -e BASE_URL=http://<test-instance>:8080 \
   -e LOAD_DURATION=2m -e LOAD_RATE=20 -e RESERVATION_COUNT=50 -e SETUP_TIMEOUT=600s \
-  k6/scenarios/settlement-repeated-query.js
+  ops/load-test/scenarios/settlement-repeated-query.js
 
 # 엔드포인트 분리 진단
-k6 run -e STAGE=load -e ENDPOINT=expected k6/scenarios/settlement-repeated-query.js
-k6 run -e STAGE=load -e ENDPOINT=reservations k6/scenarios/settlement-repeated-query.js
+k6 run -e STAGE=load -e ENDPOINT=expected ops/load-test/scenarios/settlement-repeated-query.js
+k6 run -e STAGE=load -e ENDPOINT=reservations ops/load-test/scenarios/settlement-repeated-query.js
 ```

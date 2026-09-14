@@ -12,7 +12,7 @@ on:
       - 'gradle/**'
       - 'gradlew'
       - 'lambda/**'
-      - 'scripts/aws/**'
+      - 'ops/deployment/aws/**'
       - 'src/**'
   workflow_dispatch: {}
 
@@ -216,7 +216,7 @@ jobs:
           BACKEND_PROMETHEUS_SSM_POLL_INTERVAL_SECONDS: ${{ vars.BACKEND_PROMETHEUS_SSM_POLL_INTERVAL_SECONDS }}
         run: |
           set -euo pipefail
-          bash scripts/aws/deploy-backend-blue-green-v1.sh
+          bash ops/deployment/aws/deploy-backend-blue-green-v1.sh
 
       - name: Verify backend deployment
         env:
@@ -226,4 +226,4 @@ jobs:
           IMAGE_URI: ${{ steps.image.outputs.image_uri }}
         run: |
           set -euo pipefail
-          bash scripts/aws/verify-backend-v1.sh
+          bash ops/deployment/aws/verify-backend-v1.sh

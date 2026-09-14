@@ -11,12 +11,12 @@
 // HTTP p95/p99·DB Pool 영향만 측정한다.
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/settlement-repeated-query.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/settlement-repeated-query.js
 //
 // ENDPOINT=expected|reservations|both(기본값) — 두 엔드포인트 중 어느 쪽이 DB Pool 부담의
 // 주 원인인지 분리 진단할 때 하나만 골라 실행한다.
-//   k6 run -e STAGE=load -e ENDPOINT=expected k6/scenarios/settlement-repeated-query.js
-//   k6 run -e STAGE=load -e ENDPOINT=reservations k6/scenarios/settlement-repeated-query.js
+//   k6 run -e STAGE=load -e ENDPOINT=expected ops/load-test/scenarios/settlement-repeated-query.js
+//   k6 run -e STAGE=load -e ENDPOINT=reservations ops/load-test/scenarios/settlement-repeated-query.js
 
 import { get } from '../common/helpers.js';
 import { checkStatus, checkApiSuccess } from '../common/checks.js';

@@ -10,7 +10,7 @@
 // (Issue #63 "테스트 데이터 계약").
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/reservation-prepare.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/reservation-prepare.js
 //
 // SESSION_POOL_SIZE는 (VU 수 * 예상 iteration 수) 이상으로 넉넉히 잡아야 한다. 풀이 부족하면
 // setup()이 예외로 즉시 실패한다(무음으로 409만 쌓이는 것보다 실행 실패가 안전하다).

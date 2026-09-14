@@ -3,12 +3,12 @@
 Issue #63(공통 K6 Harness·주요 API Load/Stress·성능 지도) 구현. 실제 AWS 실행 환경은
 Issue #207에서 별도 Test App EC2 + Test RDS 형태로 준비했다.
 
-AWS 테스트 환경의 구성·접근 방법은 [`docs/090-testing/performance/k6-aws-test-environment.md`](../docs/090-testing/performance/k6-aws-test-environment.md)를 참고한다.
+AWS 테스트 환경의 구성·접근 방법은 [`docs/090-testing/performance/k6-aws-test-environment.md`](../../docs/090-testing/performance/k6-aws-test-environment.md)를 참고한다.
 
 ## 구조
 
 ```text
-k6/
+ops/load-test/
 ├─ common/
 │  ├─ config.js     BASE_URL/STAGE/RUN_ID 등 환경변수, 공통 tag
 │  ├─ auth.js       로그인·회원가입 helper, Authorization 헤더
@@ -36,14 +36,14 @@ k6/
 
 ```bash
 # 로컬 Smoke — 스크립트가 실제 API를 정상 호출하는지만 확인(성능 결론에 쓰지 않음)
-k6 run -e STAGE=smoke k6/scenarios/restaurant-search.js
-k6 run -e STAGE=smoke k6/scenarios/dining-session-availability.js
-k6 run -e STAGE=smoke k6/scenarios/reservation-prepare.js
+k6 run -e STAGE=smoke ops/load-test/scenarios/restaurant-search.js
+k6 run -e STAGE=smoke ops/load-test/scenarios/dining-session-availability.js
+k6 run -e STAGE=smoke ops/load-test/scenarios/reservation-prepare.js
 
 # AWS Test App EC2
-k6 run -e STAGE=smoke  -e BASE_URL=http://<test-ec2-public-ip>:8080 k6/scenarios/restaurant-search.js
-k6 run -e STAGE=load   -e BASE_URL=http://<test-ec2-public-ip>:8080 k6/scenarios/restaurant-search.js
-k6 run -e STAGE=stress -e BASE_URL=http://<test-ec2-public-ip>:8080 k6/scenarios/restaurant-search.js
+k6 run -e STAGE=smoke  -e BASE_URL=http://<test-ec2-public-ip>:8080 ops/load-test/scenarios/restaurant-search.js
+k6 run -e STAGE=load   -e BASE_URL=http://<test-ec2-public-ip>:8080 ops/load-test/scenarios/restaurant-search.js
+k6 run -e STAGE=stress -e BASE_URL=http://<test-ec2-public-ip>:8080 ops/load-test/scenarios/restaurant-search.js
 ```
 
 공통 환경변수:
@@ -102,8 +102,8 @@ Issue #142는 #63의 Harness를 그대로 재사용한다. 이번 구현 범위�
 로컬 검증**까지다.
 
 ```bash
-k6 run -e STAGE=smoke k6/scenarios/peak-restaurant-view.js
-k6 run -e CONCURRENT_USERS=10 k6/scenarios/peak-reservation-create-race.js
+k6 run -e STAGE=smoke ops/load-test/scenarios/peak-restaurant-view.js
+k6 run -e CONCURRENT_USERS=10 ops/load-test/scenarios/peak-reservation-create-race.js
 ```
 
 `peak-reservation-create-race.js` 전용:

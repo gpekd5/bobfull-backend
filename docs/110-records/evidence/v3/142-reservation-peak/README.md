@@ -69,7 +69,7 @@ GET 요청 2건(식당 상세 + 회차 조회)을 보내므로 두 값이 다르
 
 ### 근본 원인 확인 — 로컬 Prometheus를 AWS 인스턴스에 연결해 실측
 
-`monitoring/docker-compose.yml`의 Prometheus를 실행자 로컬에서 띄우고
+`ops/monitoring/docker-compose.yml`의 Prometheus를 실행자 로컬에서 띄우고
 `BOBFULL_BACKEND_METRICS_TARGET=15.164.48.39:8080`으로 지정해, AWS Test App EC2의
 `/actuator/prometheus`를 직접 스크래핑했다. 아래 표는 최신 Stress(p99 포함, `-stress-3`)
 실행 중 수집한 값이다. Prometheus `query_range` 원본 JSON은

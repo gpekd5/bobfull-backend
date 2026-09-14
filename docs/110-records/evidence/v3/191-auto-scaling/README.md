@@ -33,7 +33,7 @@
 | 최종 Hikari `maximumPoolSize` | 12 |
 | Parameter Store | `/bobfull/prod/db-pool-max-size=12` |
 
-`scripts/aws/deploy-backend-v1.sh`는 `DB_POOL_MAX_SIZE:db-pool-max-size`를 optional parameter로 주입한다. Parameter Store 값이 없으면 env에 쓰지 않고 `application-prod.yml`의 `${DB_POOL_MAX_SIZE:10}` 기본값을 사용한다.
+`ops/deployment/aws/deploy-backend-v1.sh`는 `DB_POOL_MAX_SIZE:db-pool-max-size`를 optional parameter로 주입한다. Parameter Store 값이 없으면 env에 쓰지 않고 `application-prod.yml`의 `${DB_POOL_MAX_SIZE:10}` 기본값을 사용한다.
 
 ## Pool 10 기준 검증
 

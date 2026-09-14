@@ -6,8 +6,8 @@
 // 그대로 재사용해 #142 Evidence와 직접 비교 가능하게 한다.
 //
 // 실행 예:
-//   k6 run -e STAGE=stress -e TARGET=detail   k6/scenarios/restaurant-view-hotpath.js
-//   k6 run -e STAGE=stress -e TARGET=sessions k6/scenarios/restaurant-view-hotpath.js
+//   k6 run -e STAGE=stress -e TARGET=detail   ops/load-test/scenarios/restaurant-view-hotpath.js
+//   k6 run -e STAGE=stress -e TARGET=sessions ops/load-test/scenarios/restaurant-view-hotpath.js
 //
 // TARGET을 생략하면 오류로 즉시 중단한다(둘 중 하나를 명시하지 않으면 #142와 같은 "합쳐서
 // 측정"이 되어 이 스크립트를 쓰는 의미가 없다).

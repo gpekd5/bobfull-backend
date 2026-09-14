@@ -4,7 +4,7 @@
 // 모사한다(Issue #142 시나리오 A "목적"). setup()에서 만든 단 하나의 식당·날짜만 반복 조회한다.
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/peak-restaurant-view.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/peak-restaurant-view.js
 //
 // 측정 항목(Issue #142 "공통 측정 지표"): p50/p90/p95/p99, RPS, 오류율, 요청당 쿼리 수(서버
 // 로그/Grafana에서 별도 확인), DB Connection Pool active/pending, CPU/메모리. 이 스크립트는

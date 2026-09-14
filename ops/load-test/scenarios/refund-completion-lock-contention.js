@@ -27,7 +27,7 @@
 // 스크립트는 그 위에서 실제 동시 부하일 때의 지연·처리량만 측정한다.
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke k6/scenarios/refund-completion-lock-contention.js
+//   k6 run -e STAGE=smoke ops/load-test/scenarios/refund-completion-lock-contention.js
 
 import exec from 'k6/execution';
 import http from 'k6/http';

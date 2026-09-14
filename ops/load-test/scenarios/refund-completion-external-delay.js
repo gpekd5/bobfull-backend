@@ -22,8 +22,8 @@
 // 직접 대조해서 확인한다.
 //
 // 실행 예:
-//   k6 run -e STAGE=smoke -e PORTONE_EXTERNAL_DELAY_MS=3000 k6/scenarios/refund-completion-external-delay.js
-//   k6 run -e STAGE=smoke -e PORTONE_EXTERNAL_RESULT=TIMEOUT k6/scenarios/refund-completion-external-delay.js
+//   k6 run -e STAGE=smoke -e PORTONE_EXTERNAL_DELAY_MS=3000 ops/load-test/scenarios/refund-completion-external-delay.js
+//   k6 run -e STAGE=smoke -e PORTONE_EXTERNAL_RESULT=TIMEOUT ops/load-test/scenarios/refund-completion-external-delay.js
 
 import exec from 'k6/execution';
 import { Trend } from 'k6/metrics';
