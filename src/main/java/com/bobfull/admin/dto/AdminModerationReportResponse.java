@@ -1,3 +1,3 @@
 package com.bobfull.admin.dto;
-import com.bobfull.chat.entity.*; import java.time.Instant;
+import com.bobfull.chat.domain.entity.*; import java.time.Instant;
 public record AdminModerationReportResponse(Long reportId,Long chatRoomId,Long reporterMemberId,Long reportedMemberId,ReportReason reason,ReportStatus status,Long anchorMessageId,Instant createdAt,ReviewDecision decision,Long reviewedByMemberId,Instant reviewedAt){ public static AdminModerationReportResponse from(ChatRoomMemberReport r){return new AdminModerationReportResponse(r.getId(),r.getChatRoomId(),r.getReporterMemberId(),r.getReportedMemberId(),r.getReason(),r.getStatus(),r.getAnchorMessageId(),r.getCreatedAt(),r.getDecision(),r.getReviewedByMemberId(),r.getReviewedAt());} }

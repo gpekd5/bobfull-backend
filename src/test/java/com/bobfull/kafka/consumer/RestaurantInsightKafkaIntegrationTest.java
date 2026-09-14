@@ -3,12 +3,12 @@ package com.bobfull.kafka.consumer;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
-import com.bobfull.chat.dto.ChatMessageCreatedEvent;
-import com.bobfull.chat.entity.ChatMessage;
-import com.bobfull.chat.entity.ChatRoom;
-import com.bobfull.chat.repository.ChatMessageRepository;
-import com.bobfull.chat.repository.ChatModerationRepository;
-import com.bobfull.chat.repository.ChatRoomRepository;
+import com.bobfull.chat.application.event.ChatMessageCreatedEvent;
+import com.bobfull.chat.domain.entity.ChatMessage;
+import com.bobfull.chat.domain.entity.ChatRoom;
+import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
+import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
+import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;

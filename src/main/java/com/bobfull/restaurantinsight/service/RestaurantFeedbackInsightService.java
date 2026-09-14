@@ -1,9 +1,9 @@
 package com.bobfull.restaurantinsight.service;
 
-import com.bobfull.chat.entity.ChatMessage;
-import com.bobfull.chat.entity.ChatRoom;
-import com.bobfull.chat.repository.ChatMessageRepository;
-import com.bobfull.chat.repository.ChatRoomRepository;
+import com.bobfull.chat.domain.entity.ChatMessage;
+import com.bobfull.chat.domain.entity.ChatRoom;
+import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
+import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.common.exception.ChatErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.exception.RestaurantErrorCode;

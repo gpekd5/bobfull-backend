@@ -3,7 +3,7 @@ package com.bobfull.admin.repository;
 import com.bobfull.admin.dto.AdminMemberModerationEvidenceResponse;
 import com.bobfull.admin.dto.MemberModerationReviewStatus;
 import com.bobfull.admin.dto.MemberModerationSummaryResult;
-import com.bobfull.chat.entity.RiskLevel;
+import com.bobfull.chat.domain.entity.RiskLevel;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

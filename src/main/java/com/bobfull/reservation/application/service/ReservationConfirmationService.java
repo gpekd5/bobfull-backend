@@ -8,7 +8,7 @@ import com.bobfull.common.transaction.AfterCommitExecutor;
 import com.bobfull.outbox.entity.OutboxEvent;
 import com.bobfull.outbox.entity.OutboxEventType;
 import com.bobfull.outbox.repository.OutboxEventRepository;
-import com.bobfull.outbox.service.ChatRoomOutboxProcessor;
+import com.bobfull.chat.infrastructure.outbox.ChatRoomOutboxProcessor;
 import com.bobfull.outbox.service.EmailOutboxEventService;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;

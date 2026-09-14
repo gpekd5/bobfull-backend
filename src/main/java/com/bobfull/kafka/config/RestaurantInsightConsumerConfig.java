@@ -2,7 +2,7 @@ package com.bobfull.kafka.config;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.kafka.consumer.RestaurantInsightDltRecoverer;
-import com.bobfull.kafka.exception.InvalidChatMessageEventException;
+import com.bobfull.chat.infrastructure.kafka.InvalidChatMessageEventException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.kafka.autoconfigure.ConcurrentKafkaListenerContainerFactoryConfigurer;

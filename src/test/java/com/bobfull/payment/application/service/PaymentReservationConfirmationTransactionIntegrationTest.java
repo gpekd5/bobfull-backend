@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.bobfull.payment.domain.entity.Payment;
-import com.bobfull.chat.repository.ChatRoomRepository;
+import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.outbox.entity.OutboxEventStatus;
 import com.bobfull.outbox.entity.OutboxEventType;
 import com.bobfull.outbox.repository.OutboxEventRepository;
@@ -340,12 +340,12 @@ class PaymentReservationConfirmationTransactionIntegrationTest {
 
         @Bean
         @Primary
-        com.bobfull.chat.service.ChatRoomCreationService failureInjectingChatRoomCreationService(
+        com.bobfull.chat.application.service.ChatRoomCreationService failureInjectingChatRoomCreationService(
                 ChatRoomRepository chatRoomRepository, FailureMode failureMode
         ) {
-            return new com.bobfull.chat.service.ChatRoomCreationService(chatRoomRepository) {
+            return new com.bobfull.chat.application.service.ChatRoomCreationService(chatRoomRepository) {
                 @Override
-                public com.bobfull.chat.entity.ChatRoom createIfAbsent(Long reservationId) {
+                public com.bobfull.chat.domain.entity.ChatRoom createIfAbsent(Long reservationId) {
                     if (failureMode.type == FailureMode.Type.CHAT_ROOM_CREATION_FAILURE) {
                         throw new IllegalStateException("강제 ChatRoom 생성 실패(테스트)");
                     }
