@@ -177,7 +177,7 @@ class SpringAiModerationAdapterOpenAiEvaluationTest {
         assertThat(applicationContext.getBeansOfType(com.bobfull.reservation.infrastructure.scheduler.RecruitmentDeadlineScheduler.class)).isEmpty();
         assertThat(applicationContext.getBeansOfType(com.bobfull.reservation.infrastructure.scheduler.ReservationClosingScheduler.class)).isEmpty();
         assertThat(applicationContext.getBeansOfType(com.bobfull.chat.infrastructure.outbox.ChatRoomOutboxScheduler.class)).isEmpty();
-        assertThat(applicationContext.getBeansOfType(com.bobfull.outbox.service.EmailOutboxScheduler.class)).isEmpty();
+        assertThat(applicationContext.getBeansOfType(com.bobfull.notification.infrastructure.outbox.EmailOutboxScheduler.class)).isEmpty();
     }
 
     private static void assertDatasetContract(List<ModerationTestCase> testCases) {

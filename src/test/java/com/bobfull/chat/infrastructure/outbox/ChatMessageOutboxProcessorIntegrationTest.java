@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
-import com.bobfull.outbox.entity.OutboxEvent;
-import com.bobfull.outbox.entity.OutboxEventStatus;
-import com.bobfull.outbox.repository.OutboxEventRepository;
+import com.bobfull.common.outbox.entity.OutboxEvent;
+import com.bobfull.common.outbox.entity.OutboxEventStatus;
+import com.bobfull.common.outbox.repository.OutboxEventRepository;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneId;
