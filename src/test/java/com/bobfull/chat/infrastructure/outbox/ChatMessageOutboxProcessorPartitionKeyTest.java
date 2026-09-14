@@ -8,9 +8,9 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
-import com.bobfull.outbox.entity.OutboxEvent;
-import com.bobfull.outbox.repository.OutboxEventRepository;
-import com.bobfull.outbox.service.OutboxEventTransactionService;
+import com.bobfull.common.outbox.entity.OutboxEvent;
+import com.bobfull.common.outbox.repository.OutboxEventRepository;
+import com.bobfull.common.outbox.service.OutboxEventTransactionService;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;

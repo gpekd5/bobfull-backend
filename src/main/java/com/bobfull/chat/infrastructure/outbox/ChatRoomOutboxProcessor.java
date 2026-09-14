@@ -1,10 +1,10 @@
 package com.bobfull.chat.infrastructure.outbox;
 
 import com.bobfull.chat.application.service.ChatRoomCreationService;
-import com.bobfull.outbox.entity.OutboxEventStatus;
-import com.bobfull.outbox.entity.OutboxEventType;
-import com.bobfull.outbox.repository.OutboxEventRepository;
-import com.bobfull.outbox.service.OutboxEventTransactionService;
+import com.bobfull.common.outbox.entity.OutboxEventStatus;
+import com.bobfull.common.outbox.entity.OutboxEventType;
+import com.bobfull.common.outbox.repository.OutboxEventRepository;
+import com.bobfull.common.outbox.service.OutboxEventTransactionService;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
