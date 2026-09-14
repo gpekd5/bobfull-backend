@@ -226,4 +226,4 @@ Sonar 회귀 수정 후에는 직접 영향 테스트도 다시 실행했다.
 ## 관련
 
 - Issue: https://github.com/gpekd5/bobfull-backend/issues/27
-- PR: 생성 전
+- PR: https://github.com/gpekd5/bobfull-backend/pull/36
