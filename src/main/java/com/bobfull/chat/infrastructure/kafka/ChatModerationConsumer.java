@@ -2,7 +2,6 @@ package com.bobfull.chat.infrastructure.kafka;
 
 import com.bobfull.chat.application.event.ChatMessageCreatedEvent;
 import com.bobfull.chat.application.service.ChatModerationService;
-import com.bobfull.chat.infrastructure.kafka.InvalidChatMessageEventException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;

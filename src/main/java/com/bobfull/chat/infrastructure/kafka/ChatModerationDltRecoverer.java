@@ -4,7 +4,6 @@ import com.bobfull.chat.application.event.ChatMessageCreatedEvent;
 import com.bobfull.chat.application.service.ChatModerationService;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
-import com.bobfull.chat.infrastructure.kafka.ListenerExceptionUnwrapper;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.TopicPartition;
 import org.slf4j.Logger;

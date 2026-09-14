@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.bobfull.chat.application.service.ModerationAnalysisException;
 import com.bobfull.common.exception.ChatErrorCode;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.chat.infrastructure.kafka.InvalidChatMessageEventException;
 import org.junit.jupiter.api.Test;
 import org.springframework.kafka.listener.ListenerExecutionFailedException;
 

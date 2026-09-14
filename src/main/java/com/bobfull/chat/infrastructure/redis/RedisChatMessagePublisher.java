@@ -1,7 +1,6 @@
 package com.bobfull.chat.infrastructure.redis;
 
 import com.bobfull.chat.presentation.dto.ChatMessageSentResponse;
-import com.bobfull.chat.infrastructure.redis.ChatRealtimeMessage;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import org.slf4j.Logger;

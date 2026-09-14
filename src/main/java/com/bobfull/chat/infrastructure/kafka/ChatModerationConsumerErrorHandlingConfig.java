@@ -1,8 +1,6 @@
 package com.bobfull.chat.infrastructure.kafka;
 
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.chat.infrastructure.kafka.ChatModerationDltRecoverer;
-import com.bobfull.chat.infrastructure.kafka.InvalidChatMessageEventException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
