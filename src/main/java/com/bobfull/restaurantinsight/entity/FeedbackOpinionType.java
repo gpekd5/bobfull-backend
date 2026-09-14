@@ -1,5 +1,0 @@
-package com.bobfull.restaurantinsight.entity;
-public enum FeedbackOpinionType {
-    TASTE, TEXTURE, SALTINESS, SPICINESS, SWEETNESS, PORTION, FRESHNESS, TEMPERATURE,
-    FRIENDLINESS, SERVICE_SPEED, PRICE_LEVEL, CLEANLINESS, WAITING, ETC
-}
