@@ -127,11 +127,12 @@ RestaurantInsight Kafka가 Chat 소유 `InvalidChatMessageEventException`을 직
 
 ### 경로 이동에 따른 재등록
 
-42건 중 40건은 기존 issue key가 새 경로로 그대로 이전됐다. 다음 2건만 새 key로 재등록됐지만 메시지와 대상 코드가 Before와 동일하다.
+42건 중 35건은 기존 issue key가 새 경로로 그대로 이전됐다. 다음 7건은 이동된 동일 Service에서 새 key로 재등록됐지만 규칙, 메시지와 대상 코드가 Before와 동일하다.
 
 | 규칙 | Before | After | 판정 |
 |---|---|---|---|
 | `S1128` | `02a58028-863b-43e1-9bb5-4c06ebd63216`, 기존 Service의 미사용 `RestaurantFeedbackPrompt` import | `1ef4e33a-1947-4804-a4eb-6b92ab10a8a9`, 이동된 동일 Service/import | 기존 issue 재키잉 |
+| `S1659` 5건 | 기존 Service의 `rooms`, `tables`, `candidateGate`, `provider`, `from` 선언 | 이동된 동일 Service의 같은 5개 선언 | 기존 issue 재키잉 |
 | `S3776` | `c3f4f875-de12-4c09-9707-7c992d87e025`, complexity 18/15 | `7c3e09eb-0293-4cc2-99b2-1cb08c1a81bf`, 동일 method와 수치 | 기존 issue 재키잉 |
 
 Quality Gate `ERROR`는 기존 프로젝트 issue 기준이며 #24 패키지 이동으로 수량이나 유형이 증가한 결과가 아니다. 이번 범위 밖 기존 Sonar issue는 수정하지 않았다.
