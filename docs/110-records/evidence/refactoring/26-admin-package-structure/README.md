@@ -188,4 +188,4 @@ Sonar 비교 범위는 구현 commit에서 변경된 Java 파일의 이동 전�
 ## 관련
 
 - Issue: https://github.com/gpekd5/bobfull-backend/issues/26
-- PR: Draft PR 생성 후 연결
+- PR: https://github.com/gpekd5/bobfull-backend/pull/35
