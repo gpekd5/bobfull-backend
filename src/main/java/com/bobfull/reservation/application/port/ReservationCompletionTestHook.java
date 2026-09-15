@@ -1,4 +1,4 @@
-package com.bobfull.reservation.application.service;
+package com.bobfull.reservation.application.port;
 
 /**
  * 예약 완료 처리(Reservation 락을 쥔 채로 실행되는 구간) 앞에서 지연을 넣거나 실패를 강제하는

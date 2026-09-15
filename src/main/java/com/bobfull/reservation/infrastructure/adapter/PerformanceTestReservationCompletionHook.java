@@ -1,6 +1,6 @@
 package com.bobfull.reservation.infrastructure.adapter;
 
-import com.bobfull.reservation.application.service.ReservationCompletionTestHook;
+import com.bobfull.reservation.application.port.ReservationCompletionTestHook;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;

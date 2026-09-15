@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.chat.application.dto.AiModerationResponse;
 import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatModeration;
 import com.bobfull.chat.domain.entity.ModerationCategory;

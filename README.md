@@ -186,7 +186,22 @@ Issue → AI Implementation → Human Review → PR Checklist → Feedback → M
 
 ---
 
-## 09 Local Development
+## 09 프로젝트 구조
+
+```text
+src/       Backend application과 test
+lambda/    독립 배포 식당 이미지 검증 코드
+ops/       배포, 모니터링, 부하 테스트와 운영 도구
+docs/      제품·API·데이터·아키텍처·개발·검증 문서
+.github/   Issue/PR template과 CI/CD workflow
+```
+
+Java package별 책임과 주요 파일, `docs`·`ops`·AI 작업 문서의 상세 구조는
+[`project-structure.md`](docs/040-architecture/project-structure.md)를 참고합니다.
+
+---
+
+## 10 Local Development
 
 ### Requirements
 

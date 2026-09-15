@@ -5,6 +5,7 @@ import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.common.transaction.AfterCommitExecutor;
+import com.bobfull.reservation.application.port.ReservationCompletionTestHook;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
