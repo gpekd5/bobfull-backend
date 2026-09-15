@@ -1,6 +1,6 @@
 package com.bobfull.chat.infrastructure.kafka;
 
-import com.bobfull.chat.application.service.ModerationAnalysisException;
+import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.common.exception.CustomException;
 
 /** Kafka 리스너 실패를 감싸는 예외에서 #66 recordFinalFailure에 넘길 errorCode를 뽑아낸다. */

@@ -1,6 +1,7 @@
 package com.bobfull.chat.application.service;
 
 import com.bobfull.chat.application.dto.AiModerationResponse;
+import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.chat.infrastructure.ai.ModerationPrompt;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatModeration;

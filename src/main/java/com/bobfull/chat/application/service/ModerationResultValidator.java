@@ -1,6 +1,7 @@
 package com.bobfull.chat.application.service;
 
 import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
 

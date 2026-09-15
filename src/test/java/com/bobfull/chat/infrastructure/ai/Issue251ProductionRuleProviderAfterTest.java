@@ -11,7 +11,7 @@ import com.bobfull.chat.application.port.AiModerationPort;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.application.service.ChatModerationService;
-import com.bobfull.chat.application.service.ModerationAnalysisException;
+import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.chat.application.service.ModerationRuleFilter;
 import java.util.ArrayList;
 import java.util.EnumSet;
