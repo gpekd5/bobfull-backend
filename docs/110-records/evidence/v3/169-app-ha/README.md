@@ -44,12 +44,12 @@ Issue #169의 검증 범위는 **HTTP API App 계층에서 한 App 장애 시 �
 | 파일 | 역할 |
 |---|---|
 | `.github/workflows/deploy-backend-v1.yml` | 단일 EC2 변수 제거, Blue-Green 배포 스크립트 호출, 신규 ALB/TG/public 검증 변수 검증 |
-| `scripts/aws/deploy-backend-blue-green-v1.sh` | Listener weight 판정, inactive TG EC2 조회, SSM 배포, TG health 대기, traffic switch, public 검증, rollback |
-| `scripts/aws/run-ssm-backend-deploy-v1.sh` | 단일 instance ID 대신 다중 EC2 instance ID에 같은 SSM command 실행, 모든 결과 확인 |
+| `ops/deployment/aws/deploy-backend-blue-green-v1.sh` | Listener weight 판정, inactive TG EC2 조회, SSM 배포, TG health 대기, traffic switch, public 검증, rollback |
+| `ops/deployment/aws/run-ssm-backend-deploy-v1.sh` | 단일 instance ID 대신 다중 EC2 instance ID에 같은 SSM command 실행, 모든 결과 확인 |
 | `docs/deployment/aws-v1-backend.md` | Blue-Green 배포 기준, GitHub Variables, IAM 권한, 성공 조건 문서화 |
 | `docs/110-records/evidence/v3/169-app-ha/README.md` | Issue #169 실제 검증 결과와 한계 기록 |
 
-기존 `scripts/aws/deploy-backend-v1.sh`는 per-instance deploy worker 역할을 유지한다. 이번 diff에 해당 파일 변경은 없다.
+기존 `ops/deployment/aws/deploy-backend-v1.sh`는 per-instance deploy worker 역할을 유지한다. 이번 diff에 해당 파일 변경은 없다.
 
 ### 배포 흐름
 
@@ -262,7 +262,7 @@ Redis Pub/Sub 자체 구현은 Issue #170 범위다. #169에서는 다중 EC2와
 
 - `src/main/resources/application-prod.yml`
   - `spring.datasource.hikari.maximum-pool-size: ${DB_POOL_MAX_SIZE:10}`
-- `scripts/aws/deploy-backend-v1.sh`
+- `ops/deployment/aws/deploy-backend-v1.sh`
   - 현재 Parameter Store env-file 매핑에 `DB_POOL_MAX_SIZE`는 없다.
   - 따라서 운영 컨테이너에 `DB_POOL_MAX_SIZE`가 별도 주입되지 않으면 prod 기본값은 `10`이다.
 

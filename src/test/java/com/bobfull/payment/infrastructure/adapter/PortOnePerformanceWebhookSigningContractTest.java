@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * Issue #146 K6 Harness가 {@code /api/webhooks/portone}으로 직접 서명해 보낼
  * {@code Transaction.Cancelled} 페이로드 형식이, 실제 PortOne 서버 SDK({@link WebhookVerifier})가
  * 요구하는 서명·JSON 계약과 정확히 일치하는지 확인한다. K6는 JavaScript로 같은 서명 절차를
- * 재현하므로(k6/common/portoneWebhook.js), 이 테스트가 그 절차의 정답 기준이 된다.
+ * 재현하므로(ops/load-test/common/portoneWebhook.js), 이 테스트가 그 절차의 정답 기준이 된다.
  *
  * <p>{@link WebhookVerifier#WebhookVerifier(String)}는 인자가 {@code "whsec_"}로 시작하면 그
  * 접두어를 떼고 나머지를 base64 디코드하고, 그렇지 않으면 문자열 전체를 그대로 base64 디코드해
@@ -44,7 +44,7 @@ class PortOnePerformanceWebhookSigningContractTest {
         // WebhookVerifier는 webhook-timestamp를 현재 시각 ±300초로 검증한다(SDK jar 역어셈블로 확인).
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
 
-        // k6/common/portoneWebhook.js의 SECRET_KEY_BYTES 계산과 동일한 절차다.
+        // ops/load-test/common/portoneWebhook.js의 SECRET_KEY_BYTES 계산과 동일한 절차다.
         String base64Part = webhookSecretConfig.startsWith("whsec_")
                 ? webhookSecretConfig.substring("whsec_".length())
                 : webhookSecretConfig;

@@ -284,7 +284,7 @@ const serviceUnifiedSteps = [
     { factStatus: FACT.DESIGN, topologyKey: "service-unified", visual: visual(["o-payout", "o-noshow"], ["o-payout-noshow"], "commit", null, "core", ["o-register", "o-setup", "u-explore", "u-select", "u-pay", "a-paid", "a-accumulate", "o-reservation", "a-judge", "a-close", "u-confirm", "a-chatroom", "a-email", "u-chat", "u-meal", "a-mealend", "u-done"]) })
 ];
 
-/* 인프라 흐름 탭(실제 요청은 어떤 인프라를 지나가는가) — #169/#206 Evidence와 GitHub Actions/scripts/aws
+/* 인프라 흐름 탭(실제 요청은 어떤 인프라를 지나가는가) — #169/#206 Evidence와 GitHub Actions/ops/deployment/aws
    기준으로 검증된 실제 구성만 반영한다. 이 탭의 4개 Scenario(일반 API/채팅/AI 검수/배포)는 전부
    api.bobfull.click(백엔드) 요청 경로만 다루므로, www.bobfull.click 프론트엔드(CloudFront/S3, 최종
    인프라 구성도에서 확인됨)는 이 topology 범위 밖이다 — 프론트엔드 배치는 fullArchitectureTopology
@@ -416,7 +416,7 @@ const infraSteps = {
       { factStatus: FACT.VERIFIED, topologyKey: "infra", visual: visual(["gha", "ecr"], ["gha-ecr"], "event", null, "core", ["client", "route53", "alb", "tgGreen", "ec2Green1", "ec2Green2"]) }),
     step("deploy-3", "SSM Run Command", "Blue EC2 #1/#2", "◆ 비활성 Blue EC2에 새 이미지를 배포합니다 — Traffic은 여전히 Green입니다", "SSH 없이 SSM Run Command로 현재 비활성(STANDBY)인 Blue EC2 #1/#2에만 배포 스크립트를 실행합니다. 이 시점에도 ALB Traffic은 100% Green입니다.",
       { factStatus: FACT.VERIFIED, topologyKey: "infra", visual: visual(["ecr", "ssm", "ec2Blue1", "ec2Blue2"], ["ecr-ssm", "ssm-ec2Blue1", "ssm-ec2Blue2"], "event", null, "core", ["client", "route53", "alb", "tgGreen", "ec2Green1", "ec2Green2", "gha"]),
-        codeReferences: ["scripts/aws/deploy-backend-blue-green-v1.sh", "scripts/aws/run-ssm-backend-deploy-v1.sh"] }),
+        codeReferences: ["ops/deployment/aws/deploy-backend-blue-green-v1.sh", "ops/deployment/aws/run-ssm-backend-deploy-v1.sh"] }),
     step("deploy-4", "ALB Target Group", "Health Check", "◆ Blue EC2 #1/#2가 Health Check를 통과합니다", "Target Group Health Check(/actuator/health/readiness)가 Blue EC2 #1/#2 모두 healthy로 확인될 때까지 기다린 뒤에만 다음 단계로 넘어갑니다 — 이 시점에는 Traffic을 아직 받지 않아 READY 상태입니다.",
       { factStatus: FACT.VERIFIED, topologyKey: "infra", visual: visual(["ec2Blue1", "ec2Blue2"], [], "commit", null, "core", ["client", "route53", "alb", "tgGreen", "ec2Green1", "ec2Green2", "gha", "ecr", "ssm"], null, null, { tgBlue: "READY · 0%" }) }),
     step("deploy-5", "ALB Listener", "Weight 전환", "✓ ALB 리스너 가중치를 Green 100/0에서 Blue 0/100으로 전환합니다", "새 Target Group을 만들거나 바꿔치기하지 않습니다 — 같은 ALB 리스너 안에서 Blue/Green 두 Target Group의 가중치(weight)만 뒤집습니다. 실패 시 자동으로 이전 가중치(Green 100/Blue 0)로 rollback합니다.",
@@ -427,7 +427,7 @@ const infraSteps = {
       { factStatus: FACT.VERIFIED, topologyKey: "infra", visual: visual(["client", "route53", "alb", "tgBlue", "ec2Blue1", "ec2Blue2"], ["client-route53", "route53-alb", "alb-tgBlue", "tgBlue-ec2Blue1", "tgBlue-ec2Blue2"], "request", "completed", "core", ["tgGreen", "ec2Green1", "ec2Green2", "gha", "ecr", "ssm"], null, null, { tgGreen: "STANDBY · 0%", tgBlue: "ACTIVE · 100%" }) }),
     step("deploy-7", "Green EC2 #1/#2", "Rollback window → STOP", "✓ 이전 Active는 rollback window 뒤 조건부로 STOP됩니다", "이전 Active EC2는 traffic switch 직후 바로 종료하지 않고 public readiness/API 검증과 Prometheus target 갱신·UP 검증 이후 `BACKEND_PREVIOUS_ENV_KEEP_SECONDS` 동안 rollback window로 유지합니다. 이후 ALB Listener를 다시 읽어 새 Active 100 / 이전 Active 0 guard가 통과하면 이전 Active EC2를 STOP하고, 검증에 실패하면 안전하게 STOP을 건너뜁니다.",
       { factStatus: FACT.VERIFIED, topologyKey: "infra", visual: visual(["tgGreen", "ec2Green1", "ec2Green2"], [], "commit", null, "core", ["client", "route53", "alb", "tgBlue", "ec2Blue1", "ec2Blue2", "gha", "ecr", "ssm"], null, null, { tgGreen: "STANDBY · 0%", tgBlue: "ACTIVE · 100%" }),
-        limits: "Blue-Green weight flip, rollback window, 이전 Active STOP guard는 scripts/aws/deploy-backend-blue-green-v1.sh 기준이다. Auto Scaling은 #191 측정 결과 현재 조건에서 미도입으로 정리됐으며, 이전 Active는 rollback window 뒤 조건부 STOP 대상이다.",
+        limits: "Blue-Green weight flip, rollback window, 이전 Active STOP guard는 ops/deployment/aws/deploy-backend-blue-green-v1.sh 기준이다. Auto Scaling은 #191 측정 결과 현재 조건에서 미도입으로 정리됐으며, 이전 Active는 rollback window 뒤 조건부 STOP 대상이다.",
         evidenceReferences: [evidence.appHa] })
   ]
 };
@@ -444,7 +444,7 @@ const infraSteps = {
    #169 evidence — 코드/설정의 "Redis"는 Valkey가 제공하는 Redis 호환 프로토콜 이름)/
    Kafka(자체 EC2 단일 KRaft)/S3/Lambda(restaurant-image-validator, 이번 조사에서 새로 확인)/
    OpenAI/PortOne/SMTP/GitHub Actions(OIDC)/ECR/SSM Run Command/Parameter Store(실제 secret
-   원천)/Prometheus·Grafana(단일 Monitoring EC2의 monitoring/docker-compose.yml로 함께 운영)/
+   원천)/Prometheus·Grafana(단일 Monitoring EC2의 ops/monitoring/docker-compose.yml로 함께 운영)/
    Slack(Grafana 알림 전용, 앱 코드 연동 아님)/CloudWatch Logs(로그 전용, 메트릭 아님).
    Auto Scaling/RDS Multi-AZ/MSK/별도 AI Consumer EC2는 여전히 구현 근거가 없어 넣지 않았다.
    Node 100x70/edge M-H-V 관례, region 배경 재사용 등 기존 topology와 동일한 그리기 규칙을 그대로
@@ -553,7 +553,7 @@ const fullArchitectureNodeDetails = {
   route53: { role: "DNS 라우팅", runtime: "api.bobfull.click → ALB Alias, www.bobfull.click → CloudFront Alias", connectedTo: "ALB(HTTPS), CloudFront", network: "관리형 DNS(콘솔 관리)", evidence: "docs/110-records/evidence/v3/206-backend-ingress-https/README.md" },
   cloudfront: { role: "프론트엔드 정적 배포 CDN", runtime: "www.bobfull.click Origin", connectedTo: "Route 53, Frontend S3(Origin)", network: "관리형 CDN(VPC 밖)", evidence: "—" },
   frontendS3: { role: "프론트엔드 정적 파일 호스팅", runtime: "Static Website Hosting", connectedTo: "CloudFront(Origin)", network: "Public(S3 Static Website, VPC 밖)", evidence: "docs/deployment/aws-v1-backend.md §CORS와 S3 프론트엔드 Origin" },
-  alb: { role: "HTTPS 진입점 · Blue/Green Target Group 가중치 라우팅", runtime: "ACM 인증서 · Listener Weight 100/0 ↔ 0/100", connectedTo: "TG Blue, TG Green", network: "콘솔 관리(Public Subnet 추정, VPC/Subnet은 IaC 없이 콘솔 관리)", evidence: "scripts/aws/deploy-backend-blue-green-v1.sh" },
+  alb: { role: "HTTPS 진입점 · Blue/Green Target Group 가중치 라우팅", runtime: "ACM 인증서 · Listener Weight 100/0 ↔ 0/100", connectedTo: "TG Blue, TG Green", network: "콘솔 관리(Public Subnet 추정, VPC/Subnet은 IaC 없이 콘솔 관리)", evidence: "ops/deployment/aws/deploy-backend-blue-green-v1.sh" },
   tgBlue: { role: "Blue Deployment Group Target Group", runtime: "Health Check: /actuator/health/readiness", connectedTo: "ALB, Blue EC2 #1/#2", network: "App Security Group", evidence: "deploy-backend-blue-green-v1.sh" },
   tgGreen: { role: "Green Deployment Group Target Group", runtime: "Health Check: /actuator/health/readiness", connectedTo: "ALB, Green EC2 #1/#2", network: "App Security Group", evidence: "deploy-backend-blue-green-v1.sh" },
   blue1: { role: "Web/API + STOMP + Kafka Consumer(같은 프로세스)", runtime: "Spring Boot Application, Docker 컨테이너(SSM으로 배포)", connectedTo: "RDS, Valkey, Kafka, S3, OpenAI, PortOne, SMTP, Prometheus, CloudWatch", network: "App Security Group(ALB/Monitoring SG만 허용), Public Subnet 2a", evidence: "ChatModerationConsumer.java, deploy-backend-v1.sh" },
@@ -573,9 +573,9 @@ const fullArchitectureNodeDetails = {
   ecr: { role: "컨테이너 이미지 저장소", runtime: "—", connectedTo: "SSM Run Command", network: "—", evidence: "push-image-to-ecr-v1.sh" },
   ssm: { role: "무중단 배포 실행 — 비활성(Standby) Blue/Green 그룹에만 배포", runtime: "AWS-RunShellScript 문서", connectedTo: "Blue/Green EC2, Parameter Store", network: "—", evidence: "run-ssm-backend-deploy-v1.sh" },
   paramstore: { role: "애플리케이션 Secret 원천(DB/Redis/Kafka/OpenAI/PortOne/Mail 등)", runtime: "SSM Run Command가 배포 시점에 fetch_parameter()로 조회", connectedTo: "SSM Run Command", network: "—", evidence: "deploy-backend-v1.sh:fetch_parameter" },
-  prometheus: { role: "메트릭 수집", runtime: "Actuator Prometheus Export, Monitoring EC2 위 Docker Compose(Grafana와 같은 EC2)", connectedTo: "Application, Grafana", network: "—", evidence: "monitoring/docker-compose.yml" },
-  grafana: { role: "메트릭 대시보드 + 알림 규칙", runtime: "Monitoring EC2 위 Docker Compose(Prometheus와 같은 EC2)", connectedTo: "Prometheus, Slack", network: "—", evidence: "monitoring/grafana/dashboards, provisioning/alerting" },
-  slack: { role: "Grafana 알림 수신 채널 — 앱 코드가 직접 연동하지 않는다", runtime: "Webhook(GRAFANA_SLACK_WEBHOOK_URL)", connectedTo: "Grafana", network: "External", evidence: "monitoring/grafana/provisioning/alerting/contact-points.yml" },
+  prometheus: { role: "메트릭 수집", runtime: "Actuator Prometheus Export, Monitoring EC2 위 Docker Compose(Grafana와 같은 EC2)", connectedTo: "Application, Grafana", network: "—", evidence: "ops/monitoring/docker-compose.yml" },
+  grafana: { role: "메트릭 대시보드 + 알림 규칙", runtime: "Monitoring EC2 위 Docker Compose(Prometheus와 같은 EC2)", connectedTo: "Prometheus, Slack", network: "—", evidence: "ops/monitoring/grafana/dashboards, provisioning/alerting" },
+  slack: { role: "Grafana 알림 수신 채널 — 앱 코드가 직접 연동하지 않는다", runtime: "Webhook(GRAFANA_SLACK_WEBHOOK_URL)", connectedTo: "Grafana", network: "External", evidence: "ops/monitoring/grafana/provisioning/alerting/contact-points.yml" },
   cloudwatch: { role: "애플리케이션 로그 저장 — 메트릭 도구가 아니다(메트릭은 Prometheus/Grafana)", runtime: "awslogs Docker log driver", connectedTo: "Application", network: "—", evidence: "deploy-backend-v1.sh(--log-driver=awslogs)" }
 };
 /* 전체 인프라 구성도 — Node를 아무것도 클릭하지 않은 기본 상태에서 4개 그룹을 순서대로 계속

@@ -17,11 +17,11 @@
 ## 배포
 
 ```bash
-cp /opt/bobfull-monitoring/repo/monitoring/.env.example /opt/bobfull-monitoring/.env
+cp /opt/bobfull-monitoring/repo/ops/monitoring/.env.example /opt/bobfull-monitoring/.env
 vi /opt/bobfull-monitoring/.env
 docker compose \
   --env-file /opt/bobfull-monitoring/.env \
-  -f /opt/bobfull-monitoring/repo/monitoring/docker-compose.yml \
+  -f /opt/bobfull-monitoring/repo/ops/monitoring/docker-compose.yml \
   up -d
 ```
 
@@ -48,14 +48,14 @@ Monitoring EC2 최초 구성 때는 env 파일에 현재 Active 2대의 초기�
 
 ```text
 BACKEND_MONITORING_ENV_FILE=/opt/bobfull-monitoring/.env
-BACKEND_MONITORING_COMPOSE_DIR=/opt/bobfull-monitoring/repo/monitoring
+BACKEND_MONITORING_COMPOSE_DIR=/opt/bobfull-monitoring/repo/ops/monitoring
 ```
 
 ```text
 BOBFULL_BACKEND_METRICS_TARGETS=10.0.1.10:8080,10.0.1.11:8080
 ```
 
-이후 Blue-Green 배포에서는 `scripts/aws/deploy-backend-blue-green-v1.sh`가 ALB 전환과 public 검증 이후 새 Active Target Group의 EC2 private IP 2개를 조회하고, Monitoring EC2에 SSM 명령을 보내 다음을 자동 수행한다.
+이후 Blue-Green 배포에서는 `ops/deployment/aws/deploy-backend-blue-green-v1.sh`가 ALB 전환과 public 검증 이후 새 Active Target Group의 EC2 private IP 2개를 조회하고, Monitoring EC2에 SSM 명령을 보내 다음을 자동 수행한다.
 
 1. Monitoring EC2의 `BACKEND_MONITORING_ENV_FILE`에서 `BOBFULL_BACKEND_METRICS_TARGETS`를 새 Active 2대로 갱신한다.
 2. Prometheus 컨테이너 내부 file_sd target 파일(`/tmp/prometheus-targets/bobfull-backend.yml`)을 같은 값으로 갱신한다.
@@ -202,7 +202,7 @@ hikaricp_connections_max{job="bobfull-backend"}
 
 ## Alert 기준
 
-- 운영 Alert는 `monitoring/grafana/provisioning/alerting/alert-rules.yml`에서 관리하며, 각 Rule은 `slack-monitoring` Contact Point로 연결한다.
+- 운영 Alert는 `ops/monitoring/grafana/provisioning/alerting/alert-rules.yml`에서 관리하며, 각 Rule은 `slack-monitoring` Contact Point로 연결한다.
 - Prometheus Alert Rule은 별도로 로드하지 않는다. 동일 조건을 Prometheus와 Grafana 양쪽에서 중복 평가하지 않기 위함이다.
 - 1순위 비즈니스 사건과 `PAYMENT_WEBHOOK_PERMANENT_FAILURE`는 5분 안에 1건 이상 발생하면 즉시 확인한다.
 - `LOGIN_FAILED`, `AUTH_REISSUE_FAILED`, `IMAGE_STORAGE_REQUEST_FAILED`, `RECRUITMENT_DEADLINE_FAILED`, p95, 오류율, JVM Heap, DB Connection Pending은 초기 검증용 임계치로 시작하고 실제 AWS 기준 데이터 측정 후 조정한다.

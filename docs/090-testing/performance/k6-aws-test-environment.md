@@ -73,7 +73,7 @@ k6 실행 시 `BASE_URL`을 테스트 EC2 주소로 지정한다.
 k6 run \
   -e STAGE=smoke \
   -e BASE_URL=http://<test-ec2-public-ip>:8080 \
-  k6/scenarios/restaurant-search.js
+  ops/load-test/scenarios/restaurant-search.js
 ```
 
 Load 예시:
@@ -82,10 +82,10 @@ Load 예시:
 k6 run \
   -e STAGE=load \
   -e BASE_URL=http://<test-ec2-public-ip>:8080 \
-  k6/scenarios/restaurant-search.js
+  ops/load-test/scenarios/restaurant-search.js
 ```
 
-`k6/common/config.js`는 실행 시 전달한 `BASE_URL`을 우선 사용하고, 미지정 시 `http://localhost:8080`을 사용한다.
+`ops/load-test/common/config.js`는 실행 시 전달한 `BASE_URL`을 우선 사용하고, 미지정 시 `http://localhost:8080`을 사용한다.
 
 ## 테스트 데이터
 

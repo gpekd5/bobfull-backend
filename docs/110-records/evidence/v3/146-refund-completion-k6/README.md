@@ -29,7 +29,7 @@
 - MySQL: Test RDS(`bobfull_test` 스키마), 버전 미확인 — `#235`와 동일한 기존 한계
 - DB Connection Pool: HikariCP `maximum-pool-size=10`(`#142`/`#235`와 동일, 이번 측정에서 별도로 늘리지 않음)
 - Redis: 인스턴스 로컬 docker 컨테이너(운영 ElastiCache와 별도, `#146` 측정 중 확인됨) — 환불 완료 경로는 Redis에 의존하지 않아 이번 측정과 무관
-- 모니터링: 로컬 Prometheus(`monitoring/docker-compose.yml`)가 `http://15.164.234.170:8080/actuator/prometheus`를 15초 간격으로 직접 스크래핑(`#235`와 동일 방식)
+- 모니터링: 로컬 Prometheus(`ops/monitoring/docker-compose.yml`)가 `http://15.164.234.170:8080/actuator/prometheus`를 15초 간격으로 직접 스크래핑(`#235`와 동일 방식)
 - 테스트 데이터 규모: 시나리오별 `setup()`이 그때그때 만드는 합성 데이터(수백~천 건, 대량 사전 시딩 없음) — 정확한 수치는 §4 표 참고
 - H2 vs MySQL: 이 문서의 모든 수치는 실제 MySQL(AWS) 기준이다. H2는 이번 측정에 사용하지 않았고, PR #250의 유닛/통합 테스트(회귀 검증)에서만 사용했다.
 
@@ -175,7 +175,7 @@ Issue 본문 "Spring Event 전환 최소 성능 악화 기준"(Human 확정 계�
 
 ```bash
 # 로컬 Prometheus를 AWS 인스턴스에 연결(모니터링 준비)
-cd monitoring
+cd ops/monitoring
 BOBFULL_BACKEND_METRICS_TARGET=15.164.234.170:8080 \
   GRAFANA_ADMIN_PASSWORD=<placeholder> GRAFANA_SLACK_WEBHOOK_URL=<placeholder> GRAFANA_SLACK_RECIPIENT=<placeholder> \
   docker compose up -d prometheus
@@ -184,19 +184,19 @@ BOBFULL_BACKEND_METRICS_TARGET=15.164.234.170:8080 \
 k6 run -e STAGE=load -e BASE_URL=http://15.164.234.170:8080 \
   -e PORTONE_WEBHOOK_SECRET="<실제 배포 환경의 webhook secret>" \
   -e LOAD_DURATION=15s -e LOAD_RATE=20 -e RESERVATION_POOL_SIZE=350 -e SETUP_TIMEOUT=1200s \
-  k6/scenarios/refund-completion-baseline.js
+  ops/load-test/scenarios/refund-completion-baseline.js
 
 k6 run -e STAGE=load -e BASE_URL=http://15.164.234.170:8080 \
   -e PORTONE_WEBHOOK_SECRET="<실제 배포 환경의 webhook secret>" \
   -e LOAD_DURATION=30s -e LOAD_RATE=20 -e RESERVATION_POOL_SIZE=700 -e SETUP_TIMEOUT=1800s \
   --summary-export=A-result.json \
-  k6/scenarios/refund-completion-baseline.js
+  ops/load-test/scenarios/refund-completion-baseline.js
 
 # 시나리오 D 지연값 sweep 예시(100/300/500/1000ms)
 k6 run -e STAGE=load -e RESERVATION_COMPLETION_DELAY_MS=1000 -e RESERVATION_POOL_SIZE=700 \
   -e LOAD_DURATION=30s -e SETUP_TIMEOUT=1800s -e BASE_URL=http://15.164.234.170:8080 \
   -e PORTONE_WEBHOOK_SECRET="<실제 배포 환경의 webhook secret>" \
-  k6/scenarios/refund-completion-delay-injection.js
+  ops/load-test/scenarios/refund-completion-delay-injection.js
 
 # 시나리오 F는 -e PORTONE_EXTERNAL_DELAY_MS 또는 -e PORTONE_EXTERNAL_RESULT=TIMEOUT|CONNECTION_RESET 로 변경해 반복 실행
 ```

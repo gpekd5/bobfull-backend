@@ -491,7 +491,7 @@ EC2 배포
 
 ## 16. AI 활용 규칙
 
-- AI의 작업 가능 범위는 `AGENTS.md`, `docs/060-ai/ai-workflow.md`, `docs/060-ai/ai-implementation-guide.md`를 따른다.
+- AI의 작업 가능 범위는 `AGENTS.md`, `docs/060-ai/workflow/ai-workflow.md`, `docs/060-ai/development/ai-implementation-guide.md`를 따른다.
 - Human이 `READY`로 승인한 Issue에서는 AI가 구현 계획, 코드, 테스트, 검증, 문서와 Draft PR을 작성할 수 있다.
 - AI가 생성한 코드와 테스트는 담당자가 실제 Diff와 실행 결과를 확인하고 설명할 수 있어야 한다.
 - AI가 사용된 작업과 Human이 직접 확인한 범위는 PR 템플릿에 간단히 기록한다.

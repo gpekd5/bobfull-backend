@@ -117,7 +117,7 @@
 /bobfull/prod/s3-image-get-url-expiration
 ```
 
-Parameter Store 이름은 kebab-case로 저장하고, `scripts/aws/deploy-backend-v1.sh`가 컨테이너 실행 시 `DB_URL`, `JWT_SECRET`, `CORS_ALLOWED_ORIGINS`, `S3_IMAGE_BUCKET` 같은 대문자 환경변수 이름으로 변환한다. Restaurant Feedback Insight의 Parameter Store 자동 주입은 현재 `restaurant-insight-ai-enabled`와 `kafka-restaurant-insight-consumer-enabled` 두 개만 지원한다.
+Parameter Store 이름은 kebab-case로 저장하고, `ops/deployment/aws/deploy-backend-v1.sh`가 컨테이너 실행 시 `DB_URL`, `JWT_SECRET`, `CORS_ALLOWED_ORIGINS`, `S3_IMAGE_BUCKET` 같은 대문자 환경변수 이름으로 변환한다. Restaurant Feedback Insight의 Parameter Store 자동 주입은 현재 `restaurant-insight-ai-enabled`와 `kafka-restaurant-insight-consumer-enabled` 두 개만 지원한다.
 
 `application-prod.yml`에는 `KAFKA_RESTAURANT_INSIGHT_GROUP_ID`, `KAFKA_RESTAURANT_INSIGHT_DLT_TOPIC` 자리표시자가 있어 직접 컨테이너 환경변수로 주입하면 값을 바꿀 수 있다. 다만 현재 배포 스크립트의 `/bobfull/prod/...` Parameter Store 자동 주입 항목은 아니다. Restaurant Insight retry는 현재 `RestaurantInsightConsumerConfig`의 application property 기본값(max attempts `3`, retry backoff `1000ms`)을 사용하며, 별도 prod Parameter Store 매핑은 제공하지 않는다.
 
@@ -141,7 +141,7 @@ Parameter Store 이름은 kebab-case로 저장하고, `scripts/aws/deploy-backen
 - Prometheus는 `BOBFULL_BACKEND_METRICS_TARGETS`로 `bobfull-backend` file_sd target을 만들고, Blue-Green 배포 성공 후 GitHub Actions가 Monitoring EC2에 SSM 명령을 보내 새 Active EC2 2대의 private IP로 target을 갱신한 뒤 `/-/reload`를 호출한다. 운영에서 env 파일과 compose/config 경로가 분리될 수 있으므로 env 파일은 `BACKEND_MONITORING_ENV_FILE`, compose/config 위치는 `BACKEND_MONITORING_COMPOSE_DIR`로 각각 받는다.
 - App EC2 보안 그룹은 Monitoring EC2 보안 그룹에서 들어오는 `8080` 접근만 허용한다. Grafana 외부 접속 포트(`3000`)는 운영 접근 주체로 제한한다.
 - Slack Alert Contact Point는 실제 모니터링 채널 Webhook URL을 `BACKEND_MONITORING_ENV_FILE` 경로의 env 파일 또는 운영 비밀 저장소로 주입하고, 배포 직후 Grafana Contact Point `Test` 수신을 확인한다.
-- Prometheus/Grafana 구성 파일은 `monitoring/` 아래에 두며, 상세 실행·검증·장애 대응 기준은 [monitoring-runbook.md](../080-operations/monitoring-runbook.md)를 따른다.
+- Prometheus/Grafana 구성 파일은 `ops/monitoring/` 아래에 두며, 상세 실행·검증·장애 대응 기준은 [monitoring-runbook.md](../080-operations/monitoring-runbook.md)를 따른다.
 - 초기 Alert Rule 임계값은 테스트 기준으로 시작한다. p95, 오류율, 로그인 실패 임계값은 실제 AWS 단일 App EC2 k6 기준선 측정 후 [monitoring-baseline-template.md](../120-templates/monitoring-baseline-template.md)에 기록한 값으로 조정한다.
 
 ## GitHub Actions 백엔드 CI와 CD
@@ -259,7 +259,7 @@ Monitoring EC2 실제 운영 경로 예시:
 
 ```text
 BACKEND_MONITORING_ENV_FILE=/opt/bobfull-monitoring/.env
-BACKEND_MONITORING_COMPOSE_DIR=/opt/bobfull-monitoring/repo/monitoring
+BACKEND_MONITORING_COMPOSE_DIR=/opt/bobfull-monitoring/repo/ops/monitoring
 ```
 
 현재 구현은 `BACKEND_PREVIOUS_ENV_KEEP_SECONDS` 동안 GitHub Actions job 안에서 정해진 시간만큼 `sleep`으로 대기한다. 구조가 단순하고 배포 직후 롤백 가능한 시간이 한 workflow 로그에 남는 장점이 있다. 다만 workflow 점유 시간이 운영상 부담되면 후속으로 EventBridge Scheduler 또는 별도 수동 cleanup workflow를 검토한다.
@@ -384,7 +384,7 @@ aws ssm put-parameter \
 http://localhost:5173,http://<frontend-bucket>.s3-website.ap-northeast-2.amazonaws.com
 ```
 
-Origin에는 path를 넣지 않고 scheme, host, port까지만 기록한다. 값을 바꾼 뒤에는 EC2에서 `scripts/aws/deploy-backend-v1.sh`를 다시 실행해 env-file에 `CORS_ALLOWED_ORIGINS`가 기록된 컨테이너로 교체한다.
+Origin에는 path를 넣지 않고 scheme, host, port까지만 기록한다. 값을 바꾼 뒤에는 EC2에서 `ops/deployment/aws/deploy-backend-v1.sh`를 다시 실행해 env-file에 `CORS_ALLOWED_ORIGINS`가 기록된 컨테이너로 교체한다.
 
 ## AWS 리소스 이름 기준
 

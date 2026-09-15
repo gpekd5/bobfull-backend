@@ -252,7 +252,7 @@ API 명세의 운영 요구사항은 요청 ID(MDC), 인증 사용자 ID, API �
 | 항목 | 최종 문서 상태 | 근거와 한계 |
 |---|---|---|
 | ALB / Active App EC2 | ALB 뒤 Active App EC2 2대에서 한 App 장애 시 다른 App이 요청을 처리하는 구조를 검증 | #169 Evidence. RDS·Redis·Kafka 장애까지 포함한 전체 시스템 HA가 아니다. |
-| Blue-Green | 비활성 Target Group EC2 2대에 배포 후 health/public 검증, ALB weight 전환, 실패 시 이전 Target Group으로 되돌리는 조건 유지 | `scripts/aws/deploy-backend-blue-green-v1.sh`, #169/#191 Evidence |
+| Blue-Green | 비활성 Target Group EC2 2대에 배포 후 health/public 검증, ALB weight 전환, 실패 시 이전 Target Group으로 되돌리는 조건 유지 | `ops/deployment/aws/deploy-backend-blue-green-v1.sh`, #169/#191 Evidence |
 | Inactive EC2 | 평상시 STOP, 배포 시 START, 검증·rollback window 뒤 guard 조건에서 이전 active STOP | #191 Evidence. API 응답 개선의 단일 원인으로 해석하지 않는다. |
 | Hikari Connection Pool | prod 기본값은 `DB_POOL_MAX_SIZE` 미지정 시 10, #191 검증 기준값은 12 | Pool 12 환경에서 개선 경향이 재현됐지만, 성능 개선의 단일 원인으로 주장하지 않는다. |
 | Redis | 인증 상태, 식당 검색 Cache, 채팅 Pub/Sub 공유 인프라 | Redis Pub/Sub은 실시간 전달만 담당하며 메시지를 저장하거나 다시 보내주지 않는다. |

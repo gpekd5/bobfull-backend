@@ -15,7 +15,7 @@ on:
       - 'gradle/**'
       - 'gradlew'
       - 'lambda/**'
-      - 'scripts/aws/**'
+      - 'ops/deployment/aws/**'
       - 'src/**'
 
 concurrency:

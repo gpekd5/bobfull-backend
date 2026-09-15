@@ -11,7 +11,7 @@
 | [`030-data`](030-data/erd.md) | 관계형 데이터 모델과 migration 기록 |
 | [`040-architecture`](040-architecture/architecture.md) | 논리 아키텍처, 도메인 의존성, ADR |
 | [`050-engineering`](050-engineering/code-convention.md) | 코드, 테스트, GitHub, Issue 규칙 |
-| [`060-ai`](060-ai/ai-workflow.md) | AI 협업 절차, 구현/리뷰 가이드 |
+| [`060-ai`](060-ai/workflow/ai-workflow.md) | AI 협업 절차, 구현/리뷰 가이드 |
 | [`070-deployment`](070-deployment/aws-v1-backend.md) | AWS 배포, CI/CD, Blue-Green, 배포 설정 기준 |
 | [`080-operations`](080-operations/monitoring-runbook.md) | 배포 이후 모니터링, 환불 정합성 등 운영 대응 절차 |
 | [`090-testing`](090-testing/performance/k6-aws-test-environment.md) | 성능 테스트 환경과 k6 실행 기준 |
@@ -34,7 +34,7 @@
 문서 이동이나 이름 변경 뒤에는 Markdown 상대 링크를 검사한다.
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File scripts\docs\check-markdown-links.ps1
+powershell.exe -ExecutionPolicy Bypass -File ops\tools\check-markdown-links.ps1
 ```
 
 검사 대상은 Markdown 본문 링크이며 fenced code block과 inline code 안의 예시는 제외한다.

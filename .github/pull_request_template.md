@@ -11,7 +11,7 @@
 - 검토 수준: `기본 | 강화`
 - 운영 모드: `V3 Sprint Mode`
 
-<!-- Draft PR 생성 직후 해당 PR을 구현한 담당 AI가 별도 Human 명령 없이 skills/bobfull-pr-review/SKILL.md를 적용해 최신 Head를 독립 리뷰 패스로 검토하고 PR 댓글을 남깁니다. GitHub Copilot은 필수 구성요소가 아닙니다. -->
+<!-- Draft PR 생성 직후 해당 PR을 구현한 담당 AI가 별도 Human 명령 없이 docs/060-ai/tasks/bobfull-pr-review/TASK.md를 적용해 최신 Head를 독립 리뷰 패스로 검토하고 PR 댓글을 남깁니다. GitHub Copilot은 필수 구성요소가 아닙니다. -->
 
 ## PR 이해 요약
 
@@ -192,7 +192,7 @@ Refactor Learning Mode의 구조 변경·동작 보존 Evidence는 작성합니�
 
 ### 담당 구현 AI Review·반영 기록
 
-- Review Skill: `skills/bobfull-pr-review/SKILL.md`
+- Review Task Guide: `docs/060-ai/tasks/bobfull-pr-review/TASK.md`
 - 최신 Review 기준 Head:
 - 최신 판정: `MERGEABLE | BLOCK | 미실행`
 - 최신 PR Review 댓글:

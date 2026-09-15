@@ -53,7 +53,7 @@ Draft PR 생성 또는 담당 구현 AI의 새 Push
 - `PR #번호 검토하라`는 자동 Review의 선행 조건이 아니라, Human이 재검토·외부 Review 반영·추가 수정 검토를 명시적으로 요청할 때 쓰는 수동 진입점이다.
 - BLOCKER와 MAJOR만 Merge를 차단한다. MINOR와 SUGGESTION은 기록하되 단독으로 Merge를 막지 않는다.
 - 자동 AI Review는 정책·API 계약·DB/상태 모델·권한/보안·트랜잭션 경계의 Human 판단이나 최종 Merge를 대체하지 않는다.
-- 현재 Merge Gate는 `.github/pull_request_template.md`, 최신 Head AI Review와 중요도 판정은 `skills/bobfull-pr-review/SKILL.md`를 따른다.
+- 현재 Merge Gate는 `.github/pull_request_template.md`, 최신 Head AI Review와 중요도 판정은 `docs/060-ai/tasks/bobfull-pr-review/TASK.md`를 따른다.
 
 ### 초기 저장소 설정 예외
 
@@ -158,7 +158,7 @@ asdfasdf
 
 - 새 Issue 제목은 `docs/050-engineering/issue-title-rules.md`의 범위·유형 규칙을 따른다.
 - `blank_issues_enabled: false`는 GitHub 웹 UI에서 빈 Issue 생성을 막아 템플릿 사용을 유도하는 최소 가드레일이다. CLI·API·자동화 도구의 제목·본문 형식까지 검증하거나 완전히 강제하지는 않는다.
-- AI는 `새 Issue 초안 작성하라`로 작업 성격에 맞는 Issue template의 전체 구조를 먼저 제시하며, Human이 `이 초안으로 Issue 생성하라`고 승인한 경우에만 생성한다. 일반 기능·문서·설정·단순 리팩토링 작업은 `.github/ISSUE_TEMPLATE/feature.md`를 사용하고, `docs/060-ai/ai-workflow.md`의 Refactor Learning Mode에 해당하는 의미 있는 리팩토링은 `.github/ISSUE_TEMPLATE/refactor.md`를 사용한다.
+- AI는 `새 Issue 초안 작성하라`로 작업 성격에 맞는 Issue template의 전체 구조를 먼저 제시하며, Human이 `이 초안으로 Issue 생성하라`고 승인한 경우에만 생성한다. 일반 기능·문서·설정·단순 리팩토링 작업은 `.github/ISSUE_TEMPLATE/feature.md`를 사용하고, `docs/060-ai/workflow/ai-workflow.md`의 Refactor Learning Mode에 해당하는 의미 있는 리팩토링은 `.github/ISSUE_TEMPLATE/refactor.md`를 사용한다.
 
 ### Draft PR 생성
 

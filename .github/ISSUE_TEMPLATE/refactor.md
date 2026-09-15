@@ -8,7 +8,7 @@ assignees: ""
 
 <!--
 Issue 제목은 docs/050-engineering/issue-title-rules.md의 [v1 | v2 | v3 | project][유형] 작업 내용 형식을 따릅니다.
-Refactor Learning Mode의 단일 기준 정의는 docs/060-ai/ai-workflow.md를 따릅니다.
+Refactor Learning Mode의 단일 기준 정의는 docs/060-ai/workflow/ai-workflow.md를 따릅니다.
 현재 실행 상태의 유일한 기준은 GitHub `status:*` Label입니다.
 Issue 본문의 상태 문자열은 현재 상태로 사용하지 않습니다.
 AI는 상태 전환 전 기존 `status:*` Label을 모두 제거하고 새 Label 하나만 적용합니다.
