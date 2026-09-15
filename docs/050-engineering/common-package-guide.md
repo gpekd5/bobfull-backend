@@ -7,7 +7,7 @@ common은 여러 기능이 실제로 공유하는 최소 기반만 소유한다.
 
 ## 1. 현재 common 구성
 
-현재 `src/main/java/com/bobfull/common`에는 18개 production Java 파일이 있다.
+현재 common은 다음 공통 기반으로 구성된다.
 
 | Package | 제공 기반 | 현재 class | 사용하는 쪽 |
 |---|---|---|---|
@@ -35,7 +35,9 @@ Controller의 성공 응답은 `ApiResponse.success(data)`로 감싼다.
 public ApiResponse<ReservationResponse> getReservation(
         @PathVariable Long reservationId
 ) {
-    return ApiResponse.success(reservationService.getReservation(reservationId));
+    ReservationResult result = reservationQueryService.getReservation(reservationId);
+
+    return ApiResponse.success(ReservationResponse.from(result));
 }
 ```
 
@@ -46,9 +48,10 @@ public ApiResponse<ReservationResponse> getReservation(
 Spring Data `Page<T>`를 API paging 계약으로 변환할 때 `PageResponse.from(page)`를 사용한다.
 
 ```java
-Page<ReservationResponse> page = reservationQueryService.getReservations(pageable);
+Page<ReservationResult> results = reservationQueryService.getReservations(pageable);
+Page<ReservationResponse> responses = results.map(ReservationResponse::from);
 
-return ApiResponse.success(PageResponse.from(page));
+return ApiResponse.success(PageResponse.from(responses));
 ```
 
 `PageResponse`는 `content`, `page`, `size`, `totalElements`, `totalPages`를 제공한다. paging 필드 의미는 API 명세를 따른다.
