@@ -41,7 +41,7 @@ DB와 Entity의 절대 시각은 UTC 기반 `Instant`로 저장한다. API 응�
 
 ## 검증 방법
 
-고정 `Clock` 주입 시 감사 시각과 시간 의존 결과가 같은 기준 시각을 사용하는지 검증한다. 공통 구현 골격은 [common-skeleton-guide.md](../../050-engineering/common-skeleton-guide.md)와 [code-convention.md](../../050-engineering/code-convention.md)를 따른다.
+고정 `Clock` 주입 시 감사 시각과 시간 의존 결과가 같은 기준 시각을 사용하는지 검증한다. 공통 package 사용 방법은 [common-package-guide.md](../../050-engineering/common-package-guide.md), 코드 작성 규칙은 [code-convention.md](../../050-engineering/code-convention.md)를 따른다.
 
 ## 재검토 조건
 

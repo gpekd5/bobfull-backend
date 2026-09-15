@@ -6,35 +6,42 @@
 - Repository와 Java package의 구조적 배경·소유권은 [project-structure.md](../040-architecture/project-structure.md)를 따른다.
 - API, DB, 정책, 권한과 트랜잭션의 동작 계약은 각 기준 문서를 따른다.
 - Java 일반 스타일은 [NAVER CAMPUS HACKDAY Java 코딩 컨벤션](https://naver.github.io/hackday-conventions-java/)을 기본으로 하며, 충돌하면 이 문서의 BobFull 규칙을 우선한다.
-- [common-skeleton-guide.md](common-skeleton-guide.md)는 이 규칙을 새 기능 코드 형태로 보여주는 예시 문서이며 규칙을 재정의하지 않는다.
+- [common-package-guide.md](common-package-guide.md)는 `com.bobfull.common`이 제공하는 공통 기반과 사용 방법을 설명하며 이 규칙을 재정의하지 않는다.
 
 모든 타입을 같은 형태로 만들지 않는다. 먼저 소유 domain, layer와 실제 책임을 확인하고 **동일한 책임에 동일한 이름과 작성 방식**을 적용한다. 책임 분리나 의존 방향 변경이 필요한 코드는 이름만 바꾸지 않고 Issue #20 범위로 남긴다.
 
 ## Quick Reference
 
-| 역할 | 기본 package | 이름 | 기본 형태·Annotation |
+| Layer | Package | 역할 | Naming | 기본 형태 / Annotation |
+|---|---|---|---|---|
+| Presentation | `presentation/controller` | HTTP 진입과 요청·응답 변환 | `*Controller` | `@RestController`, `@RequestMapping`, `@RequiredArgsConstructor` |
+| Presentation | `presentation/request` | 외부 HTTP 입력 계약 | `*Request` | `record`, Bean Validation |
+| Presentation | `presentation/response` | 외부 HTTP 출력 계약 | `*Response` | `record` |
+| Application | `application/service` | Use case 진입과 orchestration | `*Service`, `*QueryService`, `*CommandService`, `*TransactionService` | `@Service`, `@RequiredArgsConstructor`, 책임에 맞는 `@Transactional` |
+| Application | `application/command` | 특정 Use case 입력 계약 | `*Command` | `record` |
+| Application | `application/result` | 특정 Use case 출력 계약 | `*Result` | `record` |
+| Application | `application/model` | Use case 입출력에 종속되지 않는 재사용 개념 | 실제 책임명 | 목적에 맞는 불변 타입 우선 |
+| Application | `application/port` | Application이 요구하는 외부 경계 | `*Port` | 작은 책임의 interface |
+| Domain | `domain/entity` | 상태와 invariant를 가진 Domain Entity | 실제 domain 이름 | `@Entity`, `@Table`, `@Getter`, protected no-arg constructor |
+| Domain | `domain/policy` | 비즈니스 규칙과 판단 기준 | `*Policy` | 필요 시 `@Component` |
+| Domain | `domain/exception` | Domain/API 비즈니스 오류 계약 | `*ErrorCode` | `BaseErrorCode`, `@Getter`, `@RequiredArgsConstructor` |
+| Infrastructure | `infrastructure/repository` | 기본 persistence와 Spring Data 파생 query | `*Repository` | Spring Data JPA interface |
+| Infrastructure | `infrastructure/repository/query` | 복잡 조회와 QueryDSL | `*QueryRepository`, `*SearchRepository` 등 | 책임 interface + 동일 이름 `Impl` |
+| Infrastructure | `infrastructure/<technology>` | Application Port의 기술·외부 시스템 구현 | `*Adapter` | 필요 시 `@Component`, `@RequiredArgsConstructor` |
+
+### 역할별 예외
+
+다음 역할은 고정 package를 만들지 않고 실제 책임을 소유하는 layer와 기능별 기술 package에 둔다.
+
+| 역할 | 위치 기준 | Naming | 기본 형태 / Annotation |
 |---|---|---|---|
-| HTTP 입력 | `presentation/request` | `*Request` | `record`, Bean Validation |
-| HTTP 출력 | `presentation/response` | `*Response` | `record` |
-| Use case 입력 | `application/command` | `*Command` | `record` |
-| Use case 출력 | `application/result` | `*Result` | `record` |
-| 재사용 Application 개념 | `application/model` | 실제 책임명 | 목적에 맞는 불변 타입 우선 |
-| HTTP 진입점 | `presentation/controller` | `*Controller` | `@RestController`, `@RequestMapping`, `@RequiredArgsConstructor` |
-| Use case 진입·조합 | `application/service` | `*Service`, `*QueryService`, `*CommandService`, `*TransactionService` | `@Service`, `@RequiredArgsConstructor`, 책임에 맞는 `@Transactional` |
-| 처리 단계 | 소유 layer | `*Processor` | 반복 처리·상태 전이·delivery 단계 |
-| 계산 | 소유 layer | `*Calculator` | 계산 결과 생성 |
-| 규칙·판단 | 주로 `domain/policy` | `*Policy` | 비즈니스 규칙과 판단 기준 |
-| 사전조건 검증 | 소유 layer | `*Validator` | 입력·상태·조건 검증 |
-| Application 외부 경계 | `application/port` | `*Port` | 작은 책임의 interface |
-| Port 구현 | `infrastructure`의 기술 package | `*Adapter` | 필요 시 `@Component`, constructor injection |
-| 기본 persistence | `infrastructure/repository` | `*Repository` | Spring Data JPA interface |
-| 복잡 조회·QueryDSL | `infrastructure/repository/query` | `*QueryRepository`, `*SearchRepository` 등 | 책임 interface + 동일 이름 `Impl` |
-| Domain Entity | `domain/entity` | 실제 domain 이름 | `@Entity`, `@Table`, `@Getter`, protected no-arg constructor |
-| Domain 오류 계약 | `domain/exception` | `*ErrorCode` | `BaseErrorCode`, `@Getter`, `@RequiredArgsConstructor` |
-| 주기 실행 | 소유 infrastructure package | `*Scheduler` | `@Scheduled` 진입점 |
-| 메시지 소비 | 소유 infrastructure package | `*Consumer` | `@KafkaListener` 등 소비 진입점 |
-| Servlet filter | security/web infrastructure | `*Filter` | 실제 Servlet Filter chain 참여 |
-| Framework interceptor | web/websocket infrastructure | `*Interceptor` | 실제 Handler/Channel interceptor |
+| 반복 처리·상태 전이·delivery 단계 | 해당 책임을 소유하는 Application 또는 Infrastructure package | `*Processor` | 특정 처리 단계 담당 |
+| 계산 결과 생성 | 계산 책임을 소유하는 layer | `*Calculator` | 계산 결과 생성 |
+| 입력·상태·조건 검증 | 검증 책임을 소유하는 Application 또는 Domain package | `*Validator` | 입력·상태·조건 검증 |
+| 주기 실행 진입점 | 기능별 Infrastructure package | `*Scheduler` | `@Component`, `@Scheduled` |
+| 메시지 소비 진입점 | Kafka 등 기능별 Infrastructure package | `*Consumer` | `@Component`, `@KafkaListener` 등 |
+| Servlet Filter chain | Security/Web Infrastructure package | `*Filter` | 실제 Servlet Filter 구현 |
+| Framework interceptor | Web/WebSocket Infrastructure package | `*Interceptor` | 실제 Handler/Channel interceptor 구현 |
 
 기능에 해당 책임이 없으면 빈 package를 만들지 않는다. Issue #38에서 확정한 feature-first 구조와 기능별 package 예외는 유지한다.
 
