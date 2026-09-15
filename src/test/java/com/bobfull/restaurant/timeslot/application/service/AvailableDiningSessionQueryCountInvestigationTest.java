@@ -12,7 +12,7 @@ import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
 import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
 import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
-import com.bobfull.restaurant.timeslot.presentation.dto.AvailableDiningSessionListResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.AvailableDiningSessionListResponse;
 import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
 import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import jakarta.persistence.EntityManagerFactory;

@@ -1,6 +1,6 @@
 package com.bobfull.reservation.application.service;
 
-import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldPort;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
@@ -27,7 +27,7 @@ public class AvailableCapacityCalculator {
 
     private final ReservationRepository reservationRepository;
     private final ReservationParticipantRepository reservationParticipantRepository;
-    private final PaymentHoldReader paymentHoldReader;
+    private final PaymentHoldPort paymentHoldReader;
 
     /**
      * {@code CLOSED}(식사 종료로 생명주기가 끝난 예약)가 있으면 참여자 상태와 무관하게 0을

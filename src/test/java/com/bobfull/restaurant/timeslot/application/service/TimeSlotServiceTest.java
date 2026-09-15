@@ -17,7 +17,7 @@ import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.restaurant.timeslot.domain.exception.TimeSlotErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldPort;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
@@ -26,13 +26,13 @@ import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
 import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
 import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
-import com.bobfull.restaurant.timeslot.presentation.dto.AvailableDiningSessionListResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.AvailableDiningSessionResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionBulkRequest;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionBulkResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionIdResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionRequest;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.AvailableDiningSessionListResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.AvailableDiningSessionResponse;
+import com.bobfull.restaurant.timeslot.presentation.request.DiningSessionBulkRequest;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionBulkResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionIdResponse;
+import com.bobfull.restaurant.timeslot.presentation.request.DiningSessionRequest;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionResponse;
 import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
 import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Clock;
@@ -80,7 +80,7 @@ class TimeSlotServiceTest {
     private ReservationParticipantRepository reservationParticipantRepository;
 
     @Mock
-    private PaymentHoldReader paymentHoldReader;
+    private PaymentHoldPort paymentHoldPort;
 
     private TimeSlotService timeSlotService() {
         return new TimeSlotService(
@@ -90,7 +90,7 @@ class TimeSlotServiceTest {
                 timeSlotReservationValidator,
                 reservationRepository,
                 reservationParticipantRepository,
-                paymentHoldReader,
+                paymentHoldPort,
                 FIXED_CLOCK
         );
     }
@@ -299,7 +299,7 @@ class TimeSlotServiceTest {
                 .willReturn(List.of(smallSlot, largeSlot));
         given(reservationRepository.findAllByTimeSlotIdInAndReservationStatusIn(anyCollection(), anyCollection()))
                 .willReturn(List.of());
-        given(paymentHoldReader.sumActiveReadyPartySizeByTimeSlotIds(anyCollection())).willReturn(Map.of());
+        given(paymentHoldPort.sumActiveReadyPartySizeByTimeSlotIds(anyCollection())).willReturn(Map.of());
 
         // when
         AvailableDiningSessionListResponse response = timeSlotService()
@@ -347,7 +347,7 @@ class TimeSlotServiceTest {
                 .willReturn(List.of(closedReservation));
         given(reservationParticipantRepository.sumPartySizeByReservationIdsAndStatuses(eq(List.of(900L)), anyCollection()))
                 .willReturn(List.<Object[]>of(new Object[]{900L, 3}));
-        given(paymentHoldReader.sumActiveReadyPartySizeByTimeSlotIds(anyCollection()))
+        given(paymentHoldPort.sumActiveReadyPartySizeByTimeSlotIds(anyCollection()))
                 .willReturn(Map.of(200L, 1));
 
         // when

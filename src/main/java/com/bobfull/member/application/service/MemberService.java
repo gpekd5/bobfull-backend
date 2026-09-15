@@ -2,11 +2,12 @@ package com.bobfull.member.application.service;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.member.domain.exception.MemberErrorCode;
-import com.bobfull.member.presentation.dto.MemberResponse;
-import com.bobfull.member.presentation.dto.MemberUpdateRequest;
-import com.bobfull.member.presentation.dto.MemberUpdateResponse;
+import com.bobfull.member.presentation.response.MemberResponse;
+import com.bobfull.member.presentation.request.MemberUpdateRequest;
+import com.bobfull.member.presentation.response.MemberUpdateResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,13 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
  * 대상 회원은 SecurityContext의 인증 사용자 ID로만 결정하며 Request 값을 신뢰하지 않는다.
  */
 @Service
+@RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
-
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     @Transactional(readOnly = true)
     public MemberResponse getMe(Long memberId) {

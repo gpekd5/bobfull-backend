@@ -10,7 +10,7 @@ import com.bobfull.payment.application.service.RefundReconciliationProcessor;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.Refund;
 import com.bobfull.payment.domain.entity.RefundStatus;
-import com.bobfull.payment.application.port.PortOneRefundRequester;
+import com.bobfull.payment.application.port.PortOneRefundPort;
 import com.bobfull.payment.infrastructure.repository.RefundRepository;
 import java.time.Clock;
 import java.time.Duration;
@@ -43,7 +43,7 @@ class RefundReconciliationSchedulerTest {
         given(first.getUpdatedAt()).willReturn(now);
         given(second.getUpdatedAt()).willReturn(now);
         doThrow(new IllegalStateException("PortOne timeout")).when(processor).reconcile(first);
-        given(processor.reconcile(second)).willReturn(PortOneRefundRequester.ReconciliationResult.notCompleted());
+        given(processor.reconcile(second)).willReturn(PortOneRefundPort.ReconciliationResult.notCompleted());
         given(first.getId()).willReturn(1L);
         Payment firstPayment = org.mockito.Mockito.mock(Payment.class);
         given(first.getPayment()).willReturn(firstPayment);

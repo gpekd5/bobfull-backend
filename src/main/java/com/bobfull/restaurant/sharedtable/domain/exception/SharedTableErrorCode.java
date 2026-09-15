@@ -1,12 +1,15 @@
 package com.bobfull.restaurant.sharedtable.domain.exception;
 
 import com.bobfull.common.exception.BaseErrorCode;
-
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
  * 합석 테이블 도메인 전용 에러 코드다.
  */
+@Getter
+@RequiredArgsConstructor
 public enum SharedTableErrorCode implements BaseErrorCode {
 
     INVALID_TABLE_CAPACITY(HttpStatus.BAD_REQUEST, "capacity는 2, 4, 6, 8 중 하나여야 합니다."),
@@ -17,23 +20,9 @@ public enum SharedTableErrorCode implements BaseErrorCode {
     private final HttpStatus httpStatus;
     private final String message;
 
-    SharedTableErrorCode(HttpStatus httpStatus, String message) {
-        this.httpStatus = httpStatus;
-        this.message = message;
-    }
-
-    @Override
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
     @Override
     public String getCode() {
         return name();
     }
 
-    @Override
-    public String getMessage() {
-        return message;
-    }
 }

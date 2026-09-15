@@ -6,7 +6,7 @@ import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.restaurant.sharedtable.domain.exception.SharedTableErrorCode;
 import com.bobfull.restaurant.timeslot.domain.exception.TimeSlotErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldPort;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
@@ -17,13 +17,13 @@ import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
 import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
 import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
-import com.bobfull.restaurant.timeslot.presentation.dto.AvailableDiningSessionListResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.AvailableDiningSessionResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionBulkRequest;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionBulkResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionIdResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionRequest;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.AvailableDiningSessionListResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.AvailableDiningSessionResponse;
+import com.bobfull.restaurant.timeslot.presentation.request.DiningSessionBulkRequest;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionBulkResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionIdResponse;
+import com.bobfull.restaurant.timeslot.presentation.request.DiningSessionRequest;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionResponse;
 import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
 import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Clock;
@@ -41,8 +41,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,9 +53,9 @@ import org.springframework.transaction.annotation.Transactional;
  * API에서는 diningSession, 내부 영속 모델에서는 TimeSlot으로 다루는 회차 서비스다.
  */
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class TimeSlotService {
-
-    private static final Logger log = LoggerFactory.getLogger(TimeSlotService.class);
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
     private static final List<ReservationStatus> ACTIVE_RESERVATION_STATUSES =
             List.of(ReservationStatus.RECRUITING, ReservationStatus.CONFIRMED, ReservationStatus.CANCELLING);
@@ -69,28 +69,8 @@ public class TimeSlotService {
     private final TimeSlotReservationValidator timeSlotReservationValidator;
     private final ReservationRepository reservationRepository;
     private final ReservationParticipantRepository reservationParticipantRepository;
-    private final PaymentHoldReader paymentHoldReader;
+    private final PaymentHoldPort paymentHoldPort;
     private final Clock clock;
-
-    public TimeSlotService(
-            TimeSlotRepository timeSlotRepository,
-            SharedTableRepository sharedTableRepository,
-            RestaurantRepository restaurantRepository,
-            TimeSlotReservationValidator timeSlotReservationValidator,
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            PaymentHoldReader paymentHoldReader,
-            Clock clock
-    ) {
-        this.timeSlotRepository = timeSlotRepository;
-        this.sharedTableRepository = sharedTableRepository;
-        this.restaurantRepository = restaurantRepository;
-        this.timeSlotReservationValidator = timeSlotReservationValidator;
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.paymentHoldReader = paymentHoldReader;
-        this.clock = clock;
-    }
 
     @Transactional
     public DiningSessionIdResponse register(Long ownerMemberId, Long tableId, DiningSessionRequest request) {
@@ -270,7 +250,7 @@ public class TimeSlotService {
                         .stream()
                         .collect(Collectors.toMap(row -> (Long) row[0], row -> ((Number) row[1]).intValue()));
 
-        Map<Long, Integer> readyHoldPartySizeByTimeSlotId = paymentHoldReader
+        Map<Long, Integer> readyHoldPartySizeByTimeSlotId = paymentHoldPort
                 .sumActiveReadyPartySizeByTimeSlotIds(timeSlotIds);
 
         return new AvailableDiningSessionBatchContext(

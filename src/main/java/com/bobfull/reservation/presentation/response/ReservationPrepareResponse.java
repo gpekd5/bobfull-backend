@@ -1,6 +1,6 @@
 package com.bobfull.reservation.presentation.response;
 
-import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.application.result.CreateReadyPaymentResult;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;

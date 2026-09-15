@@ -13,7 +13,7 @@ import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.payment.domain.exception.PaymentExpiredException;
-import com.bobfull.payment.application.port.PortOnePaymentReader;
+import com.bobfull.payment.application.port.PortOnePaymentPort;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import java.math.BigDecimal;
 import java.time.Clock;
@@ -31,7 +31,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 class PaymentWebhookCompensationLogTest {
 
     @Mock private PaymentRepository paymentRepository;
-    @Mock private PortOnePaymentReader portOnePaymentReader;
+    @Mock private PortOnePaymentPort portOnePaymentPort;
     @Mock private PaymentCompletionTransactionService transactionService;
     @Mock private BusinessMetricRecorder businessMetricRecorder;
 
@@ -40,13 +40,13 @@ class PaymentWebhookCompensationLogTest {
         Payment payment = Payment.createReady("payment-id", 1L, 2L, null, PaymentPurpose.CREATE, 1,
                 BigDecimal.valueOf(10000), Instant.parse("2026-07-28T00:00:00Z"));
         given(paymentRepository.findByPaymentId("payment-id")).willReturn(Optional.of(payment));
-        given(portOnePaymentReader.read("payment-id"))
-                .willReturn(new PortOnePaymentReader.PortOnePayment("payment-id", true, BigDecimal.valueOf(10000), "KRW"));
+        given(portOnePaymentPort.read("payment-id"))
+                .willReturn(new PortOnePaymentPort.PortOnePayment("payment-id", true, BigDecimal.valueOf(10000), "KRW"));
         given(transactionService.complete("payment-id")).willAnswer(invocation -> {
             ReflectionTestUtils.setField(payment, "status", PaymentStatus.EXPIRED);
             throw new PaymentExpiredException(PaymentStatus.EXPIRED, payment.getExpiresAt());
         });
-        PaymentCompletionService service = new PaymentCompletionService(paymentRepository, portOnePaymentReader,
+        PaymentCompletionService service = new PaymentCompletionService(paymentRepository, portOnePaymentPort,
                 transactionService, Clock.fixed(Instant.parse("2026-07-27T23:59:00Z"), ZoneOffset.UTC),
                 businessMetricRecorder);
         Logger logger = (Logger) LoggerFactory.getLogger(PaymentCompletionService.class);
@@ -74,11 +74,11 @@ class PaymentWebhookCompensationLogTest {
         Payment payment = Payment.createReady("payment-id", 1L, 2L, null, PaymentPurpose.CREATE, 1,
                 BigDecimal.valueOf(10000), Instant.parse("2026-07-28T00:00:00Z"));
         given(paymentRepository.findByPaymentId("payment-id")).willReturn(Optional.of(payment));
-        given(portOnePaymentReader.read("payment-id"))
-                .willReturn(new PortOnePaymentReader.PortOnePayment("payment-id", true, BigDecimal.valueOf(10000), "KRW"));
+        given(portOnePaymentPort.read("payment-id"))
+                .willReturn(new PortOnePaymentPort.PortOnePayment("payment-id", true, BigDecimal.valueOf(10000), "KRW"));
         given(transactionService.complete("payment-id"))
                 .willThrow(new CustomException(PaymentErrorCode.PAYMENT_VERIFICATION_FAILED));
-        PaymentCompletionService service = new PaymentCompletionService(paymentRepository, portOnePaymentReader,
+        PaymentCompletionService service = new PaymentCompletionService(paymentRepository, portOnePaymentPort,
                 transactionService, Clock.fixed(Instant.parse("2026-07-27T23:59:00Z"), ZoneOffset.UTC),
                 businessMetricRecorder);
         Logger logger = (Logger) LoggerFactory.getLogger(PaymentCompletionService.class);
@@ -105,10 +105,10 @@ class PaymentWebhookCompensationLogTest {
         Payment payment = Payment.createReady("payment-id", 1L, 2L, null, PaymentPurpose.CREATE, 1,
                 BigDecimal.valueOf(10000), Instant.parse("2026-07-28T00:00:00Z"));
         given(paymentRepository.findByPaymentId("payment-id")).willReturn(Optional.of(payment));
-        given(portOnePaymentReader.read("payment-id"))
-                .willReturn(new PortOnePaymentReader.PortOnePayment("payment-id", true, BigDecimal.valueOf(10000), "KRW"));
+        given(portOnePaymentPort.read("payment-id"))
+                .willReturn(new PortOnePaymentPort.PortOnePayment("payment-id", true, BigDecimal.valueOf(10000), "KRW"));
         given(transactionService.complete("payment-id")).willThrow(new IllegalStateException("db flush failed"));
-        PaymentCompletionService service = new PaymentCompletionService(paymentRepository, portOnePaymentReader,
+        PaymentCompletionService service = new PaymentCompletionService(paymentRepository, portOnePaymentPort,
                 transactionService, Clock.fixed(Instant.parse("2026-07-27T23:59:00Z"), ZoneOffset.UTC),
                 businessMetricRecorder);
         Logger logger = (Logger) LoggerFactory.getLogger(PaymentCompletionService.class);

@@ -8,9 +8,9 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.member.domain.exception.MemberErrorCode;
-import com.bobfull.member.presentation.dto.MemberResponse;
-import com.bobfull.member.presentation.dto.MemberUpdateRequest;
-import com.bobfull.member.presentation.dto.MemberUpdateResponse;
+import com.bobfull.member.presentation.response.MemberResponse;
+import com.bobfull.member.presentation.request.MemberUpdateRequest;
+import com.bobfull.member.presentation.response.MemberUpdateResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
 import java.util.Optional;

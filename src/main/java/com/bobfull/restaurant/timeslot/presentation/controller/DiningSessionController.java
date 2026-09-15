@@ -3,15 +3,16 @@ package com.bobfull.restaurant.timeslot.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.restaurant.timeslot.presentation.dto.AvailableDiningSessionListResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionBulkRequest;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionBulkResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionIdResponse;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionRequest;
-import com.bobfull.restaurant.timeslot.presentation.dto.DiningSessionResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.AvailableDiningSessionListResponse;
+import com.bobfull.restaurant.timeslot.presentation.request.DiningSessionBulkRequest;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionBulkResponse;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionIdResponse;
+import com.bobfull.restaurant.timeslot.presentation.request.DiningSessionRequest;
+import com.bobfull.restaurant.timeslot.presentation.response.DiningSessionResponse;
 import com.bobfull.restaurant.timeslot.application.service.TimeSlotService;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -29,13 +30,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class DiningSessionController {
 
     private final TimeSlotService timeSlotService;
-
-    public DiningSessionController(TimeSlotService timeSlotService) {
-        this.timeSlotService = timeSlotService;
-    }
 
     @PostMapping("/owner/tables/{tableId}/dining-sessions")
     public ResponseEntity<ApiResponse<DiningSessionIdResponse>> register(
@@ -93,5 +91,4 @@ public class DiningSessionController {
     ) {
         return ApiResponse.success(timeSlotService.delete(authMember.id(), sessionId));
     }
-
 }

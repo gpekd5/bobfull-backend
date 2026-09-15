@@ -8,21 +8,21 @@ import com.bobfull.common.response.PageResponse;
 import com.bobfull.restaurant.restaurant.infrastructure.cache.CachedRestaurantSearchResult;
 import com.bobfull.restaurant.restaurant.infrastructure.cache.RestaurantSearchCacheKey;
 import com.bobfull.restaurant.restaurant.infrastructure.cache.RestaurantSearchCacheStore;
-import com.bobfull.restaurant.restaurant.presentation.dto.OwnerRestaurantDetailResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.OwnerRestaurantListResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantCreateRequest;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantDetailResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantIdResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantSearchRequest;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantSearchResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantUpdateRequest;
+import com.bobfull.restaurant.restaurant.presentation.response.OwnerRestaurantDetailResponse;
+import com.bobfull.restaurant.restaurant.presentation.response.OwnerRestaurantListResponse;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantCreateRequest;
+import com.bobfull.restaurant.restaurant.presentation.response.RestaurantDetailResponse;
+import com.bobfull.restaurant.restaurant.presentation.response.RestaurantIdResponse;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantSearchRequest;
+import com.bobfull.restaurant.restaurant.presentation.response.RestaurantSearchResponse;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantUpdateRequest;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.image.application.service.RestaurantImageService;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
 import java.time.Clock;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -36,26 +36,14 @@ import org.springframework.util.StringUtils;
  * 소유권 대상은 SecurityContext의 인증 사용자 ID로만 결정하며 Request 값을 신뢰하지 않는다.
  */
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class RestaurantService {
-
-    private static final Logger log = LoggerFactory.getLogger(RestaurantService.class);
 
     private final RestaurantRepository restaurantRepository;
     private final Clock clock;
     private final RestaurantImageService restaurantImageService;
     private final RestaurantSearchCacheStore restaurantSearchCacheStore;
-
-    public RestaurantService(
-            RestaurantRepository restaurantRepository,
-            Clock clock,
-            RestaurantImageService restaurantImageService,
-            RestaurantSearchCacheStore restaurantSearchCacheStore
-    ) {
-        this.restaurantRepository = restaurantRepository;
-        this.clock = clock;
-        this.restaurantImageService = restaurantImageService;
-        this.restaurantSearchCacheStore = restaurantSearchCacheStore;
-    }
 
     @Transactional
     public RestaurantIdResponse register(Long ownerMemberId, RestaurantCreateRequest request) {
@@ -94,7 +82,7 @@ public class RestaurantService {
      * 없어도 Hikari Connection을 열고 닫아 동시 요청에서 Pool을 불필요하게 점유한다는 것을
      * 실측으로 확인했다(Issue #62 Evidence "Warm Hit 동시 반복" 참고). Cache Miss 경로에서
      * {@code restaurantRepository.search(...)}가 실제로 DB에 접근할 때는
-     * {@link com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantSearchRepositoryImpl#search}에 명시된
+     * {@link com.bobfull.restaurant.restaurant.infrastructure.repository.query.RestaurantSearchRepositoryImpl#search}에 명시된
      * 자체 트랜잭션이 그 경로만 감싼다 — 이 메서드가 트랜잭션 없이도 안전한 것은 그 때문이며,
      * "저장소 프록시가 기본적으로 트랜잭션을 연다"는 가정 때문이 아니다(그 가정은 커스텀
      * repository fragment에는 적용되지 않아 실제로는 틀렸었다, PR #202 리뷰로 확인).</p>

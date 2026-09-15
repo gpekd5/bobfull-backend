@@ -3,19 +3,17 @@ package com.bobfull.restaurant.timeslot.application.service;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.restaurant.timeslot.domain.exception.TimeSlotErrorCode;
 import com.bobfull.restaurant.timeslot.application.port.TimeSlotReservationUsagePort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
  * 예약 도메인이 연결될 때 회차 변경 가능 여부를 검증하는 경계다.
  */
 @Service
+@RequiredArgsConstructor
 public class TimeSlotReservationValidator {
 
     private final TimeSlotReservationUsagePort reservationUsagePort;
-
-    public TimeSlotReservationValidator(TimeSlotReservationUsagePort reservationUsagePort) {
-        this.reservationUsagePort = reservationUsagePort;
-    }
 
     public void validateChangeAllowed(Long sessionId) {
         if (reservationUsagePort.hasActiveReservation(sessionId)) {

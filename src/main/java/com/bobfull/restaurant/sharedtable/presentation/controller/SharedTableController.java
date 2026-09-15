@@ -3,13 +3,14 @@ package com.bobfull.restaurant.sharedtable.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableIdResponse;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableBulkRequest;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableBulkResponse;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableRequest;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableResponse;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableIdResponse;
+import com.bobfull.restaurant.sharedtable.presentation.request.SharedTableBulkRequest;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableBulkResponse;
+import com.bobfull.restaurant.sharedtable.presentation.request.SharedTableRequest;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableResponse;
 import com.bobfull.restaurant.sharedtable.application.service.SharedTableService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -26,13 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/owner")
+@RequiredArgsConstructor
 public class SharedTableController {
 
     private final SharedTableService sharedTableService;
-
-    public SharedTableController(SharedTableService sharedTableService) {
-        this.sharedTableService = sharedTableService;
-    }
 
     @PostMapping("/restaurants/{restaurantId}/tables")
     public ResponseEntity<ApiResponse<SharedTableIdResponse>> register(

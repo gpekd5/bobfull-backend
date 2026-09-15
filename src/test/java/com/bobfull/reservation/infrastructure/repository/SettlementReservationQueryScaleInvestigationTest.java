@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
-import com.bobfull.payment.presentation.dto.SettlementReservationResponse;
+import com.bobfull.payment.presentation.response.SettlementReservationResponse;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;

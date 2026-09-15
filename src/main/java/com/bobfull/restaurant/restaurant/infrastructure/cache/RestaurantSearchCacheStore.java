@@ -2,8 +2,7 @@ package com.bobfull.restaurant.restaurant.infrastructure.cache;
 
 import java.time.Duration;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -33,9 +32,8 @@ import tools.jackson.databind.ObjectMapper;
  * 정책과는 무관하게 독립적으로 동작한다.</p>
  */
 @Component
+@Slf4j
 public class RestaurantSearchCacheStore {
-
-    private static final Logger log = LoggerFactory.getLogger(RestaurantSearchCacheStore.class);
 
     private static final String VERSION_KEY = "bobfull:search:restaurants:version";
     private static final String RESULT_KEY_PREFIX = "bobfull:search:restaurants:v1:";

@@ -3,7 +3,7 @@ package com.bobfull.restaurant.restaurant.presentation.controller;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.restaurant.restaurant.infrastructure.cache.RestaurantSearchCacheStore;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantUpdateRequest;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantUpdateRequest;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
 import com.bobfull.restaurant.restaurant.application.service.RestaurantService;

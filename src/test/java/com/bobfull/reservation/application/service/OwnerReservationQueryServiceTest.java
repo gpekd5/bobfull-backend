@@ -14,7 +14,7 @@ import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
-import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldPort;
 import com.bobfull.reservation.presentation.response.OwnerReservationDetailResponse;
 import com.bobfull.reservation.presentation.response.OwnerReservationListItemResponse;
 import com.bobfull.reservation.presentation.response.OwnerReservationParticipantResponse;
@@ -57,7 +57,7 @@ class OwnerReservationQueryServiceTest {
     @Mock private SharedTableRepository sharedTableRepository;
     @Mock private RestaurantRepository restaurantRepository;
     @Mock private MemberRepository memberRepository;
-    @Mock private PaymentHoldReader paymentHoldReader;
+    @Mock private PaymentHoldPort paymentHoldReader;
 
     private OwnerReservationQueryService service;
 

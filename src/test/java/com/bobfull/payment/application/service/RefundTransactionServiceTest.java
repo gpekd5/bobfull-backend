@@ -13,7 +13,7 @@ import com.bobfull.payment.domain.entity.Refund;
 import com.bobfull.payment.domain.entity.RefundStatus;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.payment.infrastructure.repository.RefundRepository;
-import com.bobfull.payment.infrastructure.adapter.UuidRefundIdempotencyKeyGenerator;
+import com.bobfull.payment.infrastructure.idempotency.UuidRefundIdempotencyKeyAdapter;
 import jakarta.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -33,7 +33,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 래핑을 꺼야 한다.
  */
 @DataJpaTest
-@Import({JpaAuditingConfig.class, ClockConfig.class, RefundTransactionService.class, UuidRefundIdempotencyKeyGenerator.class})
+@Import({JpaAuditingConfig.class, ClockConfig.class, RefundTransactionService.class, UuidRefundIdempotencyKeyAdapter.class})
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 class RefundTransactionServiceTest {
 

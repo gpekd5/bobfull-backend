@@ -11,12 +11,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 식당의 합석 정원 단위 테이블이다(docs/030-data/erd.md 4.3).
  */
 @Entity
 @Table(name = "shared_table", indexes = @Index(name = "idx_shared_table_restaurant_id", columnList = "restaurant_id"))
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SharedTable extends BaseTimeEntity {
 
     @Id
@@ -39,9 +44,6 @@ public class SharedTable extends BaseTimeEntity {
 
     @Column(name = "deleted_at")
     private Instant deletedAt;
-
-    protected SharedTable() {
-    }
 
     private SharedTable(Long restaurantId, Integer displayNumber, Integer capacity) {
         this.restaurantId = restaurantId;
@@ -66,27 +68,4 @@ public class SharedTable extends BaseTimeEntity {
         this.deletedAt = deletedAt;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Long getRestaurantId() {
-        return restaurantId;
-    }
-
-    public Integer getDisplayNumber() {
-        return displayNumber;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public SharedTableStatus getStatus() {
-        return status;
-    }
-
-    public Instant getDeletedAt() {
-        return deletedAt;
-    }
 }

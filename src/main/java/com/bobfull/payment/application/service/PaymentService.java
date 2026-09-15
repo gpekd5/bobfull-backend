@@ -2,10 +2,10 @@ package com.bobfull.payment.application.service;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.payment.domain.exception.PaymentErrorCode;
-import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
-import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
-import com.bobfull.payment.application.port.PaymentHoldReader;
-import com.bobfull.payment.application.port.ReadyPaymentCreator;
+import com.bobfull.payment.application.command.CreateReadyPaymentCommand;
+import com.bobfull.payment.application.result.CreateReadyPaymentResult;
+import com.bobfull.payment.application.port.PaymentHoldPort;
+import com.bobfull.payment.application.port.ReadyPaymentPort;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,17 +26,13 @@ import org.springframework.transaction.annotation.Transactional;
  * 예약 도메인이 전달한 계산 결과로 READY Payment를 생성·저장한다.
  */
 @Service
-public class PaymentService implements ReadyPaymentCreator, PaymentHoldReader {
+@RequiredArgsConstructor
+public class PaymentService implements ReadyPaymentPort, PaymentHoldPort {
 
     private static final Duration READY_PAYMENT_EXPIRATION = Duration.ofMinutes(10);
 
     private final PaymentRepository paymentRepository;
     private final Clock clock;
-
-    public PaymentService(PaymentRepository paymentRepository, Clock clock) {
-        this.paymentRepository = paymentRepository;
-        this.clock = clock;
-    }
 
     @Override
     @Transactional

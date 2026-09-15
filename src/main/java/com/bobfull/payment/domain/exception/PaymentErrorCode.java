@@ -1,12 +1,15 @@
 package com.bobfull.payment.domain.exception;
 
 import com.bobfull.common.exception.BaseErrorCode;
-
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
  * Payment 도메인 전용 에러 코드다.
  */
+@Getter
+@RequiredArgsConstructor
 public enum PaymentErrorCode implements BaseErrorCode {
 
     DUPLICATE_PAYMENT_ID(HttpStatus.CONFLICT, "이미 존재하는 paymentId입니다."),
@@ -27,23 +30,9 @@ public enum PaymentErrorCode implements BaseErrorCode {
     private final HttpStatus httpStatus;
     private final String message;
 
-    PaymentErrorCode(HttpStatus httpStatus, String message) {
-        this.httpStatus = httpStatus;
-        this.message = message;
-    }
-
-    @Override
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
     @Override
     public String getCode() {
         return name();
     }
 
-    @Override
-    public String getMessage() {
-        return message;
-    }
 }

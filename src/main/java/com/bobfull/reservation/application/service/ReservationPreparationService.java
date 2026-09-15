@@ -2,11 +2,11 @@ package com.bobfull.reservation.application.service;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
-import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
-import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.application.command.CreateReadyPaymentCommand;
+import com.bobfull.payment.application.result.CreateReadyPaymentResult;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
-import com.bobfull.payment.application.port.PaymentHoldReader;
-import com.bobfull.payment.application.port.ReadyPaymentCreator;
+import com.bobfull.payment.application.port.PaymentHoldPort;
+import com.bobfull.payment.application.port.ReadyPaymentPort;
 import com.bobfull.reservation.presentation.response.ReservationAvailabilityResponse;
 import com.bobfull.reservation.presentation.request.ReservationPrepareRequest;
 import com.bobfull.reservation.presentation.response.ReservationPrepareResponse;
@@ -45,8 +45,8 @@ public class ReservationPreparationService {
     private final ReservationTargetPort reservationTargetPort;
     private final ReservationRepository reservationRepository;
     private final ReservationParticipantRepository reservationParticipantRepository;
-    private final PaymentHoldReader paymentHoldReader;
-    private final ReadyPaymentCreator readyPaymentCreator;
+    private final PaymentHoldPort paymentHoldReader;
+    private final ReadyPaymentPort readyPaymentCreator;
     private final AvailableCapacityCalculator availableCapacityCalculator;
 
     @Transactional(readOnly = true)

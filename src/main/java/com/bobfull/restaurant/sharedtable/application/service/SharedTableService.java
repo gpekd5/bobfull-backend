@@ -7,19 +7,19 @@ import com.bobfull.restaurant.sharedtable.domain.exception.SharedTableErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableIdResponse;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableBulkRequest;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableBulkResponse;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableRequest;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableResponse;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableIdResponse;
+import com.bobfull.restaurant.sharedtable.presentation.request.SharedTableBulkRequest;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableBulkResponse;
+import com.bobfull.restaurant.sharedtable.presentation.request.SharedTableRequest;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableResponse;
 import com.bobfull.restaurant.sharedtable.domain.entity.SharedTable;
 import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
 import java.time.Clock;
 import java.util.Set;
 import java.util.List;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,27 +29,15 @@ import org.springframework.transaction.annotation.Transactional;
  * OWNER 합석 테이블 등록·조회·수정·삭제를 담당한다.
  */
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class SharedTableService {
-
-    private static final Logger log = LoggerFactory.getLogger(SharedTableService.class);
     private static final Set<Integer> ALLOWED_CAPACITIES = Set.of(2, 4, 6, 8);
 
     private final SharedTableRepository sharedTableRepository;
     private final RestaurantRepository restaurantRepository;
     private final SharedTableUsageValidator sharedTableUsageValidator;
     private final Clock clock;
-
-    public SharedTableService(
-            SharedTableRepository sharedTableRepository,
-            RestaurantRepository restaurantRepository,
-            SharedTableUsageValidator sharedTableUsageValidator,
-            Clock clock
-    ) {
-        this.sharedTableRepository = sharedTableRepository;
-        this.restaurantRepository = restaurantRepository;
-        this.sharedTableUsageValidator = sharedTableUsageValidator;
-        this.clock = clock;
-    }
 
     @Transactional
     public SharedTableIdResponse register(Long ownerMemberId, Long restaurantId, SharedTableRequest request) {

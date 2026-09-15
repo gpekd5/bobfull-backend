@@ -8,7 +8,7 @@ import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
-import com.bobfull.payment.application.port.PortOnePaymentReader;
+import com.bobfull.payment.application.port.PortOnePaymentPort;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
@@ -77,7 +77,7 @@ class PaymentMySqlConcurrencyIntegrationTest {
     @Autowired private TimeSlotRepository timeSlotRepository;
     @Autowired private SharedTableRepository sharedTableRepository;
     @Autowired private TransactionTemplate transactionTemplate;
-    @Autowired private ControlledPortOnePaymentReader paymentReader;
+    @Autowired private ControlledPortOnePaymentPort paymentReader;
     @Autowired private MutableClock mutableClock;
 
     @AfterEach
@@ -246,8 +246,8 @@ class PaymentMySqlConcurrencyIntegrationTest {
     static class ConcurrencyConfiguration {
         @Bean
         @Primary
-        ControlledPortOnePaymentReader controlledPortOnePaymentReader() {
-            return new ControlledPortOnePaymentReader();
+        ControlledPortOnePaymentPort controlledPortOnePaymentPort() {
+            return new ControlledPortOnePaymentPort();
         }
 
         @Bean
@@ -257,7 +257,7 @@ class PaymentMySqlConcurrencyIntegrationTest {
         }
     }
 
-    static class ControlledPortOnePaymentReader implements PortOnePaymentReader {
+    static class ControlledPortOnePaymentPort implements PortOnePaymentPort {
         private volatile CountDownLatch readStarted;
         private volatile CountDownLatch readReleased;
 

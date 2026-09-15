@@ -7,7 +7,7 @@ import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
-import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldPort;
 import com.bobfull.reservation.presentation.response.OwnerReservationDetailResponse;
 import com.bobfull.reservation.presentation.response.OwnerReservationListItemResponse;
 import com.bobfull.reservation.presentation.response.OwnerReservationParticipantResponse;
@@ -56,7 +56,7 @@ public class OwnerReservationQueryService {
     private final SharedTableRepository sharedTableRepository;
     private final RestaurantRepository restaurantRepository;
     private final MemberRepository memberRepository;
-    private final PaymentHoldReader paymentHoldReader;
+    private final PaymentHoldPort paymentHoldReader;
     private final Clock clock;
 
     public PageResponse<OwnerReservationListItemResponse> getRestaurantReservations(

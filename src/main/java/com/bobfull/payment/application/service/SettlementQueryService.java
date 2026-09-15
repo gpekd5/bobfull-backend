@@ -5,9 +5,9 @@ import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.presentation.dto.ExpectedSettlementResponse;
-import com.bobfull.payment.presentation.dto.SettlementReservationDetailResponse;
-import com.bobfull.payment.presentation.dto.SettlementReservationResponse;
+import com.bobfull.payment.presentation.response.ExpectedSettlementResponse;
+import com.bobfull.payment.presentation.response.SettlementReservationDetailResponse;
+import com.bobfull.payment.presentation.response.SettlementReservationResponse;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.Refund;
 import com.bobfull.payment.domain.entity.RefundStatus;
@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /** OWNER 식당의 Payment·Refund 이력으로 지급 예정 금액을 조회 계산한다. */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class SettlementQueryService {
 
     private static final ZoneId SEOUL = ZoneId.of("Asia/Seoul");
@@ -49,23 +52,6 @@ public class SettlementQueryService {
     private final PaymentRepository paymentRepository;
     private final RefundRepository refundRepository;
 
-    public SettlementQueryService(
-            RestaurantRepository restaurantRepository,
-            SharedTableRepository sharedTableRepository,
-            TimeSlotRepository timeSlotRepository,
-            ReservationRepository reservationRepository,
-            PaymentRepository paymentRepository,
-            RefundRepository refundRepository
-    ) {
-        this.restaurantRepository = restaurantRepository;
-        this.sharedTableRepository = sharedTableRepository;
-        this.timeSlotRepository = timeSlotRepository;
-        this.reservationRepository = reservationRepository;
-        this.paymentRepository = paymentRepository;
-        this.refundRepository = refundRepository;
-    }
-
-    @Transactional(readOnly = true)
     public ExpectedSettlementResponse getExpectedSettlement(Long ownerMemberId, Long restaurantId, LocalDate startDate, LocalDate endDate) {
         validateOwnership(ownerMemberId, restaurantId);
         DateRange range = dateRange(startDate, endDate);
@@ -76,7 +62,6 @@ public class SettlementQueryService {
         return new ExpectedSettlementResponse(paid, refunded, paid.subtract(refunded));
     }
 
-    @Transactional(readOnly = true)
     public PageResponse<SettlementReservationResponse> getReservationSettlements(
             Long ownerMemberId, Long restaurantId, LocalDate startDate, LocalDate endDate, Pageable pageable
     ) {
@@ -92,7 +77,6 @@ public class SettlementQueryService {
                 amountsByReservation.getOrDefault(reservation.getId(), Amounts.ZERO))));
     }
 
-    @Transactional(readOnly = true)
     public SettlementReservationDetailResponse getReservationSettlement(Long ownerMemberId, Long reservationId) {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new CustomException(ReservationErrorCode.RESERVATION_ID_NOT_FOUND));

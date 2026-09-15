@@ -2,12 +2,13 @@ package com.bobfull.restaurant.restaurant.presentation.controller;
 
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantDetailResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantSearchRequest;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantSearchResponse;
+import com.bobfull.restaurant.restaurant.presentation.response.RestaurantDetailResponse;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantSearchRequest;
+import com.bobfull.restaurant.restaurant.presentation.response.RestaurantSearchResponse;
 import com.bobfull.restaurant.restaurant.application.service.RestaurantService;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/restaurants")
+@RequiredArgsConstructor
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
-
-    public RestaurantController(RestaurantService restaurantService) {
-        this.restaurantService = restaurantService;
-    }
 
     @GetMapping
     public ApiResponse<PageResponse<RestaurantSearchResponse>> searchRestaurants(

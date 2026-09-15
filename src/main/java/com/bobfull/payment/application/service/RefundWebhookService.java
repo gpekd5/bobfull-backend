@@ -1,21 +1,21 @@
 package com.bobfull.payment.application.service;
 
-import com.bobfull.payment.application.port.PortOneRefundRequester;
+import com.bobfull.payment.application.port.PortOneRefundPort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class RefundWebhookService {
     private final RefundCompletionService completionService;
-    private final PortOneRefundRequester refundRequester;
+    private final PortOneRefundPort refundPort;
 
-    public RefundWebhookService(RefundCompletionService completionService, PortOneRefundRequester refundRequester) {
-        this.completionService = completionService;
-        this.refundRequester = refundRequester;
+    public void markProcessing(String paymentId, String cancellationId) {
+        completionService.markProcessingFromWebhook(paymentId, cancellationId);
     }
 
-    public void markProcessing(String paymentId, String cancellationId) { completionService.markProcessingFromWebhook(paymentId, cancellationId); }
     public void complete(String paymentId, String cancellationId) {
-        if (!refundRequester.isCancellationCompleted(paymentId, cancellationId)) {
+        if (!refundPort.isCancellationCompleted(paymentId, cancellationId)) {
             throw new IllegalStateException("PortOne cancellation verification failed");
         }
         completionService.completeFromWebhook(paymentId, cancellationId);

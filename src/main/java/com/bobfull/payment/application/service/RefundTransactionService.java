@@ -5,7 +5,7 @@ import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.common.transaction.AfterCommitExecutor;
-import com.bobfull.payment.application.port.RefundIdempotencyKeyGenerator;
+import com.bobfull.payment.application.port.RefundIdempotencyKeyPort;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.payment.domain.entity.Refund;
@@ -15,30 +15,22 @@ import com.bobfull.payment.infrastructure.repository.RefundRepository;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.Instant;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class RefundTransactionService {
-    private static final Logger log = LoggerFactory.getLogger(RefundTransactionService.class);
+
     private final PaymentRepository paymentRepository;
     private final RefundRepository refundRepository;
     private final Clock clock;
-    private final RefundIdempotencyKeyGenerator keyGenerator;
+    private final RefundIdempotencyKeyPort idempotencyKeyPort;
     private final BusinessMetricRecorder businessMetricRecorder;
-
-    public RefundTransactionService(PaymentRepository paymentRepository, RefundRepository refundRepository, Clock clock,
-                                    RefundIdempotencyKeyGenerator keyGenerator,
-                                    BusinessMetricRecorder businessMetricRecorder) {
-        this.paymentRepository = paymentRepository;
-        this.refundRepository = refundRepository;
-        this.clock = clock;
-        this.keyGenerator = keyGenerator;
-        this.businessMetricRecorder = businessMetricRecorder;
-    }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public RefundPreparation createRequested(Long reservationId, Long participantId, String cancelReason) {
@@ -66,7 +58,7 @@ public class RefundTransactionService {
         }
         Refund refund = refundRepository.saveAndFlush(
                 Refund.create(payment, payment.getAmount(), RefundStatus.REQUESTED, clock.instant(), null,
-                        keyGenerator.generate(), cancelReason));
+                        idempotencyKeyPort.generate(), cancelReason));
         log.info("event=REFUND_REQUESTED refundId={} paymentId={} reservationId={} participantId={} amount={} afterStatus={}",
                 refund.getId(), payment.getPaymentId(), payment.getReservationId(),
                 payment.getReservationParticipantId(), refund.getAmount(), refund.getStatus());

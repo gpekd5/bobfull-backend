@@ -10,12 +10,12 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
-import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
-import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.application.command.CreateReadyPaymentCommand;
+import com.bobfull.payment.application.result.CreateReadyPaymentResult;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
-import com.bobfull.payment.application.port.PaymentHoldReader;
-import com.bobfull.payment.application.port.ReadyPaymentCreator;
+import com.bobfull.payment.application.port.PaymentHoldPort;
+import com.bobfull.payment.application.port.ReadyPaymentPort;
 import com.bobfull.reservation.presentation.response.ReservationAvailabilityResponse;
 import com.bobfull.reservation.presentation.request.ReservationPrepareRequest;
 import com.bobfull.reservation.presentation.response.ReservationPrepareResponse;
@@ -42,8 +42,8 @@ class ReservationPreparationServiceTest {
     @Mock private ReservationTargetPort reservationTargetReader;
     @Mock private ReservationRepository reservationRepository;
     @Mock private ReservationParticipantRepository reservationParticipantRepository;
-    @Mock private PaymentHoldReader paymentHoldReader;
-    @Mock private ReadyPaymentCreator readyPaymentCreator;
+    @Mock private PaymentHoldPort paymentHoldReader;
+    @Mock private ReadyPaymentPort readyPaymentCreator;
     @Mock private AvailableCapacityCalculator availableCapacityCalculator;
 
     private ReservationPreparationService service() {

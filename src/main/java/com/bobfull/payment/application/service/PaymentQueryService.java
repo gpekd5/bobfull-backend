@@ -4,12 +4,13 @@ import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.presentation.dto.PaymentDetailResponse;
-import com.bobfull.payment.presentation.dto.PaymentListResponse;
+import com.bobfull.payment.presentation.response.PaymentDetailResponse;
+import com.bobfull.payment.presentation.response.PaymentListResponse;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import java.util.Set;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PaymentQueryService {
 
     private static final Set<PaymentStatus> EXPOSED_FILTER_STATUSES =
@@ -25,11 +28,6 @@ public class PaymentQueryService {
 
     private final PaymentRepository paymentRepository;
 
-    public PaymentQueryService(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<PaymentListResponse> getMyPayments(Long memberId, String paymentStatus, Pageable pageable) {
         Pageable orderedPageable = ordered(pageable);
         PaymentStatus status = parseExposedStatus(paymentStatus);
@@ -39,7 +37,6 @@ public class PaymentQueryService {
         return PageResponse.from(payments.map(PaymentListResponse::from));
     }
 
-    @Transactional(readOnly = true)
     public PaymentDetailResponse getMyPayment(Long memberId, String paymentId) {
         Payment payment = paymentRepository.findByPaymentIdAndMemberId(paymentId, memberId)
                 .orElseThrow(() -> new CustomException(PaymentErrorCode.PAYMENT_NOT_FOUND));
