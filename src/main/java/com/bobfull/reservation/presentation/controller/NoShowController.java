@@ -3,10 +3,11 @@ package com.bobfull.reservation.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.reservation.presentation.dto.NoShowCandidateResponse;
-import com.bobfull.reservation.presentation.dto.NoShowHistoryResponse;
-import com.bobfull.reservation.presentation.dto.NoShowProcessResponse;
+import com.bobfull.reservation.presentation.response.NoShowCandidateResponse;
+import com.bobfull.reservation.presentation.response.NoShowHistoryResponse;
+import com.bobfull.reservation.presentation.response.NoShowProcessResponse;
 import com.bobfull.reservation.application.service.NoShowService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,13 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 /** OWNER의 예약별 노쇼 처리 대상 조회·처리·해제·이력 조회를 담당한다(Issue #48 §9-1~9-4). */
 @RestController
 @RequestMapping("/api/owner/reservations/{reservationId}")
+@RequiredArgsConstructor
 public class NoShowController {
 
     private final NoShowService noShowService;
-
-    public NoShowController(NoShowService noShowService) {
-        this.noShowService = noShowService;
-    }
 
     @GetMapping("/participations/no-show-candidates")
     public ApiResponse<PageResponse<NoShowCandidateResponse>> getCandidates(

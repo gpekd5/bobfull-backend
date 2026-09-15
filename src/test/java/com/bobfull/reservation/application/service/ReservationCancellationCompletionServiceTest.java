@@ -13,7 +13,7 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import com.bobfull.common.exception.CustomException;
-import com.bobfull.reservation.application.port.ReservationCompletionTestHook;
+import com.bobfull.reservation.application.port.ReservationCompletionTestPort;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
@@ -42,13 +42,13 @@ class ReservationCancellationCompletionServiceTest {
     @Mock ReservationCancellationTransactionService transactionService;
     @Mock Reservation reservation;
     @Mock BusinessMetricRecorder businessMetricRecorder;
-    @Mock ReservationCompletionTestHook completionTestHook;
+    @Mock ReservationCompletionTestPort completionTestHook;
 
     private ReservationCancellationCompletionService service() {
         return service(Optional.empty());
     }
 
-    private ReservationCancellationCompletionService service(Optional<ReservationCompletionTestHook> delayHook) {
+    private ReservationCancellationCompletionService service(Optional<ReservationCompletionTestPort> delayHook) {
         return new ReservationCancellationCompletionService(
                 reservationRepository, participantRepository, transactionService, businessMetricRecorder, delayHook);
     }

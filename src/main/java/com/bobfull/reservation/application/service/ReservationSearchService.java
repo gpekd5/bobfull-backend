@@ -3,20 +3,23 @@ package com.bobfull.reservation.application.service;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.reservation.presentation.dto.ReservationSearchRequest;
-import com.bobfull.reservation.presentation.dto.ReservationSearchResponse;
-import com.bobfull.reservation.application.dto.ReservationSearchResult;
+import com.bobfull.reservation.presentation.request.ReservationSearchRequest;
+import com.bobfull.reservation.presentation.response.ReservationSearchResponse;
+import com.bobfull.reservation.application.result.ReservationSearchResult;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ReservationSearchService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
@@ -24,12 +27,6 @@ public class ReservationSearchService {
     private final ReservationRepository reservationRepository;
     private final Clock clock;
 
-    public ReservationSearchService(ReservationRepository reservationRepository, Clock clock) {
-        this.reservationRepository = reservationRepository;
-        this.clock = clock;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<ReservationSearchResponse> searchReservations(
             ReservationSearchRequest request,
             Pageable pageable

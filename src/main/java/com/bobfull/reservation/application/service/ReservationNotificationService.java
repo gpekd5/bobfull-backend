@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,6 +33,7 @@ import org.springframework.stereotype.Service;
  * 처리한다(Issue #183).
  */
 @Service
+@RequiredArgsConstructor
 public class ReservationNotificationService {
 
     private final ReservationRepository reservationRepository;
@@ -41,24 +43,6 @@ public class ReservationNotificationService {
     private final RestaurantRepository restaurantRepository;
     private final MemberRepository memberRepository;
     private final ReservationNotificationPort notificationPort;
-
-    public ReservationNotificationService(
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            TimeSlotRepository timeSlotRepository,
-            SharedTableRepository sharedTableRepository,
-            RestaurantRepository restaurantRepository,
-            MemberRepository memberRepository,
-            ReservationNotificationPort notificationPort
-    ) {
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.timeSlotRepository = timeSlotRepository;
-        this.sharedTableRepository = sharedTableRepository;
-        this.restaurantRepository = restaurantRepository;
-        this.memberRepository = memberRepository;
-        this.notificationPort = notificationPort;
-    }
 
     /** Outbox processor가 단일 수신자를 발송하고 성공 시에만 전송 이력을 확정할 수 있게 한다. */
     public void sendOutboxEmail(String eventTypeName, EmailOutboxDelivery delivery) {

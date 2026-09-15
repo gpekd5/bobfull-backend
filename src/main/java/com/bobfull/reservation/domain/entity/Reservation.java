@@ -9,6 +9,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 하나의 TimeSlot에 대한 합석 예약이다(docs/030-data/erd.md 4.5).
@@ -17,6 +20,8 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "reservation", indexes = @jakarta.persistence.Index(name = "idx_reservation_time_slot_id", columnList = "time_slot_id"))
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Reservation extends BaseTimeEntity {
 
     @Id
@@ -37,9 +42,6 @@ public class Reservation extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "recruitment_status", nullable = false, length = 20)
     private RecruitmentStatus recruitmentStatus;
-
-    protected Reservation() {
-    }
 
     private Reservation(Long timeSlotId, Long creatorMemberId) {
         this.timeSlotId = timeSlotId;
@@ -93,7 +95,8 @@ public class Reservation extends BaseTimeEntity {
 
     public boolean isCancelling() {
         return reservationStatus == ReservationStatus.CANCELLING;
-}
+    }
+
     /**
      * 추가 참여자 취소로 확정 기준 미달이 되면 모집이 OPEN인 동안 CONFIRMED에서 RECRUITING으로
      * 되돌린다(Issue #131). 이미 RECRUITING이면 그대로 둔다.
@@ -128,23 +131,4 @@ public class Reservation extends BaseTimeEntity {
         return this.creatorMemberId.equals(memberId);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Long getTimeSlotId() {
-        return timeSlotId;
-    }
-
-    public Long getCreatorMemberId() {
-        return creatorMemberId;
-    }
-
-    public ReservationStatus getReservationStatus() {
-        return reservationStatus;
-    }
-
-    public RecruitmentStatus getRecruitmentStatus() {
-        return recruitmentStatus;
-    }
 }

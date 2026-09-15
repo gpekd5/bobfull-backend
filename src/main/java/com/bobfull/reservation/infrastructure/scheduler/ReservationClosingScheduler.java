@@ -4,8 +4,7 @@ import com.bobfull.reservation.application.service.ReservationClosingProcessor;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import java.time.Clock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.domain.PageRequest;
@@ -20,10 +19,10 @@ import org.springframework.stereotype.Component;
  * 처리하며, 분산 락은 두지 않는다 — 후보 하나가 이미 처리됐으면
  * {@link ReservationClosingProcessor#close}가 재확인 가드로 멱등 종료한다.
  */
+@Slf4j
 @Component
 @ConditionalOnProperty(prefix = "reservation.dining-end", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class ReservationClosingScheduler {
-    private static final Logger log = LoggerFactory.getLogger(ReservationClosingScheduler.class);
 
     private final ReservationRepository reservationRepository;
     private final ReservationClosingProcessor processor;

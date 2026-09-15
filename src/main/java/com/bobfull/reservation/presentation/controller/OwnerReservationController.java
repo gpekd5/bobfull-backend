@@ -3,13 +3,14 @@ package com.bobfull.reservation.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.reservation.presentation.dto.OwnerReservationCancellationResponse;
-import com.bobfull.reservation.presentation.dto.OwnerReservationDetailResponse;
-import com.bobfull.reservation.presentation.dto.OwnerReservationParticipantResponse;
-import com.bobfull.reservation.presentation.dto.ReservationCancellationRequest;
+import com.bobfull.reservation.presentation.response.OwnerReservationCancellationResponse;
+import com.bobfull.reservation.presentation.response.OwnerReservationDetailResponse;
+import com.bobfull.reservation.presentation.response.OwnerReservationParticipantResponse;
+import com.bobfull.reservation.presentation.request.ReservationCancellationRequest;
 import com.bobfull.reservation.application.service.OwnerReservationCancellationService;
 import com.bobfull.reservation.application.service.OwnerReservationQueryService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,18 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 /** OWNER의 예약 상세·참여자 목록 조회와 식당 귀책 전체 취소를 담당한다(Issue #147 §6-12~6-13, #46 §6-14). */
 @RestController
 @RequestMapping("/api/owner/reservations/{reservationId}")
+@RequiredArgsConstructor
 public class OwnerReservationController {
 
     private final OwnerReservationQueryService ownerReservationQueryService;
     private final OwnerReservationCancellationService ownerReservationCancellationService;
-
-    public OwnerReservationController(
-            OwnerReservationQueryService ownerReservationQueryService,
-            OwnerReservationCancellationService ownerReservationCancellationService
-    ) {
-        this.ownerReservationQueryService = ownerReservationQueryService;
-        this.ownerReservationCancellationService = ownerReservationCancellationService;
-    }
 
     @GetMapping
     public ApiResponse<OwnerReservationDetailResponse> getReservationDetail(

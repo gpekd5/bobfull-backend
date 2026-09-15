@@ -12,8 +12,7 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.domain.PageRequest;
@@ -27,10 +26,10 @@ import org.springframework.stereotype.Component;
  * {@link ReservationCancellationTransactionService#acceptRecruitmentDeadline}이 재확인 가드로
  * 멱등 종료해, 같은 후보가 여러 스케줄 주기·인스턴스에 걸쳐 조회돼도 중복 반영되지 않는다.
  */
+@Slf4j
 @Component
 @ConditionalOnProperty(prefix = "reservation.recruitment-deadline", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class RecruitmentDeadlineScheduler {
-    private static final Logger log = LoggerFactory.getLogger(RecruitmentDeadlineScheduler.class);
     private static final Duration DEADLINE_OFFSET = Duration.ofHours(2);
     private static final List<ReservationStatus> ACTIVE_STATUSES =
             List.of(ReservationStatus.RECRUITING, ReservationStatus.CONFIRMED);

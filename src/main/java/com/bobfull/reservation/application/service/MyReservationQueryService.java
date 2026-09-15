@@ -4,14 +4,15 @@ import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.reservation.presentation.dto.MyReservationDetailResponse;
-import com.bobfull.reservation.presentation.dto.MyReservationListItemResponse;
-import com.bobfull.reservation.application.dto.MyReservationResult;
+import com.bobfull.reservation.presentation.response.MyReservationDetailResponse;
+import com.bobfull.reservation.presentation.response.MyReservationListItemResponse;
+import com.bobfull.reservation.application.result.MyReservationResult;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,17 +24,14 @@ import org.springframework.transaction.annotation.Transactional;
  * 존재 여부를 노출하지 않기 위해 404로 응답한다.
  */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MyReservationQueryService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
 
     private final ReservationParticipantRepository reservationParticipantRepository;
 
-    public MyReservationQueryService(ReservationParticipantRepository reservationParticipantRepository) {
-        this.reservationParticipantRepository = reservationParticipantRepository;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<MyReservationListItemResponse> getMyReservations(
             Long memberId, String reservationStatus, Pageable pageable
     ) {
@@ -43,7 +41,6 @@ public class MyReservationQueryService {
         return PageResponse.from(results.map(this::toListItem));
     }
 
-    @Transactional(readOnly = true)
     public MyReservationDetailResponse getMyReservationDetail(Long memberId, Long reservationId) {
         MyReservationResult result = reservationParticipantRepository
                 .findMyReservationDetail(memberId, reservationId)

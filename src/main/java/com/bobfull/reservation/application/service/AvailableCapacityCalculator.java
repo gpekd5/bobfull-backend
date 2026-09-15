@@ -8,6 +8,7 @@ import com.bobfull.reservation.domain.policy.ReservationCapacityPolicy;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * 남은 참여 가능 인원을 계산한다(ADR 0001, docs/040-architecture/domain-dependencies.md §4).
  */
 @Service
+@RequiredArgsConstructor
 public class AvailableCapacityCalculator {
 
     private static final List<ReservationStatus> ACTIVE_STATUSES =
@@ -26,16 +28,6 @@ public class AvailableCapacityCalculator {
     private final ReservationRepository reservationRepository;
     private final ReservationParticipantRepository reservationParticipantRepository;
     private final PaymentHoldReader paymentHoldReader;
-
-    public AvailableCapacityCalculator(
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            PaymentHoldReader paymentHoldReader
-    ) {
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.paymentHoldReader = paymentHoldReader;
-    }
 
     /**
      * {@code CLOSED}(식사 종료로 생명주기가 끝난 예약)가 있으면 참여자 상태와 무관하게 0을

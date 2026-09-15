@@ -8,8 +8,8 @@ import static org.mockito.Mockito.when;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
-import com.bobfull.reservation.presentation.dto.OwnerReservationCancellationResponse;
-import com.bobfull.reservation.presentation.dto.ReservationCancellationRequest;
+import com.bobfull.reservation.presentation.response.OwnerReservationCancellationResponse;
+import com.bobfull.reservation.presentation.request.ReservationCancellationRequest;
 import com.bobfull.reservation.application.port.ReservationCancellationRefundPort;
 import com.bobfull.reservation.application.port.ReservationCancellationRefundPort.RefundRequestCommand;
 import com.bobfull.reservation.application.port.ReservationCancellationRefundPort.RefundRequestResult;
