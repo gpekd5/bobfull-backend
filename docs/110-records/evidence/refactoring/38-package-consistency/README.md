@@ -331,7 +331,7 @@ com.bobfull (1)
 | 전체 build | `gradlew clean build --no-daemon` | PASS, 3m 56s, 14 tasks |
 | Backend 전체 테스트 | clean build XML 집계 | 214 suites, 945 tests, failures/errors 0, skipped 64 |
 | Lambda 테스트 | clean build XML 집계 | 3 suites, 11 tests, failures/errors/skipped 0 |
-| Markdown 링크 | `ops/tools/check-markdown-links.ps1` | 125 files, 190 relative links, broken 0 |
+| Markdown 링크 | `ops/tools/check-markdown-links.ps1` | 126 files, 192 relative links, broken 0 |
 
 관련 테스트의 1건 SKIP은 외부 production AI Provider 조건이 없는 기존 테스트다. 첫 실행에서 root `test`는
 완료됐지만 전역 `--tests` 필터가 Lambda module에도 전달되어 같은 이름의 Lambda 테스트가 없다는 이유로
@@ -375,4 +375,4 @@ Gradle 전체 명령이 실패했다. 검증 대상을 root `:test`로 한정해
 - 선행: [#37](https://github.com/gpekd5/bobfull-backend/issues/37)
 - 네이밍·Convention 후속: [#15](https://github.com/gpekd5/bobfull-backend/issues/15)
 - 책임·의존성 후속: [#20](https://github.com/gpekd5/bobfull-backend/issues/20)
-- PR: Draft PR 생성 후 연결
+- PR: [#40](https://github.com/gpekd5/bobfull-backend/pull/40)
