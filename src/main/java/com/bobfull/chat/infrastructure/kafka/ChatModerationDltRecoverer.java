@@ -6,8 +6,7 @@ import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.TopicPartition;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaOperations;
 import org.springframework.kafka.listener.ConsumerRecordRecoverer;
@@ -18,11 +17,9 @@ import org.springframework.stereotype.Component;
  * Kafka Retry가 모두 소진된 레코드를 DLT 토픽으로 옮기고, #66의 최종 실패 기록 진입점을 호출한다.
  * DLT 이동과 recordFinalFailure 호출 순서를 이 클래스 하나에서 보장한다.
  */
+@Slf4j
 @Component
 public class ChatModerationDltRecoverer implements ConsumerRecordRecoverer {
-
-    private static final Logger log = LoggerFactory.getLogger(ChatModerationDltRecoverer.class);
-
     private final DeadLetterPublishingRecoverer delegate;
     private final ChatModerationService chatModerationService;
     private final BusinessMetricRecorder businessMetricRecorder;

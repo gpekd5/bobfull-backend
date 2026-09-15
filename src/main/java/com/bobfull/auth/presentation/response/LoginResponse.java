@@ -1,4 +1,4 @@
-package com.bobfull.auth.presentation.dto;
+package com.bobfull.auth.presentation.response;
 
 public record LoginResponse(String accessToken, String tokenType, String refreshToken) {
 

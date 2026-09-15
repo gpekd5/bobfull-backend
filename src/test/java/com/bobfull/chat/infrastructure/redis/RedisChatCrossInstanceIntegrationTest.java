@@ -7,7 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-import com.bobfull.chat.presentation.dto.ChatMessageSentResponse;
+import com.bobfull.chat.presentation.response.ChatMessageSentResponse;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;

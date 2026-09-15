@@ -1,7 +1,7 @@
 package com.bobfull.chat.infrastructure.websocket;
 
 import com.bobfull.chat.domain.entity.ChatRoom;
-import com.bobfull.chat.application.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.ReservationChatAccessPort;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +26,7 @@ public class ChatOutboundAuthorizationInterceptor implements ChannelInterceptor 
     private static final Pattern CHAT_ROOM_DESTINATION = Pattern.compile("^/sub/chat/rooms/(\\d+)$");
 
     private final ChatRoomRepository chatRoomRepository;
-    private final ReservationChatAccessReader reservationChatAccessReader;
+    private final ReservationChatAccessPort reservationChatAccessReader;
     private final SimpUserRegistry simpUserRegistry;
 
     // @Lazy: SimpUserRegistry는 모든 WebSocketMessageBrokerConfigurer(WebSocketConfig 포함)를 먼저
@@ -34,7 +34,7 @@ public class ChatOutboundAuthorizationInterceptor implements ChannelInterceptor 
     // WebSocketConfig 생성 중에 자기 자신을 다시 필요로 하는 순환 참조가 된다.
     public ChatOutboundAuthorizationInterceptor(
             ChatRoomRepository chatRoomRepository,
-            ReservationChatAccessReader reservationChatAccessReader,
+            ReservationChatAccessPort reservationChatAccessReader,
             @Lazy SimpUserRegistry simpUserRegistry
     ) {
         this.chatRoomRepository = chatRoomRepository;
@@ -65,7 +65,7 @@ public class ChatOutboundAuthorizationInterceptor implements ChannelInterceptor 
             return null;
         }
 
-        ReservationChatAccessReader.ChatAccess access =
+        ReservationChatAccessPort.ChatAccess access =
                 reservationChatAccessReader.read(chatRoom.getReservationId(), memberId);
         return (access != null && access.isActive()) ? message : null;
     }

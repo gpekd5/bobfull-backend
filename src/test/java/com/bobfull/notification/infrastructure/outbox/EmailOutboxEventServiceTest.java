@@ -1,5 +1,6 @@
 package com.bobfull.notification.infrastructure.outbox;
 
+import com.bobfull.notification.infrastructure.repository.EmailOutboxDeliveryRepository;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;

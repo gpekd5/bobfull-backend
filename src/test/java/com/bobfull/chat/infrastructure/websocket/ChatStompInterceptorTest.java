@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.BDDMockito.given;
 
 import com.bobfull.chat.domain.entity.ChatRoom;
-import com.bobfull.chat.application.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.ReservationChatAccessPort;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
@@ -30,7 +30,7 @@ class ChatStompInterceptorTest {
     private final Clock clock = Clock.fixed(Instant.parse("2026-08-06T00:00:00Z"), ZoneOffset.UTC);
     private final JwtTokenProvider tokens = new JwtTokenProvider(clock, "chat-stomp-test-secret-key-please-keep-this-long", 3600);
     private final ChatRoomRepository rooms = org.mockito.Mockito.mock(ChatRoomRepository.class);
-    private final ReservationChatAccessReader access = org.mockito.Mockito.mock(ReservationChatAccessReader.class);
+    private final ReservationChatAccessPort access = org.mockito.Mockito.mock(ReservationChatAccessPort.class);
     private final ChatStompInterceptor interceptor = new ChatStompInterceptor(tokens, rooms, access);
 
     @Test
@@ -66,7 +66,7 @@ class ChatStompInterceptorTest {
         // then: 세션이 채워준 Principal을 SUBSCRIBE에서 수동 재주입 없이 그대로 읽을 수 있는 구조다
         given(rooms.findById(3L)).willReturn(Optional.of(room(3L, 10L)));
         given(access.read(10L, 7L)).willReturn(
-                new ReservationChatAccessReader.ChatAccess(4L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
+                new ReservationChatAccessPort.ChatAccess(4L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
         StompHeaderAccessor subscribeAccessor = StompHeaderAccessor.create(StompCommand.SUBSCRIBE);
         subscribeAccessor.setDestination("/sub/chat/rooms/3");
         subscribeAccessor.setUser(sameAccessor.getUser());
@@ -106,7 +106,7 @@ class ChatStompInterceptorTest {
         given(rooms.findById(3L)).willReturn(Optional.of(room(3L, 10L)));
         given(access.read(10L, 7L)).willReturn(null);
         assertAccessDenied(() -> interceptor.preSend(subscribe(7L, "/sub/chat/rooms/3"), null));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(4L, com.bobfull.reservation.domain.entity.ParticipationStatus.CANCELLED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessPort.ChatAccess(4L, com.bobfull.reservation.domain.entity.ParticipationStatus.CANCELLED));
         assertAccessDenied(() -> interceptor.preSend(subscribe(7L, "/sub/chat/rooms/3"), null));
         given(rooms.findById(4L)).willReturn(Optional.of(room(4L, 20L)));
         given(access.read(20L, 7L)).willReturn(null);
@@ -122,7 +122,7 @@ class ChatStompInterceptorTest {
         assertThatThrownBy(() -> interceptor.preSend(send(7L, "/pub/other"), null)).isInstanceOf(CustomException.class);
     }
 
-    private void allow(ParticipationStatusCase status) { given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(4L, status.value)); }
+    private void allow(ParticipationStatusCase status) { given(access.read(10L, 7L)).willReturn(new ReservationChatAccessPort.ChatAccess(4L, status.value)); }
     private Message<?> connect(String header) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.CONNECT); a.setLeaveMutable(true); if(header!=null)a.setNativeHeader("Authorization",header); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
     private Message<?> subscribe(Long memberId, String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SUBSCRIBE); a.setDestination(destination); a.setUser(new StompPrincipal(new com.bobfull.auth.application.model.AuthMember(memberId, MemberRole.MEMBER))); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }
     private Message<?> subscribeWithoutPrincipal(String destination) { StompHeaderAccessor a=StompHeaderAccessor.create(StompCommand.SUBSCRIBE); a.setDestination(destination); return MessageBuilder.createMessage(new byte[0],a.getMessageHeaders()); }

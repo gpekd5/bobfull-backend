@@ -1,7 +1,7 @@
 package com.bobfull.chat.infrastructure.ai;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.AiModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.domain.entity.ModerationCategory;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
@@ -53,7 +53,7 @@ class Issue251Step0OpenAiBaselineTest {
         for (BaselineCase baselineCase : cases()) {
             long startedAt = System.nanoTime();
             try {
-                AiModerationResponse response = analyze(baselineCase.input());
+                AiModerationResult response = analyze(baselineCase.input());
                 long latencyMs = elapsedMillis(startedAt);
                 ModerationResult actual = response.result();
                 boolean exactMatch = actual.result() == baselineCase.proposedResult()
@@ -68,7 +68,7 @@ class Issue251Step0OpenAiBaselineTest {
         }
     }
 
-    private AiModerationResponse analyze(String input) {
+    private AiModerationResult analyze(String input) {
         ResponseEntity<ChatResponse, ModerationResult> response = moderationChatClient.prompt()
                 .system(ModerationPrompt.SYSTEM_PROMPT)
                 .user(input)
@@ -78,12 +78,12 @@ class Issue251Step0OpenAiBaselineTest {
         ChatResponseMetadata metadata = response.response().getMetadata();
         Usage usage = metadata == null ? null : metadata.getUsage();
         String model = metadata == null || metadata.getModel() == null ? configuredModel : metadata.getModel();
-        return new AiModerationResponse(response.entity(), "OpenAI", model,
+        return new AiModerationResult(response.entity(), "OpenAI", model,
                 usage == null ? null : asLong(usage.getPromptTokens()), usage == null ? null : asLong(usage.getCompletionTokens()),
                 usage == null ? null : asLong(usage.getTotalTokens()));
     }
 
-    private void print(BaselineCase c, AiModerationResponse response, ModerationResult actual, long latencyMs,
+    private void print(BaselineCase c, AiModerationResult response, ModerationResult actual, long latencyMs,
             String verdict, String structuredOutput, String injectionIntegrity) {
         System.out.printf("%n[251-BEFORE]%ncase=%s%ntype=%s%ninput=\"%s\"%nproposedExpected=%s/%s/%s%nactual=%s/%s/%s%n"
                         + "structuredOutput=%s%nmodel=%s%npromptVersion=%s%npolicyVersion=%s%npromptTokens=%s%ncompletionTokens=%s%ntotalTokens=%s%nlatencyMs=%d%n",

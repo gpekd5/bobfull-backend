@@ -11,8 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,9 +30,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
  * Blacklist 조회 자체를 건너뛰고 인증만 정상 처리한다 — 배포 순간 활성 세션 전원이 강제 로그아웃되는
  * 것을 막기 위함이며(PR #187 리뷰), 어차피 그런 토큰은 Blacklist에 등록될 수도 없다.
  */
+@Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-
-    private static final Logger log = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
     private static final String AUTHORIZATION_HEADER = "Authorization";
     private static final String BEARER_PREFIX = "Bearer ";
 

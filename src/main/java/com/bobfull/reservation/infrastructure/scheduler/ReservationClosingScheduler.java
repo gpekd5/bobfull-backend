@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 /**
  * 식사 종료(TimeSlot.endAt 도달) 대상을 찾아 ReservationStatus를 CONFIRMED에서 CLOSED로
  * 전환한다(Issue #175). 채팅 SEND 차단은 이 스케줄러의 처리 시점과 무관하게
- * {@code ReservationChatAccessReader}가 TimeSlot.endAt을 직접 비교해 즉시 보장하므로, 이
+ * {@code ReservationChatAccessPort}가 TimeSlot.endAt을 직접 비교해 즉시 보장하므로, 이
  * 스케줄러가 지연돼도 전송 차단 정책은 깨지지 않는다. 후보별로 독립된 짧은 트랜잭션에서
  * 처리하며, 분산 락은 두지 않는다 — 후보 하나가 이미 처리됐으면
  * {@link ReservationClosingProcessor#close}가 재확인 가드로 멱등 종료한다.

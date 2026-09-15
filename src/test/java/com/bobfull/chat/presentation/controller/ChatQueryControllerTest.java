@@ -7,8 +7,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.bobfull.chat.presentation.dto.ChatMessageSliceResponse;
-import com.bobfull.chat.presentation.dto.ChatRoomResponse;
+import com.bobfull.chat.presentation.response.ChatMessageSliceResponse;
+import com.bobfull.chat.presentation.response.ChatRoomResponse;
 import com.bobfull.chat.application.service.ChatMessageQueryService;
 import com.bobfull.chat.application.service.ChatRoomQueryService;
 import com.bobfull.auth.application.model.AuthMember;

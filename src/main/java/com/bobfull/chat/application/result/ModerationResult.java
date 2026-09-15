@@ -1,4 +1,4 @@
-package com.bobfull.chat.application.dto;
+package com.bobfull.chat.application.result;
 
 import com.bobfull.chat.domain.entity.ModerationCategory;
 import com.bobfull.chat.domain.entity.ModerationResultType;

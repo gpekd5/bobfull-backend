@@ -1,7 +1,7 @@
 package com.bobfull.chat.infrastructure.ai;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.AiModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.domain.entity.ModerationCategory;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
@@ -111,7 +111,7 @@ class Issue251HardeningProviderProbeTest {
             long latencyMs = elapsedMillis(startedAt);
             ChatResponseMetadata metadata = response.response().getMetadata();
             Usage usage = metadata == null ? null : metadata.getUsage();
-            AiModerationResponse actual = new AiModerationResponse(response.entity(), "OpenAI",
+            AiModerationResult actual = new AiModerationResult(response.entity(), "OpenAI",
                     metadata == null || metadata.getModel() == null ? configuredModel : metadata.getModel(),
                     usage == null ? null : asLong(usage.getPromptTokens()),
                     usage == null ? null : asLong(usage.getCompletionTokens()), usage == null ? null : asLong(usage.getTotalTokens()));
@@ -125,7 +125,7 @@ class Issue251HardeningProviderProbeTest {
     private Observation observe(String input, Metrics metrics, List<String> failures, String caseId) {
         long startedAt = System.nanoTime();
         try {
-            AiModerationResponse response = analyze(input);
+            AiModerationResult response = analyze(input);
             long latencyMs = elapsedMillis(startedAt);
             metrics.addCall(response, latencyMs);
             return new Observation(input, response.result(), response, latencyMs);
@@ -160,7 +160,7 @@ class Issue251HardeningProviderProbeTest {
                 actual.result(), actual.categories(), actual.riskLevel());
     }
 
-    private AiModerationResponse analyze(String input) {
+    private AiModerationResult analyze(String input) {
         ResponseEntity<ChatResponse, ModerationResult> response = moderationChatClient.prompt()
                 .system(ModerationPrompt.SYSTEM_PROMPT).user(input)
                 .options(OpenAiModerationEvaluationOptions.forModel(configuredModel, maxOutputTokens)).call()
@@ -168,20 +168,20 @@ class Issue251HardeningProviderProbeTest {
         ChatResponseMetadata metadata = response.response().getMetadata();
         Usage usage = metadata == null ? null : metadata.getUsage();
         String model = metadata == null || metadata.getModel() == null ? configuredModel : metadata.getModel();
-        return new AiModerationResponse(response.entity(), "OpenAI", model,
+        return new AiModerationResult(response.entity(), "OpenAI", model,
                 usage == null ? null : asLong(usage.getPromptTokens()), usage == null ? null : asLong(usage.getCompletionTokens()),
                 usage == null ? null : asLong(usage.getTotalTokens()));
     }
     private static Long asLong(Integer value) { return value == null ? null : value.longValue(); }
     private static long elapsedMillis(long startedAt) { return (System.nanoTime() - startedAt) / 1_000_000; }
 
-    private record Observation(String input, ModerationResult result, AiModerationResponse response, long latencyMs) { }
+    private record Observation(String input, ModerationResult result, AiModerationResult response, long latencyMs) { }
     private static final class Metrics {
         int total; int resultExact; int categoryExact; int riskExact; int tp; int fp; int fn; int tn;
         int injectionSecurityDetermined; int injectionSecurityPass; int injectionSecurityNotDeterminable; int structuredOutputFailures; int obfuscationTotal; int obfuscationDetected;
         int splitFlaggedTotal; int splitDetected; int splitFalsePositive; int splitFalseNegative;
         long promptTokens; long completionTokens; long totalTokens; final List<Long> latencies = new ArrayList<>();
-        void addCall(AiModerationResponse response, long latencyMs) {
+        void addCall(AiModerationResult response, long latencyMs) {
             if (response.promptTokens() != null) promptTokens += response.promptTokens();
             if (response.completionTokens() != null) completionTokens += response.completionTokens();
             if (response.totalTokens() != null) totalTokens += response.totalTokens();

@@ -1,4 +1,4 @@
-package com.bobfull.auth.presentation.dto;
+package com.bobfull.auth.presentation.response;
 
 import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.member.domain.entity.Member;

@@ -1,7 +1,7 @@
 package com.bobfull.chat.infrastructure.ai;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.AiModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.domain.entity.ModerationCategory;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
@@ -35,7 +35,7 @@ public class FakeAiModerationAdapter implements AiModerationPort {
     }
 
     @Override
-    public AiModerationResponse analyze(String content) {
+    public AiModerationResult analyze(String content) {
         simulateLatency();
         if (content != null && content.contains(FORCE_FAIL_MARKER)) {
             throw new IllegalStateException("Fake AI 강제 실패(실험 C 격리 테스트)");
@@ -43,7 +43,7 @@ public class FakeAiModerationAdapter implements AiModerationPort {
         Set<ModerationCategory> categories = resultType == ModerationResultType.SAFE
                 ? Set.of() : DEFAULT_FLAGGED_CATEGORIES;
         RiskLevel riskLevel = resultType == ModerationResultType.SAFE ? RiskLevel.LOW : RiskLevel.HIGH;
-        return new AiModerationResponse(new ModerationResult(resultType, categories, riskLevel),
+        return new AiModerationResult(new ModerationResult(resultType, categories, riskLevel),
                 "Fake", "fake-model", 0L, 0L, 0L);
     }
 

@@ -8,8 +8,8 @@ import com.bobfull.chat.infrastructure.ai.ModerationEvaluationMetrics.ConfusionA
 import com.bobfull.chat.infrastructure.ai.ModerationEvaluationMetrics.ConfusionCounts;
 import com.bobfull.chat.infrastructure.ai.ModerationEvaluationMetrics.PrecisionRecallF1;
 import com.bobfull.chat.infrastructure.ai.ModerationEvaluationMetrics.WilsonInterval;
-import com.bobfull.chat.application.dto.AiModerationResponse;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.AiModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.domain.entity.ModerationCategory;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
@@ -162,7 +162,7 @@ class SpringAiModerationHeldoutEvaluationTest {
         for (HeldoutCase testCase : cases) {
             long startedAt = System.nanoTime();
             try {
-                AiModerationResponse response = evaluateWithSelectedModel(testCase.message());
+                AiModerationResult response = evaluateWithSelectedModel(testCase.message());
                 long latencyMillis = elapsedMillis(startedAt);
                 latencies.add(latencyMillis);
                 ModerationResult actual = response.result();
@@ -206,7 +206,7 @@ class SpringAiModerationHeldoutEvaluationTest {
         return riskLevel != RiskLevel.LOW;
     }
 
-    private AiModerationResponse evaluateWithSelectedModel(String content) {
+    private AiModerationResult evaluateWithSelectedModel(String content) {
         ResponseEntity<ChatResponse, ModerationResult> response = moderationChatClient.prompt()
                 .system(ModerationPrompt.SYSTEM_PROMPT)
                 .user(content)
@@ -217,7 +217,7 @@ class SpringAiModerationHeldoutEvaluationTest {
         ChatResponseMetadata metadata = chatResponse.getMetadata();
         Usage usage = metadata == null ? null : metadata.getUsage();
         String model = metadata == null || metadata.getModel() == null ? evaluationModel : metadata.getModel();
-        return new AiModerationResponse(response.entity(), "OpenAI", model,
+        return new AiModerationResult(response.entity(), "OpenAI", model,
                 usage == null ? null : (long) usage.getPromptTokens(),
                 usage == null ? null : (long) usage.getCompletionTokens(),
                 usage == null ? null : (long) usage.getTotalTokens());

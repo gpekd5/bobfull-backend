@@ -15,18 +15,17 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.kafka.core.KafkaOperations;
 import org.springframework.stereotype.Service;
 
 /** ChatMessage 생성 이벤트를 Kafka로 발행하는 at-least-once Outbox processor다. */
+@Slf4j
 @Service
 public class ChatMessageOutboxProcessor {
 
-    private static final Logger log = LoggerFactory.getLogger(ChatMessageOutboxProcessor.class);
     static final int MAX_RETRIES = 5;
     static final Duration STALE_PROCESSING_THRESHOLD = Duration.ofMinutes(5);
     private static final List<OutboxEventType> CHAT_MESSAGE_EVENT_TYPES = List.of(OutboxEventType.CHAT_MESSAGE_CREATED);

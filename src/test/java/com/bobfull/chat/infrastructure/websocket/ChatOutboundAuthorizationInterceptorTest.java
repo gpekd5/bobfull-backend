@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
 import com.bobfull.chat.domain.entity.ChatRoom;
-import com.bobfull.chat.application.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.ReservationChatAccessPort;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import java.util.Optional;
@@ -22,7 +22,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 class ChatOutboundAuthorizationInterceptorTest {
 
     private final ChatRoomRepository rooms = org.mockito.Mockito.mock(ChatRoomRepository.class);
-    private final ReservationChatAccessReader access = org.mockito.Mockito.mock(ReservationChatAccessReader.class);
+    private final ReservationChatAccessPort access = org.mockito.Mockito.mock(ReservationChatAccessPort.class);
     private final SimpUserRegistry registry = org.mockito.Mockito.mock(SimpUserRegistry.class);
     private final ChatOutboundAuthorizationInterceptor interceptor =
             new ChatOutboundAuthorizationInterceptor(rooms, access, registry);
@@ -31,7 +31,7 @@ class ChatOutboundAuthorizationInterceptorTest {
     void 활성_참여자에게는_구독_메시지가_그대로_전달된다() {
         // given
         given(rooms.findById(3L)).willReturn(Optional.of(room(3L, 10L)));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(4L, ParticipationStatus.RESERVED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessPort.ChatAccess(4L, ParticipationStatus.RESERVED));
         registerSession("session-1", 7L);
 
         // when
@@ -45,7 +45,7 @@ class ChatOutboundAuthorizationInterceptorTest {
     void SUBSCRIBE_이후_최종_CANCELLED로_확정된_참여자에게는_새_메시지가_전달되지_않는다() {
         // given
         given(rooms.findById(3L)).willReturn(Optional.of(room(3L, 10L)));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(4L, ParticipationStatus.CANCELLED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessPort.ChatAccess(4L, ParticipationStatus.CANCELLED));
         registerSession("session-1", 7L);
 
         // when

@@ -1,7 +1,7 @@
 package com.bobfull.chat.infrastructure.ai;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.AiModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.application.port.AiModerationPort;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ResponseEntity;
@@ -23,10 +23,12 @@ public class SpringAiModerationAdapter implements AiModerationPort {
     public SpringAiModerationAdapter(@Qualifier("moderationChatClient") ChatClient moderationChatClient,
             @Value("${spring.ai.openai.chat.model:gpt-4o-mini}") String configuredModel,
             @Value("${bobfull.ai.moderation.max-output-tokens:128}") int maxOutputTokens) {
-        this.chatClient = moderationChatClient; this.configuredModel = configuredModel; this.maxOutputTokens = maxOutputTokens;
+        this.chatClient = moderationChatClient;
+        this.configuredModel = configuredModel;
+        this.maxOutputTokens = maxOutputTokens;
     }
     @Override
-    public AiModerationResponse analyze(String content) {
+    public AiModerationResult analyze(String content) {
         ResponseEntity<ChatResponse, ModerationResult> response = chatClient.prompt()
                 .system(ModerationPrompt.SYSTEM_PROMPT)
                 .user(content)
@@ -36,10 +38,12 @@ public class SpringAiModerationAdapter implements AiModerationPort {
         ChatResponseMetadata metadata = response.response().getMetadata();
         Usage usage = metadata == null ? null : metadata.getUsage();
         String model = metadata == null || metadata.getModel() == null ? configuredModel : metadata.getModel();
-        return new AiModerationResponse(response.entity(), "OpenAI", model,
+        return new AiModerationResult(response.entity(), "OpenAI", model,
                 usage == null ? null : asLong(usage.getPromptTokens()),
                 usage == null ? null : asLong(usage.getCompletionTokens()),
                 usage == null ? null : asLong(usage.getTotalTokens()));
     }
-    private static Long asLong(Integer value) { return value == null ? null : value.longValue(); }
+    private static Long asLong(Integer value) {
+        return value == null ? null : value.longValue();
+    }
 }

@@ -4,8 +4,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,10 +16,11 @@ import org.springframework.stereotype.Component;
  * 무제한으로 두지 않고, Kafka 장기 장애 중 큐가 쌓여 메모리를 압박하지 않도록 유한 큐를
  * 쓰고 포화 시 그 signal만 안전하게 버린다(호출자에게 예외를 전파하지 않음).
  */
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class ChatMessageOutboxSignalDispatcher {
 
-    private static final Logger log = LoggerFactory.getLogger(ChatMessageOutboxSignalDispatcher.class);
     private static final int QUEUE_CAPACITY = 100;
 
     private final ChatMessageOutboxProcessor processor;
@@ -31,10 +32,6 @@ public class ChatMessageOutboxSignalDispatcher {
                 return thread;
             },
             discardAndLog());
-
-    public ChatMessageOutboxSignalDispatcher(ChatMessageOutboxProcessor processor) {
-        this.processor = processor;
-    }
 
     public void dispatch(Long outboxEventId) {
         executor.execute(() -> {

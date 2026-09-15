@@ -3,7 +3,7 @@ package com.bobfull.chat.infrastructure.ai;
 import com.bobfull.chat.domain.entity.ModerationCategory;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
-import com.bobfull.chat.application.service.ModerationRuleFilter;
+import com.bobfull.chat.application.service.ModerationRulePolicy;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /** Issue #251 STEP 3 production 적용 전용, Frozen Dataset Rule routing simulation이다. */
 class Issue251RuleRoutingSimulationTest {
-    private final ModerationRuleFilter ruleFilter = new ModerationRuleFilter();
+    private final ModerationRulePolicy rulePolicy = new ModerationRulePolicy();
 
     @Test
     void Frozen_Dataset_66건에서_CLEAR_FLAGGED_Rule의_false_positive가_없어야_한다() {
@@ -36,7 +36,7 @@ class Issue251RuleRoutingSimulationTest {
     }
 
     private Optional<RouteDecision> route(String input) {
-        return ruleFilter.clearFlagged(input).map(result -> new RouteDecision(result.categories().iterator().next(), result.riskLevel(), reason(result.categories().iterator().next())));
+        return rulePolicy.clearFlagged(input).map(result -> new RouteDecision(result.categories().iterator().next(), result.riskLevel(), reason(result.categories().iterator().next())));
     }
 
     private static String reason(ModerationCategory category) {

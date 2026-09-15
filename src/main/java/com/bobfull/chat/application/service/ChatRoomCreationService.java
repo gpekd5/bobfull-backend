@@ -2,6 +2,7 @@ package com.bobfull.chat.application.service;
 
 import com.bobfull.chat.domain.entity.ChatRoom;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,13 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
  * 열어 이 저장이 실패해도 호출자 쪽에 되돌릴 활성 트랜잭션이 없게 한다.
  */
 @Service
+@RequiredArgsConstructor
 public class ChatRoomCreationService {
 
     private final ChatRoomRepository chatRoomRepository;
-
-    public ChatRoomCreationService(ChatRoomRepository chatRoomRepository) {
-        this.chatRoomRepository = chatRoomRepository;
-    }
 
     /**
      * reservationId 기준으로 멱등하게 생성한다. 조회 이후 저장 사이에 동시 요청이 들어올 수

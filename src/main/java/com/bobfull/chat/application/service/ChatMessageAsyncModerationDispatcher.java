@@ -4,8 +4,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -19,9 +18,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConditionalOnProperty(prefix = "bobfull.chat.moderation", name = "async-baseline-enabled", havingValue = "true")
+@Slf4j
 public class ChatMessageAsyncModerationDispatcher {
-    private static final Logger log = LoggerFactory.getLogger(ChatMessageAsyncModerationDispatcher.class);
-
     private final ChatModerationService chatModerationService;
     private final ThreadPoolExecutor executor;
 

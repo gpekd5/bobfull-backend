@@ -1,6 +1,7 @@
 package com.bobfull.auth.infrastructure.redis;
 
 import java.time.Duration;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -11,15 +12,12 @@ import org.springframework.stereotype.Component;
  * 실행되는 조회는 Fail-open으로 처리하기로 확정했으므로(Issue #186 Q5), 그 판단은 호출자가 맡는다.
  */
 @Component
+@RequiredArgsConstructor
 public class AccessTokenBlacklistStore {
 
     private static final String KEY_PREFIX = "auth:access-token-blacklist:";
 
     private final StringRedisTemplate redisTemplate;
-
-    public AccessTokenBlacklistStore(StringRedisTemplate redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
 
     /** ttl이 0 이하면(이미 만료됐거나 만료 직전) 등록을 건너뛴다 — 어차피 곧 스스로 무효가 된다. */
     public void blacklist(String jti, Duration ttl) {

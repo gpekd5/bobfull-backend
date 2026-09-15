@@ -8,8 +8,7 @@ import tools.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +17,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 /**
  * 인증된 회원이 권한 없는 API에 접근했을 때 공통 실패 응답을 반환한다.
  */
+@Slf4j
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-
-    private static final Logger log = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
 
     private final ObjectMapper objectMapper;
 

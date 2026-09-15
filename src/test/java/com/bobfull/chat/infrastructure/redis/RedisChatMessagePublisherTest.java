@@ -3,7 +3,7 @@ package com.bobfull.chat.infrastructure.redis;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-import com.bobfull.chat.presentation.dto.ChatMessageSentResponse;
+import com.bobfull.chat.presentation.response.ChatMessageSentResponse;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import java.time.Instant;

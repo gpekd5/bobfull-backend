@@ -12,6 +12,9 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /** 이메일 주소 대신 수신자 식별자와 성공 결과만 저장하는 Outbox 전송 이력이다. */
 @Entity
@@ -19,8 +22,12 @@ import java.time.Instant;
         uniqueConstraints = @UniqueConstraint(name = "uk_email_outbox_delivery_event_recipient",
                 columnNames = {"outbox_event_id", "recipient_member_id"}),
         indexes = @Index(name = "idx_email_outbox_delivery_event_status", columnList = "outbox_event_id, status"))
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class EmailOutboxDelivery extends BaseTimeEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "email_outbox_delivery_id")
     private Long id;
 
@@ -32,24 +39,26 @@ public class EmailOutboxDelivery extends BaseTimeEntity {
     private Long reservationParticipantId;
     @Column(name = "recipient_member_id", nullable = false, updatable = false)
     private Long recipientMemberId;
-    @Enumerated(EnumType.STRING) @Column(nullable = false, length = 16)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 16)
     private EmailDeliveryStatus status;
     @Column(name = "sent_at")
     private Instant sentAt;
 
-    protected EmailOutboxDelivery() {}
     private EmailOutboxDelivery(Long eventId, Long reservationId, Long participantId, Long memberId) {
-        this.outboxEventId = eventId; this.reservationId = reservationId;
-        this.reservationParticipantId = participantId; this.recipientMemberId = memberId;
+        this.outboxEventId = eventId;
+        this.reservationId = reservationId;
+        this.reservationParticipantId = participantId;
+        this.recipientMemberId = memberId;
         this.status = EmailDeliveryStatus.PENDING;
     }
+
     public static EmailOutboxDelivery pending(Long eventId, Long reservationId, Long participantId, Long memberId) {
         return new EmailOutboxDelivery(eventId, reservationId, participantId, memberId);
     }
-    public Long getId() { return id; }
-    public Long getReservationId() { return reservationId; }
-    public Long getReservationParticipantId() { return reservationParticipantId; }
-    public Long getRecipientMemberId() { return recipientMemberId; }
-    public EmailDeliveryStatus getStatus() { return status; }
-    public void markSent(Instant now) { status = EmailDeliveryStatus.SENT; sentAt = now; }
+
+    public void markSent(Instant now) {
+        status = EmailDeliveryStatus.SENT;
+        sentAt = now;
+    }
 }

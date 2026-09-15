@@ -8,8 +8,8 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.AiModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatModeration;
@@ -39,7 +39,7 @@ class ChatModerationServiceTest {
     private final ChatMessageRepository messages = org.mockito.Mockito.mock(ChatMessageRepository.class);
     private final ChatModerationRepository moderations = org.mockito.Mockito.mock(ChatModerationRepository.class);
     private final FakeAiModerationAdapter ai = new FakeAiModerationAdapter();
-    private final ChatModerationService service = new ChatModerationService(messages, moderations, ai, new ModerationRuleFilter(), new SplitMessageCandidateGate(),
+    private final ChatModerationService service = new ChatModerationService(messages, moderations, ai, new ModerationRulePolicy(), new SplitMessageCandidateGate(),
             Clock.fixed(NOW, ZoneOffset.UTC));
 
     @Test
@@ -240,7 +240,7 @@ class ChatModerationServiceTest {
         // when & then
         assertThatThrownBy(() -> service.analyze(14L)).isInstanceOf(ModerationAnalysisException.class);
         verify(moderations, never()).saveAndFlush(any(ChatModeration.class));
-        ai.response = new AiModerationResponse(new ModerationResult(null, null, null), "OpenAI", "gpt-4o-mini", null, null, null);
+        ai.response = new AiModerationResult(new ModerationResult(null, null, null), "OpenAI", "gpt-4o-mini", null, null, null);
         assertThatThrownBy(() -> service.analyze(14L)).isInstanceOf(ModerationAnalysisException.class);
     }
 
@@ -391,10 +391,10 @@ class ChatModerationServiceTest {
     private void assertSplitRule(String... fragments) {
         java.util.List<ChatMessage> messages = new java.util.ArrayList<>();
         for (int index = 0; index < fragments.length; index++) messages.add(message((long) index + 300L, 1L, 2L, NOW.plusMillis(index), fragments[index]));
-        assertThat(new ModerationRuleFilter().clearSplitFlagged(SplitMessageContext.from(messages).recentCanonicalCandidates())).isPresent();
+        assertThat(new ModerationRulePolicy().clearSplitFlagged(SplitMessageContext.from(messages).recentCanonicalCandidates())).isPresent();
     }
-    private AiModerationResponse response(ModerationResultType result, EnumSet<ModerationCategory> categories, RiskLevel riskLevel) {
-        return new AiModerationResponse(new ModerationResult(result, categories, riskLevel), "OpenAI", "gpt-4o-mini", 1L, 2L, 3L);
+    private AiModerationResult response(ModerationResultType result, EnumSet<ModerationCategory> categories, RiskLevel riskLevel) {
+        return new AiModerationResult(new ModerationResult(result, categories, riskLevel), "OpenAI", "gpt-4o-mini", 1L, 2L, 3L);
     }
     private ChatModeration completed(Long messageId) {
         return ChatModeration.completed(messageId, ModerationResultType.FLAGGED, EnumSet.of(ModerationCategory.SPAM), RiskLevel.HIGH,
@@ -410,11 +410,11 @@ class ChatModerationServiceTest {
         return captor.getValue();
     }
     private static class FakeAiModerationAdapter implements AiModerationPort {
-        private AiModerationResponse response;
+        private AiModerationResult response;
         private RuntimeException exception;
         private int callCount;
         private String lastInput;
-        @Override public AiModerationResponse analyze(String content) {
+        @Override public AiModerationResult analyze(String content) {
             callCount++;
             lastInput = content;
             if (exception != null) throw exception;

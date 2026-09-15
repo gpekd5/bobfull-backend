@@ -3,8 +3,8 @@ package com.bobfull.chat.infrastructure.redis;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import java.nio.charset.StandardCharsets;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -12,19 +12,14 @@ import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
 /** Redis에서 받은 메시지를 현재 인스턴스의 STOMP 세션에만 fan-out한다. */
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class RedisChatMessageSubscriber implements MessageListener {
-    private static final Logger log = LoggerFactory.getLogger(RedisChatMessageSubscriber.class);
+
     private final ObjectMapper objectMapper;
     private final SimpMessagingTemplate messagingTemplate;
     private final BusinessMetricRecorder businessMetricRecorder;
-
-    public RedisChatMessageSubscriber(ObjectMapper objectMapper, SimpMessagingTemplate messagingTemplate,
-            BusinessMetricRecorder businessMetricRecorder) {
-        this.objectMapper = objectMapper;
-        this.messagingTemplate = messagingTemplate;
-        this.businessMetricRecorder = businessMetricRecorder;
-    }
 
     @Override
     public void onMessage(Message message, byte[] pattern) {

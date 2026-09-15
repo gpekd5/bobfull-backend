@@ -1,12 +1,12 @@
 package com.bobfull.auth.application.service;
 
-import com.bobfull.auth.presentation.dto.LoginRequest;
-import com.bobfull.auth.presentation.dto.LoginResponse;
-import com.bobfull.auth.presentation.dto.LogoutResponse;
-import com.bobfull.auth.presentation.dto.ReissueResponse;
-import com.bobfull.auth.presentation.dto.SignupOwnerRequest;
-import com.bobfull.auth.presentation.dto.SignupResponse;
-import com.bobfull.auth.presentation.dto.SignupUserRequest;
+import com.bobfull.auth.presentation.request.LoginRequest;
+import com.bobfull.auth.presentation.response.LoginResponse;
+import com.bobfull.auth.presentation.response.LogoutResponse;
+import com.bobfull.auth.presentation.response.ReissueResponse;
+import com.bobfull.auth.presentation.request.SignupOwnerRequest;
+import com.bobfull.auth.presentation.response.SignupResponse;
+import com.bobfull.auth.presentation.request.SignupUserRequest;
 import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
 import com.bobfull.auth.infrastructure.redis.RefreshTokenStore;
 import com.bobfull.common.exception.CommonErrorCode;
@@ -19,8 +19,8 @@ import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
 import java.time.Clock;
 import java.time.Duration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,10 +37,10 @@ import org.springframework.transaction.annotation.Transactional;
  * 삭제 모두)는 감추지 않고 전파한다 — 인증 필터의 매 요청 Blacklist *조회*만 Fail-open이고, 로그아웃
  * 자체의 등록 실패를 성공으로 위장하지는 않는다(Issue #186 Q5).
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class AuthService {
-
-    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
@@ -49,24 +49,6 @@ public class AuthService {
     private final BusinessMetricRecorder businessMetricRecorder;
     private final AccessTokenBlacklistStore accessTokenBlacklistStore;
     private final Clock clock;
-
-    public AuthService(
-            MemberRepository memberRepository,
-            PasswordEncoder passwordEncoder,
-            JwtTokenProvider jwtTokenProvider,
-            RefreshTokenStore refreshTokenStore,
-            BusinessMetricRecorder businessMetricRecorder,
-            AccessTokenBlacklistStore accessTokenBlacklistStore,
-            Clock clock
-    ) {
-        this.memberRepository = memberRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtTokenProvider = jwtTokenProvider;
-        this.refreshTokenStore = refreshTokenStore;
-        this.businessMetricRecorder = businessMetricRecorder;
-        this.accessTokenBlacklistStore = accessTokenBlacklistStore;
-        this.clock = clock;
-    }
 
     @Transactional
     public SignupResponse signupMember(SignupUserRequest request) {

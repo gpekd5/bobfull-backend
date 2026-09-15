@@ -1,4 +1,7 @@
-package com.bobfull.notification.infrastructure.outbox;
+package com.bobfull.notification.infrastructure.repository;
+
+import com.bobfull.notification.infrastructure.outbox.EmailDeliveryStatus;
+import com.bobfull.notification.infrastructure.outbox.EmailOutboxDelivery;
 
 import java.util.List;
 import java.time.Instant;

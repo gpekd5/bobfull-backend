@@ -20,49 +20,100 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /** ChatMessage 원본과 연결된 AI 분석 결과 및 실패 이력이다. */
 @Entity
 @Table(name = "chat_moderation", uniqueConstraints = @UniqueConstraint(
         name = "uk_chat_moderation_message", columnNames = "chat_message_id"))
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatModeration extends BaseTimeEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "chat_moderation_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "chat_moderation_id")
     private Long id;
-    @Version @Column(nullable = false)
+
+    @Version
+    @Column(nullable = false)
     private Long version;
+
     @Column(name = "chat_message_id", nullable = false, updatable = false)
     private Long messageId;
-    @Enumerated(EnumType.STRING) @Column(nullable = false, length = 24)
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 24)
     private ModerationProcessingStatus status;
-    @Enumerated(EnumType.STRING) @Column(length = 16)
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 16)
     private ModerationResultType result;
+
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "chat_moderation_category", joinColumns = @JoinColumn(name = "chat_moderation_id", foreignKey = @ForeignKey(name = "fk_chat_moderation_category_moderation")))
-    @Enumerated(EnumType.STRING) @Column(name = "category", nullable = false, length = 32)
+    @CollectionTable(
+            name = "chat_moderation_category",
+            joinColumns = @JoinColumn(
+                    name = "chat_moderation_id",
+                    foreignKey = @ForeignKey(name = "fk_chat_moderation_category_moderation")))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", nullable = false, length = 32)
     private Set<ModerationCategory> categories = EnumSet.noneOf(ModerationCategory.class);
-    @Enumerated(EnumType.STRING) @Column(name = "risk_level", length = 16)
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "risk_level", length = 16)
     private RiskLevel riskLevel;
-    @Column(nullable = false, length = 32) private String provider;
-    @Column(name = "model_name", nullable = false, length = 128) private String model;
-    @Column(name = "prompt_version", nullable = false, length = 64) private String promptVersion;
-    @Column(name = "policy_version", nullable = false, length = 64) private String policyVersion;
-    @Column(name = "latency_millis", nullable = false) private long latencyMillis;
-    @Column(name = "prompt_tokens") private Long promptTokens;
-    @Column(name = "completion_tokens") private Long completionTokens;
-    @Column(name = "total_tokens") private Long totalTokens;
-    @Column(name = "analyzed_at", nullable = false) private Instant analyzedAt;
-    @Column(name = "error_code", length = 128) private String errorCode;
-    protected ChatModeration() { }
+
+    @Column(nullable = false, length = 32)
+    private String provider;
+
+    @Column(name = "model_name", nullable = false, length = 128)
+    private String model;
+
+    @Column(name = "prompt_version", nullable = false, length = 64)
+    private String promptVersion;
+
+    @Column(name = "policy_version", nullable = false, length = 64)
+    private String policyVersion;
+
+    @Column(name = "latency_millis", nullable = false)
+    private long latencyMillis;
+
+    @Column(name = "prompt_tokens")
+    private Long promptTokens;
+
+    @Column(name = "completion_tokens")
+    private Long completionTokens;
+
+    @Column(name = "total_tokens")
+    private Long totalTokens;
+
+    @Column(name = "analyzed_at", nullable = false)
+    private Instant analyzedAt;
+
+    @Column(name = "error_code", length = 128)
+    private String errorCode;
+
     private ChatModeration(Long messageId, ModerationProcessingStatus status, ModerationResultType result,
             Set<ModerationCategory> categories, RiskLevel riskLevel, String provider, String model,
             String promptVersion, String policyVersion, long latencyMillis, Long promptTokens,
             Long completionTokens, Long totalTokens, Instant analyzedAt, String errorCode) {
-        this.messageId = messageId; this.status = status; this.result = result;
+        this.messageId = messageId;
+        this.status = status;
+        this.result = result;
         this.categories = categories.isEmpty() ? EnumSet.noneOf(ModerationCategory.class) : EnumSet.copyOf(categories);
-        this.riskLevel = riskLevel; this.provider = provider; this.model = model;
-        this.promptVersion = promptVersion; this.policyVersion = policyVersion; this.latencyMillis = latencyMillis;
-        this.promptTokens = promptTokens; this.completionTokens = completionTokens; this.totalTokens = totalTokens;
-        this.analyzedAt = analyzedAt; this.errorCode = errorCode;
+        this.riskLevel = riskLevel;
+        this.provider = provider;
+        this.model = model;
+        this.promptVersion = promptVersion;
+        this.policyVersion = policyVersion;
+        this.latencyMillis = latencyMillis;
+        this.promptTokens = promptTokens;
+        this.completionTokens = completionTokens;
+        this.totalTokens = totalTokens;
+        this.analyzedAt = analyzedAt;
+        this.errorCode = errorCode;
     }
     public static ChatModeration completed(Long messageId, ModerationResultType result, Set<ModerationCategory> categories,
             RiskLevel riskLevel, String provider, String model, String promptVersion, String policyVersion,
@@ -80,29 +131,45 @@ public class ChatModeration extends BaseTimeEntity {
     public void complete(ModerationResultType result, Set<ModerationCategory> categories, RiskLevel riskLevel,
             String provider, String model, String promptVersion, String policyVersion, long latencyMillis,
             Long promptTokens, Long completionTokens, Long totalTokens, Instant analyzedAt) {
-        this.status = result == ModerationResultType.SAFE ? ModerationProcessingStatus.SAFE : ModerationProcessingStatus.FLAGGED;
+        this.status = result == ModerationResultType.SAFE
+                ? ModerationProcessingStatus.SAFE
+                : ModerationProcessingStatus.FLAGGED;
         this.result = result;
         this.categories = categories.isEmpty() ? EnumSet.noneOf(ModerationCategory.class) : EnumSet.copyOf(categories);
-        this.riskLevel = riskLevel; this.provider = provider; this.model = model;
-        this.promptVersion = promptVersion; this.policyVersion = policyVersion; this.latencyMillis = latencyMillis;
-        this.promptTokens = promptTokens; this.completionTokens = completionTokens; this.totalTokens = totalTokens;
-        this.analyzedAt = analyzedAt; this.errorCode = null;
+        this.riskLevel = riskLevel;
+        this.provider = provider;
+        this.model = model;
+        this.promptVersion = promptVersion;
+        this.policyVersion = policyVersion;
+        this.latencyMillis = latencyMillis;
+        this.promptTokens = promptTokens;
+        this.completionTokens = completionTokens;
+        this.totalTokens = totalTokens;
+        this.analyzedAt = analyzedAt;
+        this.errorCode = null;
     }
     public void fail(String provider, String model, String promptVersion, String policyVersion, long latencyMillis,
             Instant analyzedAt, String errorCode) {
-        this.status = ModerationProcessingStatus.ANALYSIS_FAILED; this.result = null;
-        this.categories = EnumSet.noneOf(ModerationCategory.class); this.riskLevel = null;
-        this.provider = provider; this.model = model; this.promptVersion = promptVersion; this.policyVersion = policyVersion;
-        this.latencyMillis = latencyMillis; this.promptTokens = null; this.completionTokens = null; this.totalTokens = null;
-        this.analyzedAt = analyzedAt; this.errorCode = errorCode;
+        this.status = ModerationProcessingStatus.ANALYSIS_FAILED;
+        this.result = null;
+        this.categories = EnumSet.noneOf(ModerationCategory.class);
+        this.riskLevel = null;
+        this.provider = provider;
+        this.model = model;
+        this.promptVersion = promptVersion;
+        this.policyVersion = policyVersion;
+        this.latencyMillis = latencyMillis;
+        this.promptTokens = null;
+        this.completionTokens = null;
+        this.totalTokens = null;
+        this.analyzedAt = analyzedAt;
+        this.errorCode = errorCode;
     }
-    public boolean isCompleted() { return status == ModerationProcessingStatus.SAFE || status == ModerationProcessingStatus.FLAGGED; }
-    public Long getMessageId() { return messageId; } public ModerationProcessingStatus getStatus() { return status; }
-    public ModerationResultType getResult() { return result; } public Set<ModerationCategory> getCategories() { return Collections.unmodifiableSet(categories); }
-    public RiskLevel getRiskLevel() { return riskLevel; } public String getProvider() { return provider; } public String getModel() { return model; }
-    public String getPromptVersion() { return promptVersion; } public String getPolicyVersion() { return policyVersion; }
-    public long getLatencyMillis() { return latencyMillis; } public Instant getAnalyzedAt() { return analyzedAt; }
-    public Long getPromptTokens() { return promptTokens; } public Long getCompletionTokens() { return completionTokens; }
-    public Long getTotalTokens() { return totalTokens; }
-    public String getErrorCode() { return errorCode; }
+    public boolean isCompleted() {
+        return status == ModerationProcessingStatus.SAFE || status == ModerationProcessingStatus.FLAGGED;
+    }
+
+    public Set<ModerationCategory> getCategories() {
+        return Collections.unmodifiableSet(categories);
+    }
 }

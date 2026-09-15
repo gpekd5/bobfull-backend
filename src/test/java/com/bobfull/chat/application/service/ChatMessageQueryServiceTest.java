@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import com.bobfull.chat.presentation.dto.ChatMessageSliceResponse;
+import com.bobfull.chat.presentation.response.ChatMessageSliceResponse;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatRoom;
-import com.bobfull.chat.application.port.MemberNameReader;
-import com.bobfull.chat.application.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.MemberNamePort;
+import com.bobfull.chat.application.port.ReservationChatAccessPort;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.member.domain.entity.MemberRole;
@@ -23,8 +23,8 @@ import org.springframework.test.util.ReflectionTestUtils;
 class ChatMessageQueryServiceTest {
     private final ChatRoomRepository rooms = org.mockito.Mockito.mock(ChatRoomRepository.class);
     private final ChatMessageRepository messages = org.mockito.Mockito.mock(ChatMessageRepository.class);
-    private final ReservationChatAccessReader access = org.mockito.Mockito.mock(ReservationChatAccessReader.class);
-    private final MemberNameReader names = org.mockito.Mockito.mock(MemberNameReader.class);
+    private final ReservationChatAccessPort access = org.mockito.Mockito.mock(ReservationChatAccessPort.class);
+    private final MemberNamePort names = org.mockito.Mockito.mock(MemberNamePort.class);
     private final ChatMessageQueryService service = new ChatMessageQueryService(rooms, messages, access, names);
 
     @Test
@@ -35,7 +35,7 @@ class ChatMessageQueryServiceTest {
         ChatMessage m104 = message(104L, 1L, "104");
         ChatMessage m103 = message(103L, 1L, "103");
         given(rooms.findById(1L)).willReturn(java.util.Optional.of(room));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(8L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessPort.ChatAccess(8L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
         given(messages.findByChatRoomIdOrderByIdDesc(any(), any())).willReturn(List.of(m105, m104, m103));
         given(names.readNames(any())).willReturn(Map.of(1L, "회원"));
 
@@ -54,7 +54,7 @@ class ChatMessageQueryServiceTest {
     void cursor_다음_마지막_페이지는_작은_ID만_반환하고_nextCursor가_null이다() {
         // given
         given(rooms.findById(1L)).willReturn(java.util.Optional.of(room(1L, 10L)));
-        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessReader.ChatAccess(8L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
+        given(access.read(10L, 7L)).willReturn(new ReservationChatAccessPort.ChatAccess(8L, com.bobfull.reservation.domain.entity.ParticipationStatus.RESERVED));
         given(messages.findByChatRoomIdAndIdLessThanOrderByIdDesc(org.mockito.ArgumentMatchers.eq(1L), org.mockito.ArgumentMatchers.eq(104L), any()))
                 .willReturn(List.of(message(103L, 1L, "103")));
         given(names.readNames(any())).willReturn(Map.of(1L, "회원"));

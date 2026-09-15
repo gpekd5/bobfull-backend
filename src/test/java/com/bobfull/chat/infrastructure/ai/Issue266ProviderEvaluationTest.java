@@ -1,6 +1,6 @@
 package com.bobfull.chat.infrastructure.ai;
 
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import java.util.List;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
