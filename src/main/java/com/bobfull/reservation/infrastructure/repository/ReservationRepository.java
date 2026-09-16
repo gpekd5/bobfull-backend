@@ -1,9 +1,11 @@
 package com.bobfull.reservation.infrastructure.repository;
 
-import com.bobfull.admin.infrastructure.query.AdminReservationRepository;
+import com.bobfull.admin.infrastructure.repository.query.AdminReservationRepository;
 import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
+import com.bobfull.reservation.infrastructure.repository.query.OwnerReservationQueryRepository;
+import com.bobfull.reservation.infrastructure.repository.query.ReservationSearchRepository;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +20,7 @@ import jakarta.persistence.LockModeType;
 
 public interface ReservationRepository
         extends JpaRepository<Reservation, Long>, ReservationSearchRepository, AdminReservationRepository,
-        OwnerReservationRepository {
+        OwnerReservationQueryRepository {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<Reservation> findWithLockById(Long reservationId);

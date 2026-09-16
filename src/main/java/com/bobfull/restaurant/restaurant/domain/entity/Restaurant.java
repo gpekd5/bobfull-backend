@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * OWNER가 소유·관리하는 식당이다(docs/030-data/erd.md 4.2).
@@ -20,6 +23,8 @@ import java.time.Instant;
  */
 @Entity
 @Table(name = "restaurant")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Restaurant extends BaseTimeEntity {
 
     @Id
@@ -57,9 +62,6 @@ public class Restaurant extends BaseTimeEntity {
 
     @Column(name = "deleted_at")
     private Instant deletedAt;
-
-    protected Restaurant() {
-    }
 
     private Restaurant(
             Long ownerMemberId,
@@ -126,47 +128,4 @@ public class Restaurant extends BaseTimeEntity {
         return this.ownerMemberId.equals(memberId);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Long getOwnerMemberId() {
-        return ownerMemberId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public Integer getDepositPerPerson() {
-        return depositPerPerson;
-    }
-
-    public String getImageKey() {
-        return imageKey;
-    }
-
-    public RestaurantStatus getStatus() {
-        return status;
-    }
-
-    public Instant getDeletedAt() {
-        return deletedAt;
-    }
 }

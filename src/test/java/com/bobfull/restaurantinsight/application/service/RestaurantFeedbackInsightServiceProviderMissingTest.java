@@ -65,7 +65,7 @@ class RestaurantFeedbackInsightServiceProviderMissingTest {
         var restaurant = com.bobfull.restaurant.restaurant.domain.entity.Restaurant.create(1L, "r", "제주시 애월읍", "한식", "d", "k", 1);
         when(restaurants.findById(any())).thenReturn(Optional.of(restaurant));
 
-        RestaurantFeedbackInsightWriter writer = mock(RestaurantFeedbackInsightWriter.class);
+        RestaurantFeedbackInsightTransactionService writer = mock(RestaurantFeedbackInsightTransactionService.class);
         RestaurantFeedbackInsightService service = new RestaurantFeedbackInsightService(
                 messages, rooms, reservations, timeSlots, tables, restaurants,
                 insights, candidateGate, privacyValidator, provider, clock, "v1", writer);

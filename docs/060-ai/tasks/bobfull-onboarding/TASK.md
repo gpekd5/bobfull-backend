@@ -39,7 +39,7 @@ description: BobFull 저장소의 새 Issue를 처음 처리할 때 현재 단�
 | Human 답변 실제 검토 | `docs/060-ai/review/ai-review-guide.md` |
 | Refactor 외 별도 Human 질문 기준 필요 | `docs/060-ai/review/ai-review-guide.md` |
 | Branch·Issue·Commit·PR 규칙 필요 | `docs/050-engineering/github-rules.md` |
-| 코드 작성 | `docs/050-engineering/code-convention.md`, 필요 시 `common-skeleton-guide.md` |
+| 코드 작성 | `docs/050-engineering/code-convention.md`, 필요 시 `common-package-guide.md` |
 | 테스트 작성·결과 기록 | `docs/050-engineering/test-convention.md` |
 | 개선 효과 주장 | `docs/110-records/evidence/v3/README.md`와 해당 Issue Evidence |
 | 정책·버전·역할 변경 | `docs/010-product/project-context.md` |

@@ -2,6 +2,7 @@ package com.bobfull.reservation.infrastructure.repository;
 
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;
+import com.bobfull.reservation.infrastructure.repository.query.MyReservationQueryRepository;
 import jakarta.persistence.LockModeType;
 import java.time.Instant;
 import java.util.Collection;
@@ -15,7 +16,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface ReservationParticipantRepository extends JpaRepository<ReservationParticipant, Long>, MyReservationRepository {
+public interface ReservationParticipantRepository extends JpaRepository<ReservationParticipant, Long>, MyReservationQueryRepository {
 
     boolean existsByReservationIdAndMemberId(Long reservationId, Long memberId);
 

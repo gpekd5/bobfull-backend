@@ -1,8 +1,8 @@
 package com.bobfull.admin.application.service;
 
-import com.bobfull.admin.presentation.dto.AdminMemberDetailResponse;
-import com.bobfull.admin.presentation.dto.AdminMemberListItemResponse;
-import com.bobfull.admin.application.model.AdminMemberResult;
+import com.bobfull.admin.presentation.response.AdminMemberDetailResponse;
+import com.bobfull.admin.presentation.response.AdminMemberListItemResponse;
+import com.bobfull.admin.application.result.AdminMemberResult;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.member.domain.exception.MemberErrorCode;
@@ -12,6 +12,7 @@ import com.bobfull.member.infrastructure.repository.MemberRepository;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,17 +25,14 @@ import org.springframework.transaction.annotation.Transactional;
  * NoUniqueBeanDefinitionException이 발생한다.
  */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminMemberQueryService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
 
     private final MemberRepository memberRepository;
 
-    public AdminMemberQueryService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<AdminMemberListItemResponse> getMembers(
             String keyword, String role, Boolean deleted, Pageable pageable
     ) {
@@ -43,7 +41,6 @@ public class AdminMemberQueryService {
         return PageResponse.from(results.map(this::toListItem));
     }
 
-    @Transactional(readOnly = true)
     public AdminMemberDetailResponse getMember(Long memberId) {
         AdminMemberResult result = memberRepository.findMemberDetail(memberId)
                 .orElseThrow(() -> new CustomException(MemberErrorCode.MEMBER_ID_NOT_FOUND));

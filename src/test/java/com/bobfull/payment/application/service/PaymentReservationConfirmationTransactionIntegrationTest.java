@@ -8,7 +8,7 @@ import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
 import com.bobfull.common.outbox.entity.OutboxEventStatus;
 import com.bobfull.common.outbox.entity.OutboxEventType;
 import com.bobfull.common.outbox.repository.OutboxEventRepository;
-import com.bobfull.notification.infrastructure.outbox.EmailOutboxDeliveryRepository;
+import com.bobfull.notification.infrastructure.repository.EmailOutboxDeliveryRepository;
 import com.bobfull.notification.infrastructure.outbox.EmailOutboxEventService;
 import com.bobfull.notification.infrastructure.smtp.FakeReservationNotificationAdapter;
 import com.bobfull.payment.domain.entity.PaymentPurpose;

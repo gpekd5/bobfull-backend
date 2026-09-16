@@ -2,7 +2,7 @@ package com.bobfull.restaurant.restaurant.infrastructure.cache;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantSearchRequest;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantSearchRequest;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import org.junit.jupiter.api.Test;

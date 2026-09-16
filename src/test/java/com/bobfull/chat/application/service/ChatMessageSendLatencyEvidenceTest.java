@@ -7,7 +7,7 @@ import com.bobfull.chat.domain.entity.ChatRoom;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
-import com.bobfull.chat.application.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.ReservationChatAccessPort;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
@@ -166,8 +166,8 @@ class ChatMessageSendLatencyEvidenceTest {
     @TestConfiguration(proxyBeanMethods = false)
     static class Configuration {
         @Bean @Primary
-        ReservationChatAccessReader fixedActiveAccessReader() {
-            return (reservationId, memberId) -> new ReservationChatAccessReader.ChatAccess(
+        ReservationChatAccessPort fixedActiveAccessReader() {
+            return (reservationId, memberId) -> new ReservationChatAccessPort.ChatAccess(
                     100L, ParticipationStatus.RESERVED, ReservationStatus.RECRUITING);
         }
     }

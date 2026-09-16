@@ -4,8 +4,8 @@ import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.common.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -18,16 +18,12 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
  * Controller에서 발생한 예외를 공통 응답 포맷으로 변환한다.
  * Security 필터 단계의 인증·인가 예외는 각각 AuthenticationEntryPoint, AccessDeniedHandler가 처리한다.
  */
+@Slf4j
 @RestControllerAdvice
+@RequiredArgsConstructor
 public class GlobalExceptionHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-
     private final ObjectProvider<BusinessMetricRecorder> businessMetricRecorderProvider;
-
-    public GlobalExceptionHandler(ObjectProvider<BusinessMetricRecorder> businessMetricRecorderProvider) {
-        this.businessMetricRecorderProvider = businessMetricRecorderProvider;
-    }
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ApiResponse<Void>> handleCustomException(CustomException e) {

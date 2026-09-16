@@ -3,7 +3,7 @@ package com.bobfull.payment.infrastructure.scheduler;
 import com.bobfull.payment.application.service.RefundReconciliationProcessor;
 import com.bobfull.payment.domain.entity.Refund;
 import com.bobfull.payment.domain.entity.RefundStatus;
-import com.bobfull.payment.application.port.PortOneRefundRequester;
+import com.bobfull.payment.application.port.PortOneRefundPort;
 import com.bobfull.payment.infrastructure.repository.RefundRepository;
 import java.time.Clock;
 import java.time.Duration;
@@ -11,8 +11,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.data.domain.PageRequest;
@@ -29,8 +28,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConditionalOnProperty(prefix = "payment.refund-reconciliation", name = "enabled", havingValue = "true", matchIfMissing = false)
+@Slf4j
 public class RefundReconciliationScheduler {
-    private static final Logger log = LoggerFactory.getLogger(RefundReconciliationScheduler.class);
+
     private static final Duration LONG_RUNNING_WARN = Duration.ofMinutes(30);
     private static final Duration LONG_RUNNING_ERROR = Duration.ofMinutes(60);
     private static final Duration ALERT_WINDOW = Duration.ofMinutes(10);
@@ -70,8 +70,8 @@ public class RefundReconciliationScheduler {
     private void reconcileOne(Refund refund, Instant now) {
         logLongRunningRefund(refund, now);
         try {
-            PortOneRefundRequester.ReconciliationResult result = processor.reconcile(refund);
-            if (result.status() == PortOneRefundRequester.ReconciliationStatus.AMBIGUOUS) {
+            PortOneRefundPort.ReconciliationResult result = processor.reconcile(refund);
+            if (result.status() == PortOneRefundPort.ReconciliationStatus.AMBIGUOUS) {
                 log.warn("event=REFUND_MATCH_AMBIGUOUS refundId={} paymentId={} reason={}",
                         refund.getId(), refund.getPayment().getPaymentId(), result.detail());
             }
@@ -88,7 +88,9 @@ public class RefundReconciliationScheduler {
 
     private void logLongRunningRefund(Refund refund, Instant now) {
         Duration age = Duration.between(refund.getUpdatedAt(), now);
-        if (age.compareTo(LONG_RUNNING_WARN) < 0) return;
+        if (age.compareTo(LONG_RUNNING_WARN) < 0) {
+            return;
+        }
         longRunningRefunds.put(refund.getId(), now);
         String level = age.compareTo(LONG_RUNNING_ERROR) >= 0 ? "ERROR" : "WARN";
         if ("ERROR".equals(level)) {
@@ -103,7 +105,9 @@ public class RefundReconciliationScheduler {
         pruneAndLogMultiple(longRunningRefunds, now, "long_running_refunds");
     }
 
-    private void logMultipleFailures(Instant now) { pruneAndLogMultiple(lookupFailures, now, "lookup_failures"); }
+    private void logMultipleFailures(Instant now) {
+        pruneAndLogMultiple(lookupFailures, now, "lookup_failures");
+    }
 
     private void pruneAndLogMultiple(Map<Long, Instant> events, Instant now, String kind) {
         events.entrySet().removeIf(entry -> entry.getValue().isBefore(now.minus(ALERT_WINDOW)));

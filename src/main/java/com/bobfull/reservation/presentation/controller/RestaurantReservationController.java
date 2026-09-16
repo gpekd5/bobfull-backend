@@ -3,9 +3,10 @@ package com.bobfull.reservation.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.reservation.presentation.dto.OwnerReservationListItemResponse;
+import com.bobfull.reservation.presentation.response.OwnerReservationListItemResponse;
 import com.bobfull.reservation.application.service.OwnerReservationQueryService;
 import java.time.LocalDate;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,13 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 /** OWNER의 식당별 예약 목록 조회를 담당한다(Issue #147 §6-11). */
 @RestController
 @RequestMapping("/api/owner/restaurants/{restaurantId}/reservations")
+@RequiredArgsConstructor
 public class RestaurantReservationController {
 
     private final OwnerReservationQueryService ownerReservationQueryService;
-
-    public RestaurantReservationController(OwnerReservationQueryService ownerReservationQueryService) {
-        this.ownerReservationQueryService = ownerReservationQueryService;
-    }
 
     @GetMapping
     public ApiResponse<PageResponse<OwnerReservationListItemResponse>> getReservations(

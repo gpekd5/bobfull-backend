@@ -3,7 +3,8 @@ package com.bobfull.restaurantinsight.presentation.controller;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.restaurantinsight.application.service.RestaurantFeedbackInsightService;
-import com.bobfull.restaurantinsight.presentation.dto.RestaurantFeedbackInsightListResponse;
+import com.bobfull.restaurantinsight.presentation.response.RestaurantFeedbackInsightListResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/owner/restaurants")
+@RequiredArgsConstructor
 public class RestaurantFeedbackInsightController {
 
     private final RestaurantFeedbackInsightService feedbackInsightService;
-
-    public RestaurantFeedbackInsightController(RestaurantFeedbackInsightService feedbackInsightService) {
-        this.feedbackInsightService = feedbackInsightService;
-    }
 
     @GetMapping("/{restaurantId}/feedback-insights")
     public ApiResponse<RestaurantFeedbackInsightListResponse> getFeedbackInsights(

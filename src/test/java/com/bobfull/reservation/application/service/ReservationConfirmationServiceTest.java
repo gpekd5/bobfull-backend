@@ -25,7 +25,7 @@ import com.bobfull.reservation.domain.entity.ReservationParticipant;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
-import com.bobfull.reservation.application.port.ReservationCapacityReader;
+import com.bobfull.reservation.application.port.ReservationCapacityPort;
 import java.util.List;
 import java.util.Optional;
 import java.time.Clock;
@@ -51,7 +51,7 @@ class ReservationConfirmationServiceTest {
     private ReservationParticipantRepository reservationParticipantRepository;
 
     @Mock
-    private ReservationCapacityReader reservationCapacityReader;
+    private ReservationCapacityPort reservationCapacityReader;
 
     @Mock
     private OutboxEventRepository outboxEventRepository;

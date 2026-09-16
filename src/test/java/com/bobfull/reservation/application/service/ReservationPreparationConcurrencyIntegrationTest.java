@@ -8,7 +8,7 @@ import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
-import com.bobfull.reservation.presentation.dto.ReservationPrepareRequest;
+import com.bobfull.reservation.presentation.request.ReservationPrepareRequest;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;

@@ -6,6 +6,7 @@ import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
 import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Clock;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,21 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
  * 시간이 남아 있으면 아무 것도 바꾸지 않고 멱등 종료한다.
  */
 @Service
+@RequiredArgsConstructor
 public class ReservationClosingProcessor {
 
     private final ReservationRepository reservationRepository;
     private final TimeSlotRepository timeSlotRepository;
     private final Clock clock;
-
-    public ReservationClosingProcessor(
-            ReservationRepository reservationRepository,
-            TimeSlotRepository timeSlotRepository,
-            Clock clock
-    ) {
-        this.reservationRepository = reservationRepository;
-        this.timeSlotRepository = timeSlotRepository;
-        this.clock = clock;
-    }
 
     // 락 순서: Reservation 단독(ADR 0001 "복수 비관적 락의 획득 순서" 참고). TimeSlot은 endAt
     // 재확인만 하므로 락을 걸지 않는다.

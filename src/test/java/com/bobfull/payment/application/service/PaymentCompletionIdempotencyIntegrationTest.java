@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
-import com.bobfull.payment.application.port.PortOnePaymentReader;
+import com.bobfull.payment.application.port.PortOnePaymentPort;
 import com.bobfull.payment.application.port.ReservationConfirmationPort;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.reservation.domain.entity.Reservation;
@@ -57,7 +57,7 @@ class PaymentCompletionIdempotencyIntegrationTest {
     @Autowired private ReservationParticipantRepository reservationParticipantRepository;
     @Autowired private TimeSlotRepository timeSlotRepository;
     @Autowired private SharedTableRepository sharedTableRepository;
-    @Autowired private CountingPortOnePaymentReader paymentReader;
+    @Autowired private CountingPortOnePaymentPort paymentReader;
     @Autowired private CountingReservationConfirmationPort reservationConfirmationPort;
 
     @AfterEach
@@ -141,8 +141,8 @@ class PaymentCompletionIdempotencyIntegrationTest {
     static class IdempotencyConfiguration {
         @Bean
         @Primary
-        CountingPortOnePaymentReader countingPortOnePaymentReader() {
-            return new CountingPortOnePaymentReader();
+        CountingPortOnePaymentPort countingPortOnePaymentPort() {
+            return new CountingPortOnePaymentPort();
         }
 
         @Bean
@@ -152,7 +152,7 @@ class PaymentCompletionIdempotencyIntegrationTest {
         }
     }
 
-    static class CountingPortOnePaymentReader implements PortOnePaymentReader {
+    static class CountingPortOnePaymentPort implements PortOnePaymentPort {
         private final AtomicInteger calls = new AtomicInteger();
         private volatile CountDownLatch concurrentReads;
         private volatile CountDownLatch releaseReads;

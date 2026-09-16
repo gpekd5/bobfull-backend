@@ -1,30 +1,23 @@
 package com.bobfull.payment.application.service;
 
 import com.bobfull.payment.domain.entity.Refund;
-import com.bobfull.payment.application.port.PortOneRefundRequester;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.bobfull.payment.application.port.PortOneRefundPort;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /** PortOne 조회 결과를 기존 환불 완료 경로에 안전하게 연결한다. */
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class RefundReconciliationProcessor {
-    private static final Logger log = LoggerFactory.getLogger(RefundReconciliationProcessor.class);
 
-    private final PortOneRefundRequester refundRequester;
+    private final PortOneRefundPort refundPort;
     private final RefundTransactionService transactionService;
     private final RefundCompletionService completionService;
 
-    public RefundReconciliationProcessor(PortOneRefundRequester refundRequester,
-                                         RefundTransactionService transactionService,
-                                         RefundCompletionService completionService) {
-        this.refundRequester = refundRequester;
-        this.transactionService = transactionService;
-        this.completionService = completionService;
-    }
-
-    public PortOneRefundRequester.ReconciliationResult reconcile(Refund refund) {
-        PortOneRefundRequester.ReconciliationResult result = null;
+    public PortOneRefundPort.ReconciliationResult reconcile(Refund refund) {
+        PortOneRefundPort.ReconciliationResult result = null;
         RuntimeException failure = null;
         try {
             result = reconcileInternal(refund);
@@ -50,20 +43,20 @@ public class RefundReconciliationProcessor {
         return result;
     }
 
-    private PortOneRefundRequester.ReconciliationResult reconcileInternal(Refund refund) {
+    private PortOneRefundPort.ReconciliationResult reconcileInternal(Refund refund) {
         if (refund.getAmount().compareTo(refund.getPayment().getAmount()) != 0) {
-            return PortOneRefundRequester.ReconciliationResult.ambiguous("refund amount differs from payment amount");
+            return PortOneRefundPort.ReconciliationResult.ambiguous("refund amount differs from payment amount");
         }
-        PortOneRefundRequester.ReconciliationResult result;
+        PortOneRefundPort.ReconciliationResult result;
         try {
-            result = refundRequester.reconcile(refund.getPayment().getPaymentId(), refund.getCancellationId(),
+            result = refundPort.reconcile(refund.getPayment().getPaymentId(), refund.getCancellationId(),
                     refund.getAmount(), refund.getRequestedAt());
         } catch (RuntimeException exception) {
             throw new RefundLookupException(exception);
         }
-        if (result.status() == PortOneRefundRequester.ReconciliationStatus.COMPLETED) {
+        if (result.status() == PortOneRefundPort.ReconciliationStatus.COMPLETED) {
             completionService.reflectExternalResult(refund.getId(), result.cancellationId(), true);
-        } else if (result.status() == PortOneRefundRequester.ReconciliationStatus.PROCESSING
+        } else if (result.status() == PortOneRefundPort.ReconciliationStatus.PROCESSING
                 && result.cancellationId() != null) {
             completionService.reflectExternalResult(refund.getId(), result.cancellationId(), false);
         }
@@ -71,6 +64,8 @@ public class RefundReconciliationProcessor {
     }
 
     public static class RefundLookupException extends RuntimeException {
-        RefundLookupException(Throwable cause) { super(cause); }
+        RefundLookupException(Throwable cause) {
+            super(cause);
+        }
     }
 }

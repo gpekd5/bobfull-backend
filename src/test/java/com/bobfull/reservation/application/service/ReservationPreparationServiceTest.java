@@ -10,19 +10,19 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
-import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
-import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.application.command.CreateReadyPaymentCommand;
+import com.bobfull.payment.application.result.CreateReadyPaymentResult;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
-import com.bobfull.payment.application.port.PaymentHoldReader;
-import com.bobfull.payment.application.port.ReadyPaymentCreator;
-import com.bobfull.reservation.presentation.dto.ReservationAvailabilityResponse;
-import com.bobfull.reservation.presentation.dto.ReservationPrepareRequest;
-import com.bobfull.reservation.presentation.dto.ReservationPrepareResponse;
+import com.bobfull.payment.application.port.PaymentHoldPort;
+import com.bobfull.payment.application.port.ReadyPaymentPort;
+import com.bobfull.reservation.presentation.response.ReservationAvailabilityResponse;
+import com.bobfull.reservation.presentation.request.ReservationPrepareRequest;
+import com.bobfull.reservation.presentation.response.ReservationPrepareResponse;
 import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
-import com.bobfull.reservation.application.port.ReservationTargetReader;
+import com.bobfull.reservation.application.port.ReservationTargetPort;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import java.math.BigDecimal;
@@ -39,11 +39,11 @@ import org.springframework.test.util.ReflectionTestUtils;
 @ExtendWith(MockitoExtension.class)
 class ReservationPreparationServiceTest {
 
-    @Mock private ReservationTargetReader reservationTargetReader;
+    @Mock private ReservationTargetPort reservationTargetReader;
     @Mock private ReservationRepository reservationRepository;
     @Mock private ReservationParticipantRepository reservationParticipantRepository;
-    @Mock private PaymentHoldReader paymentHoldReader;
-    @Mock private ReadyPaymentCreator readyPaymentCreator;
+    @Mock private PaymentHoldPort paymentHoldReader;
+    @Mock private ReadyPaymentPort readyPaymentCreator;
     @Mock private AvailableCapacityCalculator availableCapacityCalculator;
 
     private ReservationPreparationService service() {
@@ -240,8 +240,8 @@ class ReservationPreparationServiceTest {
         verify(readyPaymentCreator).createReadyPayment(any());
     }
 
-    private ReservationTargetReader.ReservationTarget target() {
-        return new ReservationTargetReader.ReservationTarget(200L, 4, 10000);
+    private ReservationTargetPort.ReservationTarget target() {
+        return new ReservationTargetPort.ReservationTarget(200L, 4, 10000);
     }
 
     private CreateReadyPaymentResult readyPayment(String paymentId, int amount) {

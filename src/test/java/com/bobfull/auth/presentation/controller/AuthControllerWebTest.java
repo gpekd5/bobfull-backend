@@ -7,14 +7,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.bobfull.auth.presentation.dto.LoginRequest;
-import com.bobfull.auth.presentation.dto.LoginResponse;
-import com.bobfull.auth.presentation.dto.LogoutResponse;
-import com.bobfull.auth.presentation.dto.ReissueRequest;
-import com.bobfull.auth.presentation.dto.ReissueResponse;
-import com.bobfull.auth.presentation.dto.SignupOwnerRequest;
-import com.bobfull.auth.presentation.dto.SignupResponse;
-import com.bobfull.auth.presentation.dto.SignupUserRequest;
+import com.bobfull.auth.presentation.request.LoginRequest;
+import com.bobfull.auth.presentation.response.LoginResponse;
+import com.bobfull.auth.presentation.response.LogoutResponse;
+import com.bobfull.auth.presentation.request.ReissueRequest;
+import com.bobfull.auth.presentation.response.ReissueResponse;
+import com.bobfull.auth.presentation.request.SignupOwnerRequest;
+import com.bobfull.auth.presentation.response.SignupResponse;
+import com.bobfull.auth.presentation.request.SignupUserRequest;
 import com.bobfull.auth.application.service.AuthService;
 import com.bobfull.common.config.ClockConfig;
 import com.bobfull.common.exception.CommonErrorCode;

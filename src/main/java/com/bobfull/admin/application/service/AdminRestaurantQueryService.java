@@ -1,8 +1,8 @@
 package com.bobfull.admin.application.service;
 
-import com.bobfull.admin.presentation.dto.AdminRestaurantDetailResponse;
-import com.bobfull.admin.presentation.dto.AdminRestaurantListItemResponse;
-import com.bobfull.admin.application.model.AdminRestaurantResult;
+import com.bobfull.admin.presentation.response.AdminRestaurantDetailResponse;
+import com.bobfull.admin.presentation.response.AdminRestaurantListItemResponse;
+import com.bobfull.admin.application.result.AdminRestaurantResult;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
@@ -12,6 +12,7 @@ import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRep
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,17 +24,14 @@ import org.springframework.transaction.annotation.Transactional;
  * (Fragment 인터페이스를 직접 주입하면 Spring이 구현체를 별도 Bean으로도 등록해 중복 Bean 오류가 난다).
  */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminRestaurantQueryService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
 
     private final RestaurantRepository restaurantRepository;
 
-    public AdminRestaurantQueryService(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<AdminRestaurantListItemResponse> getRestaurants(
             String keyword, String restaurantStatus, Boolean deleted, Pageable pageable
     ) {
@@ -44,7 +42,6 @@ public class AdminRestaurantQueryService {
                 AdminRestaurantListItemResponse.of(result, toSeoulOffset(result.createdAt()))));
     }
 
-    @Transactional(readOnly = true)
     public AdminRestaurantDetailResponse getRestaurant(Long restaurantId) {
         AdminRestaurantResult result = restaurantRepository.findRestaurantDetail(restaurantId)
                 .orElseThrow(() -> new CustomException(RestaurantErrorCode.RESTAURANT_ID_NOT_FOUND));

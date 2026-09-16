@@ -3,13 +3,14 @@ package com.bobfull.restaurant.restaurant.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.restaurant.restaurant.presentation.dto.OwnerRestaurantDetailResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.OwnerRestaurantListResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantCreateRequest;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantIdResponse;
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantUpdateRequest;
+import com.bobfull.restaurant.restaurant.presentation.response.OwnerRestaurantDetailResponse;
+import com.bobfull.restaurant.restaurant.presentation.response.OwnerRestaurantListResponse;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantCreateRequest;
+import com.bobfull.restaurant.restaurant.presentation.response.RestaurantIdResponse;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantUpdateRequest;
 import com.bobfull.restaurant.restaurant.application.service.RestaurantService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -26,13 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/owner/restaurants")
+@RequiredArgsConstructor
 public class OwnerRestaurantController {
 
     private final RestaurantService restaurantService;
-
-    public OwnerRestaurantController(RestaurantService restaurantService) {
-        this.restaurantService = restaurantService;
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<RestaurantIdResponse>> register(

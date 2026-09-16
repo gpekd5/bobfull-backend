@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.presentation.dto.RefundResponse;
+import com.bobfull.payment.presentation.response.RefundResponse;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.Refund;

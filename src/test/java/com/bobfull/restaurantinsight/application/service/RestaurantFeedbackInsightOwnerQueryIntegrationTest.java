@@ -14,7 +14,7 @@ import com.bobfull.restaurantinsight.domain.entity.FeedbackOpinionType;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackSentiment;
 import com.bobfull.restaurantinsight.domain.entity.RestaurantFeedbackInsight;
 import com.bobfull.restaurantinsight.infrastructure.repository.RestaurantFeedbackInsightRepository;
-import com.bobfull.restaurantinsight.presentation.dto.RestaurantFeedbackInsightResponse;
+import com.bobfull.restaurantinsight.presentation.response.RestaurantFeedbackInsightResponse;
 import java.time.Duration;
 import java.time.Instant;
 import org.junit.jupiter.api.AfterEach;

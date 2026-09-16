@@ -7,8 +7,7 @@ import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.restaurant.image.infrastructure.config.RestaurantImageS3Properties;
 import com.bobfull.restaurant.image.application.port.RestaurantImageStoragePort;
 import java.time.Duration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -21,10 +20,9 @@ import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
 import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignRequest;
 
+@Slf4j
 @Component
 public class S3RestaurantImageStorageAdapter implements RestaurantImageStoragePort {
-
-    private static final Logger log = LoggerFactory.getLogger(S3RestaurantImageStorageAdapter.class);
 
     private final S3Client s3Client;
     private final S3Presigner s3Presigner;

@@ -2,23 +2,17 @@ package com.bobfull.payment.application.service;
 
 import com.bobfull.payment.domain.entity.RefundStatus;
 import com.bobfull.payment.application.port.ReservationCancellationCompletionPort;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /** 즉시 응답과 웹훅이 같은 예약 완료 경로를 사용하도록 환불 완료를 조정한다. */
 @Service
+@RequiredArgsConstructor
 public class RefundCompletionService {
     private final RefundTransactionService transactionService;
     private final ReservationCancellationCompletionPort cancellationCompletionPort;
-
-    public RefundCompletionService(
-            RefundTransactionService transactionService,
-            ReservationCancellationCompletionPort cancellationCompletionPort
-    ) {
-        this.transactionService = transactionService;
-        this.cancellationCompletionPort = cancellationCompletionPort;
-    }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public RefundTransactionService.RefundCompletion reflectExternalResult(

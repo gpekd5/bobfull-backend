@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableBulkRequest;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableBulkResponse;
-import com.bobfull.restaurant.sharedtable.presentation.dto.SharedTableResponse;
+import com.bobfull.restaurant.sharedtable.presentation.request.SharedTableBulkRequest;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableBulkResponse;
+import com.bobfull.restaurant.sharedtable.presentation.response.SharedTableResponse;
 import com.bobfull.restaurant.sharedtable.infrastructure.repository.SharedTableRepository;
 import java.util.List;
 import java.util.concurrent.Callable;

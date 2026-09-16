@@ -1,2 +1,9 @@
 package com.bobfull.restaurantinsight.domain.entity;
-public enum FeedbackAspectType { MENU, SERVICE, PRICE, CLEANLINESS, ETC }
+
+public enum FeedbackAspectType {
+    MENU,
+    SERVICE,
+    PRICE,
+    CLEANLINESS,
+    ETC
+}

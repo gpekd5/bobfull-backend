@@ -4,10 +4,11 @@ import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.response.PageResponse;
-import com.bobfull.payment.presentation.dto.RefundResponse;
+import com.bobfull.payment.presentation.response.RefundResponse;
 import com.bobfull.payment.domain.entity.Refund;
 import com.bobfull.payment.domain.entity.RefundStatus;
 import com.bobfull.payment.infrastructure.repository.RefundRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,15 +17,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class RefundQueryService {
 
     private final RefundRepository refundRepository;
 
-    public RefundQueryService(RefundRepository refundRepository) {
-        this.refundRepository = refundRepository;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<RefundResponse> getMyRefunds(Long memberId, String refundStatus, Pageable pageable) {
         Pageable orderedPageable = ordered(pageable);
         RefundStatus status = parseStatus(refundStatus);
@@ -34,7 +32,6 @@ public class RefundQueryService {
         return PageResponse.from(refunds.map(RefundResponse::from));
     }
 
-    @Transactional(readOnly = true)
     public RefundResponse getMyRefund(Long memberId, Long refundId) {
         Refund refund = refundRepository.findByIdAndPayment_MemberId(refundId, memberId)
                 .orElseThrow(() -> new CustomException(PaymentErrorCode.REFUND_ID_NOT_FOUND));

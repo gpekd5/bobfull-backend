@@ -6,8 +6,7 @@ import jakarta.mail.internet.MimeMessage;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -23,9 +22,10 @@ import org.springframework.stereotype.Component;
  * 표현하지 않는 것은 물론 "모집 중"이라고 단정하지도 않는다 — 실제 모집 상태와 무관하게 참인
  * 상태 중립 문구만 사용한다.
  */
+@Slf4j
 @Component
 public class SmtpReservationNotificationAdapter implements ReservationNotificationPort {
-    private static final Logger log = LoggerFactory.getLogger(SmtpReservationNotificationAdapter.class);
+
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
     private static final DateTimeFormatter MEAL_DATE_FORMAT =
             DateTimeFormatter.ofPattern("yyyy. MM. dd (E)", Locale.KOREAN).withZone(SEOUL_ZONE);

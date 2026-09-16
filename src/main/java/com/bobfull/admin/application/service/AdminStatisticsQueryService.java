@@ -1,11 +1,11 @@
 package com.bobfull.admin.application.service;
 
-import com.bobfull.admin.presentation.dto.AdminMemberNoShowRateResponse;
-import com.bobfull.admin.application.model.AdminMemberNoShowRateResult;
-import com.bobfull.admin.presentation.dto.AdminOverviewStatisticsResponse;
-import com.bobfull.admin.presentation.dto.AdminRestaurantStatisticsResponse;
-import com.bobfull.admin.application.model.AdminRestaurantStatisticsResult;
-import com.bobfull.admin.infrastructure.query.AdminStatisticsRepository;
+import com.bobfull.admin.presentation.response.AdminMemberNoShowRateResponse;
+import com.bobfull.admin.application.result.AdminMemberNoShowRateResult;
+import com.bobfull.admin.presentation.response.AdminOverviewStatisticsResponse;
+import com.bobfull.admin.presentation.response.AdminRestaurantStatisticsResponse;
+import com.bobfull.admin.application.result.AdminRestaurantStatisticsResult;
+import com.bobfull.admin.infrastructure.repository.query.AdminStatisticsRepository;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.response.PageResponse;
@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /** ADMIN의 운영 지표·통계 조회를 담당한다(Issue #49 §11-9~11-11). */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminStatisticsQueryService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
@@ -34,17 +37,6 @@ public class AdminStatisticsQueryService {
     private final ReservationParticipantRepository reservationParticipantRepository;
     private final AdminStatisticsRepository adminStatisticsRepository;
 
-    public AdminStatisticsQueryService(
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            AdminStatisticsRepository adminStatisticsRepository
-    ) {
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.adminStatisticsRepository = adminStatisticsRepository;
-    }
-
-    @Transactional(readOnly = true)
     public AdminOverviewStatisticsResponse getOverview() {
         long totalReservationCount = reservationRepository.count();
         long confirmedCount = reservationRepository.countByReservationStatus(ReservationStatus.CONFIRMED);
@@ -58,7 +50,6 @@ public class AdminStatisticsQueryService {
         return new AdminOverviewStatisticsResponse(totalReservationCount, confirmationRate, noShowRate);
     }
 
-    @Transactional(readOnly = true)
     public PageResponse<AdminRestaurantStatisticsResponse> getRestaurantStatistics(
             LocalDate startDate, LocalDate endDate, Pageable pageable
     ) {
@@ -74,7 +65,6 @@ public class AdminStatisticsQueryService {
                 result, rate(result.confirmedReservationCount(), result.totalReservationCount()))));
     }
 
-    @Transactional(readOnly = true)
     public PageResponse<AdminMemberNoShowRateResponse> getMemberNoShowRates(Pageable pageable) {
         Page<AdminMemberNoShowRateResult> results = adminStatisticsRepository.aggregateMemberNoShowRates(pageable);
         return PageResponse.from(results.map(result -> AdminMemberNoShowRateResponse.of(

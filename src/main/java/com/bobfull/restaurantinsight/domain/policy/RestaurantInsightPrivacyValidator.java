@@ -2,6 +2,7 @@ package com.bobfull.restaurantinsight.domain.policy;
 
 import java.text.Normalizer;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
@@ -58,40 +59,66 @@ public class RestaurantInsightPrivacyValidator {
             "추", "도", "소", "석", "선", "설");
 
     public boolean containsSensitiveIdentifier(String value) {
-        if (value == null) return false;
+        if (value == null) {
+            return false;
+        }
         return PHONE.matcher(value).find() || EMAIL.matcher(value).find() || RESERVATION_NUMBER.matcher(value).find()
                 || URL.matcher(value).find() || ACCOUNT_IDENTIFIER.matcher(value).find()
                 || identifiesSpecificPerson(value);
     }
 
     public String normalizeSafeAspect(String aspect) {
-        if (aspect == null) return null;
+        if (aspect == null) {
+            return null;
+        }
         String normalized = Normalizer.normalize(aspect, Normalizer.Form.NFKC).trim().replaceAll("\\s+", " ");
-        if (normalized.isEmpty()) return null;
-        if (normalized.codePointCount(0, normalized.length()) > MAX_ASPECT_CODE_POINTS) return null;
-        if (!ALLOWED_ASPECT_CHARS.matcher(normalized).matches()) return null;
-        if (containsSensitiveIdentifier(normalized)) return null;
+        if (normalized.isEmpty()) {
+            return null;
+        }
+        if (normalized.codePointCount(0, normalized.length()) > MAX_ASPECT_CODE_POINTS) {
+            return null;
+        }
+        if (!ALLOWED_ASPECT_CHARS.matcher(normalized).matches()) {
+            return null;
+        }
+        if (containsSensitiveIdentifier(normalized)) {
+            return null;
+        }
         return normalized;
     }
 
-    public boolean isSafeAspect(String aspect) { return normalizeSafeAspect(aspect) != null; }
+    public boolean isSafeAspect(String aspect) {
+        return normalizeSafeAspect(aspect) != null;
+    }
 
     private boolean identifiesSpecificPerson(String text) {
-        if (HONORIFIC_NAME.matcher(text).find()) return true;
-        if (text.contains("직원분")) return true;
-        if (STAFF_ROLE.matcher(text).find() && PERSON_DESCRIPTOR.matcher(text).find()) return true;
-        if (hasRoleAdjacentName(text)) return true;
+        if (HONORIFIC_NAME.matcher(text).find()) {
+            return true;
+        }
+        if (text.contains("직원분")) {
+            return true;
+        }
+        if (STAFF_ROLE.matcher(text).find() && PERSON_DESCRIPTOR.matcher(text).find()) {
+            return true;
+        }
+        if (hasRoleAdjacentName(text)) {
+            return true;
+        }
         String trimmed = text.trim();
         return COMMON_PLACEHOLDER_NAMES.contains(trimmed);
     }
 
     private boolean hasRoleAdjacentName(String text) {
-        java.util.regex.Matcher matcher = ROLE_ADJACENT_TOKEN.matcher(text);
+        Matcher matcher = ROLE_ADJACENT_TOKEN.matcher(text);
         while (matcher.find()) {
             String candidate = matcher.group(2) != null ? matcher.group(2) : matcher.group(3);
-            if (candidate == null || GENERIC_ROLE_FEEDBACK.matcher(candidate).find()) continue;
+            if (candidate == null || GENERIC_ROLE_FEEDBACK.matcher(candidate).find()) {
+                continue;
+            }
             String firstChar = candidate.substring(0, Character.charCount(candidate.codePointAt(0)));
-            if (COMMON_SURNAMES.contains(firstChar)) return true;
+            if (COMMON_SURNAMES.contains(firstChar)) {
+                return true;
+            }
         }
         return false;
     }

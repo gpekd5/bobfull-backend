@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 import com.bobfull.chat.infrastructure.ai.FakeAiModerationAdapter;
-import com.bobfull.chat.presentation.dto.ChatMessageSentResponse;
+import com.bobfull.chat.presentation.response.ChatMessageSentResponse;
 import com.bobfull.chat.domain.entity.ChatModeration;
 import com.bobfull.chat.domain.entity.ChatRoom;
 import com.bobfull.chat.domain.entity.ModerationProcessingStatus;
-import com.bobfull.chat.application.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.ReservationChatAccessPort;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.infrastructure.repository.ChatRoomRepository;
@@ -621,8 +621,8 @@ class ChatModerationConsumerConcurrencyIntegrationTest {
     @TestConfiguration(proxyBeanMethods = false)
     static class Configuration {
         @Bean @Primary
-        ReservationChatAccessReader fixedActiveAccessReader() {
-            return (reservationId, memberId) -> new ReservationChatAccessReader.ChatAccess(
+        ReservationChatAccessPort fixedActiveAccessReader() {
+            return (reservationId, memberId) -> new ReservationChatAccessPort.ChatAccess(
                     100L, ParticipationStatus.RESERVED, ReservationStatus.RECRUITING);
         }
     }

@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.bobfull.admin.presentation.dto.AdminRestaurantListItemResponse;
+import com.bobfull.admin.presentation.response.AdminRestaurantListItemResponse;
 import com.bobfull.admin.application.service.AdminRestaurantQueryService;
 import com.bobfull.common.config.ClockConfig;
 import com.bobfull.common.response.PageResponse;

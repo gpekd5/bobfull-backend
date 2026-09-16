@@ -5,10 +5,10 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
-import com.bobfull.admin.application.model.AdminMemberNoShowRateResult;
-import com.bobfull.admin.presentation.dto.AdminOverviewStatisticsResponse;
-import com.bobfull.admin.application.model.AdminRestaurantStatisticsResult;
-import com.bobfull.admin.infrastructure.query.AdminStatisticsRepository;
+import com.bobfull.admin.application.result.AdminMemberNoShowRateResult;
+import com.bobfull.admin.presentation.response.AdminOverviewStatisticsResponse;
+import com.bobfull.admin.application.result.AdminRestaurantStatisticsResult;
+import com.bobfull.admin.infrastructure.repository.query.AdminStatisticsRepository;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.response.PageResponse;

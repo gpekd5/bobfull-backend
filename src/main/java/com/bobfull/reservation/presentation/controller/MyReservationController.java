@@ -3,9 +3,10 @@ package com.bobfull.reservation.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.reservation.presentation.dto.MyReservationDetailResponse;
-import com.bobfull.reservation.presentation.dto.MyReservationListItemResponse;
+import com.bobfull.reservation.presentation.response.MyReservationDetailResponse;
+import com.bobfull.reservation.presentation.response.MyReservationListItemResponse;
 import com.bobfull.reservation.application.service.MyReservationQueryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,13 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/members/me")
+@RequiredArgsConstructor
 public class MyReservationController {
 
     private final MyReservationQueryService myReservationQueryService;
-
-    public MyReservationController(MyReservationQueryService myReservationQueryService) {
-        this.myReservationQueryService = myReservationQueryService;
-    }
 
     @GetMapping("/reservations")
     public ApiResponse<PageResponse<MyReservationListItemResponse>> getMyReservations(

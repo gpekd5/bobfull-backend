@@ -1,25 +1,19 @@
 package com.bobfull.reservation.application.service;
 
-import com.bobfull.reservation.presentation.dto.ReservationCancellationRequest;
-import com.bobfull.reservation.presentation.dto.ReservationCancellationResponse;
+import com.bobfull.reservation.presentation.request.ReservationCancellationRequest;
+import com.bobfull.reservation.presentation.response.ReservationCancellationResponse;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.application.port.ReservationCancellationRefundPort;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /** 사용자의 예약 취소 접수와 환불 요청 시작만 담당한다. */
 @Service
+@RequiredArgsConstructor
 public class ReservationCancellationService {
     private final ReservationCancellationTransactionService transactionService;
     private final ReservationCancellationRefundPort reservationCancellationRefundPort;
-
-    public ReservationCancellationService(
-            ReservationCancellationTransactionService transactionService,
-            ReservationCancellationRefundPort reservationCancellationRefundPort
-    ) {
-        this.transactionService = transactionService;
-        this.reservationCancellationRefundPort = reservationCancellationRefundPort;
-    }
 
     public ReservationCancellationResponse cancel(
             Long memberId, Long reservationId, ReservationCancellationRequest request) {

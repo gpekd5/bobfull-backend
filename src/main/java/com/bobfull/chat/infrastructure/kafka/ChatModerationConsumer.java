@@ -2,6 +2,7 @@ package com.bobfull.chat.infrastructure.kafka;
 
 import com.bobfull.chat.application.event.ChatMessageCreatedEvent;
 import com.bobfull.chat.application.service.ChatModerationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -12,13 +13,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConditionalOnProperty(prefix = "bobfull.kafka.chat-message", name = "consumer-enabled", havingValue = "true", matchIfMissing = true)
+@RequiredArgsConstructor
 public class ChatModerationConsumer {
 
     private final ChatModerationService chatModerationService;
-
-    public ChatModerationConsumer(ChatModerationService chatModerationService) {
-        this.chatModerationService = chatModerationService;
-    }
 
     @KafkaListener(
             topics = "${bobfull.kafka.chat-message.topic:bobfull.chat.message-created.v1}",

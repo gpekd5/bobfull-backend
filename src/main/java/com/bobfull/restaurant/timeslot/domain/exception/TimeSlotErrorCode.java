@@ -1,12 +1,15 @@
 package com.bobfull.restaurant.timeslot.domain.exception;
 
 import com.bobfull.common.exception.BaseErrorCode;
-
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
  * 회차 도메인 전용 에러 코드다.
  */
+@Getter
+@RequiredArgsConstructor
 public enum TimeSlotErrorCode implements BaseErrorCode {
 
     SESSION_ID_NOT_FOUND(HttpStatus.NOT_FOUND, "sessionId에 해당하는 대상을 찾을 수 없습니다."),
@@ -16,23 +19,9 @@ public enum TimeSlotErrorCode implements BaseErrorCode {
     private final HttpStatus httpStatus;
     private final String message;
 
-    TimeSlotErrorCode(HttpStatus httpStatus, String message) {
-        this.httpStatus = httpStatus;
-        this.message = message;
-    }
-
-    @Override
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
     @Override
     public String getCode() {
         return name();
     }
 
-    @Override
-    public String getMessage() {
-        return message;
-    }
 }

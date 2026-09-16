@@ -2,23 +2,24 @@ package com.bobfull.reservation.application.service;
 
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
-import com.bobfull.payment.application.dto.CreateReadyPaymentCommand;
-import com.bobfull.payment.application.dto.CreateReadyPaymentResult;
+import com.bobfull.payment.application.command.CreateReadyPaymentCommand;
+import com.bobfull.payment.application.result.CreateReadyPaymentResult;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
-import com.bobfull.payment.application.port.PaymentHoldReader;
-import com.bobfull.payment.application.port.ReadyPaymentCreator;
-import com.bobfull.reservation.presentation.dto.ReservationAvailabilityResponse;
-import com.bobfull.reservation.presentation.dto.ReservationPrepareRequest;
-import com.bobfull.reservation.presentation.dto.ReservationPrepareResponse;
+import com.bobfull.payment.application.port.PaymentHoldPort;
+import com.bobfull.payment.application.port.ReadyPaymentPort;
+import com.bobfull.reservation.presentation.response.ReservationAvailabilityResponse;
+import com.bobfull.reservation.presentation.request.ReservationPrepareRequest;
+import com.bobfull.reservation.presentation.response.ReservationPrepareResponse;
 import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
-import com.bobfull.reservation.application.port.ReservationTargetReader;
+import com.bobfull.reservation.application.port.ReservationTargetPort;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
  * {@link ReservationConfirmationService}를 호출해 수행한다.
  */
 @Service
+@RequiredArgsConstructor
 public class ReservationPreparationService {
 
     /**
@@ -40,28 +42,12 @@ public class ReservationPreparationService {
             ReservationStatus.RECRUITING, ReservationStatus.CONFIRMED,
             ReservationStatus.CANCELLING, ReservationStatus.CLOSED);
 
-    private final ReservationTargetReader reservationTargetReader;
+    private final ReservationTargetPort reservationTargetPort;
     private final ReservationRepository reservationRepository;
     private final ReservationParticipantRepository reservationParticipantRepository;
-    private final PaymentHoldReader paymentHoldReader;
-    private final ReadyPaymentCreator readyPaymentCreator;
+    private final PaymentHoldPort paymentHoldReader;
+    private final ReadyPaymentPort readyPaymentCreator;
     private final AvailableCapacityCalculator availableCapacityCalculator;
-
-    public ReservationPreparationService(
-            ReservationTargetReader reservationTargetReader,
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            PaymentHoldReader paymentHoldReader,
-            ReadyPaymentCreator readyPaymentCreator,
-            AvailableCapacityCalculator availableCapacityCalculator
-    ) {
-        this.reservationTargetReader = reservationTargetReader;
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.paymentHoldReader = paymentHoldReader;
-        this.readyPaymentCreator = readyPaymentCreator;
-        this.availableCapacityCalculator = availableCapacityCalculator;
-    }
 
     @Transactional(readOnly = true)
     public ReservationAvailabilityResponse checkAvailability(
@@ -90,7 +76,7 @@ public class ReservationPreparationService {
 
     // 락 순서: TimeSlot 단독(ADR 0001 "복수 비관적 락의 획득 순서" 참고).
     private ValidatedTarget resolveCreateTarget(Long timeSlotId, Integer partySize, boolean lock) {
-        ReservationTargetReader.ReservationTarget target = reservationTargetReader.read(timeSlotId, lock);
+        ReservationTargetPort.ReservationTarget target = reservationTargetPort.read(timeSlotId, lock);
         validatePartySizeAgainstCapacity(partySize, target.tableCapacity());
         validateNoActiveCreate(target.timeSlotId());
 
@@ -105,7 +91,7 @@ public class ReservationPreparationService {
         // 못 보고 통과해버릴 수 있다(ADR 0001, Issue #36에서 재현·확인됨).
         // 락 순서: Reservation → TimeSlot(ADR 0001 "복수 비관적 락의 획득 순서" 참고, 역순 금지).
         Reservation reservation = lock ? findReservationWithLockOrThrow(reservationId) : findReservationOrThrow(reservationId);
-        ReservationTargetReader.ReservationTarget target = reservationTargetReader.read(reservation.getTimeSlotId(), lock);
+        ReservationTargetPort.ReservationTarget target = reservationTargetPort.read(reservation.getTimeSlotId(), lock);
 
         validateJoinable(reservation);
         validateNotAlreadyParticipating(reservation.getId(), memberId);

@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.BDDMockito.given;
 
-import com.bobfull.admin.presentation.dto.AdminMemberDetailResponse;
-import com.bobfull.admin.application.model.AdminMemberResult;
+import com.bobfull.admin.presentation.response.AdminMemberDetailResponse;
+import com.bobfull.admin.application.result.AdminMemberResult;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.member.domain.exception.MemberErrorCode;

@@ -1,3 +1,7 @@
 package com.bobfull.restaurantinsight.domain.entity;
 
-public enum FeedbackSentiment { POSITIVE, NEGATIVE, NEUTRAL }
+public enum FeedbackSentiment {
+    POSITIVE,
+    NEGATIVE,
+    NEUTRAL
+}

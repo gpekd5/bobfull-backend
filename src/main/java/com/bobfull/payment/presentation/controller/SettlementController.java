@@ -3,11 +3,12 @@ package com.bobfull.payment.presentation.controller;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.payment.presentation.dto.ExpectedSettlementResponse;
-import com.bobfull.payment.presentation.dto.SettlementReservationDetailResponse;
-import com.bobfull.payment.presentation.dto.SettlementReservationResponse;
+import com.bobfull.payment.presentation.response.ExpectedSettlementResponse;
+import com.bobfull.payment.presentation.response.SettlementReservationDetailResponse;
+import com.bobfull.payment.presentation.response.SettlementReservationResponse;
 import com.bobfull.payment.application.service.SettlementQueryService;
 import java.time.LocalDate;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,13 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/owner")
+@RequiredArgsConstructor
 public class SettlementController {
 
     private final SettlementQueryService settlementQueryService;
-
-    public SettlementController(SettlementQueryService settlementQueryService) {
-        this.settlementQueryService = settlementQueryService;
-    }
 
     @GetMapping("/restaurants/{restaurantId}/settlements/expected")
     public ApiResponse<ExpectedSettlementResponse> getExpectedSettlement(

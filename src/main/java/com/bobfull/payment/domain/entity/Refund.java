@@ -14,10 +14,15 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /** Payment 전체 금액에 대한 단일 환불 처리 이력이다. */
 @Entity
 @Table(name = "refund")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Refund extends BaseTimeEntity {
 
     @Id
@@ -55,9 +60,6 @@ public class Refund extends BaseTimeEntity {
     @Column(name = "last_pg_checked_at")
     private Instant lastPgCheckedAt;
 
-    protected Refund() {
-    }
-
     private Refund(Payment payment, BigDecimal amount, RefundStatus status, Instant requestedAt, Instant completedAt,
                    String idempotencyKey, String requestReason) {
         this.payment = payment;
@@ -80,18 +82,6 @@ public class Refund extends BaseTimeEntity {
         return new Refund(payment, amount, status, requestedAt, completedAt, idempotencyKey, requestReason);
     }
 
-    public Long getId() { return id; }
-    public Payment getPayment() { return payment; }
-    public BigDecimal getAmount() { return amount; }
-    public RefundStatus getStatus() { return status; }
-    public Instant getRequestedAt() { return requestedAt; }
-    public Instant getCompletedAt() { return completedAt; }
-
-    public String getCancellationId() { return cancellationId; }
-    public String getIdempotencyKey() { return idempotencyKey; }
-    public String getRequestReason() { return requestReason; }
-    public Instant getLastPgCheckedAt() { return lastPgCheckedAt; }
-
     public void markPgChecked(Instant checkedAt) {
         if (checkedAt == null) {
             throw new IllegalArgumentException("PG 조회 시각은 필수입니다.");
@@ -105,7 +95,9 @@ public class Refund extends BaseTimeEntity {
      * 로그로 남긴다).
      */
     public void markProcessing(String cancellationId) {
-        if (status == RefundStatus.COMPLETED || status == RefundStatus.FAILED) return;
+        if (status == RefundStatus.COMPLETED || status == RefundStatus.FAILED) {
+            return;
+        }
         this.cancellationId = cancellationId;
         this.status = RefundStatus.PROCESSING;
     }
@@ -117,7 +109,9 @@ public class Refund extends BaseTimeEntity {
      * 웹훅·즉시 응답 경쟁에 대비한 멱등 종료다.
      */
     public void complete(String cancellationId, Instant completedAt) {
-        if (status == RefundStatus.COMPLETED || status == RefundStatus.FAILED) return;
+        if (status == RefundStatus.COMPLETED || status == RefundStatus.FAILED) {
+            return;
+        }
         this.cancellationId = cancellationId;
         this.status = RefundStatus.COMPLETED;
         this.completedAt = completedAt;
@@ -125,6 +119,8 @@ public class Refund extends BaseTimeEntity {
 
     /** COMPLETED는 종료 상태라 FAILED로 되돌리지 않는다. */
     public void fail() {
-        if (status != RefundStatus.COMPLETED) this.status = RefundStatus.FAILED;
+        if (status != RefundStatus.COMPLETED) {
+            this.status = RefundStatus.FAILED;
+        }
     }
 }

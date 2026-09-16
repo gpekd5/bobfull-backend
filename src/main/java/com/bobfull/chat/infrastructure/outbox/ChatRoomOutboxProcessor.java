@@ -9,16 +9,17 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /** ChatRoom 생성 이벤트만 처리하는 at-least-once Outbox processor다. */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class ChatRoomOutboxProcessor {
 
-    private static final Logger log = LoggerFactory.getLogger(ChatRoomOutboxProcessor.class);
     static final int MAX_RETRIES = 5;
     static final Duration STALE_PROCESSING_THRESHOLD = Duration.ofMinutes(5);
     private static final List<OutboxEventType> CHAT_ROOM_EVENT_TYPES = List.of(OutboxEventType.CHAT_ROOM_CREATION_REQUESTED);
@@ -27,15 +28,6 @@ public class ChatRoomOutboxProcessor {
     private final OutboxEventTransactionService transactionService;
     private final ChatRoomCreationService chatRoomCreationService;
     private final Clock clock;
-
-    public ChatRoomOutboxProcessor(OutboxEventRepository outboxEventRepository,
-                                   OutboxEventTransactionService transactionService,
-                                   ChatRoomCreationService chatRoomCreationService, Clock clock) {
-        this.outboxEventRepository = outboxEventRepository;
-        this.transactionService = transactionService;
-        this.chatRoomCreationService = chatRoomCreationService;
-        this.clock = clock;
-    }
 
     public void process(Long eventId) {
         try {

@@ -2,8 +2,8 @@ package com.bobfull.restaurant.image.presentation.controller;
 
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.restaurant.image.presentation.dto.RestaurantImageUploadUrlRequest;
-import com.bobfull.restaurant.image.presentation.dto.RestaurantImageUploadUrlResponse;
+import com.bobfull.restaurant.image.presentation.request.RestaurantImageUploadUrlRequest;
+import com.bobfull.restaurant.image.presentation.response.RestaurantImageUploadUrlResponse;
 import com.bobfull.restaurant.image.application.service.RestaurantImageService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

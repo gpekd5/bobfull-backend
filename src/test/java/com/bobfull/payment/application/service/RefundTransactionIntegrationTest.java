@@ -3,14 +3,14 @@ package com.bobfull.payment.application.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.bobfull.payment.infrastructure.adapter.ReservationCancellationRefundAdapter;
+import com.bobfull.payment.infrastructure.reservation.ReservationCancellationRefundAdapter;
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.payment.domain.entity.Refund;
 import com.bobfull.payment.domain.entity.RefundStatus;
-import com.bobfull.payment.application.port.PortOneRefundRequester;
-import com.bobfull.payment.application.port.RefundIdempotencyKeyGenerator;
+import com.bobfull.payment.application.port.PortOneRefundPort;
+import com.bobfull.payment.application.port.RefundIdempotencyKeyPort;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import com.bobfull.payment.infrastructure.repository.RefundRepository;
 import com.bobfull.common.exception.CustomException;
@@ -65,7 +65,7 @@ class RefundTransactionIntegrationTest {
     @Autowired private ReservationRepository reservationRepository;
     @Autowired private ReservationParticipantRepository reservationParticipantRepository;
     @Autowired private DelayedCompletionProbe delayedCompletionProbe;
-    @MockitoSpyBean private RefundIdempotencyKeyGenerator keyGenerator;
+    @MockitoSpyBean private RefundIdempotencyKeyPort idempotencyKeyPort;
     private Reservation activeReservation;
     private final Map<Long, Long> participantIds = new ConcurrentHashMap<>();
 
@@ -143,11 +143,11 @@ class RefundTransactionIntegrationTest {
         paid(1L);
 
         transactionService.createRequested(activeReservation.getId(), participantIds.get(1L), "test");
-        verify(keyGenerator, times(1)).generate();
+        verify(idempotencyKeyPort, times(1)).generate();
 
         assertThatThrownBy(() -> transactionService.createRequested(activeReservation.getId(), participantIds.get(1L), "test again"))
                 .isInstanceOf(CustomException.class);
-        verify(keyGenerator, times(1)).generate();
+        verify(idempotencyKeyPort, times(1)).generate();
     }
 
     @Test
@@ -512,7 +512,7 @@ class RefundTransactionIntegrationTest {
             }
         }
     }
-    static class SequencedRequester implements PortOneRefundRequester {
+    static class SequencedRequester implements PortOneRefundPort {
         private final AtomicInteger calls = new AtomicInteger();
         private volatile CountDownLatch firstCallEntered;
         private volatile CountDownLatch releaseFirstCall;

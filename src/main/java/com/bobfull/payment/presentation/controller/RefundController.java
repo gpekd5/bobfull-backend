@@ -2,8 +2,9 @@ package com.bobfull.payment.presentation.controller;
 
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.auth.application.model.AuthMember;
-import com.bobfull.payment.presentation.dto.RefundResponse;
+import com.bobfull.payment.presentation.response.RefundResponse;
 import com.bobfull.payment.application.service.RefundQueryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/refunds")
+@RequiredArgsConstructor
 public class RefundController {
 
     private final RefundQueryService refundQueryService;
-
-    public RefundController(RefundQueryService refundQueryService) {
-        this.refundQueryService = refundQueryService;
-    }
 
     @GetMapping("/{refundId}")
     public ApiResponse<RefundResponse> getMyRefund(

@@ -7,11 +7,11 @@ import com.bobfull.restaurant.restaurant.domain.exception.RestaurantErrorCode;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
-import com.bobfull.payment.application.port.PaymentHoldReader;
-import com.bobfull.reservation.presentation.dto.OwnerReservationDetailResponse;
-import com.bobfull.reservation.presentation.dto.OwnerReservationListItemResponse;
-import com.bobfull.reservation.presentation.dto.OwnerReservationParticipantResponse;
-import com.bobfull.reservation.application.dto.OwnerReservationResult;
+import com.bobfull.payment.application.port.PaymentHoldPort;
+import com.bobfull.reservation.presentation.response.OwnerReservationDetailResponse;
+import com.bobfull.reservation.presentation.response.OwnerReservationListItemResponse;
+import com.bobfull.reservation.presentation.response.OwnerReservationParticipantResponse;
+import com.bobfull.reservation.application.result.OwnerReservationResult;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;
@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /** OWNER의 식당별 예약 목록·상세·참여자 조회를 담당한다(Issue #147 §6-11~6-13). */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class OwnerReservationQueryService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
@@ -53,30 +56,9 @@ public class OwnerReservationQueryService {
     private final SharedTableRepository sharedTableRepository;
     private final RestaurantRepository restaurantRepository;
     private final MemberRepository memberRepository;
-    private final PaymentHoldReader paymentHoldReader;
+    private final PaymentHoldPort paymentHoldReader;
     private final Clock clock;
 
-    public OwnerReservationQueryService(
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            TimeSlotRepository timeSlotRepository,
-            SharedTableRepository sharedTableRepository,
-            RestaurantRepository restaurantRepository,
-            MemberRepository memberRepository,
-            PaymentHoldReader paymentHoldReader,
-            Clock clock
-    ) {
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.timeSlotRepository = timeSlotRepository;
-        this.sharedTableRepository = sharedTableRepository;
-        this.restaurantRepository = restaurantRepository;
-        this.memberRepository = memberRepository;
-        this.paymentHoldReader = paymentHoldReader;
-        this.clock = clock;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<OwnerReservationListItemResponse> getRestaurantReservations(
             Long ownerMemberId, Long restaurantId, String reservationStatus, LocalDate date, Pageable pageable
     ) {
@@ -91,7 +73,6 @@ public class OwnerReservationQueryService {
                 result, toSeoulOffset(result.startAt()), toSeoulOffset(result.endAt()))));
     }
 
-    @Transactional(readOnly = true)
     public OwnerReservationDetailResponse getReservationDetail(Long ownerMemberId, Long reservationId) {
         OwnershipContext context = resolveOwnership(reservationId, ownerMemberId);
         Reservation reservation = context.reservation();
@@ -120,7 +101,6 @@ public class OwnerReservationQueryService {
         );
     }
 
-    @Transactional(readOnly = true)
     public PageResponse<OwnerReservationParticipantResponse> getParticipants(
             Long ownerMemberId, Long reservationId, Pageable pageable
     ) {

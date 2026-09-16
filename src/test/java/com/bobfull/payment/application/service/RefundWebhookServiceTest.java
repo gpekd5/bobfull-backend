@@ -5,7 +5,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
-import com.bobfull.payment.application.port.PortOneRefundRequester;
+import com.bobfull.payment.application.port.PortOneRefundPort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -15,11 +15,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class RefundWebhookServiceTest {
 
     @Mock private RefundCompletionService completionService;
-    @Mock private PortOneRefundRequester refundRequester;
+    @Mock private PortOneRefundPort refundPort;
 
     @Test
     void Cancelled_웹훅은_PortOne_완료를_재검증한_뒤_공통완료경로로_전달한다() {
-        when(refundRequester.isCancellationCompleted("payment-1", "cancellation-1")).thenReturn(true);
+        when(refundPort.isCancellationCompleted("payment-1", "cancellation-1")).thenReturn(true);
 
         service().complete("payment-1", "cancellation-1");
 
@@ -28,7 +28,7 @@ class RefundWebhookServiceTest {
 
     @Test
     void PortOne_완료를_재검증하지_못하면_내부완료경로를_호출하지_않는다() {
-        when(refundRequester.isCancellationCompleted("payment-1", "cancellation-1")).thenReturn(false);
+        when(refundPort.isCancellationCompleted("payment-1", "cancellation-1")).thenReturn(false);
 
         assertThatThrownBy(() -> service().complete("payment-1", "cancellation-1"))
                 .isInstanceOf(IllegalStateException.class);
@@ -44,6 +44,6 @@ class RefundWebhookServiceTest {
     }
 
     private RefundWebhookService service() {
-        return new RefundWebhookService(completionService, refundRequester);
+        return new RefundWebhookService(completionService, refundPort);
     }
 }

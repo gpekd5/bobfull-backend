@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 인증 사용자와 역할(MEMBER, OWNER, ADMIN)을 보관하는 Entity다.
@@ -19,6 +22,8 @@ import java.time.Instant;
  */
 @Entity
 @Table(name = "member")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseTimeEntity {
 
     @Id
@@ -47,9 +52,6 @@ public class Member extends BaseTimeEntity {
 
     @Column(name = "deleted_at")
     private Instant deletedAt;
-
-    protected Member() {
-    }
 
     private Member(
             String email,
@@ -86,35 +88,4 @@ public class Member extends BaseTimeEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public String getBusinessNumber() {
-        return businessNumber;
-    }
-
-    public MemberRole getRole() {
-        return role;
-    }
-
-    public Instant getDeletedAt() {
-        return deletedAt;
-    }
 }

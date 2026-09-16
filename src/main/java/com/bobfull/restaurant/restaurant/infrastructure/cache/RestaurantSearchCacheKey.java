@@ -1,6 +1,6 @@
 package com.bobfull.restaurant.restaurant.infrastructure.cache;
 
-import com.bobfull.restaurant.restaurant.presentation.dto.RestaurantSearchRequest;
+import com.bobfull.restaurant.restaurant.presentation.request.RestaurantSearchRequest;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

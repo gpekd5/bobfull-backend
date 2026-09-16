@@ -14,7 +14,7 @@ import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
-import com.bobfull.reservation.presentation.dto.OwnerReservationListItemResponse;
+import com.bobfull.reservation.presentation.response.OwnerReservationListItemResponse;
 import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import com.bobfull.reservation.application.service.OwnerReservationQueryService;

@@ -1,7 +1,7 @@
 package com.bobfull.chat.infrastructure.ai;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.AiModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatModeration;
 import com.bobfull.chat.domain.entity.ModerationCategory;
@@ -12,7 +12,7 @@ import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.application.service.ChatModerationService;
 import com.bobfull.chat.application.exception.ModerationAnalysisException;
-import com.bobfull.chat.application.service.ModerationRuleFilter;
+import com.bobfull.chat.application.service.ModerationRulePolicy;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -51,7 +51,7 @@ class Issue251ProductionRuleProviderAfterTest {
     @Autowired private ChatModerationService service;
     @Autowired private ChatMessageRepository messages;
     @Autowired private ChatModerationRepository moderations;
-    @Autowired private ModerationRuleFilter ruleFilter;
+    @Autowired private ModerationRulePolicy rulePolicy;
     @Autowired private CapturingAiModerationPort capturingPort;
 
     @DynamicPropertySource static void openAiApiKey(DynamicPropertyRegistry registry) {
@@ -80,12 +80,12 @@ class Issue251ProductionRuleProviderAfterTest {
     }
 
     private Observation analyze(String caseId, String input, Metrics metrics) {
-        boolean fastPath = ruleFilter.clearFlagged(input).isPresent();
+        boolean fastPath = rulePolicy.clearFlagged(input).isPresent();
         ChatMessage message = messages.saveAndFlush(ChatMessage.create(1L, 2L, 3L, input));
         long started = System.nanoTime();
         try { service.analyze(message.getId()); }
         catch (ModerationAnalysisException exception) {
-            AiModerationResponse raw = capturingPort.responses.get(input);
+            AiModerationResult raw = capturingPort.responses.get(input);
             metrics.applicationValidationFailures++;
             System.out.printf("[251-AFTER] case=%s input=%s route=LLM_REQUIRED providerRaw=%s applicationValidation=FAIL(%s)%n", caseId, quote(input), raw == null ? "NOT_CAPTURED" : raw.result(), exception.getMessage());
             return new Observation(ModerationResultType.FLAGGED, EnumSet.noneOf(ModerationCategory.class), RiskLevel.MEDIUM, false, false, elapsed(started));
@@ -111,9 +111,9 @@ class Issue251ProductionRuleProviderAfterTest {
         @Bean @Primary CapturingAiModerationPort capturingAiModerationPort(SpringAiModerationAdapter delegate) { return new CapturingAiModerationPort(delegate); }
     }
     static class CapturingAiModerationPort implements AiModerationPort {
-        final AiModerationPort delegate; final Map<String, AiModerationResponse> responses = new ConcurrentHashMap<>();
+        final AiModerationPort delegate; final Map<String, AiModerationResult> responses = new ConcurrentHashMap<>();
         CapturingAiModerationPort(AiModerationPort delegate) { this.delegate = delegate; }
-        public AiModerationResponse analyze(String content) { AiModerationResponse response = delegate.analyze(content); responses.put(content, response); return response; }
+        public AiModerationResult analyze(String content) { AiModerationResult response = delegate.analyze(content); responses.put(content, response); return response; }
     }
     static class Metrics {
         int total, exactResult, exactCategory, exactRisk, tp, fp, fn, tn, fastPath, fastPathCorrect, fastPathFalsePositive, fastPathOpenAiCalls, injectionSecurityDetermined, injectionSecurityPass, injectionSecurityNotDeterminable, obfuscationTotal, obfuscationDetected, splitFlagged, splitDetected, splitFp, splitFn, applicationValidationFailures;

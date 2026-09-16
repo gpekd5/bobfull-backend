@@ -8,20 +8,49 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /** 채팅방 메시지 이력이다. 다음 STOMP 단계에서만 생성한다. */
 @Entity
 @Table(name = "chat_message", indexes = @Index(name = "idx_chat_message_room_id", columnList = "chat_room_id,chat_message_id"))
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChatMessage extends BaseTimeEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "chat_message_id")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "chat_message_id")
     private Long id;
-    @Column(name = "chat_room_id", nullable = false) private Long chatRoomId;
-    @Column(name = "sender_member_id", nullable = false) private Long senderMemberId;
-    @Column(name = "sender_participant_id", nullable = false) private Long senderParticipantId;
-    @Column(nullable = false, length = 1000) private String content;
-    protected ChatMessage() { }
-    private ChatMessage(Long roomId, Long memberId, Long participantId, String content) { validateContent(content); this.chatRoomId=roomId; this.senderMemberId=memberId; this.senderParticipantId=participantId; this.content=content; }
-    public static ChatMessage create(Long roomId, Long memberId, Long participantId, String content) { return new ChatMessage(roomId, memberId, participantId, content); }
-    private static void validateContent(String content) { if (content == null || content.isBlank() || content.length() > 1000) throw new IllegalArgumentException("메시지 내용이 올바르지 않습니다."); }
-    public Long getId() { return id; } public Long getChatRoomId() { return chatRoomId; } public Long getSenderMemberId() { return senderMemberId; } public Long getSenderParticipantId() { return senderParticipantId; } public String getContent() { return content; }
+
+    @Column(name = "chat_room_id", nullable = false)
+    private Long chatRoomId;
+
+    @Column(name = "sender_member_id", nullable = false)
+    private Long senderMemberId;
+
+    @Column(name = "sender_participant_id", nullable = false)
+    private Long senderParticipantId;
+
+    @Column(nullable = false, length = 1000)
+    private String content;
+
+    private ChatMessage(Long roomId, Long memberId, Long participantId, String content) {
+        validateContent(content);
+        this.chatRoomId = roomId;
+        this.senderMemberId = memberId;
+        this.senderParticipantId = participantId;
+        this.content = content;
+    }
+
+    public static ChatMessage create(Long roomId, Long memberId, Long participantId, String content) {
+        return new ChatMessage(roomId, memberId, participantId, content);
+    }
+
+    private static void validateContent(String content) {
+        if (content == null || content.isBlank() || content.length() > 1000) {
+            throw new IllegalArgumentException("메시지 내용이 올바르지 않습니다.");
+        }
+    }
 }

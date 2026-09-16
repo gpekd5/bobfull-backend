@@ -1,537 +1,492 @@
-# Code Convention
+# BobFull Code Convention
 
-# 코딩 컨벤션
+이 문서는 BobFull production Java 코드의 package, naming, Annotation과 작성 패턴을 정하는 Source of Truth다.
+새 코드를 작성하거나 기존 코드의 표현을 정리할 때 먼저 이 문서를 따른다.
 
-> Spring Boot 기반 합석 예약 서비스 밥풀(BobFull)의 백엔드 코드 작성 규칙이다.
->
-> 엄격한 DDD 구조보다 **기능 단위 패키지 + 역할별 하위 패키지**를 따른다.
->
-> 목표는 빠른 구현이 아니라, 팀원이 서로의 코드를 쉽게 읽고 수정할 수 있는 구조를 만드는 것이다.
+- Repository와 Java package의 구조적 배경·소유권은 [project-structure.md](../040-architecture/project-structure.md)를 따른다.
+- API, DB, 정책, 권한과 트랜잭션의 동작 계약은 각 기준 문서를 따른다.
+- Java 일반 스타일은 [NAVER CAMPUS HACKDAY Java 코딩 컨벤션](https://naver.github.io/hackday-conventions-java/)을 기본으로 하며, 충돌하면 이 문서의 BobFull 규칙을 우선한다.
+- [common-package-guide.md](common-package-guide.md)는 `com.bobfull.common`이 제공하는 공통 기반과 사용 방법을 설명하며 이 규칙을 재정의하지 않는다.
 
----
+모든 타입을 같은 형태로 만들지 않는다. 먼저 소유 domain, layer와 실제 책임을 확인하고 **동일한 책임에 동일한 이름과 작성 방식**을 적용한다. 책임 분리나 의존 방향 변경이 필요한 코드는 이름만 바꾸지 않고 Issue #20 범위로 남긴다.
 
-## 1. 기본 원칙
+## Quick Reference
 
-- Java 코드 스타일은 [NAVER CAMPUS HACKDAY Java 코딩 컨벤션](https://naver.github.io/hackday-conventions-java/)을 기본 기준으로 사용하며, 충돌 시 이 문서의 프로젝트별 규칙을 우선한다.
-- 기능 단위로 패키지를 나눈다.
-- 각 기능 내부는 역할에 따라 `controller`, `service`, `repository`, `dto`, `entity`로 구분한다.
-- Controller는 요청과 응답만 담당한다.
-- Service는 비즈니스 로직과 트랜잭션을 담당한다.
-- Repository는 DB 접근만 담당한다.
-- DTO는 요청/응답 데이터를 전달하는 용도로만 사용한다.
-- Entity는 DB 테이블과 매핑되는 객체이며, 핵심 상태 변경 메서드를 포함할 수 있다.
-- Entity를 API 응답으로 직접 반환하지 않는다.
-- 인증 사용자의 `memberId`는 클라이언트 요청값이 아니라 인증 객체에서 꺼낸다.
-- Redis는 DB 테이블이 아니므로 ERD에 포함하지 않고, 아키텍처 문서에 표현한다.
+| Layer | Package | 역할 | Naming | 기본 형태 / Annotation |
+|---|---|---|---|---|
+| Presentation | `presentation/controller` | HTTP 진입과 요청·응답 변환 | `*Controller` | `@RestController`, `@RequestMapping`, `@RequiredArgsConstructor` |
+| Presentation | `presentation/request` | 외부 HTTP 입력 계약 | `*Request` | `record`, Bean Validation |
+| Presentation | `presentation/response` | 외부 HTTP 출력 계약 | `*Response` | `record` |
+| Application | `application/service` | Use case 진입과 orchestration | `*Service`, `*QueryService`, `*CommandService`, `*TransactionService` | `@Service`, `@RequiredArgsConstructor`, 책임에 맞는 `@Transactional` |
+| Application | `application/command` | 특정 Use case 입력 계약 | `*Command` | `record` |
+| Application | `application/result` | 특정 Use case 출력 계약 | `*Result` | `record` |
+| Application | `application/model` | Use case 입출력에 종속되지 않는 재사용 개념 | 실제 책임명 | 목적에 맞는 불변 타입 우선 |
+| Application | `application/port` | Application이 요구하는 외부 경계 | `*Port` | 작은 책임의 interface |
+| Domain | `domain/entity` | 상태와 invariant를 가진 Domain Entity | 실제 domain 이름 | `@Entity`, `@Table`, `@Getter`, protected no-arg constructor |
+| Domain | `domain/policy` | 비즈니스 규칙과 판단 기준 | `*Policy` | 필요 시 `@Component` |
+| Domain | `domain/exception` | Domain/API 비즈니스 오류 계약 | `*ErrorCode` | `BaseErrorCode`, `@Getter`, `@RequiredArgsConstructor` |
+| Infrastructure | `infrastructure/repository` | 기본 persistence와 Spring Data 파생 query | `*Repository` | Spring Data JPA interface |
+| Infrastructure | `infrastructure/repository/query` | 복잡 조회와 QueryDSL | `*QueryRepository`, `*SearchRepository` 등 | 책임 interface + 동일 이름 `Impl` |
+| Infrastructure | `infrastructure/<technology>` | Application Port의 기술·외부 시스템 구현 | `*Adapter` | 필요 시 `@Component`, `@RequiredArgsConstructor` |
 
----
+### 역할별 예외
 
-## 1.1 주석 작성 원칙
+다음 역할은 고정 package를 만들지 않고 실제 책임을 소유하는 layer와 기능별 기술 package에 둔다.
 
-팀원 간 코드 리뷰와 학습 효율을 위해 설명이 필요한 클래스와 메서드에는 주석을 작성한다.
+| 역할 | 위치 기준 | Naming | 기본 형태 / Annotation |
+|---|---|---|---|
+| 반복 처리·상태 전이·delivery 단계 | 해당 책임을 소유하는 Application 또는 Infrastructure package | `*Processor` | 특정 처리 단계 담당 |
+| 계산 결과 생성 | 계산 책임을 소유하는 layer | `*Calculator` | 계산 결과 생성 |
+| 입력·상태·조건 검증 | 검증 책임을 소유하는 Application 또는 Domain package | `*Validator` | 입력·상태·조건 검증 |
+| 주기 실행 진입점 | 기능별 Infrastructure package | `*Scheduler` | `@Component`, `@Scheduled` |
+| 메시지 소비 진입점 | Kafka 등 기능별 Infrastructure package | `*Consumer` | `@Component`, `@KafkaListener` 등 |
+| Servlet Filter chain | Security/Web Infrastructure package | `*Filter` | 실제 Servlet Filter 구현 |
+| Framework interceptor | Web/WebSocket Infrastructure package | `*Interceptor` | 실제 Handler/Channel interceptor 구현 |
 
-- 클래스 설명은 클래스 선언 바로 위에 JavaDoc 형식으로 작성한다.
-- 메서드 내부의 짧은 보조 설명은 `//` 한 줄 주석을 사용한다.
-- 단순히 코드 내용을 반복하는 주석은 작성하지 않는다.
-- 도메인 규칙, 보안 의도, 확장 포인트처럼 코드를 처음 보는 팀원이 이해해야 하는 맥락을 우선 설명한다.
+기능에 해당 책임이 없으면 빈 package를 만들지 않는다. Issue #38에서 확정한 feature-first 구조와 기능별 package 예외는 유지한다.
+
+## 1. Package와 타입 책임
+
+새 기능의 기본 역할 package는 다음과 같다.
+
+```text
+<feature>
+├─ presentation
+│  ├─ controller
+│  ├─ request
+│  └─ response
+├─ application
+│  ├─ command
+│  ├─ result
+│  ├─ model
+│  ├─ port
+│  └─ service
+├─ domain
+│  ├─ entity
+│  ├─ exception
+│  └─ policy
+└─ infrastructure
+   └─ repository
+      └─ query
+```
+
+- `Request`: 외부 HTTP 입력 계약이다.
+- `Response`: 외부 HTTP 출력 계약이다.
+- `Command`: 특정 Application use case의 입력 계약이다.
+- `Result`: 특정 Application use case의 출력 계약이다.
+- `Model`: 특정 use case 입출력에 종속되지 않고 재사용되는 Application 개념이다.
+- 클래스명에 `DTO` suffix를 사용하지 않는다.
+- Entity를 DTO로 분류하지 않는다.
+- `Model`을 기타 객체의 수용소로 사용하지 않는다. `AuthMember`, `SearchCondition`, `Context`처럼 실제 책임을 이름에 표현한다.
 
 ```java
-/**
- * 회원 정보를 저장하는 JPA 엔티티다.
- * 이메일과 닉네임은 서비스 내에서 유일해야 한다.
- */
-public class Member {
-
-    public static Member create(String email, String encodedPassword, String nickname) {
-        // 신규 가입 회원은 기본 권한을 MEMBER로 생성한다.
-        return new Member(email, encodedPassword, nickname, MemberRole.MEMBER);
-    }
+public record ReservationPrepareRequest(
+        Long timeSlotId,
+        Integer partySize
+) {
 }
-```
 
----
+public record PrepareReservationCommand(
+        Long memberId,
+        Long timeSlotId,
+        Integer partySize
+) {
+}
 
-## 2. 패키지 구조
-
-기능 단위 패키지 아래에 역할별 패키지를 둔다.
-
-```text
-com.bobfull
-├── common
-│   ├── config
-│   ├── entity
-│   ├── exception
-│   ├── response
-│   └── security
-│
-├── auth
-│   ├── controller
-│   ├── service
-│   └── dto
-│
-└── 각 도메인
-    ├── controller
-    ├── service
-    ├── repository
-    ├── dto
-    └── entity
-```
-
-### 현재 프로젝트 기준
-
-- `presentation`, `application`, `domain`, `infrastructure` 같은 계층형 DDD 패키지는 사용하지 않는다.
-- 기능 단위 패키지 아래에 역할별 하위 패키지를 둔다.
-- 단, 각 계층의 책임 분리는 반드시 지킨다.
-
----
-
-## 3. 역할별 책임
-
-| 패키지 | 책임 |
-|---|---|
-| `controller` | HTTP 요청/응답 처리, Request DTO 검증, Service 호출 |
-| `service` | 비즈니스 로직 처리, 트랜잭션 관리, Entity 상태 변경 |
-| `repository` | DB 또는 도메인 전용 외부 저장소 조회/저장/수정/삭제 |
-| `dto` | Request, Response, 내부 전달용 DTO |
-| `entity` | JPA Entity, DB 테이블 매핑, 상태 변경 메서드 |
-| `common` | 공통 설정, 응답, 예외, 보안 |
-
----
-
-## 4. 의존 방향
-
-기본 흐름은 아래 방향을 따른다.
-
-```text
-Controller → Service → Repository → Entity
-```
-
-각 역할은 아래 원칙을 지킨다.
-
-- Controller는 Service만 호출한다.
-- Controller에서 Repository를 직접 호출하지 않는다.
-- Controller에서 비즈니스 로직을 작성하지 않는다.
-- Service는 Repository를 통해 Entity를 조회하거나 저장한다.
-- Repository는 DB 접근 또는 도메인 전용 외부 저장소 접근만 담당한다.
-- Entity를 API 응답으로 직접 반환하지 않는다.
-- 다른 도메인의 Repository를 직접 많이 끌어오는 구조는 피하고, 필요하면 해당 도메인 Service 메서드로 위임한다.
-
----
-
-## 5. DTO 규칙
-
-DTO는 각 도메인의 `dto` 패키지에 둔다.
-
-```text
-도메인
-└── dto
-    ├── 기능명Request
-    ├── 기능명Response
-    └── 기능명DetailResponse
-```
-
-### Request DTO
-
-- 클라이언트 요청 데이터를 받는 용도이다.
-- Controller에서 사용한다.
-- 검증 어노테이션을 사용한다.
-- 인증된 회원 ID는 Request DTO에 넣지 않는다.
-
-```java
-public record ReservationCreateRequest(
-        @NotNull Long restaurantId,
-        @NotNull Long timeSlotId
+public record ReservationPreparationResult(
+        Long reservationId,
+        String paymentKey
 ) {
 }
 ```
 
-### Response DTO
+Application이 presentation 타입을 직접 참조하는 기존 의존 제거, mapping 도입과 계층 방향 변경은 Issue #20 범위다.
 
-- 클라이언트에게 반환할 데이터를 담는다.
-- Entity를 직접 반환하지 않고 Response DTO로 변환한다.
-- 단순 조회는 `from(entity)` 정적 팩토리를 사용한다.
-- 여러 Entity 조합 응답은 Service에서 필요한 데이터를 조립한다.
+## 2. Naming과 suffix
+
+### Service 계열
+
+- `Service`: 하나의 use case를 수행하거나 여러 협력 객체를 조합하는 진입 역할이다.
+- `QueryService`: 조회 책임이 명확한 Service다.
+- `CommandService`: 쓰기·상태 변경 책임이 명확한 Service다.
+- `TransactionService`: 명시적인 transaction 단위를 담당할 때만 사용한다.
+- `Processor`: 반복 처리, 상태 전이, delivery 등 특정 처리 단계다.
+- `Calculator`: 계산 결과를 만든다.
+- `Policy`: 비즈니스 규칙과 판단 기준을 표현한다.
+- `Validator`: 입력, 상태와 조건을 검증한다.
+
+Cross-domain 조합이라는 이유만으로 `Coordinator`, `Orchestrator` suffix를 추가하지 않는다. 실제 행위를 앞 이름에 표현한다. 책임이 섞여 있어 이름만으로 해결할 수 없다면 Issue #20에서 분리한다.
+
+### Port와 Adapter
+
+- Application이 외부 기술이나 다른 책임에 요구하는 경계 interface만 `*Port`로 명명한다.
+- 모든 interface를 Port로 부르지 않는다.
+- `Reader`, `Creator`, `Requester`, `Verifier`, `Generator`, `Hook`을 별도 suffix 체계로 사용하지 않는다. 필요한 기능은 Port 앞 이름과 method 이름에 표현한다.
+- 구현체는 `*Adapter`를 기본으로 사용하고 기술명을 앞에 둔다.
+- Port는 책임 단위로 작게 유지하며 하나의 거대한 interface로 합치지 않는다.
+
+```java
+public interface ReadyPaymentPort {
+
+    CreateReadyPaymentResult createReadyPayment(CreateReadyPaymentCommand command);
+}
+
+@Component
+@RequiredArgsConstructor
+public class PortOneReadyPaymentAdapter implements ReadyPaymentPort {
+
+    private final PortOneClient portOneClient;
+}
+```
+
+Port 신설, Repository wrapping과 의존 방향 재설계는 Issue #20 범위다.
+
+### 기술 진입점
+
+- `Scheduler`: `@Scheduled`로 시작되는 주기 실행 진입점에만 사용한다.
+- `Consumer`: `@KafkaListener` 등 메시지 소비 진입점에 사용한다.
+- `Filter`: 실제 Servlet Filter chain 참여 타입에만 사용한다.
+- `Interceptor`: 실제 `HandlerInterceptor`, `ChannelInterceptor` 등 framework interceptor에만 사용한다.
+- 비즈니스 규칙을 선별하거나 판단하는 객체에는 `Filter`, `Interceptor`를 붙이지 않고 실제 책임에 따라 `Policy`, `Validator`, `Gate` 등으로 명명한다.
+
+### 클래스와 파일
+
+- public type과 파일명은 일치시킨다.
+- 클래스는 `PascalCase`, method와 변수는 `camelCase`, 상수와 enum 값은 `UPPER_SNAKE_CASE`를 사용한다.
+- 역할이 있는 기술 객체는 이 문서의 책임 suffix를 사용한다.
+- Entity와 domain object는 역할명이 충분하면 `Entity`, `VO` 같은 suffix를 인위적으로 붙이지 않는다.
+- package 차이는 모양이 아니라 소유권과 책임을 기준으로 판단하고 Issue #38의 의도적인 예외를 유지한다.
+
+## 3. DTO, Command, Result와 Model
+
+`Request`, `Response`, `Command`, `Result`는 `record`가 기본이다.
 
 ```java
 public record ReservationResponse(
         Long reservationId,
-        Long restaurantId,
-        Long timeSlotId,
-        String status
+        ReservationStatus status
 ) {
-    public static ReservationResponse from(Reservation reservation) {
-        return new ReservationResponse(
-                reservation.getId(),
-                reservation.getRestaurant().getId(),
-                reservation.getTimeSlot().getId(),
-                reservation.getStatus().name()
+}
+```
+
+- DTO record에 `@Getter`, `@Setter`, `@RequiredArgsConstructor`, `@Builder`를 기본 사용하지 않는다.
+- framework 요구, 상속, 변경 가능한 상태 또는 복잡한 lifecycle처럼 명확한 이유가 있을 때만 일반 class를 허용한다.
+- 인증된 member id처럼 서버가 결정하는 값은 HTTP Request에 받지 않고 인증 객체에서 Command로 전달한다.
+- Entity를 HTTP Response로 직접 반환하지 않는다.
+
+## 4. Lombok, 생성자, Builder와 Setter
+
+Lombok은 객체 책임과 상태 변경을 숨기지 않는 범위에서 반복 코드 제거에만 사용한다.
+
+| 대상 | 기본 허용 |
+|---|---|
+| Controller, Service와 의존성 bean | `@RequiredArgsConstructor` |
+| Entity | `@Getter`, `@NoArgsConstructor(access = AccessLevel.PROTECTED)` |
+| ErrorCode | `@Getter`, `@RequiredArgsConstructor` |
+| 로그가 필요한 class | `@Slf4j` |
+| DTO record | Lombok 미사용 |
+
+다음은 기본적으로 사용하지 않는다.
+
+- `@Data`
+- class-level 또는 field-level public `@Setter`
+- `@AllArgsConstructor`
+- 무분별한 `@Builder`
+
+### Constructor injection
+
+- Spring bean의 의존성은 `final` field와 `@RequiredArgsConstructor`를 사용한 constructor injection이 기본이다.
+- 단일 constructor에 `@Autowired`를 붙이지 않는다.
+- 복수 constructor 선택이나 optional dependency처럼 명확한 이유가 있는 경우에는 예외를 허용하고 기존 의도를 보존한다.
+
+### Builder와 Setter
+
+- Entity public Setter를 사용하지 않는다.
+- Entity 상태는 `cancel()`, `confirm()`처럼 의미 있는 domain method로 변경한다.
+- Request, Response, Command와 Result는 record constructor를 기본으로 사용한다.
+- Builder는 기본 생성 방식이 아니다. optional 값이 많아 생성자 가독성이 실제로 낮아지는 immutable 객체나 test fixture처럼 명확한 이유가 있을 때만 허용한다.
+
+## 5. Controller와 Validation
+
+Controller의 기본 형태는 다음과 같다.
+
+```java
+@RestController
+@RequestMapping("/api/v1/reservations")
+@RequiredArgsConstructor
+public class ReservationController {
+
+    private final ReservationPreparationService reservationPreparationService;
+
+    @PostMapping
+    public ApiResponse<ReservationPrepareResponse> prepare(
+            @AuthenticationPrincipal AuthMember authMember,
+            @Valid @RequestBody ReservationPrepareRequest request
+    ) {
+        PrepareReservationCommand command = new PrepareReservationCommand(
+                authMember.id(),
+                request.timeSlotId(),
+                request.partySize()
+        );
+        ReservationPreparationResult result = reservationPreparationService.prepare(command);
+
+        return ApiResponse.success(ReservationPrepareResponse.from(result));
+    }
+}
+```
+
+- class에 `@RestController`, base path의 `@RequestMapping`, constructor injection의 `@RequiredArgsConstructor`를 사용한다.
+- Request Body는 `@Valid`로 검증한다.
+- `@Positive @PathVariable`, `@Min @RequestParam` 등 method parameter validation이 실제로 있을 때만 class-level `@Validated`를 추가한다.
+- 기존 `ApiResponse<T>` 계약을 유지한다.
+- Controller는 HTTP 변환과 Service 호출만 담당하고 Repository나 Entity를 직접 다루지 않는다.
+
+검증은 책임별로 둔다.
+
+| 위치 | 검증 책임 |
+|---|---|
+| Request | 외부 입력 형식 |
+| Controller | Request Body의 `@Valid`, 필요한 method parameter validation |
+| Application Validator | DB 조회와 여러 조건을 조합하는 use case 사전조건 |
+| Entity, Policy | 비즈니스 규칙과 domain invariant |
+| DB | nullable, unique, FK 등 데이터 무결성의 최종 방어선 |
+
+같은 검증을 모든 계층에 기계적으로 복제하지 않는다.
+
+## 6. Service와 Transaction
+
+Service는 use case를 수행하고 transaction 경계를 관리한다. 책임이 명확한 class는 class-level 기본값을 사용할 수 있고, 읽기와 쓰기가 섞인 class는 method-level로 구분한다.
+
+```java
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class MyReservationQueryService {
+}
+```
+
+```java
+@Service
+@RequiredArgsConstructor
+@Transactional
+public class ReservationCommandService {
+}
+```
+
+```java
+@Service
+@RequiredArgsConstructor
+public class ReservationService {
+
+    @Transactional(readOnly = true)
+    public ReservationResult get(Long reservationId) {
+        // 조회
+    }
+
+    @Transactional
+    public void cancel(Long reservationId) {
+        // 상태 변경
+    }
+}
+```
+
+- 조회는 `@Transactional(readOnly = true)`를 사용한다.
+- 쓰기와 상태 변경은 기본 `@Transactional`을 사용한다.
+- `REQUIRES_NEW`, `MANDATORY` 등 propagation은 동작상 이유가 확인된 경우에만 사용한다.
+- Issue #15에서 기존 propagation, 원자성, 실행 순서를 기계적으로 변경하지 않는다.
+- 복잡 조회 구현을 포함한 Repository가 transaction 경계를 결정하지 않고 Service가 관리한다.
+
+## 7. Entity
+
+Domain Entity의 기본 형태는 다음과 같다.
+
+```java
+@Entity
+@Table(name = "reservation")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Reservation extends BaseTimeEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reservation_id")
+    private Long id;
+
+    public void cancel() {
+        // invariant 확인 후 상태 변경
+    }
+}
+```
+
+- 기본 조합은 `@Entity`, `@Table(name = "...")`, `@Getter`, `@NoArgsConstructor(access = AccessLevel.PROTECTED)`다.
+- `@Id`, `@GeneratedValue`, `@Column`, `@Enumerated`와 association Annotation은 실제 mapping에 맞춘다.
+- `@Table`의 index와 unique constraint 등 DB schema 의미가 있는 설정을 삭제하거나 임의 변경하지 않는다.
+- public Setter를 열지 않고 의미 있는 domain method로 상태를 변경한다.
+- 생성 인자와 invariant가 있으면 정적 factory를 사용할 수 있다.
+- 기술 영속 모델이 승인된 infrastructure 소유라면 모양을 맞추기 위해 domain으로 이동하지 않는다.
+
+## 8. Repository와 QueryDSL
+
+기본 persistence와 복잡 조회를 분리한다.
+
+```text
+infrastructure/repository
+├─ ReservationRepository.java
+└─ query
+   ├─ ReservationSearchRepository.java
+   └─ ReservationSearchRepositoryImpl.java
+```
+
+- 단순 CRUD와 Spring Data 파생 query는 `XxxRepository`에 둔다.
+- 복잡 조회와 QueryDSL은 `infrastructure/repository/query` 아래 책임별 Repository에 둔다.
+- `Custom`처럼 책임이 약한 이름을 사용하지 않는다. `Search`, `Query`, `Statistics`, `Settlement`처럼 실제 조회 책임을 이름에 표현한다.
+- 구현 class는 interface와 같은 이름에 `Impl`을 붙인다.
+- 단순 Repository까지 기계적으로 interface+Impl로 만들지 않는다.
+- `JpaRepository` interface에는 `@Repository`를 기계적으로 붙이지 않는다.
+- QueryDSL fragment도 framework 등록상 필요하지 않다면 `@Repository`를 강제하지 않는다.
+- `@Query`, `@Lock`, `@Param`은 실제 필요한 method에만 사용한다.
+- transaction 경계는 기본적으로 Service가 관리한다.
+
+```java
+public interface ReservationRepository
+        extends JpaRepository<Reservation, Long>, ReservationSearchRepository {
+}
+```
+
+```java
+public interface ReservationSearchRepository {
+
+    Page<ReservationSearchResult> searchRecruitingReservations(
+            ReservationSearchCondition condition,
+            Pageable pageable
+    );
+}
+
+public class ReservationSearchRepositoryImpl
+        implements ReservationSearchRepository {
+
+    private final JPAQueryFactory queryFactory;
+
+    public ReservationSearchRepositoryImpl(EntityManager entityManager) {
+        this.queryFactory = new JPAQueryFactory(entityManager);
+    }
+}
+```
+
+Admin fragment의 역방향 연결, Repository Port 전환과 의존성 재설계는 Issue #20 범위다.
+
+## 9. Exception과 ErrorCode
+
+- 사용자에게 전달하는 domain/API 비즈니스 실패는 `BaseErrorCode` 구현 enum과 `CustomException`을 사용한다.
+- 추가 상태를 보존해야 할 때만 specialized `CustomException`을 허용한다.
+- 외부 시스템, 직렬화, retry/DLT 등 기술 실패는 기술 예외로 구분한다.
+- `IllegalArgumentException`, `IllegalStateException`은 programmer error, config 오류와 내부 invariant 위반에만 사용한다.
+- 공통이 아닌 domain 오류는 각 기능의 `domain/exception`에 둔다.
+
+```java
+@Getter
+@RequiredArgsConstructor
+public enum MemberErrorCode implements BaseErrorCode {
+
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "회원을 찾을 수 없습니다."),
+    DUPLICATE_EMAIL(HttpStatus.CONFLICT, "이미 사용 중인 email입니다.");
+
+    private final HttpStatus httpStatus;
+    private final String message;
+
+    @Override
+    public String getCode() {
+        return name();
+    }
+}
+```
+
+- ErrorCode field는 `httpStatus`, `message`로 통일한다.
+- enum 상수는 `UPPER_SNAKE_CASE`를 사용한다.
+- Controller에서 예외를 반복 catch하지 않고 공통 `GlobalExceptionHandler` 계약을 사용한다.
+
+```java
+if (reservation.isCancelled()) {
+    throw new CustomException(ReservationErrorCode.ALREADY_CANCELLED);
+}
+```
+
+## 10. Logging
+
+SLF4J를 사용하되 Logger field를 직접 선언하지 않고 로그가 필요한 class에만 Lombok `@Slf4j`를 사용한다.
+
+```java
+@Slf4j
+@Service
+@RequiredArgsConstructor
+public class ReservationService {
+
+    public void cancel(Long reservationId) {
+        log.info(
+                "event=RESERVATION_CANCELLED reservationId={}",
+                reservationId
         );
     }
 }
 ```
 
----
+- `{}` parameterized logging을 사용한다.
+- 주요 event는 `event=UPPER_SNAKE_CASE key={}` 형식을 기본으로 한다.
+- 같은 성격의 event와 실패에는 `info`, `warn`, `error`, `debug` level을 일관되게 사용한다.
+- 비밀번호, token과 민감 개인정보를 로그에 남기지 않는다.
+- level이나 식별자 변경이 운영 alert·보안 정책을 바꾸면 별도 Human 결정을 받는다.
 
-## 6. Controller 규칙
+## 11. Formatting과 주석
 
-- 요청을 받고 응답을 반환하는 역할만 한다.
-- Request DTO를 검증한다.
-- Service를 호출한다.
-- Entity를 직접 반환하지 않는다.
-- Repository를 직접 호출하지 않는다.
-- 인증 사용자는 `@AuthenticationPrincipal` 또는 공통 인증 객체로 받는다.
-- HTTP Status와 내부 ErrorCode를 혼동하지 않는다.
-
-좋은 예시:
-
-```java
-@PostMapping("/api/reservations")
-public ResponseEntity<ApiResponse<ReservationResponse>> createReservation(
-        @AuthenticationPrincipal AuthMember authMember,
-        @Valid @RequestBody ReservationCreateRequest request
-) {
-    ReservationResponse response =
-            reservationService.createReservation(authMember.id(), request);
-
-    return ResponseEntity.ok(ApiResponse.success(response));
-}
-```
-
-피해야 할 예시:
+- 들여쓰기는 공백 4칸이다.
+- 의미 없는 연속 빈 줄을 제거하고 처리 단계가 바뀔 때 빈 줄 1줄을 사용한다.
+- import group 뒤에 빈 줄을 둔다.
+- 사용하지 않는 import와 wildcard import를 사용하지 않는다.
+- 한 줄에 field, constructor 또는 method 여러 개를 압축하지 않는다.
+- 같은 역할의 Annotation과 method formatting을 통일한다.
+- 파일 끝 newline을 유지한다.
+- 짧은 호출은 한 줄로 두고 길어지면 argument 단위로 일관되게 줄바꿈한다.
 
 ```java
-@PostMapping("/api/reservations")
-public Reservation createReservation(
-        @RequestBody ReservationCreateRequest request
-) {
-    Member member = memberRepository.findById(request.memberId())
-            .orElseThrow();
+private final HttpStatus httpStatus;
+private final String message;
 
-    Reservation reservation = Reservation.create(
-            member,
-            request.restaurantId(),
-            request.timeSlotId()
-    );
-
-    return reservationRepository.save(reservation);
+@Override
+public HttpStatus getHttpStatus() {
+    return httpStatus;
 }
 ```
 
----
+주석은 코드만 반복하지 않는다. domain 규칙, 보안 의도, framework 예외와 확장 지점처럼 처음 읽는 사람이 코드만으로 알기 어려운 이유를 설명한다. 공개 계약이나 복잡한 책임은 JavaDoc, 짧은 구현 맥락은 `//`를 사용할 수 있다.
 
-## 7. Service 규칙
+## 12. 예외 적용과 Issue 경계
 
-- 비즈니스 로직은 Service에서 처리한다.
-- 트랜잭션은 Service 메서드에 적용한다.
-- Entity 조회, 검증, 상태 변경, 저장 흐름을 담당한다.
-- Controller로부터 받은 Request DTO를 사용할 수 있다.
-- Service에서 Response DTO로 변환하여 Controller에 반환한다.
+규칙을 적용하기 전에 다음 순서로 확인한다.
 
-```java
-@Transactional
-public ReservationResponse createReservation(
-        Long memberId,
-        ReservationCreateRequest request
-) {
-    Member member = memberRepository.findById(memberId)
-            .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND));
-
-    Restaurant restaurant = restaurantRepository.findById(request.restaurantId())
-            .orElseThrow(() -> new CustomException(ErrorCode.RESTAURANT_NOT_FOUND));
-
-    TimeSlot timeSlot = timeSlotRepository.findById(request.timeSlotId())
-            .orElseThrow(() -> new CustomException(ErrorCode.TIME_SLOT_NOT_FOUND));
-
-    Reservation reservation = Reservation.create(
-            member,
-            restaurant,
-            timeSlot
-    );
-
-    Reservation savedReservation = reservationRepository.save(reservation);
-
-    return ReservationResponse.from(savedReservation);
-}
-```
-
-### 트랜잭션 기준
-
-- 조회 전용 메서드는 `@Transactional(readOnly = true)`를 사용한다.
-- 생성, 수정, 삭제, 상태 변경은 `@Transactional`을 사용한다.
-- 트랜잭션 안에서 불필요한 외부 API 호출, 긴 대기, Thread sleep을 하지 않는다.
-
----
-
-## 8. Repository 규칙
-
-- Repository는 DB 접근만 담당한다.
-- Repository에서 비즈니스 로직을 처리하지 않는다.
-- 단순 CRUD는 Spring Data JPA Repository를 사용한다.
-- 복잡한 조건 검색은 `@Query` 또는 QueryDSL을 사용할 수 있다.
-- 검색 API는 페이징을 기본으로 한다.
-- 대량 메시지 조회는 offset보다 cursor 기반 조회를 우선한다.
-
-```java
-public interface ReservationRepository extends JpaRepository<Reservation, Long> {
-
-    Page<Reservation> findAllByRestaurantIdAndStatus(
-            Long restaurantId,
-            ReservationStatus status,
-            Pageable pageable
-    );
-}
-```
-
----
-
-## 9. Entity 규칙
-
-- Entity는 `entity` 패키지에 둔다.
-- Entity는 JPA 매핑 정보를 가진다.
-- setter를 무분별하게 열지 않는다.
-- 상태 변경은 의미 있는 메서드로 처리한다.
-- 생성자는 protected로 제한하고, 생성은 정적 팩토리 메서드를 우선 사용한다.
-
-좋은 예시:
-
-```java
-public void confirm() {
-    if (this.status != ReservationStatus.RECRUITING) {
-        throw new CustomException(ErrorCode.INVALID_RESERVATION_STATUS);
-    }
-
-    this.status = ReservationStatus.CONFIRMED;
-}
-
-public void cancel() {
-    if (this.status == ReservationStatus.CLOSED
-            || this.status == ReservationStatus.CANCELLED) {
-        throw new CustomException(ErrorCode.INVALID_RESERVATION_STATUS);
-    }
-
-    this.status = ReservationStatus.CANCELLED;
-}
-```
-
-피해야 할 예시:
-
-```java
-reservation.setStatus(ReservationStatus.CONFIRMED);
-reservation.setMember(member);
-reservation.setRestaurant(restaurant);
-reservation.setTimeSlot(timeSlot);
-```
-
----
-
-## 10. 공통 응답 규칙
-
-모든 HTTP 응답은 `ApiResponse<T>`를 사용한다.
-
-### 성공 응답
-
-```json
-{
-  "success": true,
-  "message": "요청이 성공했습니다.",
-  "data": {}
-}
-```
-
-### 실패 응답
-
-```json
-{
-  "success": false,
-  "code": "ERROR_CODE",
-  "message": "에러 메시지"
-}
-```
-
-### 규칙
-
-- 성공 응답은 `ApiResponse.success(data)`를 사용한다.
-- 실패 응답은 `GlobalExceptionHandler`에서 일괄 처리한다.
-- Controller에서 try-catch로 예외를 반복 처리하지 않는다.
-- HTTP Status와 내부 ErrorCode는 분리한다.
+1. 소유 domain
+2. layer
+3. 실제 책임
+4. 책임 범위
+5. 현재 이름과 package가 책임을 설명하는지
 
 ```text
-HTTP Status: 401 Unauthorized
-Error Code: BLACKLIST_TOKEN
+책임 명확 + 이름·작성 방식 적절
+→ 유지
+
+책임 명확 + 이름·작성 방식 부적절
+→ Issue #15에서 package, naming, Annotation과 표현 정리
+
+책임 혼합 또는 의존 방향 재설계 필요
+→ 이름만 바꾸지 않고 Issue #20 대상으로 기록
 ```
 
----
+Issue #15에서 변경하지 않는 항목은 다음과 같다.
 
-## 11. 예외 처리 규칙
-
-- 비즈니스 예외는 `CustomException`을 사용한다.
-- 에러 코드는 `ErrorCode` enum으로 관리한다.
-- 공통 예외 처리는 `GlobalExceptionHandler`에서 담당한다.
-- 인증 실패는 Security Filter 또는 `AuthenticationEntryPoint`에서 처리한다.
-- 권한 부족은 `AccessDeniedHandler`에서 처리한다.
-
-```java
-throw new CustomException(ErrorCode.INVALID_REQUEST);
-```
-
-### ErrorCode 네이밍 예시
-
-```java
-MEMBER_NOT_FOUND
-DUPLICATED_EMAIL
-INVALID_PASSWORD
-UNAUTHORIZED
-FORBIDDEN
-INVALID_REQUEST
-INTERNAL_SERVER_ERROR
-```
-
----
-
-## 12. 인증 / 인가 규칙
-
-- JWT 인증은 Security Filter에서 처리한다.
-- 인증된 사용자 정보는 `SecurityContextHolder`에 저장한다.
-- Controller에서는 `@AuthenticationPrincipal AuthMember`로 사용자 정보를 받는다.
-- 관리자 권한은 Controller 내부 if문보다 Security 설정에서 우선 처리한다.
-- 클라이언트가 보낸 사용자 식별자를 인증 정보로 신뢰하지 않는다.
-
-```java
-.requestMatchers("/api/auth/**").permitAll()
-.requestMatchers(HttpMethod.GET, "/api/restaurants", "/api/restaurants/{restaurantId}").permitAll()
-.requestMatchers("/api/owner/**").hasRole("OWNER")
-.requestMatchers("/api/admin/**").hasRole("ADMIN")
-.anyRequest().authenticated()
-```
-
-공개 경로는 넓은 패턴 대신 API 명세에 실제로 존재하는 인증 불필요 Method·Path만 명시적으로 나열한다.
-
----
-
-## 13. 네이밍 규칙
-
-- 클래스명은 `PascalCase`를 사용한다.
-- 메서드명과 변수명은 `camelCase`를 사용한다.
-- 상수와 Enum 값은 `UPPER_SNAKE_CASE`를 사용한다.
-- Controller는 `도메인명Controller`로 작성한다.
-- Service는 `도메인명Service`로 작성한다.
-- Repository는 `도메인명Repository`로 작성한다.
-- 요청 DTO는 `기능명Request`로 작성한다.
-- 응답 DTO는 `기능명Response`로 작성한다.
-
----
-
-## 14. 테스트 규칙
-
-- Service 핵심 비즈니스 로직은 테스트를 작성한다.
-- 테스트 메서드명은 한글 설명형으로 작성하고 단어는 `_`로 구분한다.
-- 테스트 이름에 조건과 기대 결과가 드러나게 작성한다.
-- 테스트 본문은 `given`, `when`, `then` 순서로 구분해서 작성한다.
-- `given`에는 테스트 데이터와 사전 조건, `when`에는 실행 대상, `then`에는 검증 코드를 둔다.
-- 예약 생성, 예약 참여, 결제, 환불, 노쇼 상태 변경은 우선 테스트 대상으로 한다.
-- 동일 예약에 여러 사용자가 동시에 참여하는 상황은 동시성 테스트를 작성한다.
-- 동시성 해결 전 실패 테스트와 해결 후 성공 테스트를 기록한다.
-- 상세 테스트 작성·실행·증거 규칙은 `docs/050-engineering/test-convention.md`를 따른다.
-
-테스트 구조 예시:
-
-```java
-@Test
-void 결제_실패시_예약과_참여자가_생성되지_않는다() {
-    // given
-    ...
-
-    // when
-    ...
-
-    // then
-    ...
-}
-```
-
-동시성 테스트 키워드:
-
-```text
-ExecutorService
-CountDownLatch
-CyclicBarrier
-```
-
----
-
-## 15. 배포 / CI/CD 규칙
-
-최소 배포 구성은 아래를 목표로 한다.
-
-```text
-Dockerfile
-docker-compose.yml
-GitHub Actions CI
-EC2 배포
-```
-
-### 로컬 개발 환경
-
-- `docker-compose.yml`로 프로젝트에 필요한 로컬 인프라를 실행한다.
-- `.env` 파일은 Git에 올리지 않는다.
-
-### CI
-
-- PR 또는 push 시 build/test를 수행한다.
-- 테스트 실패 시 배포하지 않는다.
-- main 직접 push를 금지한다.
-
-### 민감 정보
-
-- 로컬: `.env`
-- GitHub Actions: GitHub Secrets
-- 운영: 환경변수 또는 AWS Parameter Store
-
----
-
-## 16. AI 활용 규칙
-
-- AI의 작업 가능 범위는 `AGENTS.md`, `docs/060-ai/workflow/ai-workflow.md`, `docs/060-ai/development/ai-implementation-guide.md`를 따른다.
-- Human이 `READY`로 승인한 Issue에서는 AI가 구현 계획, 코드, 테스트, 검증, 문서와 Draft PR을 작성할 수 있다.
-- AI가 생성한 코드와 테스트는 담당자가 실제 Diff와 실행 결과를 확인하고 설명할 수 있어야 한다.
-- AI가 사용된 작업과 Human이 직접 확인한 범위는 PR 템플릿에 간단히 기록한다.
-- AI 결과를 프로젝트 컨벤션에 맞게 검토하고, 이해하지 못한 코드는 Merge하지 않는다.
-- AI는 미확정 정책, 리뷰 반영 범위와 Merge를 결정하지 않는다.
-
----
-
-## 17. 금지 사항
-
-- Controller에서 Repository 직접 호출 금지
-- Controller에서 비즈니스 로직 작성 금지
-- Entity를 API 응답으로 직접 반환 금지
-- DTO를 Entity처럼 사용 금지
-- Repository에서 비즈니스 로직 처리 금지
-- setter 무분별한 사용 금지
-- 인증/인가 로직을 여러 Controller에 반복 작성 금지
-- 예외 처리를 Controller마다 try-catch로 반복 작성 금지
-- 클라이언트가 전달한 사용자 식별자를 인증 정보로 신뢰 금지
-- 과도한 아키텍처 추가 금지
-
----
-
-## 18. 현재 프로젝트 기준 정리
-
-현재 밥조팀 프로젝트에서는 아래 구조를 기준으로 한다.
-
-```text
-기능 패키지
-├── controller
-├── service
-├── repository
-├── dto
-└── entity
-```
-
-핵심은 아래다.
-
-- Controller는 얇게 유지한다.
-- Service에 비즈니스 흐름을 둔다.
-- Repository는 DB 접근만 담당한다.
-- Entity는 외부로 직접 노출하지 않는다.
-- Response DTO로 변환해서 응답한다.
+- API 계약과 JSON 의미
+- DB schema와 JPA mapping 의미
+- 비즈니스 정책과 상태 전이
+- transaction propagation, 원자성과 실행 순서
+- Service 책임 분리
+- 새 Port 도입과 Repository wrapping
+- Application → Presentation 의존 제거
+- 계층 의존 방향 재설계

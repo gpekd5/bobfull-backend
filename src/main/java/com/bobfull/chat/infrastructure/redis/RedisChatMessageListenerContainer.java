@@ -3,16 +3,13 @@ package com.bobfull.chat.infrastructure.redis;
 import com.bobfull.common.monitoring.BusinessMetricEvent;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import java.util.concurrent.CompletableFuture;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.util.backoff.BackOffExecution;
 
 /** Redis subscription 연결 실패를 재연결 흐름과 별개로 관측한다. */
+@Slf4j
 final class RedisChatMessageListenerContainer extends RedisMessageListenerContainer {
-
-    private static final Logger log = LoggerFactory.getLogger(RedisChatMessageListenerContainer.class);
-
     private final BusinessMetricRecorder businessMetricRecorder;
 
     RedisChatMessageListenerContainer(BusinessMetricRecorder businessMetricRecorder) {

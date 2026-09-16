@@ -16,13 +16,13 @@ import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import com.bobfull.reservation.domain.policy.ReservationCapacityPolicy;
-import com.bobfull.reservation.application.port.ReservationCapacityReader;
+import com.bobfull.reservation.application.port.ReservationCapacityPort;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import java.util.List;
 import java.time.Clock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,38 +34,22 @@ import org.springframework.transaction.annotation.Transactional;
  * 호출되면 즉시 실패하게 한다(부분 성공 방지).
  * 실제 {@code ReservationConfirmationPort} 구현과 웹훅 연결은 #93에서 이 서비스를 호출해 수행한다.
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class ReservationConfirmationService {
 
-    private static final Logger log = LoggerFactory.getLogger(ReservationConfirmationService.class);
     private static final List<ParticipationStatus> OCCUPYING_STATUSES =
             List.of(ParticipationStatus.RESERVED, ParticipationStatus.CANCEL_REQUESTED);
 
     private final ReservationRepository reservationRepository;
     private final ReservationParticipantRepository reservationParticipantRepository;
-    private final ReservationCapacityReader reservationCapacityReader;
+    private final ReservationCapacityPort reservationCapacityPort;
     private final OutboxEventRepository outboxEventRepository;
     private final ChatRoomOutboxProcessor chatRoomOutboxProcessor;
-    private final Clock clock;
     private final EmailOutboxEventService emailOutboxEventService;
+    private final Clock clock;
     private final BusinessMetricRecorder businessMetricRecorder;
-
-    public ReservationConfirmationService(
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            ReservationCapacityReader reservationCapacityReader, OutboxEventRepository outboxEventRepository,
-            ChatRoomOutboxProcessor chatRoomOutboxProcessor, EmailOutboxEventService emailOutboxEventService, Clock clock,
-            BusinessMetricRecorder businessMetricRecorder
-    ) {
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.reservationCapacityReader = reservationCapacityReader;
-        this.outboxEventRepository = outboxEventRepository;
-        this.chatRoomOutboxProcessor = chatRoomOutboxProcessor;
-        this.clock = clock;
-        this.emailOutboxEventService = emailOutboxEventService;
-        this.businessMetricRecorder = businessMetricRecorder;
-    }
 
     /**
      * CREATE는 새 Reservation과 최초 ReservationParticipant를, JOIN은 기존 Reservation에
@@ -128,7 +112,7 @@ public class ReservationConfirmationService {
     }
 
     private void updateReservationStatus(Reservation reservation, Long timeSlotId) {
-        int tableCapacity = reservationCapacityReader.readTableCapacity(timeSlotId);
+        int tableCapacity = reservationCapacityPort.readTableCapacity(timeSlotId);
         int currentParticipantCount = reservationParticipantRepository.sumPartySizeByStatuses(
                 reservation.getId(), OCCUPYING_STATUSES);
         if (currentParticipantCount >= ReservationCapacityPolicy.confirmationThreshold(tableCapacity)) {

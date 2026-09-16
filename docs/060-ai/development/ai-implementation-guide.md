@@ -19,7 +19,7 @@
 | 구현 내용 | 추가 문서 |
 |---|---|
 | Branch·Commit·PR 규칙 | `docs/050-engineering/github-rules.md` |
-| 코드 작성 | `docs/050-engineering/code-convention.md`, 필요 시 `common-skeleton-guide.md` |
+| 코드 작성 | `docs/050-engineering/code-convention.md`, 필요 시 `common-package-guide.md` |
 | 테스트 작성·결과 기록 | `docs/050-engineering/test-convention.md` |
 | 구조 리팩터링·동작 보존 Evidence | `docs/110-records/evidence/refactoring/README.md`와 해당 Issue Evidence |
 | 개선 효과 주장 | `docs/110-records/evidence/v3/README.md`와 해당 Issue Evidence |

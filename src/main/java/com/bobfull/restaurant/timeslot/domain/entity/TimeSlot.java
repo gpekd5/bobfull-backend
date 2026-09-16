@@ -9,6 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GeneratedColumn;
 
 /**
@@ -24,6 +27,8 @@ import org.hibernate.annotations.GeneratedColumn;
                 )
         }
 )
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class TimeSlot extends BaseTimeEntity {
 
     @Id
@@ -47,9 +52,6 @@ public class TimeSlot extends BaseTimeEntity {
     @Column(name = "deleted_at")
     private Instant deletedAt;
 
-    protected TimeSlot() {
-    }
-
     private TimeSlot(Long sharedTableId, Instant startAt, Instant endAt) {
         this.sharedTableId = sharedTableId;
         this.startAt = startAt;
@@ -69,23 +71,4 @@ public class TimeSlot extends BaseTimeEntity {
         this.deletedAt = deletedAt;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Long getSharedTableId() {
-        return sharedTableId;
-    }
-
-    public Instant getStartAt() {
-        return startAt;
-    }
-
-    public Instant getEndAt() {
-        return endAt;
-    }
-
-    public Instant getDeletedAt() {
-        return deletedAt;
-    }
 }

@@ -1,9 +1,10 @@
 package com.bobfull.restaurant.restaurant.infrastructure.repository;
 
-import com.bobfull.admin.infrastructure.query.AdminRestaurantRepository;
+import com.bobfull.admin.infrastructure.repository.query.AdminRestaurantRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
-import java.util.Optional;
+import com.bobfull.restaurant.restaurant.infrastructure.repository.query.RestaurantSearchRepository;
 import jakarta.persistence.LockModeType;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

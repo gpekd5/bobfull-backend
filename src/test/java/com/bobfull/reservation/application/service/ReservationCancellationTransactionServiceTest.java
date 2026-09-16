@@ -12,14 +12,14 @@ import com.bobfull.common.exception.CustomException;
 import com.bobfull.reservation.domain.exception.ReservationErrorCode;
 import com.bobfull.notification.infrastructure.outbox.EmailOutboxEventService;
 import com.bobfull.reservation.domain.CancellationScope;
-import com.bobfull.reservation.presentation.dto.ReservationCancellationRequest;
+import com.bobfull.reservation.presentation.request.ReservationCancellationRequest;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import com.bobfull.reservation.application.port.ReservationCancellationRefundPort;
-import com.bobfull.reservation.application.port.ReservationCapacityReader;
+import com.bobfull.reservation.application.port.ReservationCapacityPort;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
@@ -56,7 +56,7 @@ class ReservationCancellationTransactionServiceTest {
     private ReservationParticipantRepository reservationParticipantRepository;
 
     @Mock
-    private ReservationCapacityReader reservationCapacityReader;
+    private ReservationCapacityPort reservationCapacityReader;
 
     @Mock
     private TimeSlotRepository timeSlotRepository;

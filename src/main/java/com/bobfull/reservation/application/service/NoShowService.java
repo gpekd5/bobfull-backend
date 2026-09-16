@@ -10,18 +10,18 @@ import com.bobfull.common.response.PageResponse;
 import com.bobfull.common.transaction.AfterCommitExecutor;
 import com.bobfull.member.domain.entity.Member;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
-import com.bobfull.reservation.presentation.dto.NoShowCandidateResponse;
-import com.bobfull.reservation.presentation.dto.NoShowCustomerResponse;
-import com.bobfull.reservation.application.dto.NoShowCustomerResult;
-import com.bobfull.reservation.presentation.dto.NoShowHistoryResponse;
-import com.bobfull.reservation.application.dto.NoShowHistoryResult;
-import com.bobfull.reservation.presentation.dto.NoShowProcessResponse;
+import com.bobfull.reservation.presentation.response.NoShowCandidateResponse;
+import com.bobfull.reservation.presentation.response.NoShowCustomerResponse;
+import com.bobfull.reservation.application.result.NoShowCustomerResult;
+import com.bobfull.reservation.presentation.response.NoShowHistoryResponse;
+import com.bobfull.reservation.application.result.NoShowHistoryResult;
+import com.bobfull.reservation.presentation.response.NoShowProcessResponse;
 import com.bobfull.reservation.domain.entity.NoShowHistory;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationParticipant;
 import com.bobfull.reservation.infrastructure.repository.NoShowHistoryRepository;
-import com.bobfull.reservation.infrastructure.repository.NoShowQueryRepository;
+import com.bobfull.reservation.infrastructure.repository.query.NoShowQueryRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationParticipantRepository;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
@@ -38,18 +38,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /** OWNER의 참여자별 노쇼 처리·해제·이력 조회를 담당한다(Issue #48 §9-1~9-5). */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class NoShowService {
 
-    private static final Logger log = LoggerFactory.getLogger(NoShowService.class);
     private static final ZoneId SEOUL = ZoneId.of("Asia/Seoul");
 
     private final ReservationRepository reservationRepository;
@@ -62,30 +63,6 @@ public class NoShowService {
     private final MemberRepository memberRepository;
     private final Clock clock;
     private final BusinessMetricRecorder businessMetricRecorder;
-
-    public NoShowService(
-            ReservationRepository reservationRepository,
-            ReservationParticipantRepository reservationParticipantRepository,
-            NoShowHistoryRepository noShowHistoryRepository,
-            NoShowQueryRepository noShowQueryRepository,
-            TimeSlotRepository timeSlotRepository,
-            SharedTableRepository sharedTableRepository,
-            RestaurantRepository restaurantRepository,
-            MemberRepository memberRepository,
-            Clock clock,
-            BusinessMetricRecorder businessMetricRecorder
-    ) {
-        this.reservationRepository = reservationRepository;
-        this.reservationParticipantRepository = reservationParticipantRepository;
-        this.noShowHistoryRepository = noShowHistoryRepository;
-        this.noShowQueryRepository = noShowQueryRepository;
-        this.timeSlotRepository = timeSlotRepository;
-        this.sharedTableRepository = sharedTableRepository;
-        this.restaurantRepository = restaurantRepository;
-        this.memberRepository = memberRepository;
-        this.clock = clock;
-        this.businessMetricRecorder = businessMetricRecorder;
-    }
 
     @Transactional(readOnly = true)
     public PageResponse<NoShowCandidateResponse> getCandidates(Long ownerMemberId, Long reservationId, Pageable pageable) {

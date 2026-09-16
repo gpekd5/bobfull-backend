@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 결제 완료 전 10분 임시 선점을 표현하는 결제 준비 기록이다.
@@ -22,6 +25,8 @@ import java.time.Instant;
         @jakarta.persistence.Index(name = "idx_payment_reservation_id", columnList = "reservation_id"),
         @jakarta.persistence.Index(name = "idx_payment_time_slot_id", columnList = "time_slot_id")
 })
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Payment extends BaseTimeEntity {
 
     public static final String CURRENCY_KRW = "KRW";
@@ -68,9 +73,6 @@ public class Payment extends BaseTimeEntity {
 
     @Column(name = "paid_at")
     private Instant paidAt;
-
-    protected Payment() {
-    }
 
     private Payment(
             String paymentId,
@@ -139,58 +141,6 @@ public class Payment extends BaseTimeEntity {
         if (expiresAt == null) {
             throw new IllegalArgumentException("expiresAt은 필수입니다.");
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getPaymentId() {
-        return paymentId;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public Long getTimeSlotId() {
-        return timeSlotId;
-    }
-
-    public Long getReservationId() {
-        return reservationId;
-    }
-
-    public Long getReservationParticipantId() {
-        return reservationParticipantId;
-    }
-
-    public PaymentPurpose getPurpose() {
-        return purpose;
-    }
-
-    public Integer getPartySize() {
-        return partySize;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public PaymentStatus getStatus() {
-        return status;
-    }
-
-    public Instant getExpiresAt() {
-        return expiresAt;
-    }
-
-    public Instant getPaidAt() {
-        return paidAt;
     }
 
     public boolean isOwnedBy(Long memberId) {

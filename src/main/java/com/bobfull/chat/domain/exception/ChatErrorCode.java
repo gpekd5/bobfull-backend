@@ -1,7 +1,12 @@
 package com.bobfull.chat.domain.exception;
 
 import com.bobfull.common.exception.BaseErrorCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+
+@Getter
+@RequiredArgsConstructor
 public enum ChatErrorCode implements BaseErrorCode {
     CHAT_ROOM_ID_NOT_FOUND(HttpStatus.NOT_FOUND, "chatRoomId에 해당하는 대상을 찾을 수 없습니다."),
     CHAT_MESSAGE_ID_NOT_FOUND(HttpStatus.NOT_FOUND, "messageId에 해당하는 대상을 찾을 수 없습니다."),
@@ -11,7 +16,12 @@ public enum ChatErrorCode implements BaseErrorCode {
     CHAT_ROOM_REPORT_SELF_FORBIDDEN(HttpStatus.BAD_REQUEST, "자기 자신은 신고할 수 없습니다."),
     CHAT_ROOM_REPORT_NOT_FOUND(HttpStatus.NOT_FOUND, "신고 대상을 찾을 수 없습니다."),
     CHAT_ROOM_REPORT_ALREADY_REVIEWED(HttpStatus.CONFLICT, "이미 검토된 신고입니다.");
-    private final HttpStatus status; private final String message;
-    ChatErrorCode(HttpStatus status, String message) { this.status=status; this.message=message; }
-    public HttpStatus getHttpStatus() { return status; } public String getCode() { return name(); } public String getMessage() { return message; }
+
+    private final HttpStatus httpStatus;
+    private final String message;
+
+    @Override
+    public String getCode() {
+        return name();
+    }
 }

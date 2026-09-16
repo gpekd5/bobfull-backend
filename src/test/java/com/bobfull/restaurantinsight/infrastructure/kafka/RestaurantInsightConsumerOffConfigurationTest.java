@@ -2,7 +2,7 @@ package com.bobfull.restaurantinsight.infrastructure.kafka;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.bobfull.chat.application.port.ReservationChatAccessReader;
+import com.bobfull.chat.application.port.ReservationChatAccessPort;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import org.junit.jupiter.api.Test;
@@ -57,8 +57,8 @@ class RestaurantInsightConsumerOffConfigurationTest {
     static class Configuration {
         @Bean
         @Primary
-        ReservationChatAccessReader fixedActiveAccessReader() {
-            return (reservationId, memberId) -> new ReservationChatAccessReader.ChatAccess(
+        ReservationChatAccessPort fixedActiveAccessReader() {
+            return (reservationId, memberId) -> new ReservationChatAccessPort.ChatAccess(
                     100L, ParticipationStatus.RESERVED, ReservationStatus.RECRUITING);
         }
     }

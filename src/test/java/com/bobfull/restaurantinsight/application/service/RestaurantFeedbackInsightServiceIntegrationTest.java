@@ -10,8 +10,9 @@ import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
-import com.bobfull.restaurantinsight.application.dto.RestaurantFeedbackAnalysis;
+import com.bobfull.restaurantinsight.application.model.RestaurantFeedbackAnalysis;
 import com.bobfull.restaurantinsight.application.port.RestaurantFeedbackInsightPort;
+import com.bobfull.restaurantinsight.application.result.RestaurantFeedbackAnalysisResult;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackAspectType;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackCategory;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackOpinionType;
@@ -352,9 +353,13 @@ class RestaurantFeedbackInsightServiceIntegrationTest {
                 List.of(new RestaurantFeedbackAnalysis.Item(FeedbackCategory.FOOD, FeedbackAspectType.MENU, "탕수육", FeedbackOpinionType.TEXTURE, FeedbackSentiment.POSITIVE));
 
         @Override
-        public Result analyze(String content) {
+        public RestaurantFeedbackAnalysisResult analyze(String content) {
             calls.incrementAndGet();
-            return new Result(new RestaurantFeedbackAnalysis(relevant, result), "fake", "fake");
+            return new RestaurantFeedbackAnalysisResult(
+                    new RestaurantFeedbackAnalysis(relevant, result),
+                    "fake",
+                    "fake"
+            );
         }
 
         void reset() {

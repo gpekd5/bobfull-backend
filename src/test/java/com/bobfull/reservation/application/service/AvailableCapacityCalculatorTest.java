@@ -6,7 +6,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-import com.bobfull.payment.application.port.PaymentHoldReader;
+import com.bobfull.payment.application.port.PaymentHoldPort;
 import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
@@ -36,7 +36,7 @@ class AvailableCapacityCalculatorTest {
     private ReservationParticipantRepository reservationParticipantRepository;
 
     @Mock
-    private PaymentHoldReader paymentHoldReader;
+    private PaymentHoldPort paymentHoldReader;
 
     private AvailableCapacityCalculator calculator() {
         return new AvailableCapacityCalculator(reservationRepository, reservationParticipantRepository, paymentHoldReader);

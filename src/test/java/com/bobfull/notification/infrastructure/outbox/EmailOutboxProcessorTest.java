@@ -1,5 +1,6 @@
 package com.bobfull.notification.infrastructure.outbox;
 
+import com.bobfull.notification.infrastructure.repository.EmailOutboxDeliveryRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;

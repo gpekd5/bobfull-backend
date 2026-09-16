@@ -3,9 +3,9 @@ package com.bobfull.chat.infrastructure.kafka;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
+import com.bobfull.chat.application.result.AiModerationResult;
 import com.bobfull.chat.application.event.ChatMessageCreatedEvent;
-import com.bobfull.chat.application.dto.ModerationResult;
+import com.bobfull.chat.application.result.ModerationResult;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ModerationProcessingStatus;
 import com.bobfull.chat.domain.entity.ModerationResultType;
@@ -226,13 +226,13 @@ class ChatModerationConsumerIntegrationTest {
         private volatile Set<com.bobfull.chat.domain.entity.ModerationCategory> categories = Set.of();
 
         @Override
-        public AiModerationResponse analyze(String content) {
+        public AiModerationResult analyze(String content) {
             int count = callCount.incrementAndGet();
             if (alwaysFail || count <= failTimes) {
                 throw new RuntimeException("강제 AI 실패(테스트)");
             }
             RiskLevel riskLevel = resultType == ModerationResultType.SAFE ? RiskLevel.LOW : RiskLevel.HIGH;
-            return new AiModerationResponse(new ModerationResult(resultType, categories, riskLevel),
+            return new AiModerationResult(new ModerationResult(resultType, categories, riskLevel),
                     "OpenAI", "test-model", 10L, 10L, 20L);
         }
 

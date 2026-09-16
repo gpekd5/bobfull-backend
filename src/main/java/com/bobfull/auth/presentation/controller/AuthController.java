@@ -1,17 +1,18 @@
 package com.bobfull.auth.presentation.controller;
 
-import com.bobfull.auth.presentation.dto.LoginRequest;
-import com.bobfull.auth.presentation.dto.LoginResponse;
-import com.bobfull.auth.presentation.dto.LogoutResponse;
-import com.bobfull.auth.presentation.dto.ReissueRequest;
-import com.bobfull.auth.presentation.dto.ReissueResponse;
-import com.bobfull.auth.presentation.dto.SignupOwnerRequest;
-import com.bobfull.auth.presentation.dto.SignupResponse;
-import com.bobfull.auth.presentation.dto.SignupUserRequest;
+import com.bobfull.auth.presentation.request.LoginRequest;
+import com.bobfull.auth.presentation.response.LoginResponse;
+import com.bobfull.auth.presentation.response.LogoutResponse;
+import com.bobfull.auth.presentation.request.ReissueRequest;
+import com.bobfull.auth.presentation.response.ReissueResponse;
+import com.bobfull.auth.presentation.request.SignupOwnerRequest;
+import com.bobfull.auth.presentation.response.SignupResponse;
+import com.bobfull.auth.presentation.request.SignupUserRequest;
 import com.bobfull.auth.application.service.AuthService;
 import com.bobfull.common.response.ApiResponse;
 import com.bobfull.auth.application.model.AuthMember;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,15 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
     private static final String BEARER_PREFIX = "Bearer ";
 
     private final AuthService authService;
-
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
 
     @PostMapping("/signup/users")
     public ResponseEntity<ApiResponse<SignupResponse>> signupUser(@Valid @RequestBody SignupUserRequest request) {

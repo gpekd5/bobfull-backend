@@ -3,7 +3,7 @@ package com.bobfull.chat.infrastructure.ai;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import com.bobfull.chat.application.dto.AiModerationResponse;
+import com.bobfull.chat.application.result.AiModerationResult;
 import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatModeration;
 import com.bobfull.chat.domain.entity.ModerationCategory;
@@ -12,7 +12,7 @@ import com.bobfull.chat.domain.entity.RiskLevel;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.application.service.ChatModerationService;
-import com.bobfull.chat.application.service.ModerationRuleFilter;
+import com.bobfull.chat.application.service.ModerationRulePolicy;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
@@ -27,7 +27,7 @@ class FakeAiModerationAdapterTest {
     void 지연시간이_0이면_즉시_SAFE_결과를_반환한다() {
         FakeAiModerationAdapter adapter = new FakeAiModerationAdapter(0L, ModerationResultType.SAFE);
 
-        AiModerationResponse response = adapter.analyze("안녕하세요");
+        AiModerationResult response = adapter.analyze("안녕하세요");
 
         assertThat(response.result().result()).isEqualTo(ModerationResultType.SAFE);
         assertThat(response.result().riskLevel()).isEqualTo(RiskLevel.LOW);
@@ -38,7 +38,7 @@ class FakeAiModerationAdapterTest {
     void FLAGGED로_설정하면_HIGH_위험도와_비어있지_않은_category를_반환한다() {
         FakeAiModerationAdapter adapter = new FakeAiModerationAdapter(0L, ModerationResultType.FLAGGED);
 
-        AiModerationResponse response = adapter.analyze("금지어");
+        AiModerationResult response = adapter.analyze("금지어");
 
         assertThat(response.result().result()).isEqualTo(ModerationResultType.FLAGGED);
         assertThat(response.result().riskLevel()).isEqualTo(RiskLevel.HIGH);
@@ -50,7 +50,7 @@ class FakeAiModerationAdapterTest {
         ChatMessageRepository messages = Mockito.mock(ChatMessageRepository.class);
         ChatModerationRepository moderations = Mockito.mock(ChatModerationRepository.class);
         FakeAiModerationAdapter adapter = new FakeAiModerationAdapter(0L, ModerationResultType.FLAGGED);
-        ChatModerationService service = new ChatModerationService(messages, moderations, adapter, new ModerationRuleFilter(), new com.bobfull.chat.application.service.SplitMessageCandidateGate(),
+        ChatModerationService service = new ChatModerationService(messages, moderations, adapter, new ModerationRulePolicy(), new com.bobfull.chat.application.service.SplitMessageCandidateGate(),
                 Clock.fixed(Instant.parse("2026-08-13T00:00:00Z"), ZoneOffset.UTC));
         ChatMessage message = ChatMessage.create(1L, 2L, 3L, "금지어 포함 메시지");
         org.springframework.test.util.ReflectionTestUtils.setField(message, "id", 100L);

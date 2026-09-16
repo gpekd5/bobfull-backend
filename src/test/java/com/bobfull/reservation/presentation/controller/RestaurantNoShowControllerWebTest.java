@@ -14,7 +14,7 @@ import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.member.domain.entity.MemberRole;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
-import com.bobfull.reservation.presentation.dto.NoShowCustomerResponse;
+import com.bobfull.reservation.presentation.response.NoShowCustomerResponse;
 import com.bobfull.reservation.application.service.NoShowService;
 import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
 import java.time.OffsetDateTime;

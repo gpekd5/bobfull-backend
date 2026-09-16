@@ -7,6 +7,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * OWNER의 참여자 단위 노쇼 처리·해제 이력이다(docs/030-data/erd.md 4.9).
@@ -14,6 +17,8 @@ import java.time.Instant;
  */
 @Entity
 @Table(name = "no_show_history")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NoShowHistory {
 
     @Id
@@ -33,9 +38,6 @@ public class NoShowHistory {
     @Column(name = "processed_at", nullable = false)
     private Instant processedAt;
 
-    protected NoShowHistory() {
-    }
-
     private NoShowHistory(Long reservationParticipantId, Long processedByMemberId, boolean marked, Instant processedAt) {
         this.reservationParticipantId = reservationParticipantId;
         this.processedByMemberId = processedByMemberId;
@@ -51,23 +53,4 @@ public class NoShowHistory {
         return new NoShowHistory(reservationParticipantId, processedByMemberId, false, processedAt);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Long getReservationParticipantId() {
-        return reservationParticipantId;
-    }
-
-    public Long getProcessedByMemberId() {
-        return processedByMemberId;
-    }
-
-    public boolean isMarked() {
-        return marked;
-    }
-
-    public Instant getProcessedAt() {
-        return processedAt;
-    }
 }

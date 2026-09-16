@@ -9,7 +9,7 @@ import static org.mockito.Mockito.verify;
 
 import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.Refund;
-import com.bobfull.payment.application.port.PortOneRefundRequester;
+import com.bobfull.payment.application.port.PortOneRefundPort;
 import java.math.BigDecimal;
 import java.time.Instant;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class RefundReconciliationProcessorTest {
 
-    @Mock private PortOneRefundRequester refundRequester;
+    @Mock private PortOneRefundPort refundPort;
     @Mock private RefundTransactionService transactionService;
     @Mock private RefundCompletionService completionService;
     @Mock private Refund refund;
@@ -31,7 +31,7 @@ class RefundReconciliationProcessorTest {
 
     @BeforeEach
     void setUp() {
-        processor = new RefundReconciliationProcessor(refundRequester, transactionService, completionService);
+        processor = new RefundReconciliationProcessor(refundPort, transactionService, completionService);
         given(refund.getId()).willReturn(1L);
         given(refund.getPayment()).willReturn(payment);
         given(payment.getAmount()).willReturn(BigDecimal.TEN);
@@ -44,13 +44,13 @@ class RefundReconciliationProcessorTest {
     @Test
     void COMPLETED이면_완료_경로를_호출하고_PG_조회_시각을_기록한다() {
         given(refund.getCancellationId()).willReturn(null);
-        given(refundRequester.reconcile("payment-1", null, BigDecimal.TEN, Instant.parse("2026-08-05T00:00:00Z")))
-                .willReturn(PortOneRefundRequester.ReconciliationResult.completed("cancel-1",
+        given(refundPort.reconcile("payment-1", null, BigDecimal.TEN, Instant.parse("2026-08-05T00:00:00Z")))
+                .willReturn(PortOneRefundPort.ReconciliationResult.completed("cancel-1",
                         Instant.parse("2026-08-05T00:01:00Z")));
 
         var result = processor.reconcile(refund);
 
-        assertThat(result.status()).isEqualTo(PortOneRefundRequester.ReconciliationStatus.COMPLETED);
+        assertThat(result.status()).isEqualTo(PortOneRefundPort.ReconciliationStatus.COMPLETED);
         verify(completionService).reflectExternalResult(1L, "cancel-1", true);
         verify(transactionService).markPgChecked(1L);
     }
@@ -58,8 +58,8 @@ class RefundReconciliationProcessorTest {
     @Test
     void PROCESSING이고_cancellationId가_있으면_완료_경로를_미완료로_호출한다() {
         given(refund.getCancellationId()).willReturn("cancel-1");
-        given(refundRequester.reconcile("payment-1", "cancel-1", BigDecimal.TEN, Instant.parse("2026-08-05T00:00:00Z")))
-                .willReturn(PortOneRefundRequester.ReconciliationResult.processing("cancel-1"));
+        given(refundPort.reconcile("payment-1", "cancel-1", BigDecimal.TEN, Instant.parse("2026-08-05T00:00:00Z")))
+                .willReturn(PortOneRefundPort.ReconciliationResult.processing("cancel-1"));
 
         processor.reconcile(refund);
 
@@ -70,9 +70,9 @@ class RefundReconciliationProcessorTest {
     @Test
     void NOT_COMPLETED이면_완료_경로를_호출하지_않는다() {
         given(refund.getCancellationId()).willReturn(null);
-        given(refundRequester.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
+        given(refundPort.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
                 eq(Instant.parse("2026-08-05T00:00:00Z"))))
-                .willReturn(PortOneRefundRequester.ReconciliationResult.notCompleted());
+                .willReturn(PortOneRefundPort.ReconciliationResult.notCompleted());
 
         processor.reconcile(refund);
 
@@ -84,9 +84,9 @@ class RefundReconciliationProcessorTest {
     @Test
     void AMBIGUOUS이면_완료_경로를_호출하지_않지만_PG_조회_시각은_기록한다() {
         given(refund.getCancellationId()).willReturn(null);
-        given(refundRequester.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
+        given(refundPort.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
                 eq(Instant.parse("2026-08-05T00:00:00Z"))))
-                .willReturn(PortOneRefundRequester.ReconciliationResult.ambiguous("multiple or mixed cancellations"));
+                .willReturn(PortOneRefundPort.ReconciliationResult.ambiguous("multiple or mixed cancellations"));
 
         processor.reconcile(refund);
 
@@ -98,7 +98,7 @@ class RefundReconciliationProcessorTest {
     @Test
     void 조회_자체가_실패해도_PG_조회_시각은_기록하고_예외는_전파한다() {
         given(refund.getCancellationId()).willReturn(null);
-        given(refundRequester.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
+        given(refundPort.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
                 eq(Instant.parse("2026-08-05T00:00:00Z"))))
                 .willThrow(new IllegalStateException("PortOne timeout"));
 
@@ -120,8 +120,8 @@ class RefundReconciliationProcessorTest {
 
         var result = processor.reconcile(refund);
 
-        assertThat(result.status()).isEqualTo(PortOneRefundRequester.ReconciliationStatus.AMBIGUOUS);
-        verify(refundRequester, never()).reconcile(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any(),
+        assertThat(result.status()).isEqualTo(PortOneRefundPort.ReconciliationStatus.AMBIGUOUS);
+        verify(refundPort, never()).reconcile(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any(),
                 org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any());
         verify(completionService, never()).reflectExternalResult(org.mockito.ArgumentMatchers.anyLong(),
                 org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.anyBoolean());
@@ -134,7 +134,7 @@ class RefundReconciliationProcessorTest {
     @Test
     void 조회실패와_PG조회시각_기록실패가_겹치면_먼저_발생한_조회실패가_전파된다() {
         given(refund.getCancellationId()).willReturn(null);
-        given(refundRequester.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
+        given(refundPort.reconcile(eq("payment-1"), eq((String) null), eq(BigDecimal.TEN),
                 eq(Instant.parse("2026-08-05T00:00:00Z"))))
                 .willThrow(new IllegalStateException("PortOne timeout"));
         org.mockito.Mockito.doThrow(new RuntimeException("DB unavailable")).when(transactionService).markPgChecked(1L);

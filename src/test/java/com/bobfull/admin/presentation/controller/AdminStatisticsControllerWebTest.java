@@ -9,9 +9,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.bobfull.admin.presentation.dto.AdminMemberNoShowRateResponse;
-import com.bobfull.admin.presentation.dto.AdminOverviewStatisticsResponse;
-import com.bobfull.admin.presentation.dto.AdminRestaurantStatisticsResponse;
+import com.bobfull.admin.presentation.response.AdminMemberNoShowRateResponse;
+import com.bobfull.admin.presentation.response.AdminOverviewStatisticsResponse;
+import com.bobfull.admin.presentation.response.AdminRestaurantStatisticsResponse;
 import com.bobfull.admin.application.service.AdminStatisticsQueryService;
 import com.bobfull.common.config.ClockConfig;
 import com.bobfull.common.response.PageResponse;

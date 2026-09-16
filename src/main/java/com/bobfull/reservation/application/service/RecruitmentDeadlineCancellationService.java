@@ -3,6 +3,7 @@ package com.bobfull.reservation.application.service;
 import com.bobfull.reservation.application.port.ReservationCancellationRefundPort;
 import com.bobfull.reservation.application.service.ReservationCancellationTransactionService.RecruitmentDeadlineAcceptance;
 import com.bobfull.reservation.application.service.ReservationCancellationTransactionService.RecruitmentDeadlineOutcome;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,17 +15,10 @@ import org.springframework.stereotype.Service;
  * 독립적으로 실행된다.
  */
 @Service
+@RequiredArgsConstructor
 public class RecruitmentDeadlineCancellationService {
     private final ReservationCancellationTransactionService transactionService;
     private final ReservationCancellationRefundPort reservationCancellationRefundPort;
-
-    public RecruitmentDeadlineCancellationService(
-            ReservationCancellationTransactionService transactionService,
-            ReservationCancellationRefundPort reservationCancellationRefundPort
-    ) {
-        this.transactionService = transactionService;
-        this.reservationCancellationRefundPort = reservationCancellationRefundPort;
-    }
 
     public RecruitmentDeadlineOutcome process(Long reservationId) {
         RecruitmentDeadlineAcceptance acceptance = transactionService.acceptRecruitmentDeadline(reservationId);

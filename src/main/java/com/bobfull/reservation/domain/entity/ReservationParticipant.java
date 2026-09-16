@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.time.Instant;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 예약에 참여하는 회원 1명(1신청 단위)이다(docs/030-data/erd.md 4.6).
@@ -27,6 +30,8 @@ import java.time.Instant;
                 )
         }
 )
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ReservationParticipant extends BaseTimeEntity {
 
     @Id
@@ -52,9 +57,6 @@ public class ReservationParticipant extends BaseTimeEntity {
 
     @Column(name = "cancel_reason")
     private String cancelReason;
-
-    protected ReservationParticipant() {
-    }
 
     private ReservationParticipant(Long reservationId, Long memberId, Integer partySize) {
         this.reservationId = reservationId;
@@ -95,34 +97,6 @@ public class ReservationParticipant extends BaseTimeEntity {
 
     public boolean isCancellable() {
         return participationStatus == ParticipationStatus.RESERVED;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Long getReservationId() {
-        return reservationId;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public Integer getPartySize() {
-        return partySize;
-    }
-
-    public ParticipationStatus getParticipationStatus() {
-        return participationStatus;
-    }
-
-    public Instant getCancelledAt() {
-        return cancelledAt;
-    }
-
-    public String getCancelReason() {
-        return cancelReason;
     }
 
     public void markNoShow() {

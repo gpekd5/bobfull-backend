@@ -4,19 +4,20 @@ import com.bobfull.common.response.ApiResponse;
 import com.bobfull.common.response.PageResponse;
 import com.bobfull.auth.application.model.AuthMember;
 import com.bobfull.payment.domain.entity.PaymentPurpose;
-import com.bobfull.reservation.presentation.dto.ReservationAvailabilityResponse;
-import com.bobfull.reservation.presentation.dto.ReservationCancellationRequest;
-import com.bobfull.reservation.presentation.dto.ReservationCancellationResponse;
-import com.bobfull.reservation.presentation.dto.ReservationPrepareRequest;
-import com.bobfull.reservation.presentation.dto.ReservationPrepareResponse;
-import com.bobfull.reservation.presentation.dto.ReservationSearchRequest;
-import com.bobfull.reservation.presentation.dto.ReservationSearchResponse;
+import com.bobfull.reservation.presentation.response.ReservationAvailabilityResponse;
+import com.bobfull.reservation.presentation.request.ReservationCancellationRequest;
+import com.bobfull.reservation.presentation.response.ReservationCancellationResponse;
+import com.bobfull.reservation.presentation.request.ReservationPrepareRequest;
+import com.bobfull.reservation.presentation.response.ReservationPrepareResponse;
+import com.bobfull.reservation.presentation.request.ReservationSearchRequest;
+import com.bobfull.reservation.presentation.response.ReservationSearchResponse;
 import com.bobfull.reservation.application.service.ReservationCancellationService;
 import com.bobfull.reservation.application.service.ReservationPreparationService;
 import com.bobfull.reservation.application.service.ReservationSearchService;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,21 +31,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/reservations")
+@RequiredArgsConstructor
 public class ReservationController {
 
     private final ReservationPreparationService reservationPreparationService;
     private final ReservationSearchService reservationSearchService;
     private final ReservationCancellationService reservationCancellationService;
-
-    public ReservationController(
-            ReservationPreparationService reservationPreparationService,
-            ReservationSearchService reservationSearchService,
-            ReservationCancellationService reservationCancellationService
-    ) {
-        this.reservationPreparationService = reservationPreparationService;
-        this.reservationSearchService = reservationSearchService;
-        this.reservationCancellationService = reservationCancellationService;
-    }
 
     @GetMapping("/search")
     public ApiResponse<PageResponse<ReservationSearchResponse>> searchReservations(
