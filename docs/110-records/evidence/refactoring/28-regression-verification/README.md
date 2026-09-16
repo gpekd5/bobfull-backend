@@ -239,4 +239,4 @@ Kafka로 소비된 Chat moderation 결과의 provider가 `Fake`, 결과가 `SAFE
 - 코드 작성 기준 적용: [#15](https://github.com/gpekd5/bobfull-backend/issues/15)
 - 주석 정리: [#16](https://github.com/gpekd5/bobfull-backend/issues/16)
 - 후속 구조 리팩토링: [#20](https://github.com/gpekd5/bobfull-backend/issues/20)
-- PR: 아직 생성하지 않음
+- PR: [#43](https://github.com/gpekd5/bobfull-backend/pull/43)
