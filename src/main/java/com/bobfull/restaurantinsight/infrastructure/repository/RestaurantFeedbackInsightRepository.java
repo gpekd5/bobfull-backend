@@ -1,6 +1,10 @@
 package com.bobfull.restaurantinsight.infrastructure.repository;
 
 import com.bobfull.restaurantinsight.domain.entity.RestaurantFeedbackInsight;
+import com.bobfull.restaurantinsight.domain.entity.FeedbackAspectType;
+import com.bobfull.restaurantinsight.domain.entity.FeedbackCategory;
+import com.bobfull.restaurantinsight.domain.entity.FeedbackOpinionType;
+import com.bobfull.restaurantinsight.domain.entity.FeedbackSentiment;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +13,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface RestaurantFeedbackInsightRepository extends JpaRepository<RestaurantFeedbackInsight, Long> {
+
     Optional<RestaurantFeedbackInsight> findByMessageIdAndPromptVersion(Long messageId, String promptVersion);
 
     @Query("""
@@ -20,15 +25,25 @@ public interface RestaurantFeedbackInsightRepository extends JpaRepository<Resta
             having count(distinct m.senderMemberId) >= :minimumDistinctSenders
             order by count(distinct m.senderMemberId) desc, i.normalizedAspect asc
             """)
-    List<Aggregation> aggregateForOwner(@Param("restaurantId") Long restaurantId, @Param("promptVersion") String promptVersion,
-            @Param("from") Instant from, @Param("minimumDistinctSenders") long minimumDistinctSenders);
+    List<Aggregation> aggregateForOwner(
+            @Param("restaurantId") Long restaurantId,
+            @Param("promptVersion") String promptVersion,
+            @Param("from") Instant from,
+            @Param("minimumDistinctSenders") long minimumDistinctSenders
+    );
 
     interface Aggregation {
-        com.bobfull.restaurantinsight.domain.entity.FeedbackCategory getCategory();
-        com.bobfull.restaurantinsight.domain.entity.FeedbackAspectType getAspectType();
+
+        FeedbackCategory getCategory();
+
+        FeedbackAspectType getAspectType();
+
         String getAspect();
-        com.bobfull.restaurantinsight.domain.entity.FeedbackOpinionType getOpinionType();
-        com.bobfull.restaurantinsight.domain.entity.FeedbackSentiment getSentiment();
+
+        FeedbackOpinionType getOpinionType();
+
+        FeedbackSentiment getSentiment();
+
         long getSenderCount();
     }
 }

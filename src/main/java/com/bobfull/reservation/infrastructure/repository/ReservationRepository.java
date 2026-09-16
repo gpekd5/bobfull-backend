@@ -1,6 +1,6 @@
 package com.bobfull.reservation.infrastructure.repository;
 
-import com.bobfull.admin.infrastructure.query.AdminReservationRepository;
+import com.bobfull.admin.infrastructure.repository.query.AdminReservationRepository;
 import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.domain.entity.ReservationStatus;

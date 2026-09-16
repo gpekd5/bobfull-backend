@@ -5,8 +5,8 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.BDDMockito.given;
 
-import com.bobfull.admin.application.model.AdminNoShowResult;
-import com.bobfull.admin.infrastructure.query.AdminNoShowRepository;
+import com.bobfull.admin.application.result.AdminNoShowResult;
+import com.bobfull.admin.infrastructure.repository.query.AdminNoShowRepository;
 import com.bobfull.common.response.PageResponse;
 import java.time.Instant;
 import java.util.List;

@@ -13,6 +13,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.time.Instant;
 import java.util.UUID;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /** 핵심 상태 변경과 함께 후속 처리 의도를 보관하는 최소 Outbox 이벤트다. */
 @Entity
@@ -25,6 +28,8 @@ import java.util.UUID;
                 @Index(name = "idx_outbox_event_status_next_attempt",
                         columnList = "status, next_attempt_at, outbox_event_id")
         })
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OutboxEvent extends BaseTimeEntity {
 
     @Id
@@ -40,12 +45,14 @@ public class OutboxEvent extends BaseTimeEntity {
     private OutboxEventType eventType;
 
     @Column(name = "aggregate_type", nullable = false, length = 32)
+    @Getter(AccessLevel.NONE)
     private String aggregateType;
 
     @Column(name = "aggregate_id", nullable = false)
     private Long aggregateId;
 
     @Column(name = "payload_version", nullable = false)
+    @Getter(AccessLevel.NONE)
     private int payloadVersion;
 
     @Enumerated(EnumType.STRING)
@@ -62,6 +69,7 @@ public class OutboxEvent extends BaseTimeEntity {
     private Instant processingStartedAt;
 
     @Column(name = "processing_token", length = 36)
+    @Getter(AccessLevel.NONE)
     private String processingToken;
 
     @Column(name = "last_error_code", length = 128)
@@ -69,9 +77,6 @@ public class OutboxEvent extends BaseTimeEntity {
 
     @Column(name = "processed_at")
     private Instant processedAt;
-
-    protected OutboxEvent() {
-    }
 
     private OutboxEvent(OutboxEventType eventType, String aggregateType, Long aggregateId, Instant now) {
         this.eventId = UUID.randomUUID().toString();
@@ -99,17 +104,6 @@ public class OutboxEvent extends BaseTimeEntity {
         }
         return new OutboxEvent(eventType, aggregateType, aggregateId, now);
     }
-
-    public Long getId() { return id; }
-    public String getEventId() { return eventId; }
-    public OutboxEventType getEventType() { return eventType; }
-    public Long getAggregateId() { return aggregateId; }
-    public OutboxEventStatus getStatus() { return status; }
-    public int getAttemptCount() { return attemptCount; }
-    public Instant getNextAttemptAt() { return nextAttemptAt; }
-    public Instant getProcessingStartedAt() { return processingStartedAt; }
-    public String getLastErrorCode() { return lastErrorCode; }
-    public Instant getProcessedAt() { return processedAt; }
 
     public void retryManually(Instant now) {
         if (status != OutboxEventStatus.FAILED) {

@@ -1,10 +1,151 @@
 package com.bobfull.admin.application.service;
+
+import com.bobfull.admin.application.result.MemberModerationSummaryResult;
+import com.bobfull.admin.infrastructure.repository.query.MemberModerationQueryRepository;
+import com.bobfull.admin.presentation.request.AdminReportReviewRequest;
+import com.bobfull.admin.presentation.response.AdminModerationReportDetailResponse;
+import com.bobfull.admin.presentation.response.AdminModerationReportResponse;
+import com.bobfull.chat.domain.entity.ChatMessage;
+import com.bobfull.chat.domain.entity.ChatModeration;
+import com.bobfull.chat.domain.entity.ChatRoomMemberReport;
+import com.bobfull.chat.domain.entity.ReportStatus;
+import com.bobfull.chat.domain.entity.ReviewDecision;
 import com.bobfull.chat.domain.exception.ChatErrorCode;
-import com.bobfull.admin.application.model.MemberModerationSummaryResult; import com.bobfull.admin.presentation.dto.*; import com.bobfull.admin.infrastructure.query.MemberModerationQueryRepository; import com.bobfull.chat.domain.entity.*; import com.bobfull.chat.infrastructure.repository.*; import com.bobfull.common.exception.*; import com.bobfull.common.response.PageResponse; import java.time.Clock; import java.util.*; import org.springframework.data.domain.*; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Transactional;
+import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
+import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
+import com.bobfull.chat.infrastructure.repository.ChatRoomMemberReportRepository;
+import com.bobfull.common.exception.CustomException;
+import com.bobfull.common.response.PageResponse;
+import java.time.Clock;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /** ADMIN의 신고 조회와 Human 최종 판단을 처리한다. 판단은 회원 제재를 변경하지 않는다. */
-@Service public class AdminModerationReportService { private final ChatRoomMemberReportRepository reports; private final ChatMessageRepository messages; private final ChatModerationRepository moderations; private final MemberModerationQueryRepository memberModerations; private final Clock clock; public AdminModerationReportService(ChatRoomMemberReportRepository reports,ChatMessageRepository messages,ChatModerationRepository moderations,MemberModerationQueryRepository memberModerations,Clock clock){this.reports=reports;this.messages=messages;this.moderations=moderations;this.memberModerations=memberModerations;this.clock=clock;}
- @Transactional(readOnly=true) public PageResponse<AdminModerationReportResponse> list(ReportStatus status,Pageable pageable){return PageResponse.from(reports.findByStatusOrderByCreatedAtDesc(status==null?ReportStatus.PENDING:status,pageable).map(AdminModerationReportResponse::from));}
- @Transactional(readOnly=true) public AdminModerationReportDetailResponse get(Long id){ChatRoomMemberReport r=reports.findById(id).orElseThrow(()->new CustomException(ChatErrorCode.CHAT_ROOM_REPORT_NOT_FOUND)); MemberModerationSummaryResult s=memberModerations.findMemberSummary(r.getReportedMemberId()).orElse(new MemberModerationSummaryResult(r.getReportedMemberId(),0,0,0,0,0,null)); return new AdminModerationReportDetailResponse(r.getId(),r.getChatRoomId(),r.getReason(),r.getDetail(),r.getReporterMemberId(),r.getReportedMemberId(),r.getAnchorMessageId(),r.getCreatedAt(),r.getStatus(),context(r),new AdminModerationReportDetailResponse.ModerationSignals(s.totalFlaggedCount(),s.reviewTargetCount(),s.profanityCount(),s.personalInformationCount(),s.spamCount()),new AdminModerationReportDetailResponse.ReportSignals(reports.countByReportedMemberIdAndStatus(r.getReportedMemberId(),ReportStatus.PENDING),reports.countByReportedMemberIdAndStatus(r.getReportedMemberId(),ReportStatus.REVIEWED),reports.countByReportedMemberIdAndDecision(r.getReportedMemberId(),ReviewDecision.VIOLATION_CONFIRMED)));}
- @Transactional public AdminModerationReportResponse review(Long id,Long admin,AdminReportReviewRequest request){ChatRoomMemberReport report=reports.findById(id).orElseThrow(()->new CustomException(ChatErrorCode.CHAT_ROOM_REPORT_NOT_FOUND)); if(report.getStatus()!=ReportStatus.PENDING)throw new CustomException(ChatErrorCode.CHAT_ROOM_REPORT_ALREADY_REVIEWED); report.review(request.decision(),admin,clock.instant()); return AdminModerationReportResponse.from(report);}
- private List<AdminModerationReportDetailResponse.ContextMessage> context(ChatRoomMemberReport r){List<ChatMessage> all=messages.findByChatRoomIdOrderByIdAsc(r.getChatRoomId()); List<ChatMessage> selected;if(r.getAnchorMessageId()!=null){int i=0;while(i<all.size()&&!all.get(i).getId().equals(r.getAnchorMessageId()))i++; selected=all.subList(Math.max(0,i-5),Math.min(all.size(),i+6));}else{List<ChatMessage> prior=messages.findTop20ByChatRoomIdAndCreatedAtLessThanEqualOrderByIdDesc(r.getChatRoomId(),r.getCreatedAt());Collections.reverse(prior);selected=prior;}Map<Long,ChatModeration> byMessage=moderations.findByMessageIdIn(selected.stream().map(ChatMessage::getId).toList()).stream().collect(java.util.stream.Collectors.toMap(ChatModeration::getMessageId,x->x));return selected.stream().map(m->{ChatModeration x=byMessage.get(m.getId());return new AdminModerationReportDetailResponse.ContextMessage(m.getId(),m.getSenderMemberId(),m.getContent(),m.getCreatedAt(),x==null?null:new AdminModerationReportDetailResponse.Moderation(x.getStatus(),x.getCategories(),x.getRiskLevel(),x.getPromptVersion(),x.getPolicyVersion(),x.getAnalyzedAt()));}).toList();}
+@Service
+@RequiredArgsConstructor
+public class AdminModerationReportService {
+
+    private final ChatRoomMemberReportRepository reports;
+    private final ChatMessageRepository messages;
+    private final ChatModerationRepository moderations;
+    private final MemberModerationQueryRepository memberModerations;
+    private final Clock clock;
+
+    @Transactional(readOnly = true)
+    public PageResponse<AdminModerationReportResponse> list(ReportStatus status, Pageable pageable) {
+        return PageResponse.from(reports.findByStatusOrderByCreatedAtDesc(
+                status == null ? ReportStatus.PENDING : status,
+                pageable
+        ).map(AdminModerationReportResponse::from));
+    }
+
+    @Transactional(readOnly = true)
+    public AdminModerationReportDetailResponse get(Long id) {
+        ChatRoomMemberReport report = reports.findById(id)
+                .orElseThrow(() -> new CustomException(ChatErrorCode.CHAT_ROOM_REPORT_NOT_FOUND));
+        MemberModerationSummaryResult summary = memberModerations.findMemberSummary(report.getReportedMemberId())
+                .orElse(new MemberModerationSummaryResult(
+                        report.getReportedMemberId(),
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        null
+                ));
+        return new AdminModerationReportDetailResponse(
+                report.getId(),
+                report.getChatRoomId(),
+                report.getReason(),
+                report.getDetail(),
+                report.getReporterMemberId(),
+                report.getReportedMemberId(),
+                report.getAnchorMessageId(),
+                report.getCreatedAt(),
+                report.getStatus(),
+                context(report),
+                new AdminModerationReportDetailResponse.ModerationSignals(
+                        summary.totalFlaggedCount(),
+                        summary.reviewTargetCount(),
+                        summary.profanityCount(),
+                        summary.personalInformationCount(),
+                        summary.spamCount()
+                ),
+                new AdminModerationReportDetailResponse.ReportSignals(
+                        reports.countByReportedMemberIdAndStatus(
+                                report.getReportedMemberId(),
+                                ReportStatus.PENDING
+                        ),
+                        reports.countByReportedMemberIdAndStatus(
+                                report.getReportedMemberId(),
+                                ReportStatus.REVIEWED
+                        ),
+                        reports.countByReportedMemberIdAndDecision(
+                                report.getReportedMemberId(),
+                                ReviewDecision.VIOLATION_CONFIRMED
+                        )
+                )
+        );
+    }
+
+    @Transactional
+    public AdminModerationReportResponse review(Long id, Long admin, AdminReportReviewRequest request) {
+        ChatRoomMemberReport report = reports.findById(id)
+                .orElseThrow(() -> new CustomException(ChatErrorCode.CHAT_ROOM_REPORT_NOT_FOUND));
+        if (report.getStatus() != ReportStatus.PENDING) {
+            throw new CustomException(ChatErrorCode.CHAT_ROOM_REPORT_ALREADY_REVIEWED);
+        }
+        report.review(request.decision(), admin, clock.instant());
+        return AdminModerationReportResponse.from(report);
+    }
+
+    private List<AdminModerationReportDetailResponse.ContextMessage> context(ChatRoomMemberReport report) {
+        List<ChatMessage> all = messages.findByChatRoomIdOrderByIdAsc(report.getChatRoomId());
+        List<ChatMessage> selected;
+        if (report.getAnchorMessageId() != null) {
+            int index = 0;
+            while (index < all.size() && !all.get(index).getId().equals(report.getAnchorMessageId())) {
+                index++;
+            }
+            selected = all.subList(Math.max(0, index - 5), Math.min(all.size(), index + 6));
+        } else {
+            List<ChatMessage> prior = messages
+                    .findTop20ByChatRoomIdAndCreatedAtLessThanEqualOrderByIdDesc(
+                            report.getChatRoomId(),
+                            report.getCreatedAt()
+                    );
+            Collections.reverse(prior);
+            selected = prior;
+        }
+
+        Map<Long, ChatModeration> byMessage = moderations.findByMessageIdIn(
+                        selected.stream().map(ChatMessage::getId).toList()
+                ).stream()
+                .collect(Collectors.toMap(ChatModeration::getMessageId, moderation -> moderation));
+        return selected.stream()
+                .map(message -> {
+                    ChatModeration moderation = byMessage.get(message.getId());
+                    return new AdminModerationReportDetailResponse.ContextMessage(
+                            message.getId(),
+                            message.getSenderMemberId(),
+                            message.getContent(),
+                            message.getCreatedAt(),
+                            moderation == null ? null : new AdminModerationReportDetailResponse.Moderation(
+                                    moderation.getStatus(),
+                                    moderation.getCategories(),
+                                    moderation.getRiskLevel(),
+                                    moderation.getPromptVersion(),
+                                    moderation.getPolicyVersion(),
+                                    moderation.getAnalyzedAt()
+                            )
+                    );
+                })
+                .toList();
+    }
 }

@@ -9,10 +9,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.bobfull.admin.presentation.dto.AdminMemberModerationDetailResponse;
-import com.bobfull.admin.presentation.dto.AdminMemberModerationEvidenceResponse;
-import com.bobfull.admin.presentation.dto.AdminMemberModerationListItemResponse;
-import com.bobfull.admin.presentation.dto.MemberModerationReviewStatus;
+import com.bobfull.admin.presentation.response.AdminMemberModerationDetailResponse;
+import com.bobfull.admin.presentation.response.AdminMemberModerationEvidenceResponse;
+import com.bobfull.admin.presentation.response.AdminMemberModerationListItemResponse;
+import com.bobfull.admin.application.model.MemberModerationReviewStatus;
 import com.bobfull.admin.application.service.MemberModerationQueryService;
 import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
 import com.bobfull.common.config.ClockConfig;

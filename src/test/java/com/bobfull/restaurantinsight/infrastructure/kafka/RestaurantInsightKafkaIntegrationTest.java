@@ -13,8 +13,9 @@ import com.bobfull.reservation.domain.entity.Reservation;
 import com.bobfull.reservation.infrastructure.repository.ReservationRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.RestaurantRepository;
-import com.bobfull.restaurantinsight.application.dto.RestaurantFeedbackAnalysis;
+import com.bobfull.restaurantinsight.application.model.RestaurantFeedbackAnalysis;
 import com.bobfull.restaurantinsight.application.port.RestaurantFeedbackInsightPort;
+import com.bobfull.restaurantinsight.application.result.RestaurantFeedbackAnalysisResult;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackAspectType;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackCategory;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackOpinionType;
@@ -236,12 +237,16 @@ class RestaurantInsightKafkaIntegrationTest {
         private volatile boolean alwaysFail;
 
         @Override
-        public Result analyze(String content) {
+        public RestaurantFeedbackAnalysisResult analyze(String content) {
             calls.incrementAndGet();
             if (alwaysFail) throw new RuntimeException("강제 Insight 실패(테스트)");
             List<RestaurantFeedbackAnalysis.Item> items = List.of(new RestaurantFeedbackAnalysis.Item(
                     FeedbackCategory.FOOD, FeedbackAspectType.MENU, "탕수육", FeedbackOpinionType.TEXTURE, FeedbackSentiment.POSITIVE));
-            return new Result(new RestaurantFeedbackAnalysis(true, items), "fake", "fake-model");
+            return new RestaurantFeedbackAnalysisResult(
+                    new RestaurantFeedbackAnalysis(true, items),
+                    "fake",
+                    "fake-model"
+            );
         }
 
         void alwaysFail() { this.alwaysFail = true; }

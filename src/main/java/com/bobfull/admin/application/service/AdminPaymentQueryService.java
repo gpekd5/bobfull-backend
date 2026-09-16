@@ -1,6 +1,6 @@
 package com.bobfull.admin.application.service;
 
-import com.bobfull.admin.presentation.dto.AdminPaymentListItemResponse;
+import com.bobfull.admin.presentation.response.AdminPaymentListItemResponse;
 import com.bobfull.common.exception.CommonErrorCode;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.common.response.PageResponse;
@@ -8,6 +8,7 @@ import com.bobfull.payment.domain.entity.Payment;
 import com.bobfull.payment.domain.entity.PaymentStatus;
 import com.bobfull.payment.infrastructure.repository.PaymentRepository;
 import java.util.Set;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /** ADMIN의 전체 결제 현황 조회를 담당한다(Issue #49 §11-6). */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AdminPaymentQueryService {
 
     private static final Set<PaymentStatus> EXPOSED_FILTER_STATUSES =
@@ -25,11 +28,6 @@ public class AdminPaymentQueryService {
 
     private final PaymentRepository paymentRepository;
 
-    public AdminPaymentQueryService(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<AdminPaymentListItemResponse> getPayments(String paymentStatus, Pageable pageable) {
         PaymentStatus status = parseStatus(paymentStatus);
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), DEFAULT_SORT);

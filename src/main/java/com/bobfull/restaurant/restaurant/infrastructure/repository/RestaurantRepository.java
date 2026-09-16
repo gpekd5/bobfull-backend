@@ -1,6 +1,6 @@
 package com.bobfull.restaurant.restaurant.infrastructure.repository;
 
-import com.bobfull.admin.infrastructure.query.AdminRestaurantRepository;
+import com.bobfull.admin.infrastructure.repository.query.AdminRestaurantRepository;
 import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import com.bobfull.restaurant.restaurant.infrastructure.repository.query.RestaurantSearchRepository;
 import jakarta.persistence.LockModeType;

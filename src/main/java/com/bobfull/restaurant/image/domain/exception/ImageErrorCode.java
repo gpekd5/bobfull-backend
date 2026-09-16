@@ -1,12 +1,15 @@
 package com.bobfull.restaurant.image.domain.exception;
 
 import com.bobfull.common.exception.BaseErrorCode;
-
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
  * 식당 이미지 업로드와 S3 객체 검증 전용 에러 코드다.
  */
+@Getter
+@RequiredArgsConstructor
 public enum ImageErrorCode implements BaseErrorCode {
 
     INVALID_IMAGE_EXTENSION(HttpStatus.BAD_REQUEST, "허용하지 않는 이미지 확장자입니다."),
@@ -22,23 +25,8 @@ public enum ImageErrorCode implements BaseErrorCode {
     private final HttpStatus httpStatus;
     private final String message;
 
-    ImageErrorCode(HttpStatus httpStatus, String message) {
-        this.httpStatus = httpStatus;
-        this.message = message;
-    }
-
-    @Override
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
     @Override
     public String getCode() {
         return name();
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
     }
 }

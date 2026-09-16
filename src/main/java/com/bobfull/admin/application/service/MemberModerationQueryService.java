@@ -1,10 +1,10 @@
 package com.bobfull.admin.application.service;
 
-import com.bobfull.admin.presentation.dto.AdminMemberModerationDetailResponse;
-import com.bobfull.admin.presentation.dto.AdminMemberModerationListItemResponse;
-import com.bobfull.admin.presentation.dto.MemberModerationReviewStatus;
-import com.bobfull.admin.application.model.MemberModerationSummaryResult;
-import com.bobfull.admin.infrastructure.query.MemberModerationQueryRepository;
+import com.bobfull.admin.presentation.response.AdminMemberModerationDetailResponse;
+import com.bobfull.admin.presentation.response.AdminMemberModerationListItemResponse;
+import com.bobfull.admin.application.model.MemberModerationReviewStatus;
+import com.bobfull.admin.application.result.MemberModerationSummaryResult;
+import com.bobfull.admin.infrastructure.repository.query.MemberModerationQueryRepository;
 import com.bobfull.common.exception.CustomException;
 import com.bobfull.member.domain.exception.MemberErrorCode;
 import com.bobfull.common.response.PageResponse;
@@ -12,6 +12,7 @@ import com.bobfull.chat.domain.entity.RiskLevel;
 import com.bobfull.member.infrastructure.repository.MemberRepository;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 /** ADMIN이 AI moderation 신호를 회원별로 집계하고 근거 메시지를 조회하는 서비스다. */
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberModerationQueryService {
 
     private static final long REVIEW_TARGET_THRESHOLD = 3L;
@@ -26,13 +29,6 @@ public class MemberModerationQueryService {
     private final MemberModerationQueryRepository memberModerationQueryRepository;
     private final MemberRepository memberRepository;
 
-    public MemberModerationQueryService(
-            MemberModerationQueryRepository memberModerationQueryRepository, MemberRepository memberRepository) {
-        this.memberModerationQueryRepository = memberModerationQueryRepository;
-        this.memberRepository = memberRepository;
-    }
-
-    @Transactional(readOnly = true)
     public PageResponse<AdminMemberModerationListItemResponse> getMemberModerations(
             MemberModerationReviewStatus reviewStatus, Pageable pageable) {
         Page<AdminMemberModerationListItemResponse> results = memberModerationQueryRepository
@@ -41,7 +37,6 @@ public class MemberModerationQueryService {
         return PageResponse.from(results);
     }
 
-    @Transactional(readOnly = true)
     public AdminMemberModerationDetailResponse getMemberModeration(Long memberId) {
         if (!memberRepository.existsById(memberId)) {
             throw new CustomException(MemberErrorCode.MEMBER_ID_NOT_FOUND);
