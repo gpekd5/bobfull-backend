@@ -17,11 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * ADMIN의 전체 예약 현황 조회를 담당한다(Issue #49 §11-5).
- * Fragment 인터페이스(AdminReservationRepository) 대신 합성된 {@link ReservationRepository}를 주입한다
- * (Fragment 인터페이스를 직접 주입하면 Spring이 구현체를 별도 Bean으로도 등록해 중복 Bean 오류가 난다).
- */
+// 관리자용 전체 예약 현황을 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -29,6 +25,7 @@ public class AdminReservationQueryService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
 
+    // Fragment 인터페이스를 직접 주입할 때 생기는 중복 Bean을 피하려고 합성된 Repository를 사용한다.
     private final ReservationRepository reservationRepository;
 
     public PageResponse<AdminReservationListItemResponse> getReservations(

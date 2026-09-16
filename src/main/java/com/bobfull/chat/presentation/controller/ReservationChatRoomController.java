@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// 예약 참여자가 사용할 채팅방을 조회·복구하는 HTTP 경계를 제공한다.
 @RestController
 @RequestMapping("/api/reservations")
 @RequiredArgsConstructor

@@ -1,9 +1,6 @@
 package com.bobfull.common.monitoring;
 
-/**
- * Prometheus에 노출하는 BobFull 비즈니스 사건 이름이다.
- * 값이 계속 늘어나는 식별자는 Metric Label로 쓰지 않고, 이 제한된 event 값만 사용한다.
- */
+// Prometheus label cardinality를 제한하는 비즈니스 사건 이름 집합이다.
 public enum BusinessMetricEvent {
     PAYMENT_COMPENSATION_REQUIRED,
     REFUND_COMPENSATION_REQUIRED,

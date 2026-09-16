@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-/** ChatRoom 생성 이벤트만 처리하는 at-least-once Outbox processor다. */
+// 채팅방 생성 Outbox를 선점해 멱등 생성하고 실패 시 재시도를 예약한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -29,6 +29,7 @@ public class ChatRoomOutboxProcessor {
     private final ChatRoomCreationService chatRoomCreationService;
     private final Clock clock;
 
+    // 이벤트를 선점한 Processor만 채팅방 생성과 완료·실패 전이를 수행한다.
     public void process(Long eventId) {
         try {
             transactionService.claim(eventId, CHAT_ROOM_EVENT_TYPES, clock.instant()).ifPresent(this::processClaimed);
@@ -42,6 +43,7 @@ public class ChatRoomOutboxProcessor {
         process(eventId);
     }
 
+    // 멈춘 claim을 복구한 뒤 예약된 PENDING 이벤트를 재처리한다.
     public void processDueEvents(int batchSize) {
         Instant now = clock.instant();
         outboxEventRepository.findStaleProcessingEventIdsByTypes(OutboxEventStatus.PROCESSING,

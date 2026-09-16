@@ -1,9 +1,6 @@
 package com.bobfull.common.exception;
 
-/**
- * 도메인 비즈니스 예외의 공통 상위 타입이다.
- * ErrorCode를 함께 전달해 GlobalExceptionHandler가 일관된 응답을 만들도록 한다.
- */
+// 도메인 오류 코드를 공통 예외 처리 계층까지 전달하는 비즈니스 예외다.
 public class CustomException extends RuntimeException {
 
     private final BaseErrorCode errorCode;

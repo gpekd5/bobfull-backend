@@ -5,7 +5,7 @@ import java.time.Duration;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
-/** #251의 넓은 Context 재적용을 막기 위한 #266 Split 후보 제한이다. */
+// 짧게 분할된 의심 메시지에만 제한적으로 최근 문맥을 결합한다.
 @Component
 public class SplitMessageCandidateGate {
     static final int MAX_FRAGMENT_LENGTH = 8;

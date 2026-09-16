@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// PortOne 웹훅을 검증하고 결제·환불 상태 전이 흐름으로 전달한다.
 @RestController
 @RequestMapping("/api/webhooks/portone")
 @RequiredArgsConstructor
@@ -37,6 +38,7 @@ public class PortOneWebhookController {
     private final RefundWebhookService refundWebhookService;
     private final BusinessMetricRecorder businessMetricRecorder;
 
+    // 서명 검증된 이벤트만 유형별 결제·환불 처리로 전달한다.
     @PostMapping
     public ResponseEntity<Void> receive(
             @RequestBody String rawBody,

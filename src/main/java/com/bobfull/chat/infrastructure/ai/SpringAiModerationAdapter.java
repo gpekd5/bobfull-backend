@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-/** BobFull 정책 Prompt와 Spring AI Structured Output 호출을 격리하는 OpenAI Adapter다. */
+// Moderation 정책 Prompt와 Spring AI Structured Output 호출을 외부 Adapter에 격리한다.
 @Component
 @ConditionalOnProperty(prefix = "bobfull.ai.moderation", name = "fake-enabled", havingValue = "false", matchIfMissing = true)
 public class SpringAiModerationAdapter implements AiModerationPort {

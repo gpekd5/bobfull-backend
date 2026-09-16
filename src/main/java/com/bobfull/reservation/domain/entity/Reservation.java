@@ -13,11 +13,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 하나의 TimeSlot에 대한 합석 예약이다(docs/030-data/erd.md 4.5).
- * 결제 검증 전에는 생성하지 않으며(ADR 0001), 취소 이력 보존을 위해 CANCELLED 상태도
- * TimeSlot 연결을 유지한다.
- */
+// 결제 완료 뒤 생성되어 한 회차의 모집과 성사·취소 생명주기를 관리한다.
 @Entity
 @Table(name = "reservation", indexes = @jakarta.persistence.Index(name = "idx_reservation_time_slot_id", columnList = "time_slot_id"))
 @Getter
@@ -30,6 +26,7 @@ public class Reservation extends BaseTimeEntity {
     private Long id;
 
     @Column(name = "time_slot_id", nullable = false)
+    // 취소 뒤에도 이력과 후속 조회가 이어지도록 회차 연결을 유지한다.
     private Long timeSlotId;
 
     @Column(name = "creator_member_id", nullable = false)
@@ -54,37 +51,24 @@ public class Reservation extends BaseTimeEntity {
         return new Reservation(timeSlotId, creatorMemberId);
     }
 
-    /**
-     * 확정 기준(docs/020-api/bobfull-api-spec-complete.md §0.8) 도달 시 RECRUITING에서 CONFIRMED로 전이한다.
-     */
+    // 최소 성사 인원에 도달한 모집 중 예약을 확정한다.
     public void confirm() {
         if (reservationStatus == ReservationStatus.RECRUITING) {
             this.reservationStatus = ReservationStatus.CONFIRMED;
         }
     }
 
-    /**
-     * 정원 도달 시 추가 참여 모집을 마감한다(§0.8).
-     */
+    // 정원 도달 또는 모집 기한 만료로 추가 참여를 마감한다.
     public void closeRecruitment() {
         this.recruitmentStatus = RecruitmentStatus.CLOSED;
     }
 
-    /**
-     * 취소 접수 트랜잭션에서 예약 전체 취소를 시작한다(Issue #44). 환불이 실제로 완료되기 전까지는
-     * {@link ReservationStatus#CANCELLING}으로 남아 좌석·활성 예약 조회에서 계속 점유 상태로 집계되며,
-     * 환불 완료 후 {@link #cancel()}로 확정된다.
-     */
+    // 환불 완료 전까지 좌석을 계속 점유하도록 예약 전체 취소를 CANCELLING으로 접수한다.
     public void startCancelling() {
         this.reservationStatus = ReservationStatus.CANCELLING;
     }
 
-    /**
-     * 취소 접수(CANCELLING)로 시작된 모든 참여자의 환불이 완료되어 예약 전체 취소를 확정한다
-     * (Issue #44 완료 경로, {@code ReservationCancellationCompletionService}가 호출, V2, #45/PR #144).
-     * TimeSlot 복구는 별도 상태 컬럼이 아니라 이 상태 전이만으로 파생된다 — 활성 Reservation
-     * 조회(`existsByTimeSlotIdAndReservationStatusIn`)가 곧바로 false가 된다.
-     */
+    // 모든 참여자의 환불 완료 뒤 전체 취소를 확정해 회차 좌석을 다시 사용할 수 있게 한다.
     public void cancel() {
         this.reservationStatus = ReservationStatus.CANCELLED;
     }
@@ -97,10 +81,7 @@ public class Reservation extends BaseTimeEntity {
         return reservationStatus == ReservationStatus.CANCELLING;
     }
 
-    /**
-     * 추가 참여자 취소로 확정 기준 미달이 되면 모집이 OPEN인 동안 CONFIRMED에서 RECRUITING으로
-     * 되돌린다(Issue #131). 이미 RECRUITING이면 그대로 둔다.
-     */
+    // 추가 참여 취소로 성사 기준에 미달하면 모집 중인 예약으로 되돌린다.
     public void revertToRecruiting() {
         if (reservationStatus == ReservationStatus.CONFIRMED) {
             this.reservationStatus = ReservationStatus.RECRUITING;
@@ -111,12 +92,7 @@ public class Reservation extends BaseTimeEntity {
         return reservationStatus == ReservationStatus.RECRUITING || reservationStatus == ReservationStatus.CONFIRMED;
     }
 
-    /**
-     * 식사 종료(TimeSlot.endAt 도달) 후보를 스케줄러 한 건씩 처리할 때 호출한다(Issue #175).
-     * {@code CONFIRMED}에서만 {@code CLOSED}로 전이하고, 이미 {@code CLOSED}이거나
-     * {@code RECRUITING}·{@code CANCELLING}·{@code CANCELLED}면 아무 것도 바꾸지 않아 같은 후보가
-     * 여러 스케줄 주기에 걸쳐 조회돼도 중복 반영되지 않는다.
-     */
+    // 식사가 끝난 확정 예약만 CLOSED로 전이해 반복 처리에도 멱등성을 유지한다.
     public void close() {
         if (reservationStatus == ReservationStatus.CONFIRMED) {
             this.reservationStatus = ReservationStatus.CLOSED;
@@ -128,6 +104,7 @@ public class Reservation extends BaseTimeEntity {
     }
 
     public boolean isCreatedBy(Long memberId) {
+        // 최초 참여자는 별도 역할 컬럼 없이 예약 생성자 식별자로 판별한다.
         return this.creatorMemberId.equals(memberId);
     }
 

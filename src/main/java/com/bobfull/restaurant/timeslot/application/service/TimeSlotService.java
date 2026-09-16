@@ -49,9 +49,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * API에서는 diningSession, 내부 영속 모델에서는 TimeSlot으로 다루는 회차 서비스다.
- */
+// API의 diningSession을 TimeSlot으로 관리하며 회차 등록·조회·변경·삭제를 담당한다.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -85,6 +83,7 @@ public class TimeSlotService {
         return DiningSessionIdResponse.from(savedTimeSlot);
     }
 
+    // 날짜별 시간 구간을 일정 간격의 회차로 확장하고 중복을 검증해 일괄 등록한다.
     @Transactional
     public DiningSessionBulkResponse registerBulk(
             Long ownerMemberId,
@@ -130,6 +129,7 @@ public class TimeSlotService {
         return PageResponse.from(responsePage);
     }
 
+    // 예약·참여자·결제 선점을 일괄 조회해 회차별 예약 가능 인원을 계산한다.
     @Transactional(readOnly = true)
     public AvailableDiningSessionListResponse getAvailableDiningSessions(
             Long restaurantId,
@@ -165,6 +165,7 @@ public class TimeSlotService {
         return new AvailableDiningSessionListResponse(restaurantId, content);
     }
 
+    // 활성 예약이 없는 회차만 시간과 중복 제약을 검증해 변경한다.
     @Transactional
     public DiningSessionIdResponse update(Long ownerMemberId, Long sessionId, DiningSessionRequest request) {
         TimeSlot timeSlot = findActiveTimeSlotOrThrow(sessionId);
@@ -187,6 +188,7 @@ public class TimeSlotService {
         return DiningSessionIdResponse.from(timeSlot);
     }
 
+    // 활성 예약이 없는 회차만 soft delete한다.
     @Transactional
     public DiningSessionIdResponse delete(Long ownerMemberId, Long sessionId) {
         TimeSlot timeSlot = findActiveTimeSlotOrThrow(sessionId);
@@ -218,14 +220,8 @@ public class TimeSlotService {
         );
     }
 
-    /**
-     * #142(인기 회차 조회 폭주)에서 회차 목록 조회가 회차당 4개 쿼리(활성 예약·참여자 합계·CLOSED
-     * 여부·READY 선점 합계)를 반복해 DB Pool·CPU가 동시 포화되는 병목으로 확인됐다(Issue #235
-     * "1. 병목 Hot-path 분리"). 회차 ID를 미리 다 알고 있으므로, 이 4개를 회차 수와 무관하게
-     * 고정된 배치 쿼리로 한 번씩만 실행해 앞에서 모아두고 Java에서 회차별로 조립한다 —
-     * `availableCapacity` 계산식 자체(닫힘이면 0, 아니면 {@link ReservationCapacityPolicy})는
-     * {@link com.bobfull.reservation.application.service.AvailableCapacityCalculator}와 동일하게 유지한다.
-     */
+    // 회차마다 예약·참여자·종료·READY 선점을 반복 조회하면 DB 부하가 회차 수만큼 증가한다.
+    // 필요한 값을 고정된 배치 쿼리로 모으고 ReservationCapacityPolicy로 회차별 결과를 조립한다.
     private AvailableDiningSessionBatchContext loadAvailableDiningSessionBatchContext(List<TimeSlot> timeSlots) {
         List<Long> timeSlotIds = timeSlots.stream().map(TimeSlot::getId).toList();
 
@@ -354,6 +350,7 @@ public class TimeSlotService {
         }
     }
 
+    // 사전 중복 검사를 통과한 동시 요청은 DB의 활성 회차 UNIQUE 제약으로 최종 차단한다.
     private TimeSlot saveTimeSlotOrThrowDuplicate(TimeSlot timeSlot) {
         try {
             return timeSlotRepository.saveAndFlush(timeSlot);

@@ -12,10 +12,7 @@ import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.util.backoff.FixedBackOff;
 
-/**
- * Q1 결정(최초 처리 포함 최대 3회)을 강제한다. 메시지 없음/버전 불일치처럼 재시도로 해결되지 않는
- * 예외는 즉시 DLT로 보내 불필요한 반복 호출을 만들지 않는다.
- */
+// Moderation Consumer의 재시도 횟수와 즉시 DLT로 보낼 비재시도 예외를 구성한다.
 @Configuration
 public class ChatModerationConsumerErrorHandlingConfig {
 
@@ -24,6 +21,7 @@ public class ChatModerationConsumerErrorHandlingConfig {
             @Value("${bobfull.kafka.chat-message.consumer-max-attempts:3}") int maxAttempts,
             @Value("${bobfull.kafka.chat-message.consumer-retry-backoff-ms:1000}") long retryBackoffMs
     ) {
+        // 메시지 없음이나 버전 불일치처럼 반복으로 해결되지 않는 실패는 즉시 DLT로 보낸다.
         long retriesAfterFirstAttempt = Math.max(0, maxAttempts - 1);
         DefaultErrorHandler errorHandler = new DefaultErrorHandler(recoverer,
                 new FixedBackOff(retryBackoffMs, retriesAfterFirstAttempt));

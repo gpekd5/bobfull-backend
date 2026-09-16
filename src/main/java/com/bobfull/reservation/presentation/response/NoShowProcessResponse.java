@@ -1,5 +1,5 @@
 package com.bobfull.reservation.presentation.response;
 
-/** §9-2 노쇼 처리·§9-3 노쇼 처리 해제 응답이다(Issue #48). */
+// 노쇼 처리 또는 해제된 참여자를 식별한다.
 public record NoShowProcessResponse(Long reservationId, Long participationId) {
 }

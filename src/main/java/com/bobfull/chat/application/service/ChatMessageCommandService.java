@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// 채팅 참여 권한을 검증해 메시지와 후속 분석 Outbox를 저장하고 실시간 전파를 예약한다.
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -39,10 +40,11 @@ public class ChatMessageCommandService {
     private final ChatMessageOutboxSignalDispatcher outboxSignalDispatcher;
     private final RedisChatMessagePublisher realtimePublisher;
 
-    /** #192 Kafka vs Async Baseline 비교 전용. 기본값(Bean 없음)에서는 항상 null이라 기존 Outbox/Kafka 경로는 바뀌지 않는다. */
+    // 비동기 Baseline 측정이 명시적으로 활성화된 경우에만 추가 분석 경로를 사용한다.
     @Autowired(required = false)
     private ChatMessageAsyncModerationDispatcher asyncModerationDispatcher;
 
+    // 메시지와 분석 Outbox를 함께 저장하고 커밋된 메시지만 외부 채널로 전달한다.
     public ChatMessageSentResponse send(Long roomId, AuthMember member, String content) {
         if (member.role() != MemberRole.MEMBER) {
             throw new CustomException(CommonErrorCode.ACCESS_DENIED);
@@ -61,6 +63,7 @@ public class ChatMessageCommandService {
             throw new CustomException(ChatErrorCode.CHAT_MESSAGE_SEND_NOT_ALLOWED);
         }
 
+        // 메시지 저장과 분석 의도를 같은 트랜잭션에 묶어 유실되지 않게 한다.
         ChatMessage saved = messages.save(
                 ChatMessage.create(roomId, member.id(), current.participantId(), content));
         OutboxEvent outboxEvent = outboxEvents.save(
@@ -69,6 +72,7 @@ public class ChatMessageCommandService {
         ChatMessageSentResponse response = ChatMessageSentResponse.of(
                 saved, namesById.get(member.id()));
 
+        // 롤백된 메시지가 Kafka나 Redis로 노출되지 않도록 커밋 이후에만 후속 처리를 시작한다.
         AfterCommitExecutor.run(() -> outboxSignalDispatcher.dispatch(outboxEvent.getId()));
         AfterCommitExecutor.run(() -> realtimePublisher.publish(response));
         if (asyncModerationDispatcher != null) {

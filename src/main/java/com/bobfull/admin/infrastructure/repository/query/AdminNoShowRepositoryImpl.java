@@ -22,7 +22,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-/** ADMIN 전체 노쇼 현황 조회(§11-8)를 담당한다(Issue #134). */
+// 관리자 노쇼 현황 조회를 구현한다.
 @Repository
 public class AdminNoShowRepositoryImpl implements AdminNoShowRepository {
 
@@ -32,14 +32,7 @@ public class AdminNoShowRepositoryImpl implements AdminNoShowRepository {
         this.queryFactory = new JPAQueryFactory(entityManager);
     }
 
-    /**
-     * 참여자별로 마지막 노쇼 처리(marked=true) 이력 1건만 반환한다.
-     * 처리 → 해제 → 재처리가 반복되면 marked=true 이력이 여러 건 남을 수 있는데,
-     * 이미 해제로 대체된 과거 이력까지 그대로 나열하면 "현재 노쇼 현황"에 같은 참여자가
-     * 중복 노출된다(PR #136 리뷰 반영). JPQL은 "그룹별 최신 행" 조회에 윈도우 함수를
-     * 지원하지 않아, 대상 이력을 평면으로 조회한 뒤 Java에서 참여자별 최신 건만 추리고
-     * 수동으로 페이지네이션한다(NoShowQueryRepositoryImpl.findNoShowCustomers와 동일한 방식).
-     */
+    // 참여자별 최신 노쇼 처리 이력만 추려 현재 노쇼 현황을 페이지로 반환한다.
     @Override
     public Page<AdminNoShowResult> searchNoShows(Long memberId, Long restaurantId, Pageable pageable) {
         QNoShowHistory history = QNoShowHistory.noShowHistory;
@@ -75,6 +68,7 @@ public class AdminNoShowRepositoryImpl implements AdminNoShowRepository {
                 .where(predicates)
                 .fetch();
 
+        // JPQL로 그룹별 최신 행을 선택하기 어려워 평면 조회 후 최신 이력을 골라 페이지를 구성한다.
         Map<Long, List<Tuple>> rowsByParticipant = rows.stream()
                 .collect(Collectors.groupingBy(row -> row.get(participant.id)));
 

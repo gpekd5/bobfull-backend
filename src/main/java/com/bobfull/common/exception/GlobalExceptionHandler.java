@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-/**
- * Controller에서 발생한 예외를 공통 응답 포맷으로 변환한다.
- * Security 필터 단계의 인증·인가 예외는 각각 AuthenticationEntryPoint, AccessDeniedHandler가 처리한다.
- */
+// Controller 예외를 공통 API 응답으로 변환하고 처리되지 않은 실패를 관측한다.
+// Security 필터 단계의 인증·인가는 전용 EntryPoint와 AccessDeniedHandler가 처리한다.
 @Slf4j
 @RestControllerAdvice
 @RequiredArgsConstructor

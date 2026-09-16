@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.StringUtils;
 
+// 관리자 회원 목록·상세 조건 조회를 QueryDSL로 구현한다.
 public class AdminMemberRepositoryImpl implements AdminMemberRepository {
 
     private final JPAQueryFactory queryFactory;

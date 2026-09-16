@@ -4,7 +4,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** OpenAI 전용 객체는 Adapter에만 주입되도록 ChatClient를 구성한다. */
+// Moderation 전용 ChatClient를 외부 AI Adapter에만 주입하도록 구성한다.
 @Configuration
 public class SpringAiModerationConfig {
     @Bean("moderationChatClient")

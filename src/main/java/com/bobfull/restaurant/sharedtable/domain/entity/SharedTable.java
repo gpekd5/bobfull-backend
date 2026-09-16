@@ -15,9 +15,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 식당의 합석 정원 단위 테이블이다(docs/030-data/erd.md 4.3).
- */
+// 식당에서 회차와 정원을 구성하는 합석 테이블을 보관한다.
 @Entity
 @Table(name = "shared_table", indexes = @Index(name = "idx_shared_table_restaurant_id", columnList = "restaurant_id"))
 @Getter

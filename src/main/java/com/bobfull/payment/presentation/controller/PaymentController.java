@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// 사용자의 결제 완료 요청과 결제 상세 조회 HTTP 경계를 제공한다.
 @RestController
 @RequestMapping("/api/payments")
 @RequiredArgsConstructor
@@ -23,7 +24,7 @@ public class PaymentController {
     private final PaymentCompletionService paymentCompletionService;
     private final PaymentQueryService paymentQueryService;
 
-
+    // 외부 결제 검증과 내부 예약 확정까지 완료한 결과를 응답한다.
     @PostMapping("/{paymentId}/complete")
     public ApiResponse<PaymentCompletionResponse> complete(
             @AuthenticationPrincipal AuthMember authMember,

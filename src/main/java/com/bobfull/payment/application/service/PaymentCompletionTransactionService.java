@@ -19,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// 결제 행을 잠가 PAID 전이와 예약 확정을 하나의 트랜잭션으로 처리한다.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -30,6 +31,7 @@ public class PaymentCompletionTransactionService {
     private final Clock clock;
     private final BusinessMetricRecorder businessMetricRecorder;
 
+    // 외부 결제 검증 이후 내부 결제와 예약 상태를 원자적으로 확정한다.
     // 락 순서: Payment → Reservation(JOIN 확정 시 ReservationConfirmationService에서 획득).
     // ADR 0001 "복수 비관적 락의 획득 순서" 참고, 역순 금지.
     public PaymentCompletionResult complete(String paymentId, Long memberId) {
@@ -70,6 +72,7 @@ public class PaymentCompletionTransactionService {
         Long completedParticipantId = result.participationId();
         BigDecimal completedAmount = payment.getAmount();
         PaymentStatus completedStatus = payment.getStatus();
+        // 롤백된 결제가 완료 지표로 기록되지 않도록 커밋 이후에만 로그와 메트릭을 남긴다.
         AfterCommitExecutor.run(() -> {
             log.info(
                     "event=PAYMENT_COMPLETED paymentId={} memberId={} reservationId={} participantId={} amount={} afterStatus={}",

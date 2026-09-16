@@ -7,9 +7,7 @@ import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotReposit
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/**
- * 합석 테이블의 사용 여부 판단에 필요한 외부 도메인 조회를 한 곳에 둔다.
- */
+// 테이블에 연결된 회차와 활성 예약 사용 여부를 영속 데이터로 조회한다.
 @Component
 @RequiredArgsConstructor
 public class JpaSharedTableUsageAdapter implements SharedTableUsagePort {

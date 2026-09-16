@@ -1,6 +1,6 @@
 package com.bobfull.chat.infrastructure.ai;
 
-/** #66 moderation Prompt 원문과 저장할 버전 계약을 한 곳에서 관리한다. */
+// Moderation Prompt 원문과 분석 결과에 저장할 정책 버전을 함께 관리한다.
 public final class ModerationPrompt {
     public static final String PROMPT_VERSION = "moderation-prompt-v3-short-fragment-boundary";
     public static final String SPLIT_CONTEXT_PROMPT_VERSION = "moderation-prompt-v3-split-context";

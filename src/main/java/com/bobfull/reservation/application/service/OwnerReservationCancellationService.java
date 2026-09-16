@@ -6,13 +6,14 @@ import com.bobfull.reservation.application.port.ReservationCancellationRefundPor
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/** OWNER의 식당 귀책 예약 전체 취소 접수와 환불 요청 시작만 담당한다(Issue #46). */
+// 식당 사유의 예약 전체 취소를 접수하고 환불을 요청한다.
 @Service
 @RequiredArgsConstructor
 public class OwnerReservationCancellationService {
     private final ReservationCancellationTransactionService transactionService;
     private final ReservationCancellationRefundPort reservationCancellationRefundPort;
 
+    // 취소 상태를 먼저 확정한 뒤 잠금 트랜잭션 밖에서 전체 환불을 시작한다.
     public OwnerReservationCancellationResponse cancel(
             Long ownerMemberId, Long reservationId, ReservationCancellationRequest request) {
         var acceptance = transactionService.acceptByOwner(ownerMemberId, reservationId, request.reason());

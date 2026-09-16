@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-/**
- * 특정 도메인에 속하지 않는 서비스 전역 공통 에러 코드다.
- * 도메인 전용 에러는 이 Enum에 추가하지 않고 별도 Enum(예: MemberErrorCode)으로 분리한다.
- */
+// 입력·인증·권한·서버 오류처럼 특정 도메인에 속하지 않는 오류를 정의한다.
 @Getter
 @RequiredArgsConstructor
 public enum CommonErrorCode implements BaseErrorCode {

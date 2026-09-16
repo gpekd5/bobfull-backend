@@ -9,10 +9,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-/**
- * 생성·수정 시각을 공통으로 관리하는 Entity 상위 타입이다.
- * 절대 시점은 Instant로 저장하고, API 표시 시점의 Asia/Seoul 변환은 응답 계층에서 처리한다.
- */
+// Entity 생성·수정 절대 시점을 Instant로 공통 관리한다.
+// 사용자 지역 시각 변환은 저장 계층이 아닌 응답 계층에서 처리한다.
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter

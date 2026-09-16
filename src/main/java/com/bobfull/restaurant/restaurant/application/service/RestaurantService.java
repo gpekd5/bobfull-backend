@@ -31,10 +31,8 @@ import org.springframework.transaction.support.TransactionSynchronization;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.util.StringUtils;
 
-/**
- * OWNER 식당 등록·조회·수정·삭제와 사용자용 식당 상세 조회를 담당한다.
- * 소유권 대상은 SecurityContext의 인증 사용자 ID로만 결정하며 Request 값을 신뢰하지 않는다.
- */
+// 식당 등록·조회·수정·삭제와 사용자용 검색·상세 조회를 담당한다.
+// 소유권 대상은 클라이언트 입력이 아닌 인증 사용자 ID로 결정한다.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -45,6 +43,7 @@ public class RestaurantService {
     private final RestaurantImageService restaurantImageService;
     private final RestaurantSearchCacheStore restaurantSearchCacheStore;
 
+    // 최종 이미지 객체를 검증해 식당을 등록하고 커밋 후 검색 캐시를 무효화한다.
     @Transactional
     public RestaurantIdResponse register(Long ownerMemberId, RestaurantCreateRequest request) {
         String imageKey = resolveNewImageKey(ownerMemberId, request.imageKey());
@@ -72,30 +71,12 @@ public class RestaurantService {
                 OwnerRestaurantListResponse.from(restaurant, createImageUrl(restaurant))));
     }
 
-    /**
-     * date/time이 없는 검색만 Redis에 캐시한다(Issue #62). date/time이 있으면 결과가 TimeSlot
-     * 변경에도 영향을 받아 무효화 대상이 늘어나므로 이번 Issue의 최소 범위에서는 캐시하지 않고
-     * 항상 DB를 조회한다.
-     *
-     * <p>이 메서드 자체는 {@code @Transactional}을 붙이지 않는다. Cache Hit 경로는 DB를 전혀
-     * 만지지 않는데도 바깥 메서드가 {@code @Transactional}이면 매 요청마다 실제로 실행되는 SQL이
-     * 없어도 Hikari Connection을 열고 닫아 동시 요청에서 Pool을 불필요하게 점유한다는 것을
-     * 실측으로 확인했다(Issue #62 Evidence "Warm Hit 동시 반복" 참고). Cache Miss 경로에서
-     * {@code restaurantRepository.search(...)}가 실제로 DB에 접근할 때는
-     * {@link com.bobfull.restaurant.restaurant.infrastructure.repository.query.RestaurantSearchRepositoryImpl#search}에 명시된
-     * 자체 트랜잭션이 그 경로만 감싼다 — 이 메서드가 트랜잭션 없이도 안전한 것은 그 때문이며,
-     * "저장소 프록시가 기본적으로 트랜잭션을 연다"는 가정 때문이 아니다(그 가정은 커스텀
-     * repository fragment에는 적용되지 않아 실제로는 틀렸었다, PR #202 리뷰로 확인).</p>
-     *
-     * <p>Cache Miss 시 {@link RestaurantSearchCacheStore#find}가 반환한 버전 스냅샷을 그대로
-     * {@link RestaurantSearchCacheStore#put}에 넘긴다 — DB 조회 도중 다른 트랜잭션이 커밋되어
-     * 버전이 올라가도, 이번 결과는 조회 시점의 옛 버전에만 저장돼 stale 값이 "현재" 버전으로
-     * 노출되지 않는다(PR #202 재리뷰 반영, {@link RestaurantSearchCacheStore} 클래스 설명 참고).</p>
-     */
+    // 캐시 대상 검색은 Redis를 우선 조회하고 Miss 결과를 같은 버전 스냅샷에 저장한다.
     public PageResponse<RestaurantSearchResponse> searchRestaurants(
             RestaurantSearchRequest request,
             Pageable pageable
     ) {
+        // date/time 검색은 TimeSlot 변경에도 영향을 받으므로 Restaurant 전용 캐시에서 제외한다.
         if (!RestaurantSearchCacheKey.isCacheEligible(request)) {
             return searchRestaurantsFromDb(request, pageable);
         }
@@ -106,8 +87,10 @@ public class RestaurantService {
             return toPageResponse(lookup.result().get());
         }
 
+        // Cache Hit에는 트랜잭션을 열지 않고, Miss의 DB 조회만 fragment의 읽기 전용 트랜잭션에 맡긴다.
         Page<Restaurant> restaurants = restaurantRepository.search(request, pageable);
         CachedRestaurantSearchResult result = CachedRestaurantSearchResult.from(restaurants);
+        // 조회 중 버전이 바뀌어도 stale 결과가 새 버전 key에 저장되지 않도록 기존 스냅샷을 사용한다.
         restaurantSearchCacheStore.put(lookup.version(), cacheKey, result);
         return toPageResponse(result);
     }
@@ -143,6 +126,7 @@ public class RestaurantService {
         return OwnerRestaurantDetailResponse.from(restaurant, createImageUrl(restaurant));
     }
 
+    // 소유권과 이미지 사용 제약을 검증하고 커밋 후 캐시 무효화와 이전 이미지 정리를 수행한다.
     @Transactional
     public RestaurantIdResponse update(Long ownerMemberId, Long restaurantId, RestaurantUpdateRequest request) {
         Restaurant restaurant = findActiveOrThrow(restaurantId);
@@ -164,13 +148,12 @@ public class RestaurantService {
         return RestaurantIdResponse.from(restaurant);
     }
 
+    // 활성 식당의 소유권을 확인해 soft delete하고 커밋 후 검색 캐시를 무효화한다.
     @Transactional
     public RestaurantIdResponse delete(Long ownerMemberId, Long restaurantId) {
         Restaurant restaurant = findActiveOrThrow(restaurantId);
         validateOwnership(restaurant, ownerMemberId);
 
-        // 합석 테이블·회차·예약 도메인이 아직 없어 연결 데이터 검사를 하지 않는다.
-        // 해당 도메인 구현 시 활성 데이터가 있으면 여기서 RestaurantErrorCode.RESTAURANT_DELETE_NOT_ALLOWED를 던져야 한다(Issue #31 결정 2).
         restaurant.softDelete(clock.instant());
         bumpSearchCacheVersionAfterCommit();
         return RestaurantIdResponse.from(restaurant);
@@ -232,13 +215,8 @@ public class RestaurantService {
         return restaurantImageService.createGetUrl(restaurant.getImageKey());
     }
 
-    /**
-     * DB 트랜잭션 커밋 후에만 검색 캐시 버전을 올린다(PR #202 리뷰 반영). 커밋 전에 올리면
-     * 아직 반영되지 않은 변경 사항 중간에 동시 검색 요청이 새 버전으로 캐시 Miss를 일으키고,
-     * 그 시점 DB에서는 여전히 이전 값을 읽어 그 값을 새 버전 key에 다시 저장해버릴 수 있다
-     * (이후 요청은 TTL 동안 이 stale 값을 "최신"으로 오인해 Hit한다). afterCommit에서 올리면
-     * 그 시점 이후에 시작하는 모든 DB 조회가 이미 커밋된 값을 보게 되어 이 경쟁이 사라진다.
-     */
+    // 커밋 전에 버전을 올리면 미커밋 값을 조회한 결과가 새 key에 저장될 수 있다.
+    // 캐시 버전은 afterCommit에서만 올려 이후 조회가 커밋된 데이터를 보도록 한다.
     private void bumpSearchCacheVersionAfterCommit() {
         if (TransactionSynchronizationManager.isSynchronizationActive()) {
             TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
@@ -252,6 +230,7 @@ public class RestaurantService {
         restaurantSearchCacheStore.bumpVersion();
     }
 
+    // DB 롤백 뒤 이미지가 먼저 사라지는 일을 막기 위해 이전 객체는 커밋 후 삭제한다.
     private void deletePreviousImageAfterCommit(String previousImageKey, String newImageKey) {
         if (!StringUtils.hasText(previousImageKey) || previousImageKey.equals(newImageKey)) {
             return;
@@ -276,6 +255,7 @@ public class RestaurantService {
         try {
             restaurantImageService.delete(previousImageKey);
         } catch (RuntimeException exception) {
+            // 이미 커밋된 식당 수정은 유지하고 실패한 저장소 정리만 기록한다.
             log.warn("event=RESTAURANT_IMAGE_DELETE_FAILED imageKey={} reason={}",
                     previousImageKey, exception.getClass().getSimpleName(), exception);
         }

@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-/**
- * 합석 테이블 도메인 전용 에러 코드다.
- */
 @Getter
 @RequiredArgsConstructor
 public enum SharedTableErrorCode implements BaseErrorCode {

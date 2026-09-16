@@ -4,6 +4,7 @@ import com.bobfull.reservation.domain.entity.ParticipationStatus;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import java.time.Instant;
 
+// 채팅 계층이 예약 참여 상태와 메시지 전송 가능 시간을 조회하는 경계다.
 public interface ReservationChatAccessPort {
 
     ChatAccess read(Long reservationId, Long memberId);
@@ -30,11 +31,7 @@ public interface ReservationChatAccessPort {
             return participationStatus != ParticipationStatus.CANCELLED;
         }
 
-        /**
-         * 식사 종료 시각(now >= diningEndAt)부터는 ReservationStatus가 아직 CONFIRMED로 남아
-         * 있어도 신규 SEND를 차단한다(Issue #175 Q1). CLOSED 전이 스케줄러의 지연·장애와
-         * 무관하게 이 시간 직접 비교가 즉시 정책을 보장한다.
-         */
+        // CLOSED 전이 지연과 무관하게 식사 종료 시각부터 신규 메시지를 즉시 차단한다.
         public boolean canSend(Instant now) {
             return isActive()
                     && (reservationStatus == ReservationStatus.RECRUITING

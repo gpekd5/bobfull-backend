@@ -11,6 +11,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
 
+// 인증된 STOMP 발신자의 메시지 전송 요청을 Application 흐름으로 전달한다.
 @Controller
 @RequiredArgsConstructor
 public class ChatMessageController {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// OWNER에게 원문 없는 식당 피드백 집계만 제공한다.
 @RestController
 @RequestMapping("/api/owner/restaurants")
 @RequiredArgsConstructor

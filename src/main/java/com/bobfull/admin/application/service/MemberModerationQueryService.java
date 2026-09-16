@@ -18,7 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** ADMIN이 AI moderation 신호를 회원별로 집계하고 근거 메시지를 조회하는 서비스다. */
+// AI moderation 신호를 회원별로 집계하고 관리자 검토 근거를 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -37,6 +37,7 @@ public class MemberModerationQueryService {
         return PageResponse.from(results);
     }
 
+    // 회원의 moderation 집계와 위험도별 건수, 근거 메시지를 함께 조회한다.
     public AdminMemberModerationDetailResponse getMemberModeration(Long memberId) {
         if (!memberRepository.existsById(memberId)) {
             throw new CustomException(MemberErrorCode.MEMBER_ID_NOT_FOUND);

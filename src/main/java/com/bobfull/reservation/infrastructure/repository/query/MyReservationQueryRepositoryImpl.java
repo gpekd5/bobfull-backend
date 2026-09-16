@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+// 회원의 참여 관계를 기준으로 내 예약 목록과 상세를 QueryDSL로 조회한다.
 public class MyReservationQueryRepositoryImpl implements MyReservationQueryRepository {
 
     private final JPAQueryFactory queryFactory;

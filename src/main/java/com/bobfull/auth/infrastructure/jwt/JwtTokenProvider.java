@@ -12,12 +12,8 @@ import java.util.Date;
 import java.util.UUID;
 import javax.crypto.SecretKey;
 
-/**
- * V1 Access Token(JWT)의 발급과 검증을 담당한다.
- * jjwt(jjwt-api/jjwt-impl/jjwt-gson)로 서명·검증을 위임한다.
- * jjwt-jackson 대신 jjwt-gson을 쓰는 이유는, 이 프로젝트가 Jackson 3(tools.jackson)을 쓰는데
- * jjwt-jackson은 Jackson 2(com.fasterxml.jackson)에 의존해 버전이 충돌하기 때문이다.
- */
+// Access Token을 발급하고 서명·Claim·만료를 검증한다.
+// Jackson 3과의 버전 충돌을 피하기 위해 JJWT는 Gson 구현을 사용한다.
 public class JwtTokenProvider {
 
     private static final String CLAIM_MEMBER_ID = "memberId";
@@ -47,24 +43,12 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    /**
-     * 서명·형식·만료를 검증하고 AuthMember를 구성한다.
-     * 검증에 실패하는 모든 경우(형식 오류, 서명 불일치, 만료, Claim 손상)를
-     * InvalidJwtException 하나로 통일해 필터가 단일 처리로 401로 이어지게 한다.
-     */
+    // 검증된 Access Token에서 인증 컨텍스트에 사용할 회원 정보를 만든다.
     public AuthMember parseAccessToken(String token) {
         return parseAccessTokenClaims(token).authMember();
     }
 
-    /**
-     * Access Token Blacklist 등록(로그아웃)·조회(인증 필터)에 필요한 jti·만료 시각까지
-     * 함께 반환한다(Issue #186). 검증 실패 처리는 {@link #parseAccessToken}과 동일하다.
-     * jti는 필수 Claim으로 취급하지 않는다 — 이 기능 배포 이전에 발급된 Access Token(배포 시점에
-     * 로그인 중이던 회원이 들고 있는 토큰)에는 jti가 없으며, 이를 필수로 요구하면 배포 순간 그
-     * 토큰 전원이 즉시 401로 튕긴다. jti가 없는 토큰은 인증은 그대로 허용하고 Blacklist 조회·등록만
-     * 건너뛴다(호출자 책임, {@link com.bobfull.auth.infrastructure.security.JwtAuthenticationFilter},
-     * {@code AuthService.logout} 참고). 남은 위험은 기존 만료 주기(배포 전 3600초) 안에서 자연 소멸한다.
-     */
+    // Blacklist 처리에 필요한 jti와 만료 시각을 포함해 Access Token Claim을 검증한다.
     public AccessTokenClaims parseAccessTokenClaims(String token) {
         try {
             var claims = Jwts.parser()
@@ -82,13 +66,15 @@ public class JwtTokenProvider {
             }
 
             AuthMember authMember = new AuthMember(memberId.longValue(), MemberRole.valueOf(role));
+            // jti가 없는 호환 토큰도 인증하며, 호출자가 Blacklist 처리만 건너뛴다.
             return new AccessTokenClaims(authMember, claims.getId(), expiration.toInstant());
         } catch (JwtException | IllegalArgumentException e) {
+            // 검증 실패 원인을 통일해 인증 필터가 하나의 401 경로로 처리하도록 한다.
             throw new InvalidJwtException("토큰을 검증할 수 없습니다.", e);
         }
     }
 
-    /** jti는 이 기능 배포 이전에 발급된 토큰에서 null일 수 있다(위 {@link #parseAccessTokenClaims} 참고). */
+    // 호환 토큰은 jti가 없을 수 있다.
     public record AccessTokenClaims(AuthMember authMember, String jti, Instant expiresAt) {
     }
 }

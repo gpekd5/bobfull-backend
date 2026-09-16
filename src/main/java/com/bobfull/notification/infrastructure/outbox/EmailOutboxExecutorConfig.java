@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-/** SMTP I/O를 요청 처리와 분리하는 이메일 Outbox 전용의 bounded executor 설정이다. */
+// SMTP I/O를 요청 처리와 분리하고 적체를 제한하는 이메일 Outbox executor를 구성한다.
 @Configuration
 public class EmailOutboxExecutorConfig {
 

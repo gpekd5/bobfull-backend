@@ -40,7 +40,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** ChatMessage에서 식당을 역추적해 파생 결과를 만들고 OWNER용 익명 집계를 제공한다. */
+// 채팅 리뷰를 선별·보호·분석해 익명 식당 Insight로 저장하고 OWNER 집계를 제공한다.
 @Service
 public class RestaurantFeedbackInsightService {
 
@@ -91,6 +91,7 @@ public class RestaurantFeedbackInsightService {
         this.transactionService = transactionService;
     }
 
+    // 중복 분석을 건너뛰고 개인정보·후보 검증 후 AI 결과를 정규화해 저장한다.
     @Transactional
     public void analyze(Long messageId) {
         if (insights.findByMessageIdAndPromptVersion(messageId, activePromptVersion).isPresent()) {
@@ -100,10 +101,12 @@ public class RestaurantFeedbackInsightService {
         ChatMessage message = messages.findById(messageId)
                 .orElseThrow(() -> new CustomException(ChatErrorCode.CHAT_MESSAGE_ID_NOT_FOUND));
         Long restaurantId = resolveRestaurantId(message.getChatRoomId());
+        // 리뷰 원문이 외부 AI 신뢰 경계를 넘기 전에 개인정보와 재식별 단서를 먼저 차단한다.
         if (privacyValidator.containsSensitiveIdentifier(message.getContent())) {
             saveExcluded(messageId, restaurantId, RestaurantFeedbackAnalysisStatus.EXCLUDED_INPUT_PII);
             return;
         }
+        // Rule은 명백한 비후보만 선제 제외해 불필요한 외부 AI 호출을 줄인다.
         if (!candidateGate.isCandidate(message.getContent())) {
             saveExcluded(messageId, restaurantId, RestaurantFeedbackAnalysisStatus.EXCLUDED_CANDIDATE);
             return;
@@ -111,9 +114,7 @@ public class RestaurantFeedbackInsightService {
 
         RestaurantFeedbackInsightPort activeProvider = provider.getIfAvailable();
         if (activeProvider == null) {
-            // consumer-enabled=false인 Production 기본값에서는 Consumer Bean 자체가 없어 이 메서드가 호출되지
-            // 않는다. 반대로 consumer-enabled=true인데 ai.restaurant-insight.enabled=false로 Provider가 없는
-            // 설정 오류 상태에서 여기까지 도달하면, 조용히 offset을 커밋시키지 않고 기술 실패로 재시도/DLT되게 한다.
+            // Consumer만 활성화된 설정 오류는 offset을 커밋하지 않고 기술 실패로 재시도·DLT 처리한다.
             throw new IllegalStateException(
                     "Restaurant Insight consumer is enabled but no RestaurantFeedbackInsightPort bean is configured"
             );
@@ -128,12 +129,7 @@ public class RestaurantFeedbackInsightService {
                 !result.analysis().relevant() || result.analysis().items() == null
                         ? List.of()
                         : result.analysis().items();
-        // LLM이 반환한 normalizedAspect는 저장 여부와 무관하게 항상 privacy 검증을 거친다(PII/재식별
-        // 단서가 섞인 Item은 그 자체로 신뢰할 수 없는 결과로 보고 버린다). 저장 시에는 MENU aspectType과
-        // ETC opinionType만 실제 대상 식별이 필요해(ETC는 "기타"라는 이름과 달리 의미가 enum만으로
-        // 확정되지 않는 자유 범주) 검증된 LLM normalizedAspect를 그대로 쓰고, 나머지 opinionType(예:
-        // FRIENDLINESS/PRICE_LEVEL/CLEANLINESS 등 의미가 opinionType만으로 이미 확정되는 경우)은
-        // 아래에서 canonical 문구로 치환한다.
+        // 모델 출력도 신뢰 경계 밖의 값이므로 모든 자유 텍스트를 저장 전에 다시 검증한다.
         List<RestaurantFeedbackAnalysis.Item> validItems = rawItems.stream()
                 .filter(item -> item.category() != null
                         && item.aspectType() != null
@@ -162,10 +158,8 @@ public class RestaurantFeedbackInsightService {
         // 같은 opinionType을 두 번 반환), UNIQUE(analysis, 5-field) 위반을 막기 위해 저장 전 중복 제거한다.
         LinkedHashSet<List<Object>> seenKeys = new LinkedHashSet<>();
         for (RestaurantFeedbackAnalysis.Item item : validItems) {
-            // aspectType==ETC는 이름과 달리 enum만으로 실제 대상을 특정할 수 없는 자유-target
-            // 범주이므로 MENU와 동일하게 취급한다. 그렇지 않으면 opinionType만으로
-            // canonicalize할 때 서로 다른 대상("국물"/"반찬"/"소스" 등)이 같은 opinionType
-            // 하나로 잘못 병합될 수 있다(리뷰 지적: MAJOR).
+            // MENU와 ETC는 enum만으로 실제 대상을 특정할 수 없어 검증된 모델 문구를 유지한다.
+            // 이를 canonicalize하면 "국물"과 "반찬"처럼 서로 다른 대상이 같은 의견으로 병합될 수 있다.
             boolean keepLlmAspect = item.aspectType() == FeedbackAspectType.MENU
                     || item.aspectType() == FeedbackAspectType.ETC
                     || item.opinionType() == FeedbackOpinionType.ETC;
@@ -221,6 +215,7 @@ public class RestaurantFeedbackInsightService {
         }
     }
 
+    // OWNER 권한을 확인하고 최근 7일간 서로 다른 발신자 3명 이상인 익명 의견만 집계한다.
     @Transactional(readOnly = true)
     public RestaurantFeedbackInsightListResponse getOwnerInsights(Long ownerId, Long restaurantId) {
         Restaurant restaurant = restaurants.findByIdAndDeletedAtIsNull(restaurantId)

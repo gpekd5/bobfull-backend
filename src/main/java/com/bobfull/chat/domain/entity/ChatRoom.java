@@ -12,7 +12,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/** 최초 CREATE 결제 완료 후 예약마다 하나만 생성되는 채팅방이다. */
+// 최초 예약 결제 완료 후 예약마다 하나만 생성되는 채팅방이다.
 @Entity
 @Table(name = "chat_room", uniqueConstraints = @UniqueConstraint(name = "uk_chat_room_reservation", columnNames = "reservation_id"))
 @Getter

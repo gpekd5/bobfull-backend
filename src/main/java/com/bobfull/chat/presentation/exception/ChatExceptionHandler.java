@@ -9,9 +9,7 @@ import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-/**
- * Chat 신고 검토에서 발생하는 동시성 충돌을 기존 API 오류로 변환한다.
- */
+// 채팅 신고 검토의 낙관적 락 충돌을 일관된 API 오류로 변환한다.
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @RestControllerAdvice
 public class ChatExceptionHandler {

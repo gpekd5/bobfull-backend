@@ -24,7 +24,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/** ChatMessage 원본과 연결된 AI 분석 결과 및 실패 이력이다. */
+// 채팅 원문과 분리해 AI 분석 결과·모델 정보·최종 실패를 기록한다.
 @Entity
 @Table(name = "chat_moderation", uniqueConstraints = @UniqueConstraint(
         name = "uk_chat_moderation_message", columnNames = "chat_message_id"))

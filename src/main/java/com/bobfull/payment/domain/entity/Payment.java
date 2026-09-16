@@ -15,10 +15,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 결제 완료 전 10분 임시 선점을 표현하는 결제 준비 기록이다.
- * 외부 paymentId와 현재 시각은 서비스가 생성해 전달하며, 이 엔티티는 READY 생성 불변식만 관리한다.
- */
+// 결제 준비부터 완료·만료·환불까지 내부 결제 상태와 예약 연결 정보를 관리한다.
 @Entity
 @Table(name = "payment", indexes = {
         @jakarta.persistence.Index(name = "idx_payment_status_expires_at_id", columnList = "payment_status, expires_at, payment_id"),
@@ -163,7 +160,7 @@ public class Payment extends BaseTimeEntity {
         return true;
     }
 
-    /** 결제 전체 환불이 완료되면 결제 완료 시각은 보존한 채 환불 완료 상태로 전이한다. */
+    // 전체 환불 뒤에도 결제 완료 이력을 보존하도록 paidAt은 유지한다.
     public void markRefunded() {
         if (status != PaymentStatus.PAID) {
             throw new IllegalStateException("PAID Payment만 환불 완료로 전이할 수 있습니다.");

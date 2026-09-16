@@ -45,7 +45,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** OWNER의 참여자별 노쇼 처리·해제·이력 조회를 담당한다(Issue #48 §9-1~9-5). */
+// 식당 소유권과 식사 종료를 검증해 참여자의 노쇼 상태와 이력을 관리한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -76,6 +76,7 @@ public class NoShowService {
                 participant -> NoShowCandidateResponse.of(participant, membersById.get(participant.getMemberId()).getName())));
     }
 
+    // 식사가 끝난 참여자를 잠가 노쇼 상태와 처리 이력을 함께 기록한다.
     @Transactional
     public NoShowProcessResponse markNoShow(Long ownerMemberId, Long reservationId, Long participationId) {
         OwnershipContext context = resolveOwnership(reservationId, ownerMemberId);
@@ -89,10 +90,12 @@ public class NoShowService {
         noShowHistoryRepository.save(NoShowHistory.marked(participant.getId(), ownerMemberId, clock.instant()));
         log.info("event=NO_SHOW_MARKED reservationId={} participantId={} actorId={} afterStatus={}",
                 reservationId, participationId, ownerMemberId, participant.getParticipationStatus());
+        // 롤백된 노쇼 처리가 운영 지표에 포함되지 않도록 커밋 뒤에 기록한다.
         AfterCommitExecutor.run(() -> businessMetricRecorder.increment(BusinessMetricEvent.NO_SHOW_MARKED));
         return new NoShowProcessResponse(reservationId, participationId);
     }
 
+    // 노쇼 참여자를 잠가 예약 참여 상태로 복구하고 해제 이력을 기록한다.
     @Transactional
     public NoShowProcessResponse unmarkNoShow(Long ownerMemberId, Long reservationId, Long participationId) {
         resolveOwnership(reservationId, ownerMemberId);
@@ -141,22 +144,14 @@ public class NoShowService {
         return new OwnershipContext(reservation, timeSlot);
     }
 
-    /**
-     * 식사 종료 경계는 {@code now >= TimeSlot.endAt}이다(Issue #175 Q1·Q4). 채팅 SEND 차단과
-     * 동일한 경계를 사용해, 정확히 종료 시각인 순간부터 노쇼 처리를 허용한다.
-     */
+    // 채팅 전송 차단과 같은 경계인 now >= endAt부터 노쇼 처리를 허용한다.
     private void requireDiningEnded(TimeSlot timeSlot) {
         if (clock.instant().isBefore(timeSlot.getEndAt())) {
             throw new CustomException(ReservationErrorCode.INVALID_STATE);
         }
     }
 
-    /**
-     * 노쇼 처리·해제 대상 참여자를 비관적 락으로 조회한다.
-     * 락 없이 조회·상태 확인·전이를 하면 동시에 들어온 두 요청이 서로의 커밋 전에 같은 상태를
-     * 읽어 둘 다 검증을 통과할 수 있다 — 참여자 최종 상태는 같은 값으로 수렴해 깨지지 않지만,
-     * NoShowHistory가 중복 기록돼 §9-4 이력 조회에 그대로 노출된다(PR #133 리뷰 반영).
-     */
+    // 동시 요청이 같은 상태를 읽고 모두 이력을 남기지 않도록 참여자를 비관적으로 잠근다.
     private ReservationParticipant findParticipantWithLockOrThrow(Long reservationId, Long participationId) {
         return reservationParticipantRepository.findWithLockByIdAndReservationId(participationId, reservationId)
                 .orElseThrow(() -> new CustomException(ReservationErrorCode.PARTICIPATION_ID_NOT_FOUND));

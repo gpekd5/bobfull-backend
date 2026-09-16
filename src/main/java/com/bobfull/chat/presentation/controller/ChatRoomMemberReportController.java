@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// 채팅 참여자가 상대 회원을 신고하는 HTTP 경계를 제공한다.
 @RestController
 @RequestMapping("/api/chat-rooms/{chatRoomId}/members/{reportedMemberId}/reports")
 @RequiredArgsConstructor

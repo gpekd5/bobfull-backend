@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// 모집 중인 예약을 검색 조건과 남은 좌석 기준으로 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

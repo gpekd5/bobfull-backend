@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+// 환불 생성과 상태 전이를 비관적 락과 독립 트랜잭션 경계 안에서 확정한다.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -32,6 +33,7 @@ public class RefundTransactionService {
     private final RefundIdempotencyKeyPort idempotencyKeyPort;
     private final BusinessMetricRecorder businessMetricRecorder;
 
+    // 외부 환불 호출 전에 REQUESTED 상태와 멱등성 키를 별도 트랜잭션으로 확정한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public RefundPreparation createRequested(Long reservationId, Long participantId, String cancelReason) {
         Payment payment = paymentRepository.findByReservationIdAndReservationParticipantId(reservationId, participantId)
@@ -65,6 +67,7 @@ public class RefundTransactionService {
         return new RefundPreparation(refund, true);
     }
 
+    // 외부 환불 응답을 반영하고 완료된 결제와 예약 취소 후속 처리를 위한 결과를 반환한다.
     @Transactional
     public RefundCompletion reflectExternalResult(Long refundId, String cancellationId, boolean completed) {
         // 비관적 락으로 조회한다 — CancelPending/Cancelled 웹훅과 동시에 같은 Refund를 갱신할 때
@@ -95,6 +98,7 @@ public class RefundTransactionService {
         return RefundCompletion.from(refund);
     }
 
+    // PortOne이 명시적으로 거절한 환불을 독립 트랜잭션에서 실패 상태로 확정한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void markFailed(Long refundId) {
         Refund refund = refundRepository.findWithLockById(refundId)
@@ -106,6 +110,7 @@ public class RefundTransactionService {
         }
     }
 
+    // CancelPending 웹훅을 기존 종료 상태를 역행하지 않도록 반영한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void markProcessingFromWebhook(String paymentId, String cancellationId) {
         findRefundForWebhook(paymentId, cancellationId).ifPresent(refund -> {
@@ -117,6 +122,7 @@ public class RefundTransactionService {
         });
     }
 
+    // 외부 PG 상태 확인 이후 환불의 마지막 PG 확인 시각을 갱신한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void markPgChecked(Long refundId) {
         if (refundRepository.updateLastPgCheckedAt(refundId, clock.instant()) == 0) {
@@ -124,6 +130,7 @@ public class RefundTransactionService {
         }
     }
 
+    // Cancelled 웹훅을 멱등하게 완료 처리하고 예약 취소 후속 처리에 필요한 결과를 반환한다.
     @Transactional
     public java.util.Optional<RefundCompletion> completeFromWebhook(String paymentId, String cancellationId) {
         return findRefundForWebhook(paymentId, cancellationId).map(refund -> {
@@ -143,33 +150,15 @@ public class RefundTransactionService {
         });
     }
 
-    /**
-     * paymentId로 먼저 찾고, 그 결과로 판단이 안 될 때만 cancellationId로 대신 찾는다. 원래는
-     * cancellationId를 먼저 조회했는데, cancellation_id는 unique 컬럼이면서 최초 웹훅 시점에는
-     * 어떤 행에도 그 값이 없다. 존재하지 않는 값을 unique 인덱스에서 찾는 조회(findWithLockByCancellationId)는
-     * InnoDB가 그 값이 들어갈 빈 갭에 X 락을 걸게 만들고, 같은 그룹의 취소완료 웹훅 3건 이상이
-     * cancellation_id가 전부 NULL인 상태로 동시에 도착하면 그 갭 락들이 서로 얽혀 실제 MySQL
-     * 데드락이 났다(Issue #270, RefundCancellationIdGapLockMySqlConcurrencyIntegrationTest로 재현).
-     * paymentId는 Refund 생성 시점부터 항상 이미 존재하는 값이라 이 조회는 항상 실제 행에 대한
-     * 일반 락만 걸어 이 갭 락 자체가 생기지 않는다.
-     *
-     * <p>timeout·connection reset처럼 PortOne 응답을 파싱하기 전에 실패한 요청은 Refund에
-     * cancellationId가 저장된 적이 없어(Refund.markProcessing/complete만 이 필드를 채운다)
-     * cancellationId만으로는 이후 도착하는 웹훅과 영영 매칭되지 않는다. paymentId는 Refund 생성
-     * 시점부터 Payment에 이미 있으므로 이 경로로 그 결과 불명확 요청도 웹훅이 회수할 수 있다.</p>
-     *
-     * <p>paymentId로 찾은 Refund에 이미 다른 cancellationId가 저장돼 있으면(예: PROCESSING으로
-     * 확정된 다른 취소 시도) 이번 웹훅의 cancellationId와 일치하는 경우(중복 전달된 같은 웹훅)만
-     * 통과시키고, 그 외에는 무시한다 — 그렇지 않으면 같은 Payment에 대한 서로 다른 취소 시도(웹훅)가
-     * 기존 Refund를 엉뚱한 cancellationId로 덮어쓰고 완료 처리할 수 있다. paymentId로 못
-     * 찾으면(Payment 자체가 없는 예외적인 경우) cancellationId로 마지막 시도를 한다 — 이미 존재하는
-     * 값에 대한 조회라 갭 락 위험은 없다.</p>
-     */
+    // cancellationId가 아직 없는 웹훅을 unique 인덱스로 먼저 잠그면 InnoDB gap lock끼리
+    // 교착할 수 있다. 생성 시점부터 존재하는 paymentId로 실제 Refund 행을 먼저 잠근다.
     private java.util.Optional<Refund> findRefundForWebhook(String paymentId, String cancellationId) {
         var byPaymentId = paymentRepository.findByPaymentId(paymentId).flatMap(payment -> refundRepository.findWithLockByPayment_Id(payment.getId()));
         if (byPaymentId.isPresent()) {
             Refund refund = byPaymentId.get();
             String storedCancellationId = refund.getCancellationId();
+            // 외부 응답을 받지 못해 cancellationId가 비어 있어도 paymentId로 후속 웹훅을 회수한다.
+            // 이미 다른 cancellationId가 확정됐다면 중복 웹훅만 허용해 잘못된 완료 전이를 막는다.
             if (storedCancellationId == null || storedCancellationId.equals(cancellationId)) {
                 return byPaymentId;
             }
@@ -177,6 +166,7 @@ public class RefundTransactionService {
                     paymentId, refund.getId(), cancellationId, storedCancellationId);
             return java.util.Optional.empty();
         }
+        // paymentId로 찾지 못한 예외 경로에서는 이미 존재하는 cancellationId만 마지막으로 조회한다.
         return refundRepository.findWithLockByCancellationId(cancellationId);
     }
 
@@ -188,6 +178,7 @@ public class RefundTransactionService {
         BigDecimal completedAmount = refund.getAmount();
         RefundStatus completedRefundStatus = refund.getStatus();
         PaymentStatus completedPaymentStatus = refund.getPayment().getStatus();
+        // 롤백된 환불이 완료 지표로 기록되지 않도록 커밋 이후에만 로그와 메트릭을 남긴다.
         AfterCommitExecutor.run(() -> {
             log.info(
                     "event=REFUND_COMPLETED refundId={} paymentId={} reservationId={} participantId={} amount={} afterStatus={} paymentAfterStatus={}",

@@ -21,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// 채팅 참여 권한을 확인하고 메시지 이력을 cursor 기반으로 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

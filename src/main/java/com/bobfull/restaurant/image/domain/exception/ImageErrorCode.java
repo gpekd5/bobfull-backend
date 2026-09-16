@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-/**
- * 식당 이미지 업로드와 S3 객체 검증 전용 에러 코드다.
- */
 @Getter
 @RequiredArgsConstructor
 public enum ImageErrorCode implements BaseErrorCode {

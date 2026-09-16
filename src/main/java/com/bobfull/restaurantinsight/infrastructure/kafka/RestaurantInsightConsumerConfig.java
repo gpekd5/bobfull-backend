@@ -13,6 +13,7 @@ import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.util.backoff.FixedBackOff;
 
+// Restaurant Insight Consumer의 재시도 제외 기준과 전용 DLT 처리기를 구성한다.
 @Configuration
 public class RestaurantInsightConsumerConfig {
 

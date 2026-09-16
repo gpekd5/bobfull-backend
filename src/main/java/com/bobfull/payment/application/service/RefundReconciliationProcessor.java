@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-/** PortOne 조회 결과를 기존 환불 완료 경로에 안전하게 연결한다. */
+// 장기 처리 중인 환불의 PortOne 상태를 조회해 기존 완료 경로로 연결한다.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -16,6 +16,7 @@ public class RefundReconciliationProcessor {
     private final RefundTransactionService transactionService;
     private final RefundCompletionService completionService;
 
+    // PG 조회 결과를 반영하고 성공 여부와 무관하게 마지막 조회 시각을 기록한다.
     public PortOneRefundPort.ReconciliationResult reconcile(Refund refund) {
         PortOneRefundPort.ReconciliationResult result = null;
         RuntimeException failure = null;

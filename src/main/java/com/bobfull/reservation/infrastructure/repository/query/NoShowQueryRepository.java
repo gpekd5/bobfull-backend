@@ -6,7 +6,7 @@ import java.time.Instant;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-/** §9-4·§9-5 노쇼 이력·집계 조회를 담당한다(Issue #48). */
+// 예약별 노쇼 이력과 식당별 노쇼 고객 집계를 조회한다.
 public interface NoShowQueryRepository {
 
     Page<NoShowHistoryResult> findHistoriesByReservationId(Long reservationId, Pageable pageable);

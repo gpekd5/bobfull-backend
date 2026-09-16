@@ -2,11 +2,7 @@ package com.bobfull.common.exception;
 
 import org.springframework.http.HttpStatus;
 
-/**
- * 모든 도메인 에러 코드 Enum이 구현해야 하는 최소 계약이다.
- * 새 도메인은 이 인터페이스를 구현하는 별도 Enum을 추가하기만 하면 되고,
- * GlobalExceptionHandler·ApiResponse는 이 인터페이스만 알면 되므로 수정이 필요 없다.
- */
+// 도메인 오류를 공통 HTTP 응답으로 변환하기 위한 최소 계약이다.
 public interface BaseErrorCode {
 
     HttpStatus getHttpStatus();

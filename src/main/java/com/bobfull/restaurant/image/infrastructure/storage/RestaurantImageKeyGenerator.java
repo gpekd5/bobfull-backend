@@ -3,9 +3,7 @@ package com.bobfull.restaurant.image.infrastructure.storage;
 import java.util.UUID;
 import org.springframework.stereotype.Component;
 
-/**
- * 인증된 OWNER ID를 포함한 임시·최종 S3 Object Key를 생성한다.
- */
+// 인증된 소유자 ID를 포함한 임시·최종 S3 object key를 생성한다.
 @Component
 public class RestaurantImageKeyGenerator {
 

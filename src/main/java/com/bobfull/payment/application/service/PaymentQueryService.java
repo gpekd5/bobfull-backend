@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// 인증 사용자가 조회할 수 있는 결제 목록과 상세 정보를 제공한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

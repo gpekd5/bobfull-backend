@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
-/** #251의 고신뢰 CLEAR_FLAGGED 전용 정책이다. 매칭하지 않으면 항상 LLM에 위임한다. */
+// 오탐 위험이 낮은 명확한 패턴만 즉시 차단하고 나머지는 AI 분석에 맡긴다.
 @Component
 public class ModerationRulePolicy {
     private static final Pattern MOBILE_PHONE =

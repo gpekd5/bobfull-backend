@@ -18,6 +18,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+// 분석된 의견의 집계 기준과 감정 결과를 원문 없이 보관한다.
 @Entity
 @Table(
         name = "restaurant_feedback_item",

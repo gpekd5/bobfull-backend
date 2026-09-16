@@ -1,5 +1,6 @@
 package com.bobfull.payment.application.port;
 
+// PortOne 웹훅 서명을 검증하고 결제 도메인이 처리할 이벤트로 변환한다.
 public interface PortOneWebhookVerifier {
 
     WebhookEvent verify(String rawBody, String id, String signature, String timestamp)

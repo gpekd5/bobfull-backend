@@ -10,6 +10,7 @@ import io.portone.sdk.server.webhook.WebhookVerifier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+// PortOne SDK로 웹훅 서명을 검증하고 내부에서 사용하는 이벤트 유형으로 변환한다.
 @Component
 @RequiredArgsConstructor
 public class PortOneSdkWebhookVerifier implements PortOneWebhookVerifier {

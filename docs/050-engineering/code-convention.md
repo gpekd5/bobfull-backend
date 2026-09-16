@@ -457,7 +457,56 @@ public HttpStatus getHttpStatus() {
 }
 ```
 
-주석은 코드만 반복하지 않는다. domain 규칙, 보안 의도, framework 예외와 확장 지점처럼 처음 읽는 사람이 코드만으로 알기 어려운 이유를 설명한다. 공개 계약이나 복잡한 책임은 JavaDoc, 짧은 구현 맥락은 `//`를 사용할 수 있다.
+### 클래스 주석
+
+주요 class에는 시스템에서 담당하는 책임을 짧은 `//` 주석으로 설명한다.
+
+- Service, Processor, Policy, Validator, Adapter, 주요 Query Repository 구현체에 적용할 수 있다.
+- Consumer, Scheduler, Filter, Interceptor와 Outbox 처리 class에도 같은 기준을 적용한다.
+- class 이름을 한글로 번역하지 않고 실제 흐름과 책임을 표현한다.
+- 이름과 구조만으로 책임이 충분히 명확하면 기계적으로 추가하지 않는다.
+
+```java
+// 예약 생성과 결제 준비 흐름을 담당한다.
+@Service
+public class ReservationPreparationService {
+}
+```
+
+### 메서드 주석
+
+주요 public method는 class 책임 안에서 수행하는 역할을 짧은 `//` 주석으로 설명할 수 있다. 여러 단계의 use case, 상태 변경, transaction 경계, lock과 동시성 처리, 외부 시스템 조율, Outbox·Kafka·Retry 처리 또는 중요한 부작용이 있을 때 우선한다.
+
+단순 CRUD, 이름이 명확한 조회, 단순 Adapter 위임, getter, 단순 factory·mapper와 자명한 Controller endpoint에는 기계적으로 추가하지 않는다. method 이름을 그대로 한글로 번역하거나 class 주석과 같은 내용을 반복하지 않는다.
+
+### 구현 내부 주석
+
+구현 내부에서는 코드가 이미 보여 주는 What보다 코드만으로 알기 어려운 Why와 제약을 설명하고 해당 코드 가까이에 둔다.
+
+- 비즈니스 규칙과 상태 전이 조건
+- transaction 경계와 propagation 이유
+- lock 획득 순서, 동시성 제약과 DB UNIQUE를 최종 방어선으로 사용하는 이유
+- Outbox 저장 시점, after-commit, Retry·DLT와 멱등성 처리 이유
+- Redis Pub/Sub, 다중 App instance, Kafka와 WebSocket의 동작 제약
+- 외부 API 호출과 DB transaction을 분리하는 이유
+- AI 개인정보 검증, Rule·LLM 책임 경계와 결과 검증·canonicalization
+
+### JavaDoc
+
+일반적인 class와 method 역할에는 긴 JavaDoc을 기계적으로 작성하지 않는다. 역할은 짧은 `//`로, 구현 이유는 관련 코드 가까이에 `//`로 작성한다.
+
+JavaDoc은 공개 계약, framework 제약, transaction·lock 호출 계약, DB 격리 수준과 정합성 조건, 원자적 상태 전이처럼 호출자가 반드시 알아야 하는 제약을 설명할 때 선택적으로 사용한다.
+
+### 피해야 할 주석
+
+- 코드를 그대로 읽거나 class·method 이름을 단순 번역하는 설명
+- 현재 구현과 맞지 않는 과거 설명과 임시 개발 메모
+- PR 리뷰, Human 결정, 다음 Phase와 이후 Issue 구현 예정 기록
+- 설계 근거 추적에 도움이 되지 않는 Issue·PR 번호
+- 의미 없는 구분선과 여러 위치에서 반복되는 설명
+- 주석 처리된 dead code
+
+현재 설계 근거를 추적하는 데 필요한 ADR 또는 Issue 참조는 유지할 수 있다.
 
 ## 12. 예외 적용과 Issue 경계
 

@@ -5,7 +5,7 @@ import com.bobfull.reservation.application.result.NoShowCustomerResult;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
-/** §9-5 식당 노쇼 고객 조회 응답이다(Issue #48). */
+// 식당별 노쇼 고객 집계 정보를 제공한다.
 public record NoShowCustomerResponse(
         Long memberId,
         String name,

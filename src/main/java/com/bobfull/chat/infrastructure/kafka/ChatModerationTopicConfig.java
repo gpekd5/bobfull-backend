@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
-/** ChatMessage 생성 이벤트와 그 DLT 토픽을 로컬 브로커에 자동 생성한다. */
+// 채팅 Moderation 이벤트와 최종 실패 레코드용 DLT 토픽을 구성한다.
 @Configuration
 @ConditionalOnProperty(
         prefix = "bobfull.kafka.chat-message",

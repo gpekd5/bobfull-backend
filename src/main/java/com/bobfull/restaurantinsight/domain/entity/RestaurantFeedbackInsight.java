@@ -20,7 +20,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/** 원문을 OWNER에게 노출하지 않는 메시지 단위 식당 피드백 파생 결과다. */
+// 원문을 OWNER에게 노출하지 않는 메시지 단위 식당 피드백 파생 결과를 보관한다.
 @Entity
 @Table(
         name = "restaurant_feedback_analysis",

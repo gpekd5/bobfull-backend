@@ -3,14 +3,14 @@ package com.bobfull.payment.application.port;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-/** 외부 SDK의 환불 응답을 결제 도메인에 필요한 최소 정보로 제한한다. */
+// PortOne 환불 요청과 상태 조회를 결제 도메인에 필요한 정보로 제한한다.
 public interface PortOneRefundPort {
 
     RefundResult request(String paymentId, BigDecimal amount, String reason, String idempotencyKey);
 
     boolean isCancellationCompleted(String paymentId, String cancellationId);
 
-    /** 환불을 재요청하지 않고 PortOne Payment 조회 결과만 내부 환불과 대조한다. */
+    // 환불을 재요청하지 않고 PortOne 조회 결과만 내부 환불과 대조한다.
     default ReconciliationResult reconcile(
             String paymentId,
             String cancellationId,
@@ -53,7 +53,7 @@ public interface PortOneRefundPort {
         AMBIGUOUS
     }
 
-    /** PortOne이 환불을 처리하지 않았음을 명시적으로 응답한 경우에만 사용한다. */
+    // PortOne이 환불을 처리하지 않았음을 명시적으로 응답한 경우만 구분한다.
     class ExplicitRefundFailureException extends RuntimeException {
         public ExplicitRefundFailureException(String message) {
             super(message);

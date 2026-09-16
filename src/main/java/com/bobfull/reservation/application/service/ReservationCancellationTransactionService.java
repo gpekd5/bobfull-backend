@@ -31,14 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 예약 취소 접수를 짧은 잠금 트랜잭션으로 처리한다(Issue #44 최종 계약). 환불 outbound port 호출은
- * 이 트랜잭션 밖에서 {@link ReservationCancellationService}가 수행하도록, 이 서비스는 권한·기한·상태를
- * 검증하고 CANCELLING/CANCEL_REQUESTED로 전이해 커밋하는 것까지만 책임진다. 실제 CANCELLED 확정은
- * 환불 완료 후 결제 도메인의 공통 완료 경로({@code RefundCompletionService})가 자신이 소유한
- * {@code ReservationCancellationCompletionPort}를 통해 호출하는
- * {@code ReservationCancellationCompletionService#complete}(V2, #45/PR #144)가 담당한다.
- */
+// 예약 취소 조건을 검증하고 환불 전 상태 전이를 짧은 잠금 트랜잭션에서 확정한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -59,9 +52,8 @@ public class ReservationCancellationTransactionService {
     private final Clock clock;
     private final EmailOutboxEventService emailOutboxEventService;
 
-    // 락 순서: Reservation 단독(ADR 0001 "복수 비관적 락의 획득 순서" 참고). 환불 outbound port 호출은
-    // 이 트랜잭션 밖(ReservationCancellationService)에서 수행하므로 결제 도메인 쪽 락 획득과 이 짧은
-    // 접수 트랜잭션의 Reservation 락 보유 구간이 겹치지 않는다(Issue #44).
+    // Reservation만 잠가 취소를 접수한다. 외부 환불은 커밋 뒤 호출해 Payment → Reservation 완료
+    // 흐름과 이 트랜잭션의 락 보유 구간이 겹치지 않게 한다(ADR 0001).
     public CancellationAcceptance accept(Long memberId, Long reservationId, ReservationCancellationRequest request) {
         Reservation reservation = findReservationWithLockOrThrow(reservationId);
         validateReservationCancellable(reservation);
@@ -82,12 +74,7 @@ public class ReservationCancellationTransactionService {
         return acceptance;
     }
 
-    /**
-     * 예약에 속한 유효 참여자 전원을 CANCEL_REQUESTED로 전환하고 예약을 CANCELLING으로 전이한다.
-     * 최초 예약자 취소, 그리고 추가 참여자 취소로 모집 CLOSED 상태의 확정 기준 미달이 되는 경우 모두
-     * 이 경로를 함께 사용해, 취소 대상 전원을 단 하나의 {@code RefundRequestCommand}로 묶는다
-     * (참여자별로 나눠 여러 번 환불을 요청하면서 생기는 부분 성공 위험 방지).
-     */
+    // 전체 참여자를 한 명령으로 묶어 참여자별 환불 요청에서 생길 수 있는 부분 성공을 피한다.
     private CancellationAcceptance acceptEntireReservationCancellation(
             Reservation reservation, ReservationParticipant actingParticipant, String reason
     ) {
@@ -100,12 +87,7 @@ public class ReservationCancellationTransactionService {
                 reservation.getId(), actingParticipant.getId(), CancellationScope.RESERVATION, command);
     }
 
-    /**
-     * OWNER가 본인 식당 사유로 예약 전체 취소를 접수한다(Issue #46, #44 공통 접수·실행·확정 절차 재사용).
-     * MEMBER 취소와 달리 취소 기한(2시간)을 두지 않고, 상태 충돌은 §6-14 계약에 맞춰
-     * {@link ReservationErrorCode#INVALID_STATE}로 통일한다. 이후 트랜잭션 밖 환불 실행과
-     * 완료 확정은 MEMBER 취소와 동일한 {@link ReservationCancellationRefundPort}·완료 경로를 그대로 탄다.
-     */
+    // 식당 사유의 예약 전체 취소를 접수한다. 회원 취소와 달리 2시간 기한은 적용하지 않는다.
     public OwnerCancellationAcceptance acceptByOwner(Long ownerMemberId, Long reservationId, String reason) {
         Reservation reservation = findReservationWithLockOrThrow(reservationId);
         validateOwnership(reservation, ownerMemberId);
@@ -122,11 +104,7 @@ public class ReservationCancellationTransactionService {
         return new OwnerCancellationAcceptance(reservation.getId(), command);
     }
 
-    /**
-     * 예약에 속한 유효(RESERVED) 참여자 전원을 CANCEL_REQUESTED로 전환하고 예약을 CANCELLING으로
-     * 전이한 뒤, 하나의 {@code RefundRequestCommand}로 묶을 참여자 ID 목록을 반환한다. 최초 예약자
-     * 취소(MEMBER)와 OWNER 강제 취소가 이 로직을 공유한다(Issue #44, #46).
-     */
+    // 유효 참여자 전원을 환불 대기 상태로 바꾸고 예약 전체 취소를 시작한다.
     private List<Long> transitionAllValidParticipantsToCancelRequested(Reservation reservation, String reason) {
         List<ReservationParticipant> validParticipants = reservationParticipantRepository
                 .findAllByReservationIdAndParticipationStatus(reservation.getId(), ParticipationStatus.RESERVED);
@@ -135,12 +113,8 @@ public class ReservationCancellationTransactionService {
         return validParticipants.stream().map(ReservationParticipant::getId).toList();
     }
 
-    /**
-     * OWNER 소유권을 검증한다(Issue #48 {@code NoShowService.resolveOwnership}과 동일한 패턴, ADR 0005
-     * 원칙 7). Reservation은 이미 락으로 조회돼 있으므로 TimeSlot·SharedTable·Restaurant만 순서대로
-     * 조회하며, 그 사이 어떤 대상이 없어도 소유권 불일치와 구분하지 않고 전부 RESERVATION_ID_NOT_FOUND로
-     * 취급한다 — 실제 불일치는 마지막 소유권 비교에서만 ACCESS_DENIED로 구분한다.
-     */
+    // 연결 대상 누락으로 예약 존재 여부가 노출되지 않도록 모두 RESERVATION_ID_NOT_FOUND로 처리하고,
+    // 연결 체인이 온전한 경우에만 실제 소유권 불일치를 ACCESS_DENIED로 구분한다(ADR 0005).
     private void validateOwnership(Reservation reservation, Long ownerMemberId) {
         TimeSlot timeSlot = timeSlotRepository.findByIdAndDeletedAtIsNull(reservation.getTimeSlotId())
                 .orElseThrow(() -> new CustomException(ReservationErrorCode.RESERVATION_ID_NOT_FOUND));
@@ -153,30 +127,18 @@ public class ReservationCancellationTransactionService {
         }
     }
 
-    /**
-     * {@code CLOSED}(식사 종료로 생명주기가 끝난 예약)도 여기서 차단한다(Issue #175 PR #178
-     * 리뷰 반영). OWNER 취소는 MEMBER 취소와 달리 취소 기한을 두지 않아, 이 검사가 없으면
-     * 식사가 끝난 예약도 다시 {@code CANCELLING}으로 전이되어 환불이 시작될 수 있다.
-     */
+    // 식당 취소에는 시간 제한이 없으므로 CLOSED를 명시적으로 막아 종료된 예약의 환불을 방지한다.
     private void validateReservationCancellableByOwner(Reservation reservation) {
         if (reservation.isCancelled() || reservation.isCancelling() || reservation.isClosed()) {
             throw new CustomException(ReservationErrorCode.INVALID_STATE);
         }
     }
 
-    /**
-     * 모집 마감 기한(식사 시작 2시간 전) 도달을 스케줄러 후보 하나에 대해 접수한다(Issue #47,
-     * #44 공통 접수·실행·확정 절차 재사용). 후보 조회 이후 다른 경로가 먼저 모집을 마감시켰을 수
-     * 있어 {@code recruitmentStatus}가 이미 {@code CLOSED}이거나 예약이 이미 취소 진행 중이면
-     * 아무 것도 바꾸지 않고 {@link RecruitmentDeadlineOutcome#ALREADY_PROCESSED}로 멱등 종료한다.
-     * 확정 기준 이상이면 모집만 마감하고, 미달이면 유효 참여자 전원을 MEMBER·OWNER 취소와 동일한
-     * 방식으로 취소 접수한다.
-     *
-     * <p>결과 이메일은 상태 변경과 같은 트랜잭션에 Outbox와 수신자별 전송 이력으로 기록한다.
-     * {@code ALREADY_PROCESSED}는 같은 예약의 이메일 이벤트도 최초 1회만 생성되게 하는 멱등 가드다.</p>
-     */
+    // 모집 마감 시점의 인원을 다시 확인해 모집 확정 또는 전체 취소를 한 번만 접수한다.
     public RecruitmentDeadlineAcceptance acceptRecruitmentDeadline(Long reservationId) {
         Reservation reservation = findReservationWithLockOrThrow(reservationId);
+        // 후보 조회 뒤 다른 실행이 먼저 처리했을 수 있어 잠금 상태에서 다시 검사한다.
+        // 이 가드는 같은 결과 이메일 Outbox가 중복 생성되는 것도 막는다.
         if (reservation.getRecruitmentStatus() != RecruitmentStatus.OPEN || !reservation.isActive()) {
             return new RecruitmentDeadlineAcceptance(reservationId, RecruitmentDeadlineOutcome.ALREADY_PROCESSED, null);
         }
@@ -185,6 +147,7 @@ public class ReservationCancellationTransactionService {
         int tableCapacity = reservationCapacityPort.readTableCapacity(reservation.getTimeSlotId());
         int currentCount = reservationParticipantRepository.sumPartySizeByStatuses(reservation.getId(), OCCUPYING_STATUSES);
         if (currentCount >= ReservationCapacityPolicy.confirmationThreshold(tableCapacity)) {
+            // 상태 변경과 이메일 Outbox를 함께 커밋해 확정된 결과만 후속 발송한다.
             emailOutboxEventService.enqueue(OutboxEventType.EMAIL_RECRUITMENT_CONFIRMED, reservationId,
                     reservationParticipantRepository.findAllByReservationIdAndParticipationStatus(reservationId, ParticipationStatus.RESERVED));
             return new RecruitmentDeadlineAcceptance(reservationId, RecruitmentDeadlineOutcome.CLOSED_ONLY, null);
@@ -203,15 +166,7 @@ public class ReservationCancellationTransactionService {
         return new RecruitmentDeadlineAcceptance(reservationId, RecruitmentDeadlineOutcome.CANCELLED, command);
     }
 
-    /**
-     * 추가 참여자 취소를 접수한다. 취소로 확정 기준 미달이 될지를 먼저 계산해, 모집 CLOSED에서
-     * 기준 미달이 되면 {@link #acceptEntireReservationCancellation}로 예약 전체 취소를 대신 접수한다.
-     * 그 외에는 본인만 CANCEL_REQUESTED로 전환할 뿐, Reservation의 RECRUITING/CONFIRMED 상태는
-     * 여기서 재계산하지 않는다 — CANCEL_REQUESTED 참여자는 환불이 실제로 완료되기 전까지 좌석을
-     * 점유한 상태로 집계해야 하므로(Issue #44 최종 계약), 접수 시점에 미리 정원 완화를 반영하면
-     * "참여자는 아직 환불 대기 중인데 예약만 먼저 여유가 생김" 불일치가 생긴다. 실제 재계산은 환불
-     * 완료 후 {@link #recalculateAfterCompletion}에서 수행한다.
-     */
+    // 추가 참여 취소가 마감된 예약의 성사 기준을 깨면 예약 전체 취소로 전환한다.
     private CancellationAcceptance acceptParticipantCancellation(
             Reservation reservation, ReservationParticipant actingParticipant, String reason
     ) {
@@ -220,6 +175,7 @@ public class ReservationCancellationTransactionService {
             return acceptEntireReservationCancellation(reservation, actingParticipant, reason);
         }
 
+        // 환불 대기 참여자는 계속 좌석을 점유하므로 예약 상태 재계산은 환불 완료 뒤에 수행한다.
         actingParticipant.requestCancel(reason);
 
         ReservationCancellationRefundPort.RefundRequestCommand command =
@@ -237,14 +193,10 @@ public class ReservationCancellationTransactionService {
         return countAfterCancel < ReservationCapacityPolicy.confirmationThreshold(tableCapacity);
     }
 
-    /**
-     * 취소 접수(CANCEL_REQUESTED)된 참여자의 환불이 완료된 뒤 남은 유효 인원을 다시 계산해
-     * RECRUITING/CONFIRMED를 재계산한다({@code ReservationCancellationCompletionService#complete}이
-     * 호출, V2, #45/PR #144). 예약 전체가 CANCELLING인 경로에서는 호출하지 않는다.
-     */
+    // 개별 참여자의 환불 완료 뒤 남은 점유 인원으로 예약 성사 상태를 다시 계산한다.
     void recalculateAfterCompletion(Reservation reservation) {
         int tableCapacity = reservationCapacityPort.readTableCapacity(reservation.getTimeSlotId());
-        // 잠금 없는 SUM 집계 대신 잠금 조회로 합산한다(Issue #264) — 이 read가 속한 트랜잭션은
+        // 잠금 없는 SUM 집계 대신 잠금 조회로 합산한다. 이 read가 속한 트랜잭션은
         // 그보다 앞서 RefundTransactionService의 잠금 없는 LAZY 로딩으로 REPEATABLE READ 스냅샷이
         // 이미 고정돼 있어, 뒤늦게 Reservation 행 락을 잡아도 SUM 집계는 그 옛 스냅샷을 읽는다.
         int currentCount = reservationParticipantRepository
@@ -282,12 +234,7 @@ public class ReservationCancellationTransactionService {
         }
     }
 
-    /**
-     * 본인 참여를 조회한다(Issue #131 오류 계약). Reservation은 생성 시 최초 예약자 참여와 함께
-     * 만들어지므로, 이미 조회·잠금에 성공한 Reservation에 참여자가 하나도 없는 경우는 데이터 정합성이
-     * 깨진 것이다 — 그 경우에만 {@code PARTICIPATION_NOT_FOUND}를 던지고, 참여자는 있지만 요청자
-     * 본인의 참여가 아닌 정상적인 경우는 도메인 공통 {@link CommonErrorCode#ACCESS_DENIED}로 구분한다.
-     */
+    // 잠긴 예약에 참여자가 전혀 없으면 정합성 오류로, 다른 회원의 참여만 있으면 권한 오류로 구분한다.
     private ReservationParticipant findParticipantOrThrow(Long reservationId, Long memberId) {
         return reservationParticipantRepository.findByReservationIdAndMemberId(reservationId, memberId)
                 .orElseThrow(() -> {

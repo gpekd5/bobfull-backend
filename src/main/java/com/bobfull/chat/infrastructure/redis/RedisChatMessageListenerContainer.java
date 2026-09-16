@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.util.backoff.BackOffExecution;
 
-/** Redis subscription 연결 실패를 재연결 흐름과 별개로 관측한다. */
+// Redis subscription 연결 실패를 기본 재연결 흐름과 별도로 관측한다.
 @Slf4j
 final class RedisChatMessageListenerContainer extends RedisMessageListenerContainer {
     private final BusinessMetricRecorder businessMetricRecorder;

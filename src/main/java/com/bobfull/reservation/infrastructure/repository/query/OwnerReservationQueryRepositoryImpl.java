@@ -21,13 +21,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-/**
- * OWNER의 식당별 예약 목록 조회를 담당한다(Issue #147 §6-11).
- * currentParticipantCount는 취소 접수(CANCEL_REQUESTED)도 환불 완료 전까지 좌석을 점유한 것으로
- * 집계하는 최신 계약(Issue #44, {@code AvailableCapacityCalculator}와 동일)을 따른다.
- */
+// 식당 소유자용 예약 목록과 현재 점유 인원을 QueryDSL로 조회한다.
 public class OwnerReservationQueryRepositoryImpl implements OwnerReservationQueryRepository {
 
+    // 환불 대기 중인 참여자도 완료 전까지 좌석을 점유한다.
     private static final List<ParticipationStatus> OCCUPYING_STATUSES =
             List.of(ParticipationStatus.RESERVED, ParticipationStatus.CANCEL_REQUESTED);
 

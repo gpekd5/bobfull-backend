@@ -24,7 +24,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-/** ChatModeration과 ChatMessage를 조합한 관리자용 회원별 집계 조회다. */
+// ChatModeration과 ChatMessage를 조합해 관리자용 회원별 검토 신호를 집계한다.
 @Repository
 public class MemberModerationQueryRepositoryImpl implements MemberModerationQueryRepository {
 

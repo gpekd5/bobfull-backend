@@ -3,10 +3,7 @@ package com.bobfull.common.response;
 import com.bobfull.common.exception.BaseErrorCode;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-/**
- * 모든 API 응답이 공유하는 공통 응답 포맷이다.
- * 성공 응답은 data를, 실패 응답은 code를 채운다.
- */
+// 성공 data와 실패 code를 동일한 JSON 구조로 제공하는 공통 API 응답이다.
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 

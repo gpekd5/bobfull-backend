@@ -5,7 +5,7 @@ import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
 import java.util.Set;
 
-/** OpenAI가 반환하는 분석 결과의 최소 구조 계약이다. */
+// 외부 AI가 반환해야 하는 Moderation 결과의 최소 구조다.
 public record ModerationResult(
         ModerationResultType result,
         Set<ModerationCategory> categories,

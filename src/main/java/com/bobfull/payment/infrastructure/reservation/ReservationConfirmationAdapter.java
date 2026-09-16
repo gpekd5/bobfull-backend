@@ -6,6 +6,7 @@ import com.bobfull.reservation.application.service.ReservationConfirmationServic
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+// 결제 완료를 예약 도메인의 생성·참여 확정 흐름으로 연결한다.
 @Component
 @RequiredArgsConstructor
 public class ReservationConfirmationAdapter implements ReservationConfirmationPort {

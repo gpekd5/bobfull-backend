@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-/** 외부 결제 검증은 트랜잭션 밖에서 수행하고, 상태 전이는 짧은 잠금 트랜잭션에 위임한다. */
+// PortOne 결제 결과를 검증하고 내부 결제·예약 확정 흐름을 시작한다.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -26,6 +26,7 @@ public class PaymentCompletionService {
     private final Clock clock;
     private final BusinessMetricRecorder businessMetricRecorder;
 
+    // 결제 소유권과 외부 결제 결과를 검증한 뒤 내부 상태를 확정한다.
     public PaymentCompletionTransactionService.PaymentCompletionResult complete(String paymentId, Long memberId) {
         Payment payment = paymentRepository.findByPaymentId(paymentId)
                 .orElseThrow(() -> new CustomException(PaymentErrorCode.PAYMENT_NOT_FOUND));
@@ -35,6 +36,7 @@ public class PaymentCompletionService {
         return completeVerified(paymentId, payment, memberId);
     }
 
+    // 검증된 웹훅의 결제 결과를 멱등하게 확인하고 내부 상태를 완료 처리한다.
     public PaymentCompletionTransactionService.PaymentCompletionResult completeFromWebhook(String paymentId) {
         Payment payment = paymentRepository.findByPaymentId(paymentId)
                 .orElseThrow(() -> new CustomException(PaymentErrorCode.PAYMENT_NOT_FOUND));
@@ -82,6 +84,7 @@ public class PaymentCompletionService {
     }
 
     private PaymentCompletionTransactionService.PaymentCompletionResult completeAfterExternalPaid(String paymentId, Long memberId) {
+        // 외부 결제가 완료된 뒤 내부 확정에 실패하면 자동 롤백할 수 없어 보상 처리가 필요하다.
         try {
             return memberId == null ? transactionService.complete(paymentId) : transactionService.complete(paymentId, memberId);
         } catch (PaymentExpiredException exception) {

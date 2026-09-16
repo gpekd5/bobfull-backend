@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-/**
- * Payment 도메인 전용 에러 코드다.
- */
+// 결제·환불 요청에서 사용하는 HTTP 상태와 오류 메시지를 정의한다.
 @Getter
 @RequiredArgsConstructor
 public enum PaymentErrorCode implements BaseErrorCode {

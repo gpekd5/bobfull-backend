@@ -11,17 +11,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-/**
- * #192 실험 A/D에서 실제 Provider 지연·Rate Limit 변동성을 배제하고 AI 처리시간만 통제된 값으로
- * 재현하기 위한 Adapter다. {@code bobfull.ai.moderation.fake-enabled=true}일 때만 활성화되며
- * {@link SpringAiModerationAdapter}와 상호 배타적으로 전환된다.
- */
+// 외부 Provider 변동 없이 지연·결과·실패를 재현하는 Moderation 측정용 Adapter다.
 @Component
 @ConditionalOnProperty(prefix = "bobfull.ai.moderation", name = "fake-enabled", havingValue = "true")
 public class FakeAiModerationAdapter implements AiModerationPort {
-    /** ModerationResultValidator는 FLAGGED에 빈 category를 허용하지 않으므로 고정 category를 채운다. */
+    // FLAGGED 결과가 내부 조합 규칙을 만족하도록 고정 category를 채운다.
     private static final Set<ModerationCategory> DEFAULT_FLAGGED_CATEGORIES = Set.of(ModerationCategory.PROFANITY);
-    /** 실험 C(실패 격리)에서 특정 메시지만 강제로 실패시키기 위한 마커. 운영 콘텐츠와 충돌하지 않는 고유 문자열이다. */
+    // 특정 측정 메시지만 실패시키도록 운영 콘텐츠와 충돌하지 않는 고유 문자열을 사용한다.
     public static final String FORCE_FAIL_MARKER = "FAKE_AI_FORCE_FAIL";
 
     private final long latencyMs;

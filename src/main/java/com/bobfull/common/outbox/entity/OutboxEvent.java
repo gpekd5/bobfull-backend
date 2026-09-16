@@ -17,7 +17,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/** 핵심 상태 변경과 함께 후속 처리 의도를 보관하는 최소 Outbox 이벤트다. */
+// 핵심 상태 변경과 같은 트랜잭션에서 후속 처리 의도와 재시도 상태를 보관한다.
 @Entity
 @Table(name = "outbox_event",
         uniqueConstraints = {
@@ -106,6 +106,7 @@ public class OutboxEvent extends BaseTimeEntity {
     }
 
     public void retryManually(Instant now) {
+        // 자동 재시도 한도를 소진한 이벤트만 새로운 처리 주기로 되돌린다.
         if (status != OutboxEventStatus.FAILED) {
             throw new IllegalStateException("FAILED 이벤트만 수동 재처리할 수 있습니다.");
         }

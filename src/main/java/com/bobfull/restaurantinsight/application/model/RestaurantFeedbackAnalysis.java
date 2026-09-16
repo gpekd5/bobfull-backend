@@ -6,7 +6,7 @@ import com.bobfull.restaurantinsight.domain.entity.FeedbackOpinionType;
 import com.bobfull.restaurantinsight.domain.entity.FeedbackSentiment;
 import java.util.List;
 
-/** Provider Structured Output 계약이다. relevant=false면 items는 무시하고 빈 것으로 취급한다. */
+// AI Provider의 구조화 응답을 전달하며 relevant=false인 항목은 저장 대상에서 제외된다.
 public record RestaurantFeedbackAnalysis(
         boolean relevant,
         List<Item> items

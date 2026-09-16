@@ -4,7 +4,7 @@ import com.bobfull.chat.domain.entity.ChatMessage;
 import java.util.List;
 import java.util.stream.IntStream;
 
-/** #266에서만 사용하는 same-room/same-sender의 짧은 메시지 결합 입력이다. */
+// 같은 채팅방·발신자의 짧은 최근 메시지를 순서대로 결합한 분석 입력이다.
 record SplitMessageContext(List<String> fragments, String joinedNormalized) {
     static SplitMessageContext from(List<ChatMessage> messages) {
         List<String> fragments = messages.stream().map(ChatMessage::getContent).toList();

@@ -11,7 +11,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
-/** Redis에서 받은 메시지를 현재 인스턴스의 STOMP 세션에만 fan-out한다. */
+// Redis에서 공유된 메시지를 현재 App instance의 STOMP 구독자에게 전달한다.
 @Slf4j
 @Component
 @RequiredArgsConstructor

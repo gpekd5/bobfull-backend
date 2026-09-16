@@ -23,7 +23,7 @@ public interface ReservationParticipantRepository extends JpaRepository<Reservat
     boolean existsByReservationId(Long reservationId);
 
     /**
-     * 취소 완료 확정 직전 "남은 CANCEL_REQUESTED가 있는지"를 잠금 조회로 판단한다(Issue #259).
+     * 취소 완료 확정 직전 "남은 CANCEL_REQUESTED가 있는지"를 잠금 조회로 판단한다.
      * MySQL 기본 격리수준(REPEATABLE READ)에서는 트랜잭션의 첫 번째 잠금 없는 SELECT가 그 트랜잭션
      * 전체의 스냅샷 시점을 고정한다. 이 흐름이 실행되는 트랜잭션(웹훅 완료 처리)은 Reservation 락보다
      * 먼저 Refund→Payment의 LAZY 연관관계 로딩 같은 잠금 없는 SELECT가 먼저 실행될 수 있어, 잠금 없는
@@ -47,7 +47,7 @@ public interface ReservationParticipantRepository extends JpaRepository<Reservat
 
     /**
      * 여러 참여 상태에 걸친 partySize 합계다. 취소 접수(CANCEL_REQUESTED) 참여자는 환불이 완료되기
-     * 전까지 좌석을 계속 점유한 상태로 집계해야 하므로(Issue #44), RESERVED와 함께 넘겨 합산한다.
+     * 전까지 좌석을 계속 점유한 상태로 집계하므로 RESERVED와 함께 넘겨 합산한다.
      */
     @Query("select coalesce(sum(p.partySize), 0) from ReservationParticipant p "
             + "where p.reservationId = :reservationId and p.participationStatus in :statuses")
@@ -55,7 +55,7 @@ public interface ReservationParticipantRepository extends JpaRepository<Reservat
             @Param("reservationId") Long reservationId, @Param("statuses") Collection<ParticipationStatus> statuses);
 
     /**
-     * {@link #sumPartySizeByStatuses}와 같은 조건의 참여자 목록을 잠금 조회한다(Issue #264). SUM
+     * {@link #sumPartySizeByStatuses}와 같은 조건의 참여자 목록을 잠금 조회한다. SUM
      * 집계 쿼리는 JPA 스펙상 엔티티가 아닌 결과를 반환해 {@code @Lock}의 이식성이 보장되지
      * 않으므로, 이미 트랜잭션 안에서 스냅샷이 고정된 뒤에도 최신 커밋을 보게 하려면 엔티티 목록을
      * 잠금 조회해 호출자가 Java에서 합산해야 한다.
@@ -67,8 +67,7 @@ public interface ReservationParticipantRepository extends JpaRepository<Reservat
             @Param("reservationId") Long reservationId, @Param("statuses") Collection<ParticipationStatus> statuses);
 
     /**
-     * 여러 Reservation에 걸친 partySize 합계를 Reservation별로 묶어 한 번에 반환한다(Issue #235,
-     * 인기 회차 조회 Hot-path에서 예약별로 반복 조회하던 것을 배치로 묶기 위함). 각 행은
+     * 여러 Reservation에 걸친 partySize 합계를 예약별 반복 조회 없이 한 번에 반환한다. 각 행은
      * {@code [reservationId, sumPartySize]}이며, 참여자가 없는 Reservation은 결과에 나타나지
      * 않는다(호출자가 0으로 취급해야 한다).
      */
@@ -82,11 +81,10 @@ public interface ReservationParticipantRepository extends JpaRepository<Reservat
     Page<ReservationParticipant> findAllByReservationIdAndParticipationStatus(
             Long reservationId, ParticipationStatus status, Pageable pageable);
 
-    /** §6-13 사장님용 참여자 목록 조회용이다. 상태 제한 없이 신청 이력 전체를 조회한다(Issue #147). */
     Page<ReservationParticipant> findAllByReservationId(Long reservationId, Pageable pageable);
 
     /**
-     * CANCEL_REQUESTED인 참여자만 CANCELLED로 조건부 전환하는 원자적 UPDATE다(Issue #44 최종 계약).
+     * CANCEL_REQUESTED인 참여자만 CANCELLED로 조건부 전환하는 원자적 UPDATE다.
      * 즉시 응답·웹훅·재확인 스케줄러가 같은 참여자를 동시에 완료 처리하려 해도, 이 조건절 덕분에
      * 오직 하나의 호출만 실제로 행을 갱신해 처리권을 얻는다 — 반환값이 1이면 이 호출이 처리권을
      * 얻은 것이고, 0이면 이미 다른 경로가 완료했거나 CANCEL_REQUESTED 상태가 아니므로 멱등 종료한다.

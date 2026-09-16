@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/** OWNER의 식당 기준 노쇼 고객 조회를 담당한다(Issue #48 §9-5). */
+// 식당 소유자에게 식당별 노쇼 고객 조회 API를 제공한다.
 @RestController
 @RequestMapping("/api/owner/restaurants/{restaurantId}/no-shows")
 @RequiredArgsConstructor

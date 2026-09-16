@@ -18,12 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * ADMIN의 회원 목록·상세 조회를 담당한다(Issue #49).
- * QueryDSL 커스텀 조회는 {@link MemberRepository}에 합성된 것을 사용한다 — Fragment 인터페이스
- * (AdminMemberRepository) 자체를 주입하면 Spring이 그 구현체를 별도 Bean으로도 등록해
- * NoUniqueBeanDefinitionException이 발생한다.
- */
+// 관리자 회원 목록과 상세 정보를 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -31,6 +26,7 @@ public class AdminMemberQueryService {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
 
+    // Fragment 인터페이스를 직접 주입할 때 생기는 중복 Bean을 피하려고 합성된 Repository를 사용한다.
     private final MemberRepository memberRepository;
 
     public PageResponse<AdminMemberListItemResponse> getMembers(

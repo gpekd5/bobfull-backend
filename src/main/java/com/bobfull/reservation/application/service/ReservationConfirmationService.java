@@ -27,13 +27,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 결제 완료 시 실제 Reservation·ReservationParticipant를 생성·갱신하는 예약 도메인의 확정 서비스다.
- * Payment 도메인의 결제 완료 트랜잭션(PaymentCompletionTransactionService) 안에서만 호출되도록
- * 설계되었으므로, 그 전제를 {@code Propagation.MANDATORY}로 명시해 호출자의 트랜잭션 없이 단독
- * 호출되면 즉시 실패하게 한다(부분 성공 방지).
- * 실제 {@code ReservationConfirmationPort} 구현과 웹훅 연결은 #93에서 이 서비스를 호출해 수행한다.
- */
+// 결제 완료 결과를 예약과 참여자 상태에 원자적으로 반영한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -51,16 +45,8 @@ public class ReservationConfirmationService {
     private final Clock clock;
     private final BusinessMetricRecorder businessMetricRecorder;
 
-    /**
-     * CREATE는 새 Reservation과 최초 ReservationParticipant를, JOIN은 기존 Reservation에
-     * ReservationParticipant를 추가로 생성한다. 확정 기준(정원 2면 2명, 그 외에는 정원-1명)
-     * 도달 시 CONFIRMED로, 정원에 도달하면 추가로 모집을 CLOSED로 전이한다(§0.8).
-     * ChatRoom은 필수 결제·예약 확정 조건이 아니므로 여기서 직접 저장하지 않는다. CREATE에서는
-     * ChatRoom 생성 의도만 Outbox PENDING으로 같은 트랜잭션에 기록하고, 커밋 뒤 별도 짧은
-     * 트랜잭션의 processor가 실제 생성한다. 따라서 ChatRoom 저장 실패가 이미 완료된 결제·예약을
-     * 롤백시키지 않으면서도, 커밋 뒤 signal 유실은 scheduler가 DB 이벤트로 복구한다(#176).
-     * 접수·참여 완료 이메일도 같은 트랜잭션에 Outbox와 수신자별 전송 이력을 저장한다(Issue #183).
-     */
+    // 결제 완료 트랜잭션 안에서 예약·참여자와 후속 처리 Outbox를 함께 확정한다.
+    // MANDATORY는 호출자 트랜잭션 없이 일부 상태만 반영되는 것을 막는다.
     @Transactional(propagation = Propagation.MANDATORY)
     public ReservationConfirmationResult confirm(
             PaymentPurpose purpose, Long timeSlotId, Long reservationId, Long memberId, Integer partySize
@@ -77,6 +63,8 @@ public class ReservationConfirmationService {
                 ReservationParticipant.create(reservation.getId(), memberId, partySize));
 
         if (purpose == PaymentPurpose.CREATE) {
+            // 채팅방 생성은 결제 완료의 필수 조건이 아니므로 같은 트랜잭션에는 생성 의도만 기록한다.
+            // 커밋 뒤 처리가 실패해도 scheduler가 PENDING 이벤트를 다시 처리한다.
             OutboxEvent outboxEvent = outboxEventRepository.save(
                     OutboxEvent.chatRoomCreationRequested(reservation.getId(), clock.instant()));
             AfterCommitExecutor.run(() -> log.info(
@@ -84,6 +72,7 @@ public class ReservationConfirmationService {
                     outboxEvent.getId(), outboxEvent.getEventType(), reservation.getId()));
             AfterCommitExecutor.run(() -> chatRoomOutboxProcessor.signal(outboxEvent.getId()));
         }
+        // 이메일도 예약 상태와 함께 Outbox에 기록해 커밋된 결과만 발송되게 한다.
         emailOutboxEventService.enqueue(
                 purpose == PaymentPurpose.CREATE ? OutboxEventType.EMAIL_RESERVATION_CREATED : OutboxEventType.EMAIL_PARTICIPATION_COMPLETED,
                 reservation.getId(), List.of(participant));
@@ -94,17 +83,13 @@ public class ReservationConfirmationService {
                 && reservation.getReservationStatus() == ReservationStatus.CONFIRMED) {
             log.info("event=RESERVATION_CONFIRMED reservationId={} participantId={} memberId={} beforeStatus={} afterStatus={}",
                     reservation.getId(), participant.getId(), memberId, beforeStatus, reservation.getReservationStatus());
+            // 롤백된 예약 확정이 운영 지표에 포함되지 않도록 커밋 뒤에 기록한다.
             AfterCommitExecutor.run(() -> businessMetricRecorder.increment(BusinessMetricEvent.RESERVATION_CONFIRMED));
         }
         return new ReservationConfirmationResult(reservation.getId(), participant.getId());
     }
 
-    /**
-     * 취소 접수(CANCELLING)로 예약이 비활성화된 뒤 결제 완료 웹훅이 뒤늦게 도착해 새 참여자가
-     * 추가되는 경쟁 조건을 막는다(Issue #44). READY Payment 준비 시점에도 같은 검증이 있지만
-     * (ReservationPreparationService.validateJoinable), 그 사이 취소가 접수될 수 있으므로 실제
-     * 참여자 생성 직전인 여기서 다시 확인해야 한다.
-     */
+    // READY 결제 준비 후 취소가 접수될 수 있어 참여자 생성 직전에 활성 상태를 다시 확인한다.
     private void validateJoinable(Reservation reservation) {
         if (!reservation.isActive()) {
             throw new CustomException(ReservationErrorCode.RESERVATION_ALREADY_CANCELLED);
@@ -115,6 +100,7 @@ public class ReservationConfirmationService {
         int tableCapacity = reservationCapacityPort.readTableCapacity(timeSlotId);
         int currentParticipantCount = reservationParticipantRepository.sumPartySizeByStatuses(
                 reservation.getId(), OCCUPYING_STATUSES);
+        // 성사 기준은 정원 2명이면 2명, 그 외에는 정원보다 한 명 적은 인원이다.
         if (currentParticipantCount >= ReservationCapacityPolicy.confirmationThreshold(tableCapacity)) {
             reservation.confirm();
         }

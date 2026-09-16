@@ -6,7 +6,7 @@ import java.time.Instant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/** 결제 도메인의 취소 완료 Port를 예약 도메인의 완료 전용 서비스로 연결한다. */
+// 결제 도메인의 취소 완료 요청을 예약 도메인의 완료 전용 서비스로 연결한다.
 @Component
 @RequiredArgsConstructor
 public class ReservationCancellationCompletionAdapter implements ReservationCancellationCompletionPort {

@@ -15,11 +15,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 예약에 참여하는 회원 1명(1신청 단위)이다(docs/030-data/erd.md 4.6).
- * 최초 참여자는 별도 역할 컬럼 없이 Reservation.creatorMemberId와의 일치로 판별한다.
- * 부분 취소는 지원하지 않으며 취소·노쇼는 참여 전체에 적용된다.
- */
+// 한 회원의 예약 신청 인원과 참여·취소·노쇼 상태를 관리한다.
+// 애플리케이션 검증을 동시에 통과한 중복 참여도 DB UNIQUE로 최종 차단한다.
 @Entity
 @Table(
         name = "reservation_participant",
@@ -69,21 +66,13 @@ public class ReservationParticipant extends BaseTimeEntity {
         return new ReservationParticipant(reservationId, memberId, partySize);
     }
 
-    /**
-     * MEMBER 본인 취소를 접수해 CANCEL_REQUESTED로 전환한다(Issue #44). 실제 환불이 완료되기
-     * 전까지는 좌석을 계속 점유한 상태로 집계하며, 환불 완료 후 {@link #completeCancel}로 확정한다.
-     * 부분 취소는 지원하지 않는다.
-     */
+    // 부분 취소 없이 참여 전체를 환불 대기로 전환하며, 환불 완료 전까지 좌석을 점유한다.
     public void requestCancel(String cancelReason) {
         this.participationStatus = ParticipationStatus.CANCEL_REQUESTED;
         this.cancelReason = cancelReason;
     }
 
-    /**
-     * 취소 접수(CANCEL_REQUESTED)에 대한 환불이 완료되어 CANCELLED로 확정한다
-     * (Issue #44 완료 경로, {@code ReservationCancellationCompletionService}가 호출, V2, #45/PR #144).
-     * 웹훅 중복 전달에 대비해 이미 CANCELLED면 아무 일도 하지 않는다.
-     */
+    // 환불 완료를 취소 상태로 확정하며 중복 완료 요청은 멱등 처리한다.
     public void completeCancel(Instant cancelledAt) {
         if (participationStatus == ParticipationStatus.CANCELLED) {
             return;

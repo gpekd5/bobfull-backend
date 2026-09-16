@@ -23,21 +23,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 최초 예약 생성과 기존 예약 추가 참여의 예약 가능 여부 확인·결제 준비를 담당한다(Issue #35, ADR 0001).
- * 결제 성공 전에는 Reservation·ReservationParticipant를 생성하지 않으며, 실제 확정은 #93이
- * {@link com.bobfull.payment.application.port.ReservationConfirmationPort} 구현에서 이 도메인의
- * {@link ReservationConfirmationService}를 호출해 수행한다.
- */
+// 예약 생성·추가 참여 가능 여부를 검증하고 결제 준비를 시작한다.
 @Service
 @RequiredArgsConstructor
 public class ReservationPreparationService {
 
-    /**
-     * 새 CREATE 예약을 막는 상태 목록이다(PR #178 리뷰 반영, Issue #175). {@code CLOSED}(식사 종료로
-     * 생명주기가 끝난 예약)는 참여 가능한 활성 상태는 아니지만, 같은 TimeSlot에 대한 재예약은 막아야
-     * 한다 — 그렇지 않으면 이미 식사가 끝난 회차를 다른 회원이 다시 결제 준비할 수 있다.
-     */
+    // 식사가 끝난 회차가 다시 결제 준비되지 않도록 CLOSED 예약도 새 예약을 차단한다.
     private static final List<ReservationStatus> CREATE_BLOCKING_STATUSES = List.of(
             ReservationStatus.RECRUITING, ReservationStatus.CONFIRMED,
             ReservationStatus.CANCELLING, ReservationStatus.CLOSED);
@@ -49,6 +40,7 @@ public class ReservationPreparationService {
     private final ReadyPaymentPort readyPaymentCreator;
     private final AvailableCapacityCalculator availableCapacityCalculator;
 
+    // 현재 좌석과 결제 선점을 기준으로 예약 생성·참여의 사전 가능 여부를 반환한다.
     @Transactional(readOnly = true)
     public ReservationAvailabilityResponse checkAvailability(
             Long memberId, PaymentPurpose type, Long targetId, Integer partySize
@@ -60,6 +52,7 @@ public class ReservationPreparationService {
         return ReservationAvailabilityResponse.available(target.availableCapacity());
     }
 
+    // 예약 대상을 잠가 최종 가능 여부를 확인한 뒤 READY 결제를 생성한다.
     @Transactional
     public ReservationPrepareResponse prepare(Long memberId, ReservationPrepareRequest request) {
         validatePartySizeInput(request.partySize());
@@ -88,7 +81,7 @@ public class ReservationPreparationService {
         // Reservation을 잠금 조회로 트랜잭션의 첫 쿼리로 만들어야 한다. MySQL REPEATABLE_READ에서는
         // 이후의 일반 SELECT(잔여 인원 합계 등)가 트랜잭션의 첫 조회 시점 스냅샷을 그대로 쓰기 때문에,
         // 잠금 없는 조회를 먼저 하면 TimeSlot 락을 기다렸다 풀려도 그 사이 상대가 커밋한 결과를
-        // 못 보고 통과해버릴 수 있다(ADR 0001, Issue #36에서 재현·확인됨).
+        // 못 보고 통과할 수 있다(ADR 0001).
         // 락 순서: Reservation → TimeSlot(ADR 0001 "복수 비관적 락의 획득 순서" 참고, 역순 금지).
         Reservation reservation = lock ? findReservationWithLockOrThrow(reservationId) : findReservationOrThrow(reservationId);
         ReservationTargetPort.ReservationTarget target = reservationTargetPort.read(reservation.getTimeSlotId(), lock);
@@ -124,11 +117,7 @@ public class ReservationPreparationService {
         }
     }
 
-    /**
-     * 결제 완료 전에는 ReservationParticipant가 생성되지 않으므로, 같은 회원이 같은 예약에
-     * 반복해서 JOIN을 요청해도 {@link #validateNotAlreadyParticipating}만으로는 막을 수 없다.
-     * 만료되지 않은 JOIN READY Payment 존재 여부로 중복 결제 준비 자체를 막는다.
-     */
+    // 결제 완료 전에는 참여자가 없으므로 활성 JOIN READY 결제로 중복 결제 준비를 막는다.
     private void validateNoActiveJoinReady(Long reservationId, Long memberId) {
         if (paymentHoldReader.existsActiveJoinReadyPayment(reservationId, memberId)) {
             throw new CustomException(ReservationErrorCode.ACTIVE_RESERVATION_ALREADY_EXISTS);

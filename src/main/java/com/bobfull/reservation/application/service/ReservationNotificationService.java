@@ -26,12 +26,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/**
- * #47 모집 마감 처리 결과(확정·인원 미달 취소)와 결제 완료(접수·참여) 결과를 이메일로 안내한다.
- * 호출자({@code EmailOutboxProcessor})는 공통 Outbox가 claim한 PENDING 수신자 1건을 커밋된
- * 트랜잭션 밖에서 처리하며, 발송 실패는 예외로 전파해 Outbox의 재시도·FAILED 전이만으로
- * 처리한다(Issue #183).
- */
+// 예약 접수·참여와 모집 마감 결과를 Outbox 수신자에게 이메일로 전달한다.
 @Service
 @RequiredArgsConstructor
 public class ReservationNotificationService {
@@ -44,7 +39,7 @@ public class ReservationNotificationService {
     private final MemberRepository memberRepository;
     private final ReservationNotificationPort notificationPort;
 
-    /** Outbox processor가 단일 수신자를 발송하고 성공 시에만 전송 이력을 확정할 수 있게 한다. */
+    // 커밋된 트랜잭션 밖에서 단일 수신자를 발송하며, 실패는 Outbox 재시도로 이어지도록 전파한다.
     public void sendOutboxEmail(String eventTypeName, EmailOutboxDelivery delivery) {
         OutboxEventType type = OutboxEventType.valueOf(eventTypeName);
         List<ReservationParticipant> participants = reservationParticipantRepository.findAllById(List.of(delivery.getReservationParticipantId()));

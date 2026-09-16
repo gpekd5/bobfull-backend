@@ -5,7 +5,7 @@ import com.bobfull.reservation.application.result.NoShowHistoryResult;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
-/** §9-4 예약별 노쇼 이력 조회 응답이다(Issue #48). */
+// 예약 참여자의 노쇼 처리 이력을 제공한다.
 public record NoShowHistoryResponse(
         Long noShowHistoryId,
         Long participationId,
