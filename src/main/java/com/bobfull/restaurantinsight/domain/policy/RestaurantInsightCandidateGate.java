@@ -3,7 +3,7 @@ package com.bobfull.restaurantinsight.domain.policy;
 import java.util.Locale;
 import org.springframework.stereotype.Component;
 
-/** 명백한 잡담을 제외해 외부 AI 호출을 줄이는 저비용 Gate다. */
+// 명백한 잡담을 Rule로 먼저 제외해 불필요한 외부 AI 호출을 줄인다.
 @Component
 public class RestaurantInsightCandidateGate {
 

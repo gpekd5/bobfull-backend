@@ -16,6 +16,7 @@ public interface RestaurantFeedbackInsightRepository extends JpaRepository<Resta
 
     Optional<RestaurantFeedbackInsight> findByMessageIdAndPromptVersion(Long messageId, String promptVersion);
 
+    // 소수 의견에서 개인을 추정하지 못하도록 최소 발신자 수를 충족한 집계만 OWNER에게 제공한다.
     @Query("""
             select i.category as category, i.aspectType as aspectType, i.normalizedAspect as aspect, i.opinionType as opinionType, i.sentiment as sentiment,
                    count(distinct m.senderMemberId) as senderCount

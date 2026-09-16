@@ -22,18 +22,18 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 예약 도메인이 전달한 계산 결과로 READY Payment를 생성·저장한다.
- */
+// 예약 도메인이 검증한 값으로 READY 결제를 생성하고 좌석 임시 선점 현황을 제공한다.
 @Service
 @RequiredArgsConstructor
 public class PaymentService implements ReadyPaymentPort, PaymentHoldPort {
 
+    // 결제 완료 전 좌석은 READY 결제로 10분 동안만 임시 선점한다.
     private static final Duration READY_PAYMENT_EXPIRATION = Duration.ofMinutes(10);
 
     private final PaymentRepository paymentRepository;
     private final Clock clock;
 
+    // 결제 준비 정보를 생성해 만료 시각과 함께 저장한다.
     @Override
     @Transactional
     public CreateReadyPaymentResult createReadyPayment(CreateReadyPaymentCommand command) {

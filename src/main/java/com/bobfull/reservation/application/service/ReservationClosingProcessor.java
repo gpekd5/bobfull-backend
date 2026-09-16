@@ -10,11 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 식사 종료 후보 하나를 짧은 트랜잭션에서 CLOSED로 전이한다(Issue #175). Reservation 행 잠금 후
- * 최신 상태와 TimeSlot.endAt을 재확인해, 후보 조회 이후 다른 경로가 이미 처리했거나 아직 식사
- * 시간이 남아 있으면 아무 것도 바꾸지 않고 멱등 종료한다.
- */
+// 식사 종료 후보를 잠가 최신 상태를 확인한 뒤 CLOSED로 전이한다.
 @Service
 @RequiredArgsConstructor
 public class ReservationClosingProcessor {
@@ -23,8 +19,8 @@ public class ReservationClosingProcessor {
     private final TimeSlotRepository timeSlotRepository;
     private final Clock clock;
 
-    // 락 순서: Reservation 단독(ADR 0001 "복수 비관적 락의 획득 순서" 참고). TimeSlot은 endAt
-    // 재확인만 하므로 락을 걸지 않는다.
+    // 후보 조회 뒤 상태가 달라질 수 있어 Reservation을 잠그고 재확인한다.
+    // TimeSlot은 종료 시각만 읽으므로 추가 잠금 없이 Reservation 단독 락 순서를 유지한다(ADR 0001).
     @Transactional
     public void close(Long reservationId) {
         Reservation reservation = reservationRepository.findWithLockById(reservationId).orElse(null);

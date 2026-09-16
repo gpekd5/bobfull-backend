@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-/** 즉시 signal이 유실되거나 서버가 재시작돼도 DB에 남은 ChatMessage Outbox를 다시 발행한다. */
+// 즉시 signal 유실이나 재시작 뒤에도 남아 있는 메시지 Outbox를 재처리한다.
 @Component
 @ConditionalOnProperty(prefix = "outbox.chat-message", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class ChatMessageOutboxScheduler {

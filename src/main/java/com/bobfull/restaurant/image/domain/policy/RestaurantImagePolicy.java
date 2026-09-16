@@ -8,9 +8,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-/**
- * 식당 이미지의 허용 형식, 크기, 최종 Key 형식을 한 곳에서 검증한다.
- */
+// 식당 이미지의 허용 형식·크기와 소유자별 최종 key 규칙을 검증한다.
 @Component
 public class RestaurantImagePolicy {
 

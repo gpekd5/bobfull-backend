@@ -19,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+// 관리자 예약 목록 조건 조회와 현재 참여 인원 집계를 QueryDSL로 구현한다.
 public class AdminReservationRepositoryImpl implements AdminReservationRepository {
 
     private final JPAQueryFactory queryFactory;

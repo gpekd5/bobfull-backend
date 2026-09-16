@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// 예약 참여 권한을 검증하고 누락된 채팅방을 멱등하게 복구해 조회한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -26,13 +27,7 @@ public class ChatRoomQueryService {
     private final ChatRoomCreationService chatRoomCreationService;
     private final BusinessMetricRecorder businessMetricRecorder;
 
-    /**
-     * 권한 검증 뒤 ChatRoom이 없으면 AFTER_COMMIT 생성이 아직 반영되지 않았거나 실패한
-     * 것으로 보고 별도 트랜잭션(chatRoomCreationService, REQUIRES_NEW)에서 한 번 더
-     * 멱등 생성을 시도한다. 이 read-only 트랜잭션 자체는 저장을 하지 않으며, 복구가 만든
-     * 결과를 그대로 응답에 사용한다(같은 read-only 트랜잭션에서 다시 조회하면 격리 수준에
-     * 따라 방금 커밋된 행을 못 볼 수 있어, 재조회 대신 복구 호출의 반환값을 그대로 쓴다).
-     */
+    // 권한 확인 후 누락된 채팅방을 별도 트랜잭션에서 복구해 같은 요청에 반환한다.
     public ChatRoomResponse get(Long memberId, MemberRole role, Long reservationId) {
         if (role != MemberRole.MEMBER) {
             throw new CustomException(CommonErrorCode.ACCESS_DENIED);
@@ -43,6 +38,7 @@ public class ChatRoomQueryService {
             throw new CustomException(CommonErrorCode.ACCESS_DENIED);
         }
 
+        // read-only 트랜잭션의 기존 snapshot을 다시 읽지 않고 복구 트랜잭션의 반환값을 사용한다.
         return ChatRoomResponse.from(rooms.findByReservationId(reservationId)
                 .orElseGet(() -> recoverChatRoom(reservationId)));
     }

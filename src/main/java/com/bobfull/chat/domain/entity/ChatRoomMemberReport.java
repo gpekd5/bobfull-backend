@@ -16,7 +16,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/** 채팅방의 상대 회원에 대한 사용자 신고와 관리자 최종 판단 이력이다. */
+// 채팅 상대에 대한 사용자 신고와 관리자 최종 판단을 기록한다.
 @Entity
 @Table(
         name = "chat_room_member_report",

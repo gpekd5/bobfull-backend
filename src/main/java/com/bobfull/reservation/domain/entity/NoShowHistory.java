@@ -11,10 +11,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * OWNER의 참여자 단위 노쇼 처리·해제 이력이다(docs/030-data/erd.md 4.9).
- * ReservationParticipant의 하위 이력이라 별도 Repository·Entity를 다른 도메인에 노출하지 않는다.
- */
+// 참여자 단위 노쇼 처리와 해제 사실을 순서대로 기록한다.
 @Entity
 @Table(name = "no_show_history")
 @Getter

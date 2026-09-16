@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-/** 이메일 발송 의도와 수신자별 멱등 키를 호출자의 핵심 트랜잭션에 함께 저장한다. */
+// 이메일 발송 의도와 수신자별 처리 항목을 호출자의 핵심 트랜잭션에 함께 저장한다.
 @Service
 @RequiredArgsConstructor
 public class EmailOutboxEventService {
@@ -22,6 +22,7 @@ public class EmailOutboxEventService {
     private final EmailOutboxSignalDispatcher emailOutboxSignalDispatcher;
     private final Clock clock;
 
+    // 예약 상태 변경과 같은 트랜잭션에 Outbox를 저장하고 커밋 후 즉시 처리를 신호한다.
     @Transactional(propagation = Propagation.MANDATORY)
     public void enqueue(OutboxEventType type, Long reservationId, List<ReservationParticipant> participants) {
         if (participants.isEmpty()) return;
@@ -36,6 +37,7 @@ public class EmailOutboxEventService {
                 OutboxEvent.emailNotificationRequested(type, aggregateType, aggregateId, clock.instant()));
         deliveryRepository.saveAll(participants.stream()
                 .map(p -> EmailOutboxDelivery.pending(event.getId(), reservationId, p.getId(), p.getMemberId())).toList());
+        // 롤백된 예약의 이메일이 발송되지 않도록 커밋 이후에만 비동기 처리를 시작한다.
         AfterCommitExecutor.run(() -> emailOutboxSignalDispatcher.dispatch(event.getId()));
     }
 }

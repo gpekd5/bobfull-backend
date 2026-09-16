@@ -19,13 +19,7 @@ public interface RefundRepository extends JpaRepository<Refund, Long> {
 
     Optional<Refund> findByCancellationId(String cancellationId);
 
-    /**
-     * Refund 상태 전이(REQUESTED/PROCESSING/COMPLETED/FAILED) 경로를 직렬화하기 위한 비관적 락
-     * 조회다. 즉시 응답·CancelPending·Cancelled 웹훅이 같은 Refund를 동시에 갱신하려 할 때, 락 없는
-     * 조회는 각 트랜잭션이 읽은 메모리 스냅샷만으로 판단해 나중에 커밋된 값이 앞선 완료 상태를
-     * 덮어쓰는 lost-update를 막지 못한다. 이 락 조회는 뒤 트랜잭션이 앞 트랜잭션의 커밋을 기다린 뒤
-     * 최신 상태를 다시 읽게 강제한다.
-     */
+    // 즉시 응답과 환불 웹훅의 상태 전이를 직렬화해 완료 상태가 뒤늦은 갱신으로 덮이지 않게 한다.
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<Refund> findWithLockById(Long refundId);
 
@@ -35,12 +29,8 @@ public interface RefundRepository extends JpaRepository<Refund, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<Refund> findWithLockByPayment_Id(Long paymentId);
 
-    /**
-     * updatedAfter는 영구히 매칭 불가능한 환불 건에 재시도를 계속 낭비하지 않도록 재조정 대상의
-     * 나이에 상한을 둔다(Issue #272). max-age(기본 24시간)보다 오래된 건은 더 이상 후보에 넣지
-     * 않는다 — 그 시점까지 이미 여러 차례 ERROR 로그로 escalate됐으므로(스케줄러의
-     * REFUND_RECONCILIATION_REQUIRED 로그) 사람이 수동으로 확인해야 하는 상태로 남긴다.
-     */
+    // 영구히 매칭할 수 없는 환불을 계속 조회하지 않도록 재조정 대상의 나이에 상한을 둔다.
+    // 상한을 넘긴 건은 반복된 오류 로그를 근거로 사람이 확인해야 하는 상태로 남긴다.
     @EntityGraph(attributePaths = "payment")
     @org.springframework.data.jpa.repository.Query("select r from Refund r "
             + "where r.status in :statuses and r.updatedAt >= :updatedAfter and r.updatedAt <= :updatedBefore "

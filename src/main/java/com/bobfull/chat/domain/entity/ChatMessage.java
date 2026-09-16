@@ -12,7 +12,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/** 채팅방 메시지 이력이다. 다음 STOMP 단계에서만 생성한다. */
+// 채팅방에 저장된 발신자와 메시지 원문을 보관한다.
 @Entity
 @Table(name = "chat_message", indexes = @Index(name = "idx_chat_message_room_id", columnList = "chat_room_id,chat_message_id"))
 @Getter

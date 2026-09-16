@@ -11,7 +11,7 @@ import org.springframework.kafka.listener.ConsumerRecordRecoverer;
 import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.stereotype.Component;
 
-/** Insight 실패를 Moderation 상태와 분리해 Insight DLT에만 기록한다. */
+// 재시도 소진된 분석 이벤트를 Moderation과 분리된 Insight DLT에 기록한다.
 @Component
 public class RestaurantInsightDltRecoverer implements ConsumerRecordRecoverer {
 
@@ -31,6 +31,7 @@ public class RestaurantInsightDltRecoverer implements ConsumerRecordRecoverer {
         this.metrics = metrics;
     }
 
+    // DLT 발행이 확정된 뒤에만 최종 실패 지표를 기록한다.
     @Override
     public void accept(ConsumerRecord<?, ?> record, Exception exception) {
         // DLT 전송 실패는 throw되어 offset 성공 처리를 막는다.

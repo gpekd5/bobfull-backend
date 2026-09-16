@@ -3,7 +3,7 @@ package com.bobfull.chat.infrastructure.kafka;
 import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.common.exception.CustomException;
 
-/** Kafka 리스너 실패를 감싸는 예외에서 #66 recordFinalFailure에 넘길 errorCode를 뽑아낸다. */
+// Kafka가 감싼 리스너 예외에서 최종 실패 기록에 사용할 오류 코드를 추출한다.
 public final class ListenerExceptionUnwrapper {
 
     private ListenerExceptionUnwrapper() {

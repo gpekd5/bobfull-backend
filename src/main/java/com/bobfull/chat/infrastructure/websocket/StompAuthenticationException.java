@@ -1,6 +1,6 @@
 package com.bobfull.chat.infrastructure.websocket;
 
-/** STOMP CONNECT 인증 실패 원인을 token 원문 없이 구분한다. */
+// token 원문을 노출하지 않고 STOMP CONNECT 인증 실패 원인을 구분한다.
 public class StompAuthenticationException extends RuntimeException {
 
     public enum Reason {

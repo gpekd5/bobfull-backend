@@ -14,9 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GeneratedColumn;
 
-/**
- * 합석 테이블에서 예약 가능한 단일 회차다(docs/030-data/erd.md 4.4).
- */
+// 합석 테이블에서 예약 가능한 시작·종료 시각과 soft-delete 상태를 보관한다.
 @Entity
 @Table(
         name = "time_slot",
@@ -45,6 +43,7 @@ public class TimeSlot extends BaseTimeEntity {
     @Column(name = "end_at", nullable = false)
     private Instant endAt;
 
+    // 삭제된 회차는 같은 시작 시각을 다시 쓸 수 있도록 활성 행만 UNIQUE 제약에 포함한다.
     @GeneratedColumn("case when deleted_at is null then start_at else null end")
     @Column(name = "active_start_at", insertable = false, updatable = false)
     private Instant activeStartAt;

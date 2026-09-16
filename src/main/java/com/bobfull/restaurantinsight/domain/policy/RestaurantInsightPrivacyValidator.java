@@ -6,15 +6,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.stereotype.Component;
 
-/**
- * 외부 Provider 전송 전(입력 원문)과 Insight 저장 전(추출된 aspect)의 최소 개인정보·재식별 차단 규칙이다.
- *
- * <p>차단 대상: 전화번호, 이메일, 예약/주문번호, URL, 존칭이 붙은 이름, 신체·복장 묘사가 결합된 직원 식별
- * 표현, 잘 알려진 예시용 인명(전수 목록). 사람 이름 자체를 일반 NLP 개체명 인식 없이 완벽히 걸러낼 수는
- * 없으므로, 이 Validator는 정규식/키워드 기반 방어선이며 완벽한 인명 인식을 주장하지 않는다.</p>
- */
+// 외부 AI 전송 전 원문과 저장 전 추출값에서 개인정보·재식별 단서를 차단한다.
 @Component
 public class RestaurantInsightPrivacyValidator {
+    // 일반 개체명 인식 없이 적용하는 정규식·키워드 기반 최소 방어선이며 모든 실명 탐지를 보장하지 않는다.
     private static final int MAX_ASPECT_CODE_POINTS = 40;
 
     private static final Pattern PHONE = Pattern.compile("(?:01[016789]|0[2-9][0-9]?)[ -]?\\d{3,4}[ -]?\\d{4}");
@@ -58,6 +53,7 @@ public class RestaurantInsightPrivacyValidator {
             "우", "구", "민", "류", "나", "진", "지", "엄", "채", "원", "천", "방", "공", "현", "함", "변", "염", "여",
             "추", "도", "소", "석", "선", "설");
 
+    // 원문이나 모델 추출값이 외부 전송·저장 가능한지 개인정보 기준으로 확인한다.
     public boolean containsSensitiveIdentifier(String value) {
         if (value == null) {
             return false;
@@ -67,6 +63,7 @@ public class RestaurantInsightPrivacyValidator {
                 || identifiesSpecificPerson(value);
     }
 
+    // 모델의 자유 텍스트를 허용된 길이와 문자로 정규화하고 민감 정보가 있으면 폐기한다.
     public String normalizeSafeAspect(String aspect) {
         if (aspect == null) {
             return null;

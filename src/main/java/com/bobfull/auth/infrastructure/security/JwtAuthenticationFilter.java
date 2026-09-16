@@ -19,17 +19,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-/**
- * 요청의 Authorization 헤더에서 Access Token을 추출·검증해 SecurityContext에 AuthMember를 등록한다.
- * 토큰이 없거나 유효하지 않으면 인증을 설정하지 않고 다음 필터로 넘겨,
- * 보호 API는 AuthenticationEntryPoint가 401로 응답하도록 한다.
- * 로그아웃된 Access Token은 Blacklist 조회로 추가 차단한다(Issue #186). 이 조회는 인증되는 모든
- * 요청마다 실행되므로 Redis 장애 시 요청을 막지 않는 Fail-open으로 처리한다(Issue #186 Q5) — 장애가
- * 전체 API 중단으로 번지지 않게 하는 것이 우선이며, 노출되는 위험은 직전 로그아웃한 토큰이 만료
- * 시각까지 잠시 재사용되는 좁은 범위뿐이다. jti가 없는 토큰(이 기능 배포 이전에 발급된 토큰)은
- * Blacklist 조회 자체를 건너뛰고 인증만 정상 처리한다 — 배포 순간 활성 세션 전원이 강제 로그아웃되는
- * 것을 막기 위함이며(PR #187 리뷰), 어차피 그런 토큰은 Blacklist에 등록될 수도 없다.
- */
+// Access Token을 검증해 인증 컨텍스트를 구성하고 로그아웃된 토큰을 차단한다.
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private static final String AUTHORIZATION_HEADER = "Authorization";
@@ -54,11 +44,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (token != null) {
             try {
                 JwtTokenProvider.AccessTokenClaims claims = jwtTokenProvider.parseAccessTokenClaims(token);
+                // jti가 없는 호환 토큰은 Blacklist 조회를 건너뛰고 인증을 유지한다.
                 if (claims.jti() != null && isBlacklisted(claims.jti())) {
                     throw new InvalidJwtException("로그아웃된 Access Token입니다.");
                 }
                 SecurityContextHolder.getContext().setAuthentication(createAuthentication(claims.authMember()));
             } catch (InvalidJwtException e) {
+                // 인증을 비운 채 체인을 계속해 보호 API를 AuthenticationEntryPoint의 401 경로로 보낸다.
                 SecurityContextHolder.clearContext();
                 if (!isTokenExpired(e)) {
                     log.warn("event=JWT_INVALID reason=INVALID_JWT path={}", request.getRequestURI());
@@ -73,6 +65,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             return accessTokenBlacklistStore.isBlacklisted(jti);
         } catch (DataAccessException e) {
+            // 매 요청의 Redis 장애가 전체 API 중단으로 번지지 않도록 이 조회만 fail-open 처리한다.
             log.warn("event=ACCESS_TOKEN_BLACKLIST_CHECK_FAILED jti={} reason={}", jti, e.toString());
             return false;
         }

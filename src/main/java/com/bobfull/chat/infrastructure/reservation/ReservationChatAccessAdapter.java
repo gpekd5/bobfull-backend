@@ -8,6 +8,7 @@ import java.time.Instant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+// 예약·참여·회차 정보를 조합해 채팅 접근 가능 상태를 제공한다.
 @Component
 @RequiredArgsConstructor
 public class ReservationChatAccessAdapter implements ReservationChatAccessPort {

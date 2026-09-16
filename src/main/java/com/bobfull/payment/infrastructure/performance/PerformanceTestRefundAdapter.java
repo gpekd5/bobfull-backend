@@ -14,27 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-/**
- * Issue #146 K6 성능 측정 전용 대체 구현이다. 실제 PortOne 환불 요청 API를 호출하지 않고,
- * K6 시나리오가 보낸 요청 헤더로 결과·지연을 제어해 즉시 응답 경로(시나리오 A/C/D/E/F)를
- * 외부 네트워크 없이 재현한다. {@code performance} 프로파일에서만 활성화되며, 다른
- * 프로파일에서는 {@link PortOneRefundGatewayAdapter}가 그대로 쓰인다.
- *
- * <p>제어 헤더(모두 생략 가능, 생략 시 지연 없이 즉시 완료):</p>
- * <ul>
- *   <li>{@code X-Perf-Refund-Delay-Ms}: 응답 전 대기할 시간(ms)</li>
- *   <li>{@code X-Perf-Refund-Result}: {@code SUCCESS}(기본) | {@code PROCESSING} | {@code FAILURE} |
- *       {@code TIMEOUT} | {@code CONNECTION_RESET}</li>
- * </ul>
- *
- * <p>cancellationId는 {@code paymentId}에서 결정적으로 생성한다(무작위 값이 아니다) — 시나리오
- * B/C처럼 즉시 응답을 {@code PROCESSING}으로 받은 뒤 K6가 같은 cancellationId로 CANCELLED 웹훅을
- * 직접 서명해 보내 완료를 재현해야 할 때, 응답 본문에서 별도로 값을 꺼내지 않고도 재계산할 수 있게 한다.</p>
- *
- * <p><b>운영 주의:</b> 이 Bean은 실제 PortOne 환불 요청을 완전히 건너뛰고 요청 헤더만 보고
- * 응답한다 — {@code performance}가 운영 배포의 {@code SPRING_PROFILES_ACTIVE}에 절대 섞이지
- * 않아야 한다(환불 요청 자체가 무력화된다).</p>
- */
+// 성능 측정에서 요청 헤더로 PortOne 환불 결과와 지연을 재현한다.
+// 실제 환불 요청을 건너뛰므로 performance 프로파일은 운영 환경에서 절대 활성화하면 안 된다.
 @Component
 @Profile("performance")
 @Primary
@@ -43,6 +24,7 @@ public class PerformanceTestRefundAdapter implements PortOneRefundPort {
     private static final String HEADER_DELAY_MS = "X-Perf-Refund-Delay-Ms";
     private static final String HEADER_RESULT = "X-Perf-Refund-Result";
 
+    // X-Perf-Refund-Delay-Ms와 X-Perf-Refund-Result로 지연과 결과를 결정하며 기본은 즉시 완료다.
     @Override
     public RefundResult request(String paymentId, BigDecimal amount, String reason, String idempotencyKey) {
         applyDelay(readHeader(HEADER_DELAY_MS));
@@ -71,13 +53,8 @@ public class PerformanceTestRefundAdapter implements PortOneRefundPort {
         return true;
     }
 
-    /**
-     * {@code application-performance.yml}(테스트 클래스패스 전용)은 배포 가능한 jar에 포함되지
-     * 않아, 실제 배포 환경에서는 {@code payment.refund-reconciliation.enabled=false}가 적용되지
-     * 않을 수 있다 — 즉 {@link RefundReconciliationScheduler}가 여전히 동작해 이 Bean의
-     * {@code reconcile()}을 호출할 수 있다. 기본 구현(UnsupportedOperationException)을 그대로
-     * 두면 그때마다 예외가 반복돼 로그가 오염되므로, "아직 완료되지 않음"으로 안전하게 응답한다.
-     */
+    // 테스트 전용 설정이 배포 jar에 없으면 재조정 스케줄러가 실행될 수 있다.
+    // 반복 예외로 로그를 오염시키지 않도록 재요청 없이 미완료 상태로 응답한다.
     @Override
     public ReconciliationResult reconcile(String paymentId, String cancellationId, BigDecimal refundAmount,
             Instant refundRequestedAt) {
@@ -101,6 +78,7 @@ public class PerformanceTestRefundAdapter implements PortOneRefundPort {
     }
 
     private static String cancellationIdFor(String paymentId) {
+        // K6가 PROCESSING 응답 뒤 같은 ID로 완료 웹훅을 재현할 수 있도록 결정적으로 생성한다.
         return "perf-cancel-" + paymentId;
     }
 

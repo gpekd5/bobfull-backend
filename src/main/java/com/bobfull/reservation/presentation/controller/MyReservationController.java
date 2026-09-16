@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+// 로그인 회원에게 본인 예약 목록과 상세 조회 API를 제공한다.
 @RestController
 @RequestMapping("/api/members/me")
 @RequiredArgsConstructor

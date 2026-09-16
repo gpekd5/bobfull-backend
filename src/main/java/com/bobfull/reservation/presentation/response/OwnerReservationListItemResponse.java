@@ -5,7 +5,7 @@ import com.bobfull.reservation.domain.entity.RecruitmentStatus;
 import com.bobfull.reservation.domain.entity.ReservationStatus;
 import java.time.OffsetDateTime;
 
-/** §6-11 식당별 예약 목록 조회 응답이다(Issue #147). */
+// 식당별 예약 목록의 한 항목을 제공한다.
 public record OwnerReservationListItemResponse(
         Long reservationId,
         Long sessionId,

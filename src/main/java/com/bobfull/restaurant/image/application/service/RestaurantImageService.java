@@ -13,6 +13,7 @@ import com.bobfull.restaurant.image.domain.policy.RestaurantImagePolicy.ImageUpl
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+// 식당 이미지 업로드 조건·key·S3 객체를 검증하고 presigned URL을 발급한다.
 @Service
 public class RestaurantImageService {
 
@@ -33,6 +34,7 @@ public class RestaurantImageService {
         this.restaurantImageS3Properties = restaurantImageS3Properties;
     }
 
+    // 업로드 조건을 검증하고 임시·최종 key와 presigned 업로드 URL을 생성한다.
     public RestaurantImageUploadUrlResponse createUploadUrl(
             Long ownerMemberId,
             RestaurantImageUploadUrlRequest request
@@ -56,6 +58,7 @@ public class RestaurantImageService {
         );
     }
 
+    // 최종 key가 요청 소유자 경로에 속하고 실제 저장소에 존재하는지 확인한다.
     public void validateFinalImage(Long ownerMemberId, String imageKey) {
         restaurantImagePolicy.validateFinalImageKey(ownerMemberId, imageKey);
         if (!restaurantImageStoragePort.exists(imageKey)) {

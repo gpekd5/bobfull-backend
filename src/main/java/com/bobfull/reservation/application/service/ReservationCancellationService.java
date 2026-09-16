@@ -8,13 +8,14 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-/** 사용자의 예약 취소 접수와 환불 요청 시작만 담당한다. */
+// 사용자의 예약 취소를 접수하고 커밋된 결과에 대해 환불을 요청한다.
 @Service
 @RequiredArgsConstructor
 public class ReservationCancellationService {
     private final ReservationCancellationTransactionService transactionService;
     private final ReservationCancellationRefundPort reservationCancellationRefundPort;
 
+    // 취소 상태를 먼저 확정한 뒤 잠금 트랜잭션 밖에서 외부 환불을 시작한다.
     public ReservationCancellationResponse cancel(
             Long memberId, Long reservationId, ReservationCancellationRequest request) {
         var acceptance = transactionService.accept(memberId, reservationId, request);

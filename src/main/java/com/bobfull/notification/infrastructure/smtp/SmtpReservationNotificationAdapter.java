@@ -13,15 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-/**
- * 실제 SMTP 서버로 예약 결과(확정·인원 미달 취소) 및 결제 완료(접수·참여) 안내 메일을 발송한다
- * (Issue #183). SMTP 호출은 수신자마다 정확히 한 번만 시도하고 실패를 Processor에 전달한다.
- * 재시도와 최종 FAILED 전이는 공통 Outbox가 단독으로 책임진다. 이메일 주소·본문은 로그에 남기지
- * 않는다. 이미지 첨부 없이 CSS만으로 꾸민 HTML 본문을 사용한다. 접수·참여 완료
- * 안내는 결제 완료 시점에 이미 정원이 차 모집이 즉시 마감(CLOSED)될 수도 있으므로, "확정"이라
- * 표현하지 않는 것은 물론 "모집 중"이라고 단정하지도 않는다 — 실제 모집 상태와 무관하게 참인
- * 상태 중립 문구만 사용한다.
- */
+// 예약·참여 결과 알림을 HTML 이메일로 구성해 SMTP 서버에 전송한다.
 @Slf4j
 @Component
 public class SmtpReservationNotificationAdapter implements ReservationNotificationPort {
@@ -57,6 +49,7 @@ public class SmtpReservationNotificationAdapter implements ReservationNotificati
 
     @Override
     public void notifyReservationCreated(ReservationResultNotification notification) {
+        // 결제 직후 모집이 마감될 수 있으므로 현재 모집 상태를 단정하지 않는 문구를 사용한다.
         send(notification, "CREATED", "[밥풀] 예약 접수가 완료되었습니다",
                 "예약 접수가 완료됐어요", "#1c7ed6",
                 "최종 예약 상태는 밥풀에서 확인할 수 있으며, 모집 마감 처리 대상인 경우 결과를 별도로 안내드립니다.");
@@ -64,6 +57,7 @@ public class SmtpReservationNotificationAdapter implements ReservationNotificati
 
     @Override
     public void notifyParticipationCompleted(ReservationResultNotification notification) {
+        // 결제 직후 모집이 마감될 수 있으므로 현재 모집 상태를 단정하지 않는 문구를 사용한다.
         send(notification, "JOINED", "[밥풀] 합석 참여가 완료되었습니다",
                 "참여가 완료됐어요", "#1c7ed6",
                 "최종 예약 상태는 밥풀에서 확인할 수 있으며, 모집 마감 처리 대상인 경우 결과를 별도로 안내드립니다.");
@@ -81,6 +75,7 @@ public class SmtpReservationNotificationAdapter implements ReservationNotificati
         String textBody = "%s\n식당: %s\n주소: %s\n예약 날짜: %s\n식사 시작 시간: %s\n%s".formatted(
                 title, notification.restaurantName(), notification.restaurantAddress(), mealDate, mealTime, message);
 
+        // 한 수신자의 실패가 나머지 발송을 막지 않게 모두 시도한 뒤 실패를 Processor에 전달한다.
         RuntimeException failure = null;
         for (Recipient recipient : notification.recipients()) {
             try {
@@ -95,6 +90,7 @@ public class SmtpReservationNotificationAdapter implements ReservationNotificati
     private void sendToRecipient(
             Long reservationId, Recipient recipient, String result, String subject, String htmlBody, String textBody
     ) {
+        // 개인정보가 로그에 남지 않도록 이메일 주소와 본문 대신 내부 식별자만 기록한다.
         MimeMessage message;
         try {
             message = buildMessage(recipient.email(), subject, htmlBody, textBody);

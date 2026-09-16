@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/** OWNER의 식당별 예약 목록 조회를 담당한다(Issue #147 §6-11). */
+// 식당 소유자에게 식당별 예약 목록 API를 제공한다.
 @RestController
 @RequestMapping("/api/owner/restaurants/{restaurantId}/reservations")
 @RequiredArgsConstructor

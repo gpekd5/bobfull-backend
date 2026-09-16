@@ -23,7 +23,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** ADMIN의 운영 지표·통계 조회를 담당한다(Issue #49 §11-9~11-11). */
+// 관리자용 운영 지표와 통계를 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -37,6 +37,7 @@ public class AdminStatisticsQueryService {
     private final ReservationParticipantRepository reservationParticipantRepository;
     private final AdminStatisticsRepository adminStatisticsRepository;
 
+    // 전체 예약 확정률과 참여자 기준 노쇼율을 운영 요약 지표로 계산한다.
     public AdminOverviewStatisticsResponse getOverview() {
         long totalReservationCount = reservationRepository.count();
         long confirmedCount = reservationRepository.countByReservationStatus(ReservationStatus.CONFIRMED);

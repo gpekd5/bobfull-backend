@@ -5,10 +5,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-/**
- * 회원 도메인 전용 에러 코드다.
- * 다른 도메인(식당·예약 등)은 같은 방식으로 BaseErrorCode를 구현하는 별도 Enum을 추가한다.
- */
 @Getter
 @RequiredArgsConstructor
 public enum MemberErrorCode implements BaseErrorCode {

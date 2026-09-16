@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-/** Outbox 상태 전이만 짧은 독립 트랜잭션으로 수행해 ChatRoom 저장 동안 행 잠금을 유지하지 않는다. */
+// Outbox claim·완료·실패·복구 상태 전이를 짧은 독립 트랜잭션으로 처리한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class OutboxEventTransactionService {
 
     private final OutboxEventRepository outboxEventRepository;
 
-    /** Processor가 담당하지 않는 이벤트를 claim하지 못하게 공통 테이블 경계를 강제한다. */
+    // 담당 이벤트 유형만 처리 토큰과 함께 선점해 여러 Processor의 중복 처리를 막는다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Optional<ClaimedOutboxEvent> claim(
             Long eventId,
@@ -54,6 +54,7 @@ public class OutboxEventTransactionService {
         ));
     }
 
+    // 선점 토큰이 일치하는 처리 건만 완료 상태로 확정한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public boolean complete(ClaimedOutboxEvent event, Instant now) {
         return outboxEventRepository.complete(
@@ -65,6 +66,7 @@ public class OutboxEventTransactionService {
         ) == 1;
     }
 
+    // 실패 횟수에 따라 재시도 시각을 예약하고 한도를 넘으면 최종 실패로 전이한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public FailureResult fail(ClaimedOutboxEvent event, String errorCode, Instant now, int maxRetries) {
         int attemptCount = event.attemptCount() + 1;
@@ -84,6 +86,7 @@ public class OutboxEventTransactionService {
         return new FailureResult(updated == 1, failed, attemptCount, nextAttemptAt);
     }
 
+    // 처리 중 멈춘 claim을 다시 PENDING으로 돌려 Scheduler가 재처리할 수 있게 한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public boolean recoverStale(Long eventId, Instant cutoff, Instant now) {
         return outboxEventRepository.recoverStale(
@@ -95,6 +98,7 @@ public class OutboxEventTransactionService {
         ) == 1;
     }
 
+    // 최종 실패한 이벤트의 시도 횟수와 오류를 초기화해 수동 재처리를 예약한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void retryManually(Long eventId, Instant now) {
         OutboxEvent event = outboxEventRepository.findById(eventId)

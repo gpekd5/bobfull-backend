@@ -46,12 +46,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     int sumPartySizeByTimeSlotIdAndStatusAndExpiresAtAfter(
             @Param("timeSlotId") Long timeSlotId, @Param("status") PaymentStatus status, @Param("now") Instant now);
 
-    /**
-     * 여러 TimeSlot에 걸친 READY Payment partySize 합계를 TimeSlot별로 묶어 한 번에 반환한다
-     * (Issue #235, 인기 회차 조회 Hot-path에서 회차별로 반복 조회하던 것을 배치로 묶기 위함). 각
-     * 행은 {@code [timeSlotId, sumPartySize]}이며, 대상 Payment가 없는 TimeSlot은 결과에 나타나지
-     * 않는다(호출자가 0으로 취급해야 한다).
-     */
+    // 목록 조회에서 회차별 반복 쿼리를 피하도록 READY 결제 인원 합계를 한 번에 반환한다.
+    // 각 행은 [timeSlotId, sumPartySize]이며 결과에 없는 회차는 호출자가 0으로 취급한다.
     @Query("select p.timeSlotId, coalesce(sum(p.partySize), 0) from Payment p "
             + "where p.timeSlotId in :timeSlotIds and p.status = :status and p.expiresAt > :now "
             + "group by p.timeSlotId")

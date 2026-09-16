@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+// 식당 소유자에게 예상 정산액과 예약별 결제·환불 내역을 제공한다.
 @RestController
 @RequestMapping("/api/owner")
 @RequiredArgsConstructor

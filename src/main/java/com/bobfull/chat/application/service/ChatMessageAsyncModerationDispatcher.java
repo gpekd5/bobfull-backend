@@ -9,14 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-/**
- * #192 "왜 Outbox+Kafka인가"를 실측으로 비교하기 위한 Baseline이다. Outbox/Kafka 없이
- * ChatMessage 커밋 직후 바로 스레드풀에 AI 분석을 제출한다. Kafka 처리 경계와 달리 이
- * Baseline은 재시도·DLT·브로커 적체가 없다 — 그 차이가 비교의 핵심이므로 일부러 단순하게
- * 유지하고, 큐가 포화되면 재시도 없이 그대로 버린다. {@code bobfull.chat.moderation.async-baseline-enabled=true}
- * 일 때만 활성화되며 기본값(false)에서는 Bean 자체가 생성되지 않아 운영 경로에 영향이 없다.
- */
+// Outbox·Kafka 경로와 비교하기 위해 재시도 없이 AI 분석을 제출하는 측정용 Baseline이다.
 @Component
+// 기본값은 비활성이며, 활성화하면 큐 포화 시 작업을 버리고 Retry·DLT를 제공하지 않는다.
 @ConditionalOnProperty(prefix = "bobfull.chat.moderation", name = "async-baseline-enabled", havingValue = "true")
 @Slf4j
 public class ChatMessageAsyncModerationDispatcher {
@@ -37,6 +32,7 @@ public class ChatMessageAsyncModerationDispatcher {
                 discardAndLog());
     }
 
+    // 커밋 후 전달된 메시지를 bounded executor에 제출하고 분석 실패는 호출자와 격리한다.
     public void dispatch(Long messageId) {
         executor.execute(() -> {
             try {
@@ -48,7 +44,7 @@ public class ChatMessageAsyncModerationDispatcher {
         });
     }
 
-    /** 실측 비교용: 큐에 남아있는(아직 시작하지 않은) 작업 수다. */
+    // 측정 시 아직 시작하지 않은 작업 수를 제공한다.
     public int queuedTaskCount() {
         return executor.getQueue().size();
     }

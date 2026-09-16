@@ -29,11 +29,7 @@ public interface ReservationRepository
 
     Optional<Reservation> findByTimeSlotIdAndReservationStatusIn(Long timeSlotId, Collection<ReservationStatus> statuses);
 
-    /**
-     * 여러 TimeSlot에 걸친 활성/CLOSED 예약을 한 번에 조회한다(Issue #235, 인기 회차 조회
-     * Hot-path에서 회차별로 반복 조회하던 것을 배치로 묶기 위함). 같은 TimeSlot에 같은 statuses
-     * 조건을 만족하는 Reservation은 최대 1건이라는 전제(CREATE 배타 선점, ADR-0001)를 그대로 쓴다.
-     */
+    // 회차별 반복 조회를 피하되, CREATE 배타 선점으로 회차별 대상 예약이 최대 1건이라는 전제를 쓴다.
     List<Reservation> findAllByTimeSlotIdInAndReservationStatusIn(Collection<Long> timeSlotIds, Collection<ReservationStatus> statuses);
 
     boolean existsByTimeSlotIdInAndReservationStatusIn(Collection<Long> timeSlotIds, Collection<ReservationStatus> statuses);
@@ -53,10 +49,7 @@ public interface ReservationRepository
             Pageable pageable
     );
 
-    /**
-     * 모집 마감 기한(식사 시작 2시간 전) 도달 후보를 조회한다(Issue #47). TimeSlot과 조인해
-     * 회차 시작 시각을 직접 비교하며, 아직 모집 마감·취소 처리되지 않은 대상만 후보로 삼는다.
-     */
+    // 식사 시작 2시간 전까지 모집 중이고 아직 취소되지 않은 예약만 마감 후보로 조회한다.
     @Query("select r.id from Reservation r join TimeSlot ts on r.timeSlotId = ts.id "
             + "where r.recruitmentStatus = :recruitmentStatus and r.reservationStatus in :activeStatuses "
             + "and ts.startAt <= :deadline "
@@ -68,10 +61,7 @@ public interface ReservationRepository
             Pageable pageable
     );
 
-    /**
-     * 식사 종료(TimeSlot.endAt 도달) 후보를 조회한다(Issue #175 Q1·Q2). {@code CONFIRMED} 예약만
-     * 대상으로 삼아, 식사 종료 시점까지 {@code RECRUITING}으로 남은 예약은 자동 종료로 덮지 않는다.
-     */
+    // CONFIRMED만 종료 후보로 삼아 성사되지 않은 RECRUITING 예약을 CLOSED로 덮지 않는다.
     @Query("select r.id from Reservation r join TimeSlot ts on r.timeSlotId = ts.id "
             + "where r.reservationStatus = :reservationStatus and ts.endAt <= :now "
             + "order by ts.endAt asc")

@@ -39,6 +39,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.util.StringUtils;
 
+// 모집 중 예약의 잔여 좌석과 검색 조건을 QueryDSL로 조합한다.
 public class ReservationSearchRepositoryImpl implements ReservationSearchRepository {
 
     private static final ZoneId SEOUL_ZONE = ZoneId.of("Asia/Seoul");
@@ -172,6 +173,7 @@ public class ReservationSearchRepositoryImpl implements ReservationSearchReposit
     }
 
     private BooleanExpression localTimeCondition(QTimeSlot timeSlot, LocalTime time) {
+        // API의 서울 현지 시각을 UTC 저장 컬럼의 시·분·초와 비교할 값으로 변환한다.
         LocalTime utcTime = time.minusHours(9);
         BooleanExpression expression = Expressions.numberTemplate(Integer.class, "hour({0})", timeSlot.startAt)
                 .eq(utcTime.getHour())
@@ -210,6 +212,7 @@ public class ReservationSearchRepositoryImpl implements ReservationSearchReposit
             orderSpecifiers.add(timeSlot.startAt.asc());
             orderSpecifiers.add(reservation.id.asc());
         } else if (recentDirection != null) {
+            // 같은 생성 시각에서도 페이지 순서가 흔들리지 않도록 식별자를 보조 정렬키로 쓴다.
             orderSpecifiers.add(order(recentDirection, reservation.id));
         }
         return orderSpecifiers.toArray(OrderSpecifier[]::new);

@@ -27,16 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 회원가입·로그인과 Refresh Token 재발급·로그아웃을 담당한다(Issue #125, #186).
- * 이메일·전화번호·사업자등록번호 중복은 저장 전 사전 검사로 우선 차단하고,
- * 동시 가입 경쟁으로 사전 검사를 통과한 뒤 DB UNIQUE 제약에 걸리면
- * DataIntegrityViolationException을 같은 중복 ErrorCode로 변환한다.
- * Refresh Token은 Redis에만 저장하며(회원당 1건, 재발급마다 회전), 재발급 중 Redis 조회 실패는
- * 무효 토큰과 동일하게 401로 거부한다(fail-closed). 로그아웃의 Redis 실패(Blacklist 등록·Refresh Token
- * 삭제 모두)는 감추지 않고 전파한다 — 인증 필터의 매 요청 Blacklist *조회*만 Fail-open이고, 로그아웃
- * 자체의 등록 실패를 성공으로 위장하지는 않는다(Issue #186 Q5).
- */
+// 회원가입·로그인과 Refresh Token 재발급·로그아웃 흐름을 담당한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -50,6 +41,7 @@ public class AuthService {
     private final AccessTokenBlacklistStore accessTokenBlacklistStore;
     private final Clock clock;
 
+    // 이메일과 휴대전화번호 중복을 검증하고 일반 회원 계정을 생성한다.
     @Transactional
     public SignupResponse signupMember(SignupUserRequest request) {
         validateEmailNotDuplicated(request.email());
@@ -66,6 +58,7 @@ public class AuthService {
         return SignupResponse.from(savedMember);
     }
 
+    // 이메일·휴대전화번호·사업자번호 중복을 검증하고 식당 소유자 계정을 생성한다.
     @Transactional
     public SignupResponse signupOwner(SignupOwnerRequest request) {
         validateEmailNotDuplicated(request.email());
@@ -84,6 +77,7 @@ public class AuthService {
         return SignupResponse.from(savedMember);
     }
 
+    // 자격 증명을 검증하고 기존 Refresh Token을 교체해 새 인증 토큰을 발급한다.
     @Transactional(readOnly = true)
     public LoginResponse login(LoginRequest request) {
         Member member = memberRepository.findByEmail(request.email())
@@ -104,11 +98,7 @@ public class AuthService {
         return LoginResponse.of(accessToken, refreshToken);
     }
 
-    /**
-     * Refresh Token을 검증하고 회전한 뒤 새 Access·Refresh Token을 발급한다.
-     * Redis 조회 실패(연결 장애 등)도 무효 토큰과 동일하게 401로 응답한다(Human 결정 Q3, fail-closed).
-     * 로그아웃과 달리 재발급은 신원 확인 자체가 목적이라 장애를 감추지 않고 거부로 처리한다.
-     */
+    // Refresh Token을 검증·회전하고 새 Access Token을 발급한다.
     @Transactional(readOnly = true)
     public ReissueResponse reissue(String refreshToken) {
         RefreshTokenStore.RotatedToken rotated = rotateOrRejectOnFailure(refreshToken);
@@ -120,6 +110,7 @@ public class AuthService {
     }
 
     private RefreshTokenStore.RotatedToken rotateOrRejectOnFailure(String refreshToken) {
+        // 재발급은 신원 확인 경계이므로 Redis 장애도 무효 토큰과 같이 거부한다.
         try {
             return refreshTokenStore.rotate(refreshToken)
                     .orElseThrow(() -> new CustomException(CommonErrorCode.UNAUTHORIZED));
@@ -130,15 +121,12 @@ public class AuthService {
         }
     }
 
-    /**
-     * 현재 Access Token의 jti를 남은 유효시간만큼 Blacklist에 등록해 즉시 무효화하고,
-     * 해당 회원의 Refresh Token을 삭제한다(Issue #186). accessToken은 이 요청이 인증 필터를
-     * 통과한 그 토큰이므로 서명·만료 재검증은 항상 성공한다. jti가 없는 토큰(이 기능 배포 이전에
-     * 발급된 토큰, PR #187 리뷰)은 Blacklist에 등록할 방법이 없어 그 등록만 건너뛰고 Refresh Token
-     * 삭제는 그대로 수행한다 — 로그아웃 자체가 실패하지는 않는다.
-     */
+    // 현재 Access Token을 즉시 무효화하고 회원의 Refresh Token을 삭제한다.
     public LogoutResponse logout(Long memberId, String accessToken) {
+        // 인증 필터를 통과한 현재 요청의 토큰이므로 동일한 검증 기준으로 Claim을 읽는다.
         JwtTokenProvider.AccessTokenClaims claims = jwtTokenProvider.parseAccessTokenClaims(accessToken);
+        // 저장소 실패를 성공으로 감추지 않기 위해 Blacklist 등록과 토큰 삭제 오류를 그대로 전파한다.
+        // jti가 없는 호환 토큰은 Blacklist 등록만 건너뛰고 Refresh Token 삭제는 계속한다.
         if (claims.jti() != null) {
             Duration remaining = Duration.between(clock.instant(), claims.expiresAt());
             accessTokenBlacklistStore.blacklist(claims.jti(), remaining);
@@ -148,6 +136,7 @@ public class AuthService {
     }
 
     private Member saveOrThrowDuplicate(Member member, String email, String phoneNumber, String businessNumber) {
+        // 사전 검사를 통과한 동시 가입 경쟁은 DB UNIQUE 제약으로 최종 차단한다.
         try {
             return memberRepository.save(member);
         } catch (DataIntegrityViolationException e) {

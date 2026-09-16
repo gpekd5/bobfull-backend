@@ -18,11 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 로그인한 회원 본인이 최초 예약자이거나 참여(JOIN)한 예약의 목록·상세를 조회한다(Issue #124).
- * 인가는 ReservationParticipant.memberId 기준으로만 판단하며, 다른 회원의 reservationId는
- * 존재 여부를 노출하지 않기 위해 404로 응답한다.
- */
+// 로그인 회원이 참여한 예약의 목록과 상세를 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -42,6 +38,7 @@ public class MyReservationQueryService {
     }
 
     public MyReservationDetailResponse getMyReservationDetail(Long memberId, Long reservationId) {
+        // 다른 회원의 예약 존재 여부가 드러나지 않도록 참여 관계가 없으면 NOT_FOUND로 처리한다.
         MyReservationResult result = reservationParticipantRepository
                 .findMyReservationDetail(memberId, reservationId)
                 .orElseThrow(() -> new CustomException(ReservationErrorCode.RESERVATION_ID_NOT_FOUND));

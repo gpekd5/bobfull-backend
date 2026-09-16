@@ -2,7 +2,7 @@ package com.bobfull.reservation.application.result;
 
 import java.time.Instant;
 
-/** §9-4 예약별 노쇼 이력 조회의 조회 결과 1건이다(Issue #48). */
+// 예약 참여자의 노쇼 처리 이력 한 건을 전달한다.
 public record NoShowHistoryResult(
         Long noShowHistoryId,
         Long participationId,

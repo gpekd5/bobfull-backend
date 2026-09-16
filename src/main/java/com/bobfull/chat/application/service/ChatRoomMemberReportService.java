@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** JWT 신고자와 채팅방 참여 이력을 기준으로 사용자 신고를 생성한다. */
+// 채팅방 참여 이력과 대상 메시지를 검증해 회원 신고를 생성한다.
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -28,6 +28,7 @@ public class ChatRoomMemberReportService {
     private final ChatRoomMemberReportRepository reports;
     private final ReservationParticipantRepository participants;
 
+    // 양측 참여와 근거 메시지를 확인하고 같은 대상에 대한 중복 신고를 차단한다.
     public ChatRoomMemberReportResponse create(
             Long reporter,
             Long roomId,

@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.simp.stomp.StompCommand;
 
-/** CONNECT 인증과 채팅방 SUBSCRIBE 인가만 처리하는 STOMP inbound interceptor다. */
+// STOMP CONNECT 인증과 채팅방 SUBSCRIBE·SEND 경계를 검증한다.
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -36,6 +36,7 @@ public class ChatStompInterceptor implements ChannelInterceptor {
     private final ChatRoomRepository chatRoomRepository;
     private final ReservationChatAccessPort reservationChatAccessPort;
 
+    // CONNECT에서 Principal을 설정하고 이후 명령마다 destination과 참여 권한을 검증한다.
     @Override
     public Message<?> preSend(Message<?> message, MessageChannel channel) {
         StompHeaderAccessor accessor = MessageHeaderAccessor.getAccessor(message, StompHeaderAccessor.class);

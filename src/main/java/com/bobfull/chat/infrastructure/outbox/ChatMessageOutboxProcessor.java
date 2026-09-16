@@ -21,7 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.kafka.core.KafkaOperations;
 import org.springframework.stereotype.Service;
 
-/** ChatMessage 생성 이벤트를 Kafka로 발행하는 at-least-once Outbox processor다. */
+// 채팅 메시지 Outbox를 선점해 Kafka에 at-least-once 방식으로 발행한다.
 @Slf4j
 @Service
 public class ChatMessageOutboxProcessor {
@@ -56,6 +56,7 @@ public class ChatMessageOutboxProcessor {
         this.partitionKeyStrategy = partitionKeyStrategy;
     }
 
+    // 이벤트를 선점한 Processor만 Kafka 발행과 완료·실패 전이를 수행한다.
     public void process(Long eventId) {
         try {
             transactionService.claim(eventId, CHAT_MESSAGE_EVENT_TYPES, clock.instant()).ifPresent(this::processClaimed);
@@ -69,6 +70,7 @@ public class ChatMessageOutboxProcessor {
         process(eventId);
     }
 
+    // 멈춘 claim을 복구한 뒤 예약된 PENDING 이벤트를 재처리한다.
     public void processDueEvents(int batchSize) {
         Instant now = clock.instant();
         outboxEventRepository.findStaleProcessingEventIdsByTypes(OutboxEventStatus.PROCESSING,
@@ -122,6 +124,7 @@ public class ChatMessageOutboxProcessor {
         String key = "message-id".equals(partitionKeyStrategy)
                 ? message.getId().toString()
                 : message.getChatRoomId().toString();
+        // Kafka ACK가 확인된 뒤에만 Outbox가 COMPLETED로 전이되도록 동기적으로 결과를 기다린다.
         kafkaTemplate.send(topic, key, payload).get(ackTimeoutSeconds, TimeUnit.SECONDS);
     }
 }

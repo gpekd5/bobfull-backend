@@ -3,7 +3,7 @@ package com.bobfull.chat.infrastructure.redis;
 import com.bobfull.chat.presentation.response.ChatMessageSentResponse;
 import java.time.Instant;
 
-/** Redis Pub/Sub으로 인스턴스 간에만 전달하는 채팅 실시간 전파 payload다. */
+// Redis Pub/Sub으로 App instance 사이에 전달하는 실시간 채팅 payload다.
 public record ChatRealtimeMessage(
         Long messageId, Long chatRoomId, Long senderMemberId, Long senderParticipantId,
         String senderName, String content, Instant sentAt

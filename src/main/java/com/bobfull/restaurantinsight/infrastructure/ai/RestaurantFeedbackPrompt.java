@@ -1,5 +1,6 @@
 package com.bobfull.restaurantinsight.infrastructure.ai;
 
+// 식당 리뷰 분류와 개인정보 제외 기준을 외부 모델에 전달하는 Prompt 계약이다.
 public final class RestaurantFeedbackPrompt {
     public static final String VERSION = "restaurant-feedback-v1";
     public static final String SYSTEM_PROMPT = """

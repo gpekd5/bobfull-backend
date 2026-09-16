@@ -15,12 +15,7 @@ import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.stereotype.Component;
 
-/**
- * SUBSCRIBE 시점 인가만으로는 구독 이후 참여자가 최종 CANCELLED로 확정되는 경우를 반영할 수 없다.
- * 브로커가 각 구독 세션에 개별 전달하기 직전(outbound)에 현재 참여·예약 상태를 다시 검사해,
- * 더 이상 유효하지 않은 구독자에게는 신규 메시지가 전달되지 않게 한다. 이미 맺어진 구독 자체를
- * 강제로 해제하지는 않지만, 그 시점부터 새 메시지는 차단된다.
- */
+// 브로커가 메시지를 전달하기 직전에 구독자의 최신 예약 참여 권한을 다시 검증한다.
 @Component
 public class ChatOutboundAuthorizationInterceptor implements ChannelInterceptor {
     private static final Pattern CHAT_ROOM_DESTINATION = Pattern.compile("^/sub/chat/rooms/(\\d+)$");
@@ -65,6 +60,7 @@ public class ChatOutboundAuthorizationInterceptor implements ChannelInterceptor 
             return null;
         }
 
+        // 구독 뒤 참여가 취소돼도 새 메시지가 전달되지 않도록 outbound마다 현재 상태를 조회한다.
         ReservationChatAccessPort.ChatAccess access =
                 reservationChatAccessReader.read(chatRoom.getReservationId(), memberId);
         return (access != null && access.isActive()) ? message : null;

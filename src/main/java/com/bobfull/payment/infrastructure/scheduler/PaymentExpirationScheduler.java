@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+// 만료 시각이 지난 READY 결제를 배치로 찾아 개별 만료 처리한다.
 @Component
 @ConditionalOnProperty(prefix = "payment.expiration", name = "enabled", havingValue = "true", matchIfMissing = true)
 @Slf4j
@@ -33,6 +34,7 @@ public class PaymentExpirationScheduler {
         this.batchSize = batchSize;
     }
 
+    // 한 건의 실패가 다음 만료 후보 처리를 막지 않도록 개별 실행한다.
     @Scheduled(fixedDelayString = "${payment.expiration.fixed-delay:60000}")
     public void expireReadyPayments() {
         paymentRepository.findExpirationCandidateIds(PaymentStatus.READY, clock.instant(), PageRequest.of(0, batchSize))

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** OWNER의 예약별 노쇼 처리 대상 조회·처리·해제·이력 조회를 담당한다(Issue #48 §9-1~9-4). */
+// 식당 소유자에게 예약 참여자의 노쇼 처리와 이력 조회 API를 제공한다.
 @RestController
 @RequestMapping("/api/owner/reservations/{reservationId}")
 @RequiredArgsConstructor

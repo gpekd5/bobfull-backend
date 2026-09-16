@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+// 인증 사용자의 결제·환불 이력 조회 HTTP 경계를 제공한다.
 @RestController
 @RequestMapping("/api/members/me")
 @RequiredArgsConstructor

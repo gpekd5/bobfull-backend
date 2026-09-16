@@ -7,14 +7,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Pageable;
 
-/**
- * 식당 검색 결과 캐시 Key를 실제 결과를 결정하는 입력(keyword/category/sort/page/size)만으로
- * 정규화해 만든다(Issue #62 Cache Key 계약). JWT·회원 개인정보·requestId는 포함하지 않는다.
- * date/time은 캐시 대상에서 제외한다({@link #isCacheEligible}) — TimeSlot 변경까지 무효화
- * 대상으로 추적해야 해서 이번 Issue의 최소 범위를 넘어선다(Evidence "제외 범위" 참고).
- */
+// 검색 결과를 결정하는 정규화된 공개 조건만으로 캐시 key를 구성한다.
 public record RestaurantSearchCacheKey(String keyword, String category, String sort, int page, int size) {
 
+    // date/time 결과는 TimeSlot 변경에도 영향을 받아 Restaurant 전용 무효화만으로 안전하지 않다.
     public static boolean isCacheEligible(RestaurantSearchRequest request) {
         return request.date() == null && request.time() == null;
     }

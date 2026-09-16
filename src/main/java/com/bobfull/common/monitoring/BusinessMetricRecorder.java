@@ -7,10 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-/**
- * 운영 대시보드용 비즈니스 Counter를 기록한다.
- * 메트릭 기록 실패가 핵심 트랜잭션 흐름에 영향을 주지 않도록 내부에서 예외를 삼킨다.
- */
+// 운영 대시보드용 비즈니스 사건 Counter를 핵심 흐름과 격리해 기록한다.
 @Slf4j
 @Component
 public class BusinessMetricRecorder {
@@ -26,6 +23,7 @@ public class BusinessMetricRecorder {
     }
 
     public void increment(BusinessMetricEvent event) {
+        // 관측 시스템 실패가 비즈니스 트랜잭션을 실패시키지 않도록 기록 오류를 격리한다.
         try {
             counterFor(event).increment();
         } catch (RuntimeException exception) {

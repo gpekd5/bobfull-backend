@@ -2,7 +2,7 @@ package com.bobfull.chat.application.event;
 
 import java.time.Instant;
 
-/** Kafka로 발행되는 최소 식별자 payload다. 채팅 원문은 절대 포함하지 않는다. */
+// 개인정보 노출을 줄이기 위해 채팅 원문 없이 식별자만 Kafka로 전달한다.
 public record ChatMessageCreatedEvent(
         String eventId,
         int eventVersion,

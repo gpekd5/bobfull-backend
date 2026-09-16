@@ -12,10 +12,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 인증 사용자 본인의 정보 조회·수정을 담당한다.
- * 대상 회원은 SecurityContext의 인증 사용자 ID로만 결정하며 Request 값을 신뢰하지 않는다.
- */
+// 인증 사용자 본인의 정보 조회와 수정을 담당한다.
+// 대상 회원은 클라이언트 입력이 아닌 인증 사용자 ID로 결정한다.
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -28,6 +26,7 @@ public class MemberService {
         return MemberResponse.from(member);
     }
 
+    // 인증 회원 본인의 이름과 휴대전화번호를 변경하고 중복 번호를 차단한다.
     @Transactional
     public MemberUpdateResponse updateMe(Long memberId, MemberUpdateRequest request) {
         Member member = findMemberOrThrow(memberId);

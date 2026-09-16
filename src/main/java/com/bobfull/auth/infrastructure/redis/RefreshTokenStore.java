@@ -8,13 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
-/**
- * Refresh Token을 Redis에만 저장·조회·삭제한다(Issue #125).
- * 회원당 Refresh Token은 한 번에 하나만 유효하며(단일 세션), 로그인·재발급은
- * 기존 토큰을 지우고 새 토큰을 발급한다. 로그아웃 요청 Body에는 토큰값이 없으므로
- * memberId → refreshToken 역방향 매핑도 함께 유지해 인증된 memberId만으로 삭제할 수 있게 한다.
- * Redis 조회 실패(연결 장애 등)는 이 클래스가 삼키지 않고 그대로 호출자에 전파한다.
- */
+// Refresh Token의 발급·회전·삭제와 회원별 단일 세션을 Redis에서 관리한다.
+// Redis 오류는 인증 흐름별 실패 정책을 결정하는 호출자에게 그대로 전파한다.
 @Component
 public class RefreshTokenStore {
 
@@ -48,6 +43,7 @@ public class RefreshTokenStore {
     }
 
     public void deleteByMember(Long memberId) {
+        // 로그아웃 요청에는 Refresh Token이 없으므로 memberId 역방향 키로 기존 토큰을 찾는다.
         String existing = redisTemplate.opsForValue().get(memberKey(memberId));
         if (existing != null) {
             redisTemplate.delete(tokenKey(existing));
@@ -69,6 +65,7 @@ public class RefreshTokenStore {
 
     private String storeNewToken(Long memberId) {
         String refreshToken = generateToken();
+        // 토큰 키와 회원 역방향 키의 TTL을 맞춰 단일 세션의 수명을 함께 관리한다.
         redisTemplate.opsForValue().set(tokenKey(refreshToken), memberId.toString(), ttl);
         redisTemplate.opsForValue().set(memberKey(memberId), refreshToken, ttl);
         return refreshToken;

@@ -9,7 +9,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
-/** 커밋된 채팅 메시지만 Redis Pub/Sub 채널로 best-effort 전파한다. */
+// 커밋된 메시지를 모든 App instance가 공유하는 Redis 채널로 best-effort 전파한다.
 @Slf4j
 @Component
 public class RedisChatMessagePublisher {
@@ -28,6 +28,7 @@ public class RedisChatMessagePublisher {
         this.channel = channel;
     }
 
+    // Redis 장애가 메시지 저장 결과를 되돌리지 않도록 실패를 관측하고 호출자와 격리한다.
     public void publish(ChatMessageSentResponse response) {
         try {
             redisTemplate.convertAndSend(channel, objectMapper.writeValueAsString(ChatRealtimeMessage.from(response)));

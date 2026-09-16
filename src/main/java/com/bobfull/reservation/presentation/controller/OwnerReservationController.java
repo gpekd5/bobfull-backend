@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** OWNER의 예약 상세·참여자 목록 조회와 식당 귀책 전체 취소를 담당한다(Issue #147 §6-12~6-13, #46 §6-14). */
+// 식당 소유자에게 예약 상세·참여자 조회와 전체 취소 API를 제공한다.
 @RestController
 @RequestMapping("/api/owner/reservations/{reservationId}")
 @RequiredArgsConstructor

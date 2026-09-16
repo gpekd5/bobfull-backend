@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/** PortOne SDK 타입을 결제 도메인 내부 모델로 변환한다. */
+// PortOne 결제 조회 결과를 결제 도메인 내부 모델로 변환한다.
 @Component
 @RequiredArgsConstructor
 public class PortOneSdkPaymentAdapter implements PortOnePaymentPort {

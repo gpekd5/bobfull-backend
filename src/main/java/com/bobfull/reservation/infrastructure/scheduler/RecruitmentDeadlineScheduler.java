@@ -19,13 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-/**
- * 식사 시작 2시간 전 모집 마감 대상을 찾아 마감 처리하고, 확정 기준 미달이면 자동으로 취소·환불
- * 요청까지 접수한다(Issue #47, project-context.md §4/§5). 후보별로 독립된 짧은 트랜잭션에서
- * 처리하며, 분산 락은 두지 않는다 — 후보 하나가 이미 처리됐으면
- * {@link ReservationCancellationTransactionService#acceptRecruitmentDeadline}이 재확인 가드로
- * 멱등 종료해, 같은 후보가 여러 스케줄 주기·인스턴스에 걸쳐 조회돼도 중복 반영되지 않는다.
- */
+// 식사 시작 2시간 전 예약의 모집을 마감하고 성사 기준 미달이면 취소·환불을 시작한다.
 @Slf4j
 @Component
 @ConditionalOnProperty(prefix = "reservation.recruitment-deadline", name = "enabled", havingValue = "true", matchIfMissing = true)
@@ -54,6 +48,7 @@ public class RecruitmentDeadlineScheduler {
         this.businessMetricRecorder = businessMetricRecorder;
     }
 
+    // 후보별 잠금 재확인으로 멱등성을 보장하므로 분산 락 없이 짧은 트랜잭션으로 나눠 처리한다.
     @Scheduled(fixedDelayString = "${reservation.recruitment-deadline.fixed-delay:60000}")
     public void closeExpiredRecruitments() {
         Instant deadline = clock.instant().plus(DEADLINE_OFFSET);

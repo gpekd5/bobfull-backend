@@ -11,6 +11,7 @@ import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
+// 보호된 리뷰를 Spring AI 구조화 출력으로 분석하고 Provider 메타데이터와 함께 반환한다.
 @Component
 @ConditionalOnProperty(prefix = "bobfull.ai.restaurant-insight", name = "enabled", havingValue = "true")
 public class SpringAiRestaurantFeedbackInsightAdapter implements RestaurantFeedbackInsightPort {

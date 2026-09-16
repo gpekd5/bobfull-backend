@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
+// PortOne 환불 요청과 외부 환불 상태 재조회를 결제 도메인 계약으로 변환한다.
 @Component
 public class PortOneRefundGatewayAdapter implements PortOneRefundPort {
 
@@ -101,8 +102,8 @@ public class PortOneRefundGatewayAdapter implements PortOneRefundPort {
             PaymentCancellation.Recognized candidate = candidates.get(0);
             return ReconciliationResult.completed(candidate.getId(), candidate.getCancelledAt());
         }
-        // Payment는 이미 전액 취소로 확정됐으므로, 단일 매칭 후보가 아니면(0건 포함) 이후 재요청·자동
-        // 완료 없이도 사람이 즉시 원인을 확인할 수 있게 AMBIGUOUS로 남긴다(#148 리뷰 반영, #141 계약 수정).
+        // Payment는 이미 전액 취소됐지만 단일 후보를 특정할 수 없으므로 자동 완료하지 않고
+        // 사람이 원인을 확인할 수 있도록 AMBIGUOUS로 남긴다.
         return ReconciliationResult.ambiguous(candidates.isEmpty()
                 ? "cancelled payment has no matching candidate"
                 : "multiple or mixed cancellations");

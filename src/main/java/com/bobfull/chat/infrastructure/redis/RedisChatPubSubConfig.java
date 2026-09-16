@@ -10,7 +10,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
-/** Redis 연결 복구 시 listener container가 같은 채널을 다시 구독하도록 구성한다. */
+// Redis 연결 복구 후 동일 채널을 다시 구독하는 listener container를 구성한다.
 @Configuration
 @ConditionalOnProperty(prefix = "chat.redis-pubsub", name = "subscriber-enabled", havingValue = "true", matchIfMissing = true)
 public class RedisChatPubSubConfig {

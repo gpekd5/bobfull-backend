@@ -11,9 +11,7 @@ import java.time.Instant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/**
- * 예약 확정에서 필요한 회차·테이블 조회 경로를 캡슐화한다.
- */
+// 예약 성사와 취소 기준 계산에 필요한 회차·테이블 정보를 제공한다.
 @Component
 @RequiredArgsConstructor
 public class JpaReservationCapacityAdapter implements ReservationCapacityPort {

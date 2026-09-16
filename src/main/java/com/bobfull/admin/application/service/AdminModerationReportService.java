@@ -26,7 +26,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** ADMIN의 신고 조회와 Human 최종 판단을 처리한다. 판단은 회원 제재를 변경하지 않는다. */
+// 관리자 신고 조회와 Human 최종 판단을 처리한다.
 @Service
 @RequiredArgsConstructor
 public class AdminModerationReportService {
@@ -45,6 +45,7 @@ public class AdminModerationReportService {
         ).map(AdminModerationReportResponse::from));
     }
 
+    // 신고 상세와 주변 메시지, moderation 및 누적 신고 신호를 함께 조회한다.
     @Transactional(readOnly = true)
     public AdminModerationReportDetailResponse get(Long id) {
         ChatRoomMemberReport report = reports.findById(id)
@@ -94,6 +95,7 @@ public class AdminModerationReportService {
         );
     }
 
+    // 신고에 Human 판단을 기록하되 회원 제재 상태는 변경하지 않는다.
     @Transactional
     public AdminModerationReportResponse review(Long id, Long admin, AdminReportReviewRequest request) {
         ChatRoomMemberReport report = reports.findById(id)

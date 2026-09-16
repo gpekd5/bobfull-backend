@@ -25,9 +25,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * OWNER 합석 테이블 등록·조회·수정·삭제를 담당한다.
- */
+// 소유 식당의 합석 테이블 등록·조회·정원 변경·삭제를 담당한다.
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -39,6 +37,7 @@ public class SharedTableService {
     private final SharedTableUsageValidator sharedTableUsageValidator;
     private final Clock clock;
 
+    // 허용 정원을 검증하고 식당 내 다음 표시 번호로 테이블을 등록한다.
     @Transactional
     public SharedTableIdResponse register(Long ownerMemberId, Long restaurantId, SharedTableRequest request) {
         Restaurant restaurant = findActiveRestaurantForUpdateOrThrow(restaurantId);
@@ -51,6 +50,7 @@ public class SharedTableService {
         return SharedTableIdResponse.from(savedTable);
     }
 
+    // 같은 정원의 테이블을 연속된 표시 번호로 일괄 등록한다.
     @Transactional
     public SharedTableBulkResponse registerBulk(
             Long ownerMemberId,
@@ -90,6 +90,7 @@ public class SharedTableService {
         return SharedTableResponse.from(sharedTable);
     }
 
+    // 활성 예약이 없는 테이블만 정원을 변경한다.
     @Transactional
     public SharedTableIdResponse update(Long ownerMemberId, Long tableId, SharedTableRequest request) {
         SharedTable sharedTable = findActiveTableOrThrow(tableId);
@@ -107,6 +108,7 @@ public class SharedTableService {
         return SharedTableIdResponse.from(sharedTable);
     }
 
+    // 연결된 회차가 없는 테이블만 soft delete한다.
     @Transactional
     public SharedTableIdResponse delete(Long ownerMemberId, Long tableId) {
         SharedTable sharedTable = findActiveTableOrThrow(tableId);
@@ -132,6 +134,7 @@ public class SharedTableService {
                 .orElseThrow(() -> new CustomException(RestaurantErrorCode.RESTAURANT_ID_NOT_FOUND));
     }
 
+    // 표시 번호 계산과 등록을 직렬화해 동시 요청이 같은 번호를 배정하지 않도록 식당 행을 잠근다.
     private Restaurant findActiveRestaurantForUpdateOrThrow(Long restaurantId) {
         return restaurantRepository.findByIdAndDeletedAtIsNullForUpdate(restaurantId)
                 .orElseThrow(() -> new CustomException(RestaurantErrorCode.RESTAURANT_ID_NOT_FOUND));

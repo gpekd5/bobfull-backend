@@ -3,9 +3,7 @@ package com.bobfull.common.response;
 import java.util.List;
 import org.springframework.data.domain.Page;
 
-/**
- * 공통 페이징 응답 형식이다(docs/020-api/bobfull-api-spec-complete.md 0.5).
- */
+// API 명세의 공통 페이지 메타데이터와 목록을 제공한다.
 public record PageResponse<T>(
         List<T> content,
         int page,

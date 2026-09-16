@@ -24,7 +24,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-/** §9-4·§9-5 노쇼 이력·집계 조회를 담당한다(Issue #48). */
+// 예약별 노쇼 이력과 식당별 노쇼 고객 집계를 QueryDSL로 조회한다.
 @Repository
 public class NoShowQueryRepositoryImpl implements NoShowQueryRepository {
 
@@ -104,6 +104,7 @@ public class NoShowQueryRepositoryImpl implements NoShowQueryRepository {
                 .where(predicates)
                 .fetch();
 
+        // 회원별 노쇼 횟수와 가장 최근 처리 행을 함께 반환하기 위해 조회 결과를 회원 단위로 묶는다.
         Map<Long, List<Tuple>> rowsByMember = rows.stream()
                 .collect(Collectors.groupingBy(row -> row.get(participant.memberId)));
 

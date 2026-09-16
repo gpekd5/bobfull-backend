@@ -13,9 +13,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/**
- * 예약 준비에 필요한 외부 도메인 조회 경로와 TimeSlot 잠금을 캡슐화한다.
- */
+// 예약 준비에 필요한 회차·테이블·식당 조회와 선택적 TimeSlot 잠금을 제공한다.
 @Component
 @RequiredArgsConstructor
 public class JpaReservationTargetAdapter implements ReservationTargetPort {

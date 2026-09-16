@@ -13,10 +13,7 @@ import org.springframework.kafka.listener.ConsumerRecordRecoverer;
 import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
 import org.springframework.stereotype.Component;
 
-/**
- * Kafka Retry가 모두 소진된 레코드를 DLT 토픽으로 옮기고, #66의 최종 실패 기록 진입점을 호출한다.
- * DLT 이동과 recordFinalFailure 호출 순서를 이 클래스 하나에서 보장한다.
- */
+// Kafka 재시도를 소진한 레코드를 DLT로 옮긴 뒤 최종 분석 실패를 기록한다.
 @Slf4j
 @Component
 public class ChatModerationDltRecoverer implements ConsumerRecordRecoverer {

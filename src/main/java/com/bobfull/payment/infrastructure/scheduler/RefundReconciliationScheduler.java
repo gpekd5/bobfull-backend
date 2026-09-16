@@ -18,15 +18,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-/**
- * 오래 멈춘 환불을 조회 전용으로 재확인하며, 한 건 실패가 다음 후보를 막지 않게 한다.
- *
- * <p>matchIfMissing=false다 — application-local.yml.example은 Spring이 자동으로 읽는 파일이
- * 아니라서, 로컬 환경에서 enabled 값을 아예 지정하지 않은 경우에도 이 스케줄러가 기본으로
- * 뜨지 않아야 한다(Issue #272 PR 리뷰로 발견). 운영은 application-prod.yml이 enabled=true를
- * 명시하므로 이 기본값 변경의 영향을 받지 않는다.</p>
- */
+// 오래 멈춘 환불을 PortOne 조회로 재확인하고 건별 결과를 후속 처리한다.
 @Component
+// 예시 설정 파일은 자동 로드되지 않으므로 명시적으로 활성화한 환경에서만 실행한다.
 @ConditionalOnProperty(prefix = "payment.refund-reconciliation", name = "enabled", havingValue = "true", matchIfMissing = false)
 @Slf4j
 public class RefundReconciliationScheduler {
@@ -59,6 +53,7 @@ public class RefundReconciliationScheduler {
         this.maxAge = maxAge;
     }
 
+    // 한 건의 조회·반영 실패가 다음 재조정 후보를 막지 않도록 개별 실행한다.
     @Scheduled(fixedDelayString = "${payment.refund-reconciliation.fixed-delay:5m}")
     public void reconcileStalledRefunds() {
         Instant now = clock.instant();

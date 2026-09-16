@@ -5,7 +5,7 @@ import com.bobfull.common.privacy.MemberNameMasker;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
-/** §11-8 전체 노쇼 현황 조회 응답이다(Issue #134). */
+// 관리자 노쇼 현황 조회 응답 항목이다.
 public record AdminNoShowListItemResponse(
         Long noShowHistoryId,
         Long memberId,

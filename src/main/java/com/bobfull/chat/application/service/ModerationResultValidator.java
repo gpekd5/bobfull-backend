@@ -5,7 +5,7 @@ import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
 
-/** Structured Output도 외부 입력이므로 BobFull 조합 규칙을 다시 검증한다. */
+// 외부 AI의 Structured Output이 내부 Moderation 조합 규칙을 만족하는지 검증한다.
 final class ModerationResultValidator {
     private ModerationResultValidator() {
     }

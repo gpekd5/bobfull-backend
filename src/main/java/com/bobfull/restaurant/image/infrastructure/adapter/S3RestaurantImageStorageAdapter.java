@@ -20,6 +20,7 @@ import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
 import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignRequest;
 
+// S3 presigned URL과 객체 확인·삭제를 제공하고 저장소 실패를 공통 오류와 지표로 변환한다.
 @Slf4j
 @Component
 public class S3RestaurantImageStorageAdapter implements RestaurantImageStoragePort {

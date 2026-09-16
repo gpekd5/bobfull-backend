@@ -23,7 +23,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
-/** ChatMessage를 짧게 조회한 뒤 트랜잭션 밖에서 AI를 호출하고 결과만 영속화한다. */
+// 채팅 메시지를 규칙과 AI로 분석하고 멱등하게 Moderation 결과를 저장한다.
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -39,6 +39,7 @@ public class ChatModerationService {
     private final SplitMessageCandidateGate splitCandidateGate;
     private final Clock clock;
 
+    // 완료된 분석은 건너뛰고 외부 AI 호출을 트랜잭션 밖에서 수행한 뒤 결과만 저장한다.
     public void analyze(Long messageId) {
         ChatModeration existing = moderations.findByMessageId(messageId).orElse(null);
         if (existing != null && existing.isCompleted()) {
@@ -115,7 +116,7 @@ public class ChatModerationService {
         return new AnalysisResponse(response, promptVersion);
     }
 
-    /** #59가 Kafka Retry를 소진하고 DLT로 보낼 때만 호출하는 최종 실패 기록 진입점이다. */
+    // Kafka 재시도를 모두 소진해 DLT 발행이 성공한 메시지만 최종 실패로 기록한다.
     public void recordFinalFailure(Long messageId, String errorCode) {
         ChatModeration existing = moderations.findByMessageId(messageId).orElse(null);
         if (existing != null && existing.isCompleted()) {

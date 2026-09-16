@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+// 참여 중인 채팅방의 이전 메시지를 cursor 기반으로 조회하는 HTTP 경계를 제공한다.
 @RestController
 @RequestMapping("/api/chat/rooms")
 @RequiredArgsConstructor

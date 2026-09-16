@@ -7,13 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-/** 즉시 응답과 웹훅이 같은 예약 완료 경로를 사용하도록 환불 완료를 조정한다. */
+// 외부 환불 결과와 예약 취소 완료를 하나의 후속 처리 경로로 조율한다.
 @Service
 @RequiredArgsConstructor
 public class RefundCompletionService {
     private final RefundTransactionService transactionService;
     private final ReservationCancellationCompletionPort cancellationCompletionPort;
 
+    // 즉시 환불 응답을 반영하고 완료된 경우 예약 참여 상태까지 함께 확정한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public RefundTransactionService.RefundCompletion reflectExternalResult(
             Long refundId, String cancellationId, boolean completed) {
@@ -23,6 +24,7 @@ public class RefundCompletionService {
         return completion;
     }
 
+    // Cancelled 웹훅을 반영하고 완료된 경우 예약 참여 상태까지 함께 확정한다.
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void completeFromWebhook(String paymentId, String cancellationId) {
         transactionService.completeFromWebhook(paymentId, cancellationId)

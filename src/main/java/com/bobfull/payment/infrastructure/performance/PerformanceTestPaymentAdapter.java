@@ -11,15 +11,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-/**
- * Issue #146 K6 성능 측정 전용 대체 구현이다. 실제 PortOne 결제 조회 API를 호출하지 않고
- * 저장된 Payment의 금액·통화를 그대로 돌려줘 {@code performance} 프로파일에서 웹훅 기반
- * PAID 확정을 실제 외부 호출 없이 재현한다. 다른 프로파일에서는 {@link PortOneSdkPaymentAdapter}가 그대로 쓰인다.
- *
- * <p><b>운영 주의:</b> 이 Bean은 실제 PortOne 검증을 완전히 건너뛰고 저장된 값만 보고 항상
- * PAID로 응답한다 — {@code performance}가 운영 배포의 {@code SPRING_PROFILES_ACTIVE}에 절대
- * 섞이지 않아야 한다(결제 검증 자체가 무력화된다).</p>
- */
+// 성능 측정에서 PortOne 호출 없이 저장된 결제를 PAID 응답으로 재현한다.
+// 실제 결제 검증을 건너뛰므로 performance 프로파일은 운영 환경에서 절대 활성화하면 안 된다.
 @Component
 @Profile("performance")
 @Primary
@@ -28,6 +21,7 @@ public class PerformanceTestPaymentAdapter implements PortOnePaymentPort {
 
     private final PaymentRepository paymentRepository;
 
+    // 저장된 금액과 통화를 그대로 반환해 외부 네트워크 없이 완료 흐름을 측정한다.
     @Override
     public PortOnePayment read(String paymentId) {
         Payment payment = paymentRepository.findByPaymentId(paymentId)

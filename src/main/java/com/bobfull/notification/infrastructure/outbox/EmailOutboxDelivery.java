@@ -16,7 +16,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/** 이메일 주소 대신 수신자 식별자와 성공 결과만 저장하는 Outbox 전송 이력이다. */
+// 이메일 주소 없이 수신자별 멱등 처리 상태와 성공 시각을 저장한다.
 @Entity
 @Table(name = "email_outbox_delivery",
         uniqueConstraints = @UniqueConstraint(name = "uk_email_outbox_delivery_event_recipient",

@@ -4,12 +4,7 @@ import com.bobfull.restaurant.restaurant.domain.entity.Restaurant;
 import java.util.List;
 import org.springframework.data.domain.Page;
 
-/**
- * 식당 검색 결과를 Redis에 캐시하기 위한 형태다(Issue #62).
- * {@code imageKey}는 원본 S3 키만 저장하고 presigned URL은 저장하지 않는다 — presigned URL은
- * {@code S3_IMAGE_GET_URL_EXPIRATION}(기본 5분)이 지나면 무효가 되므로, 캐시 TTL과 무관하게
- * 매 조회(캐시 Hit/Miss 모두)마다 새로 생성해야 한다.
- */
+// 식당 검색 결과의 페이지 정보와 응답 재구성 데이터를 캐시에 보관한다.
 public record CachedRestaurantSearchResult(
         List<Item> items,
         int page,
@@ -28,6 +23,7 @@ public record CachedRestaurantSearchResult(
         );
     }
 
+    // presigned URL은 캐시 TTL과 별도로 만료되므로 원본 imageKey만 저장하고 응답마다 다시 만든다.
     public record Item(
             Long restaurantId,
             String name,

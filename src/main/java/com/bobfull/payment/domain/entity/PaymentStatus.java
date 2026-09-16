@@ -1,8 +1,6 @@
 package com.bobfull.payment.domain.entity;
 
-/**
- * Payment의 결제 처리 상태다.
- */
+// 내부 결제의 준비·완료·실패·만료·환불 상태를 표현한다.
 public enum PaymentStatus {
 
     READY,

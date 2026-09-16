@@ -40,7 +40,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** OWNER의 식당별 예약 목록·상세·참여자 조회를 담당한다(Issue #147 §6-11~6-13). */
+// 식당 소유자가 관리하는 예약 목록·상세와 참여자를 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -121,11 +121,7 @@ public class OwnerReservationQueryService {
         }
     }
 
-    /**
-     * TimeSlot·SharedTable은 소프트 삭제 후에도 조회한다. 목록 조회(§6-11)가 deletedAt을 걸러내지
-     * 않으므로, 여기서 걸러내면 목록에는 보이지만 상세·참여자 조회는 404가 되는 불일치가 생긴다
-     * (예: 취소된 예약만 남은 회차·테이블을 사장님이 나중에 삭제한 경우).
-     */
+    // 삭제된 회차·테이블도 조회해 과거 예약이 목록에는 보이지만 상세에서는 사라지는 불일치를 막는다.
     private OwnershipContext resolveOwnership(Long reservationId, Long ownerMemberId) {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new CustomException(ReservationErrorCode.RESERVATION_ID_NOT_FOUND));
@@ -141,7 +137,7 @@ public class OwnerReservationQueryService {
         return new OwnershipContext(reservation, timeSlot, sharedTable, restaurant);
     }
 
-    /** API 명세 §6-11이 문서화한 값(RECRUITING/CONFIRMED/CANCELLED/CLOSED)만 허용한다. */
+    // 공개 조회 조건에는 내부 취소 진행 상태인 CANCELLING을 허용하지 않는다.
     private ReservationStatus parseStatus(String reservationStatus) {
         if (reservationStatus == null || reservationStatus.isBlank()) {
             return null;

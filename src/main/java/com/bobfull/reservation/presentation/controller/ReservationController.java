@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+// 회원에게 예약 검색·준비·취소 API를 제공한다.
 @RestController
 @RequestMapping("/api/reservations")
 @RequiredArgsConstructor

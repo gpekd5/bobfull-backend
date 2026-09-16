@@ -15,7 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/** ADMIN의 전체 환불 현황 조회를 담당한다(Issue #49 §11-7). */
+// 관리자용 전체 환불 현황을 조회한다.
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)

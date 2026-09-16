@@ -7,10 +7,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-/**
- * #66 ChatModerationService.analyze(messageId)만 호출한다. AiModerationPort/ChatClient/OpenAI를
- * 직접 다루지 않으며, 실패는 그대로 던져 컨테이너의 CommonErrorHandler(Retry/DLT)가 처리하게 한다.
- */
+// 채팅 메시지 생성 이벤트를 AI 분석에 전달하고 실패를 Kafka Retry·DLT 경계로 전파한다.
 @Component
 @ConditionalOnProperty(prefix = "bobfull.kafka.chat-message", name = "consumer-enabled", havingValue = "true", matchIfMissing = true)
 @RequiredArgsConstructor
@@ -18,6 +15,7 @@ public class ChatModerationConsumer {
 
     private final ChatModerationService chatModerationService;
 
+    // 재전달될 수 있는 이벤트를 멱등 분석 서비스에 넘기고 계약 위반은 즉시 실패시킨다.
     @KafkaListener(
             topics = "${bobfull.kafka.chat-message.topic:bobfull.chat.message-created.v1}",
             groupId = "${spring.kafka.consumer.group-id:bobfull-chat-moderation}",
