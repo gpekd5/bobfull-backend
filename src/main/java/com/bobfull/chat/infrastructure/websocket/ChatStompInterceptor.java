@@ -90,7 +90,8 @@ public class ChatStompInterceptor implements ChannelInterceptor {
                     StompAuthenticationException.Reason.ROLE_NOT_ALLOWED);
         }
         accessor.setUser(new StompPrincipal(authMember));
-        log.info("CHAT_STOMP_CONNECTED memberId={} sessionId={}", authMember.id(), accessor.getSessionId());
+        log.info("event=CHAT_STOMP_CONNECTED memberId={} sessionId={}",
+                authMember.id(), accessor.getSessionId());
         return MessageBuilder.createMessage(message.getPayload(), accessor.getMessageHeaders());
     }
 

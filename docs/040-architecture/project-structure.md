@@ -75,7 +75,7 @@ Production Java 기준 진입점은 `src/main/java/com/bobfull`이며 Issue #38 
 |---|---|---|---|---|
 | `admin/presentation` | 운영 HTTP API | Controller, HTTP DTO | `AdminMemberController`, `AdminMemberDetailResponse` | QueryDSL 구현 |
 | `admin/application` | 운영 조회 조합 | Query Service, 내부 Result | `AdminMemberQueryService`, `AdminMemberResult` | 독자 JPA Entity |
-| `admin/infrastructure/query` | Admin 전용 조회와 Repository fragment | Query interface/implementation | `AdminStatisticsRepositoryImpl` | API mapping |
+| `admin/infrastructure/repository/query` | Admin 전용 조회와 Repository fragment | Query interface/implementation | `AdminStatisticsRepositoryImpl` | API mapping |
 | `auth/presentation` | 인증 HTTP API | Controller, Request/Response | `AuthController`, `LoginRequest` | JWT 구현 |
 | `auth/application` | 인증 유스케이스와 인증 사용자 model | Service, Model | `AuthService`, `AuthMember` | Security filter chain |
 | `auth/infrastructure` | JWT·Redis session·Spring Security | Provider, Store, Filter, Config | `JwtTokenProvider`, `RefreshTokenStore` | 회원 프로필 정책 |
@@ -84,13 +84,13 @@ Production Java 기준 진입점은 `src/main/java/com/bobfull`이며 Issue #38 
 | `member/domain` | 회원 상태와 역할 | Entity, Enum, ErrorCode | `Member`, `MemberRole` | Security 구현 |
 | `member/infrastructure` | 회원 persistence | Spring Data Repository | `MemberRepository` | Admin 조회 정책 |
 | `reservation/presentation` | 예약·취소·노쇼 HTTP API | Controller, HTTP DTO | `ReservationController`, `ReservationPrepareRequest` | 예약 상태 변경 구현 |
-| `reservation/application` | 예약 유스케이스와 외부 협력 계약 | Service, Result, Port | `ReservationPreparationService`, `ReservationCompletionTestHook` | HTTP mapping, JPA 구현 |
+| `reservation/application` | 예약 유스케이스와 외부 협력 계약 | Service, Result, Port | `ReservationPreparationService`, `ReservationCompletionTestPort` | HTTP mapping, JPA 구현 |
 | `reservation/domain` | 예약·참여·노쇼 상태와 정원 정책 | Entity, Enum, Policy, ErrorCode | `Reservation`, `CancellationScope`, `ReservationCapacityPolicy` | Scheduler와 외부 결제 구현 |
 | `reservation/infrastructure` | 예약 persistence와 기술 진입점 | Repository, Adapter, Scheduler | `ReservationRepository`, `ReservationClosingScheduler` | 정책·계약 재설계 |
 | `payment/presentation` | 결제·환불·정산 조회 HTTP API | Controller, Response DTO | `PaymentController`, `PortOneWebhookController` | PortOne SDK 호출 구현 |
-| `payment/application` | 결제·환불 유스케이스와 협력 계약 | Service, Command/Result, Port | `PaymentCompletionService`, `PortOnePaymentReader` | HTTP mapping과 SDK 설정 |
+| `payment/application` | 결제·환불 유스케이스와 협력 계약 | Service, Command/Result, Port | `PaymentCompletionService`, `PortOnePaymentPort` | HTTP mapping과 SDK 설정 |
 | `payment/domain` | Payment/Refund 상태와 오류 | Entity, Enum, ErrorCode | `Payment`, `Refund`, `PaymentStatus` | 별도 Settlement Entity |
-| `payment/infrastructure` | PortOne·Repository·Scheduler 구현 | Adapter, Config, Repository, Scheduler | `PortOneSdkPaymentReader`, `PaymentExpirationScheduler` | 결제 정책 재결정 |
+| `payment/infrastructure` | PortOne·Repository·Scheduler 구현 | Adapter, Config, Repository, Scheduler | `PortOneSdkPaymentAdapter`, `PaymentExpirationScheduler` | 결제 정책 재결정 |
 | `chat/presentation` | Chat HTTP/STOMP 표현 경계 | Controller, DTO, exception handler | `ChatMessageController`, `ChatExceptionHandler` | Kafka·Redis 처리 |
 | `chat/application` | 메시지·신고·moderation 유스케이스 | Service, DTO, Event, Port, Exception | `ChatModerationService`, `ModerationAnalysisException` | Provider와 broker 구현 |
 | `chat/domain` | ChatRoom/Message/Moderation 상태 | Entity, Enum, ErrorCode | `ChatRoom`, `ChatMessage`, `ChatErrorCode` | WebSocket 설정 |
@@ -161,5 +161,6 @@ Task Guide는 저장소 workflow 문서이며 자동 발견 Agent Skill이 아�
 - 파일을 이동하면 package declaration, import, test reference와 문서 링크를 함께 갱신한다.
 - 기능 전용 기술 구현은 해당 기능의 infrastructure에 두고, 실제 공유 기반만 common에 둔다.
 - 위치 이동만으로 해결되지 않는 책임·의존성 문제는 Issue #20에서 별도로 검토한다.
-- 타입 이름과 `application/dto`·`application/model`, Entity/Enum 기준은 Issue #15에서 정리한다.
+- 타입 이름과 Request/Response/Command/Result/Model, Entity/Enum 기준은
+  [code-convention.md](../050-engineering/code-convention.md)를 따른다.
 - 구조를 바꾼 Issue는 `docs/110-records/evidence/refactoring`에 Before/After와 동작 보존 결과를 기록한다.

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/** ADMIN 전용 채팅 moderation 회원별 집계 조회 API다. */
 @RestController
 @RequestMapping("/api/admin/moderation/members")
 @RequiredArgsConstructor

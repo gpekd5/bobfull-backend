@@ -27,7 +27,7 @@ public class RedisChatMessageSubscriber implements MessageListener {
             ChatRealtimeMessage payload = objectMapper.readValue(
                     new String(message.getBody(), StandardCharsets.UTF_8), ChatRealtimeMessage.class);
             messagingTemplate.convertAndSend("/sub/chat/rooms/" + payload.chatRoomId(), payload);
-            log.info("CHAT_REALTIME_SUBSCRIBED messageId={} chatRoomId={}",
+            log.info("event=CHAT_REALTIME_SUBSCRIBED messageId={} chatRoomId={}",
                     payload.messageId(), payload.chatRoomId());
         } catch (RuntimeException exception) {
             log.error("event=CHAT_REALTIME_SUBSCRIBE_FAILED reason={}", exception.getClass().getSimpleName());

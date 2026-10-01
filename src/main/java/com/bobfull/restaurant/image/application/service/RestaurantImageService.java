@@ -10,29 +10,19 @@ import com.bobfull.restaurant.image.presentation.response.RestaurantImageUploadU
 import com.bobfull.restaurant.image.application.port.RestaurantImageStoragePort;
 import com.bobfull.restaurant.image.infrastructure.storage.RestaurantImageKeyGenerator.RestaurantImageKeys;
 import com.bobfull.restaurant.image.domain.policy.RestaurantImagePolicy.ImageUploadSpec;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 // 식당 이미지 업로드 조건·key·S3 객체를 검증하고 presigned URL을 발급한다.
 @Service
+@RequiredArgsConstructor
 public class RestaurantImageService {
 
     private final RestaurantImagePolicy restaurantImagePolicy;
     private final RestaurantImageKeyGenerator restaurantImageKeyGenerator;
     private final RestaurantImageStoragePort restaurantImageStoragePort;
     private final RestaurantImageS3Properties restaurantImageS3Properties;
-
-    public RestaurantImageService(
-            RestaurantImagePolicy restaurantImagePolicy,
-            RestaurantImageKeyGenerator restaurantImageKeyGenerator,
-            RestaurantImageStoragePort restaurantImageStoragePort,
-            RestaurantImageS3Properties restaurantImageS3Properties
-    ) {
-        this.restaurantImagePolicy = restaurantImagePolicy;
-        this.restaurantImageKeyGenerator = restaurantImageKeyGenerator;
-        this.restaurantImageStoragePort = restaurantImageStoragePort;
-        this.restaurantImageS3Properties = restaurantImageS3Properties;
-    }
 
     // 업로드 조건을 검증하고 임시·최종 key와 presigned 업로드 URL을 생성한다.
     public RestaurantImageUploadUrlResponse createUploadUrl(
