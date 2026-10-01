@@ -32,7 +32,7 @@ public class RedisChatMessagePublisher {
     public void publish(ChatMessageSentResponse response) {
         try {
             redisTemplate.convertAndSend(channel, objectMapper.writeValueAsString(ChatRealtimeMessage.from(response)));
-            log.info("CHAT_REALTIME_PUBLISHED messageId={} chatRoomId={}",
+            log.info("event=CHAT_REALTIME_PUBLISHED messageId={} chatRoomId={}",
                     response.messageId(), response.chatRoomId());
         } catch (RuntimeException exception) {
             log.error("event=CHAT_REALTIME_PUBLISH_FAILED messageId={} chatRoomId={} reason={}",

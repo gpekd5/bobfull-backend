@@ -50,7 +50,7 @@ public class ChatModerationService {
                 .orElseThrow(() -> new CustomException(ChatErrorCode.CHAT_MESSAGE_ID_NOT_FOUND));
         long startedAt = System.nanoTime();
         try {
-            AnalysisResponse analysis = analyzeMessage(message);
+            AnalysisResult analysis = analyzeMessage(message);
             ModerationResultValidator.validate(
                     analysis.response() == null ? null : analysis.response().result());
             persistCompleted(
@@ -67,7 +67,7 @@ public class ChatModerationService {
         }
     }
 
-    private AnalysisResponse analyzeMessage(ChatMessage message) {
+    private AnalysisResult analyzeMessage(ChatMessage message) {
         var singleMessageRule = rulePolicy.clearFlagged(message.getContent());
         if (singleMessageRule.isPresent()) {
             return ruleAnalysis(singleMessageRule.get());
@@ -108,12 +108,12 @@ public class ChatModerationService {
         return new AiModerationResult(result, RULE_PROVIDER, RULE_MODEL, null, null, null);
     }
 
-    private AnalysisResponse ruleAnalysis(ModerationResult result) {
-        return new AnalysisResponse(ruleResponse(result), RULE_PROMPT_VERSION);
+    private AnalysisResult ruleAnalysis(ModerationResult result) {
+        return new AnalysisResult(ruleResponse(result), RULE_PROMPT_VERSION);
     }
 
-    private static AnalysisResponse providerAnalysis(AiModerationResult response, String promptVersion) {
-        return new AnalysisResponse(response, promptVersion);
+    private static AnalysisResult providerAnalysis(AiModerationResult response, String promptVersion) {
+        return new AnalysisResult(response, promptVersion);
     }
 
     // Kafka 재시도를 모두 소진해 DLT 발행이 성공한 메시지만 최종 실패로 기록한다.
@@ -249,6 +249,6 @@ public class ChatModerationService {
         return (System.nanoTime() - startedAt) / 1_000_000;
     }
 
-    private record AnalysisResponse(AiModerationResult response, String promptVersion) {
+    private record AnalysisResult(AiModerationResult response, String promptVersion) {
     }
 }

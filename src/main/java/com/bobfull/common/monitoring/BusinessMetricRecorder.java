@@ -27,7 +27,7 @@ public class BusinessMetricRecorder {
         try {
             counterFor(event).increment();
         } catch (RuntimeException exception) {
-            log.warn("businessMetricRecordFailed event={} reason={}", event.name(),
+            log.warn("event=BUSINESS_METRIC_RECORD_FAILED metricEvent={} reason={}", event.name(),
                     exception.getClass().getSimpleName());
         }
     }
@@ -37,7 +37,7 @@ public class BusinessMetricRecorder {
             try {
                 counterFor(event);
             } catch (RuntimeException exception) {
-                log.warn("businessMetricPrewarmFailed event={} reason={}", event.name(),
+                log.warn("event=BUSINESS_METRIC_PREWARM_FAILED metricEvent={} reason={}", event.name(),
                         exception.getClass().getSimpleName());
             }
         }

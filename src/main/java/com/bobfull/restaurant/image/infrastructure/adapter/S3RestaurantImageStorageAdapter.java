@@ -7,6 +7,7 @@ import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.restaurant.image.infrastructure.config.RestaurantImageS3Properties;
 import com.bobfull.restaurant.image.application.port.RestaurantImageStoragePort;
 import java.time.Duration;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -23,24 +24,13 @@ import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignReques
 // S3 presigned URL과 객체 확인·삭제를 제공하고 저장소 실패를 공통 오류와 지표로 변환한다.
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class S3RestaurantImageStorageAdapter implements RestaurantImageStoragePort {
 
     private final S3Client s3Client;
     private final S3Presigner s3Presigner;
     private final RestaurantImageS3Properties properties;
     private final BusinessMetricRecorder businessMetricRecorder;
-
-    public S3RestaurantImageStorageAdapter(
-            S3Client s3Client,
-            S3Presigner s3Presigner,
-            RestaurantImageS3Properties properties,
-            BusinessMetricRecorder businessMetricRecorder
-    ) {
-        this.s3Client = s3Client;
-        this.s3Presigner = s3Presigner;
-        this.properties = properties;
-        this.businessMetricRecorder = businessMetricRecorder;
-    }
 
     @Override
     public String createUploadUrl(String imageKey, String contentType, long contentLength, Duration expiration) {

@@ -475,10 +475,10 @@ const DECISION_HIGHLIGHTS = [
     body: "#192의 기존 비교는 Outbox 없는 Memory Async와 Outbox+Kafka를 비교해, Outbox가 주는 내구성과 Kafka가 주는 효과가 분리되지 않았다. #274는 같은 Transactional Outbox 조건에서 Outbox+Async와 Outbox+Kafka를 다시 비교했다: drain median은 Async 5.394s, Kafka 7.210s로 오히려 Async가 빨랐고(처리량 5.56 vs 4.16 msg/s), 실제 프로세스 강제 종료(destroyForcibly) 뒤에도 둘 다 lost=0·duplicate=0으로 복구됐다(재개까지 Async 296.825s, Kafka 40.614s — 이 값은 Spring 재기동을 포함한 end-to-end 값이며 'Kafka만의 복구시간'이 아니다). 차이는 durability 유무가 아니라 복구 경계였다 — Async는 DB PROCESSING row가 stale threshold 뒤 scheduler가 reclaim하고, Kafka는 Broker backlog를 Consumer Group이 이어받는다. 그래서 Kafka를 유지하는 근거는 속도나 유일한 유실 방지가 아니라, Consumer 이후의 적체·복구·관측·확장을 애플리케이션 내부 scheduler가 아닌 Broker/Consumer Group이라는 독립 경계로 분리하기 때문이다(Retry/DLT 효과 자체는 이번 crash 실험으로 검증하지 않았다)." },
   { chapter: "ai-moderation", scenario: "clear-flagged-fast-path", step: "persisted",
     title: "고신뢰 패턴 Rule Fast Path로 LLM 호출·토큰 절감",
-    body: "ModerationRuleFilter.clearFlagged가 개인 연락처+개인 문맥, 정확 일치 욕설, 투자·대출 유도 스팸 중 정확히 한 family만 매칭될 때 LLM을 호출하지 않고 FLAGGED를 확정한다(복수 signal 충돌 시에는 판단을 위임). #251 실측 기준 LLM Calls 88→72(-18.2%), Total Tokens 66,766→54,565(-18.3%), Rule Fast Path Precision 16/16(FP 0). 전체 Result Accuracy는 62/66→61/66이므로 '판정 정확도 개선'이 아니라 'Rule 귀책 regression 없이 호출·비용을 줄였다'로 한정한다." },
+    body: "ModerationRulePolicy.clearFlagged가 개인 연락처+개인 문맥, 정확 일치 욕설, 투자·대출 유도 스팸 중 정확히 한 family만 매칭될 때 LLM을 호출하지 않고 FLAGGED를 확정한다(복수 signal 충돌 시에는 판단을 위임). #251 실측 기준 LLM Calls 88→72(-18.2%), Total Tokens 66,766→54,565(-18.3%), Rule Fast Path Precision 16/16(FP 0). 전체 Result Accuracy는 62/66→61/66이므로 '판정 정확도 개선'이 아니라 'Rule 귀책 regression 없이 호출·비용을 줄였다'로 한정한다." },
   { chapter: "ai-moderation", scenario: "why-not-context-llm", step: "rejected-decision",
     title: "Context LLM 미채택 — 최근 대화 전달은 Rule 판정 입력으로만 한정",
-    body: "최근 대화 맥락을 Provider에 함께 전달하는 실험 경로는 분할 욕설·개인 연락처 탐지에는 유효했으나 공개 사업장 전화번호를 PERSONAL_INFORMATION으로 판정하는 False Positive가 관측됐다(#266 Provider 6-case). 따라서 DB Context는 ModerationRuleFilter.clearSplitFlagged의 bounded canonicalization 입력으로만 사용하고, Provider에는 현재 메시지 단건만 전달하는 것을 production 계약으로 확정했다." }
+    body: "최근 대화 맥락을 Provider에 함께 전달하는 실험 경로는 분할 욕설·개인 연락처 탐지에는 유효했으나 공개 사업장 전화번호를 PERSONAL_INFORMATION으로 판정하는 False Positive가 관측됐다(#266 Provider 6-case). 따라서 DB Context는 ModerationRulePolicy.clearSplitFlagged의 bounded canonicalization 입력으로만 사용하고, Provider에는 현재 메시지 단건만 전달하는 것을 production 계약으로 확정했다." }
 ];
 function renderDecisionHighlights() {
   const cards = DECISION_HIGHLIGHTS.filter((ref) => ref.chapter === currentChapter().id);

@@ -13,7 +13,7 @@ import com.bobfull.common.exception.CustomException;
 import com.bobfull.payment.domain.exception.PaymentErrorCode;
 import com.bobfull.common.monitoring.BusinessMetricRecorder;
 import com.bobfull.auth.infrastructure.security.SecurityConfig;
-import com.bobfull.payment.application.port.PortOneWebhookVerifier;
+import com.bobfull.payment.application.port.PortOneWebhookPort;
 import com.bobfull.payment.application.service.PaymentCompletionService;
 import com.bobfull.payment.application.service.RefundWebhookService;
 import com.bobfull.auth.infrastructure.redis.AccessTokenBlacklistStore;
@@ -38,7 +38,7 @@ class PortOneWebhookControllerWebTest {
 
     @Autowired private MockMvc mockMvc;
     @MockitoBean private AccessTokenBlacklistStore accessTokenBlacklistStore;
-    @MockitoBean private PortOneWebhookVerifier webhookVerifier;
+    @MockitoBean private PortOneWebhookPort webhookPort;
     @MockitoBean private PaymentCompletionService paymentCompletionService;
     @MockitoBean private RefundWebhookService refundWebhookService;
     @MockitoBean private BusinessMetricRecorder businessMetricRecorder;
@@ -47,12 +47,12 @@ class PortOneWebhookControllerWebTest {
     void 필수_서명헤더_누락은_400이고_결제처리를_호출하지_않는다() throws Exception {
         mockMvc.perform(post("/api/webhooks/portone").contentType(MediaType.APPLICATION_JSON).content("{}"))
                 .andExpect(status().isBadRequest());
-        verifyNoInteractions(webhookVerifier, paymentCompletionService);
+        verifyNoInteractions(webhookPort, paymentCompletionService);
     }
 
     @Test
     void 서명검증_실패는_400이다() throws Exception {
-        when(webhookVerifier.verify(anyString(), anyString(), anyString(), anyString()))
+        when(webhookPort.verify(anyString(), anyString(), anyString(), anyString()))
                 .thenThrow(new WebhookVerificationException("invalid", null));
 
         performSignedRequest().andExpect(status().isBadRequest());
@@ -61,8 +61,8 @@ class PortOneWebhookControllerWebTest {
 
     @Test
     void 미지원_이벤트는_200이다() throws Exception {
-        when(webhookVerifier.verify(anyString(), anyString(), anyString(), anyString()))
-                .thenReturn(new PortOneWebhookVerifier.WebhookEvent(null));
+        when(webhookPort.verify(anyString(), anyString(), anyString(), anyString()))
+                .thenReturn(new PortOneWebhookPort.WebhookEvent(null));
 
         performSignedRequest().andExpect(status().isOk());
         verifyNoInteractions(paymentCompletionService);
@@ -70,8 +70,8 @@ class PortOneWebhookControllerWebTest {
 
     @Test
     void 알려진_영구업무실패는_JWT_없이도_200이다() throws Exception {
-        when(webhookVerifier.verify(anyString(), anyString(), anyString(), anyString()))
-                .thenReturn(new PortOneWebhookVerifier.WebhookEvent("payment-id"));
+        when(webhookPort.verify(anyString(), anyString(), anyString(), anyString()))
+                .thenReturn(new PortOneWebhookPort.WebhookEvent("payment-id"));
         doThrow(new CustomException(PaymentErrorCode.PAYMENT_EXPIRED))
                 .when(paymentCompletionService).completeFromWebhook("payment-id");
 
@@ -80,8 +80,8 @@ class PortOneWebhookControllerWebTest {
 
     @Test
     void 예상하지_못한_오류는_5xx다() throws Exception {
-        when(webhookVerifier.verify(anyString(), anyString(), anyString(), anyString()))
-                .thenReturn(new PortOneWebhookVerifier.WebhookEvent("payment-id"));
+        when(webhookPort.verify(anyString(), anyString(), anyString(), anyString()))
+                .thenReturn(new PortOneWebhookPort.WebhookEvent("payment-id"));
         doThrow(new IllegalStateException("infrastructure failure"))
                 .when(paymentCompletionService).completeFromWebhook("payment-id");
 
@@ -90,8 +90,8 @@ class PortOneWebhookControllerWebTest {
 
     @Test
     void 분류되지_않은_CustomException은_5xx다() throws Exception {
-        when(webhookVerifier.verify(anyString(), anyString(), anyString(), anyString()))
-                .thenReturn(new PortOneWebhookVerifier.WebhookEvent("payment-id"));
+        when(webhookPort.verify(anyString(), anyString(), anyString(), anyString()))
+                .thenReturn(new PortOneWebhookPort.WebhookEvent("payment-id"));
         doThrow(new CustomException(PaymentErrorCode.PAYMENT_ACCESS_DENIED))
                 .when(paymentCompletionService).completeFromWebhook("payment-id");
 

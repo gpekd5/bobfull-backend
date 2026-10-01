@@ -249,7 +249,7 @@ public class RestaurantService {
 
     private void deletePreviousImage(String previousImageKey) {
         if (restaurantRepository.existsByImageKeyAndDeletedAtIsNull(previousImageKey)) {
-            log.info("다른 식당이 참조 중인 기존 이미지는 삭제하지 않습니다. imageKey={}", previousImageKey);
+            log.info("event=RESTAURANT_IMAGE_DELETE_SKIPPED_REFERENCED imageKey={}", previousImageKey);
             return;
         }
         try {

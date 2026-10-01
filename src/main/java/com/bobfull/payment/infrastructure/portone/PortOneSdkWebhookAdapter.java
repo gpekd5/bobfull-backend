@@ -1,6 +1,6 @@
 package com.bobfull.payment.infrastructure.portone;
 
-import com.bobfull.payment.application.port.PortOneWebhookVerifier;
+import com.bobfull.payment.application.port.PortOneWebhookPort;
 import io.portone.sdk.server.webhook.Webhook;
 import io.portone.sdk.server.webhook.WebhookTransactionCancelledCancelPending;
 import io.portone.sdk.server.webhook.WebhookTransactionCancelledCancelled;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 // PortOne SDK로 웹훅 서명을 검증하고 내부에서 사용하는 이벤트 유형으로 변환한다.
 @Component
 @RequiredArgsConstructor
-public class PortOneSdkWebhookVerifier implements PortOneWebhookVerifier {
+public class PortOneSdkWebhookAdapter implements PortOneWebhookPort {
 
     private final WebhookVerifier verifier;
 

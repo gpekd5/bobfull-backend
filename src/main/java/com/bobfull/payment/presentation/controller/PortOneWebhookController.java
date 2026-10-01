@@ -8,7 +8,7 @@ import com.bobfull.payment.application.service.PaymentCompletionService;
 import com.bobfull.payment.application.service.RefundWebhookService;
 import io.portone.sdk.server.errors.WebhookVerificationException;
 import io.portone.sdk.server.webhook.WebhookVerifier;
-import com.bobfull.payment.application.port.PortOneWebhookVerifier;
+import com.bobfull.payment.application.port.PortOneWebhookPort;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class PortOneWebhookController {
             PaymentErrorCode.PAYMENT_EXPIRED
     );
 
-    private final PortOneWebhookVerifier webhookVerifier;
+    private final PortOneWebhookPort webhookPort;
     private final PaymentCompletionService paymentCompletionService;
     private final RefundWebhookService refundWebhookService;
     private final BusinessMetricRecorder businessMetricRecorder;
@@ -52,13 +52,13 @@ public class PortOneWebhookController {
                 log.warn("event=PORTONE_WEBHOOK_SIGNATURE_INVALID reason=MISSING_HEADERS");
                 return ResponseEntity.badRequest().build();
             }
-            var event = webhookVerifier.verify(rawBody, id, signature, timestamp);
+            var event = webhookPort.verify(rawBody, id, signature, timestamp);
             request.setAttribute("portonePaymentId", event.paymentId());
             request.setAttribute("portoneCancellationId", event.cancellationId());
-            if (event.type() == PortOneWebhookVerifier.WebhookEvent.Type.UNSUPPORTED) {
+            if (event.type() == PortOneWebhookPort.WebhookEvent.Type.UNSUPPORTED) {
                 return ResponseEntity.ok().build();
             }
-            if (event.type() == PortOneWebhookVerifier.WebhookEvent.Type.PARTIAL_CANCELLED) {
+            if (event.type() == PortOneWebhookPort.WebhookEvent.Type.PARTIAL_CANCELLED) {
                 log.info(
                         "event=PORTONE_PARTIAL_CANCELLED_IGNORED paymentId={} cancellationId={}",
                         event.paymentId(),
@@ -66,11 +66,11 @@ public class PortOneWebhookController {
                 );
                 return ResponseEntity.ok().build();
             }
-            if (event.type() == PortOneWebhookVerifier.WebhookEvent.Type.CANCEL_PENDING) {
+            if (event.type() == PortOneWebhookPort.WebhookEvent.Type.CANCEL_PENDING) {
                 refundWebhookService.markProcessing(event.paymentId(), event.cancellationId());
                 return ResponseEntity.ok().build();
             }
-            if (event.type() == PortOneWebhookVerifier.WebhookEvent.Type.CANCELLED) {
+            if (event.type() == PortOneWebhookPort.WebhookEvent.Type.CANCELLED) {
                 refundWebhookService.complete(event.paymentId(), event.cancellationId());
                 return ResponseEntity.ok().build();
             }

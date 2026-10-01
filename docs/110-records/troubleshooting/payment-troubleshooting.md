@@ -253,7 +253,7 @@ DB 연관관계는 안정적인 내부 PK를 사용하고, PortOne 요청·조�
 
 ## 문제 상황
 
-`PortOneSdkPaymentReader.read(...)`는 PortOne SDK의 비동기 결제 조회 결과에 `join()`을 호출해 동기적으로 응답을 기다린다.
+`PortOneSdkPaymentAdapter.read(...)`는 PortOne SDK의 비동기 결제 조회 결과에 `join()`을 호출해 동기적으로 응답을 기다린다.
 
 정상 응답에서는 문제가 없지만 PortOne 응답 지연, 네트워크 장애, 인증 오류, 존재하지 않는 결제 조회와 같은 상황에서 어떤 예외가 발생하고 클라이언트에 어떤 응답을 반환할지 충분히 검증되지 않았다.
 
@@ -696,7 +696,7 @@ Scheduler가 늦게 실행돼도 검색 결과에서 좌석이 계속 잠기지 
 
 검색 쿼리가 만료 시각을 직접 확인하므로 Scheduler 실행 여부와 관계없이 좌석을 다시 노출할 수 있다.
 
-다만 좌석 계산 조건이 검색 Repository, `AvailableCapacityCalculator`, `PaymentHoldReader` 등에 나뉘어 있으므로 향후 공통 정책 또는 공통 Reader로 통합할 필요가 있다.
+다만 좌석 계산 조건이 검색 Repository, `AvailableCapacityCalculator`, `PaymentHoldPort` 등에 나뉘어 있으므로 향후 공통 정책 또는 공통 경계로 통합할 필요가 있다.
 
 ---
 

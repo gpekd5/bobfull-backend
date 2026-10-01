@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class PortOneSdkWebhookVerifierTest {
+class PortOneSdkWebhookAdapterTest {
 
     @Mock private WebhookVerifier webhookVerifier;
 
@@ -26,7 +26,7 @@ class PortOneSdkWebhookVerifierTest {
                 new WebhookTransactionDataPaid("payment-id", "store-id", "transaction-id"));
         when(webhookVerifier.verify("raw-body", "id", "signature", "timestamp")).thenReturn(paid);
 
-        var event = new PortOneSdkWebhookVerifier(webhookVerifier)
+        var event = new PortOneSdkWebhookAdapter(webhookVerifier)
                 .verify("raw-body", "id", "signature", "timestamp");
 
         assertThat(event.paymentId()).isEqualTo("payment-id");
@@ -38,7 +38,7 @@ class PortOneSdkWebhookVerifierTest {
         WebhookVerificationException exception = new WebhookVerificationException("invalid", null);
         when(webhookVerifier.verify("raw-body", "id", "signature", "timestamp")).thenThrow(exception);
 
-        assertThatThrownBy(() -> new PortOneSdkWebhookVerifier(webhookVerifier)
+        assertThatThrownBy(() -> new PortOneSdkWebhookAdapter(webhookVerifier)
                 .verify("raw-body", "id", "signature", "timestamp"))
                 .isSameAs(exception);
     }
