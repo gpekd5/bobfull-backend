@@ -28,12 +28,18 @@ import com.bobfull.restaurant.timeslot.domain.entity.TimeSlot;
 import com.bobfull.restaurant.timeslot.infrastructure.repository.TimeSlotRepository;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.config.ConfigResource;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -74,6 +80,7 @@ import org.testcontainers.kafka.ConfluentKafkaContainer;
         "bobfull.kafka.chat-message.topic-auto-create-enabled=true",
         "bobfull.kafka.chat-message.topic=restaurant-insight-it.v1",
         "bobfull.kafka.chat-message.dlt-topic=restaurant-insight-it.moderation.dlt.v1",
+        "bobfull.kafka.chat-message.partitions=3",
         "bobfull.kafka.chat-message.consumer-max-attempts=3",
         "bobfull.kafka.chat-message.consumer-retry-backoff-ms=200",
         "bobfull.kafka.restaurant-insight.consumer-enabled=true",
@@ -90,7 +97,8 @@ class RestaurantInsightKafkaIntegrationTest {
 
     @Container
     @org.springframework.boot.testcontainers.service.connection.ServiceConnection
-    static final ConfluentKafkaContainer KAFKA = new ConfluentKafkaContainer("confluentinc/cp-kafka:7.7.1");
+    static final ConfluentKafkaContainer KAFKA = new ConfluentKafkaContainer("confluentinc/cp-kafka:7.7.1")
+            .withEnv("KAFKA_AUTO_CREATE_TOPICS_ENABLE", "false");
 
     @Autowired private ChatMessageRepository chatMessageRepository;
     @Autowired private ChatModerationRepository chatModerationRepository;
@@ -102,6 +110,7 @@ class RestaurantInsightKafkaIntegrationTest {
     @Autowired private RestaurantFeedbackInsightRepository analysisRepository;
     @Autowired private RestaurantFeedbackItemRepository itemRepository;
     @Autowired private KafkaOperations<Object, Object> kafkaTemplate;
+    @Autowired private RestaurantInsightDltRecoverer insightDltRecoverer;
     @Autowired private FakeInsightProvider insightProvider;
 
     @AfterEach
@@ -185,6 +194,30 @@ class RestaurantInsightKafkaIntegrationTest {
         assertThat(insightProvider.callCount()).isEqualTo(callsAfterFirst);
     }
 
+    @Test
+    void auto_create가_꺼져도_source와_DLT를_명시적으로_생성하고_동일_partition으로_발행한다() {
+        assertExplicitTopicProvisioning();
+
+        Map<Long, Integer> expectedPartitionByMessageId = new HashMap<>();
+        for (int partition = 0; partition < 3; partition++) {
+            long messageId = 900_000L + partition;
+            expectedPartitionByMessageId.put(messageId, partition);
+            var event = event(messageId, 800_000L + partition);
+            var sourceRecord = new ConsumerRecord<String, ChatMessageCreatedEvent>(
+                    TOPIC,
+                    partition,
+                    0L,
+                    event.chatRoomId().toString(),
+                    event
+            );
+
+            insightDltRecoverer.accept(sourceRecord, new RuntimeException("강제 Insight 실패(테스트)"));
+        }
+
+        assertThat(findDltPartitions(expectedPartitionByMessageId.keySet()))
+                .containsExactlyInAnyOrderEntriesOf(expectedPartitionByMessageId);
+    }
+
     private ChatMessage chatMessage(String content) {
         Restaurant restaurant = restaurantRepository.save(Restaurant.create(1L, "r", "제주시 애월읍", "한식", "d", "k", 1));
         SharedTable table = sharedTableRepository.save(SharedTable.create(restaurant.getId(), 2));
@@ -203,6 +236,52 @@ class RestaurantInsightKafkaIntegrationTest {
             kafkaTemplate.send(TOPIC, event.chatRoomId().toString(), event).get(10, TimeUnit.SECONDS);
         } catch (Exception exception) {
             throw new IllegalStateException(exception);
+        }
+    }
+
+    private void assertExplicitTopicProvisioning() {
+        Map<String, Object> adminProperties = Map.of(
+                AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA.getBootstrapServers()
+        );
+        try (AdminClient adminClient = AdminClient.create(adminProperties)) {
+            var controller = adminClient.describeCluster().controller().get(10, TimeUnit.SECONDS);
+            var brokerResource = new ConfigResource(
+                    ConfigResource.Type.BROKER,
+                    Integer.toString(controller.id())
+            );
+            var brokerConfig = adminClient.describeConfigs(Set.of(brokerResource))
+                    .all().get(10, TimeUnit.SECONDS).get(brokerResource);
+            var topics = adminClient.describeTopics(List.of(TOPIC, INSIGHT_DLT_TOPIC))
+                    .allTopicNames().get(10, TimeUnit.SECONDS);
+
+            assertThat(brokerConfig.get("auto.create.topics.enable").value()).isEqualTo("false");
+            assertThat(topics.get(TOPIC).partitions()).hasSize(3);
+            assertThat(topics.get(INSIGHT_DLT_TOPIC).partitions()).hasSize(3);
+        } catch (Exception exception) {
+            throw new IllegalStateException(exception);
+        }
+    }
+
+    private Map<Long, Integer> findDltPartitions(Set<Long> messageIds) {
+        var consumerProps = KafkaTestUtils.consumerProps(KAFKA.getBootstrapServers(),
+                "restaurant-insight-partition-verifier-" + UUID.randomUUID(), "true");
+        consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        try (var consumer = new org.apache.kafka.clients.consumer.KafkaConsumer<String, String>(consumerProps)) {
+            consumer.subscribe(List.of(INSIGHT_DLT_TOPIC));
+            Map<Long, Integer> actualPartitionByMessageId = new HashMap<>();
+            Instant deadline = Instant.now().plusSeconds(20);
+            while (Instant.now().isBefore(deadline) && actualPartitionByMessageId.size() < messageIds.size()) {
+                for (ConsumerRecord<String, String> record : consumer.poll(Duration.ofSeconds(1))) {
+                    for (Long messageId : messageIds) {
+                        if (record.value() != null && record.value().contains("\"messageId\":" + messageId)) {
+                            actualPartitionByMessageId.put(messageId, record.partition());
+                        }
+                    }
+                }
+            }
+            return actualPartitionByMessageId;
         }
     }
 
