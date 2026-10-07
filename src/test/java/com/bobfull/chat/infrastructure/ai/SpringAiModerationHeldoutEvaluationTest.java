@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static java.util.Set.of;
 
+import com.bobfull.chat.application.service.ModerationRulePolicy;
 import com.bobfull.chat.infrastructure.ai.ModerationEvaluationMetrics.ConfusionAccumulator;
 import com.bobfull.chat.infrastructure.ai.ModerationEvaluationMetrics.ConfusionCounts;
 import com.bobfull.chat.infrastructure.ai.ModerationEvaluationMetrics.PrecisionRecallF1;
@@ -82,6 +83,44 @@ class SpringAiModerationHeldoutEvaluationTest {
      * 발견되면 해당 case를 제외하고 사유를 Evidence에 기록한다.
      */
     private static final boolean HELD_OUT_LABELS_HUMAN_CONFIRMED = true;
+    private static final boolean HELD_OUT_V2_LABELS_HUMAN_CONFIRMED = true;
+    private static final String POLICY_V2_GROUND_TRUTH = "moderation-policy-v2";
+
+    private static final ExpectedLabel POLICY_V2_SAFE = new ExpectedLabel(
+            ModerationResultType.SAFE,
+            Set.of(),
+            RiskLevel.LOW
+    );
+    private static final ExpectedLabel POLICY_V2_SPAM_MEDIUM = new ExpectedLabel(
+            ModerationResultType.FLAGGED,
+            Set.of(ModerationCategory.SPAM),
+            RiskLevel.MEDIUM
+    );
+
+    /**
+     * Policy v1으로 동결된 80건 중 Policy v2 Human Ground Truth가 실제로 달라진 case만 관리한다.
+     * 메시지와 case type은 {@link #heldoutCases()}를 그대로 사용한다.
+     */
+    private static final Map<String, ExpectedLabel> POLICY_V2_OVERRIDES = Map.ofEntries(
+            // Policy v2 명확한 충돌: PROFANITY/LOW를 사용하지 않고 경미하거나 친근한 표현은 SAFE다.
+            Map.entry("HOLDOUT-SAFE-17", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-12", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-13", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-17", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-18", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-19", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-20", POLICY_V2_SAFE),
+            // Policy v2 명확한 충돌: 일반 상업 홍보/가입 유도는 MEDIUM이며 고위험 금전 유도는 아니다.
+            Map.entry("HOLDOUT-SPAM-01", POLICY_V2_SPAM_MEDIUM),
+            Map.entry("HOLDOUT-SPAM-02", POLICY_V2_SPAM_MEDIUM),
+            Map.entry("HOLDOUT-SPAM-04", POLICY_V2_SPAM_MEDIUM),
+            // Issue #48 Human Review 확정. v1과 동일한 HOLDOUT-SPAM-12는 override하지 않는다.
+            Map.entry("HOLDOUT-PROFANITY-05", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-06", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-PROFANITY-07", POLICY_V2_SAFE),
+            Map.entry("HOLDOUT-SPAM-05", POLICY_V2_SPAM_MEDIUM),
+            Map.entry("HOLDOUT-SPAM-15", POLICY_V2_SAFE)
+    );
 
     @Autowired
     @Qualifier("moderationChatClient")
@@ -92,6 +131,9 @@ class SpringAiModerationHeldoutEvaluationTest {
 
     @Value("${bobfull.ai.moderation.max-output-tokens}")
     private int maxOutputTokens;
+
+    @Autowired
+    private ModerationRulePolicy rulePolicy;
 
     @DynamicPropertySource
     static void openAiApiKey(DynamicPropertyRegistry registry) {
@@ -106,13 +148,15 @@ class SpringAiModerationHeldoutEvaluationTest {
 
     @Test
     void Held_out_80건으로_production_설정_일반화_품질을_재검증한다() {
-        assumeTrue(HELD_OUT_LABELS_HUMAN_CONFIRMED,
-                "Issue #213 Label Freeze 미완료: Held-out expected 라벨을 Human이 확정하기 전에는 "
-                        + "실제 OpenAI 호출을 실행하지 않는다. 라벨 검토 후 HELD_OUT_LABELS_HUMAN_CONFIRMED=true로 변경할 것.");
+        assumeTrue(HELD_OUT_V2_LABELS_HUMAN_CONFIRMED,
+                "Issue #48 Label Review 미완료: Policy v2 expected 라벨을 Human이 확정하기 전에는 "
+                        + "실제 OpenAI 호출을 실행하지 않는다.");
+        assertThat(ModerationPrompt.POLICY_VERSION).isEqualTo(POLICY_V2_GROUND_TRUTH);
 
-        List<HeldoutCase> cases = heldoutCases();
+        List<HeldoutCase> cases = heldoutCasesPolicyV2();
         EvaluationRun run = runAgainstProvider(cases);
-        printHeldoutSummary("Held-out(80)", run);
+        printHeldoutSummary("Held-out v2(80, groundTruth=" + POLICY_V2_GROUND_TRUTH
+                + ", runtimePolicy=" + ModerationPrompt.POLICY_VERSION + ")", run);
         assertThat(run.failures).noneMatch(EvaluationFailure::isProviderFailure);
     }
 
@@ -128,14 +172,16 @@ class SpringAiModerationHeldoutEvaluationTest {
 
     @Test
     void Stability_Subset_20건을_3회_반복해_변동성을_확인한다() {
-        assumeTrue(HELD_OUT_LABELS_HUMAN_CONFIRMED,
-                "Issue #213 Label Freeze 미완료: Stability Run도 Human 확정 전에는 실행하지 않는다.");
+        assumeTrue(HELD_OUT_V2_LABELS_HUMAN_CONFIRMED,
+                "Issue #48 Label Review 미완료: Policy v2 Stability Run을 실행하지 않는다.");
+        assertThat(ModerationPrompt.POLICY_VERSION).isEqualTo(POLICY_V2_GROUND_TRUTH);
 
         List<HeldoutCase> subset = stabilitySubset();
         for (int run = 1; run <= 3; run++) {
             EvaluationRun result = runAgainstProvider(subset);
             System.out.printf("%n===== Stability Run %d/3 =====%n", run);
-            printHeldoutSummary("Stability Run " + run, result);
+            printHeldoutSummary("Stability Run " + run + "(groundTruth=" + POLICY_V2_GROUND_TRUTH
+                    + ", runtimePolicy=" + ModerationPrompt.POLICY_VERSION + ")", result);
         }
     }
 
@@ -154,10 +200,14 @@ class SpringAiModerationHeldoutEvaluationTest {
         int resultMatches = 0;
         int categoryExactMatches = 0;
         int reviewActionabilityMatches = 0;
+
         long promptTokens = 0;
         long completionTokens = 0;
         long totalTokens = 0;
         int tokenMeasuredCalls = 0;
+
+        int ruleCount = 0;
+        int llmCount = 0;
 
         for (HeldoutCase testCase : cases) {
             long startedAt = System.nanoTime();
@@ -191,6 +241,12 @@ class SpringAiModerationHeldoutEvaluationTest {
                     completionTokens += response.completionTokens();
                     totalTokens += response.totalTokens();
                 }
+                if ("BOBFULL_RULE_EVALUATION".equals(response.provider())) {
+                    ruleCount++;
+                } else {
+                    llmCount++;
+                }
+
             } catch (RuntimeException exception) {
                 long latencyMillis = elapsedMillis(startedAt);
                 latencies.add(latencyMillis);
@@ -198,7 +254,7 @@ class SpringAiModerationHeldoutEvaluationTest {
             }
         }
         return new EvaluationRun(cases.size(), resultMatches, categoryExactMatches, reviewActionabilityMatches,
-                flaggedVsSafe, perCategory, latencies, failures, promptTokens, completionTokens, totalTokens, tokenMeasuredCalls);
+                flaggedVsSafe, perCategory, latencies, failures, promptTokens, completionTokens, totalTokens, tokenMeasuredCalls, ruleCount, llmCount);
     }
 
     /** #66 40건 테스트와 동일한 정의: LOW가 아니면 관리자 검토 대상이다. */
@@ -207,6 +263,19 @@ class SpringAiModerationHeldoutEvaluationTest {
     }
 
     private AiModerationResult evaluateWithSelectedModel(String content) {
+        var ruleResult = rulePolicy.clearFlagged(content);
+
+        if (ruleResult.isPresent()) {
+            return new AiModerationResult(
+                    ruleResult.get(),
+                    "BOBFULL_RULE_EVALUATION",
+                    "rule-filter-v1",
+                    null,
+                    null,
+                    null
+            );
+        }
+
         ResponseEntity<ChatResponse, ModerationResult> response = moderationChatClient.prompt()
                 .system(ModerationPrompt.SYSTEM_PROMPT)
                 .user(content)
@@ -245,6 +314,8 @@ class SpringAiModerationHeldoutEvaluationTest {
         }
         System.out.printf("Latency ms                    : avg=%.1f p95=%d p99=%d%n",
                 average(run.latencies), percentile(run.latencies, 0.95), percentile(run.latencies, 0.99));
+        System.out.printf("Route Rule / LLM              : %d / %d%n",
+                run.ruleCount, run.llmCount);
         System.out.printf("Token usage                   : measuredCalls=%d prompt=%d completion=%d total=%d%n",
                 run.tokenMeasuredCalls, run.promptTokens, run.completionTokens, run.totalTokens);
         System.out.printf("Estimated cost(USD, gpt-4o-mini $0.15/$0.60 per 1M in/out, 2026-08-10 공개 단가 기준): $%.6f%n",
@@ -264,7 +335,11 @@ class SpringAiModerationHeldoutEvaluationTest {
     private record EvaluationRun(int total, int resultMatches, int categoryExactMatches, int reviewActionabilityMatches,
             ConfusionAccumulator flaggedVsSafe, Map<ModerationCategory, ConfusionAccumulator> perCategory,
             List<Long> latencies, List<EvaluationFailure> failures,
-            long promptTokens, long completionTokens, long totalTokens, int tokenMeasuredCalls) {
+            long promptTokens, long completionTokens, long totalTokens, int tokenMeasuredCalls, int ruleCount, int llmCount) {
+    }
+
+    private record ExpectedLabel(ModerationResultType expectedResult, Set<ModerationCategory> expectedCategories,
+            RiskLevel expectedRiskLevel) {
     }
 
     private static double percent(int value, int total) {
@@ -358,6 +433,31 @@ class SpringAiModerationHeldoutEvaluationTest {
         cases.addAll(personalInformationCases());
         cases.addAll(spamCases());
         return cases;
+    }
+
+    static List<HeldoutCase> heldoutCasesPolicyV2() {
+        return heldoutCases().stream()
+                .map(SpringAiModerationHeldoutEvaluationTest::applyPolicyV2GroundTruth)
+                .toList();
+    }
+
+    private static HeldoutCase applyPolicyV2GroundTruth(HeldoutCase policyV1Case) {
+        ExpectedLabel override = POLICY_V2_OVERRIDES.get(policyV1Case.id());
+        if (override == null) {
+            return policyV1Case;
+        }
+        return new HeldoutCase(
+                policyV1Case.id(),
+                policyV1Case.message(),
+                override.expectedResult(),
+                override.expectedCategories(),
+                override.expectedRiskLevel(),
+                policyV1Case.caseType()
+        );
+    }
+
+    static Set<String> policyV2OverrideIds() {
+        return POLICY_V2_OVERRIDES.keySet();
     }
 
     private static List<HeldoutCase> safeCases() {
@@ -535,7 +635,7 @@ class SpringAiModerationHeldoutEvaluationTest {
     }
 
     // ------------------------------------------------------------------
-    // Stability Subset — Held-out Set에서 뽑은 고정 20건. 결과를 본 뒤 고르지 않는다(Issue #213 Q4).
+    // Stability Subset — Policy v2 Held-out Set에서 뽑은 고정 20건. ID는 Issue #213 Q4를 유지한다.
     // ------------------------------------------------------------------
     static List<HeldoutCase> stabilitySubset() {
         Set<String> stabilityIds = Set.of(
@@ -544,6 +644,6 @@ class SpringAiModerationHeldoutEvaluationTest {
                 "HOLDOUT-PI-01", "HOLDOUT-PI-05", "HOLDOUT-PI-08", "HOLDOUT-PI-11", "HOLDOUT-PI-17",
                 "HOLDOUT-SPAM-01", "HOLDOUT-SPAM-05", "HOLDOUT-SPAM-08", "HOLDOUT-SPAM-15", "HOLDOUT-SPAM-17"
         );
-        return heldoutCases().stream().filter(c -> stabilityIds.contains(c.id())).toList();
+        return heldoutCasesPolicyV2().stream().filter(c -> stabilityIds.contains(c.id())).toList();
     }
 }

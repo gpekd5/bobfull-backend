@@ -8,6 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,55 @@ class ModerationHeldoutDatasetTest {
                     .as("prefix=%s", prefix)
                     .isEqualTo(20);
         }
+    }
+
+    @Test
+    void Policy_v1과_v2_Held_out은_ID와_메시지와_case_type이_같은_80건이다() {
+        // given
+        List<HeldoutCase> policyV1Cases = SpringAiModerationHeldoutEvaluationTest.heldoutCases();
+        List<HeldoutCase> policyV2Cases = SpringAiModerationHeldoutEvaluationTest.heldoutCasesPolicyV2();
+
+        // when & then
+        assertThat(policyV1Cases).hasSize(80);
+        assertThat(policyV2Cases).hasSize(80);
+        assertThat(policyV2Cases).extracting(HeldoutCase::id)
+                .containsExactlyElementsOf(policyV1Cases.stream().map(HeldoutCase::id).toList());
+        assertThat(policyV2Cases).extracting(HeldoutCase::message)
+                .containsExactlyElementsOf(policyV1Cases.stream().map(HeldoutCase::message).toList());
+        assertThat(policyV2Cases).extracting(HeldoutCase::caseType)
+                .containsExactlyElementsOf(policyV1Cases.stream().map(HeldoutCase::caseType).toList());
+    }
+
+    @Test
+    void Policy_v2에서_실제로_변경된_ID는_override_ID와_같다() {
+        // given
+        Map<String, HeldoutCase> policyV1Cases = SpringAiModerationHeldoutEvaluationTest.heldoutCases().stream()
+                .collect(Collectors.toMap(HeldoutCase::id, heldoutCase -> heldoutCase));
+        List<HeldoutCase> policyV2Cases = SpringAiModerationHeldoutEvaluationTest.heldoutCasesPolicyV2();
+
+        // when
+        Set<String> changedIds = policyV2Cases.stream()
+                .filter(policyV2Case -> hasDifferentExpectedLabel(policyV1Cases.get(policyV2Case.id()), policyV2Case))
+                .map(HeldoutCase::id)
+                .collect(Collectors.toSet());
+
+        // then
+        assertThat(changedIds)
+                .containsExactlyInAnyOrderElementsOf(SpringAiModerationHeldoutEvaluationTest.policyV2OverrideIds());
+    }
+
+    @Test
+    void Policy_v2_override_ID는_모두_v1_Held_out에_존재한다() {
+        // given
+        Set<String> policyV1Ids = SpringAiModerationHeldoutEvaluationTest.heldoutCases().stream()
+                .map(HeldoutCase::id)
+                .collect(Collectors.toSet());
+
+        // when
+        Set<String> overrideIds = SpringAiModerationHeldoutEvaluationTest.policyV2OverrideIds();
+
+        // then
+        assertThat(policyV1Ids).containsAll(overrideIds);
     }
 
     @Test
@@ -116,5 +166,11 @@ class ModerationHeldoutDatasetTest {
             hex.append(String.format("%02x", b));
         }
         return hex.toString();
+    }
+
+    private static boolean hasDifferentExpectedLabel(HeldoutCase policyV1Case, HeldoutCase policyV2Case) {
+        return policyV1Case.expectedResult() != policyV2Case.expectedResult()
+                || !policyV1Case.expectedCategories().equals(policyV2Case.expectedCategories())
+                || policyV1Case.expectedRiskLevel() != policyV2Case.expectedRiskLevel();
     }
 }
