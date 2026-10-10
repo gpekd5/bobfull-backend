@@ -32,7 +32,7 @@ Kafka Consumer retry와 Spring AI/OpenAI 호출 지표를 로컬에서 관측할
 
 - 작업 브랜치: `feature/49-llm-observability`
 - Before SHA: `ca9fcb8574aaef20c34e9363caa63c6a5caafed4`
-- Implementation/After SHA: `<IMPLEMENTATION_COMMIT_SHA>`
+- Implementation/After SHA: `631d057f1881fd60bcb81bc5253ae3e36b5451e2`
 - Implementation/After SHA는 구현·테스트·로컬 monitoring·최초 Evidence를 포함한 commit을 뜻한다.
   해당 SHA를 기록하는 후속 docs-only commit은 측정 코드와 결과를 변경하지 않는다.
 - 애플리케이션: Mac host, local profile, `localhost:8080`
