@@ -1,0 +1,18 @@
+apiVersion: 1
+
+datasources:
+  - name: BobFull Local MySQL
+    uid: bobfull-local-mysql
+    type: mysql
+    access: proxy
+    url: host.docker.internal:$GRAFANA_MYSQL_PORT
+    user: $GRAFANA_MYSQL_USER
+    isDefault: false
+    editable: false
+    jsonData:
+      database: $GRAFANA_MYSQL_DATABASE
+      maxOpenConns: 5
+      maxIdleConns: 2
+      connMaxLifetime: 14400
+    secureJsonData:
+      password: $GRAFANA_MYSQL_PASSWORD

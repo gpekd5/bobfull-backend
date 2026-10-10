@@ -18,6 +18,8 @@ import com.bobfull.chat.domain.entity.ModerationProcessingStatus;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
 import com.bobfull.chat.application.port.AiModerationPort;
+import com.bobfull.chat.infrastructure.ai.ModerationPrompt;
+import com.bobfull.chat.infrastructure.metrics.ChatModerationMetrics;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.domain.exception.ChatErrorCode;
@@ -28,6 +30,7 @@ import java.time.ZoneOffset;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Optional;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.data.domain.PageRequest;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -39,8 +42,16 @@ class ChatModerationServiceTest {
     private final ChatMessageRepository messages = org.mockito.Mockito.mock(ChatMessageRepository.class);
     private final ChatModerationRepository moderations = org.mockito.Mockito.mock(ChatModerationRepository.class);
     private final FakeAiModerationAdapter ai = new FakeAiModerationAdapter();
-    private final ChatModerationService service = new ChatModerationService(messages, moderations, ai, new ModerationRulePolicy(), new SplitMessageCandidateGate(),
-            Clock.fixed(NOW, ZoneOffset.UTC));
+    private final ChatModerationMetrics metrics = org.mockito.Mockito.mock(ChatModerationMetrics.class);
+
+    private final ChatModerationService service = new ChatModerationService(
+            messages,
+            moderations,
+            ai,
+            new ModerationRulePolicy(),
+            new SplitMessageCandidateGate(),
+            Clock.fixed(NOW, ZoneOffset.UTC),
+            metrics);
 
     @Test
     void SAFE_결과와_LOW_위험도를_저장한다() {
@@ -57,6 +68,8 @@ class ChatModerationServiceTest {
         assertThat(saved.getResult()).isEqualTo(ModerationResultType.SAFE);
         assertThat(saved.getCategories()).isEmpty();
         assertThat(saved.getRiskLevel()).isEqualTo(RiskLevel.LOW);
+        verify(metrics).recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+        verify(metrics).recordFinalStatus("SAFE", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
     }
 
     @Test
@@ -122,6 +135,8 @@ class ChatModerationServiceTest {
         assertThat(saved.getModel()).isEqualTo("rule-filter-v1");
         assertThat(saved.getPromptVersion()).isEqualTo("NO_LLM");
         assertThat(saved.getPolicyVersion()).isEqualTo("moderation-policy-v2");
+        verify(metrics).recordRoute("single_rule", "NO_LLM", ModerationPrompt.POLICY_VERSION);
+        verify(metrics).recordFinalStatus("FLAGGED", "NO_LLM", ModerationPrompt.POLICY_VERSION);
     }
 
     @Test
@@ -135,6 +150,7 @@ class ChatModerationServiceTest {
         assertThat(ai.callCount).isEqualTo(1);
         assertThat(saved.getProvider()).isEqualTo("OpenAI");
         assertThat(saved.getPromptVersion()).isEqualTo("moderation-prompt-v3-short-fragment-boundary");
+        verify(metrics).recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
     }
 
     @Test
@@ -163,6 +179,8 @@ class ChatModerationServiceTest {
         assertThat(saved.getResult()).isEqualTo(ModerationResultType.FLAGGED);
         assertThat(saved.getCategories()).containsExactly(ModerationCategory.PROFANITY);
         assertThat(saved.getProvider()).isEqualTo("BOBFULL_RULE");
+        verify(metrics).recordRoute("split_rule", "NO_LLM", ModerationPrompt.POLICY_VERSION);
+        verify(metrics).recordFinalStatus("FLAGGED", "NO_LLM", ModerationPrompt.POLICY_VERSION);
     }
 
     @Test
@@ -229,6 +247,11 @@ class ChatModerationServiceTest {
         // when & then
         assertThatThrownBy(() -> service.analyze(13L)).isInstanceOf(ModerationAnalysisException.class);
         verify(moderations, never()).saveAndFlush(any(ChatModeration.class));
+        verify(metrics, times(1)).recordFailure(
+                "validation", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+        verify(metrics, never()).recordFailure(
+                "persistence", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+        verify(metrics, never()).recordFinalStatus(any(), any(), any());
     }
 
     @Test
@@ -310,6 +333,64 @@ class ChatModerationServiceTest {
         ChatModeration saved = savedModeration();
         assertThat(saved.getStatus()).isEqualTo(ModerationProcessingStatus.ANALYSIS_FAILED);
         assertThat(saved.getErrorCode()).isEqualTo("OPENAI_TIMEOUT");
+        verify(metrics).recordFinalStatus(
+                "ANALYSIS_FAILED", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+    }
+
+    @Test
+    void 완료결과_DB_저장이_실패하면_persistence만_한번_기록하고_Final_Status는_기록하지_않는다() {
+        // given
+        prepareMessage(181L, "저장 실패 검증");
+        ai.response = response(ModerationResultType.SAFE, EnumSet.noneOf(ModerationCategory.class), RiskLevel.LOW);
+        given(moderations.saveAndFlush(any(ChatModeration.class)))
+                .willThrow(new IllegalStateException("database unavailable"));
+
+        // when & then
+        assertThatThrownBy(() -> service.analyze(181L)).isInstanceOf(ModerationAnalysisException.class);
+        verify(metrics, times(1)).recordFailure(
+                "persistence", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+        verify(metrics, never()).recordFailure(
+                "validation", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+        verify(metrics, never()).recordFinalStatus(any(), any(), any());
+    }
+
+    @Test
+    void 최종실패_DB_저장이_실패하면_persistence만_한번_기록하고_ANALYSIS_FAILED는_기록하지_않는다() {
+        // given
+        given(moderations.findByMessageId(182L)).willReturn(Optional.empty());
+        given(moderations.saveAndFlush(any(ChatModeration.class)))
+                .willThrow(new DataIntegrityViolationException("database unavailable"));
+
+        // when & then
+        assertThatThrownBy(() -> service.recordFinalFailure(182L, "OPENAI_TIMEOUT"))
+                .isInstanceOf(DataIntegrityViolationException.class);
+        verify(metrics, times(1)).recordFailure(
+                "persistence", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+        verify(metrics, never()).recordFinalStatus(
+                "ANALYSIS_FAILED", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+    }
+
+    @Test
+    void Metric_기록이_실패해도_Moderation_저장_흐름은_완료된다() {
+        // given
+        MeterRegistry failingRegistry = org.mockito.Mockito.mock(MeterRegistry.class);
+        given(failingRegistry.config()).willThrow(new RuntimeException("registry unavailable"));
+        ChatModerationService failOpenService = new ChatModerationService(
+                messages,
+                moderations,
+                ai,
+                new ModerationRulePolicy(),
+                new SplitMessageCandidateGate(),
+                Clock.fixed(NOW, ZoneOffset.UTC),
+                new ChatModerationMetrics(failingRegistry));
+        prepareMessage(183L, "Metric 실패와 무관하게 저장");
+        ai.response = response(ModerationResultType.SAFE, EnumSet.noneOf(ModerationCategory.class), RiskLevel.LOW);
+
+        // when
+        failOpenService.analyze(183L);
+
+        // then
+        assertThat(savedModeration().getStatus()).isEqualTo(ModerationProcessingStatus.SAFE);
     }
 
     @Test
