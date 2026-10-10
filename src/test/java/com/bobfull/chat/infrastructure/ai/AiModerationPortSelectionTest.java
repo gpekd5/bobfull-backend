@@ -3,6 +3,7 @@ package com.bobfull.chat.infrastructure.ai;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.bobfull.chat.application.port.AiModerationPort;
+import com.bobfull.chat.infrastructure.metrics.ChatModerationMetrics;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.ai.chat.client.ChatClient;
@@ -18,6 +19,7 @@ class AiModerationPortSelectionTest {
 
     private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
             .withBean("moderationChatClient", ChatClient.class, () -> Mockito.mock(ChatClient.class))
+            .withBean(ChatModerationMetrics.class, () -> Mockito.mock(ChatModerationMetrics.class))
             .withUserConfiguration(SpringAiModerationAdapter.class, FakeAiModerationAdapter.class);
 
     @Test

@@ -1,0 +1,41 @@
+name: bobfull-local-monitoring
+
+services:
+  prometheus:
+    image: prom/prometheus:v3.14.0
+    container_name: bobfull-local-prometheus
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./ops/local-monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - bobfull-prometheus-data:/prometheus
+
+  grafana:
+    image: grafana/grafana:12.4.0
+    container_name: bobfull-local-grafana
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GRAFANA_MYSQL_PORT: ${MYSQL_PORT:-3307}
+      GRAFANA_MYSQL_DATABASE: ${MYSQL_DATABASE}
+      GRAFANA_MYSQL_USER: ${MYSQL_USER}
+      GRAFANA_MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    volumes:
+      - bobfull-grafana-data:/var/lib/grafana
+      - ./ops/local-monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+
+volumes:
+  bobfull-prometheus-data:
+  bobfull-grafana-data:
