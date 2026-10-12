@@ -9,6 +9,7 @@ import com.bobfull.chat.domain.entity.ChatModeration;
 import com.bobfull.chat.domain.entity.ModerationCategory;
 import com.bobfull.chat.domain.entity.ModerationResultType;
 import com.bobfull.chat.domain.entity.RiskLevel;
+import com.bobfull.chat.infrastructure.metrics.ChatModerationMetrics;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.chat.application.service.ChatModerationService;
@@ -47,11 +48,20 @@ class FakeAiModerationAdapterTest {
 
     @Test
     void FLAGGED_결과는_ModerationResultValidator_계약을_위반하지_않고_ChatModerationService_경로를_통과한다() {
+
         ChatMessageRepository messages = Mockito.mock(ChatMessageRepository.class);
         ChatModerationRepository moderations = Mockito.mock(ChatModerationRepository.class);
         FakeAiModerationAdapter adapter = new FakeAiModerationAdapter(0L, ModerationResultType.FLAGGED);
-        ChatModerationService service = new ChatModerationService(messages, moderations, adapter, new ModerationRulePolicy(), new com.bobfull.chat.application.service.SplitMessageCandidateGate(),
-                Clock.fixed(Instant.parse("2026-08-13T00:00:00Z"), ZoneOffset.UTC));
+        ChatModerationMetrics metrics = Mockito.mock(ChatModerationMetrics.class);
+
+        ChatModerationService service = new ChatModerationService(
+                messages,
+                moderations,
+                adapter,
+                new ModerationRulePolicy(),
+                new com.bobfull.chat.application.service.SplitMessageCandidateGate(),
+                Clock.fixed(Instant.parse("2026-08-13T00:00:00Z"), ZoneOffset.UTC),
+                metrics);
         ChatMessage message = ChatMessage.create(1L, 2L, 3L, "금지어 포함 메시지");
         org.springframework.test.util.ReflectionTestUtils.setField(message, "id", 100L);
         Mockito.when(moderations.findByMessageId(100L)).thenReturn(Optional.empty());

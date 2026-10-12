@@ -40,6 +40,7 @@ public class ChatModerationConsumerErrorHandlingConfig {
         ConcurrentKafkaListenerContainerFactory<Object, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
         configurer.configure(factory, consumerFactory);
         factory.setCommonErrorHandler(errorHandler);
+        factory.getContainerProperties().setDeliveryAttemptHeader(true);
         return factory;
     }
 }

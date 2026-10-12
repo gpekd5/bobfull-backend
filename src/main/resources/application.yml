@@ -42,6 +42,7 @@ management:
     distribution:
       percentiles-histogram:
         http.server.requests: true
+        gen_ai.client.operation: true
 
 chat:
   redis-pubsub:

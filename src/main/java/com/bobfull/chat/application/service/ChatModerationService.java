@@ -8,6 +8,7 @@ import com.bobfull.chat.domain.entity.ChatMessage;
 import com.bobfull.chat.domain.entity.ChatModeration;
 import com.bobfull.chat.domain.exception.ChatErrorCode;
 import com.bobfull.chat.infrastructure.ai.ModerationPrompt;
+import com.bobfull.chat.infrastructure.metrics.ChatModerationMetrics;
 import com.bobfull.chat.infrastructure.repository.ChatMessageRepository;
 import com.bobfull.chat.infrastructure.repository.ChatModerationRepository;
 import com.bobfull.common.exception.CustomException;
@@ -38,50 +39,83 @@ public class ChatModerationService {
     private final ModerationRulePolicy rulePolicy;
     private final SplitMessageCandidateGate splitCandidateGate;
     private final Clock clock;
+    private final ChatModerationMetrics metrics;
 
     // 완료된 분석은 건너뛰고 외부 AI 호출을 트랜잭션 밖에서 수행한 뒤 결과만 저장한다.
     public void analyze(Long messageId) {
         ChatModeration existing = moderations.findByMessageId(messageId).orElse(null);
+
         if (existing != null && existing.isCompleted()) {
             log.info("event=CHAT_MODERATION_SKIPPED messageId={} status={}", messageId, existing.getStatus());
             return;
         }
+
         ChatMessage message = messages.findById(messageId)
                 .orElseThrow(() -> new CustomException(ChatErrorCode.CHAT_MESSAGE_ID_NOT_FOUND));
+
         long startedAt = System.nanoTime();
+
         try {
             AnalysisResult analysis = analyzeMessage(message);
-            ModerationResultValidator.validate(
-                    analysis.response() == null ? null : analysis.response().result());
-            persistCompleted(
-                    messageId,
-                    existing,
-                    analysis.response(),
-                    analysis.promptVersion(),
-                    elapsedMillis(startedAt));
+
+            validateWithMetrics(analysis);
+
+            persistWithMetrics(messageId, existing, analysis, elapsedMillis(startedAt));
+
         } catch (ModerationAnalysisException exception) {
             throw exception;
+
         } catch (RuntimeException exception) {
             String errorCode = exception.getClass().getSimpleName();
             throw new ModerationAnalysisException(errorCode, exception);
         }
     }
 
+    private void persistWithMetrics(Long messageId, ChatModeration existing, AnalysisResult analysis, long latencyMillis) {
+        try {
+            persistCompleted(messageId, existing, analysis.response(), analysis.promptVersion(), latencyMillis);
+        } catch (RuntimeException ex) {
+            metrics.recordFailure("persistence", analysis.promptVersion(), ModerationPrompt.POLICY_VERSION);
+            throw ex;
+        }
+    }
+
+    private void validateWithMetrics(AnalysisResult analysis) {
+        try {
+            ModerationResultValidator.validate(
+                    analysis.response() == null ? null : analysis.response().result());
+        } catch (ModerationAnalysisException ex) {
+            metrics.recordFailure("validation", analysis.promptVersion(), ModerationPrompt.POLICY_VERSION);
+            throw ex;
+        }
+    }
+
     private AnalysisResult analyzeMessage(ChatMessage message) {
+
         var singleMessageRule = rulePolicy.clearFlagged(message.getContent());
+
         if (singleMessageRule.isPresent()) {
+            metrics.recordRoute("single_rule", RULE_PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
             return ruleAnalysis(singleMessageRule.get());
         }
+
         SplitMessageContext context = recentSplitContext(message);
+
         if (context == null) {
+            metrics.recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
             return providerAnalysis(
                     aiModerationPort.analyze(message.getContent()),
                     ModerationPrompt.PROMPT_VERSION);
         }
+
         var splitRule = rulePolicy.clearSplitFlagged(context.recentCanonicalCandidates());
+
         if (splitRule.isPresent()) {
+            metrics.recordRoute("split_rule", RULE_PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
             return ruleAnalysis(splitRule.get());
         }
+
+        metrics.recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
         return providerAnalysis(
                 aiModerationPort.analyze(message.getContent()),
                 ModerationPrompt.PROMPT_VERSION);
@@ -119,18 +153,20 @@ public class ChatModerationService {
     // Kafka 재시도를 모두 소진해 DLT 발행이 성공한 메시지만 최종 실패로 기록한다.
     public void recordFinalFailure(Long messageId, String errorCode) {
         ChatModeration existing = moderations.findByMessageId(messageId).orElse(null);
+
         if (existing != null && existing.isCompleted()) {
             return;
         }
-        persistFailure(messageId, existing, 0L, errorCode);
+
+        try {
+            persistFailure(messageId, existing, 0L, errorCode);
+        } catch (RuntimeException ex) {
+            metrics.recordFailure("persistence", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+            throw ex;
+        }
     }
 
-    private void persistCompleted(
-            Long messageId,
-            ChatModeration existing,
-            AiModerationResult response,
-            String promptVersion,
-            long latencyMillis) {
+    private void persistCompleted(Long messageId, ChatModeration existing, AiModerationResult response, String promptVersion, long latencyMillis) {
         Instant now = clock.instant();
         ChatModeration moderation = existing == null
                 ? ChatModeration.completed(
@@ -194,6 +230,9 @@ public class ChatModerationService {
                 throw retryException;
             }
         }
+
+        metrics.recordFinalStatus(response.result().result().name(), promptVersion, ModerationPrompt.POLICY_VERSION);
+
         log.info(
                 "event=CHAT_MODERATION_COMPLETED messageId={} result={} categories={} riskLevel={} latencyMillis={}",
                 messageId,
@@ -238,6 +277,9 @@ public class ChatModerationService {
             }
             throw exception;
         }
+
+        metrics.recordFinalStatus("ANALYSIS_FAILED", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+
         log.warn(
                 "event=CHAT_MODERATION_FAILED messageId={} errorCode={} latencyMillis={}",
                 messageId,
