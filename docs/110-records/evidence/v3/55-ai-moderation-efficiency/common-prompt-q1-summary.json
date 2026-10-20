@@ -1,0 +1,2712 @@
+{
+  "aggregate": {
+    "A": {
+      "n": 60,
+      "result": 41,
+      "category": 41,
+      "risk": 32,
+      "full": 29,
+      "actionability": 44,
+      "tp": 27,
+      "fp": 19,
+      "fn": 0,
+      "tn": 14,
+      "p": 0.5869565217391305,
+      "r": 1,
+      "f1": 0.7397260273972602,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-08",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-PROFANITY-13"
+      ],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 60,
+      "http": 60,
+      "input": 49317,
+      "output": 1054,
+      "cached": 0,
+      "total": 50371,
+      "noCacheCost": 0.00802995,
+      "cacheCost": 0.00802995,
+      "latencyAvgMs": 970.583132583333,
+      "p95Ms": 1430.314792,
+      "p99Ms": 2792.481209,
+      "processingSumMs": 58277.35190999997
+    },
+    "B": {
+      "n": 60,
+      "result": 39,
+      "category": 39,
+      "risk": 34,
+      "full": 34,
+      "actionability": 39,
+      "tp": 27,
+      "fp": 21,
+      "fn": 0,
+      "tn": 12,
+      "p": 0.5625,
+      "r": 1,
+      "f1": 0.72,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PROFANITY-05",
+        "HOLDOUT-PI-20",
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20",
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 60,
+      "http": 60,
+      "input": 55197,
+      "output": 1064,
+      "cached": 0,
+      "total": 56261,
+      "noCacheCost": 0.00891795,
+      "cacheCost": 0.00891795,
+      "latencyAvgMs": 851.9981945166668,
+      "p95Ms": 1154.822416,
+      "p99Ms": 1446.48075,
+      "processingSumMs": 51144.89821200001
+    },
+    "C": {
+      "n": 60,
+      "result": 48,
+      "category": 48,
+      "risk": 33,
+      "full": 33,
+      "actionability": 48,
+      "tp": 27,
+      "fp": 12,
+      "fn": 0,
+      "tn": 21,
+      "p": 0.6923076923076923,
+      "r": 1,
+      "f1": 0.8181818181818182,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 6,
+      "http": 6,
+      "input": 6879,
+      "output": 1515,
+      "cached": 4096,
+      "total": 8394,
+      "noCacheCost": 0.0019408499999999998,
+      "cacheCost": 0.0016336500000000002,
+      "latencyAvgMs": 2985.168944333333,
+      "p95Ms": 3591.094,
+      "p99Ms": 3591.094,
+      "processingSumMs": 17923.231458
+    },
+    "D": {
+      "n": 60,
+      "result": 45,
+      "category": 45,
+      "risk": 32,
+      "full": 32,
+      "actionability": 45,
+      "tp": 27,
+      "fp": 15,
+      "fn": 0,
+      "tn": 18,
+      "p": 0.6428571428571429,
+      "r": 1,
+      "f1": 0.782608695652174,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 6,
+      "http": 6,
+      "input": 7467,
+      "output": 1531,
+      "cached": 4608,
+      "total": 8998,
+      "noCacheCost": 0.00203865,
+      "cacheCost": 0.00169305,
+      "latencyAvgMs": 2791.9709795,
+      "p95Ms": 3019.961584,
+      "p99Ms": 3019.961584,
+      "processingSumMs": 16759.105207
+    }
+  },
+  "runs": [
+    {
+      "arm": "A",
+      "run": 1,
+      "n": 20,
+      "result": 13,
+      "category": 13,
+      "risk": 10,
+      "full": 9,
+      "actionability": 14,
+      "tp": 9,
+      "fp": 7,
+      "fn": 0,
+      "tn": 4,
+      "p": 0.5625,
+      "r": 1,
+      "f1": 0.72,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-08",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [
+        "HOLDOUT-PROFANITY-13"
+      ],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 20,
+      "http": 20,
+      "input": 16439,
+      "output": 356,
+      "cached": 0,
+      "total": 16795,
+      "noCacheCost": 0.00267945,
+      "cacheCost": 0.00267945,
+      "latencyAvgMs": 1126.6082375500002,
+      "p95Ms": 1659.327375,
+      "p99Ms": 2792.481209,
+      "processingSumMs": 22559.180207
+    },
+    {
+      "arm": "A",
+      "run": 2,
+      "n": 20,
+      "result": 14,
+      "category": 14,
+      "risk": 11,
+      "full": 10,
+      "actionability": 15,
+      "tp": 9,
+      "fp": 6,
+      "fn": 0,
+      "tn": 5,
+      "p": 0.6,
+      "r": 1,
+      "f1": 0.75,
+      "fpIds": [
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [
+        "HOLDOUT-PROFANITY-13"
+      ],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 20,
+      "http": 20,
+      "input": 16439,
+      "output": 349,
+      "cached": 0,
+      "total": 16788,
+      "noCacheCost": 0.00267525,
+      "cacheCost": 0.00267525,
+      "latencyAvgMs": 894.6412207999998,
+      "p95Ms": 1040.970917,
+      "p99Ms": 1080.015083,
+      "processingSumMs": 17900.223247
+    },
+    {
+      "arm": "A",
+      "run": 3,
+      "n": 20,
+      "result": 14,
+      "category": 14,
+      "risk": 11,
+      "full": 10,
+      "actionability": 15,
+      "tp": 9,
+      "fp": 6,
+      "fn": 0,
+      "tn": 5,
+      "p": 0.6,
+      "r": 1,
+      "f1": 0.75,
+      "fpIds": [
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [
+        "HOLDOUT-PROFANITY-13"
+      ],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 20,
+      "http": 20,
+      "input": 16439,
+      "output": 349,
+      "cached": 0,
+      "total": 16788,
+      "noCacheCost": 0.00267525,
+      "cacheCost": 0.00267525,
+      "latencyAvgMs": 890.4999394000002,
+      "p95Ms": 991.707958,
+      "p99Ms": 1066.443833,
+      "processingSumMs": 17817.948456
+    },
+    {
+      "arm": "B",
+      "run": 1,
+      "n": 20,
+      "result": 13,
+      "category": 13,
+      "risk": 11,
+      "full": 11,
+      "actionability": 13,
+      "tp": 9,
+      "fp": 7,
+      "fn": 0,
+      "tn": 4,
+      "p": 0.5625,
+      "r": 1,
+      "f1": 0.72,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PROFANITY-05",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 20,
+      "http": 20,
+      "input": 18399,
+      "output": 355,
+      "cached": 0,
+      "total": 18754,
+      "noCacheCost": 0.00297285,
+      "cacheCost": 0.00297285,
+      "latencyAvgMs": 878.87736475,
+      "p95Ms": 1154.822416,
+      "p99Ms": 1222.257417,
+      "processingSumMs": 17586.710874999997
+    },
+    {
+      "arm": "B",
+      "run": 2,
+      "n": 20,
+      "result": 13,
+      "category": 13,
+      "risk": 12,
+      "full": 12,
+      "actionability": 13,
+      "tp": 9,
+      "fp": 7,
+      "fn": 0,
+      "tn": 4,
+      "p": 0.5625,
+      "r": 1,
+      "f1": 0.72,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 20,
+      "http": 20,
+      "input": 18399,
+      "output": 354,
+      "cached": 0,
+      "total": 18753,
+      "noCacheCost": 0.00297225,
+      "cacheCost": 0.00297225,
+      "latencyAvgMs": 865.3390271000001,
+      "p95Ms": 1218.883084,
+      "p99Ms": 1446.48075,
+      "processingSumMs": 17315.534625000004
+    },
+    {
+      "arm": "B",
+      "run": 3,
+      "n": 20,
+      "result": 13,
+      "category": 13,
+      "risk": 11,
+      "full": 11,
+      "actionability": 13,
+      "tp": 9,
+      "fp": 7,
+      "fn": 0,
+      "tn": 4,
+      "p": 0.5625,
+      "r": 1,
+      "f1": 0.72,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-06",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10",
+        "HOLDOUT-PI-20"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 20,
+      "http": 20,
+      "input": 18399,
+      "output": 355,
+      "cached": 0,
+      "total": 18754,
+      "noCacheCost": 0.00297285,
+      "cacheCost": 0.00297285,
+      "latencyAvgMs": 811.7781917000002,
+      "p95Ms": 998.848583,
+      "p99Ms": 1136.539042,
+      "processingSumMs": 16242.652712000001
+    },
+    {
+      "arm": "C",
+      "run": 1,
+      "n": 20,
+      "result": 16,
+      "category": 16,
+      "risk": 11,
+      "full": 11,
+      "actionability": 16,
+      "tp": 9,
+      "fp": 4,
+      "fn": 0,
+      "tn": 7,
+      "p": 0.6923076923076923,
+      "r": 1,
+      "f1": 0.8181818181818182,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 2,
+      "http": 2,
+      "input": 2293,
+      "output": 505,
+      "cached": 0,
+      "total": 2798,
+      "noCacheCost": 0.0006469500000000001,
+      "cacheCost": 0.0006469500000000001,
+      "latencyAvgMs": 3120.2755835,
+      "p95Ms": 3591.094,
+      "p99Ms": 3591.094,
+      "processingSumMs": 6248.919584
+    },
+    {
+      "arm": "C",
+      "run": 2,
+      "n": 20,
+      "result": 16,
+      "category": 16,
+      "risk": 11,
+      "full": 11,
+      "actionability": 16,
+      "tp": 9,
+      "fp": 4,
+      "fn": 0,
+      "tn": 7,
+      "p": 0.6923076923076923,
+      "r": 1,
+      "f1": 0.8181818181818182,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 2,
+      "http": 2,
+      "input": 2293,
+      "output": 505,
+      "cached": 2048,
+      "total": 2798,
+      "noCacheCost": 0.0006469500000000001,
+      "cacheCost": 0.00049335,
+      "latencyAvgMs": 2931.8075415000003,
+      "p95Ms": 2939.427708,
+      "p99Ms": 2939.427708,
+      "processingSumMs": 5865.273416
+    },
+    {
+      "arm": "C",
+      "run": 3,
+      "n": 20,
+      "result": 16,
+      "category": 16,
+      "risk": 11,
+      "full": 11,
+      "actionability": 16,
+      "tp": 9,
+      "fp": 4,
+      "fn": 0,
+      "tn": 7,
+      "p": 0.6923076923076923,
+      "r": 1,
+      "f1": 0.8181818181818182,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 2,
+      "http": 2,
+      "input": 2293,
+      "output": 505,
+      "cached": 2048,
+      "total": 2798,
+      "noCacheCost": 0.0006469500000000001,
+      "cacheCost": 0.00049335,
+      "latencyAvgMs": 2903.423708,
+      "p95Ms": 3103.164833,
+      "p99Ms": 3103.164833,
+      "processingSumMs": 5809.038458
+    },
+    {
+      "arm": "D",
+      "run": 1,
+      "n": 20,
+      "result": 15,
+      "category": 15,
+      "risk": 10,
+      "full": 10,
+      "actionability": 15,
+      "tp": 9,
+      "fp": 5,
+      "fn": 0,
+      "tn": 6,
+      "p": 0.6428571428571429,
+      "r": 1,
+      "f1": 0.782608695652174,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 2,
+      "http": 2,
+      "input": 2489,
+      "output": 511,
+      "cached": 0,
+      "total": 3000,
+      "noCacheCost": 0.0006799499999999999,
+      "cacheCost": 0.0006799499999999999,
+      "latencyAvgMs": 2837.6713959999997,
+      "p95Ms": 2891.403667,
+      "p99Ms": 2891.403667,
+      "processingSumMs": 5677.191833
+    },
+    {
+      "arm": "D",
+      "run": 2,
+      "n": 20,
+      "result": 15,
+      "category": 15,
+      "risk": 11,
+      "full": 11,
+      "actionability": 15,
+      "tp": 9,
+      "fp": 5,
+      "fn": 0,
+      "tn": 6,
+      "p": 0.6428571428571429,
+      "r": 1,
+      "f1": 0.782608695652174,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 2,
+      "http": 2,
+      "input": 2489,
+      "output": 510,
+      "cached": 2304,
+      "total": 2999,
+      "noCacheCost": 0.0006793499999999999,
+      "cacheCost": 0.0005065499999999999,
+      "latencyAvgMs": 2866.524563,
+      "p95Ms": 3019.961584,
+      "p99Ms": 3019.961584,
+      "processingSumMs": 5736.531833
+    },
+    {
+      "arm": "D",
+      "run": 3,
+      "n": 20,
+      "result": 15,
+      "category": 15,
+      "risk": 11,
+      "full": 11,
+      "actionability": 15,
+      "tp": 9,
+      "fp": 5,
+      "fn": 0,
+      "tn": 6,
+      "p": 0.6428571428571429,
+      "r": 1,
+      "f1": 0.782608695652174,
+      "fpIds": [
+        "HOLDOUT-SAFE-17",
+        "HOLDOUT-SAFE-09",
+        "HOLDOUT-PROFANITY-13",
+        "HOLDOUT-SPAM-15",
+        "HOLDOUT-SAFE-10"
+      ],
+      "fnIds": [],
+      "highDowngrades": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "actual": "FLAGGED/SPAM/MEDIUM"
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "actual": "FLAGGED/PROFANITY/MEDIUM"
+        }
+      ],
+      "policyViolations": [],
+      "unresolved": 0,
+      "failures": [],
+      "logical": 2,
+      "http": 2,
+      "input": 2489,
+      "output": 510,
+      "cached": 2304,
+      "total": 2999,
+      "noCacheCost": 0.0006793499999999999,
+      "cacheCost": 0.0005065499999999999,
+      "latencyAvgMs": 2671.7169795,
+      "p95Ms": 2758.794375,
+      "p99Ms": 2758.794375,
+      "processingSumMs": 5345.381541
+    }
+  ],
+  "series": [
+    {
+      "id": "HOLDOUT-SAFE-17",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "ADistinct": 2,
+      "B": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PI-05",
+      "expected": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "A": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-14",
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SPAM-16",
+      "expected": "FLAGGED/SPAM/HIGH",
+      "A": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "BDistinct": 2,
+      "C": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SPAM-19",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SPAM-08",
+      "expected": "FLAGGED/SPAM/HIGH",
+      "A": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "ADistinct": 2,
+      "B": [
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SAFE-09",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-16",
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "ADistinct": 2,
+      "B": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-01",
+      "expected": "FLAGGED/PROFANITY/MEDIUM",
+      "A": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-06",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-13",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "FLAGGED/PROFANITY/LOW",
+        "FLAGGED/PROFANITY/LOW",
+        "FLAGGED/PROFANITY/LOW"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "SAFE/[]/LOW",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "BDistinct": 2,
+      "C": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SAFE-01",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-17",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SPAM-15",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM",
+        "FLAGGED/SPAM/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-15",
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "DDistinct": 2
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-08",
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM",
+        "FLAGGED/PROFANITY/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH",
+        "FLAGGED/PROFANITY/HIGH"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SPAM-09",
+      "expected": "FLAGGED/SPAM/HIGH",
+      "A": [
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH",
+        "FLAGGED/SPAM/HIGH"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-SAFE-10",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-05",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PROFANITY/MEDIUM",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "BDistinct": 2,
+      "C": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "DDistinct": 1
+    },
+    {
+      "id": "HOLDOUT-PI-20",
+      "expected": "SAFE/[]/LOW",
+      "A": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "ADistinct": 1,
+      "B": [
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+        "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+      ],
+      "BDistinct": 1,
+      "C": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "CDistinct": 1,
+      "D": [
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW",
+        "SAFE/[]/LOW"
+      ],
+      "DDistinct": 1
+    }
+  ],
+  "pairs": [
+    {
+      "comparison": "A_B",
+      "run": 1,
+      "changes": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-SPAM-08",
+          "expected": "FLAGGED/SPAM/HIGH",
+          "before": "FLAGGED/SPAM/MEDIUM",
+          "after": "FLAGGED/SPAM/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-13",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PROFANITY/LOW",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-05",
+          "expected": "SAFE/[]/LOW",
+          "before": "SAFE/[]/LOW",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": true,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": true,
+          "categoryRegression": true,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": true,
+          "rcImprovement": false
+        }
+      ]
+    },
+    {
+      "comparison": "A_B",
+      "run": 2,
+      "changes": [
+        {
+          "id": "HOLDOUT-SAFE-17",
+          "expected": "SAFE/[]/LOW",
+          "before": "SAFE/[]/LOW",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": true,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": true,
+          "categoryRegression": true,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": true,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "expected": "FLAGGED/SPAM/HIGH",
+          "before": "FLAGGED/SPAM/MEDIUM",
+          "after": "FLAGGED/SPAM/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-13",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PROFANITY/LOW",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": false,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        }
+      ]
+    },
+    {
+      "comparison": "A_B",
+      "run": 3,
+      "changes": [
+        {
+          "id": "HOLDOUT-SAFE-17",
+          "expected": "SAFE/[]/LOW",
+          "before": "SAFE/[]/LOW",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": true,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": true,
+          "categoryRegression": true,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": true,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-13",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PROFANITY/LOW",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": false,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        }
+      ]
+    },
+    {
+      "comparison": "C_D",
+      "run": 1,
+      "changes": [
+        {
+          "id": "HOLDOUT-SAFE-09",
+          "expected": "SAFE/[]/LOW",
+          "before": "SAFE/[]/LOW",
+          "after": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+          "newFp": true,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": true,
+          "categoryRegression": true,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": true,
+          "rcImprovement": false
+        }
+      ]
+    },
+    {
+      "comparison": "C_D",
+      "run": 2,
+      "changes": [
+        {
+          "id": "HOLDOUT-SAFE-09",
+          "expected": "SAFE/[]/LOW",
+          "before": "SAFE/[]/LOW",
+          "after": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+          "newFp": true,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": true,
+          "categoryRegression": true,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": true,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        }
+      ]
+    },
+    {
+      "comparison": "C_D",
+      "run": 3,
+      "changes": [
+        {
+          "id": "HOLDOUT-SAFE-09",
+          "expected": "SAFE/[]/LOW",
+          "before": "SAFE/[]/LOW",
+          "after": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+          "newFp": true,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": true,
+          "categoryRegression": true,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": true,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        }
+      ]
+    },
+    {
+      "comparison": "B_D",
+      "run": 1,
+      "changes": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/HIGH",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/HIGH",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-01",
+          "expected": "FLAGGED/PROFANITY/MEDIUM",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-06",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-13",
+          "expected": "SAFE/[]/LOW",
+          "before": "SAFE/[]/LOW",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": true,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": true,
+          "categoryRegression": true,
+          "riskRegression": true,
+          "actionabilityRegression": true,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": true,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-15",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/HIGH",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-05",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        },
+        {
+          "id": "HOLDOUT-PI-20",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        }
+      ]
+    },
+    {
+      "comparison": "B_D",
+      "run": 2,
+      "changes": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/HIGH",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-SPAM-16",
+          "expected": "FLAGGED/SPAM/HIGH",
+          "before": "FLAGGED/SPAM/HIGH",
+          "after": "FLAGGED/SPAM/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/HIGH",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-01",
+          "expected": "FLAGGED/PROFANITY/MEDIUM",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-06",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PI-20",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        }
+      ]
+    },
+    {
+      "comparison": "B_D",
+      "run": 3,
+      "changes": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/HIGH",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-16",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/HIGH",
+          "after": "FLAGGED/PROFANITY/MEDIUM",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": true,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-01",
+          "expected": "FLAGGED/PROFANITY/MEDIUM",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": true,
+          "actionabilityRegression": false,
+          "fullRegression": true,
+          "fullImprovement": false,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-06",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        },
+        {
+          "id": "HOLDOUT-PROFANITY-08",
+          "expected": "FLAGGED/PROFANITY/HIGH",
+          "before": "FLAGGED/PROFANITY/MEDIUM",
+          "after": "FLAGGED/PROFANITY/HIGH",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": false
+        },
+        {
+          "id": "HOLDOUT-PI-20",
+          "expected": "SAFE/[]/LOW",
+          "before": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+          "after": "SAFE/[]/LOW",
+          "newFp": false,
+          "newFn": false,
+          "newHighDown": false,
+          "resultRegression": false,
+          "categoryRegression": false,
+          "riskRegression": false,
+          "actionabilityRegression": false,
+          "fullRegression": false,
+          "fullImprovement": true,
+          "rcRegression": false,
+          "rcImprovement": true
+        }
+      ]
+    }
+  ],
+  "common": [
+    {
+      "run": 1,
+      "id": "HOLDOUT-PROFANITY-14",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": "FLAGGED/PROFANITY/MEDIUM",
+      "B": "FLAGGED/PROFANITY/HIGH",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 1,
+      "id": "HOLDOUT-SPAM-08",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/SPAM/HIGH",
+      "A": "FLAGGED/SPAM/MEDIUM",
+      "B": "FLAGGED/SPAM/HIGH",
+      "C": "FLAGGED/SPAM/HIGH",
+      "D": "FLAGGED/SPAM/HIGH"
+    },
+    {
+      "run": 1,
+      "id": "HOLDOUT-SAFE-09",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": true,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "B": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+    },
+    {
+      "run": 1,
+      "id": "HOLDOUT-SAFE-09",
+      "criterion": "resultCategory",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": true,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "B": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+    },
+    {
+      "run": 1,
+      "id": "HOLDOUT-PROFANITY-13",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PROFANITY/LOW",
+      "B": "SAFE/[]/LOW",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 1,
+      "id": "HOLDOUT-PROFANITY-13",
+      "criterion": "resultCategory",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PROFANITY/LOW",
+      "B": "SAFE/[]/LOW",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 1,
+      "id": "HOLDOUT-PROFANITY-05",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": true,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "SAFE/[]/LOW",
+      "B": "FLAGGED/PROFANITY/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "SAFE/[]/LOW"
+    },
+    {
+      "run": 1,
+      "id": "HOLDOUT-PROFANITY-05",
+      "criterion": "resultCategory",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": true,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "SAFE/[]/LOW",
+      "B": "FLAGGED/PROFANITY/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "SAFE/[]/LOW"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-SAFE-17",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": true,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "SAFE/[]/LOW",
+      "B": "FLAGGED/PROFANITY/MEDIUM",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-SAFE-17",
+      "criterion": "resultCategory",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": true,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "SAFE/[]/LOW",
+      "B": "FLAGGED/PROFANITY/MEDIUM",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-PROFANITY-14",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": "FLAGGED/PROFANITY/MEDIUM",
+      "B": "FLAGGED/PROFANITY/HIGH",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-SPAM-16",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/SPAM/HIGH",
+      "A": "FLAGGED/SPAM/MEDIUM",
+      "B": "FLAGGED/SPAM/HIGH",
+      "C": "FLAGGED/SPAM/MEDIUM",
+      "D": "FLAGGED/SPAM/MEDIUM"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-SAFE-09",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": true,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "B": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-SAFE-09",
+      "criterion": "resultCategory",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": true,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "B": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-PROFANITY-16",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": "FLAGGED/PROFANITY/MEDIUM",
+      "B": "FLAGGED/PROFANITY/HIGH",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 2,
+      "id": "HOLDOUT-PROFANITY-15",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": true,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": "FLAGGED/PROFANITY/HIGH",
+      "B": "FLAGGED/PROFANITY/HIGH",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/HIGH"
+    },
+    {
+      "run": 3,
+      "id": "HOLDOUT-SAFE-17",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": true,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "SAFE/[]/LOW",
+      "B": "FLAGGED/PROFANITY/MEDIUM",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 3,
+      "id": "HOLDOUT-SAFE-17",
+      "criterion": "resultCategory",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": true,
+      "batchRegressed": false,
+      "expected": "SAFE/[]/LOW",
+      "A": "SAFE/[]/LOW",
+      "B": "FLAGGED/PROFANITY/MEDIUM",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 3,
+      "id": "HOLDOUT-PROFANITY-14",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": "FLAGGED/PROFANITY/MEDIUM",
+      "B": "FLAGGED/PROFANITY/HIGH",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 3,
+      "id": "HOLDOUT-SAFE-09",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": true,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "B": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+    },
+    {
+      "run": 3,
+      "id": "HOLDOUT-SAFE-09",
+      "criterion": "resultCategory",
+      "nativeImproved": false,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": true,
+      "expected": "SAFE/[]/LOW",
+      "A": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "B": "FLAGGED/PERSONAL_INFORMATION/MEDIUM",
+      "C": "SAFE/[]/LOW",
+      "D": "FLAGGED/PERSONAL_INFORMATION/MEDIUM"
+    },
+    {
+      "run": 3,
+      "id": "HOLDOUT-PROFANITY-16",
+      "criterion": "full",
+      "nativeImproved": true,
+      "batchImproved": false,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": "FLAGGED/PROFANITY/MEDIUM",
+      "B": "FLAGGED/PROFANITY/HIGH",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/MEDIUM"
+    },
+    {
+      "run": 3,
+      "id": "HOLDOUT-PROFANITY-15",
+      "criterion": "full",
+      "nativeImproved": false,
+      "batchImproved": true,
+      "nativeRegressed": false,
+      "batchRegressed": false,
+      "expected": "FLAGGED/PROFANITY/HIGH",
+      "A": "FLAGGED/PROFANITY/HIGH",
+      "B": "FLAGGED/PROFANITY/HIGH",
+      "C": "FLAGGED/PROFANITY/MEDIUM",
+      "D": "FLAGGED/PROFANITY/HIGH"
+    }
+  ],
+  "pairedSummary": [
+    {
+      "comparison": "A_B",
+      "tupleChanges": 13,
+      "newFp": 3,
+      "newFn": 0,
+      "newHighDown": 0,
+      "resultRegression": 3,
+      "categoryRegression": 3,
+      "riskRegression": 5,
+      "actionabilityRegression": 5,
+      "fullRegression": 3,
+      "fullImprovement": 8,
+      "rcImprovement": 1
+    },
+    {
+      "comparison": "C_D",
+      "tupleChanges": 5,
+      "newFp": 3,
+      "newFn": 0,
+      "newHighDown": 0,
+      "resultRegression": 3,
+      "categoryRegression": 3,
+      "riskRegression": 3,
+      "actionabilityRegression": 3,
+      "fullRegression": 3,
+      "fullImprovement": 2,
+      "rcImprovement": 0
+    },
+    {
+      "comparison": "B_D",
+      "tupleChanges": 22,
+      "newFp": 1,
+      "newFn": 0,
+      "newHighDown": 8,
+      "resultRegression": 1,
+      "categoryRegression": 1,
+      "riskRegression": 12,
+      "actionabilityRegression": 1,
+      "fullRegression": 12,
+      "fullImprovement": 10,
+      "rcImprovement": 7
+    }
+  ]
+}

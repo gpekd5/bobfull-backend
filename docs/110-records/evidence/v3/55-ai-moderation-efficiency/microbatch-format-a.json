@@ -1,0 +1,7210 @@
+{
+  "startedAt" : "2026-10-20T07:00:09.795556Z",
+  "recordedAt" : "2026-10-20T07:01:41.791492Z",
+  "status" : "COMPLETED",
+  "stopReason" : null,
+  "head" : "339423fbca943d578bf07793ff336490904290eb + uncommitted test source",
+  "configuredModel" : "gpt-4o-mini",
+  "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+  "policyVersion" : "moderation-policy-v2",
+  "datasetSeed" : 55,
+  "options" : "A only; sampling/provider seed unspecified; SDK maxRetries=3; timeout=90s; cap=128 both modes",
+  "hashes" : {
+    "singleSystemPrompt" : "7540e67d11d342e9b9618204baa8d5868ebfd21a15716a8f41dc5fbcb35249a4",
+    "batchSchema" : "6ac8f99e249ceefca8c63302ad1026f51415655d30029c67defc617bd04be924",
+    "batchSystemPrompt" : "5d1fa52b4955d538579b9834eae356745b7f3dd700c2183d8486dc1ed7d0c812",
+    "singleSchema" : "0a3b3262ad121eb467b2fe00a17d1dd8082a4887268005e8b70e4b14eb33e45f"
+  },
+  "manifest" : [ {
+    "id" : "HOLDOUT-SAFE-17",
+    "neutralId" : "m001",
+    "messageSha256" : "8587d381a2268806595f91de0a82110061238c597d733edea4dee9ab3e8ccc31",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-PI-05",
+    "neutralId" : "m002",
+    "messageSha256" : "453944e16512033b291616c86524d11c3f9adba8a0f66f2ca919be01b0b52ccf",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-14",
+    "neutralId" : "m003",
+    "messageSha256" : "450291fa2a5fd6c6a767d772942e6084eee4b0d812a4f263c418822de7e5a769",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    }
+  }, {
+    "id" : "HOLDOUT-SPAM-16",
+    "neutralId" : "m004",
+    "messageSha256" : "81a847af1d34fc9156d4f137e65b81b214fe9e8f0212fb375fa70ed0f4a528e9",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    }
+  }, {
+    "id" : "HOLDOUT-SPAM-19",
+    "neutralId" : "m005",
+    "messageSha256" : "20c12f74b279bc6b7ad0136da1d24eb3fa4ac9c0f543bfb76659c621b03d6e6c",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-SPAM-08",
+    "neutralId" : "m006",
+    "messageSha256" : "6924d9a093eab3134c93de8d407d29106e8f7a7a0b894c85a42375e95f85563c",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    }
+  }, {
+    "id" : "HOLDOUT-SAFE-09",
+    "neutralId" : "m007",
+    "messageSha256" : "ff53549e35fa83a5944f3c646bed6d46ffe41e5dba9253b0dfe37d8a8382e317",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-16",
+    "neutralId" : "m008",
+    "messageSha256" : "2a96a20dc756928bf2b502d664eb292c971497b062999368b999f3a15575c6d1",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-01",
+    "neutralId" : "m009",
+    "messageSha256" : "600652c58b4394612a04d0200ba6869cd6c009656cb23d1bcbc336429b9f074e",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-06",
+    "neutralId" : "m010",
+    "messageSha256" : "12f94c796c2022f60b60515079bb144b0f5c582987100a365c25a15e603978e4",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-13",
+    "neutralId" : "m011",
+    "messageSha256" : "82f3d6ce39842f2f8ddf18b24d817e28ef9c96eedddbfc1eec71a684a324a617",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-SAFE-01",
+    "neutralId" : "m012",
+    "messageSha256" : "78fd626bea4286182d12db1fdf40eb1f5c221e8162e9bbfadd7d1d31c8a4f26a",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-17",
+    "neutralId" : "m013",
+    "messageSha256" : "43b69dd8bc2763a82f43107d0736c5a821d46dace59e6c47da1aaf21a6fdf042",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-SPAM-15",
+    "neutralId" : "m014",
+    "messageSha256" : "b045d1cedf861c8028ec7dfef4bf71888fc89b12cfa0b16e50617e356974cb83",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-15",
+    "neutralId" : "m015",
+    "messageSha256" : "ab50c0d704cd9f5fcaf28c447be33634ac375667d11d2fc72cb561de921ac595",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-08",
+    "neutralId" : "m016",
+    "messageSha256" : "b67c31ab95a9397f4cd87bb1469bbe75abb27b25314479e52b8ced16894da257",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    }
+  }, {
+    "id" : "HOLDOUT-SPAM-09",
+    "neutralId" : "m017",
+    "messageSha256" : "b49a2c498000a8e960d451101bfdebcf560dc009853c47fd43e6fd8145edd744",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    }
+  }, {
+    "id" : "HOLDOUT-SAFE-10",
+    "neutralId" : "m018",
+    "messageSha256" : "8d03a9e3b2b9eb58fc0a0a476e48866f2467f509d7c876e26e4e7c2742f57de8",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-PROFANITY-05",
+    "neutralId" : "m019",
+    "messageSha256" : "088a21b6e0666a28307f3782223af2e201ee4683a99dce7413312f6680744652",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  }, {
+    "id" : "HOLDOUT-PI-20",
+    "neutralId" : "m020",
+    "messageSha256" : "12882019a9df6a018a143ae413a2aa8c28d163e8dc805101df9ffb149599db52",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }
+  } ],
+  "schedule" : [ {
+    "repeat" : 1,
+    "targetIndex" : 0,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 0,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 1,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 1,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 2,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 2,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 3,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 3,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 4,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 4,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 5,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 5,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 6,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 6,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 7,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 7,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 8,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 8,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 9,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 9,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 10,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 10,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 11,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 11,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 12,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 12,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 13,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 13,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 14,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 14,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 15,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 15,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 16,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 16,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 17,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 17,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 18,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 18,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 19,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 1,
+    "targetIndex" : 19,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 0,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 0,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 1,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 1,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 2,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 2,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 3,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 3,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 4,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 4,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 5,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 5,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 6,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 6,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 7,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 7,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 8,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 8,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 9,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 9,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 10,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 10,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 11,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 11,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 12,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 12,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 13,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 13,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 14,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 14,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 15,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 15,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 16,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 16,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 17,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 17,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 18,
+    "mode" : "BATCH1"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 18,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 19,
+    "mode" : "NATIVE"
+  }, {
+    "repeat" : 2,
+    "targetIndex" : 19,
+    "mode" : "BATCH1"
+  } ],
+  "forecast" : [ {
+    "mode" : "NATIVE",
+    "logicalCalls" : 40,
+    "tokenizerEstimatedInput" : 46758,
+    "outputCapSum" : 5120,
+    "noCacheEstimateAtCapUsd" : 0.010085700000000001,
+    "allFourAttemptsEstimateUsd" : 0.040342800000000005
+  }, {
+    "mode" : "BATCH1",
+    "logicalCalls" : 40,
+    "tokenizerEstimatedInput" : 56118,
+    "outputCapSum" : 5120,
+    "noCacheEstimateAtCapUsd" : 0.011489699999999999,
+    "allFourAttemptsEstimateUsd" : 0.045958799999999994
+  } ],
+  "priorEstimatedUsd" : 0.0917018,
+  "chargedCumulativeUpperUsd" : 0.10352239999999982,
+  "httpAttempts" : [ {
+    "number" : 1,
+    "logicalCall" : 1,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 822,
+      "completion" : 20,
+      "total" : 842,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.353E-4,
+    "nanos" : 2355632208
+  }, {
+    "number" : 2,
+    "logicalCall" : 2,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 967,
+      "completion" : 25,
+      "total" : 992,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6005E-4,
+    "nanos" : 1514245833
+  }, {
+    "number" : 3,
+    "logicalCall" : 3,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 969,
+      "completion" : 31,
+      "total" : 1000,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6395E-4,
+    "nanos" : 1645255917
+  }, {
+    "number" : 4,
+    "logicalCall" : 4,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 824,
+      "completion" : 19,
+      "total" : 843,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.35E-4,
+    "nanos" : 1676592875
+  }, {
+    "number" : 5,
+    "logicalCall" : 5,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 20,
+      "total" : 841,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3514999999999998E-4,
+    "nanos" : 1130024250
+  }, {
+    "number" : 6,
+    "logicalCall" : 6,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 32,
+      "total" : 998,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.641E-4,
+    "nanos" : 916516375
+  }, {
+    "number" : 7,
+    "logicalCall" : 7,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 30,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.629E-4,
+    "nanos" : 1149737292
+  }, {
+    "number" : 8,
+    "logicalCall" : 8,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 18,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3394999999999998E-4,
+    "nanos" : 1178415125
+  }, {
+    "number" : 9,
+    "logicalCall" : 9,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 833,
+      "completion" : 13,
+      "total" : 846,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3275E-4,
+    "nanos" : 1803956125
+  }, {
+    "number" : 10,
+    "logicalCall" : 10,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 978,
+      "completion" : 25,
+      "total" : 1003,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.617E-4,
+    "nanos" : 909093666
+  }, {
+    "number" : 11,
+    "logicalCall" : 11,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 968,
+      "completion" : 29,
+      "total" : 997,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.626E-4,
+    "nanos" : 872820208
+  }, {
+    "number" : 12,
+    "logicalCall" : 12,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 823,
+      "completion" : 17,
+      "total" : 840,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3364999999999997E-4,
+    "nanos" : 934605417
+  }, {
+    "number" : 13,
+    "logicalCall" : 13,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 826,
+      "completion" : 19,
+      "total" : 845,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3529999999999998E-4,
+    "nanos" : 918140042
+  }, {
+    "number" : 14,
+    "logicalCall" : 14,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 971,
+      "completion" : 25,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6065E-4,
+    "nanos" : 939210500
+  }, {
+    "number" : 15,
+    "logicalCall" : 15,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 964,
+      "completion" : 31,
+      "total" : 995,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6319999999999998E-4,
+    "nanos" : 1008155084
+  }, {
+    "number" : 16,
+    "logicalCall" : 16,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 819,
+      "completion" : 20,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3485E-4,
+    "nanos" : 1123161084
+  }, {
+    "number" : 17,
+    "logicalCall" : 17,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 822,
+      "completion" : 20,
+      "total" : 842,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.353E-4,
+    "nanos" : 837347417
+  }, {
+    "number" : 18,
+    "logicalCall" : 18,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 967,
+      "completion" : 32,
+      "total" : 999,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6424999999999998E-4,
+    "nanos" : 1421454625
+  }, {
+    "number" : 19,
+    "logicalCall" : 19,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 962,
+      "completion" : 25,
+      "total" : 987,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.593E-4,
+    "nanos" : 1168803875
+  }, {
+    "number" : 20,
+    "logicalCall" : 20,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 817,
+      "completion" : 20,
+      "total" : 837,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3455000000000002E-4,
+    "nanos" : 1231600000
+  }, {
+    "number" : 21,
+    "logicalCall" : 21,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 19,
+      "total" : 840,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3455E-4,
+    "nanos" : 1098890125
+  }, {
+    "number" : 22,
+    "logicalCall" : 22,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 25,
+      "total" : 991,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.599E-4,
+    "nanos" : 904959167
+  }, {
+    "number" : 23,
+    "logicalCall" : 23,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 969,
+      "completion" : 25,
+      "total" : 994,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6035E-4,
+    "nanos" : 976332416
+  }, {
+    "number" : 24,
+    "logicalCall" : 24,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 824,
+      "completion" : 13,
+      "total" : 837,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.314E-4,
+    "nanos" : 922193959
+  }, {
+    "number" : 25,
+    "logicalCall" : 25,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 13,
+      "total" : 834,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3094999999999998E-4,
+    "nanos" : 889314834
+  }, {
+    "number" : 26,
+    "logicalCall" : 26,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 25,
+      "total" : 991,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.599E-4,
+    "nanos" : 935978250
+  }, {
+    "number" : 27,
+    "logicalCall" : 27,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 968,
+      "completion" : 30,
+      "total" : 998,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6319999999999998E-4,
+    "nanos" : 1079964584
+  }, {
+    "number" : 28,
+    "logicalCall" : 28,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 823,
+      "completion" : 18,
+      "total" : 841,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3425E-4,
+    "nanos" : 748627625
+  }, {
+    "number" : 29,
+    "logicalCall" : 29,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 19,
+      "total" : 840,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3455E-4,
+    "nanos" : 857290208
+  }, {
+    "number" : 30,
+    "logicalCall" : 30,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 31,
+      "total" : 997,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.635E-4,
+    "nanos" : 1025160541
+  }, {
+    "number" : 31,
+    "logicalCall" : 31,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 964,
+      "completion" : 32,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6379999999999997E-4,
+    "nanos" : 866735541
+  }, {
+    "number" : 32,
+    "logicalCall" : 32,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 819,
+      "completion" : 20,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3485E-4,
+    "nanos" : 942595959
+  }, {
+    "number" : 33,
+    "logicalCall" : 33,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 822,
+      "completion" : 17,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.335E-4,
+    "nanos" : 885093958
+  }, {
+    "number" : 34,
+    "logicalCall" : 34,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 967,
+      "completion" : 29,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6245E-4,
+    "nanos" : 1002939583
+  }, {
+    "number" : 35,
+    "logicalCall" : 35,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 968,
+      "completion" : 25,
+      "total" : 993,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.602E-4,
+    "nanos" : 991099750
+  }, {
+    "number" : 36,
+    "logicalCall" : 36,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 823,
+      "completion" : 19,
+      "total" : 842,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3485E-4,
+    "nanos" : 975481291
+  }, {
+    "number" : 37,
+    "logicalCall" : 37,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 817,
+      "completion" : 13,
+      "total" : 830,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3035E-4,
+    "nanos" : 1187751709
+  }, {
+    "number" : 38,
+    "logicalCall" : 38,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 962,
+      "completion" : 25,
+      "total" : 987,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.593E-4,
+    "nanos" : 909722833
+  }, {
+    "number" : 39,
+    "logicalCall" : 39,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 965,
+      "completion" : 25,
+      "total" : 990,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.5975E-4,
+    "nanos" : 1052830667
+  }, {
+    "number" : 40,
+    "logicalCall" : 40,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 820,
+      "completion" : 19,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3440000000000001E-4,
+    "nanos" : 929715875
+  }, {
+    "number" : 41,
+    "logicalCall" : 41,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 967,
+      "completion" : 25,
+      "total" : 992,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6005E-4,
+    "nanos" : 876646625
+  }, {
+    "number" : 42,
+    "logicalCall" : 42,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 822,
+      "completion" : 13,
+      "total" : 835,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.311E-4,
+    "nanos" : 764402833
+  }, {
+    "number" : 43,
+    "logicalCall" : 43,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 824,
+      "completion" : 19,
+      "total" : 843,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.35E-4,
+    "nanos" : 927585417
+  }, {
+    "number" : 44,
+    "logicalCall" : 44,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 969,
+      "completion" : 31,
+      "total" : 1000,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6395E-4,
+    "nanos" : 925336541
+  }, {
+    "number" : 45,
+    "logicalCall" : 45,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 31,
+      "total" : 997,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.635E-4,
+    "nanos" : 991909125
+  }, {
+    "number" : 46,
+    "logicalCall" : 46,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 20,
+      "total" : 841,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3514999999999998E-4,
+    "nanos" : 907798458
+  }, {
+    "number" : 47,
+    "logicalCall" : 47,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 18,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3394999999999998E-4,
+    "nanos" : 972834500
+  }, {
+    "number" : 48,
+    "logicalCall" : 48,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 30,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.629E-4,
+    "nanos" : 992044417
+  }, {
+    "number" : 49,
+    "logicalCall" : 49,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 978,
+      "completion" : 25,
+      "total" : 1003,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.617E-4,
+    "nanos" : 1114465958
+  }, {
+    "number" : 50,
+    "logicalCall" : 50,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 833,
+      "completion" : 13,
+      "total" : 846,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3275E-4,
+    "nanos" : 914364792
+  }, {
+    "number" : 51,
+    "logicalCall" : 51,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 823,
+      "completion" : 17,
+      "total" : 840,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3364999999999997E-4,
+    "nanos" : 1007174833
+  }, {
+    "number" : 52,
+    "logicalCall" : 52,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 968,
+      "completion" : 29,
+      "total" : 997,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.626E-4,
+    "nanos" : 1107062667
+  }, {
+    "number" : 53,
+    "logicalCall" : 53,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 971,
+      "completion" : 25,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6065E-4,
+    "nanos" : 1076404666
+  }, {
+    "number" : 54,
+    "logicalCall" : 54,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 826,
+      "completion" : 19,
+      "total" : 845,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3529999999999998E-4,
+    "nanos" : 775706917
+  }, {
+    "number" : 55,
+    "logicalCall" : 55,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 819,
+      "completion" : 20,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3485E-4,
+    "nanos" : 1086234250
+  }, {
+    "number" : 56,
+    "logicalCall" : 56,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 964,
+      "completion" : 31,
+      "total" : 995,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6319999999999998E-4,
+    "nanos" : 1092737375
+  }, {
+    "number" : 57,
+    "logicalCall" : 57,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 967,
+      "completion" : 32,
+      "total" : 999,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6424999999999998E-4,
+    "nanos" : 894626541
+  }, {
+    "number" : 58,
+    "logicalCall" : 58,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 822,
+      "completion" : 20,
+      "total" : 842,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.353E-4,
+    "nanos" : 1161795208
+  }, {
+    "number" : 59,
+    "logicalCall" : 59,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 817,
+      "completion" : 20,
+      "total" : 837,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3455000000000002E-4,
+    "nanos" : 806872250
+  }, {
+    "number" : 60,
+    "logicalCall" : 60,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 962,
+      "completion" : 25,
+      "total" : 987,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.593E-4,
+    "nanos" : 807829750
+  }, {
+    "number" : 61,
+    "logicalCall" : 61,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 25,
+      "total" : 991,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.599E-4,
+    "nanos" : 923608375
+  }, {
+    "number" : 62,
+    "logicalCall" : 62,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 13,
+      "total" : 834,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3094999999999998E-4,
+    "nanos" : 924926666
+  }, {
+    "number" : 63,
+    "logicalCall" : 63,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 824,
+      "completion" : 13,
+      "total" : 837,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.314E-4,
+    "nanos" : 857915542
+  }, {
+    "number" : 64,
+    "logicalCall" : 64,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 969,
+      "completion" : 25,
+      "total" : 994,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6035E-4,
+    "nanos" : 1017949667
+  }, {
+    "number" : 65,
+    "logicalCall" : 65,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 25,
+      "total" : 991,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.599E-4,
+    "nanos" : 887318500
+  }, {
+    "number" : 66,
+    "logicalCall" : 66,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 13,
+      "total" : 834,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3094999999999998E-4,
+    "nanos" : 823223417
+  }, {
+    "number" : 67,
+    "logicalCall" : 67,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 823,
+      "completion" : 18,
+      "total" : 841,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3425E-4,
+    "nanos" : 1070361833
+  }, {
+    "number" : 68,
+    "logicalCall" : 68,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 968,
+      "completion" : 30,
+      "total" : 998,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6319999999999998E-4,
+    "nanos" : 994220459
+  }, {
+    "number" : 69,
+    "logicalCall" : 69,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 966,
+      "completion" : 31,
+      "total" : 997,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.635E-4,
+    "nanos" : 950551292
+  }, {
+    "number" : 70,
+    "logicalCall" : 70,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 821,
+      "completion" : 19,
+      "total" : 840,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3455E-4,
+    "nanos" : 785909750
+  }, {
+    "number" : 71,
+    "logicalCall" : 71,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 819,
+      "completion" : 20,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3485E-4,
+    "nanos" : 1079039917
+  }, {
+    "number" : 72,
+    "logicalCall" : 72,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 964,
+      "completion" : 32,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6379999999999997E-4,
+    "nanos" : 882199458
+  }, {
+    "number" : 73,
+    "logicalCall" : 73,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 967,
+      "completion" : 29,
+      "total" : 996,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.6245E-4,
+    "nanos" : 1210045375
+  }, {
+    "number" : 74,
+    "logicalCall" : 74,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 822,
+      "completion" : 17,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.335E-4,
+    "nanos" : 930587791
+  }, {
+    "number" : 75,
+    "logicalCall" : 75,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 823,
+      "completion" : 19,
+      "total" : 842,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3485E-4,
+    "nanos" : 834629917
+  }, {
+    "number" : 76,
+    "logicalCall" : 76,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 968,
+      "completion" : 25,
+      "total" : 993,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.602E-4,
+    "nanos" : 906560250
+  }, {
+    "number" : 77,
+    "logicalCall" : 77,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 962,
+      "completion" : 25,
+      "total" : 987,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.593E-4,
+    "nanos" : 1157486417
+  }, {
+    "number" : 78,
+    "logicalCall" : 78,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 817,
+      "completion" : 13,
+      "total" : 830,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3035E-4,
+    "nanos" : 971573250
+  }, {
+    "number" : 79,
+    "logicalCall" : 79,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 820,
+      "completion" : 19,
+      "total" : 839,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.3440000000000001E-4,
+    "nanos" : 842294625
+  }, {
+    "number" : 80,
+    "logicalCall" : 80,
+    "status" : 200,
+    "errorCode" : null,
+    "usage" : {
+      "prompt" : 965,
+      "completion" : 25,
+      "total" : 990,
+      "cachedInput" : 0
+    },
+    "chargedUpperUsd" : 1.5975E-4,
+    "nanos" : 1003279708
+  } ],
+  "calls" : [ {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 0,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-17",
+    "requestSpecSha256" : "d7592ff4234508cecb510d306c85e064f10484b490c5b874901a828ce9eb2dc4",
+    "startedAt" : "2026-10-20T07:00:10.403856Z",
+    "processingNanos" : 2726633834,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s001",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 822,
+        "completion" : 20,
+        "total" : 842,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 2714220125,
+      "evaluationNanos" : 2725951583,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-17",
+        "batchId" : "s001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 0,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-17",
+    "requestSpecSha256" : "0f4ec4b4bf1dd896c816fb39ca135183e830e1b6754f5c6645d2f50a746d836d",
+    "startedAt" : "2026-10-20T07:00:13.223667Z",
+    "processingNanos" : 1524844667,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m001",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 967,
+        "completion" : 25,
+        "total" : 992,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1517599958,
+      "evaluationNanos" : 1524043750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-17",
+        "batchId" : "a-m001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 1,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PI-05",
+    "requestSpecSha256" : "55841522d8af966fe50751b929f35fcf02c431d3a141eec46ec72e0765848367",
+    "startedAt" : "2026-10-20T07:00:14.860531Z",
+    "processingNanos" : 1648952667,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m002",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 969,
+        "completion" : 31,
+        "total" : 1000,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1647912584,
+      "evaluationNanos" : 1648392084,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-05",
+        "batchId" : "a-m002",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 1,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PI-05",
+    "requestSpecSha256" : "2131eb63a1acad8f40c3fbea9d1aa6e339b8cc14450856573b133d75f2bd60be",
+    "startedAt" : "2026-10-20T07:00:16.626527Z",
+    "processingNanos" : 1679826416,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s002",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 824,
+        "completion" : 19,
+        "total" : 843,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1679060292,
+      "evaluationNanos" : 1679431417,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-05",
+        "batchId" : "s002",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 2,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-14",
+    "requestSpecSha256" : "5f85dccb346f857431f11680d07dbac1067ca1cf2bf161c25fcc487d7fb0b551",
+    "startedAt" : "2026-10-20T07:00:18.415442Z",
+    "processingNanos" : 1134115208,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s003",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 20,
+        "total" : 841,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1133222000,
+      "evaluationNanos" : 1133654416,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-14",
+        "batchId" : "s003",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 2,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-14",
+    "requestSpecSha256" : "969c5d77d4599baeef0963b0298dc977899d275e48d518b313de3296effea10e",
+    "startedAt" : "2026-10-20T07:00:19.657923Z",
+    "processingNanos" : 919244167,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m003",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 32,
+        "total" : 998,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 918603708,
+      "evaluationNanos" : 918945666,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-14",
+        "batchId" : "a-m003",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 3,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-16",
+    "requestSpecSha256" : "fc168438f1a8be3763cda7634ce5851d7e62d9df9e9dfbe79b17a7055ef7feda",
+    "startedAt" : "2026-10-20T07:00:20.668465Z",
+    "processingNanos" : 1153109292,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m004",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 30,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1151903166,
+      "evaluationNanos" : 1152592416,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-16",
+        "batchId" : "a-m004",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 3,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-16",
+    "requestSpecSha256" : "25a4af4ce689f951f7ead52630acd72a61c8d8efff489e230650cd9035ba62d3",
+    "startedAt" : "2026-10-20T07:00:21.927295Z",
+    "processingNanos" : 1182650042,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s004",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 18,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1181750250,
+      "evaluationNanos" : 1182277542,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-16",
+        "batchId" : "s004",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 4,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-19",
+    "requestSpecSha256" : "63da3e45e4b7e3336dac4e862d44942ede122e8a1f5ef55e6c7816f154cbf236",
+    "startedAt" : "2026-10-20T07:00:23.224834Z",
+    "processingNanos" : 1807400209,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s005",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 833,
+        "completion" : 13,
+        "total" : 846,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1806787417,
+      "evaluationNanos" : 1807112208,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-19",
+        "batchId" : "s005",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 4,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-19",
+    "requestSpecSha256" : "db776993c502bf85f61b543bbd6895f858714a664b4c3e78e6dbd9acee99df91",
+    "startedAt" : "2026-10-20T07:00:25.143501Z",
+    "processingNanos" : 912849833,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m005",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 978,
+        "completion" : 25,
+        "total" : 1003,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 911949791,
+      "evaluationNanos" : 912468750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-19",
+        "batchId" : "a-m005",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 5,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-08",
+    "requestSpecSha256" : "0c5d7eb769df3b1382e197577700f7aaf0e71a54e60c53a468eb42b38b201034",
+    "startedAt" : "2026-10-20T07:00:26.178489Z",
+    "processingNanos" : 874718708,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m006",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 968,
+        "completion" : 29,
+        "total" : 997,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 874310708,
+      "evaluationNanos" : 874504541,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-08",
+        "batchId" : "a-m006",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 5,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-08",
+    "requestSpecSha256" : "abd15825720a39ea64e131b9f06ef5a779b6ef094e19213a0918e846c95df30c",
+    "startedAt" : "2026-10-20T07:00:27.146664Z",
+    "processingNanos" : 936331000,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s006",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 823,
+        "completion" : 17,
+        "total" : 840,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 936008375,
+      "evaluationNanos" : 936166584,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-08",
+        "batchId" : "s006",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 6,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-09",
+    "requestSpecSha256" : "6f007b453ac82e6cd072561667ddf4eb5d64c7a5dd7e98e411335f864e7710f1",
+    "startedAt" : "2026-10-20T07:00:28.177302Z",
+    "processingNanos" : 921138292,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s007",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 826,
+        "completion" : 19,
+        "total" : 845,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 920519917,
+      "evaluationNanos" : 920898709,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-09",
+        "batchId" : "s007",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 6,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-09",
+    "requestSpecSha256" : "0a13876b29cc7b234f032b7af0ae4dddf8d155e4f1a3232f329169b2ef02ffa0",
+    "startedAt" : "2026-10-20T07:00:29.201838Z",
+    "processingNanos" : 941967000,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m007",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 971,
+        "completion" : 25,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 941221292,
+      "evaluationNanos" : 941662833,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-09",
+        "batchId" : "a-m007",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 7,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "requestSpecSha256" : "9ec6bcb27ba099d0f3a115a93f13af161500266c78a2345bfd4463c7c9865da8",
+    "startedAt" : "2026-10-20T07:00:30.251702Z",
+    "processingNanos" : 1012276250,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m008",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 964,
+        "completion" : 31,
+        "total" : 995,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1011492208,
+      "evaluationNanos" : 1011976000,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-16",
+        "batchId" : "a-m008",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 7,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "requestSpecSha256" : "c71023663a7abed4a3527c2a8ec61b9d5fc6e05a5ac45093c4c36f56072073f6",
+    "startedAt" : "2026-10-20T07:00:31.366422Z",
+    "processingNanos" : 1128191209,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s008",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 819,
+        "completion" : 20,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1127744875,
+      "evaluationNanos" : 1128008583,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-16",
+        "batchId" : "s008",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 8,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-01",
+    "requestSpecSha256" : "8aefa062c6d5254581aaecfa69e47c386712f275112acc7bb50c0aacac4ff9a9",
+    "startedAt" : "2026-10-20T07:00:32.603419Z",
+    "processingNanos" : 840236083,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s009",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 822,
+        "completion" : 20,
+        "total" : 842,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 839668375,
+      "evaluationNanos" : 840027334,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-01",
+        "batchId" : "s009",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 8,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-01",
+    "requestSpecSha256" : "3ff14d5128e81704388a34df7964a5e067bb5bacd447b36780f5240d2fb32de9",
+    "startedAt" : "2026-10-20T07:00:33.534063Z",
+    "processingNanos" : 1423422542,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m009",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 967,
+        "completion" : 32,
+        "total" : 999,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1422989500,
+      "evaluationNanos" : 1423267292,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-01",
+        "batchId" : "a-m009",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 9,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-06",
+    "requestSpecSha256" : "569743daca3451ea02e58e055a895fc0106e9bb2f54c97788dadda00850fd46e",
+    "startedAt" : "2026-10-20T07:00:35.040001Z",
+    "processingNanos" : 1172205334,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m010",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 962,
+        "completion" : 25,
+        "total" : 987,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1171227416,
+      "evaluationNanos" : 1171833166,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-06",
+        "batchId" : "a-m010",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 9,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-06",
+    "requestSpecSha256" : "589751beda78673c0a12524ae4013a5da356140f8a5dd01a68aeeabe98824a27",
+    "startedAt" : "2026-10-20T07:00:36.328774Z",
+    "processingNanos" : 1233526083,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s010",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 817,
+        "completion" : 20,
+        "total" : 837,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1233113208,
+      "evaluationNanos" : 1233345375,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-06",
+        "batchId" : "s010",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 10,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-13",
+    "requestSpecSha256" : "32fcee698593434ad27695f9c52f4d9f27bddee462dd82dea635aac14321cc26",
+    "startedAt" : "2026-10-20T07:00:37.645129Z",
+    "processingNanos" : 1101320208,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s011",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 19,
+        "total" : 840,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1100772625,
+      "evaluationNanos" : 1101124166,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-13",
+        "batchId" : "s011",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 10,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-13",
+    "requestSpecSha256" : "e988ccd1a5188fd401bca7adfc26c863d4f187cafa4f36c6ffcf10a5f4b731bf",
+    "startedAt" : "2026-10-20T07:00:38.858120Z",
+    "processingNanos" : 907567834,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m011",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 25,
+        "total" : 991,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 906850250,
+      "evaluationNanos" : 907289625,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-13",
+        "batchId" : "a-m011",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 11,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-01",
+    "requestSpecSha256" : "9884b4362caeec5ddef9c14a97c074634c820930aa890b6d1f64d42e08a5d383",
+    "startedAt" : "2026-10-20T07:00:39.865930Z",
+    "processingNanos" : 979224208,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m012",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 969,
+        "completion" : 25,
+        "total" : 994,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 978460333,
+      "evaluationNanos" : 978927791,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-01",
+        "batchId" : "a-m012",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 11,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-01",
+    "requestSpecSha256" : "7cc40cab42da2cd6926d689495eab3d8184e76bb34ab5d44e439e15aa22cb854",
+    "startedAt" : "2026-10-20T07:00:40.964080Z",
+    "processingNanos" : 924647167,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s012",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 824,
+        "completion" : 13,
+        "total" : 837,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 924133542,
+      "evaluationNanos" : 924455917,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-01",
+        "batchId" : "s012",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 12,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-17",
+    "requestSpecSha256" : "143d735632159daa946e545a6a1dbc618bc710dd1a255223b6dc50aec9513c6e",
+    "startedAt" : "2026-10-20T07:00:42.001724Z",
+    "processingNanos" : 892012292,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s013",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 13,
+        "total" : 834,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 891393375,
+      "evaluationNanos" : 891784959,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-17",
+        "batchId" : "s013",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 12,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-17",
+    "requestSpecSha256" : "7ac6edb5abdcba6e24e47577c7e53c3d5c6690666b964ffd085d89b1c0aa8933",
+    "startedAt" : "2026-10-20T07:00:42.996360Z",
+    "processingNanos" : 937882041,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m013",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 25,
+        "total" : 991,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 937378291,
+      "evaluationNanos" : 937694541,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-17",
+        "batchId" : "a-m013",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 13,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-15",
+    "requestSpecSha256" : "db2260b96ac2df3a63281a08ee91e75591d9ccb6a53c13f8a5ad6481b35e0b39",
+    "startedAt" : "2026-10-20T07:00:44.015182Z",
+    "processingNanos" : 1082634750,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m014",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 968,
+        "completion" : 30,
+        "total" : 998,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1081951750,
+      "evaluationNanos" : 1082400000,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-15",
+        "batchId" : "a-m014",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 13,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-15",
+    "requestSpecSha256" : "3119970f37aac03ba3668489ce7dff6cce83861ac9a7e9ee20ba72422ebfd74e",
+    "startedAt" : "2026-10-20T07:00:45.207355Z",
+    "processingNanos" : 751162625,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s014",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 823,
+        "completion" : 18,
+        "total" : 841,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 750767583,
+      "evaluationNanos" : 750998125,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-15",
+        "batchId" : "s014",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 14,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-15",
+    "requestSpecSha256" : "c2ab9da1732a32e18c592c35e4f87c7c52cf2395ac5d5e5ede5c9a05685ab3f7",
+    "startedAt" : "2026-10-20T07:00:46.047787Z",
+    "processingNanos" : 860065041,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s015",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 19,
+        "total" : 840,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 859434834,
+      "evaluationNanos" : 859853250,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-15",
+        "batchId" : "s015",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 14,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-15",
+    "requestSpecSha256" : "e65db91b9fb31dc1500bff28a4f3be5dd2bd6bd6b272eb2be14219e24a0a6bc7",
+    "startedAt" : "2026-10-20T07:00:47.014667Z",
+    "processingNanos" : 1028270417,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m015",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 31,
+        "total" : 997,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1027451084,
+      "evaluationNanos" : 1027999959,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-15",
+        "batchId" : "a-m015",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 15,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-08",
+    "requestSpecSha256" : "3c359ec2ad8b0eeb108b83a923fb63133a2625a79a942b33c36be0c6672bc364",
+    "startedAt" : "2026-10-20T07:00:48.143427Z",
+    "processingNanos" : 869880375,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m016",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 964,
+        "completion" : 32,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 869054042,
+      "evaluationNanos" : 869621542,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-08",
+        "batchId" : "a-m016",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 15,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-08",
+    "requestSpecSha256" : "56e40dff4ac31bdf0831cc69a13ecc71c16712764807629910eeffbf3ac18cd0",
+    "startedAt" : "2026-10-20T07:00:49.123820Z",
+    "processingNanos" : 945053417,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s016",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 819,
+        "completion" : 20,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 944559834,
+      "evaluationNanos" : 944891584,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-08",
+        "batchId" : "s016",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 16,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-09",
+    "requestSpecSha256" : "3fcf5941a14d77fddac778c0aa54bc5be2f41ee301a619236fe9dc21a5b7a3d0",
+    "startedAt" : "2026-10-20T07:00:50.172825Z",
+    "processingNanos" : 887538334,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s017",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 822,
+        "completion" : 17,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 887003541,
+      "evaluationNanos" : 887344750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-09",
+        "batchId" : "s017",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 16,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-09",
+    "requestSpecSha256" : "8f61621107404231402bd73ea052796e09183a9107483b6b9f501a9e04eb11fd",
+    "startedAt" : "2026-10-20T07:00:51.156636Z",
+    "processingNanos" : 1005994250,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m017",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 967,
+        "completion" : 29,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1005287959,
+      "evaluationNanos" : 1005794667,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-09",
+        "batchId" : "a-m017",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 17,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-10",
+    "requestSpecSha256" : "40a134d4f008cfdd5bc0e63a70493a4dca89211cc734004bcee6c029b2eda53c",
+    "startedAt" : "2026-10-20T07:00:52.274311Z",
+    "processingNanos" : 993906875,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m018",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 968,
+        "completion" : 25,
+        "total" : 993,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 993277208,
+      "evaluationNanos" : 993699708,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-10",
+        "batchId" : "a-m018",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 17,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-10",
+    "requestSpecSha256" : "281bd511a107bac6b9430d3ef5e6bb8d20bba561a54fb47ece1dd65c743d84fe",
+    "startedAt" : "2026-10-20T07:00:53.383068Z",
+    "processingNanos" : 978391750,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s018",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 823,
+        "completion" : 19,
+        "total" : 842,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 977869416,
+      "evaluationNanos" : 978215000,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-10",
+        "batchId" : "s018",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 18,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-05",
+    "requestSpecSha256" : "5f964a8c8c93a4038cb11d26b92ebf54d687bf20275c7f92398d66206c1d791a",
+    "startedAt" : "2026-10-20T07:00:54.469265Z",
+    "processingNanos" : 1190671417,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s019",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 817,
+        "completion" : 13,
+        "total" : 830,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1190134084,
+      "evaluationNanos" : 1190473167,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-05",
+        "batchId" : "s019",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 18,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-05",
+    "requestSpecSha256" : "0fa3b09daf605b5ecab00cd596efdfc288265c8fd89312b51df622632145984a",
+    "startedAt" : "2026-10-20T07:00:55.771395Z",
+    "processingNanos" : 911985000,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m019",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 962,
+        "completion" : 25,
+        "total" : 987,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 911337666,
+      "evaluationNanos" : 911728416,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-05",
+        "batchId" : "a-m019",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 19,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PI-20",
+    "requestSpecSha256" : "568688c9dda57a4cd36efd5a532788d606a7b0b21d42bfbb361a25d05e209cd7",
+    "startedAt" : "2026-10-20T07:00:56.786557Z",
+    "processingNanos" : 1054883417,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m020",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 965,
+        "completion" : 25,
+        "total" : 990,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1054376750,
+      "evaluationNanos" : 1054703167,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-20",
+        "batchId" : "a-m020",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 1,
+      "targetIndex" : 19,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PI-20",
+    "requestSpecSha256" : "ca39b52b768234233955e3d31947c8fd383368514dd05c132142bc845561a33a",
+    "startedAt" : "2026-10-20T07:00:57.954872Z",
+    "processingNanos" : 931626667,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s020",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 820,
+        "completion" : 19,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 931043250,
+      "evaluationNanos" : 931370833,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-20",
+        "batchId" : "s020",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 0,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-17",
+    "requestSpecSha256" : "0f4ec4b4bf1dd896c816fb39ca135183e830e1b6754f5c6645d2f50a746d836d",
+    "startedAt" : "2026-10-20T07:00:59.008612Z",
+    "processingNanos" : 878675625,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m001",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 967,
+        "completion" : 25,
+        "total" : 992,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 878267125,
+      "evaluationNanos" : 878535208,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-17",
+        "batchId" : "a-m001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 0,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-17",
+    "requestSpecSha256" : "d7592ff4234508cecb510d306c85e064f10484b490c5b874901a828ce9eb2dc4",
+    "startedAt" : "2026-10-20T07:00:59.989381Z",
+    "processingNanos" : 767186750,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s001",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 822,
+        "completion" : 13,
+        "total" : 835,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 766551084,
+      "evaluationNanos" : 766957834,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-17",
+        "batchId" : "s001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 1,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PI-05",
+    "requestSpecSha256" : "2131eb63a1acad8f40c3fbea9d1aa6e339b8cc14450856573b133d75f2bd60be",
+    "startedAt" : "2026-10-20T07:01:00.876168Z",
+    "processingNanos" : 929911958,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s002",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 824,
+        "completion" : 19,
+        "total" : 843,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 929342875,
+      "evaluationNanos" : 929672167,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-05",
+        "batchId" : "s002",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 1,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PI-05",
+    "requestSpecSha256" : "55841522d8af966fe50751b929f35fcf02c431d3a141eec46ec72e0765848367",
+    "startedAt" : "2026-10-20T07:01:01.910229Z",
+    "processingNanos" : 927956542,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m002",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 969,
+        "completion" : 31,
+        "total" : 1000,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 927284708,
+      "evaluationNanos" : 927740666,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-05",
+        "batchId" : "a-m002",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 2,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-14",
+    "requestSpecSha256" : "969c5d77d4599baeef0963b0298dc977899d275e48d518b313de3296effea10e",
+    "startedAt" : "2026-10-20T07:01:02.961583Z",
+    "processingNanos" : 994661458,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m003",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 31,
+        "total" : 997,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 993830916,
+      "evaluationNanos" : 994431750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-14",
+        "batchId" : "a-m003",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 2,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-14",
+    "requestSpecSha256" : "5f85dccb346f857431f11680d07dbac1067ca1cf2bf161c25fcc487d7fb0b551",
+    "startedAt" : "2026-10-20T07:01:04.058569Z",
+    "processingNanos" : 910348125,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s003",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 20,
+        "total" : 841,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 909800667,
+      "evaluationNanos" : 910192625,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-14",
+        "batchId" : "s003",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 3,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-16",
+    "requestSpecSha256" : "25a4af4ce689f951f7ead52630acd72a61c8d8efff489e230650cd9035ba62d3",
+    "startedAt" : "2026-10-20T07:01:05.082284Z",
+    "processingNanos" : 975166375,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s004",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 18,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 974598208,
+      "evaluationNanos" : 974978167,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-16",
+        "batchId" : "s004",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 3,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-16",
+    "requestSpecSha256" : "fc168438f1a8be3763cda7634ce5851d7e62d9df9e9dfbe79b17a7055ef7feda",
+    "startedAt" : "2026-10-20T07:01:06.148370Z",
+    "processingNanos" : 994921709,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m004",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 30,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 994004208,
+      "evaluationNanos" : 994525791,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-16",
+        "batchId" : "a-m004",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 4,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-19",
+    "requestSpecSha256" : "db776993c502bf85f61b543bbd6895f858714a664b4c3e78e6dbd9acee99df91",
+    "startedAt" : "2026-10-20T07:01:07.255497Z",
+    "processingNanos" : 1116895625,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m005",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 978,
+        "completion" : 25,
+        "total" : 1003,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1116264958,
+      "evaluationNanos" : 1116604791,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-19",
+        "batchId" : "a-m005",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 4,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-19",
+    "requestSpecSha256" : "63da3e45e4b7e3336dac4e862d44942ede122e8a1f5ef55e6c7816f154cbf236",
+    "startedAt" : "2026-10-20T07:01:08.486314Z",
+    "processingNanos" : 916704875,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s005",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 833,
+        "completion" : 13,
+        "total" : 846,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 916209166,
+      "evaluationNanos" : 916533416,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-19",
+        "batchId" : "s005",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 5,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-08",
+    "requestSpecSha256" : "abd15825720a39ea64e131b9f06ef5a779b6ef094e19213a0918e846c95df30c",
+    "startedAt" : "2026-10-20T07:01:09.508748Z",
+    "processingNanos" : 1009300459,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s006",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 823,
+        "completion" : 17,
+        "total" : 840,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1008833958,
+      "evaluationNanos" : 1009140000,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-08",
+        "batchId" : "s006",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 5,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-08",
+    "requestSpecSha256" : "0c5d7eb769df3b1382e197577700f7aaf0e71a54e60c53a468eb42b38b201034",
+    "startedAt" : "2026-10-20T07:01:10.616763Z",
+    "processingNanos" : 1109271208,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m006",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 968,
+        "completion" : 29,
+        "total" : 997,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1108625708,
+      "evaluationNanos" : 1109042500,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-08",
+        "batchId" : "a-m006",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 6,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-09",
+    "requestSpecSha256" : "0a13876b29cc7b234f032b7af0ae4dddf8d155e4f1a3232f329169b2ef02ffa0",
+    "startedAt" : "2026-10-20T07:01:11.852210Z",
+    "processingNanos" : 1078520416,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m007",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 971,
+        "completion" : 25,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1077930375,
+      "evaluationNanos" : 1078335917,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-09",
+        "batchId" : "a-m007",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 6,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-09",
+    "requestSpecSha256" : "6f007b453ac82e6cd072561667ddf4eb5d64c7a5dd7e98e411335f864e7710f1",
+    "startedAt" : "2026-10-20T07:01:13.044620Z",
+    "processingNanos" : 778222125,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s007",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 826,
+        "completion" : 19,
+        "total" : 845,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 777607459,
+      "evaluationNanos" : 778005959,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-09",
+        "batchId" : "s007",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 7,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "requestSpecSha256" : "c71023663a7abed4a3527c2a8ec61b9d5fc6e05a5ac45093c4c36f56072073f6",
+    "startedAt" : "2026-10-20T07:01:13.928784Z",
+    "processingNanos" : 1088472958,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s008",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 819,
+        "completion" : 20,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1087883000,
+      "evaluationNanos" : 1088234208,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-16",
+        "batchId" : "s008",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 7,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "requestSpecSha256" : "9ec6bcb27ba099d0f3a115a93f13af161500266c78a2345bfd4463c7c9865da8",
+    "startedAt" : "2026-10-20T07:01:15.121372Z",
+    "processingNanos" : 1094993709,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m008",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 964,
+        "completion" : 31,
+        "total" : 995,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1094327167,
+      "evaluationNanos" : 1094780667,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-16",
+        "batchId" : "a-m008",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 8,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-01",
+    "requestSpecSha256" : "3ff14d5128e81704388a34df7964a5e067bb5bacd447b36780f5240d2fb32de9",
+    "startedAt" : "2026-10-20T07:01:16.323861Z",
+    "processingNanos" : 896693459,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m009",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 967,
+        "completion" : 32,
+        "total" : 999,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 896119125,
+      "evaluationNanos" : 896495667,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-01",
+        "batchId" : "a-m009",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 8,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-01",
+    "requestSpecSha256" : "8aefa062c6d5254581aaecfa69e47c386712f275112acc7bb50c0aacac4ff9a9",
+    "startedAt" : "2026-10-20T07:01:17.328380Z",
+    "processingNanos" : 1163311459,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s009",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 822,
+        "completion" : 20,
+        "total" : 842,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1162998083,
+      "evaluationNanos" : 1163178250,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-01",
+        "batchId" : "s009",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 9,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-06",
+    "requestSpecSha256" : "589751beda78673c0a12524ae4013a5da356140f8a5dd01a68aeeabe98824a27",
+    "startedAt" : "2026-10-20T07:01:18.585183Z",
+    "processingNanos" : 808945500,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s010",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 817,
+        "completion" : 20,
+        "total" : 837,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 808508750,
+      "evaluationNanos" : 808791250,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-06",
+        "batchId" : "s010",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 9,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-06",
+    "requestSpecSha256" : "569743daca3451ea02e58e055a895fc0106e9bb2f54c97788dadda00850fd46e",
+    "startedAt" : "2026-10-20T07:01:19.501559Z",
+    "processingNanos" : 810447333,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m010",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 962,
+        "completion" : 25,
+        "total" : 987,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 809798166,
+      "evaluationNanos" : 810227750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-06",
+        "batchId" : "a-m010",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 10,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-13",
+    "requestSpecSha256" : "e988ccd1a5188fd401bca7adfc26c863d4f187cafa4f36c6ffcf10a5f4b731bf",
+    "startedAt" : "2026-10-20T07:01:20.426117Z",
+    "processingNanos" : 925935375,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m011",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 25,
+        "total" : 991,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 925257292,
+      "evaluationNanos" : 925729708,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-13",
+        "batchId" : "a-m011",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 10,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-13",
+    "requestSpecSha256" : "32fcee698593434ad27695f9c52f4d9f27bddee462dd82dea635aac14321cc26",
+    "startedAt" : "2026-10-20T07:01:21.460092Z",
+    "processingNanos" : 927052833,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s011",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 13,
+        "total" : 834,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 926581292,
+      "evaluationNanos" : 926872833,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-13",
+        "batchId" : "s011",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 11,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-01",
+    "requestSpecSha256" : "7cc40cab42da2cd6926d689495eab3d8184e76bb34ab5d44e439e15aa22cb854",
+    "startedAt" : "2026-10-20T07:01:22.526280Z",
+    "processingNanos" : 860841125,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s012",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 824,
+        "completion" : 13,
+        "total" : 837,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 860002625,
+      "evaluationNanos" : 860614000,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-01",
+        "batchId" : "s012",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 11,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-01",
+    "requestSpecSha256" : "9884b4362caeec5ddef9c14a97c074634c820930aa890b6d1f64d42e08a5d383",
+    "startedAt" : "2026-10-20T07:01:23.489946Z",
+    "processingNanos" : 1019645000,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m012",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 969,
+        "completion" : 25,
+        "total" : 994,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1019318458,
+      "evaluationNanos" : 1019536917,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-01",
+        "batchId" : "a-m012",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 12,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-17",
+    "requestSpecSha256" : "7ac6edb5abdcba6e24e47577c7e53c3d5c6690666b964ffd085d89b1c0aa8933",
+    "startedAt" : "2026-10-20T07:01:24.604837Z",
+    "processingNanos" : 888622375,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m013",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 25,
+        "total" : 991,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 888346333,
+      "evaluationNanos" : 888525792,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-17",
+        "batchId" : "a-m013",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 12,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-17",
+    "requestSpecSha256" : "143d735632159daa946e545a6a1dbc618bc710dd1a255223b6dc50aec9513c6e",
+    "startedAt" : "2026-10-20T07:01:25.596300Z",
+    "processingNanos" : 825193375,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s013",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 13,
+        "total" : 834,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 824770333,
+      "evaluationNanos" : 825039375,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-17",
+        "batchId" : "s013",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 13,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-15",
+    "requestSpecSha256" : "3119970f37aac03ba3668489ce7dff6cce83861ac9a7e9ee20ba72422ebfd74e",
+    "startedAt" : "2026-10-20T07:01:26.527785Z",
+    "processingNanos" : 1071873583,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s014",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 823,
+        "completion" : 18,
+        "total" : 841,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1071508125,
+      "evaluationNanos" : 1071730083,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-15",
+        "batchId" : "s014",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 13,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-15",
+    "requestSpecSha256" : "db2260b96ac2df3a63281a08ee91e75591d9ccb6a53c13f8a5ad6481b35e0b39",
+    "startedAt" : "2026-10-20T07:01:27.688950Z",
+    "processingNanos" : 996956792,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m014",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 968,
+        "completion" : 30,
+        "total" : 998,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 996303042,
+      "evaluationNanos" : 996751375,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-15",
+        "batchId" : "a-m014",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 14,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-15",
+    "requestSpecSha256" : "e65db91b9fb31dc1500bff28a4f3be5dd2bd6bd6b272eb2be14219e24a0a6bc7",
+    "startedAt" : "2026-10-20T07:01:28.785583Z",
+    "processingNanos" : 952995500,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m015",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 966,
+        "completion" : 31,
+        "total" : 997,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 952330500,
+      "evaluationNanos" : 952795958,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-15",
+        "batchId" : "a-m015",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 14,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-15",
+    "requestSpecSha256" : "c2ab9da1732a32e18c592c35e4f87c7c52cf2395ac5d5e5ede5c9a05685ab3f7",
+    "startedAt" : "2026-10-20T07:01:29.842859Z",
+    "processingNanos" : 787561083,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s015",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 821,
+        "completion" : 19,
+        "total" : 840,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 787200583,
+      "evaluationNanos" : 787427000,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-15",
+        "batchId" : "s015",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 15,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-08",
+    "requestSpecSha256" : "56e40dff4ac31bdf0831cc69a13ecc71c16712764807629910eeffbf3ac18cd0",
+    "startedAt" : "2026-10-20T07:01:30.773348Z",
+    "processingNanos" : 1080917292,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s016",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 819,
+        "completion" : 20,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1080515625,
+      "evaluationNanos" : 1080766916,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-08",
+        "batchId" : "s016",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 15,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-08",
+    "requestSpecSha256" : "3c359ec2ad8b0eeb108b83a923fb63133a2625a79a942b33c36be0c6672bc364",
+    "startedAt" : "2026-10-20T07:01:31.955200Z",
+    "processingNanos" : 884413792,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m016",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 964,
+        "completion" : 32,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 883803875,
+      "evaluationNanos" : 884225584,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-08",
+        "batchId" : "a-m016",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 16,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SPAM-09",
+    "requestSpecSha256" : "8f61621107404231402bd73ea052796e09183a9107483b6b9f501a9e04eb11fd",
+    "startedAt" : "2026-10-20T07:01:32.945097Z",
+    "processingNanos" : 1212120250,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m017",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 967,
+        "completion" : 29,
+        "total" : 996,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1211495834,
+      "evaluationNanos" : 1211911750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-09",
+        "batchId" : "a-m017",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 16,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SPAM-09",
+    "requestSpecSha256" : "3fcf5941a14d77fddac778c0aa54bc5be2f41ee301a619236fe9dc21a5b7a3d0",
+    "startedAt" : "2026-10-20T07:01:34.267495Z",
+    "processingNanos" : 932864875,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s017",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 822,
+        "completion" : 17,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 932267583,
+      "evaluationNanos" : 932649917,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-09",
+        "batchId" : "s017",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 17,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-SAFE-10",
+    "requestSpecSha256" : "281bd511a107bac6b9430d3ef5e6bb8d20bba561a54fb47ece1dd65c743d84fe",
+    "startedAt" : "2026-10-20T07:01:35.408532Z",
+    "processingNanos" : 836486708,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s018",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 823,
+        "completion" : 19,
+        "total" : 842,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 836069375,
+      "evaluationNanos" : 836336750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-10",
+        "batchId" : "s018",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 17,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-SAFE-10",
+    "requestSpecSha256" : "40a134d4f008cfdd5bc0e63a70493a4dca89211cc734004bcee6c029b2eda53c",
+    "startedAt" : "2026-10-20T07:01:36.344864Z",
+    "processingNanos" : 909324292,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m018",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 968,
+        "completion" : 25,
+        "total" : 993,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 908713667,
+      "evaluationNanos" : 909123750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SAFE-10",
+        "batchId" : "a-m018",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 18,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-05",
+    "requestSpecSha256" : "0fa3b09daf605b5ecab00cd596efdfc288265c8fd89312b51df622632145984a",
+    "startedAt" : "2026-10-20T07:01:37.380407Z",
+    "processingNanos" : 1159218083,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m019",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 962,
+        "completion" : 25,
+        "total" : 987,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1158843750,
+      "evaluationNanos" : 1159085375,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-05",
+        "batchId" : "a-m019",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 18,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PROFANITY-05",
+    "requestSpecSha256" : "5f964a8c8c93a4038cb11d26b92ebf54d687bf20275c7f92398d66206c1d791a",
+    "startedAt" : "2026-10-20T07:01:38.631294Z",
+    "processingNanos" : 973702916,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s019",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 817,
+        "completion" : 13,
+        "total" : 830,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 973092458,
+      "evaluationNanos" : 973463500,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PROFANITY-05",
+        "batchId" : "s019",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 19,
+      "mode" : "NATIVE"
+    },
+    "caseId" : "HOLDOUT-PI-20",
+    "requestSpecSha256" : "ca39b52b768234233955e3d31947c8fd383368514dd05c132142bc845561a33a",
+    "startedAt" : "2026-10-20T07:01:39.706604Z",
+    "processingNanos" : 844378042,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "s020",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 820,
+        "completion" : 19,
+        "total" : 839,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 843763625,
+      "evaluationNanos" : 844133459,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-20",
+        "batchId" : "s020",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    }
+  }, {
+    "step" : {
+      "repeat" : 2,
+      "targetIndex" : 19,
+      "mode" : "BATCH1"
+    },
+    "caseId" : "HOLDOUT-PI-20",
+    "requestSpecSha256" : "568688c9dda57a4cd36efd5a532788d606a7b0b21d42bfbb361a25d05e209cd7",
+    "startedAt" : "2026-10-20T07:01:40.647650Z",
+    "processingNanos" : 1005133875,
+    "httpAttempts" : 1,
+    "response" : {
+      "batchId" : "a-m020",
+      "inputCount" : 1,
+      "outputCap" : 128,
+      "usage" : {
+        "prompt" : 965,
+        "completion" : 25,
+        "total" : 990,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 1004585333,
+      "evaluationNanos" : 1004937083,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-PI-20",
+        "batchId" : "a-m020",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    }
+  } ],
+  "groups" : [ {
+    "repeat" : 1,
+    "mode" : "NATIVE",
+    "stats" : {
+      "quality" : {
+        "count" : 20,
+        "unresolved" : 0,
+        "resultMatches" : 13,
+        "categoryMatches" : 13,
+        "riskMatches" : 10,
+        "actionabilityMatches" : 14,
+        "confusion" : {
+          "truePositive" : 9,
+          "falsePositive" : 7,
+          "falseNegative" : 0,
+          "trueNegative" : 4
+        },
+        "flagged" : {
+          "precision" : 0.5625,
+          "recall" : 1.0,
+          "f1" : 0.72
+        },
+        "categories" : {
+          "PERSONAL_INFORMATION" : {
+            "precision" : 0.25,
+            "recall" : 1.0,
+            "f1" : 0.4
+          },
+          "PROFANITY" : {
+            "precision" : 0.625,
+            "recall" : 1.0,
+            "f1" : 0.7692307692307693
+          },
+          "SPAM" : {
+            "precision" : 0.75,
+            "recall" : 1.0,
+            "f1" : 0.8571428571428571
+          }
+        },
+        "fpIds" : [ "HOLDOUT-SAFE-17", "HOLDOUT-SAFE-09", "HOLDOUT-PROFANITY-06", "HOLDOUT-PROFANITY-13", "HOLDOUT-SPAM-15", "HOLDOUT-SAFE-10", "HOLDOUT-PI-20" ],
+        "fnIds" : [ ],
+        "mismatchIds" : [ "HOLDOUT-SAFE-17", "HOLDOUT-PROFANITY-14", "HOLDOUT-SPAM-16", "HOLDOUT-SAFE-09", "HOLDOUT-PROFANITY-16", "HOLDOUT-PROFANITY-06", "HOLDOUT-PROFANITY-13", "HOLDOUT-SPAM-15", "HOLDOUT-PROFANITY-08", "HOLDOUT-SAFE-10", "HOLDOUT-PI-20" ]
+      },
+      "logicalCalls" : 20,
+      "httpAttempts" : 20,
+      "inputTokens" : 16439,
+      "outputTokens" : 356,
+      "cachedInputTokens" : 0,
+      "totalTokens" : 16795,
+      "cacheUnknownCalls" : 0,
+      "noCacheEstimatedUsd" : 0.00267945,
+      "cacheAwareEstimatedUsd" : 0.00267945,
+      "latency" : {
+        "avgMs" : 1151.4603459,
+        "p95Ms" : 1806.787417,
+        "p99Ms" : 2714.220125,
+        "maxMs" : 2714.220125
+      },
+      "wallMs" : 23052.537294,
+      "policyViolationIds" : [ "HOLDOUT-PROFANITY-13" ],
+      "gtHighDowngradeIds" : [ "HOLDOUT-PROFANITY-14", "HOLDOUT-SPAM-16", "HOLDOUT-PROFANITY-16", "HOLDOUT-PROFANITY-08" ]
+    }
+  }, {
+    "repeat" : 1,
+    "mode" : "BATCH1",
+    "stats" : {
+      "quality" : {
+        "count" : 20,
+        "unresolved" : 0,
+        "resultMatches" : 19,
+        "categoryMatches" : 19,
+        "riskMatches" : 16,
+        "actionabilityMatches" : 19,
+        "confusion" : {
+          "truePositive" : 9,
+          "falsePositive" : 1,
+          "falseNegative" : 0,
+          "trueNegative" : 10
+        },
+        "flagged" : {
+          "precision" : 0.9,
+          "recall" : 1.0,
+          "f1" : 0.9473684210526316
+        },
+        "categories" : {
+          "PERSONAL_INFORMATION" : {
+            "precision" : 1.0,
+            "recall" : 1.0,
+            "f1" : 1.0
+          },
+          "PROFANITY" : {
+            "precision" : 1.0,
+            "recall" : 1.0,
+            "f1" : 1.0
+          },
+          "SPAM" : {
+            "precision" : 0.75,
+            "recall" : 1.0,
+            "f1" : 0.8571428571428571
+          }
+        },
+        "fpIds" : [ "HOLDOUT-SPAM-15" ],
+        "fnIds" : [ ],
+        "mismatchIds" : [ "HOLDOUT-PROFANITY-14", "HOLDOUT-SPAM-16", "HOLDOUT-SPAM-15", "HOLDOUT-PROFANITY-08" ]
+      },
+      "logicalCalls" : 20,
+      "httpAttempts" : 20,
+      "inputTokens" : 19339,
+      "outputTokens" : 557,
+      "cachedInputTokens" : 0,
+      "totalTokens" : 19896,
+      "cacheUnknownCalls" : 0,
+      "noCacheEstimatedUsd" : 0.0032350499999999997,
+      "cacheAwareEstimatedUsd" : 0.0032350499999999997,
+      "latency" : {
+        "avgMs" : 1066.7317832,
+        "p95Ms" : 1517.599958,
+        "p99Ms" : 1647.912584,
+        "maxMs" : 1647.912584
+      },
+      "wallMs" : 21355.819627,
+      "policyViolationIds" : [ ],
+      "gtHighDowngradeIds" : [ "HOLDOUT-PROFANITY-14", "HOLDOUT-SPAM-16", "HOLDOUT-PROFANITY-08" ]
+    }
+  }, {
+    "repeat" : 2,
+    "mode" : "NATIVE",
+    "stats" : {
+      "quality" : {
+        "count" : 20,
+        "unresolved" : 0,
+        "resultMatches" : 15,
+        "categoryMatches" : 15,
+        "riskMatches" : 11,
+        "actionabilityMatches" : 15,
+        "confusion" : {
+          "truePositive" : 9,
+          "falsePositive" : 5,
+          "falseNegative" : 0,
+          "trueNegative" : 6
+        },
+        "flagged" : {
+          "precision" : 0.6428571428571429,
+          "recall" : 1.0,
+          "f1" : 0.782608695652174
+        },
+        "categories" : {
+          "PERSONAL_INFORMATION" : {
+            "precision" : 0.25,
+            "recall" : 1.0,
+            "f1" : 0.4
+          },
+          "PROFANITY" : {
+            "precision" : 0.8333333333333334,
+            "recall" : 1.0,
+            "f1" : 0.9090909090909091
+          },
+          "SPAM" : {
+            "precision" : 0.75,
+            "recall" : 1.0,
+            "f1" : 0.8571428571428571
+          }
+        },
+        "fpIds" : [ "HOLDOUT-SAFE-09", "HOLDOUT-PROFANITY-06", "HOLDOUT-SPAM-15", "HOLDOUT-SAFE-10", "HOLDOUT-PI-20" ],
+        "fnIds" : [ ],
+        "mismatchIds" : [ "HOLDOUT-PROFANITY-14", "HOLDOUT-SPAM-16", "HOLDOUT-SAFE-09", "HOLDOUT-PROFANITY-16", "HOLDOUT-PROFANITY-06", "HOLDOUT-SPAM-15", "HOLDOUT-PROFANITY-08", "HOLDOUT-SAFE-10", "HOLDOUT-PI-20" ]
+      },
+      "logicalCalls" : 20,
+      "httpAttempts" : 20,
+      "inputTokens" : 16439,
+      "outputTokens" : 343,
+      "cachedInputTokens" : 0,
+      "totalTokens" : 16782,
+      "cacheUnknownCalls" : 0,
+      "noCacheEstimatedUsd" : 0.0026716500000000002,
+      "cacheAwareEstimatedUsd" : 0.0026716500000000002,
+      "latency" : {
+        "avgMs" : 923.9052437,
+        "p95Ms" : 1087.883,
+        "p99Ms" : 1162.998083,
+        "maxMs" : 1162.998083
+      },
+      "wallMs" : 18488.442416,
+      "policyViolationIds" : [ ],
+      "gtHighDowngradeIds" : [ "HOLDOUT-PROFANITY-14", "HOLDOUT-SPAM-16", "HOLDOUT-PROFANITY-16", "HOLDOUT-PROFANITY-08" ]
+    }
+  }, {
+    "repeat" : 2,
+    "mode" : "BATCH1",
+    "stats" : {
+      "quality" : {
+        "count" : 20,
+        "unresolved" : 0,
+        "resultMatches" : 19,
+        "categoryMatches" : 19,
+        "riskMatches" : 17,
+        "actionabilityMatches" : 19,
+        "confusion" : {
+          "truePositive" : 9,
+          "falsePositive" : 1,
+          "falseNegative" : 0,
+          "trueNegative" : 10
+        },
+        "flagged" : {
+          "precision" : 0.9,
+          "recall" : 1.0,
+          "f1" : 0.9473684210526316
+        },
+        "categories" : {
+          "PERSONAL_INFORMATION" : {
+            "precision" : 1.0,
+            "recall" : 1.0,
+            "f1" : 1.0
+          },
+          "PROFANITY" : {
+            "precision" : 1.0,
+            "recall" : 1.0,
+            "f1" : 1.0
+          },
+          "SPAM" : {
+            "precision" : 0.75,
+            "recall" : 1.0,
+            "f1" : 0.8571428571428571
+          }
+        },
+        "fpIds" : [ "HOLDOUT-SPAM-15" ],
+        "fnIds" : [ ],
+        "mismatchIds" : [ "HOLDOUT-SPAM-16", "HOLDOUT-SPAM-15", "HOLDOUT-PROFANITY-08" ]
+      },
+      "logicalCalls" : 20,
+      "httpAttempts" : 20,
+      "inputTokens" : 19339,
+      "outputTokens" : 556,
+      "cachedInputTokens" : 0,
+      "totalTokens" : 19895,
+      "cacheUnknownCalls" : 0,
+      "noCacheEstimatedUsd" : 0.00323445,
+      "cacheAwareEstimatedUsd" : 0.00323445,
+      "latency" : {
+        "avgMs" : 992.272527,
+        "p95Ms" : 1158.84375,
+        "p99Ms" : 1211.495834,
+        "maxMs" : 1211.495834
+      },
+      "wallMs" : 19857.402418,
+      "policyViolationIds" : [ ],
+      "gtHighDowngradeIds" : [ "HOLDOUT-SPAM-16", "HOLDOUT-PROFANITY-08" ]
+    }
+  } ],
+  "pairs" : [ {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SAFE-17",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PI-05",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-14",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_WRONG",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SPAM-16",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_WRONG",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SPAM-19",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SPAM-08",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SAFE-09",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-01",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-06",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-13",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : true,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SAFE-01",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-17",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SPAM-15",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_WRONG",
+    "resultCategoryJudgment" : "BOTH_WRONG",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-15",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-08",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_WRONG",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SPAM-09",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-SAFE-10",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PROFANITY-05",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 1,
+    "caseId" : "HOLDOUT-PI-20",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SAFE-17",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PI-05",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-14",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SPAM-16",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_WRONG",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SPAM-19",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SPAM-08",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SAFE-09",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-01",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-06",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-13",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SAFE-01",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-17",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SPAM-15",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_WRONG",
+    "resultCategoryJudgment" : "BOTH_WRONG",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-15",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-08",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_WRONG",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SPAM-09",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "batch1Result" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-SAFE-10",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PROFANITY-05",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : true,
+    "categoriesEqual" : true,
+    "riskEqual" : true,
+    "fullEqual" : true,
+    "fullJudgment" : "BOTH_CORRECT",
+    "resultCategoryJudgment" : "BOTH_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  }, {
+    "repeat" : 2,
+    "caseId" : "HOLDOUT-PI-20",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResult" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "batch1Result" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "resultEqual" : false,
+    "categoriesEqual" : false,
+    "riskEqual" : false,
+    "fullEqual" : false,
+    "fullJudgment" : "BATCH1_ONLY_CORRECT",
+    "resultCategoryJudgment" : "BATCH1_ONLY_CORRECT",
+    "newFp" : false,
+    "newFn" : false,
+    "gtHighDowngradeFromNative" : false
+  } ],
+  "series" : [ {
+    "caseId" : "HOLDOUT-SAFE-17",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : true,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PI-05",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-14",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : true
+  }, {
+    "caseId" : "HOLDOUT-SPAM-16",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-SPAM-19",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-SPAM-08",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-SAFE-09",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-01",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-06",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-13",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : true,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-SAFE-01",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-17",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-SPAM-15",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-15",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-08",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-SPAM-09",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "batch1Results" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "SPAM" ],
+      "riskLevel" : "HIGH"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-SAFE-10",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-05",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  }, {
+    "caseId" : "HOLDOUT-PI-20",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "nativeResults" : [ {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    }, {
+      "result" : "FLAGGED",
+      "categories" : [ "PERSONAL_INFORMATION" ],
+      "riskLevel" : "MEDIUM"
+    } ],
+    "batch1Results" : [ {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    }, {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    } ],
+    "nativeChanged" : false,
+    "batch1Changed" : false
+  } ]
+}
