@@ -1,0 +1,331 @@
+{
+  "recordedAt" : "2026-10-19T17:32:40.953283Z",
+  "configuredModel" : "gpt-4o-mini",
+  "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+  "policyVersion" : "moderation-policy-v2",
+  "seed" : 55,
+  "reservedUpperBoundUsd" : 0.23562239999999998,
+  "batches" : [ {
+    "batchSize" : 2,
+    "httpAttempts" : 1,
+    "httpStatuses" : [ 200 ],
+    "errorCodes" : [ ],
+    "observation" : {
+      "batchId" : "b001",
+      "inputCount" : 2,
+      "outputCap" : 256,
+      "usage" : {
+        "prompt" : 993,
+        "completion" : 51,
+        "total" : 1044,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 3095153666,
+      "evaluationNanos" : 3110594208,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-01",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-SPAM-20",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      } ]
+    },
+    "estimatedCostUsd" : 1.7955E-4
+  }, {
+    "batchSize" : 5,
+    "httpAttempts" : 1,
+    "httpStatuses" : [ 200 ],
+    "errorCodes" : [ ],
+    "observation" : {
+      "batchId" : "b001",
+      "inputCount" : 5,
+      "outputCap" : 640,
+      "usage" : {
+        "prompt" : 1064,
+        "completion" : 127,
+        "total" : 1191,
+        "cachedInput" : 0
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 2207200666,
+      "evaluationNanos" : 2208131750,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-01",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-SPAM-20",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PROFANITY-09",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PI-17",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PI-08",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      } ]
+    },
+    "estimatedCostUsd" : 2.358E-4
+  }, {
+    "batchSize" : 10,
+    "httpAttempts" : 1,
+    "httpStatuses" : [ 200 ],
+    "errorCodes" : [ ],
+    "observation" : {
+      "batchId" : "b001",
+      "inputCount" : 10,
+      "outputCap" : 1280,
+      "usage" : {
+        "prompt" : 1164,
+        "completion" : 261,
+        "total" : 1425,
+        "cachedInput" : 1024
+      },
+      "model" : "gpt-4o-mini-2024-07-18",
+      "callNanos" : 3074152125,
+      "evaluationNanos" : 3075739000,
+      "failure" : null,
+      "mapping" : {
+        "missing" : [ ],
+        "duplicate" : [ ],
+        "unexpected" : [ ],
+        "countMismatch" : false
+      },
+      "cases" : [ {
+        "caseId" : "HOLDOUT-SPAM-01",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-SPAM-20",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PROFANITY-09",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PI-17",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PI-08",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-SAFE-17",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "SAFE",
+          "categories" : [ ],
+          "riskLevel" : "LOW"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PI-05",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PERSONAL_INFORMATION" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-PROFANITY-14",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "PROFANITY" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-SPAM-16",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "MEDIUM"
+        },
+        "failure" : null
+      }, {
+        "caseId" : "HOLDOUT-SPAM-11",
+        "batchId" : "b001",
+        "expected" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "actual" : {
+          "result" : "FLAGGED",
+          "categories" : [ "SPAM" ],
+          "riskLevel" : "HIGH"
+        },
+        "failure" : null
+      } ]
+    },
+    "estimatedCostUsd" : 3.312E-4
+  } ]
+}
