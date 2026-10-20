@@ -50,3 +50,9 @@ chat:
     subscriber-enabled: true
     channel: bobfull:chat:messages
     reconnect-delay: 5s
+
+bobfull:
+  kafka:
+    chat-message:
+      # poll-batch는 여러 poll을 모으는 size/time(maxWait) 수집기가 아니다.
+      batch-enabled: ${KAFKA_CHAT_MESSAGE_BATCH_ENABLED:false}
