@@ -1,15 +1,18 @@
-# Issue #55 — 기본 OFF Kafka poll-batch 통합 검증
+# Issue #59 — 기본 OFF Kafka poll-batch 통합 검증 (상위 #55)
+
+최초 전체 작업 트리의 구현·검증 기록은 아래에 보존하고, PR #60 병합 후 #59만 분리한 검증은
+`PR B 분리 및 독립 재검증` 절에서 구분한다. 과거 측정값을 현재 실행값으로 소급 교체하지 않는다.
 
 ## 목적과 측정 계약
 
 기존 Native Moderation을 보존하면서, 한 Kafka poll의 Rule miss만 최대 10건으로 묶는 동기 처리의
 Offset/부분 저장/Retry/DLT 경계를 Fake Provider로 검증한다. 모델 품질 또는 실서비스 효율 검증이 아니다.
 
-- 기준 HEAD: `339423fbca943d578bf07793ff336490904290eb` + 이번 미커밋 구현/테스트.
+- 최초 검증 기준 HEAD: `339423fbca943d578bf07793ff336490904290eb` + 당시 미커밋 구현/테스트.
 - Primary: 미완료 source offset 건너뛰기 방지, 재전달 후 최종 DB 결과 보존.
 - Secondary: 실제 Batch 크기/충전율, 메시지 생성부터 결과 저장까지 E2E, 논리 호출과 HTTP attempt.
 - 안전 확인: 기존 Rule/Native/Retry/DLT 회귀, 메시지별 Token 복제 방지, 기본 OFF.
-- 실제 OpenAI/SMTP 호출, AWS, schema 변경, Commit/Push/PR/Issue 변경 없음.
+- 최초 검증 실행에서는 실제 OpenAI/SMTP 호출, AWS, schema 변경, Commit/Push/PR/Issue 변경 없음.
 - 기존 Prompt A/B/C/D, Q1 및 독립 Micro-batching 평가 결과는 수정하지 않는다.
 
 ## 처리 구조와 제외 범위
@@ -102,7 +105,7 @@ env -u OPENAI_API_KEY ./gradlew test build --console=plain
 git diff --check
 ```
 
-### 최종 실행 결과
+### 최초 전체 작업 트리 실행 결과
 
 2026-10-20 KST 로컬 실행. 최종 전체 실행은 `BUILD SUCCESSFUL in 3m 2s`였다.
 
@@ -200,4 +203,88 @@ fixture의 할인 미반영 Estimated Cost는 $0.000027이다. 실제 Provider �
 - 품질 허용 기준, 신규 FN/FP/HIGH 하향 중단 기준, Human 표본 검토, 실제 트래픽 충전율은 별도 승인/측정 대상이다.
 - 이번 결과만으로 Production 활성화 또는 기존 독립 실험의 Token 절감률을 운영 효과로 주장하지 않는다.
 
-관련: [독립 비교](microbatch-comparison.md), [Q1 미채택 결과](common-prompt-q1-diagnostic.md).
+## PR B 분리 및 독립 재검증
+
+### 기준과 변경 범위
+
+- PR #60: CI 성공 후 develop Merge `de75489a5dbe2f20f8328cb312098048a204b72a`.
+- 원본 보존 Commit: `b87a689dc4042a36b626a5a40f721dfdf24b0e55`.
+  기존 `feature/55-ai-moderation-efficiency` 브랜치와 Commit을 삭제하거나 재작성하지 않았다.
+- 분리 브랜치: `feature/59-kafka-poll-batch`, 최신 develop에서 #59만 cherry-pick.
+- 적용 Commit: `46814e4903056fbfaf69f99d49075979c6561313`.
+- develop 대비 범위는 Production/설정10개, 테스트5개, 본 Evidence1개로 총16개다.
+  PR #60의 실험 코드·raw JSON·Prompt/GT Evidence는 중복 Diff에 포함하지 않는다.
+- 원본 #59 구현에서 Production 동작을 추가 변경하지 않았다. Batch 기본 OFF를 유지한다.
+  현재 보존 Head는 Git 이력과 PR 본문에 기록하며, 최초 실행 HEAD를 덮어쓰지 않는다.
+
+### Adapter 테스트 의존성 정리
+
+`SpringAiModerationBatchAdapterTest`가 실험용 `Issue55MicroBatchEvaluation.BATCH_INSTRUCTIONS`를
+참조하던 부분을 테스트 내부의 고정 `EXPECTED_BATCH_INSTRUCTIONS` fixture로 교체했다.
+Production 상수를 그대로 참조하는 자기 검증으로 바꾸지 않고, 실제 HTTP 요청의 System 내용이
+기존 Production Prompt + 승인된 Batch 지시문과 정확히 같은지 계속 검사한다.
+
+- 고정 fixture / Production Batch 지시문 / 과거 실험 지시문 문자열의 동일성을 확인했다.
+- Batch 지시문 UTF-8 SHA-256: `e1e45e40ced16d3ed78013364838e513012f16e529e98592e5bb6882360294c6`.
+- Prompt/Policy/Few-shot/Schema/Output cap/Retry 동작 변경은 없다.
+- 테스트의 실험 클래스 참조만 제거했으며, 공통 평가 클래스를 복제하거나 PR B에 재제출하지 않았다.
+
+### 독립 targeted 검증
+
+```bash
+env -u OPENAI_API_KEY ./gradlew :compileJava :compileTestJava :test \
+  --tests '*ChatModerationBatch*' \
+  --tests '*SpringAiModerationBatchAdapterTest' \
+  --tests '*ChatModerationServiceTest' \
+  --tests '*ModerationRulePolicyTest' \
+  --tests '*ChatModerationFinalFailurePersistenceIntegrationTest' --console=plain
+```
+
+2026-10-20 KST 실행: compileJava/compileTestJava 및 **64 tests / skipped0 / failures0 / errors0 PASS**,
+`BUILD SUCCESSFUL in 49s`. #59 테스트33건과 기존 Native26건, Rule4건, #46 DLT/DB 경계1건을 포함한다.
+실제 Kafka 통합11건은 Testcontainers `cp-kafka:7.7.1` + H2/JPA + Port Test Double로 실행했다.
+HTTP Adapter4건은 loopback Fake endpoint를 사용했다. 실제 OpenAI 호출·추가 API 비용·AWS 작업은0이다.
+
+재관측한 주요 경계:
+
+- 실제 Consumer `max.poll.records=10`; 기본 OFF/명시적 OFF/ON/Consumer OFF Listener 선택 통과.
+- Burst10건은 Batch1회, 충전율1.0. 저유입1건은 Native1회.
+- 부분 저장/Validation 실패, 완료 Skip, 원본 poll index, Offset/Retry/DLT/최종 DB 경계 통과.
+- Provider 공통 장애5건에서 Batch8회 + Native2회 / 마지막 항목 요청 참여10회 / DLT5건 재확인.
+- 동시 Consumer 실행은 해당 실행에서 Batch0/Native4/최종 DB2건이었다.
+  별도 두-thread Batch 저장 경쟁 테스트와 구분하며 Kafka Batch 동시 처리·재균형 전체 보장으로 확대하지 않는다.
+- 성공 Usage와 추정 비용은 요청당1회이고, 메시지별 Batch Token은 NULL이다.
+  SDK 429→200은 논리1/HTTP2이며 Token을 복제하지 않았다.
+
+통합 테스트는 `AiModerationBatchPort`를 Test Double Bean으로 제공한다. 현재 production 소스에
+Fake Batch Adapter를 추가한 것은 아니므로, 기존 `fake-enabled=true`만으로 Batch 모드가 제공된다고
+가정하지 않는다. 실제 활성화 전 Batch Port/Provider Bean과 설정 조합도 점검해야 한다.
+
+### 독립 전체 회귀 및 build
+
+```bash
+env -u OPENAI_API_KEY ./gradlew test build --console=plain
+git diff --check
+git diff --check origin/develop...HEAD
+```
+
+같은 PR B production/test source에서 2026-10-20 KST 실제 실행했다.
+
+| 검증 | 결과 |
+|---|---|
+| root | 1,118 tests / 86 skipped / failures0 / errors0 |
+| lambda | 11 tests / skipped0 / failures0 / errors0, 동일 source의 기존 결과로 UP-TO-DATE |
+| 전체 집계 | 1,129 tests / 86 skipped / failures0 / errors0 |
+| 전체 build | BUILD SUCCESSFUL in 2m52s |
+| Kafka 통합 테스트 | 11 tests / skipped0 / failures0 / errors0, 전체 회귀에서도 실제 실행 |
+| whitespace 검사 | git diff --check 및 develop 대비 diff 검사 PASS |
+
+이 집계는 최초 전체 작업 트리의 같은 숫자를 복사해 현재 검증으로 간주한 것이 아니라, PR #60 병합 후
+#59만 적용하고 Adapter 테스트 의존성을 제거한 source에서 새로 실행한 결과다. Lambda 테스트만
+UP-TO-DATE였으며 이를 이번 실행에서 다시 수행했다고 기록하지 않는다. 이번에도 유료 Provider 호출은0이다.
+동시 Consumer 테스트는 이 전체 실행에서 Batch0/Native3/최종 DB2건이었다. targeted 실행의 Native4회와
+다르지만 두 실행 모두 테스트의 외부 호출2~4회/최종 DB2건 계약을 통과했다. 경쟁 시 Provider 호출 수까지
+고정되거나 exactly-once로 보장된다는 의미가 아니다.
+
+관련: [독립 비교](microbatch-comparison.md), [Q1 미채택 결과](common-prompt-q1-diagnostic.md),
+[PR #60](https://github.com/gpekd5/bobfull-backend/pull/60), [Issue #59](https://github.com/gpekd5/bobfull-backend/issues/59).
