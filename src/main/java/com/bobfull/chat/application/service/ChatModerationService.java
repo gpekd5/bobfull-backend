@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -91,34 +92,75 @@ public class ChatModerationService {
     }
 
     private AnalysisResult analyzeMessage(ChatMessage message) {
+        return analyzeRules(message).orElseGet(() -> {
+            metrics.recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+            return providerAnalysis(aiModerationPort.analyze(message.getContent()), ModerationPrompt.PROMPT_VERSION);
+        });
+    }
+
+    private Optional<AnalysisResult> analyzeRules(ChatMessage message) {
 
         var singleMessageRule = rulePolicy.clearFlagged(message.getContent());
 
         if (singleMessageRule.isPresent()) {
             metrics.recordRoute("single_rule", RULE_PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
-            return ruleAnalysis(singleMessageRule.get());
+            return Optional.of(ruleAnalysis(singleMessageRule.get()));
         }
 
         SplitMessageContext context = recentSplitContext(message);
 
         if (context == null) {
-            metrics.recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
-            return providerAnalysis(
-                    aiModerationPort.analyze(message.getContent()),
-                    ModerationPrompt.PROMPT_VERSION);
+            return Optional.empty();
         }
 
         var splitRule = rulePolicy.clearSplitFlagged(context.recentCanonicalCandidates());
 
         if (splitRule.isPresent()) {
             metrics.recordRoute("split_rule", RULE_PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
-            return ruleAnalysis(splitRule.get());
+            return Optional.of(ruleAnalysis(splitRule.get()));
         }
 
+        return Optional.empty();
+    }
+
+    // poll-batch도 기존 완료 판정과 Rule을 사용하되 외부 호출 전에 DB Transaction을 끝낸다.
+    Optional<PreparedMessage> prepareBatch(Long messageId) {
+        ChatModeration existing = moderations.findByMessageId(messageId).orElse(null);
+        if (existing != null && existing.isCompleted()) {
+            return Optional.empty();
+        }
+        ChatMessage message = messages.findById(messageId)
+                .orElseThrow(() -> new CustomException(ChatErrorCode.CHAT_MESSAGE_ID_NOT_FOUND));
+        long startedAt = System.nanoTime();
+        Optional<AnalysisResult> rule = analyzeRules(message);
+        if (rule.isPresent()) {
+            validateWithMetrics(rule.get());
+            persistWithMetrics(messageId, existing, rule.get(), elapsedMillis(startedAt));
+        }
+        return Optional.of(new PreparedMessage(messageId, message.getContent(), message.getCreatedAt(),
+                startedAt, rule.isPresent()));
+    }
+
+    void analyzePreparedNative(PreparedMessage message) {
         metrics.recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
-        return providerAnalysis(
-                aiModerationPort.analyze(message.getContent()),
-                ModerationPrompt.PROMPT_VERSION);
+        saveBatchResult(message, aiModerationPort.analyze(message.content()));
+    }
+
+    void recordBatchRoute() {
+        metrics.recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
+    }
+
+    void saveBatchResult(PreparedMessage message, AiModerationResult response) {
+        ChatModeration existing = moderations.findByMessageId(message.messageId()).orElse(null);
+        if (existing != null && existing.isCompleted()) {
+            return;
+        }
+        AnalysisResult analysis = providerAnalysis(response, ModerationPrompt.PROMPT_VERSION);
+        validateWithMetrics(analysis);
+        persistWithMetrics(message.messageId(), existing, analysis, elapsedMillis(message.startedAt()));
+    }
+
+    record PreparedMessage(Long messageId, String content, Instant createdAt, long startedAt, boolean ruleHit) {
     }
 
     private SplitMessageContext recentSplitContext(ChatMessage current) {

@@ -5,6 +5,7 @@ import com.bobfull.chat.application.service.ChatModerationService;
 import com.bobfull.chat.infrastructure.metrics.ChatModerationMetrics;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 // 채팅 메시지 생성 이벤트를 AI 분석에 전달하고 실패를 Kafka Retry·DLT 경계로 전파한다.
 @Component
 @ConditionalOnProperty(prefix = "bobfull.kafka.chat-message", name = "consumer-enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnExpression("!${bobfull.kafka.chat-message.batch-enabled:false}")
 @RequiredArgsConstructor
 public class ChatModerationConsumer {
 
