@@ -212,7 +212,7 @@ fixture의 할인 미반영 Estimated Cost는 $0.000027이다. 실제 Provider �
   기존 `feature/55-ai-moderation-efficiency` 브랜치와 Commit을 삭제하거나 재작성하지 않았다.
 - 분리 브랜치: `feature/59-kafka-poll-batch`, 최신 develop에서 #59만 cherry-pick.
 - 적용 Commit: `46814e4903056fbfaf69f99d49075979c6561313`.
-- develop 대비 범위는 Production/설정10개, 테스트5개, 본 Evidence1개로 총16개다.
+- 이 분리 시점의 develop 대비 범위는 Production/설정10개, 테스트5개, 본 Evidence1개로 총16개다.
   PR #60의 실험 코드·raw JSON·Prompt/GT Evidence는 중복 Diff에 포함하지 않는다.
 - 원본 #59 구현에서 Production 동작을 추가 변경하지 않았다. Batch 기본 OFF를 유지한다.
   현재 보존 Head는 Git 이력과 PR 본문에 기록하며, 최초 실행 HEAD를 덮어쓰지 않는다.
@@ -256,9 +256,9 @@ HTTP Adapter4건은 loopback Fake endpoint를 사용했다. 실제 OpenAI 호출
 - 성공 Usage와 추정 비용은 요청당1회이고, 메시지별 Batch Token은 NULL이다.
   SDK 429→200은 논리1/HTTP2이며 Token을 복제하지 않았다.
 
-통합 테스트는 `AiModerationBatchPort`를 Test Double Bean으로 제공한다. 현재 production 소스에
-Fake Batch Adapter를 추가한 것은 아니므로, 기존 `fake-enabled=true`만으로 Batch 모드가 제공된다고
-가정하지 않는다. 실제 활성화 전 Batch Port/Provider Bean과 설정 조합도 점검해야 한다.
+이 시점의 통합 테스트는 `AiModerationBatchPort`를 Test Double Bean으로 제공했다. 당시 production 소스에는
+Fake Batch Adapter가 없었다. 후속 실제 Bean 조합 점검에서 Batch ON/Fake ON 기동 실패가 확인되었으며,
+아래 `Fake ON + Batch ON 기동 결함 보완` 절에 원인·수정·Mock 없는 재검증을 별도로 기록한다.
 
 ### 독립 전체 회귀 및 build
 
@@ -288,3 +288,93 @@ UP-TO-DATE였으며 이를 이번 실행에서 다시 수행했다고 기록하�
 
 관련: [독립 비교](microbatch-comparison.md), [Q1 미채택 결과](common-prompt-q1-diagnostic.md),
 [PR #60](https://github.com/gpekd5/bobfull-backend/pull/60), [Issue #59](https://github.com/gpekd5/bobfull-backend/issues/59).
+
+## Fake ON + Batch ON 기동 결함 보완
+
+### Before와 원인
+
+- Before Head: `bbaf76d4a37fd1f4e52b5f9363a33bb28b055fe6`.
+- [기존 MAJOR Review](https://github.com/gpekd5/bobfull-backend/pull/61#issuecomment-6292731499)의
+  production Bean 생성 진단에서 OFF/OFF, OFF/ON, ON/OFF는 기동했고 ON/ON은 실패했다.
+- BatchService는 Batch ON이면 필수 `AiModerationBatchPort`를 요구한다. 실제 Batch Adapter는 Fake ON에서
+  제외되지만 기존 Fake Adapter는 단건 Port만 제공하여 `NoSuchBeanDefinitionException`이 발생했다.
+- 기존 FeatureFlagTest는 Service Mock, Kafka 통합 테스트는 Provider MockitoBean을 공급하므로
+  이 필수 의존성 누락을 검출하지 못했다. 기존 PASS를 지우지 않되 Bean 조합 전체의 PASS로 해석하지 않는다.
+
+### 최소 변경
+
+- `FakeAiModerationBatchAdapter`만 추가한다. Batch ON/Fake ON에서만 등록되며 실제 Batch Adapter와 상호 배타적이다.
+  기존 Native Fake와 실제 Native/Batch Adapter는 수정하지 않았다.
+- 기존 `fake-result-type` SAFE/FLAGGED 계약을 유지한다: SAFE/빈 category/LOW 또는 FLAGGED/PROFANITY/HIGH,
+  metadata는 Fake/fake-model이다. 중립 입력 ID를 그대로 반환하고 결과 수를 유지한다.
+- `fake-latency-ms` 지연은 **Batch 요청당 한 번** 적용한다. 단건 Adapter를 N회 호출하지 않는다.
+  한 항목이라도 기존 `FORCE_FAIL_MARKER`를 포함하면 요청 전체 실패를 전파한다. 인터럽트는 복원 후 실패시킨다.
+- 실제 Batch와 같은 2~10건 경계다. Rule miss 1건 Native 분기나 Kafka Retry/DLT는 변경하지 않는다.
+- Fake Batch는 Provider Usage/추정 비용을 만들어내지 않는다. 개별 DB 결과의 Token은 기존 Batch 저장 계약대로 NULL이다.
+
+### Mock 없는 ApplicationContext 및 실제 Fake 처리
+
+`ChatModerationProviderContextTest`는 Service/Port/Repository/ChatClient를 Mockito Mock으로 공급하지 않는다.
+실제 `SpringAiModerationConfig`, Native/Batch Kafka Configuration, Recoverer, Service, Adapter, Metrics와
+JPA Auditing을 등록하고 실제 Spring Data Repository + 격리 H2에 저장한다. Kafka AutoConfiguration이
+실제 Listener endpoint를 등록하되 `auto-startup=false`로 Broker 소비는 시작하지 않는다.
+ChatClient.Builder만 실제 SDK/OpenAiChatModel의 **loopback 전용** 클라이언트로 공급한다.
+가짜 고정 인증 문자열만 사용하고 환경 API Key는 읽지 않는다. Fake 처리 후 loopback HTTP 요청0건을 검사한다.
+따라서 전체 bootRun 또는 실제 OpenAI 인증/운영환경 검증이라고 확대하지 않는다.
+
+| Batch | Fake | Native Port | Batch Port | Native/Batch Listener | Context |
+|---|---|---|---|---|---|
+| OFF | OFF | 실제 Native 1 | 0 (불필요) | 1 / 0 | PASS |
+| OFF | ON | Native Fake 1 | 0 (불필요) | 1 / 0 | PASS |
+| ON | OFF | 실제 Native 1 | 실제 Batch 1 | 0 / 1 | PASS |
+| ON | ON | Native Fake 1 | Fake Batch 1 | 0 / 1 | PASS |
+
+Batch ON에서도 남은 한건 처리에 Native Port가 필요하다. 각 Port의 실제/Fake가 동시에 등록되지 않는지
+클래스별 Bean 수로 검사하며 Listener endpoint도 하나만 등록되는지 확인한다.
+
+| 신규 테스트 | 결과·검증 범위 |
+|---|---|
+| FakeAiModerationBatchAdapterTest | 11 PASS: 2/10건 SAFE·FLAGGED ID/결과, 강제 실패, 0/1/11건 거절, 요청당 지연, 인터럽트 |
+| ChatModerationProviderContextTest | 8 PASS: 4조합, 2/10건 실제 Service/JPA FLAGGED 저장·Token NULL·요청 metric1회, 강제 실패 전파/저장0 |
+
+요청당 지연 테스트는 10건/설정200ms에 200ms 이상~1,500ms 이내 완료를 검사한다.
+N회 단건 지연(2초) 회귀 방지용이며 처리량·운영 성능 개선의 근거가 아니다.
+Fake 경로의 HTTP 요청은0이고 실제 OpenAI/AWS 작업은 없다. 기존 loopback wire 테스트는 별도로 유지한다.
+
+### 실행 명령 및 관련 회귀
+
+```bash
+env -u OPENAI_API_KEY ./gradlew :compileJava :compileTestJava :test \
+  --tests '*FakeAiModerationBatchAdapterTest' --tests '*ChatModerationProviderContextTest' \
+  --tests '*ChatModerationBatch*' --tests '*SpringAiModerationBatchAdapterTest' \
+  --tests '*ChatModerationServiceTest' --tests '*ModerationRulePolicyTest' \
+  --tests '*ChatModerationFinalFailurePersistenceIntegrationTest' \
+  --tests '*FakeAiModerationAdapterTest' --tests '*AiModerationPortSelectionTest' --console=plain
+env -u OPENAI_API_KEY ./gradlew test build --console=plain
+git diff --check
+```
+
+관련 검증은 2026-10-20 KST 실제 실행, **91 tests / skipped0 / failures0 / errors0**, BUILD SUCCESSFUL in 44s.
+compileJava/compileTestJava 통과. 새19건 + 기존 Batch33건 + Native26/Rule4/DLT DB1/Fake5/Port 선택3건이다.
+실제 Kafka Testcontainers 11건과 기존 DLT/DB 경계1건, loopback Batch Adapter4건을 포함한다.
+개발 중 package-private Validator 직접 참조 및 Native Listener의 명시적 id를 가정한 테스트 오류가 있었다.
+production 접근 범위/Listener id를 변경하지 않고, 실제 Service 경유 검증 및 자동 생성 endpoint id를 허용하는
+assertion으로 수정했다. 이 초기 테스트 오류를 production 결함으로 기록하지 않는다.
+
+전체 `test build`도 2026-10-20 KST **BUILD SUCCESSFUL in 3m18s**로 완료했다.
+
+| 검증 | 이번 보완 후 결과 |
+|---|---|
+| root | 1,137 tests / 86 skipped / failures0 / errors0, 이번에 실제 실행 |
+| lambda | 11 tests / skipped0 / failures0 / errors0, 기존 동일 source 결과 UP-TO-DATE |
+| 합계 | 1,148 tests / 86 skipped / failures0 / errors0 |
+| 신규 Context / Fake Batch | 8 / 11 PASS, 전체 회귀에서도 재실행 |
+| Kafka Testcontainers | 11 PASS, 전체 회귀에서도 재실행 |
+| 공통 장애 관측 | Batch8 + Native2 / 마지막 항목 참여10 / DLT5로 기존 증폭 재확인 |
+| 동시 Consumer 관측 | Batch0 / Native4 / 최종 DB2건; Batch 동시 소비나 재균형 전체 보장과 구분 |
+| whitespace | git diff --check PASS |
+
+After source는 본 절과 신규3파일을 포함하는 수정 Commit으로 추적하며, 실제 최종 SHA/최신 CI/Review는
+PR #61 본문과 Review에 기록한다. 자기 자신의 Commit SHA를 문서에 넣는 순환 갱신은 하지 않는다.
+기존 독립 실험 raw JSON·측정값·Prompt/Policy/Rule/Model 및 Kafka Retry/DLT 설정은 변경하지 않는다.
+위 운영 활성화 전 한계·과제는 그대로 남는다.
