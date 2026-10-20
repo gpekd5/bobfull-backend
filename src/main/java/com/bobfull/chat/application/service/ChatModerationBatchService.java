@@ -1,6 +1,7 @@
 package com.bobfull.chat.application.service;
 
 import com.bobfull.chat.application.exception.BatchModerationException;
+import com.bobfull.chat.application.exception.BatchProviderRequestException;
 import com.bobfull.chat.application.exception.ModerationAnalysisException;
 import com.bobfull.chat.application.port.AiModerationBatchPort;
 import com.bobfull.chat.application.result.AiModerationResult;
@@ -29,6 +30,7 @@ public class ChatModerationBatchService {
     public void analyze(List<Long> messageIds) {
         List<Target> targets = new ArrayList<>();
         Map<Integer, RuntimeException> failures = new LinkedHashMap<>();
+        List<List<Integer>> requestFailures = new ArrayList<>();
         Set<Long> seen = new HashSet<>();
         for (int index = 0; index < messageIds.size(); index++) {
             Long id = messageIds.get(index);
@@ -57,18 +59,28 @@ public class ChatModerationBatchService {
                     moderation.analyzePreparedNative(target.message());
                     metrics.processed("native", target.message().createdAt(), clock.instant());
                 } catch (RuntimeException exception) {
-                    failures.put(target.index(), exception);
+                    if (exception instanceof BatchProviderRequestException requestFailure) {
+                        failures.put(target.index(), (RuntimeException) requestFailure.getCause());
+                        requestFailures.add(List.of(target.index()));
+                    } else {
+                        failures.put(target.index(), exception);
+                    }
                 }
             } else {
-                processBatch(group, failures);
+                processBatch(group, failures, requestFailures);
             }
         }
-        failures.entrySet().stream().min(Map.Entry.comparingByKey()).ifPresent(failure -> {
-            throw new BatchModerationException(failure.getKey(), failure.getValue());
-        });
+        if (!failures.isEmpty()) {
+            throw new BatchModerationException(failures, requestFailures);
+        }
     }
 
-    private void processBatch(List<Target> targets, Map<Integer, RuntimeException> failures) {
+    public boolean isCompleted(Long messageId) {
+        return moderation.isCompleted(messageId);
+    }
+
+    private void processBatch(List<Target> targets, Map<Integer, RuntimeException> failures,
+            List<List<Integer>> requestFailures) {
         List<AiModerationBatchPort.Item> input = new ArrayList<>();
         for (int i = 0; i < targets.size(); i++) {
             input.add(new AiModerationBatchPort.Item("m%03d".formatted(i + 1), targets.get(i).message().content()));
@@ -93,6 +105,7 @@ public class ChatModerationBatchService {
         } catch (RuntimeException exception) {
             metrics.failure("request_or_mapping");
             targets.forEach(target -> failures.put(target.index(), exception));
+            requestFailures.add(targets.stream().map(Target::index).toList());
             return;
         }
         for (int i = 0; i < targets.size(); i++) {

@@ -1,6 +1,7 @@
 package com.bobfull.chat.application.service;
 
 import com.bobfull.chat.application.exception.ModerationAnalysisException;
+import com.bobfull.chat.application.exception.BatchProviderRequestException;
 import com.bobfull.chat.application.port.AiModerationPort;
 import com.bobfull.chat.application.result.AiModerationResult;
 import com.bobfull.chat.application.result.ModerationResult;
@@ -143,7 +144,17 @@ public class ChatModerationService {
 
     void analyzePreparedNative(PreparedMessage message) {
         metrics.recordRoute("llm", ModerationPrompt.PROMPT_VERSION, ModerationPrompt.POLICY_VERSION);
-        saveBatchResult(message, aiModerationPort.analyze(message.content()));
+        AiModerationResult response;
+        try {
+            response = aiModerationPort.analyze(message.content());
+        } catch (RuntimeException exception) {
+            throw new BatchProviderRequestException(exception);
+        }
+        saveBatchResult(message, response);
+    }
+
+    boolean isCompleted(Long messageId) {
+        return moderations.findByMessageId(messageId).filter(ChatModeration::isCompleted).isPresent();
     }
 
     void recordBatchRoute() {

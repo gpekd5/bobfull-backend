@@ -17,6 +17,7 @@ class ChatModerationBatchFeatureFlagTest {
             .withBean(ChatModerationBatchService.class, () -> mock(ChatModerationBatchService.class))
             .withBean(ChatModerationMetrics.class, () -> mock(ChatModerationMetrics.class))
             .withBean(ChatModerationBatchMetrics.class, () -> mock(ChatModerationBatchMetrics.class))
+            .withBean(ChatModerationBatchRetryProcessor.class, () -> mock(ChatModerationBatchRetryProcessor.class))
             .withBean("chatModerationBatchErrorHandler", DefaultErrorHandler.class, DefaultErrorHandler::new)
             .withUserConfiguration(ChatModerationConsumer.class, ChatModerationBatchConsumer.class);
 

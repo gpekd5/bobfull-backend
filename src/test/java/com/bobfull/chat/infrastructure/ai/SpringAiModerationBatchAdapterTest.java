@@ -126,6 +126,21 @@ class SpringAiModerationBatchAdapterTest {
     }
 
     @Test
+    void SDK_Retry_소진도_논리호출_한번과_HTTP네번을_구분한다() {
+        // given: 이 loopback fixture의 SDK maxRetries=3
+        for (int i = 0; i < 4; i++) {
+            replies.add(new Reply(429, "{\"error\":{\"message\":\"fake persistent rate limit\"}}"));
+        }
+        // when / then
+        assertThatThrownBy(() -> adapter.analyze(input)).isInstanceOf(com.openai.errors.OpenAIException.class);
+        assertThat(attempts.get()).isEqualTo(4);
+        assertThat(registry.get("gen_ai.client.operation").timer().count()).isEqualTo(1);
+        assertThat(registry.get("okhttp.requests").timers().stream().mapToLong(io.micrometer.core.instrument.Timer::count).sum())
+                .isEqualTo(4);
+        assertThat(registry.find("bobfull.ai.moderation.batch.estimated.cost.usd").counter()).isNull();
+    }
+
+    @Test
     void 출력잘림은_정상결과로_반환하지_않는다() {
         // given
         enqueue(validOutput(), "length");
