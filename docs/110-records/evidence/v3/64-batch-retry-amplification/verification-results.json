@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-10-20T17:30:57Z",
+  "executionHead": "51557450d03b55165e9769b130615893a42dae6c",
+  "executionState": "uncommitted Issue64 sources; committed source hashes must match",
+  "sourceSha256": {
+    "src/main/java/com/bobfull/chat/application/exception/BatchModerationException.java": "b8306d4bdb8ef67c3e1ca8b03143acff915e0985f5a07f3d2a2e52a499683a48",
+    "src/main/java/com/bobfull/chat/application/exception/BatchProviderRequestException.java": "32cc3baa96b8ebb5e711ffe59870562f683a3f880f5d5b6a06e3e776c936b024",
+    "src/main/java/com/bobfull/chat/application/service/ChatModerationBatchService.java": "b5b49efc3dbe97f729f2aa5555dc1f4720b93703e911392bc32aabbf4cde9155",
+    "src/main/java/com/bobfull/chat/application/service/ChatModerationService.java": "bda54c7bec70627d91b52ae6bf1ba27f7877439fdc4a449d8d58d605041c0892",
+    "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchConfig.java": "72f212ec9cf671f74ec0480645d259d01c1a0520a63135b5faf9226026d78304",
+    "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchConsumer.java": "603fad0c49223cf0d6e875ed1365e51dfd448d0ea73a6d718a5909c6f46ba720",
+    "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchErrorHandler.java": "bbec906e0960004366fc56e13f236f0dbd2f8c7c282a9e65a03dc5f951ab90a3",
+    "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchRetryProcessor.java": "fcf3f20bebd2568eefab695342aad22158e10f16af46fe28ba12be66d71834b2",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/SpringAiModerationBatchAdapterTest.java": "6ed11f747292cb981d9f8bba0d8ec558aaae249cd672a63596766ba22d5724e5",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchConsumerTest.java": "c577f52d10d1b88102777e682c8b949c929a68b5b543c3f8682362f8777c31ce",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchErrorHandlerTest.java": "2afab00e86143e8a31af18a2695be36800677f491b825812ac1d4448ed8636ab",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchFeatureFlagTest.java": "c3ea89ece0ba011bc969e42ae25fc9152c6872a045a42fc5c4158808b3470db5",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchIntegrationTest.java": "abd6287aee54f4af702d68472b785f3ad4049da92f64802441e67898602503e0",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchRetryProcessorTest.java": "c0512e28e072aaf2eda4a4984a506609654644df5b9194dffb2397e8f68a8a87"
+  },
+  "fullRoot": {
+    "tests": 1161,
+    "skipped": 86,
+    "failures": 0,
+    "errors": 0
+  },
+  "lambdaUpToDate": {
+    "tests": 11,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0
+  },
+  "kafkaSuite": {
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "timestamp": "2026-10-20T17:28:05.722Z"
+  },
+  "observedAfter": [
+    "POLL_BATCH_COMMON_FAILURE_AFTER batch_calls=2 native_calls=0 last_record_participations=2 dlt=5"
+  ],
+  "relatedSuites": [
+    {
+      "name": "com.bobfull.chat.application.service.ChatModerationBatchServiceTest",
+      "tests": 12,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.application.service.ChatModerationServiceTest",
+      "tests": 26,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.application.service.ModerationRulePolicyTest",
+      "tests": 4,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.ai.ChatModerationProviderContextTest",
+      "tests": 8,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.ai.SpringAiModerationBatchAdapterTest",
+      "tests": 5,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchConsumerTest",
+      "tests": 2,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchErrorHandlerTest",
+      "tests": 2,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchFeatureFlagTest",
+      "tests": 4,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchIntegrationTest",
+      "tests": 18,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": [
+        "POLL_BATCH_COMMON_FAILURE_AFTER batch_calls=2 native_calls=0 last_record_participations=2 dlt=5"
+      ]
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchRetryProcessorTest",
+      "tests": 10,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationDltPublishFailureIntegrationTest",
+      "tests": 1,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationFinalFailurePersistenceIntegrationTest",
+      "tests": 1,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.outbox.ChatMessageOutboxProcessorIntegrationTest",
+      "tests": 2,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "observations": []
+    }
+  ]
+}
