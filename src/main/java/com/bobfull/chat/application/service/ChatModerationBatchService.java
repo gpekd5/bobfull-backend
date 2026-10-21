@@ -28,31 +28,79 @@ public class ChatModerationBatchService {
     private final Clock clock;
 
     public void analyze(List<Long> messageIds) {
+        execute(prepare(messageIds), false);
+    }
+
+    // Rule 저장까지 끝낸 준비 결과만 보관한다. Provider나 DB transaction을 수집 대기 동안 열어 두지 않는다.
+    public List<PreparedItem> prepare(List<Long> messageIds) {
+        List<PreparedItem> prepared = new ArrayList<>();
+        Set<Long> seen = new HashSet<>();
+        for (Long id : messageIds) {
+            if (!seen.add(id)) {
+                metrics.skipped();
+                prepared.add(new PreparedItem(id, null, null, 0));
+                continue;
+            }
+            try {
+                var message = moderation.prepareBatch(id);
+                if (message.isEmpty()) {
+                    metrics.skipped();
+                } else if (message.get().ruleHit()) {
+                    metrics.processed("rule", message.get().createdAt(), clock.instant());
+                }
+                prepared.add(new PreparedItem(id, message.orElse(null), null, System.nanoTime()));
+            } catch (RuntimeException exception) {
+                prepared.add(new PreparedItem(id, null, exception, System.nanoTime()));
+            }
+        }
+        return List.copyOf(prepared);
+    }
+
+    // 수집 뒤에는 완료 여부만 재확인한다. Rule/본문 조회를 반복하거나 수집 대기를 기존 처리 latency에 더하지 않는다.
+    public void analyzePrepared(List<PreparedItem> prepared) {
+        execute(prepared, true);
+    }
+
+    private void execute(List<PreparedItem> prepared, boolean deferred) {
         List<Target> targets = new ArrayList<>();
         Map<Integer, RuntimeException> failures = new LinkedHashMap<>();
         List<List<Integer>> requestFailures = new ArrayList<>();
         Set<Long> seen = new HashSet<>();
-        for (int index = 0; index < messageIds.size(); index++) {
-            Long id = messageIds.get(index);
-            if (!seen.add(id)) {
+        for (int index = 0; index < prepared.size(); index++) {
+            PreparedItem item = prepared.get(index);
+            if (item.failure != null) {
+                failures.put(index, item.failure);
+            } else if (item.requiresProvider() && seen.add(item.messageId)) {
+                targets.add(new Target(index, item.message));
+            } else if (item.requiresProvider()) {
                 metrics.skipped();
-                continue;
-            }
-            try {
-                var prepared = moderation.prepareBatch(id);
-                if (prepared.isEmpty()) {
-                    metrics.skipped();
-                } else if (prepared.get().ruleHit()) {
-                    metrics.processed("rule", prepared.get().createdAt(), clock.instant());
-                } else {
-                    targets.add(new Target(index, prepared.get()));
-                }
-            } catch (RuntimeException exception) {
-                failures.put(index, exception);
             }
         }
         for (int start = 0; start < targets.size(); start += 10) {
             List<Target> group = targets.subList(start, Math.min(start + 10, targets.size()));
+            if (deferred) {
+                List<Target> pending = new ArrayList<>();
+                for (Target target : group) {
+                    try {
+                        if (moderation.isCompleted(target.message().messageId())) {
+                            metrics.skipped();
+                        } else {
+                            var item = prepared.get(target.index());
+                            var message = target.message();
+                            // 원래 준비 시간은 유지하고 준비 완료 이후의 새 대기시간만 제외한다.
+                            long startedAt = message.startedAt() + (System.nanoTime() - item.preparedAt);
+                            pending.add(new Target(target.index(), new ChatModerationService.PreparedMessage(
+                                    message.messageId(), message.content(), message.createdAt(), startedAt, false)));
+                        }
+                    } catch (RuntimeException exception) {
+                        failures.put(target.index(), exception);
+                    }
+                }
+                group = pending;
+            }
+            if (group.isEmpty()) {
+                continue;
+            }
             if (group.size() == 1) {
                 Target target = group.get(0);
                 try {
@@ -123,5 +171,33 @@ public class ChatModerationBatchService {
     }
 
     private record Target(int index, ChatModerationService.PreparedMessage message) {
+    }
+
+    // 준비 상태는 불변이며 Provider 재시도 때도 같은 본문/Rule 판정을 사용한다. 저장 전 완료 방어는 별도로 유지한다.
+    public static final class PreparedItem {
+        private final Long messageId;
+        private final ChatModerationService.PreparedMessage message;
+        private final RuntimeException failure;
+        private final long preparedAt;
+
+        private PreparedItem(Long messageId, ChatModerationService.PreparedMessage message,
+                RuntimeException failure, long preparedAt) {
+            this.messageId = messageId;
+            this.message = message;
+            this.failure = failure;
+            this.preparedAt = preparedAt;
+        }
+
+        public Long messageId() {
+            return messageId;
+        }
+
+        public boolean requiresProvider() {
+            return message != null && !message.ruleHit();
+        }
+
+        public RuntimeException failure() {
+            return failure;
+        }
     }
 }

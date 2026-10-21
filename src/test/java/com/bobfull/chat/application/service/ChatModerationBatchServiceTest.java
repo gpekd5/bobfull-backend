@@ -6,6 +6,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.bobfull.chat.application.exception.BatchModerationException;
@@ -217,6 +219,101 @@ class ChatModerationBatchServiceTest {
         // then
         registry.getMeters().forEach(meter -> meter.getId().getTags().forEach(tag ->
                 assertThat(tag.getKey()).isIn("route", "prompt_version", "policy_version", "status", "stage", "path", "basis")));
+    }
+
+    @Test
+    void 준비만으로_Rule은_저장하지만_LLM은_실행하지_않는다() {
+        // given
+        range(3);
+        message(2, "씨발");
+        // when
+        var prepared = service.prepare(List.of(1L, 2L, 3L));
+        // then
+        assertThat(prepared).extracting(ChatModerationBatchService.PreparedItem::requiresProvider)
+                .containsExactly(true, false, true);
+        assertThat(saved.keySet()).containsExactly(2L);
+        assertThat(requests).isEmpty();
+        assertThat(nativeCalls.get()).isZero();
+        service.analyzePrepared(prepared);
+        assertThat(requests).hasSize(1).first().asList().hasSize(2);
+        assertThat(saved).hasSize(3);
+        verify(messages, times(1)).findById(1L);
+        verify(messages, times(1)).findById(2L);
+        verify(messages, times(1)).findById(3L);
+    }
+
+    @Test
+    void 준비후_다른_Consumer가_완료한_항목은_재전송하지_않는다() {
+        // given
+        var prepared = service.prepare(range(3));
+        moderation.analyze(2L);
+        // when
+        service.analyzePrepared(prepared);
+        // then
+        assertThat(requests).hasSize(1);
+        assertThat(requests.get(0)).extracting(AiModerationBatchPort.Item::content)
+                .containsExactly(input.get(1L).getContent(), input.get(3L).getContent());
+        assertThat(saved).hasSize(3);
+        assertThat(nativeCalls.get()).isEqualTo(1);
+    }
+
+    @Test
+    void 준비후_부분실패도_원래_입력_index와_항목실패_분류를_보존한다() {
+        // given
+        range(3);
+        message(1, "씨발");
+        var prepared = service.prepare(List.of(1L, 2L, 3L));
+        outputs = items -> List.of(new AiModerationBatchPort.Output("m001", SAFE),
+                new AiModerationBatchPort.Output("m002", null));
+        // when / then
+        assertThatThrownBy(() -> service.analyzePrepared(prepared))
+                .isInstanceOfSatisfying(BatchModerationException.class, error -> {
+                    assertThat(error.index()).isEqualTo(2);
+                    assertThat(error.requestFailures()).isEmpty();
+                });
+        assertThat(saved.keySet()).containsExactlyInAnyOrder(1L, 2L);
+    }
+
+    @Test
+    void 준비후_매핑실패는_실제_미완료_요청그룹의_index만_보존한다() {
+        // given
+        var prepared = service.prepare(range(3));
+        moderation.analyze(1L);
+        outputs = items -> List.of(new AiModerationBatchPort.Output("duplicate", SAFE),
+                new AiModerationBatchPort.Output("duplicate", SAFE));
+        // when / then
+        assertThatThrownBy(() -> service.analyzePrepared(prepared))
+                .isInstanceOfSatisfying(BatchModerationException.class, error -> {
+                    assertThat(error.requestFailures()).containsExactly(List.of(1, 2));
+                    assertThat(error.failures()).containsOnlyKeys(1, 2);
+                });
+        assertThat(saved.keySet()).containsExactly(1L);
+    }
+
+    @Test
+    void 서로다른_준비목록을_합쳐도_중복_메시지는_한번만_요청한다() {
+        // given
+        range(2);
+        var prepared = new ArrayList<>(service.prepare(List.of(1L, 2L)));
+        prepared.addAll(service.prepare(List.of(1L)));
+        // when
+        service.analyzePrepared(prepared);
+        // then
+        assertThat(requests).hasSize(1).first().asList().hasSize(2);
+        assertThat(saved).hasSize(2);
+    }
+
+    @Test
+    void 수집대기는_기존_분석_latency에_추가하지_않는다() throws Exception {
+        // given
+        long started = System.nanoTime();
+        var prepared = service.prepare(range(2));
+        Thread.sleep(300);
+        // when
+        service.analyzePrepared(prepared);
+        long elapsed = java.time.Duration.ofNanos(System.nanoTime() - started).toMillis();
+        // then: 새 대기는 별도 수집 지표/E2E로 측정하고 기존 분석 latency에서 제외한다.
+        assertThat(saved.values()).allSatisfy(row -> assertThat(row.getLatencyMillis()).isLessThan(elapsed - 250));
     }
 
     private List<Long> range(int size) {

@@ -60,6 +60,12 @@ public class ChatModerationBatchRetryProcessor {
     }
 
     public void analyze(List<ConsumerRecord<Object, Object>> records) {
+        analyze(records, service::analyze);
+    }
+
+    // 실행 경계만 교체한다. Retry 그룹/예산/복구는 기존과 같은 Consumer thread 상태를 사용한다.
+    public void analyze(List<ConsumerRecord<Object, Object>> records,
+            java.util.function.Consumer<List<Long>> execution) {
         Map<Integer, RuntimeException> failures = new HashMap<>();
         Map<Object, List<Integer>> groups = new LinkedHashMap<>();
         Object fresh = new Object();
@@ -74,7 +80,7 @@ public class ChatModerationBatchRetryProcessor {
         }
         for (var indexes : groups.values()) {
             try {
-                service.analyze(indexes.stream().map(index -> messageId(records.get(index))).toList());
+                execution.accept(indexes.stream().map(index -> messageId(records.get(index))).toList());
                 indexes.forEach(index -> states.get().remove(RecordKey.of(records.get(index))));
             } catch (BatchModerationException exception) {
                 Set<Integer> requestIndexes = exception.requestFailures().stream().flatMap(List::stream).collect(Collectors.toSet());
