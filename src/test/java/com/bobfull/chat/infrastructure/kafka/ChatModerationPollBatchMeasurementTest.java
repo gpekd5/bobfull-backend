@@ -81,7 +81,7 @@ import tools.jackson.databind.json.JsonMapper;
 class ChatModerationPollBatchMeasurementTest {
     @Container
     static final ConfluentKafkaContainer KAFKA = new ConfluentKafkaContainer("confluentinc/cp-kafka:7.7.1");
-    private static final Map<String, Mode> MODES = new ConcurrentHashMap<>();
+    static final Map<String, Mode> MODES = new ConcurrentHashMap<>();
     private static final JsonMapper JSON = new JsonMapper();
     private static final List<Scenario> SCENARIOS = List.of(new Scenario("low", 8, 250),
             new Scenario("interval", 24, 40), new Scenario("burst", 40, 0), new Scenario("sustained", 60, 5));
@@ -131,7 +131,7 @@ class ChatModerationPollBatchMeasurementTest {
         }
     }
 
-    private static PollBatchMeasurements.Run execute(Mode mode, Scenario scenario, int repeat, AdminClient admin) {
+    static PollBatchMeasurements.Run execute(Mode mode, Scenario scenario, int repeat, AdminClient admin) {
         try {
             var messages = mode.context.getBean(ChatMessageRepository.class);
             var repository = mode.context.getBean(ChatModerationRepository.class);
@@ -282,6 +282,11 @@ class ChatModerationPollBatchMeasurementTest {
     }
 
     private static ApplicationContextRunner runner(Mode mode) {
+        return runner(mode, KAFKA.getBootstrapServers());
+    }
+
+    // 후속 실험은 같은 Fake/JPA/관측 경계를 재사용하되 별도 Broker/Topic과 결과를 소유한다.
+    static ApplicationContextRunner runner(Mode mode, String bootstrapServers) {
         return new ApplicationContextRunner()
                 .withConfiguration(AutoConfigurations.of(DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class,
                         TransactionAutoConfiguration.class, KafkaAutoConfiguration.class))
@@ -296,7 +301,7 @@ class ChatModerationPollBatchMeasurementTest {
                         ChatModerationDltRecoverer.class, ChatModerationConsumer.class, ChatModerationBatchConsumer.class)
                 .withPropertyValues("spring.datasource.url=jdbc:h2:mem:issue62-" + mode.name + ";MODE=MySQL;DB_CLOSE_DELAY=-1",
                         "spring.datasource.driver-class-name=org.h2.Driver", "spring.datasource.username=sa", "spring.datasource.password=",
-                        "spring.jpa.hibernate.ddl-auto=create-drop", "spring.kafka.bootstrap-servers=" + KAFKA.getBootstrapServers(),
+                        "spring.jpa.hibernate.ddl-auto=create-drop", "spring.kafka.bootstrap-servers=" + bootstrapServers,
                         "spring.kafka.consumer.group-id=" + mode.group, "spring.kafka.consumer.auto-offset-reset=earliest",
                         "spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer",
                         "spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer",
@@ -467,9 +472,9 @@ class ChatModerationPollBatchMeasurementTest {
         @Override public void close() { }
     }
 
-    private record Scenario(String name, int count, int intervalMs) { }
+    record Scenario(String name, int count, int intervalMs) { }
 
-    private static final class Point {
+    static final class Point {
         final int ordinal;
         final boolean rule;
         final Instant createdAt;
@@ -483,7 +488,7 @@ class ChatModerationPollBatchMeasurementTest {
         }
     }
 
-    private static final class Capture {
+    static final class Capture {
         final long start = System.nanoTime();
         final Map<Long, Point> points;
         final List<Integer> polls = new CopyOnWriteArrayList<>();
@@ -500,7 +505,7 @@ class ChatModerationPollBatchMeasurementTest {
         }
     }
 
-    private static final class Mode {
+    static final class Mode {
         final String name;
         final boolean batch;
         final String topic;

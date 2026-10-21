@@ -196,6 +196,39 @@ class ChatModerationBatchRetryProcessorTest {
         verify(recoverer, times(2)).accept(same(record), same(providerFailure));
     }
 
+    @Test
+    void 준비된_실행경계도_같은_그룹예산과_recovery_only를_사용한다() {
+        // given
+        var records = List.of(record(0, 0), record(1, 1));
+        var calls = new java.util.concurrent.atomic.AtomicInteger();
+        java.util.function.Consumer<List<Long>> execution = ids -> {
+            calls.incrementAndGet();
+            throw new BatchModerationException(Map.of(0, providerFailure, 1, providerFailure), List.of(List.of(0, 1)));
+        };
+        doThrow(new IllegalStateException("FINAL_DB_FAILURE")).doNothing()
+                .when(recoverer).accept(same(records.get(0)), any());
+        // when / then
+        assertThatThrownBy(() -> retry.analyze(records, execution)).isInstanceOf(BatchListenerFailedException.class);
+        assertThatThrownBy(() -> retry.analyze(records, execution)).isInstanceOf(BatchListenerFailedException.class);
+        retry.analyze(records, execution);
+        assertThat(calls).hasValue(2);
+        verify(service, never()).analyze(any());
+        verify(recoverer, times(2)).accept(same(records.get(0)), any());
+        verify(recoverer).accept(same(records.get(1)), any());
+    }
+
+    @Test
+    void 준비된_항목실패는_원래_record_index로_반환한다() {
+        // given
+        var records = List.of(record(0, 0), record(1, 1));
+        // when / then
+        assertThatThrownBy(() -> retry.analyze(records, ids -> {
+            throw new BatchModerationException(1, new IllegalStateException("VALIDATION"));
+        })).isInstanceOfSatisfying(BatchListenerFailedException.class, error -> assertThat(error.getIndex()).isEqualTo(1));
+        verifyNoInteractions(recoverer);
+        verify(service, never()).analyze(any());
+    }
+
     private void failAll() {
         doAnswer(call -> {
             List<Long> ids = call.getArgument(0);
