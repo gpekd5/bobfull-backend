@@ -215,7 +215,39 @@ Dashboard의11개 panel/UID/PromQL/디자인은 불변이다. Fake 수집은 별
 기존 앱 데이터와 격리했다. 기존 MySQL 패널은 Testcontainers DB를 자동 조회하지 않는다.
 캡처 파일은 Human 요청으로 생략했으며 저장되지 않은 이미지를 Evidence에 있다고 표현하지 않는다.
 
-## 최신 제출 준비 상태
+## PR #69 CI 연결 경계 보완 — 2026-10-23
+
+최초 제출 Head `1f27b618ebb5d12bfd1da528b1298023fe8077cb`의
+[GitHub CI](https://github.com/gpekd5/bobfull-backend/actions/runs/39799150858)는 **FAILURE**였다.
+root1,486건 중 Dashboard PromQL 테스트1건이 실패했고 Docker Build는 실행되지 않았다.
+직전 로컬1,497건 PASS를 CI 성공으로 취급하지 않는다. 이전 `submission-verification.json`은 당시 로컬 결과 그대로 보존한다.
+
+실패 경계는 `Issue68UsageBenchmarkKafkaTest`가 Docker Desktop 전용
+`host.docker.internal:18068`을 scrape하면서 host 전달을 구성하지 않은 점이다.
+Prometheus의 `/-/ready`는 scrape 성공을 의미하지 않는데도, 두 번째 Fake 응답에서 첫 호출 Counter의
+scrape를 기다렸다. 연결 단절이면 이 대기가 Fake 응답/실행을 실패시켜 `…STAGE_INCOMPLETE → …GATE_HOLD`로 보인다.
+실제 Linux CI 로그는 line221의 예외 타입만 보존했으므로 과거 장애가 DNS 해석 실패인지 라우팅/연결 실패인지까지
+단정하지 않는다. 기존 주소를 loopback으로 강제해 끊은 로컬 음성대조에서 같은 실행 HOLD를 재현했다.
+Kafka 초기화·모델 품질·실제 OpenAI 장애가 원인이라는 근거는 없다.
+
+수정은 테스트1파일뿐이다. 임의 포트 loopback exporter를 먼저 시작하고
+`Testcontainers.exposeHostPorts(port)`와 `host.testcontainers.internal`을 사용한다.
+Prometheus 시작 후 **정확한 scrape URL, target1개/health UP/lastError 없음**을 검증한 뒤 Fake 호출을 시작한다.
+회귀에서는 기존 Docker Desktop 주소를 의도적으로 사용 불가능하게 유지해 새 경로의 독립성을 확인한다.
+공식 연결 계약: [Testcontainers host ports](https://java.testcontainers.org/features/networking/#exposing-host-ports-to-the-container).
+
+원래 네 패널 PromQL·finite p95·정확한 호출/Token 수치 Assertion, 15초 제한은 그대로다.
+테스트 삭제/SKIP/무조건 timeout 증가는 없다. 기존 Dashboard와 모니터링 설정도 이번 보완에서 변경하지 않았다.
+수정 대상 메서드는 root1건 PASS였지만 aggregate 필터가 Lambda에 전파돼 `No tests found`로 명령 전체는 실패했다.
+이후 root `:test`로 실행한 Benchmark/MonitoringBridge/DashboardContract 관련 **16건 PASS/skip0/실패0**를 별도로 확인했다.
+최종 전체 회귀·보존 검사는 [ci-portability-verification.json](ci-portability-verification.json),
+최신 보존 Head·CI·AI Review는 [Draft PR #69](https://github.com/gpekd5/bobfull-backend/pull/69)를 따른다.
+수정 후 `test build --rerun-tasks --no-daemon --console=plain`은 **9m7s SUCCESS/12 tasks 실행**,
+root1,486(94 skipped)+Lambda11=**1,497건/실패0/오류0**다. 유료 진입점6개 모두 SKIP이며 Key/유료 승인 변수는 제거했다.
+PR 전체 제출 범위는 기존123파일에 이 신규 CI 검증 기록1개를 더한124파일이다. 과거 제출/실측 JSON은 덮어쓰지 않았다.
+장부·UNKNOWN·과거 Live/GT/Gate 원본을 수정하거나 이번 Fake 성공을 과거 품질 PASS로 해석하지 않는다.
+
+## 최초 PR 제출 검증 기록 — 2026-10-22
 
 2026-10-22 최종 제출 검증은 [submission-verification.json](submission-verification.json)에 별도로 기록했다.
 Key와 모든 `ISSUE68_*` 환경변수를 제거한 자식 프로세스에서

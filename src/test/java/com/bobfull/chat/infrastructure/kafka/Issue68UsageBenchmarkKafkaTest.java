@@ -198,16 +198,30 @@ class Issue68UsageBenchmarkKafkaTest {
         try (var session = Issue68UsageBenchmarkSession.rehearsal(root, Issue68UsageBenchmarkPlan.Stage.BURST)) {
             for (var unit : Issue68UsageBenchmarkPlan.units(session.plan().stage())) {
                 session.plan().start(unit);
-                try (var bridge = new Issue68MonitoringBridge(18068); var endpoint = new Issue68FakeOpenAiEndpoint()) {
+                try (var bridge = new Issue68MonitoringBridge(0); var endpoint = new Issue68FakeOpenAiEndpoint()) {
+                    // Docker Desktop 전용 DNS에 의존하지 않는다. exporter 시작 후, Prometheus 시작 전에 노출한다.
+                    org.testcontainers.Testcontainers.exposeHostPorts(bridge.port());
                     Path config = temporary.resolve("prometheus-" + unit.mode() + ".yml");
                     Files.writeString(config, "global:\n  scrape_interval: 200ms\nscrape_configs:\n  - job_name: issue68-benchmark-fake\n"
-                            + "    metrics_path: /metrics\n    static_configs:\n      - targets: ['host.docker.internal:18068']\n");
+                            + "    metrics_path: /metrics\n    static_configs:\n      - targets: ['host.testcontainers.internal:" + bridge.port() + "']\n");
                     // 조건마다 새 tmpfs TSDB. 기존 앱 8080/운영 Prometheus/datasource는 전혀 연결하지 않는다.
                     try (var prometheus = new GenericContainer<>("prom/prometheus:v3.14.0").withExposedPorts(9090)
+                            // 이전 전용 주소가 사용 불가능해도 이 검증은 통과해야 한다.
+                            .withExtraHost("host.docker.internal", "127.0.0.1").withAccessToHost(true)
                             .withCopyFileToContainer(org.testcontainers.utility.MountableFile.forHostPath(config), "/etc/prometheus/prometheus.yml")
                             .withTmpFs(Map.of("/prometheus", "rw,uid=65534,gid=65534,mode=0700")).waitingFor(Wait.forHttp("/-/ready"))) {
                         prometheus.start();
                         String url = "http://" + prometheus.getHost() + ":" + prometheus.getMappedPort(9090);
+                        // /-/ready는 scrape 성공이 아니다. 연결 문제를 Fake Provider/Usage 실패로 숨기지 않는다.
+                        org.awaitility.Awaitility.await().atMost(Duration.ofSeconds(15)).untilAsserted(() -> {
+                            var targets = response(url + "/api/v1/targets").path("data").path("activeTargets");
+                            assertThat(targets.size()).isEqualTo(1);
+                            assertThat(targets.get(0).path("scrapeUrl").asText())
+                                    .isEqualTo("http://host.testcontainers.internal:" + bridge.port() + "/metrics");
+                            assertThat(targets.get(0).path("health").asText())
+                                    .as("Prometheus target: %s", targets).isEqualTo("up");
+                            assertThat(targets.get(0).path("lastError").asText()).isEmpty();
+                        });
                         var responses = new java.util.concurrent.atomic.AtomicInteger();
                         endpoint.beforeResponse(() -> {
                             if (responses.incrementAndGet() == 2) {
@@ -248,6 +262,10 @@ class Issue68UsageBenchmarkKafkaTest {
 
     private static tools.jackson.databind.JsonNode query(String base, String expression) throws Exception {
         String url = base + "/api/v1/query?query=" + java.net.URLEncoder.encode(expression, java.nio.charset.StandardCharsets.UTF_8);
+        return response(url);
+    }
+
+    private static tools.jackson.databind.JsonNode response(String url) throws Exception {
         String body = java.net.http.HttpClient.newHttpClient().send(java.net.http.HttpRequest.newBuilder(java.net.URI.create(url)).build(),
                 java.net.http.HttpResponse.BodyHandlers.ofString()).body();
         return new JsonMapper().readTree(body);

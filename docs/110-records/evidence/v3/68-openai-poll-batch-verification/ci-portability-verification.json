@@ -1,0 +1,408 @@
+{
+  "issue": 68,
+  "scope": "CI_PROMETHEUS_HOST_PORT_PORTABILITY_FREE_ONLY",
+  "dateKst": "2026-10-23",
+  "beforeHead": "1f27b618ebb5d12bfd1da528b1298023fe8077cb",
+  "originalCi": {
+    "url": "https://github.com/gpekd5/bobfull-backend/actions/runs/39799150858",
+    "result": "FAILURE",
+    "rootTests": 1486,
+    "failed": 1,
+    "skipped": 94,
+    "dockerBuild": "SKIPPED",
+    "test": "Issue68UsageBenchmarkKafkaTest.기존Dashboard_네패널의_원본PromQL을_조건별_격리Prometheus에서_실제조회한다",
+    "exception": "IllegalStateException at line221",
+    "limitation": "Original job console did not expose inner exception message or Prometheus target error; historical DNS resolution vs routing/connect failure cannot be asserted independently"
+  },
+  "reproduction": {
+    "scope": "LOCAL_NEGATIVE_CONTROL_NOT_RERUN_OF_LIVE_OR_CI_RUNNER",
+    "change": "Original scrape target retained; host.docker.internal overridden to 127.0.0.1 inside Prometheus",
+    "tests": 1,
+    "failures": 1,
+    "elapsed": "35s",
+    "exception": "ISSUE68_STAGE_INCOMPLETE",
+    "cause": "ISSUE68_O0_EXECUTION_GATE_HOLD",
+    "interpretation": "Disconnected scrape blocks beforeResponse callback awaiting count=1, producing a technical execution HOLD rather than isolated scrape diagnostics"
+  },
+  "correction": {
+    "files": [
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68UsageBenchmarkKafkaTest.java"
+    ],
+    "exporter": "loopback ephemeral port",
+    "containerRoute": "Testcontainers.exposeHostPorts(port) before Prometheus.start; host.testcontainers.internal",
+    "legacyAddressNegativeControl": "host.docker.internal=127.0.0.1 remains unusable in regression",
+    "preflight": [
+      "one target",
+      "exact scrapeUrl",
+      "health=up",
+      "lastError empty"
+    ],
+    "assertionsPreserved": [
+      "original four panel PromQL",
+      "exact logical call count",
+      "input=900*logical",
+      "non-empty finite p95",
+      "15 second timeout",
+      "no SKIP or deleted tests"
+    ],
+    "officialContract": "https://java.testcontainers.org/features/networking/#exposing-host-ports-to-the-container"
+  },
+  "targeted": {
+    "rootFocused": {
+      "tests": 1,
+      "failures": 0,
+      "skipped": 0,
+      "aggregateCommand": "FAILED: root passed; filter propagated to Lambda and matched no test. Not an application or root test failure"
+    },
+    "related": {
+      "command": ":test --tests *Issue68UsageBenchmarkKafkaTest --tests *Issue68MonitoringBridgeTest --tests *Issue68DashboardContractTest --no-daemon --console=plain",
+      "tests": 16,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "result": "SUCCESS",
+      "elapsed": "2m11s"
+    },
+    "prometheusConditions": [
+      {
+        "mode": "TIME_0",
+        "queries": {
+          "LLM Call Count": [
+            {
+              "labels": {},
+              "value": "2"
+            }
+          ],
+          "Estimated Cost (USD)": [
+            {
+              "labels": {},
+              "value": "0.00051"
+            }
+          ],
+          "Token Usage": [
+            {
+              "labels": {
+                "gen_ai_token_type": "input"
+              },
+              "value": "1800"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "output"
+              },
+              "value": "400"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "total"
+              },
+              "value": "2200"
+            }
+          ],
+          "LLM p95 Latency": [
+            {
+              "labels": {},
+              "value": "0.15546886694999998"
+            }
+          ]
+        }
+      },
+      {
+        "mode": "TIME_20",
+        "queries": {
+          "LLM Call Count": [
+            {
+              "labels": {},
+              "value": "2"
+            }
+          ],
+          "Estimated Cost (USD)": [
+            {
+              "labels": {},
+              "value": "0.00051"
+            }
+          ],
+          "Token Usage": [
+            {
+              "labels": {
+                "gen_ai_token_type": "input"
+              },
+              "value": "1800"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "output"
+              },
+              "value": "400"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "total"
+              },
+              "value": "2200"
+            }
+          ],
+          "LLM p95 Latency": [
+            {
+              "labels": {},
+              "value": "0.17783848794999998"
+            }
+          ]
+        }
+      },
+      {
+        "mode": "TIME_50",
+        "queries": {
+          "LLM Call Count": [
+            {
+              "labels": {},
+              "value": "2"
+            }
+          ],
+          "Estimated Cost (USD)": [
+            {
+              "labels": {},
+              "value": "0.00051"
+            }
+          ],
+          "Token Usage": [
+            {
+              "labels": {
+                "gen_ai_token_type": "input"
+              },
+              "value": "1800"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "output"
+              },
+              "value": "400"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "total"
+              },
+              "value": "2200"
+            }
+          ],
+          "LLM p95 Latency": [
+            {
+              "labels": {},
+              "value": "0.15546886694999998"
+            }
+          ]
+        }
+      },
+      {
+        "mode": "TIME_100",
+        "queries": {
+          "LLM Call Count": [
+            {
+              "labels": {},
+              "value": "2"
+            }
+          ],
+          "Estimated Cost (USD)": [
+            {
+              "labels": {},
+              "value": "0.00051"
+            }
+          ],
+          "Token Usage": [
+            {
+              "labels": {
+                "gen_ai_token_type": "input"
+              },
+              "value": "1800"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "output"
+              },
+              "value": "400"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "total"
+              },
+              "value": "2200"
+            }
+          ],
+          "LLM p95 Latency": [
+            {
+              "labels": {},
+              "value": "0.15546886694999998"
+            }
+          ]
+        }
+      },
+      {
+        "mode": "NATIVE",
+        "queries": {
+          "LLM Call Count": [
+            {
+              "labels": {},
+              "value": "20"
+            }
+          ],
+          "Estimated Cost (USD)": [
+            {
+              "labels": {},
+              "value": "0.00294"
+            }
+          ],
+          "Token Usage": [
+            {
+              "labels": {
+                "gen_ai_token_type": "input"
+              },
+              "value": "18000"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "output"
+              },
+              "value": "400"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "total"
+              },
+              "value": "18400"
+            }
+          ],
+          "LLM p95 Latency": [
+            {
+              "labels": {},
+              "value": "0.1343115445454783"
+            }
+          ]
+        }
+      },
+      {
+        "mode": "POLL",
+        "queries": {
+          "LLM Call Count": [
+            {
+              "labels": {},
+              "value": "2"
+            }
+          ],
+          "Estimated Cost (USD)": [
+            {
+              "labels": {},
+              "value": "0.00051"
+            }
+          ],
+          "Token Usage": [
+            {
+              "labels": {
+                "gen_ai_token_type": "input"
+              },
+              "value": "1800"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "output"
+              },
+              "value": "400"
+            },
+            {
+              "labels": {
+                "gen_ai_token_type": "total"
+              },
+              "value": "2200"
+            }
+          ],
+          "LLM p95 Latency": [
+            {
+              "labels": {},
+              "value": "0.15546886694999998"
+            }
+          ]
+        }
+      }
+    ],
+    "scope": "FAKE_HTTP_PROMQL_NOT_LIVE_TOKEN_COST_LATENCY_OR_NEW_UI_CAPTURE"
+  },
+  "fullRegression": {
+    "command": "test build --rerun-tasks --no-daemon --console=plain",
+    "environment": "OPENAI_API_KEY and all ISSUE68_* removed; .env not read",
+    "result": "SUCCESS",
+    "elapsed": "9m7s",
+    "tasksExecuted": 12,
+    "root": {
+      "tests": 1486,
+      "skipped": 94,
+      "failures": 0,
+      "errors": 0,
+      "suites": 285
+    },
+    "lambda": {
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "suites": 3
+    },
+    "paidEntrypoints": [
+      {
+        "name": "Issue68LiveSmokeTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0
+      },
+      {
+        "name": "Issue68O0LiveTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0
+      },
+      {
+        "name": "Issue68ExpandedPilotLiveTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0
+      },
+      {
+        "name": "Issue68A1N1LiveTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0
+      },
+      {
+        "name": "Issue68UsageBenchmarkLiveTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0
+      },
+      {
+        "name": "Issue68UsageBenchmarkRemainderLiveTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0
+      }
+    ],
+    "total": {
+      "tests": 1497,
+      "skipped": 94,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "preservation": {
+    "comparedFiles": 2016,
+    "changed": 0,
+    "oldRawJsonUnchanged": true,
+    "productionAndDashboardUnchanged": true,
+    "journalUnchanged": true,
+    "unknownUsd": "0.0192768",
+    "gateV1": "HOLD_PRESERVED",
+    "gateV2": "HOLD_PRESERVED",
+    "productionBatch": "OFF",
+    "paidCalls": 0,
+    "keyReadOrUsed": false
+  },
+  "ciAndReviewAuthority": "Latest PR #69 Head, workflow run and independent AI Review comment; do not substitute previous Head PASS",
+  "submissionScope": "Only test portability correction, README narrative and this new verification record. Old JSON/GT/manifests/journal are not rewritten."
+}
