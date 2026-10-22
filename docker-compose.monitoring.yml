@@ -14,6 +14,7 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       - ./ops/local-monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./build/issue68/monitoring:/etc/prometheus/issue68:ro
       - bobfull-prometheus-data:/prometheus
 
   grafana:

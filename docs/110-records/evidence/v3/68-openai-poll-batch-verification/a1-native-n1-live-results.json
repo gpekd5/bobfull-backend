@@ -1,0 +1,1467 @@
+{
+  "scope": "LIVE_A1_NATIVE_N1_PARTIAL_HOLD_NOT_ADOPTION",
+  "repository": "gpekd5/bobfull-backend",
+  "branch": "feature/68-openai-poll-batch-verification",
+  "baseHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "uncommittedHarness": true,
+  "execution": {
+    "startedAtUtc": "2026-10-22T05:55:15.920946Z",
+    "endedAtUtc": "2026-10-22T05:55:21.520439Z",
+    "gradleStartedAtUtc": "2026-10-22T05:54:55Z",
+    "gradleEndedAtUtc": "2026-10-22T05:55:22Z",
+    "invocations": 1,
+    "automaticRerun": false,
+    "plannedCases": 8,
+    "evaluatedCases": 1,
+    "notRunCases": 7,
+    "logicalCalls": 1,
+    "httpAttempts": 1,
+    "sdkRetriesObserved": 0,
+    "batchCalls": 0,
+    "reason": "CRITICAL_RISK_DOWNGRADE",
+    "gateV1": "HOLD",
+    "gateV2": "HOLD"
+  },
+  "approval": {
+    "manifestSha256": "3d959747d3334bdf3d8fbc3ea911cdc8f6e5a09305bd30ce94a0cef915bd26cc",
+    "promptVersion": "issue68-risk-boundary-a1-test-only",
+    "promptSha256": "c4a3f361f7325ac811f9e2f0ce35b3cd1934b536910ac89fbd903ca35e1c7960",
+    "groundTruthSha256": "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+    "schemaSha256": "0a3b3262ad121eb467b2fe00a17d1dd8082a4887268005e8b70e4b14eb33e45f",
+    "metadataSha256": "a3a424323e5585da1b9a611281ac37174c60c4b946987e541c44ad5981cd40b5"
+  },
+  "caseOutcomes": [
+    {
+      "caseId": "HOLDOUT-PROFANITY-14",
+      "expected": {
+        "result": "FLAGGED",
+        "categories": [
+          "PROFANITY"
+        ],
+        "riskLevel": "HIGH"
+      },
+      "status": "EVALUATED",
+      "actual": {
+        "result": "FLAGGED",
+        "categories": [
+          "PROFANITY"
+        ],
+        "riskLevel": "MEDIUM"
+      },
+      "v1Blockers": [
+        "GT_HIGH_DOWNGRADE"
+      ],
+      "v2Blockers": [
+        "CRITICAL_RISK_DOWNGRADE"
+      ],
+      "reviewTarget": true
+    },
+    {
+      "caseId": "HOLDOUT-PROFANITY-15",
+      "expected": {
+        "result": "FLAGGED",
+        "categories": [
+          "PROFANITY"
+        ],
+        "riskLevel": "HIGH"
+      },
+      "status": "NOT_RUN",
+      "actual": null,
+      "v1Blockers": null,
+      "v2Blockers": null,
+      "reviewTarget": null
+    },
+    {
+      "caseId": "HOLDOUT-PROFANITY-16",
+      "expected": {
+        "result": "FLAGGED",
+        "categories": [
+          "PROFANITY"
+        ],
+        "riskLevel": "HIGH"
+      },
+      "status": "NOT_RUN",
+      "actual": null,
+      "v1Blockers": null,
+      "v2Blockers": null,
+      "reviewTarget": null
+    },
+    {
+      "caseId": "HOLDOUT-PROFANITY-01",
+      "expected": {
+        "result": "FLAGGED",
+        "categories": [
+          "PROFANITY"
+        ],
+        "riskLevel": "MEDIUM"
+      },
+      "status": "NOT_RUN",
+      "actual": null,
+      "v1Blockers": null,
+      "v2Blockers": null,
+      "reviewTarget": null
+    },
+    {
+      "caseId": "HOLDOUT-PROFANITY-17",
+      "expected": {
+        "result": "SAFE",
+        "categories": [],
+        "riskLevel": "LOW"
+      },
+      "status": "NOT_RUN",
+      "actual": null,
+      "v1Blockers": null,
+      "v2Blockers": null,
+      "reviewTarget": null
+    },
+    {
+      "caseId": "HOLDOUT-PROFANITY-13",
+      "expected": {
+        "result": "SAFE",
+        "categories": [],
+        "riskLevel": "LOW"
+      },
+      "status": "NOT_RUN",
+      "actual": null,
+      "v1Blockers": null,
+      "v2Blockers": null,
+      "reviewTarget": null
+    },
+    {
+      "caseId": "HOLDOUT-SAFE-17",
+      "expected": {
+        "result": "SAFE",
+        "categories": [],
+        "riskLevel": "LOW"
+      },
+      "status": "NOT_RUN",
+      "actual": null,
+      "v1Blockers": null,
+      "v2Blockers": null,
+      "reviewTarget": null
+    },
+    {
+      "caseId": "HOLDOUT-SAFE-01",
+      "expected": {
+        "result": "SAFE",
+        "categories": [],
+        "riskLevel": "LOW"
+      },
+      "status": "NOT_RUN",
+      "actual": null,
+      "v1Blockers": null,
+      "v2Blockers": null,
+      "reviewTarget": null
+    }
+  ],
+  "qualityCompletedOnly": {
+    "samples": 1,
+    "tp": 1,
+    "tn": 0,
+    "fp": 0,
+    "fn": 0,
+    "resultExact": 1,
+    "categoryExact": 1,
+    "riskExact": 0,
+    "highDowngrade": 1,
+    "criticalProtectionFailure": 1,
+    "reviewTargetMiss": 0,
+    "crossFieldViolation": 0,
+    "unresolvedExecuted": 0,
+    "qualityOfRemainingCases": "NOT_EVALUATED"
+  },
+  "usage": {
+    "input": 978,
+    "output": 20,
+    "total": 998,
+    "cached": 0,
+    "sdkHttpMatch": true,
+    "estimatedCostNanoUsd": 158700,
+    "cacheAwareEstimatedCostNanoUsd": 158700,
+    "invoiceCost": false
+  },
+  "latencyMs": {
+    "httpExchange": 2818.500375,
+    "logicalRequest": 3128.064459,
+    "springAiOperation": 3093.143709,
+    "receivedToDbCommit": 3187.424375,
+    "publishAckToDbCommit": 3199.927583,
+    "samples": 1
+  },
+  "journalAudit": {
+    "hashChainValid": true,
+    "priorPrefixUnchanged": true,
+    "priorSha256": "80607e4746092d22067d61b818e69bd61f493e197f1a6d4d4cc58789c4fa6547",
+    "afterSha256": "35924fde9b6de4437b5294b9e23daf48322c51daa012c509f08aa15c893e01d0",
+    "eventCount": 12,
+    "settledNanoUsd": 604950,
+    "unknownNanoUsd": 19276800,
+    "pendingNanoUsd": 0,
+    "burdenNanoUsd": 19881750,
+    "grossReservedNanoUsd": 96460800,
+    "newSettledNanoUsd": 158700,
+    "newUnknownNanoUsd": 0,
+    "newPendingNanoUsd": 0,
+    "newBurdenNanoUsd": 158700,
+    "newGrossReservedNanoUsd": 19276800
+  },
+  "raw": {
+    "partialNative": {
+      "startedAtUtc": "2026-10-22T05:55:15.920946Z",
+      "endedAtUtc": "2026-10-22T05:55:21.520439Z",
+      "clock": "monotonic ns within this JVM; wall clock UTC is separate",
+      "cases": [
+        {
+          "caseId": "HOLDOUT-PROFANITY-14",
+          "partition": 0,
+          "offset": 0,
+          "receivedNs": 1227762109028708,
+          "flushNs": 1227765294909041,
+          "ackNs": 1227762096525500,
+          "dbCommittedNs": 1227765296453083,
+          "returnedNs": 1227765310456416,
+          "deliveries": 1,
+          "receivedToCommitMs": 3187.424375,
+          "status": "FLAGGED",
+          "actual": {
+            "result": "FLAGGED",
+            "categories": [
+              "PROFANITY"
+            ],
+            "riskLevel": "MEDIUM"
+          },
+          "v1v2": {
+            "id": "HOLDOUT-PROFANITY-14",
+            "v1Blockers": [
+              "GT_HIGH_DOWNGRADE"
+            ],
+            "v2Blockers": [
+              "CRITICAL_RISK_DOWNGRADE"
+            ],
+            "v2Notes": [],
+            "exactAndReview": {
+              "decision": "HUMAN_APPROVAL_REQUIRED",
+              "v1Reasons": [
+                "GT_HIGH_DOWNGRADE"
+              ],
+              "draftHoldReasons": [],
+              "resultExact": true,
+              "categoryExact": true,
+              "riskExact": false,
+              "expectedReviewTarget": true,
+              "actualReviewTarget": true,
+              "highToMediumReviewPreserved": true
+            }
+          },
+          "provider": "OpenAI",
+          "model": "gpt-4o-mini-2024-07-18",
+          "promptTokens": 978,
+          "totalTokens": 998,
+          "promptVersion": "moderation-prompt-v3-short-fragment-boundary",
+          "policyVersion": "moderation-policy-v2"
+        },
+        {
+          "caseId": "HOLDOUT-PROFANITY-15",
+          "partition": -1,
+          "offset": -1,
+          "receivedNs": 0,
+          "flushNs": 0,
+          "ackNs": 0,
+          "dbCommittedNs": 0,
+          "returnedNs": 0,
+          "deliveries": 0
+        },
+        {
+          "caseId": "HOLDOUT-PROFANITY-16",
+          "partition": -1,
+          "offset": -1,
+          "receivedNs": 0,
+          "flushNs": 0,
+          "ackNs": 0,
+          "dbCommittedNs": 0,
+          "returnedNs": 0,
+          "deliveries": 0
+        },
+        {
+          "caseId": "HOLDOUT-PROFANITY-01",
+          "partition": -1,
+          "offset": -1,
+          "receivedNs": 0,
+          "flushNs": 0,
+          "ackNs": 0,
+          "dbCommittedNs": 0,
+          "returnedNs": 0,
+          "deliveries": 0
+        },
+        {
+          "caseId": "HOLDOUT-PROFANITY-17",
+          "partition": -1,
+          "offset": -1,
+          "receivedNs": 0,
+          "flushNs": 0,
+          "ackNs": 0,
+          "dbCommittedNs": 0,
+          "returnedNs": 0,
+          "deliveries": 0
+        },
+        {
+          "caseId": "HOLDOUT-PROFANITY-13",
+          "partition": -1,
+          "offset": -1,
+          "receivedNs": 0,
+          "flushNs": 0,
+          "ackNs": 0,
+          "dbCommittedNs": 0,
+          "returnedNs": 0,
+          "deliveries": 0
+        },
+        {
+          "caseId": "HOLDOUT-SAFE-17",
+          "partition": -1,
+          "offset": -1,
+          "receivedNs": 0,
+          "flushNs": 0,
+          "ackNs": 0,
+          "dbCommittedNs": 0,
+          "returnedNs": 0,
+          "deliveries": 0
+        },
+        {
+          "caseId": "HOLDOUT-SAFE-01",
+          "partition": -1,
+          "offset": -1,
+          "receivedNs": 0,
+          "flushNs": 0,
+          "ackNs": 0,
+          "dbCommittedNs": 0,
+          "returnedNs": 0,
+          "deliveries": 0
+        }
+      ],
+      "httpAttempts": [
+        {
+          "number": 5,
+          "logical": 1,
+          "status": 200,
+          "usage": {
+            "input": 978,
+            "output": 20,
+            "total": 998,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2818500375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        }
+      ],
+      "sdkUsage": [
+        {
+          "logical": 1,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 978,
+            "output": 20,
+            "total": 998,
+            "cached": 0
+          }
+        }
+      ],
+      "logicalCalls": [
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-14"
+          ],
+          "ended": 1227765280083000,
+          "failed": false,
+          "inputEstimate": 1182,
+          "number": 1,
+          "requestSha256": "bd042b49a57be01bee566e7a3c4d6b5fdf63077570061fdaec5c1b84938b44a2",
+          "started": 1227762152018541
+        }
+      ],
+      "executionHeld": true,
+      "meters": [
+        {
+          "measurements": [
+            {
+              "statistic": "ACTIVE_TASKS",
+              "value": 0
+            },
+            {
+              "statistic": "DURATION",
+              "value": 0
+            },
+            {
+              "statistic": "MAX",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "gen_ai.operation.name",
+              "value": "framework"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "spring_ai"
+            },
+            {
+              "key": "spring.ai.advisor.name",
+              "value": "call"
+            },
+            {
+              "key": "spring.ai.kind",
+              "value": "advisor"
+            }
+          ],
+          "type": "LONG_TASK_TIMER",
+          "name": "spring.ai.advisor.active"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "ACTIVE_TASKS",
+              "value": 0
+            },
+            {
+              "statistic": "DURATION",
+              "value": 0
+            },
+            {
+              "statistic": "MAX",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "gen_ai.operation.name",
+              "value": "chat"
+            },
+            {
+              "key": "gen_ai.request.model",
+              "value": "gpt-4o-mini"
+            },
+            {
+              "key": "gen_ai.response.model",
+              "value": "none"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "openai"
+            }
+          ],
+          "type": "LONG_TASK_TIMER",
+          "name": "gen_ai.client.operation.active"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            },
+            {
+              "statistic": "TOTAL_TIME",
+              "value": 2.928156583
+            },
+            {
+              "statistic": "MAX",
+              "value": 2.928156583
+            }
+          ],
+          "tags": [
+            {
+              "key": "error",
+              "value": "none"
+            },
+            {
+              "key": "host",
+              "value": "api.openai.com"
+            },
+            {
+              "key": "method",
+              "value": "POST"
+            },
+            {
+              "key": "outcome",
+              "value": "SUCCESS"
+            },
+            {
+              "key": "status",
+              "value": "200"
+            },
+            {
+              "key": "target.host",
+              "value": "api.openai.com"
+            },
+            {
+              "key": "target.port",
+              "value": "443"
+            },
+            {
+              "key": "target.scheme",
+              "value": "https"
+            },
+            {
+              "key": "uri",
+              "value": "none"
+            }
+          ],
+          "type": "TIMER",
+          "name": "okhttp.requests"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            },
+            {
+              "statistic": "TOTAL_TIME",
+              "value": 0.180518333
+            },
+            {
+              "statistic": "MAX",
+              "value": 0.180518333
+            }
+          ],
+          "tags": [
+            {
+              "key": "exception",
+              "value": "none"
+            },
+            {
+              "key": "name",
+              "value": "kafkaTemplate"
+            },
+            {
+              "key": "result",
+              "value": "success"
+            }
+          ],
+          "type": "TIMER",
+          "name": "spring.kafka.template"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 978
+            }
+          ],
+          "tags": [
+            {
+              "key": "gen_ai.operation.name",
+              "value": "chat"
+            },
+            {
+              "key": "gen_ai.request.model",
+              "value": "gpt-4o-mini"
+            },
+            {
+              "key": "gen_ai.response.model",
+              "value": "gpt-4o-mini-2024-07-18"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "openai"
+            },
+            {
+              "key": "gen_ai.token.type",
+              "value": "input"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "gen_ai.client.token.usage"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "RECRUITMENT_DEADLINE_FAILED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "AUTH_REISSUE_FAILED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            },
+            {
+              "statistic": "TOTAL_TIME",
+              "value": 3.093143709
+            },
+            {
+              "statistic": "MAX",
+              "value": 3.093143709
+            }
+          ],
+          "tags": [
+            {
+              "key": "error",
+              "value": "none"
+            },
+            {
+              "key": "gen_ai.operation.name",
+              "value": "chat"
+            },
+            {
+              "key": "gen_ai.request.model",
+              "value": "gpt-4o-mini"
+            },
+            {
+              "key": "gen_ai.response.model",
+              "value": "gpt-4o-mini-2024-07-18"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "openai"
+            }
+          ],
+          "type": "TIMER",
+          "name": "gen_ai.client.operation"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            },
+            {
+              "statistic": "TOTAL_TIME",
+              "value": 3.107959666
+            },
+            {
+              "statistic": "MAX",
+              "value": 3.107959666
+            }
+          ],
+          "tags": [
+            {
+              "key": "error",
+              "value": "none"
+            },
+            {
+              "key": "gen_ai.operation.name",
+              "value": "framework"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "spring_ai"
+            },
+            {
+              "key": "spring.ai.advisor.name",
+              "value": "Tool Calling Advisor"
+            },
+            {
+              "key": "spring.ai.kind",
+              "value": "advisor"
+            }
+          ],
+          "type": "TIMER",
+          "name": "spring.ai.advisor"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            }
+          ],
+          "tags": [
+            {
+              "key": "policy_version",
+              "value": "moderation-policy-v2"
+            },
+            {
+              "key": "prompt_version",
+              "value": "moderation-prompt-v3-short-fragment-boundary"
+            },
+            {
+              "key": "status",
+              "value": "FLAGGED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull.ai.moderation.final.status"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "PORTONE_WEBHOOK_PROCESSING_FAILED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "RESERVATION_CONFIRMED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "CHAT_REALTIME_SUBSCRIBE_FAILED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "REFUND_COMPLETED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "IMAGE_STORAGE_REQUEST_FAILED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 998
+            }
+          ],
+          "tags": [
+            {
+              "key": "gen_ai.operation.name",
+              "value": "chat"
+            },
+            {
+              "key": "gen_ai.request.model",
+              "value": "gpt-4o-mini"
+            },
+            {
+              "key": "gen_ai.response.model",
+              "value": "gpt-4o-mini-2024-07-18"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "openai"
+            },
+            {
+              "key": "gen_ai.token.type",
+              "value": "total"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "gen_ai.client.token.usage"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 20
+            }
+          ],
+          "tags": [
+            {
+              "key": "gen_ai.operation.name",
+              "value": "chat"
+            },
+            {
+              "key": "gen_ai.request.model",
+              "value": "gpt-4o-mini"
+            },
+            {
+              "key": "gen_ai.response.model",
+              "value": "gpt-4o-mini-2024-07-18"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "openai"
+            },
+            {
+              "key": "gen_ai.token.type",
+              "value": "output"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "gen_ai.client.token.usage"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "CHAT_MODERATION_RETRY_EXHAUSTED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "PAYMENT_COMPENSATION_REQUIRED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            }
+          ],
+          "tags": [
+            {
+              "key": "policy_version",
+              "value": "moderation-policy-v2"
+            },
+            {
+              "key": "prompt_version",
+              "value": "moderation-prompt-v3-short-fragment-boundary"
+            },
+            {
+              "key": "route",
+              "value": "llm"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull.ai.moderation.route"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "PAYMENT_WEBHOOK_PERMANENT_FAILURE"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            },
+            {
+              "statistic": "TOTAL_TIME",
+              "value": 3.108644166
+            },
+            {
+              "statistic": "MAX",
+              "value": 3.108644166
+            }
+          ],
+          "tags": [
+            {
+              "key": "error",
+              "value": "none"
+            },
+            {
+              "key": "gen_ai.operation.name",
+              "value": "framework"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "spring_ai"
+            },
+            {
+              "key": "spring.ai.chat.client.stream",
+              "value": "false"
+            },
+            {
+              "key": "spring.ai.kind",
+              "value": "chat_client"
+            }
+          ],
+          "type": "TIMER",
+          "name": "spring.ai.chat.client"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "PAYMENT_COMPLETED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "RESERVATION_CANCELLATION_COMPLETED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 1
+            },
+            {
+              "statistic": "TOTAL_TIME",
+              "value": 3.107634833
+            },
+            {
+              "statistic": "MAX",
+              "value": 3.107634833
+            }
+          ],
+          "tags": [
+            {
+              "key": "error",
+              "value": "none"
+            },
+            {
+              "key": "gen_ai.operation.name",
+              "value": "framework"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "spring_ai"
+            },
+            {
+              "key": "spring.ai.advisor.name",
+              "value": "call"
+            },
+            {
+              "key": "spring.ai.kind",
+              "value": "advisor"
+            }
+          ],
+          "type": "TIMER",
+          "name": "spring.ai.advisor"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "READY_PAYMENT_EXPIRED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "RESTAURANT_INSIGHT_RETRY_EXHAUSTED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "ACTIVE_TASKS",
+              "value": 0
+            },
+            {
+              "statistic": "DURATION",
+              "value": 0
+            },
+            {
+              "statistic": "MAX",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "value": "api.openai.com"
+            },
+            {
+              "key": "method",
+              "value": "POST"
+            },
+            {
+              "key": "outcome",
+              "value": "UNKNOWN"
+            },
+            {
+              "key": "status",
+              "value": "CLIENT_ERROR"
+            },
+            {
+              "key": "target.host",
+              "value": "api.openai.com"
+            },
+            {
+              "key": "target.port",
+              "value": "443"
+            },
+            {
+              "key": "target.scheme",
+              "value": "https"
+            },
+            {
+              "key": "uri",
+              "value": "none"
+            }
+          ],
+          "type": "LONG_TASK_TIMER",
+          "name": "okhttp.requests.active"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "CHAT_ROOM_CREATION_REQUIRED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "UNHANDLED_EXCEPTION"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "ACTIVE_TASKS",
+              "value": 0
+            },
+            {
+              "statistic": "DURATION",
+              "value": 0
+            },
+            {
+              "statistic": "MAX",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "gen_ai.operation.name",
+              "value": "framework"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "spring_ai"
+            },
+            {
+              "key": "spring.ai.chat.client.stream",
+              "value": "false"
+            },
+            {
+              "key": "spring.ai.kind",
+              "value": "chat_client"
+            }
+          ],
+          "type": "LONG_TASK_TIMER",
+          "name": "spring.ai.chat.client.active"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "CHAT_REALTIME_PUBLISH_FAILED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "NO_SHOW_MARKED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "REFUND_COMPENSATION_REQUIRED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "ACTIVE_TASKS",
+              "value": 0
+            },
+            {
+              "statistic": "DURATION",
+              "value": 0
+            },
+            {
+              "statistic": "MAX",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "gen_ai.operation.name",
+              "value": "framework"
+            },
+            {
+              "key": "gen_ai.system",
+              "value": "spring_ai"
+            },
+            {
+              "key": "spring.ai.advisor.name",
+              "value": "Tool Calling Advisor"
+            },
+            {
+              "key": "spring.ai.kind",
+              "value": "advisor"
+            }
+          ],
+          "type": "LONG_TASK_TIMER",
+          "name": "spring.ai.advisor.active"
+        },
+        {
+          "measurements": [
+            {
+              "statistic": "COUNT",
+              "value": 0
+            }
+          ],
+          "tags": [
+            {
+              "key": "event",
+              "value": "LOGIN_FAILED"
+            }
+          ],
+          "type": "COUNTER",
+          "name": "bobfull_business_events"
+        }
+      ],
+      "polls": [
+        [
+          "HOLDOUT-PROFANITY-14"
+        ]
+      ],
+      "unsafeCommits": 0,
+      "lag": 0,
+      "committedOffsets": [
+        {
+          "partition": 0,
+          "offset": 1
+        }
+      ],
+      "dltCount": 0
+    },
+    "final": {
+      "automaticNextStage": false,
+      "v1v2": [
+        {
+          "id": "HOLDOUT-PROFANITY-14",
+          "v1Blockers": [
+            "GT_HIGH_DOWNGRADE"
+          ],
+          "v2Blockers": [
+            "CRITICAL_RISK_DOWNGRADE"
+          ],
+          "v2Notes": [],
+          "exactAndReview": {
+            "decision": "HUMAN_APPROVAL_REQUIRED",
+            "v1Reasons": [
+              "GT_HIGH_DOWNGRADE"
+            ],
+            "draftHoldReasons": [],
+            "resultExact": true,
+            "categoryExact": true,
+            "riskExact": false,
+            "expectedReviewTarget": true,
+            "actualReviewTarget": true,
+            "highToMediumReviewPreserved": true
+          }
+        }
+      ],
+      "http": [
+        {
+          "number": 5,
+          "logical": 1,
+          "status": 200,
+          "usage": {
+            "input": 978,
+            "output": 20,
+            "total": 998,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2818500375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        }
+      ],
+      "sdk": [
+        {
+          "logical": 1,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 978,
+            "output": 20,
+            "total": 998,
+            "cached": 0
+          }
+        }
+      ],
+      "executionHolds": {
+        "HOLDOUT-PROFANITY-14": [
+          "CRITICAL_RISK_DOWNGRADE"
+        ]
+      },
+      "candidateAdoption": false,
+      "logical": [
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-14"
+          ],
+          "ended": 1227765280083000,
+          "failed": false,
+          "inputEstimate": 1182,
+          "number": 1,
+          "requestSha256": "bd042b49a57be01bee566e7a3c4d6b5fdf63077570061fdaec5c1b84938b44a2",
+          "started": 1227762152018541
+        }
+      ]
+    }
+  },
+  "checkpointReferences": [
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00001-approval-manifest.json",
+      "sha256": "13ba6793e6d3b5b035459bfd7654b0cc9e702c3609b4d5303948b55eb1926444",
+      "name": "approval-manifest",
+      "atUtc": "2026-10-22T05:55:15.782251Z"
+    },
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00002-http-reserved.json",
+      "sha256": "861d8b5a824bd976e67d40da6ec1848d329975da33788fdad65c85839bb5b9f3",
+      "name": "http-reserved",
+      "atUtc": "2026-10-22T05:55:18.576454Z"
+    },
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00003-http-completed.json",
+      "sha256": "3d46a86d56ae2569f467266de0ad42255ba59534b71d49b4b15c092c8a4976a0",
+      "name": "http-completed",
+      "atUtc": "2026-10-22T05:55:21.399883Z"
+    },
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00004-sdk-usage.json",
+      "sha256": "b2161d0687fe5ad956ae09637b95140cff171ee2a825ec2ae01c98dc94a03d0d",
+      "name": "sdk-usage",
+      "atUtc": "2026-10-22T05:55:21.449242Z"
+    },
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00005-gate-progress.json",
+      "sha256": "c1d4a9260b71d403d571a0ae576adef561da54e5f8001cc98c200efde73582a1",
+      "name": "gate-progress",
+      "atUtc": "2026-10-22T05:55:21.483690Z"
+    },
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00006-db-progress.json",
+      "sha256": "f2e502e3dd39392c0736837569ae4944246bba3318173cfe47a10389c816109b",
+      "name": "db-progress",
+      "atUtc": "2026-10-22T05:55:21.489733Z"
+    },
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00007-partial-native.json",
+      "sha256": "6400bec9395d8eb5eeb9cfd8d810d05de43faf158ba8ea07e92842a5464b2195",
+      "name": "partial-native",
+      "atUtc": "2026-10-22T05:55:21.535040Z"
+    },
+    {
+      "file": ".issue68-live/issue68-a1-native-n1-eight-v1/00008-n-one-final.json",
+      "sha256": "87013c98025ee939d329427a04bccaf48489044603c49ea17011808855b9a7d2",
+      "name": "n-one-final",
+      "atUtc": "2026-10-22T05:55:21.567684Z"
+    }
+  ],
+  "validation": {
+    "liveGradle": {
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "exit": 1,
+      "reason": "EXPECTED_QUALITY_HOLD_NO_REEXECUTION",
+      "compileJava": "PASS",
+      "compileTestJava": "PASS"
+    },
+    "previousFullBuild": "Readiness: root 1440 / 92 skipped + Lambda 11, failures 0/errors 0; no source changes in this Live step",
+    "frozenSourceHashesMatch": true,
+    "oldEvidenceAndCheckpointContentsUnchanged": true,
+    "oldJournalPrefixUnchanged": true,
+    "productionChanged": false,
+    "dashboardChanged": false,
+    "gtChanged": false,
+    "secretValuesRecorded": false
+  },
+  "limitations": [
+    "N1 stopped after first case; remaining seven cases not run; no whole-candidate quality conclusion",
+    "No contemporaneous Control or Batch comparison; historical results are not a controlled improvement comparison",
+    "Testcontainers DB snapshot preserved before shutdown; not production recovery proof",
+    "DB promptVersion remains Production version; actual A1 wire version is identified by approved manifest",
+    "No N2, Batch, Control, repetition or old Pilot resumed; separate Human approval required"
+  ]
+}

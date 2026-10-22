@@ -1,0 +1,463 @@
+{
+  "scope": "FREE_LIVE_READINESS_ONLY_NO_PAID_PILOT_NO_KEY_ACCESS",
+  "baseHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "branch": "feature/68-openai-poll-batch-verification",
+  "commitStatus": "UNCOMMITTED_NO_PUSH_NO_PR_NO_ISSUE_MUTATION",
+  "paidExecution": false,
+  "apiKeyRead": false,
+  "apiKeyUsed": false,
+  "awsWork": false,
+  "productionBatchDefault": "OFF_UNCHANGED",
+  "grafanaChanged": false,
+  "manifest": {
+    "proposal": "expanded-pilot-approval-manifest.json",
+    "sha256": "3540e688973ad207179e1e549a05ce816ca87ab5750e46aac20e827bae12b5c1",
+    "independentRecomputation": "MATCH",
+    "sourceHashes": 42,
+    "productionSourceHashes": 15,
+    "sourceHashesMatchFinalTree": true,
+    "approvalId": "issue68-six-condition-pilot120-gate-v2-v1",
+    "approvalRequired": true,
+    "autoNextStage": false
+  },
+  "budget": {
+    "units": "nanoUSD_1e9_per_USD",
+    "globalLimit": 1000000000,
+    "pilotNewLimit": 100000000,
+    "priorUnknown": 19276800,
+    "priorSettled": 311100,
+    "priorBurden": 19587900,
+    "priorGross": 57907200,
+    "actualJournalSha256": "b2fe9f54ae8441010bebeb3734896b7328d5445586fd7bc1838045d3d510cf5e",
+    "actualJournalAppended": false,
+    "unknownReleased": false,
+    "pilotExpectedNotUsage": [
+      14520600,
+      27953100
+    ],
+    "includingPriorExpectedNotUsage": [
+      34108500,
+      47541000
+    ],
+    "completionGuaranteed": false,
+    "inputReservationCeiling": 128000,
+    "outputCapPerItem": 128,
+    "pricingSource": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+    "httpCeiling": 480
+  },
+  "tests": {
+    "initialCompileFailure": "New Kafka test referenced package-private Issue68ExpandedPlanTest; removed cross-package test-class dependency, then reran successfully.",
+    "newSafety": {
+      "tests": 25,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "paidPilotEntry": {
+      "tests": 1,
+      "skipped": 1,
+      "reason": "Separate paid approval absent; no containers/Key/HTTP for this class."
+    },
+    "targeted": {
+      "command": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL -u ISSUE68_O0_LIVE_APPROVAL -u ISSUE68_O0_MANIFEST_SHA256 -u ISSUE68_PILOT_LIVE_APPROVAL -u ISSUE68_PILOT_MANIFEST_SHA256 ./gradlew :test --tests '*Issue68*' --tests '*SizeTimeBatchOwnerSafetyTest' --tests '*ChatModerationBatch*' --tests '*SpringAiModerationBatchAdapterTest' --no-daemon --console=plain",
+      "result": {
+        "tests": 236,
+        "skipped": 3,
+        "failures": 0,
+        "errors": 0
+      },
+      "suites": [
+        {
+          "name": "com.bobfull.chat.application.service.ChatModerationBatchServiceTest",
+          "tests": 18,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68O0KafkaPreparationTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68ExpandedLiveKafkaSafetyTest",
+          "tests": 5,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68GateV2Test",
+          "tests": 6,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedBudgetTest",
+          "tests": 9,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68UsageAccountingTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68BudgetTest",
+          "tests": 7,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68O0SafetyTest",
+          "tests": 11,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchErrorHandlerTest",
+          "tests": 2,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchFeatureFlagTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveReadinessTest",
+          "tests": 11,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchIntegrationTest",
+          "tests": 18,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.admin.infrastructure.repository.query.Issue68ReviewSignalIntegrationTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68O0LiveTest",
+          "tests": 1,
+          "skipped": 1,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedHttpSafetyTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68ExpandedPilotLiveTest",
+          "tests": 1,
+          "skipped": 1,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchConsumerTest",
+          "tests": 2,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68EvaluationContractTest",
+          "tests": 5,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68ExpandedKafkaPreparationTest",
+          "tests": 16,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ResponseUsageTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchRetryProcessorTest",
+          "tests": 12,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.SpringAiModerationBatchAdapterTest",
+          "tests": 5,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68OpenAiKafkaIntegrationTest",
+          "tests": 12,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68O0PreparationTest",
+          "tests": 9,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveResumeTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68O0PlanTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedPlanTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68LiveSmokeTest",
+          "tests": 1,
+          "skipped": 1,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68HttpBoundaryTest",
+          "tests": 6,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ReviewGateDraftTest",
+          "tests": 7,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedLiveSafetyTest",
+          "tests": 20,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        }
+      ],
+      "note": "SizeTimeBatchOwnerSafetyTest filter matches no class; actual SizeTimeBatchSafetyIntegrationTest14 is verified in full regression below."
+    },
+    "full": {
+      "command": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL -u ISSUE68_O0_LIVE_APPROVAL -u ISSUE68_O0_MANIFEST_SHA256 -u ISSUE68_PILOT_LIVE_APPROVAL -u ISSUE68_PILOT_MANIFEST_SHA256 ./gradlew test build --rerun-tasks --no-daemon --console=plain",
+      "result": "BUILD_SUCCESSFUL",
+      "elapsed": "6m18s",
+      "tasksExecuted": 12,
+      "root": {
+        "tests": 1358,
+        "skipped": 89,
+        "failures": 0,
+        "errors": 0
+      },
+      "lambda": {
+        "tests": 11,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      "total": {
+        "tests": 1369,
+        "skipped": 89,
+        "failures": 0,
+        "errors": 0
+      },
+      "safetySuites": [
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68ExpandedLiveKafkaSafetyTest",
+          "tests": 5,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.SizeTimeBatchSafetyIntegrationTest",
+          "tests": 14,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchIntegrationTest",
+          "tests": 18,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68ExpandedPilotLiveTest",
+          "tests": 1,
+          "skipped": 1,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.ChatModerationBatchRetryProcessorTest",
+          "tests": 12,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedLiveSafetyTest",
+          "tests": 20,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        }
+      ]
+    }
+  },
+  "fakeLiveRehearsal": {
+    "scope": "GT_ECHO_FIXED_USAGE_NOT_OPENAI_QUALITY_OR_SAVINGS",
+    "source": "build/issue68/expanded-live-rehearsal-1792607889982.json",
+    "evidence": "expanded-live-readiness-results.json",
+    "sha256": "535fe0d0ec98b90bfe83b02300e99c6ee1411220c37b6c4ed3b180dddfafdb18",
+    "records": 120,
+    "logical": 30,
+    "http": 30,
+    "batchSizesByMode": {
+      "NATIVE": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "POLL": [
+        10,
+        10
+      ],
+      "TIME_0": [
+        10,
+        10
+      ],
+      "TIME_20": [
+        10,
+        10
+      ],
+      "TIME_50": [
+        10,
+        10
+      ],
+      "TIME_100": [
+        10,
+        10
+      ]
+    },
+    "dbCommitted": 120,
+    "lagEach": 0,
+    "dltEach": 0,
+    "sdkHttpUsage": "MATCH_EVERY_LOGICAL",
+    "fixtureInput": 27000,
+    "fixtureOutput": 2400,
+    "fixtureTotal": 29400,
+    "fixtureNewCostNanoUsd": 5490000,
+    "fixtureFinalBurden": 25077900,
+    "fixtureGross": 643123200
+  },
+  "safety": {
+    "https": "Exact Live URL and payload validator inspected without socket or Key; actual exchange/SDK exercised only on loopback.",
+    "liveTlsOrAccountAvailability": "UNVERIFIED_NO_LIVE_REQUEST",
+    "commitFailure": "Existing DB commits and uncommitted offset snapshot retained; next HTTP blocked.",
+    "unknownRetryRedirect": "First HTTP only; full reservation retained; next SDK/HTTP blocked.",
+    "qualityFailure": "Injected FN causes HOLD; next HTTP and unit blocked.",
+    "budgetFailure": "Endpoint receives zero HTTP when next reservation cannot fit.",
+    "restart": "Same Live journal/claim/lock code tested on temporary identical prior fixture; pending and UNKNOWN remain charged; no automatic resume.",
+    "v1": "HISTORICAL_BATCH_GATE_HOLD_PRESERVED",
+    "v2": "FREE_CONTRACT_REGRESSION_PASS_NOT_LIVE_QUALITY_PASS",
+    "liveAdoption": "NOT_APPROVED"
+  },
+  "preservation": {
+    "historicalEvidenceFiles": 23,
+    "historicalEvidenceHashMatch": true,
+    "privateFiles": 17,
+    "privateHashMatch": true,
+    "privateAdditions": [],
+    "allProductionFilesHashMatch": true,
+    "originalOwnerLoopHashMatch": true,
+    "existingRawNotOverwritten": true
+  },
+  "changesThisStep": {
+    "modifiedExistingTests": [
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaHarness.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java"
+    ],
+    "addedTests": [
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedLiveKafkaSafetyTest.java",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedPilotLiveTest.java",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedPilotExecution.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedLiveSafetyTest.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedLiveSession.java"
+    ]
+  },
+  "staticChecks": {
+    "trackedDiffWhitespace": "PASS",
+    "allNewAndChangedFilesWhitespace": "PASS_12_FILES_INCLUDING_UNTRACKED",
+    "jsonSyntax": "PASS"
+  }
+}

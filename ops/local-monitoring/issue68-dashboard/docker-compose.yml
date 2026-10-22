@@ -1,0 +1,18 @@
+name: bobfull-issue68-dashboard-test
+
+services:
+  prometheus:
+    image: prom/prometheus:v3.14.0
+    container_name: bobfull-issue68-dashboard-prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    ports:
+      - "127.0.0.1:19068:9090"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    # 기존 Prometheus named volume을 사용하지 않는다. 이 Fake 검증의 TSDB만 일시 보관한다.
+    tmpfs:
+      - /prometheus:uid=65534,gid=65534,mode=0700

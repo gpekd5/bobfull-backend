@@ -1,0 +1,273 @@
+{
+  "scope": "ISSUE68_LIVE_RESUME_POST_RUN_AUDIT_NOT_INVOICE_OR_FULL_MATRIX",
+  "status": "BATCH_GATE_HOLD",
+  "resumeManifest": {
+    "path": ".issue68-live/issue68-resume-usage-v1-native1-batch1-2026-10-21/approval-manifest.json",
+    "sha256": "c439a28232125c19caf032b62bc4e4042801f13eb754505eaf66739cab1c0af9",
+    "approval": "issue68-resume-usage-v1-native1-batch1-2026-10-21",
+    "oldApprovalClaimPreserved": true,
+    "newManifestCreatedOnce": true
+  },
+  "freeBuild": {
+    "tests": 1260,
+    "skipped": 87,
+    "failures": 0,
+    "errors": 0
+  },
+  "liveGradle": {
+    "exitCode": 1,
+    "result": "FAIL/HOLD: GT_HIGH_DOWNGRADE (not HTTP/Usage/DB failure)",
+    "duration": "22s",
+    "junit": {
+      "name": "com.bobfull.chat.infrastructure.kafka.Issue68LiveSmokeTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "1",
+      "errors": "0",
+      "timestamp": "2026-10-21T09:13:53.004Z",
+      "hostname": "khgui-MacBookAir.local",
+      "time": "17.94"
+    }
+  },
+  "oldFiles": {
+    "unchangedFiles": [
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/verification-results.json",
+        "sha256": "4b00bfb78d6d6a4b86f808426c69506e988eee9ddfc1bd6fb35682186d76f048",
+        "bytes": 419431,
+        "unchanged": true
+      },
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-smoke-stop-evidence.json",
+        "sha256": "a92ff314cab364908e96f80fe3a2f21fd1cf3a107e076bc7b63726ab0e9b7532",
+        "bytes": 2269,
+        "unchanged": true
+      },
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/usage-accounting.md",
+        "sha256": "4087ca4600bc9516aee2aeb783ceecf274f0366e15b2df32b66c24dd932eec34",
+        "bytes": 9725,
+        "unchanged": true
+      },
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/README.md",
+        "sha256": "cbe570b9c7560e0666f36ebefc795cb761e87bfa62afbf8aa741c62dc67d91b2",
+        "bytes": 16304,
+        "unchanged": true
+      },
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/usage-accounting-results.json",
+        "sha256": "f6fea60c99a0faa182f1f9d05debbf2353b997eea58bb0a50fc4c3e12297a19c",
+        "bytes": 18076,
+        "unchanged": true
+      },
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-readiness-results.json",
+        "sha256": "c1c4f33c144740253636ab131d70268138067167cfa20f1f87ba24b9a9417035",
+        "bytes": 10957,
+        "unchanged": true
+      },
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-readiness.md",
+        "sha256": "73d4dc758390d8940a4a4651bba00fed9e65284642d75088794a26a39aba7632",
+        "bytes": 10937,
+        "unchanged": true
+      },
+      {
+        "path": "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-smoke-results.json",
+        "sha256": "d32445166ba0ca0706584ac8acef4dac909b4369c0cf0bce74aa0d39e6d2913f",
+        "bytes": 7227,
+        "unchanged": true
+      },
+      {
+        "path": ".issue68-live/checkpoint-completed-native.json",
+        "sha256": "5c5d225262f8bfdcdf499ce3864587a912832085f9a6677d1958a6578c7a5d3f",
+        "bytes": 3765,
+        "unchanged": true
+      },
+      {
+        "path": ".issue68-live/checkpoint-partial-native.json",
+        "sha256": "44e9713afa66863f748431506dd7397efeda578b1b13062aed2bae8dc59e21b1",
+        "bytes": 527,
+        "unchanged": true
+      },
+      {
+        "path": ".issue68-live/checkpoint-db-progress.json",
+        "sha256": "76ef0b95f826a4a610d8530b5b6a019603797bbd764e2729e0f40dead0b9685a",
+        "bytes": 253,
+        "unchanged": true
+      },
+      {
+        "path": ".issue68-live/approval.claim",
+        "sha256": "df8e61e33e41a3ab36d83a9350997a729b32b7876284f0837a27fae520369ea2",
+        "bytes": 105,
+        "unchanged": true
+      },
+      {
+        "path": ".issue68-live/checkpoint-http-reserved.json",
+        "sha256": "94d1f4122b4a7564d084e591cf4000cfde18d8d03429f5d8abd1f0412178c944",
+        "bytes": 174,
+        "unchanged": true
+      },
+      {
+        "path": ".issue68-live/checkpoint-final.json",
+        "sha256": "069c4a0597b492c61deb82ee595514eaa3c6dbc82d8fe669bb7af56810f8cb3d",
+        "bytes": 7813,
+        "unchanged": true
+      },
+      {
+        "path": ".issue68-live/checkpoint-http-completed.json",
+        "sha256": "4a52a1a500c40cae8693720fea449505dbb3764e3955591eeafc746030223163",
+        "bytes": 282,
+        "unchanged": true
+      }
+    ],
+    "journalPrefixBytes": 303,
+    "priorPrefixSha256": "a8a259adbc6d559a585bcb821586b266ff18456c42f5aaf526a4618e86ef7cc5"
+  },
+  "journal": {
+    "sha256": "b2fe9f54ae8441010bebeb3734896b7328d5445586fd7bc1838045d3d510cf5e",
+    "priorPrefixSha256": "a8a259adbc6d559a585bcb821586b266ff18456c42f5aaf526a4618e86ef7cc5",
+    "entries": [
+      {
+        "event": "RESERVE",
+        "attempt": 1,
+        "nanoUsd": 19276800
+      },
+      {
+        "event": "UNKNOWN_KEEP",
+        "attempt": 1,
+        "nanoUsd": 19276800
+      },
+      {
+        "event": "RESERVE",
+        "attempt": 2,
+        "nanoUsd": 19276800
+      },
+      {
+        "event": "SETTLE",
+        "attempt": 2,
+        "nanoUsd": 131400
+      },
+      {
+        "event": "RESERVE",
+        "attempt": 3,
+        "nanoUsd": 19353600
+      },
+      {
+        "event": "SETTLE",
+        "attempt": 3,
+        "nanoUsd": 179700
+      }
+    ],
+    "hashChainValid": true
+  },
+  "partialKafkaDbSnapshots": {
+    "checkpoint-partial-batch.json": {
+      "value": {
+        "cases": [
+          {
+            "dbCommittedNs": 1153290323759166,
+            "partition": 0,
+            "deliveries": 1,
+            "offset": 0,
+            "returnedNs": 1153290327143000,
+            "caseId": "HOLDOUT-SAFE-01"
+          },
+          {
+            "dbCommittedNs": 1153290337574458,
+            "partition": 0,
+            "deliveries": 1,
+            "offset": 1,
+            "returnedNs": 1153290341157708,
+            "caseId": "HOLDOUT-PROFANITY-16"
+          }
+        ],
+        "polls": [
+          [
+            "HOLDOUT-SAFE-01",
+            "HOLDOUT-PROFANITY-16"
+          ]
+        ],
+        "unsafeCommits": 0,
+        "lag": 0,
+        "committedOffsets": [
+          {
+            "partition": 0,
+            "offset": 2
+          }
+        ],
+        "dltCount": 0
+      },
+      "chargedNanoUsd": 19587900,
+      "recordedAt": "2026-10-21T09:14:10.877927Z",
+      "grossReservedNanoUsd": 57907200
+    },
+    "checkpoint-partial-native.json": {
+      "value": {
+        "cases": [
+          {
+            "dbCommittedNs": 1153287846064833,
+            "partition": 0,
+            "deliveries": 1,
+            "offset": 0,
+            "returnedNs": 1153287853742541,
+            "caseId": "HOLDOUT-SAFE-01"
+          }
+        ],
+        "polls": [
+          [
+            "HOLDOUT-SAFE-01"
+          ]
+        ],
+        "unsafeCommits": 0,
+        "lag": 0,
+        "committedOffsets": [
+          {
+            "partition": 0,
+            "offset": 1
+          }
+        ],
+        "dltCount": 0
+      },
+      "chargedNanoUsd": 19408200,
+      "recordedAt": "2026-10-21T09:14:08.315689Z",
+      "grossReservedNanoUsd": 38553600
+    }
+  },
+  "accounting": {
+    "priorUnknownReservedNanoUsd": 19276800,
+    "newSettledNoCacheNanoUsd": 311100,
+    "newUnknownReservedNanoUsd": 0,
+    "chargedIncludingPriorUnknownNanoUsd": 19587900,
+    "grossReservedIncludingPriorNanoUsd": 57907200,
+    "smokeGrossLimitNanoUsd": 100000000,
+    "settlementEventsPerSuccessfulTicket": {
+      "2": 1,
+      "3": 1
+    },
+    "historicalUnknownReleased": false
+  },
+  "http": {
+    "newGenerationLogicalRequests": 2,
+    "newGenerationAttempts": 2,
+    "metadataModelLogicalGetRequests": 1,
+    "metadataModelHttpAttempts": "NOT_INSTRUMENTED_SEPARATELY",
+    "sdkRetriesObserved": 0,
+    "kafkaRedeliveriesObserved": 0,
+    "maximumNewGenerationAttempts": 4
+  },
+  "safety": {
+    "sourceHashesMatch": true,
+    "keyFoundInArtifacts": false,
+    "productionChanges": false,
+    "settingsChanges": false,
+    "commitPushPrMerge": false,
+    "matrixExecuted": false,
+    "automaticRestartAllowed": false,
+    "gitDiffCheck": "PASS",
+    "untrackedWhitespace": "PASS",
+    "jsonSyntax": "PASS"
+  },
+  "nextStage": "HOLD; Human review/reapproval required; no more Live requests"
+}

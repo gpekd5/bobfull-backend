@@ -1,0 +1,299 @@
+{
+  "scope": "ISSUE68_RESUME_PRE_LIVE_FREE_VERIFICATION_NOT_PAID_RESULTS",
+  "recordedAt": "2026-10-21T09:13:27.447Z",
+  "executionHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "executionState": "uncommitted-source-snapshot",
+  "approval": "issue68-resume-usage-v1-native1-batch1-2026-10-21",
+  "guardrails": {
+    "priorUnknownReservedNanoUsd": 19276800,
+    "maxNewNativeLogicalRequests": 1,
+    "maxNewBatchLogicalRequests": 1,
+    "minimumBatchSize": 2,
+    "maxNewGenerationHttpAttempts": 4,
+    "smokeGrossLimitNanoUsd": 100000000,
+    "issuePlannedLimitNanoUsd": 500000000,
+    "normalTwoRequestsGrossIncludingPriorNanoUsd": 57907200,
+    "worstFourNewExchangesGrossIncludingPriorNanoUsd": 96691200,
+    "automaticResume": false,
+    "matrixApproved": false
+  },
+  "focused": {
+    "command": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew :test --tests '*Issue68LiveResumeTest' --tests '*Issue68LiveReadinessTest' --tests '*Issue68UsageAccountingTest' --console=plain --no-daemon",
+    "tests": 27,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "result": "PASS",
+    "duration": "11s"
+  },
+  "related": {
+    "command": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew :test --tests '*Issue68*' --tests '*ChatModeration*' --tests '*Moderation*' --tests '*AiModerationPortSelectionTest' --console=plain --no-daemon",
+    "totals": {
+      "tests": 249,
+      "skipped": 10,
+      "failures": 0,
+      "errors": 0
+    },
+    "issue68": [
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68UsageAccountingTest",
+        "tests": 8,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68BudgetTest",
+        "tests": 7,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveReadinessTest",
+        "tests": 11,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68EvaluationContractTest",
+        "tests": 5,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68ResponseUsageTest",
+        "tests": 8,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.kafka.Issue68OpenAiKafkaIntegrationTest",
+        "tests": 12,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveResumeTest",
+        "tests": 8,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.kafka.Issue68LiveSmokeTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68HttpBoundaryTest",
+        "tests": 6,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      }
+    ],
+    "result": "PASS",
+    "duration": "2m1s"
+  },
+  "fullBuild": {
+    "command": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew test build --rerun-tasks --console=plain --no-daemon",
+    "root": {
+      "tests": 1249,
+      "skipped": 87,
+      "failures": 0,
+      "errors": 0
+    },
+    "lambda": {
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "total": {
+      "tests": 1260,
+      "skipped": 87,
+      "failures": 0,
+      "errors": 0
+    },
+    "issue68": [
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68UsageAccountingTest",
+        "tests": 8,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "adc987972e2137e50f0187131b8ea58e74ec174fd82fa505529042f4d476ab3f"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68BudgetTest",
+        "tests": 7,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "de478425edb207342ffecba3e2d9d55ccaf001406164190cb6eb99ac5751d21e"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveReadinessTest",
+        "tests": 11,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "4e13ce8e010e1f2c50c3275e463f8fadbcaa35aeff719f9c7b62a374fb27892e"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68EvaluationContractTest",
+        "tests": 5,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "93c732db3b37945931a601a0810579470594e8a8f68c210fd9219f03839798c6"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68ResponseUsageTest",
+        "tests": 8,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "7c221c6bf8b145052700bfbea216d2386da4efc6c205c0cdf64a4ac16a34bae7"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.kafka.Issue68OpenAiKafkaIntegrationTest",
+        "tests": 12,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "f3263b2663d3f3afe7f2d8e0f49f04d0c9675524e2b42fe23666480053bf7610"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveResumeTest",
+        "tests": 8,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "e0cc7c362c977df608d792371b3c192717ca42e97e04e35ab447de28d85130cf"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.kafka.Issue68LiveSmokeTest",
+        "tests": 1,
+        "skipped": 1,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "7e69c3da6166d3cfa530b021bc667a804205efe09ebb37e5b23e4c228af0b4f6"
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68HttpBoundaryTest",
+        "tests": 6,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "xmlSha256": "04dcf85e6fcd0ca29be1e8d774db52dc78a4525ec01b77e0e322565e8c340762"
+      }
+    ],
+    "tasksExecuted": 12,
+    "result": "SUCCESS",
+    "duration": "4m28s"
+  },
+  "preservedBeforeLive": {
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/verification-results.json": {
+      "sha256": "4b00bfb78d6d6a4b86f808426c69506e988eee9ddfc1bd6fb35682186d76f048",
+      "bytes": 419431
+    },
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-smoke-stop-evidence.json": {
+      "sha256": "a92ff314cab364908e96f80fe3a2f21fd1cf3a107e076bc7b63726ab0e9b7532",
+      "bytes": 2269
+    },
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/usage-accounting.md": {
+      "sha256": "4087ca4600bc9516aee2aeb783ceecf274f0366e15b2df32b66c24dd932eec34",
+      "bytes": 9725
+    },
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/README.md": {
+      "sha256": "cbe570b9c7560e0666f36ebefc795cb761e87bfa62afbf8aa741c62dc67d91b2",
+      "bytes": 16304
+    },
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/usage-accounting-results.json": {
+      "sha256": "f6fea60c99a0faa182f1f9d05debbf2353b997eea58bb0a50fc4c3e12297a19c",
+      "bytes": 18076
+    },
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-readiness-results.json": {
+      "sha256": "c1c4f33c144740253636ab131d70268138067167cfa20f1f87ba24b9a9417035",
+      "bytes": 10957
+    },
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-readiness.md": {
+      "sha256": "73d4dc758390d8940a4a4651bba00fed9e65284642d75088794a26a39aba7632",
+      "bytes": 10937
+    },
+    "docs/110-records/evidence/v3/68-openai-poll-batch-verification/live-smoke-results.json": {
+      "sha256": "d32445166ba0ca0706584ac8acef4dac909b4369c0cf0bce74aa0d39e6d2913f",
+      "bytes": 7227
+    },
+    ".issue68-live/checkpoint-completed-native.json": {
+      "sha256": "5c5d225262f8bfdcdf499ce3864587a912832085f9a6677d1958a6578c7a5d3f",
+      "bytes": 3765
+    },
+    ".issue68-live/checkpoint-partial-native.json": {
+      "sha256": "44e9713afa66863f748431506dd7397efeda578b1b13062aed2bae8dc59e21b1",
+      "bytes": 527
+    },
+    ".issue68-live/checkpoint-db-progress.json": {
+      "sha256": "76ef0b95f826a4a610d8530b5b6a019603797bbd764e2729e0f40dead0b9685a",
+      "bytes": 253
+    },
+    ".issue68-live/approval.claim": {
+      "sha256": "df8e61e33e41a3ab36d83a9350997a729b32b7876284f0837a27fae520369ea2",
+      "bytes": 105
+    },
+    ".issue68-live/checkpoint-http-reserved.json": {
+      "sha256": "94d1f4122b4a7564d084e591cf4000cfde18d8d03429f5d8abd1f0412178c944",
+      "bytes": 174
+    },
+    ".issue68-live/budget.jsonl": {
+      "sha256": "a8a259adbc6d559a585bcb821586b266ff18456c42f5aaf526a4618e86ef7cc5",
+      "bytes": 303
+    },
+    ".issue68-live/checkpoint-final.json": {
+      "sha256": "069c4a0597b492c61deb82ee595514eaa3c6dbc82d8fe669bb7af56810f8cb3d",
+      "bytes": 7813
+    },
+    ".issue68-live/checkpoint-http-completed.json": {
+      "sha256": "4a52a1a500c40cae8693720fea449505dbb3764e3955591eeafc746030223163",
+      "bytes": 282
+    }
+  },
+  "sourceHashes": {
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java": "e3220d2f9f95aa7db52b923c23cfdf08ac155d3643504ffdaf3dd80e61abd141",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68BudgetTest.java": "af471e1cab938cb139a29e4293e31dfe643811e3b506269016957796dff1ceee",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContract.java": "a1c90d90384533d8f6ecfdeacf52c92201874a4b39624a8bf5497dbf300b786f",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContractTest.java": "7bae85b1c90c5b19c42794a88ff4258155f5d25ce02440e876e4252abfddabf7",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68FakeOpenAiEndpoint.java": "35e1204542df15204e60bde09705a4d6b42cd867701b1c1d527a322dcebf4d8a",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java": "65369d62a077ac7e0b85a8c2747aaafad6bc633db3635a446a9589692e589d5b",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundaryTest.java": "c5da8121c3e4ebe2eaa8cca1943eea5bdd7b73ac25b8eb4e68c633bfb0ba8cd2",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveReadinessTest.java": "5e3571bb7caaed474c9a07fcdd64936524c694f09a2a77d837cdfa0251305d5e",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveResumeTest.java": "28514add0f07566c0a1663d40fbeeb112d09df690a65e889d5189ce3446adc14",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveSession.java": "0a93e6ad1fb3c2f808c09a31c4ffd0a26d69d22f37e02ea9c5c7fe073eb333bb",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68OpenAiContext.java": "1ef903d864205c572eabd57295b308bf79af3211c3ce1d9419322a3f80c63f72",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ResponseUsage.java": "b61f1419837c0795536112a0be1d5059c81275f36b2d2b6220472318fceab1d7",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ResponseUsageTest.java": "6987ccc8c6087bd62f14887561233a2007575604c1594c4d4902606df9884dfa",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68SdkUsage.java": "ad82e0e000da88a261cfe0473a7626448e275e08b28ed6dddbc8ed98ebb208b1",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68UsageAccountingTest.java": "c1eb12391048c73a2184021729503385d6903489c67c3332c5a2779671febdaf",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68LiveSmokeTest.java": "29e73194b226a73d7e31f14305bc61622d4485d8176f9dcea08b573829d66571",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaHarness.java": "7dd64892094200c4419379a48a042fedfc4afa58a1a5214c50e9a645ccd3d2d6",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaIntegrationTest.java": "1c1df260de7a9e0a755cd9505ebea6706fe7d3670c23c4e3f6f41740e5517389"
+  },
+  "productionChanges": false,
+  "configurationChanges": false,
+  "trackedOrStagedChanges": false,
+  "pricing": {
+    "reference": "https://developers.openai.com/api/docs/models/gpt-4o-mini",
+    "inputUsdPerMillion": 0.15,
+    "cachedInputUsdPerMillion": 0.075,
+    "outputUsdPerMillion": 0.6,
+    "reservationAndSettlement": "no cache discount; exact nano-USD; unknown retains full reservation; not account invoice guarantee"
+  }
+}
