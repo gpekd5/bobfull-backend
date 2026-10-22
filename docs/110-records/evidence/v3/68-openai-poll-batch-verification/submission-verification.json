@@ -1,0 +1,44 @@
+{
+  "issue": 68,
+  "scope": "FINAL_SUBMISSION_FREE_REGRESSION_NOT_LIVE_QUALITY_PASS",
+  "verifiedAtUtc": "2026-10-22T14:48:09Z",
+  "branch": "feature/68-openai-poll-batch-verification",
+  "executionBaseHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "submissionHeadAuthority": "Connected Draft PR latest Head and AI Review; no self-referential commit SHA",
+  "command": "ruby -e 'ENV.keys.grep(/\\A(?:OPENAI_API_KEY|ISSUE68_.*)\\z/).each{|k|ENV.delete(k)};exec \"./gradlew\", \"test\", \"build\", \"--rerun-tasks\", \"--no-daemon\", \"--console=plain\"'",
+  "build": {"result": "SUCCESS", "elapsed": "8m58s", "tasksExecuted": 12},
+  "tests": {
+    "root": {"suites": 285, "tests": 1486, "skipped": 94, "failures": 0, "errors": 0},
+    "lambda": {"suites": 3, "tests": 11, "skipped": 0, "failures": 0, "errors": 0},
+    "total": {"tests": 1497, "skipped": 94, "failures": 0, "errors": 0},
+    "issue68Subset": {"suites": 36, "tests": 303, "skipped": 8, "failures": 0, "errors": 0},
+    "paidEntrypointsSkipped": ["Issue68LiveSmokeTest", "Issue68O0LiveTest", "Issue68ExpandedPilotLiveTest", "Issue68A1N1LiveTest", "Issue68UsageBenchmarkLiveTest", "Issue68UsageBenchmarkRemainderLiveTest"]
+  },
+  "submissionFiles": {"tests": 63, "evidence": 54, "localMonitoring": 4, "rootIgnoreAndCompose": 2, "total": 123},
+  "staticChecks": {
+    "jsonSyntax": "PASS",
+    "evidenceLocalLinks": "PASS",
+    "currentFrozenSourceHashes": {"matched": 77, "result": "PASS"},
+    "liveRawHashes": {"matched": 4, "result": "PASS"},
+    "rawDerivedUsageAndQualityCounts": "PASS",
+    "credentialPatternsAndPrivatePaths": "PASS_NO_MATCH",
+    "composeMainAndIsolatedConfig": "PASS_WITH_ENV_FILE_DEV_NULL",
+    "promtoolMainAndIsolatedConfig": "PASS",
+    "gitDiffCheck": "PASS"
+  },
+  "preservation": {
+    "protectedFilesHashCompared": 2034,
+    "existingRawJsonAndPrivateFilesUnchanged": true,
+    "productionCodeAndDashboardUnchanged": true,
+    "journalSha256": "63a30ae34cbf3b07773c9f257a2107bcbbf7b33d08a85c35550bf300242952a1",
+    "unknownReservationUsd": "0.0192768",
+    "privateJournalIncludedInGit": false,
+    "gateV1": "HOLD_PRESERVED",
+    "gateV2": "HOLD_PRESERVED",
+    "productionBatch": "OFF_UNCHANGED",
+    "a1": "TEST_ONLY_NOT_ADOPTED"
+  },
+  "paidRequestsDuringThisVerification": 0,
+  "apiKeyReadOrUsedDuringThisVerification": false,
+  "limitations": ["CI and latest Head AI Review are recorded separately on the Draft PR", "Historical quality matrix remains incomplete/HOLD", "480 usage observations are repeated synthetic diagnostic20, not blind production quality evidence", "Poll-Batch is an introduction-review candidate only; FN and Critical protection require further validation and Human decision"]
+}

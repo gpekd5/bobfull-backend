@@ -1,0 +1,6865 @@
+{
+  "scope": "FAKE_CONTRACT_REHEARSAL_NOT_MODEL_QUALITY_OR_REAL_USAGE",
+  "contract": {
+    "model": "gpt-4o-mini",
+    "metadataSha256": "a3a424323e5585da1b9a611281ac37174c60c4b946987e541c44ad5981cd40b5",
+    "pollLogicalLimit": 79,
+    "stageOrder": "Native80 -> V2/technical Gate -> Poll80 -> paired Gate; no automatic repeat",
+    "batchSchemaSha256": "6ac8f99e249ceefca8c63302ad1026f51415655d30029c67defc617bd04be924",
+    "nativeLogicalLimit": 79,
+    "totalHttpLimit": 632,
+    "groundTruthSha256": "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+    "orderedInputSha256": "f6c1f9765f1afaf0849387aa541c71b25805ddfb893a50a40d42553880405c97",
+    "newStageBurdenLimitNanoUsd": 100000000,
+    "batchSystemSha256": "5d1fa52b4955d538579b9834eae356745b7f3dd700c2183d8486dc1ed7d0c812",
+    "promptVersion": "moderation-prompt-v3-short-fragment-boundary",
+    "sampling": "provider defaults; no added temperature or seed",
+    "systemSha256": "7540e67d11d342e9b9618204baa8d5868ebfd21a15716a8f41dc5fbcb35249a4",
+    "outputTokensPerItem": 128,
+    "overallBurdenLimitNanoUsd": 500000000,
+    "nativeSchemaSha256": "0a3b3262ad121eb467b2fe00a17d1dd8082a4887268005e8b70e4b14eb33e45f",
+    "policyVersion": "moderation-policy-v2"
+  },
+  "chargedNanoUsd": 33228900,
+  "grossReservedNanoUsd": 1740441600,
+  "stageChargedNanoUsd": 13641000,
+  "stageHttpAttempts": 87,
+  "runs": [
+    {
+      "mode": "native",
+      "actualRequestSizeHistogram": {
+        "1": 79
+      },
+      "logicalRequests": [
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-09"
+          ],
+          "ended": 1159645594372750,
+          "failed": false,
+          "inputEstimate": 1031,
+          "number": 1,
+          "requestSha256": "0906abb2cd0af95974d76b076befc6defe03d99ef5f254f32fc191cdcb8b44fc",
+          "started": 1159645579221666
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-12"
+          ],
+          "ended": 1159645622718750,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 2,
+          "requestSha256": "73bf9179e960ec53cb522ca8a89e798e0e45635f568eaf95d95cb6b9c1ff5670",
+          "started": 1159645610852666
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-10"
+          ],
+          "ended": 1159645641668375,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 3,
+          "requestSha256": "6893aa5a5f0a19d57c0338eb9f72cf20ee4e9e3796bbe132a19411cf20a8302d",
+          "started": 1159645629519541
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-16"
+          ],
+          "ended": 1159645657683583,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 4,
+          "requestSha256": "0ccb52b0264540f71bc6d597f530914bb206cb0dac14367a0ae3612333ee1f7a",
+          "started": 1159645647211833
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-20"
+          ],
+          "ended": 1159645676890875,
+          "failed": false,
+          "inputEstimate": 1020,
+          "number": 5,
+          "requestSha256": "3bda84d350fbf0ebc385bff84f3b43318e499317538f8d21ed0cc00bc46676e8",
+          "started": 1159645665382708
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-16"
+          ],
+          "ended": 1159645702628250,
+          "failed": false,
+          "inputEstimate": 1032,
+          "number": 6,
+          "requestSha256": "7a42a6b3664dd7cc27d6a4191d889f70aa56f6bead1f2a5564601d7d58f678fa",
+          "started": 1159645682633958
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-13"
+          ],
+          "ended": 1159645718581958,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 7,
+          "requestSha256": "63d605ac39a18f5ff983cd278aac77df1230d896f4ba69445d4b4b32d13a9d6f",
+          "started": 1159645708299833
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-11"
+          ],
+          "ended": 1159645732517166,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 8,
+          "requestSha256": "65af193946ec9d47dbe6774b5c49b22cc9b273f6d8c2809ed0f4ff441dc4d62e",
+          "started": 1159645724140208
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-06"
+          ],
+          "ended": 1159645747543875,
+          "failed": false,
+          "inputEstimate": 1020,
+          "number": 9,
+          "requestSha256": "a5368f3eeb7a656e6a72e5f99815e4b860104d615b737e4724fe22e853994265",
+          "started": 1159645738049083
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-03"
+          ],
+          "ended": 1159645762469916,
+          "failed": false,
+          "inputEstimate": 1024,
+          "number": 10,
+          "requestSha256": "2569255dec0f3a976ff8f2b28aaf2d7d55fc1c06e7c478786c9c43b1c84824d0",
+          "started": 1159645752957541
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-05"
+          ],
+          "ended": 1159645777488333,
+          "failed": false,
+          "inputEstimate": 1024,
+          "number": 11,
+          "requestSha256": "e3f9c67295b4b8a97d470eb777e3212bade687017185ee80b77fa0f382fc24ea",
+          "started": 1159645768035625
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-01"
+          ],
+          "ended": 1159645791528541,
+          "failed": false,
+          "inputEstimate": 1024,
+          "number": 12,
+          "requestSha256": "88f2c1c0cfb1b850da5f1c6671501fd99e319a1f51e4cf8e1dcf0e2dd9b56324",
+          "started": 1159645782668125
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-04"
+          ],
+          "ended": 1159645806553875,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 13,
+          "requestSha256": "95ebc2b2254db84ffa0af063a694dce986c3c4d11058294637a755a5007d8492",
+          "started": 1159645797272541
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-07"
+          ],
+          "ended": 1159645822560291,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 14,
+          "requestSha256": "8ceb2b7b218657f97744c58b44b45f1d7436d6d3234f8165a864fd739d041aba",
+          "started": 1159645812831833
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-12"
+          ],
+          "ended": 1159645839946250,
+          "failed": false,
+          "inputEstimate": 1026,
+          "number": 15,
+          "requestSha256": "02369d0d92f43114c9d534338e9fe59392b44bdbf8fe671fbc193f74a31d0b12",
+          "started": 1159645828152666
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-14"
+          ],
+          "ended": 1159645856535791,
+          "failed": false,
+          "inputEstimate": 1031,
+          "number": 16,
+          "requestSha256": "6cc7af82c1574f6d8d03e988d4341d3e6b1ab47dbbbbe814421ed1587dc63b72",
+          "started": 1159645845666125
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-01"
+          ],
+          "ended": 1159645870512625,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 17,
+          "requestSha256": "06a4876738dc59248e5276ec83b327b45a04d9275bf3e01bd4bfa68fc58da29a",
+          "started": 1159645861869041
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-08"
+          ],
+          "ended": 1159645884471208,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 18,
+          "requestSha256": "9bd87713a05e97d6f052e99583a1e539cf0da73daf24069698761ce9e5b9296b",
+          "started": 1159645875902125
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-02"
+          ],
+          "ended": 1159645901542125,
+          "failed": false,
+          "inputEstimate": 1014,
+          "number": 19,
+          "requestSha256": "41a9a0c66a9d22c0316a170f41772effde0e26554a6de8ec2b9a640d9dc3bb19",
+          "started": 1159645890978583
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-18"
+          ],
+          "ended": 1159645920702541,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 20,
+          "requestSha256": "fce1cf89a43711f1b6296f32c13c20bc384af3a09d3a8cb1fc4b4ce5d6f2cc28",
+          "started": 1159645909076083
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-02"
+          ],
+          "ended": 1159645939743125,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 21,
+          "requestSha256": "e6e3ac7819cf9b6b12d608dbceeddc6fe09ad2e009f63b69e806252b73cca2bf",
+          "started": 1159645927481333
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-11"
+          ],
+          "ended": 1159645955619625,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 22,
+          "requestSha256": "242c172fc8a4e51d9b37d5a169a3d47ed62621f719d5673300d76cb5b465b4dd",
+          "started": 1159645945313875
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-03"
+          ],
+          "ended": 1159645972600458,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 23,
+          "requestSha256": "76558a7cb4260e208a2f0eb23e1f8c8cc4706863ee624df480e8f34f7a414c8f",
+          "started": 1159645961885583
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-07"
+          ],
+          "ended": 1159645987670625,
+          "failed": false,
+          "inputEstimate": 1019,
+          "number": 24,
+          "requestSha256": "50f8381cb78ec2cd5f087a1b4ad67a8cd1606f30e6aa4085b5adaee0454d68cb",
+          "started": 1159645978017833
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-12"
+          ],
+          "ended": 1159646003790041,
+          "failed": false,
+          "inputEstimate": 1025,
+          "number": 25,
+          "requestSha256": "a3ab8411703213771026df297265c7cd942e600626c2ffa75cc7e6ae811f49dc",
+          "started": 1159645992940666
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-15"
+          ],
+          "ended": 1159646019732000,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 26,
+          "requestSha256": "5a31388eab491693e171c9224130832f117a32e58bf1ab64bade3d1a0a837bca",
+          "started": 1159646009569250
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-11"
+          ],
+          "ended": 1159646034620500,
+          "failed": false,
+          "inputEstimate": 1019,
+          "number": 27,
+          "requestSha256": "787e1216fbfc370b5882d6bd84ef7bcf711d7f5e61c64c0834ddcdde64539c31",
+          "started": 1159646024957333
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-04"
+          ],
+          "ended": 1159646050591208,
+          "failed": false,
+          "inputEstimate": 1015,
+          "number": 28,
+          "requestSha256": "caea172a57278da63337fbb741fae328b5ee9d1ac3803190a3909cb2b3aa941f",
+          "started": 1159646040339625
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-13"
+          ],
+          "ended": 1159646066627666,
+          "failed": false,
+          "inputEstimate": 1025,
+          "number": 29,
+          "requestSha256": "be69e89601f64be3ce7eee0a22c6d775d9ce4c7f275e2f4dd6e9aa04e81886b6",
+          "started": 1159646056137250
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-02"
+          ],
+          "ended": 1159646081558708,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 30,
+          "requestSha256": "769c4fcdb58fcb606c394912e34c31330da983207f1947810e1c34deead337c7",
+          "started": 1159646072045333
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-19"
+          ],
+          "ended": 1159646097578375,
+          "failed": false,
+          "inputEstimate": 1020,
+          "number": 31,
+          "requestSha256": "334756608aee743b8198085b6182c0ca0aaf92f4af29060ddbc39c8cd8ba7251",
+          "started": 1159646087667791
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-03"
+          ],
+          "ended": 1159646112504041,
+          "failed": false,
+          "inputEstimate": 1018,
+          "number": 32,
+          "requestSha256": "02a1fdb7aa704e2af2443e68939cf4f5762efcfdf925cf53e7a35a808fdfcba1",
+          "started": 1159646102804208
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-01"
+          ],
+          "ended": 1159646127708208,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 33,
+          "requestSha256": "78f86e17b4d7481ba5cf3466587a2ccebd62ebd26a0f0b4c76f63be38a1a001c",
+          "started": 1159646117694166
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-14"
+          ],
+          "ended": 1159646145630833,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 34,
+          "requestSha256": "bc2d93addf83291865cedb3890c8f86592fae02d2190f5cb0b55be97df12c5d3",
+          "started": 1159646133099208
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-03"
+          ],
+          "ended": 1159646161607541,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 35,
+          "requestSha256": "7cf6b7dc609c8f82ebd1d401fa88cafa90629d4e9671d721fd7a24945157d557",
+          "started": 1159646151019708
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-12"
+          ],
+          "ended": 1159646175732708,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 36,
+          "requestSha256": "7e3ea4274c5a333fcf6176d6e787a4de06243f1d6a2b68587c08dcd3612a3e4f",
+          "started": 1159646166695791
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-16"
+          ],
+          "ended": 1159646189739958,
+          "failed": false,
+          "inputEstimate": 1024,
+          "number": 37,
+          "requestSha256": "e432a50dc59f3e54b4b05752053890b6669182cfc35cf1f5990c10241db9b85d",
+          "started": 1159646180634083
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-18"
+          ],
+          "ended": 1159646204617916,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 38,
+          "requestSha256": "4e64da27fbeef0bb6048546fa4fe114c8a263051b3a1846585daae9f199263e7",
+          "started": 1159646195268125
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-08"
+          ],
+          "ended": 1159646219688958,
+          "failed": false,
+          "inputEstimate": 1028,
+          "number": 39,
+          "requestSha256": "7f19987aa80f9b15bda9dfa186bd173396a12c113116401499c3e5f645651470",
+          "started": 1159646210578416
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-14"
+          ],
+          "ended": 1159646235669916,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 40,
+          "requestSha256": "99b026cdeca38d5342be9cc10e15cee8ed1fedf14c0aa7622f5d1eb4ab8aa1b6",
+          "started": 1159646225253125
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-16"
+          ],
+          "ended": 1159646250658625,
+          "failed": false,
+          "inputEstimate": 1019,
+          "number": 41,
+          "requestSha256": "c7ef63f3ee6e37d377660dcba8c526dae5105cb75baf280716f5aa79db95b8ef",
+          "started": 1159646240775666
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-06"
+          ],
+          "ended": 1159646265550916,
+          "failed": false,
+          "inputEstimate": 1017,
+          "number": 42,
+          "requestSha256": "76c7765b936352d5a1a427bd5297c7ed8fbc1a26e41de65defb98f89fc1182a1",
+          "started": 1159646256012083
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-17"
+          ],
+          "ended": 1159646280479416,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 43,
+          "requestSha256": "208d13e341ea645cd318ba25535b3346ac8bbdfb7a13a8d0d8f3c68fa7f799ac",
+          "started": 1159646270415208
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-15"
+          ],
+          "ended": 1159646295581291,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 44,
+          "requestSha256": "a8d5b9981ffb24c0fd9128d345135d7d39b352087c57453e0c6b21ace6765b98",
+          "started": 1159646285385000
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-20"
+          ],
+          "ended": 1159646311653291,
+          "failed": false,
+          "inputEstimate": 1027,
+          "number": 45,
+          "requestSha256": "cfd83bc51e9a8d18a3e1916bd3b0ad2db9ca528eef42bdcca2945c2e7f74314c",
+          "started": 1159646300982583
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-20"
+          ],
+          "ended": 1159646326695041,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 46,
+          "requestSha256": "21df9e748d07dd8e521b649567f137b862214be123cd82bab0d7e7c24ae6545a",
+          "started": 1159646316866041
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-19"
+          ],
+          "ended": 1159646341485500,
+          "failed": false,
+          "inputEstimate": 1033,
+          "number": 47,
+          "requestSha256": "81542cfaf7eb52648824cf691342a822e3beeeeb6f42f6d3e383dea18b3ad3ad",
+          "started": 1159646331643541
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-05"
+          ],
+          "ended": 1159646356820708,
+          "failed": false,
+          "inputEstimate": 1017,
+          "number": 48,
+          "requestSha256": "70ed327d29266757ddb3377622a8267566062003b4d22ac2bc18766d490d5836",
+          "started": 1159646346277583
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-09"
+          ],
+          "ended": 1159646371565333,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 49,
+          "requestSha256": "01a60df0f8ca7dbeb2e19c202c936f05f9749dd6dbabf59cf6173b2f688e26a4",
+          "started": 1159646361792958
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-08"
+          ],
+          "ended": 1159646385523375,
+          "failed": false,
+          "inputEstimate": 1019,
+          "number": 50,
+          "requestSha256": "d526c4661a47b4663de9dd789ec321a85ebe4729fb62df63b6b36e5e0cee4bf7",
+          "started": 1159646376194416
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-17"
+          ],
+          "ended": 1159646400539208,
+          "failed": false,
+          "inputEstimate": 1033,
+          "number": 51,
+          "requestSha256": "25a42bd8fa1d4fb714fa874e6b55aaa35db7a6486f49f34d0cfa4cda1d3ddbc6",
+          "started": 1159646391409583
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-19"
+          ],
+          "ended": 1159646417707208,
+          "failed": false,
+          "inputEstimate": 1018,
+          "number": 52,
+          "requestSha256": "3a0304190aab7921c0c8cf8d1ad0c022d5f9a6c77eb000c50ae5609ec727f104",
+          "started": 1159646405775666
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-07"
+          ],
+          "ended": 1159646433650750,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 53,
+          "requestSha256": "236c2bf3d2e600e20c290070561efe47cdf70f530774fc09a48948d2ac6fd802",
+          "started": 1159646423545291
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-06"
+          ],
+          "ended": 1159646450640416,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 54,
+          "requestSha256": "d4da4648c5b39c9bdc4f5241d1fc0bf135fbd4066817130c87f9b2ca801cdf66",
+          "started": 1159646440182000
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-04"
+          ],
+          "ended": 1159646468621291,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 55,
+          "requestSha256": "fd4e73ae72ed7994b22abb777487790d654d7e3174a04ea98b77223975835edb",
+          "started": 1159646457285041
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-05"
+          ],
+          "ended": 1159646488666250,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 56,
+          "requestSha256": "c3d03cb96f26f96d683d7af6f4e26e78b1b9fe2b3692b751d5bb33dee9f45db1",
+          "started": 1159646479395791
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-13"
+          ],
+          "ended": 1159646504626750,
+          "failed": false,
+          "inputEstimate": 1024,
+          "number": 57,
+          "requestSha256": "b9088359baa7f743f1869c9b506ebd4e3a730fcf35c0565e8f08838046e3a15d",
+          "started": 1159646495362625
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-17"
+          ],
+          "ended": 1159646519597583,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 58,
+          "requestSha256": "77cfa0cd9c41fa9a82b250490585042f3f73fd459879f48cf08a73ff166f5087",
+          "started": 1159646509855416
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-05"
+          ],
+          "ended": 1159646534620625,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 59,
+          "requestSha256": "4b77ad2058f33a561470aad377f60b1690f3d96f61bb9be5ba56dbe4e0344efb",
+          "started": 1159646525226083
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-14"
+          ],
+          "ended": 1159646551307541,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 60,
+          "requestSha256": "48cc5d660b716508ded1849b2f9a1e65965624ec7895036e003d4a1f8ed630b5",
+          "started": 1159646540652875
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-17"
+          ],
+          "ended": 1159646566602458,
+          "failed": false,
+          "inputEstimate": 1026,
+          "number": 61,
+          "requestSha256": "ae3faf35a1a65c7db58a7d2507d83f534383d672725ccae6f1c4bbd53e11420b",
+          "started": 1159646557251958
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-09"
+          ],
+          "ended": 1159646580542333,
+          "failed": false,
+          "inputEstimate": 1026,
+          "number": 62,
+          "requestSha256": "7187811f0b3846b0528c59f1a9c03c853f496fdf9ecaaa053d36fa051a783378",
+          "started": 1159646571732083
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-07"
+          ],
+          "ended": 1159646594499750,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 63,
+          "requestSha256": "4c973ed3e44659da21d1e442cda679740dd99964081c839f8a98fa23d6119ba6",
+          "started": 1159646585864375
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-02"
+          ],
+          "ended": 1159646609575000,
+          "failed": false,
+          "inputEstimate": 1025,
+          "number": 64,
+          "requestSha256": "14f7d07af9101ad5eb63d4c0cd91870b13a3b0bd403981a19d72b5ece3a2ffb6",
+          "started": 1159646599967916
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-15"
+          ],
+          "ended": 1159646623530750,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 65,
+          "requestSha256": "0a8e06e4c55980cd8fc6ae1a8c1752197e4e372afc39b1256bb3aaa4fe667cc0",
+          "started": 1159646614517250
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-15"
+          ],
+          "ended": 1159646636455208,
+          "failed": false,
+          "inputEstimate": 1031,
+          "number": 66,
+          "requestSha256": "42e6f602d730e5657f836ed1d4d731a18e0dabde122cb923bcd8dee2246e4ef0",
+          "started": 1159646628950750
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-10"
+          ],
+          "ended": 1159646652704375,
+          "failed": false,
+          "inputEstimate": 1016,
+          "number": 67,
+          "requestSha256": "4a838bfbba6b0b865df786071961eda6ead911f1fe1c539f9b1fc5d55c0bf755",
+          "started": 1159646642278625
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-20"
+          ],
+          "ended": 1159646668637041,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 68,
+          "requestSha256": "1994dee61d6a61f232ff679ed30118ab422e9bca02c9dc3c58f28468dc449aa0",
+          "started": 1159646657910791
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-11"
+          ],
+          "ended": 1159646685654958,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 69,
+          "requestSha256": "cb11b9be84a787625ff9f7060b397fb8455a764432f75b73fc6a7644e48e6fdb",
+          "started": 1159646675134375
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-10"
+          ],
+          "ended": 1159646702730541,
+          "failed": false,
+          "inputEstimate": 1023,
+          "number": 70,
+          "requestSha256": "0cd73a70718904241826773cd45fbf7199620508581d34c8850ae4b5e21a87c7",
+          "started": 1159646692405166
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-04"
+          ],
+          "ended": 1159646721643708,
+          "failed": false,
+          "inputEstimate": 1028,
+          "number": 71,
+          "requestSha256": "4591c48f119ca6b8f6d689f6f2b18ff8a3a7e129029bbe324958ea8b81ada3a2",
+          "started": 1159646709406541
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-18"
+          ],
+          "ended": 1159646737660416,
+          "failed": false,
+          "inputEstimate": 1026,
+          "number": 72,
+          "requestSha256": "11f4621e67092861920f95682017f11bd973f9e315534c0eca574ff0da2d6bff",
+          "started": 1159646726997708
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-13"
+          ],
+          "ended": 1159646753597458,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 73,
+          "requestSha256": "b682f4fd64e3a1ae6dc734ce23af1a400b53f5e19dd1d582df97359ed3958905",
+          "started": 1159646743992375
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-19"
+          ],
+          "ended": 1159646767619958,
+          "failed": false,
+          "inputEstimate": 1021,
+          "number": 74,
+          "requestSha256": "90d7428274922b46becf1f1229dda24866e2451425617cb2ada5bc1800646f44",
+          "started": 1159646759014958
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-18"
+          ],
+          "ended": 1159646781456625,
+          "failed": false,
+          "inputEstimate": 1022,
+          "number": 75,
+          "requestSha256": "5801d6b420dec3bb7e0ac00ebde977113a435341d61ab88ad22fcf3cc708abb7",
+          "started": 1159646772643458
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-09"
+          ],
+          "ended": 1159646795655750,
+          "failed": false,
+          "inputEstimate": 1017,
+          "number": 76,
+          "requestSha256": "735d35bb25b61fdde8cc99deab6b4aa389faa5ccefc47ca806bc7816867fe3ca",
+          "started": 1159646786380166
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-08"
+          ],
+          "ended": 1159646810572666,
+          "failed": false,
+          "inputEstimate": 1027,
+          "number": 77,
+          "requestSha256": "ddecb8d02f46e027cb8149ac774230c694a018d46cfdb24d27301d9ca120ea37",
+          "started": 1159646801560708
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SPAM-06"
+          ],
+          "ended": 1159646826559666,
+          "failed": false,
+          "inputEstimate": 1020,
+          "number": 78,
+          "requestSha256": "f6cf8b5ea8af167308b241879aa6d3cdd4b2c32a46ae5073a5dd81c40f84ed48",
+          "started": 1159646817280375
+        },
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-PI-10"
+          ],
+          "ended": 1159646840627833,
+          "failed": false,
+          "inputEstimate": 1025,
+          "number": 79,
+          "requestSha256": "9d31b50eb37c9a80d6517bc0417c0e5de52c51d7dd234c293d00ed31e9375bb0",
+          "started": 1159646832555666
+        }
+      ],
+      "httpAttempts": [
+        {
+          "number": 4,
+          "logical": 1,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3068125,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 5,
+          "logical": 2,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 5002750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 6,
+          "logical": 3,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3912709,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 7,
+          "logical": 4,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3985416,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 8,
+          "logical": 5,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3982042,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 9,
+          "logical": 6,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3994875,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 10,
+          "logical": 7,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4006042,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 11,
+          "logical": 8,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2864500,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 12,
+          "logical": 9,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3058833,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 13,
+          "logical": 10,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3968416,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 14,
+          "logical": 11,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3908625,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 15,
+          "logical": 12,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3877375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 16,
+          "logical": 13,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3864542,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 17,
+          "logical": 14,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3851666,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 18,
+          "logical": 15,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 5897500,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 19,
+          "logical": 16,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3989125,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 20,
+          "logical": 17,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3812542,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 21,
+          "logical": 18,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3855791,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 22,
+          "logical": 19,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3984375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 23,
+          "logical": 20,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3029541,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 24,
+          "logical": 21,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 6046042,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 25,
+          "logical": 22,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3986667,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 26,
+          "logical": 23,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3975083,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 27,
+          "logical": 24,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3897375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 28,
+          "logical": 25,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4058000,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 29,
+          "logical": 26,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3986792,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 30,
+          "logical": 27,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3988625,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 31,
+          "logical": 28,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3985125,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 32,
+          "logical": 29,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4000375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 33,
+          "logical": 30,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3981917,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 34,
+          "logical": 31,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3977500,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 35,
+          "logical": 32,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3965416,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 36,
+          "logical": 33,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4029542,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 37,
+          "logical": 34,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3988167,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 38,
+          "logical": 35,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3907750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 39,
+          "logical": 36,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3149292,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 40,
+          "logical": 37,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3009583,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 41,
+          "logical": 38,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3982750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 42,
+          "logical": 39,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3970458,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 43,
+          "logical": 40,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3985166,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 44,
+          "logical": 41,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3945375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 45,
+          "logical": 42,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4006041,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 46,
+          "logical": 43,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3996834,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 47,
+          "logical": 44,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4028416,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 48,
+          "logical": 45,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4021458,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 49,
+          "logical": 46,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3938083,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 50,
+          "logical": 47,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3961542,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 51,
+          "logical": 48,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4120375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 52,
+          "logical": 49,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3928291,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 53,
+          "logical": 50,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3993833,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 54,
+          "logical": 51,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3874625,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 55,
+          "logical": 52,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 6004500,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 56,
+          "logical": 53,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3980750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 57,
+          "logical": 54,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3986916,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 58,
+          "logical": 55,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4938334,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 59,
+          "logical": 56,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3000375,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 60,
+          "logical": 57,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2995083,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 61,
+          "logical": 58,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3962625,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 62,
+          "logical": 59,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2978500,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 63,
+          "logical": 60,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2954167,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 64,
+          "logical": 61,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3003083,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 65,
+          "logical": 62,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3014958,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 66,
+          "logical": 63,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3006875,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 67,
+          "logical": 64,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3762292,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 68,
+          "logical": 65,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3036208,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 69,
+          "logical": 66,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2919750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 70,
+          "logical": 67,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4012417,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 71,
+          "logical": 68,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3993250,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 72,
+          "logical": 69,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3943125,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 73,
+          "logical": 70,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4007625,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 74,
+          "logical": 71,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 6055250,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 75,
+          "logical": 72,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3961750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 76,
+          "logical": 73,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4012083,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 77,
+          "logical": 74,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4081250,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 78,
+          "logical": 75,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3963083,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 79,
+          "logical": 76,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4038250,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 80,
+          "logical": 77,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4010750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 81,
+          "logical": 78,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 3932125,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 82,
+          "logical": 79,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 2877750,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        }
+      ],
+      "sdkUsage": [
+        {
+          "logical": 1,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 2,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 3,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 4,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 5,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 6,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 7,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 8,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 9,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 10,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 11,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 12,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 13,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 14,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 15,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 16,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 17,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 18,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 19,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 20,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 21,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 22,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 23,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 24,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 25,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 26,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 27,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 28,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 29,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 30,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 31,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 32,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 33,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 34,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 35,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 36,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 37,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 38,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 39,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 40,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 41,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 42,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 43,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 44,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 45,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 46,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 47,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 48,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 49,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 50,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 51,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 52,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 53,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 54,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 55,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 56,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 57,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 58,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 59,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 60,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 61,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 62,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 63,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 64,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 65,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 66,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 67,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 68,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 69,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 70,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 71,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 72,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 73,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 74,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 75,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 76,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 77,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 78,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 79,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          }
+        }
+      ],
+      "result": {
+        "samples": [
+          {
+            "caseId": "HOLDOUT-PI-09",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 0,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645601589916,
+            "returnedNs": 1159645601862250,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-04",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 0,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159646052970083,
+            "returnedNs": 1159646053002541,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-04",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 0,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646470902625,
+            "returnedNs": 1159646470935833,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-12",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 1,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645625780916,
+            "returnedNs": 1159645625837333,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-13",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 1,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159646068823166,
+            "returnedNs": 1159646068853541,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-01",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 1,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646476153750,
+            "returnedNs": 1159646476184875,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-10",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 2,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645643759333,
+            "returnedNs": 1159645643805708,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-02",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 2,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159646084137000,
+            "returnedNs": 1159646084169291,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-05",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 2,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646491208083,
+            "returnedNs": 1159646491242041,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-16",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 3,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645660869541,
+            "returnedNs": 1159645660929166,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 3,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646099577625,
+            "returnedNs": 1159646099606916,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-13",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 3,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646506523708,
+            "returnedNs": 1159646506553500,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 4,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645679037208,
+            "returnedNs": 1159645679090541,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-03",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 4,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646114403625,
+            "returnedNs": 1159646114428875,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 4,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646521989375,
+            "returnedNs": 1159646522026208,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-16",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 5,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645704856875,
+            "returnedNs": 1159645704886541,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-01",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 5,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646129828750,
+            "returnedNs": 1159646129858666,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-05",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 5,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646536721333,
+            "returnedNs": 1159646536753625,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-13",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 6,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645720890916,
+            "returnedNs": 1159645720922291,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-14",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 6,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646147905666,
+            "returnedNs": 1159646147937708,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-14",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 6,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646553842666,
+            "returnedNs": 1159646553876416,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-11",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 7,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645734680916,
+            "returnedNs": 1159645734708875,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-03",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 7,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646163590041,
+            "returnedNs": 1159646163615958,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 7,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646568531125,
+            "returnedNs": 1159646568559583,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-06",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 8,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645749813666,
+            "returnedNs": 1159645749852291,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-12",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 8,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646177693833,
+            "returnedNs": 1159646177725375,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-09",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 8,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646582468166,
+            "returnedNs": 1159646582500875,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-03",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 9,
+            "receivedNs": 1159645575179541,
+            "committedNs": 1159645764734875,
+            "returnedNs": 1159645764762208,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-16",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 9,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646192003458,
+            "returnedNs": 1159646192041208,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-07",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 9,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646596600208,
+            "returnedNs": 1159646596640833,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-05",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 10,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645779720166,
+            "returnedNs": 1159645779744791,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 10,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646206704750,
+            "returnedNs": 1159646206735666,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-02",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 10,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646611608208,
+            "returnedNs": 1159646611641000,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-01",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 11,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645794086041,
+            "returnedNs": 1159645794115916,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-08",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 11,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646221696875,
+            "returnedNs": 1159646221730125,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-15",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 11,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646625984000,
+            "returnedNs": 1159646626017833,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-04",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 12,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645809104875,
+            "returnedNs": 1159645809140958,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-14",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 12,
+            "receivedNs": 1159646085789958,
+            "committedNs": 1159646237662416,
+            "returnedNs": 1159646237689875,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-15",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 12,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646638894833,
+            "returnedNs": 1159646638932750,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-07",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 13,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645824593791,
+            "returnedNs": 1159645824623708,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-16",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 13,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646252854583,
+            "returnedNs": 1159646252885250,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-10",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 13,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646654863375,
+            "returnedNs": 1159646654892750,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-12",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 14,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645842550916,
+            "returnedNs": 1159645842581458,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-06",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 14,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646267394583,
+            "returnedNs": 1159646267423458,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 14,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646670864708,
+            "returnedNs": 1159646670895125,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-14",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 15,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645858748666,
+            "returnedNs": 1159645858781250,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 15,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646282331416,
+            "returnedNs": 1159646282356375,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-11",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 15,
+            "receivedNs": 1159646538354375,
+            "committedNs": 1159646688452791,
+            "returnedNs": 1159646688489875,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-01",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 16,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645872621333,
+            "returnedNs": 1159645872646125,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-15",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 16,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646298029125,
+            "returnedNs": 1159646298054791,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-10",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 16,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646705475708,
+            "returnedNs": 1159646705511875,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-08",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 17,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645886606083,
+            "returnedNs": 1159645886632333,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 17,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646313878458,
+            "returnedNs": 1159646313901458,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-04",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 17,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646723891375,
+            "returnedNs": 1159646723923916,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-02",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 18,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645903824333,
+            "returnedNs": 1159645903857000,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 18,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646328628833,
+            "returnedNs": 1159646328656375,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 18,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646740483125,
+            "returnedNs": 1159646740512833,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 19,
+            "receivedNs": 1159645766240375,
+            "committedNs": 1159645922615250,
+            "returnedNs": 1159645922644208,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 19,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646343372166,
+            "returnedNs": 1159646343399500,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-13",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 19,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646755552291,
+            "returnedNs": 1159646755585375,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-02",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 20,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159645941679416,
+            "returnedNs": 1159645941711083,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-05",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 20,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646358734416,
+            "returnedNs": 1159646358757166,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 20,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646769481958,
+            "returnedNs": 1159646769513458,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-11",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 21,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159645957783041,
+            "returnedNs": 1159645957818333,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-09",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 21,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646373457375,
+            "returnedNs": 1159646373474541,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 21,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646783268833,
+            "returnedNs": 1159646783309458,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-03",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 22,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159645974886416,
+            "returnedNs": 1159645974918875,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-08",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 22,
+            "receivedNs": 1159646238927625,
+            "committedNs": 1159646387727208,
+            "returnedNs": 1159646387754291,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-09",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 22,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646797904500,
+            "returnedNs": 1159646797933625,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-07",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 23,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159645989740000,
+            "returnedNs": 1159645989771208,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 23,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646402562750,
+            "returnedNs": 1159646402593958,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-08",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 23,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646813948250,
+            "returnedNs": 1159646813983458,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-12",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 24,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159646005983958,
+            "returnedNs": 1159646006013125,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 24,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646419633500,
+            "returnedNs": 1159646419665500,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-06",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 24,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646829342750,
+            "returnedNs": 1159646829371958,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-15",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 25,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159646021842875,
+            "returnedNs": 1159646021875583,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-07",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 25,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646436476666,
+            "returnedNs": 1159646436515416,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PI-10",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 25,
+            "receivedNs": 1159646690185083,
+            "committedNs": 1159646843010000,
+            "returnedNs": 1159646843039708,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-11",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 26,
+            "receivedNs": 1159645925175416,
+            "committedNs": 1159646036728833,
+            "returnedNs": 1159646036758958,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-06",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 26,
+            "receivedNs": 1159646389542708,
+            "committedNs": 1159646452937750,
+            "returnedNs": 1159646452978583,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920
+          }
+        ],
+        "polls": [
+          [
+            "HOLDOUT-PI-09",
+            "HOLDOUT-SPAM-12",
+            "HOLDOUT-SAFE-10",
+            "HOLDOUT-SPAM-16",
+            "HOLDOUT-PI-20",
+            "HOLDOUT-PI-16",
+            "HOLDOUT-PI-13",
+            "HOLDOUT-SPAM-11",
+            "HOLDOUT-PI-06",
+            "HOLDOUT-PI-03"
+          ],
+          [
+            "HOLDOUT-PI-05",
+            "HOLDOUT-SAFE-01",
+            "HOLDOUT-SPAM-04",
+            "HOLDOUT-SAFE-07",
+            "HOLDOUT-SAFE-12",
+            "HOLDOUT-PI-14",
+            "HOLDOUT-PROFANITY-01",
+            "HOLDOUT-SPAM-08",
+            "HOLDOUT-PROFANITY-02",
+            "HOLDOUT-PROFANITY-18"
+          ],
+          [
+            "HOLDOUT-SAFE-02",
+            "HOLDOUT-SAFE-11",
+            "HOLDOUT-SPAM-03",
+            "HOLDOUT-PROFANITY-07",
+            "HOLDOUT-PI-12",
+            "HOLDOUT-SPAM-15",
+            "HOLDOUT-PROFANITY-11",
+            "HOLDOUT-PROFANITY-04",
+            "HOLDOUT-SPAM-13",
+            "HOLDOUT-PI-02"
+          ],
+          [
+            "HOLDOUT-PI-19",
+            "HOLDOUT-PROFANITY-03",
+            "HOLDOUT-SPAM-01",
+            "HOLDOUT-SPAM-14",
+            "HOLDOUT-SAFE-03",
+            "HOLDOUT-PROFANITY-12",
+            "HOLDOUT-SAFE-16",
+            "HOLDOUT-PI-18",
+            "HOLDOUT-SAFE-08",
+            "HOLDOUT-SAFE-14"
+          ],
+          [
+            "HOLDOUT-PROFANITY-16",
+            "HOLDOUT-PROFANITY-06",
+            "HOLDOUT-SAFE-17",
+            "HOLDOUT-SAFE-15",
+            "HOLDOUT-SPAM-20",
+            "HOLDOUT-SAFE-20",
+            "HOLDOUT-SPAM-19",
+            "HOLDOUT-PROFANITY-05",
+            "HOLDOUT-SPAM-09",
+            "HOLDOUT-PROFANITY-08"
+          ],
+          [
+            "HOLDOUT-PI-17",
+            "HOLDOUT-SAFE-19",
+            "HOLDOUT-SPAM-07",
+            "HOLDOUT-SAFE-06",
+            "HOLDOUT-SAFE-04",
+            "HOLDOUT-PI-01",
+            "HOLDOUT-SPAM-05",
+            "HOLDOUT-SAFE-13",
+            "HOLDOUT-PROFANITY-17",
+            "HOLDOUT-SAFE-05"
+          ],
+          [
+            "HOLDOUT-PROFANITY-14",
+            "HOLDOUT-SPAM-17",
+            "HOLDOUT-SAFE-09",
+            "HOLDOUT-PI-07",
+            "HOLDOUT-SPAM-02",
+            "HOLDOUT-PROFANITY-15",
+            "HOLDOUT-PI-15",
+            "HOLDOUT-PROFANITY-10",
+            "HOLDOUT-PROFANITY-20",
+            "HOLDOUT-PI-11"
+          ],
+          [
+            "HOLDOUT-SPAM-10",
+            "HOLDOUT-PI-04",
+            "HOLDOUT-SPAM-18",
+            "HOLDOUT-PROFANITY-13",
+            "HOLDOUT-PROFANITY-19",
+            "HOLDOUT-SAFE-18",
+            "HOLDOUT-PROFANITY-09",
+            "HOLDOUT-PI-08",
+            "HOLDOUT-SPAM-06",
+            "HOLDOUT-PI-10"
+          ]
+        ],
+        "lag": [
+          {
+            "elapsedNs": 400085625,
+            "value": 17
+          },
+          {
+            "elapsedNs": 541517792,
+            "value": 20
+          },
+          {
+            "elapsedNs": 600578667,
+            "value": 80
+          },
+          {
+            "elapsedNs": 704987000,
+            "value": 78
+          },
+          {
+            "elapsedNs": 803896250,
+            "value": 72
+          },
+          {
+            "elapsedNs": 900907459,
+            "value": 66
+          },
+          {
+            "elapsedNs": 1000798709,
+            "value": 60
+          },
+          {
+            "elapsedNs": 1104481917,
+            "value": 53
+          },
+          {
+            "elapsedNs": 1201940042,
+            "value": 47
+          },
+          {
+            "elapsedNs": 1303901792,
+            "value": 41
+          },
+          {
+            "elapsedNs": 1401099959,
+            "value": 34
+          },
+          {
+            "elapsedNs": 1501296709,
+            "value": 28
+          },
+          {
+            "elapsedNs": 1604984792,
+            "value": 20
+          },
+          {
+            "elapsedNs": 1704119292,
+            "value": 14
+          },
+          {
+            "elapsedNs": 1804495209,
+            "value": 8
+          },
+          {
+            "elapsedNs": 1904916375,
+            "value": 1
+          },
+          {
+            "elapsedNs": 2003548500,
+            "value": 0
+          },
+          {
+            "elapsedNs": 2049068125,
+            "value": 0
+          }
+        ],
+        "finalLag": 0,
+        "finalRows": 80,
+        "unsafeCommits": 0,
+        "saveFailures": 0,
+        "transactionViolations": 0,
+        "dltRecords": 0,
+        "latencyMs": {
+          "publishAckToCommitP95": 1269.677208,
+          "receivedToCommitP95": 156.374875,
+          "receivedToCommitP50": 86.611042,
+          "publishAckToCommitP50": 749.848708
+        },
+        "offsetCommitObservations": 80
+      },
+      "v1Quality": {
+        "cases": 80,
+        "unresolved": 0,
+        "resultExact": 80,
+        "categoryExact": 80,
+        "riskExact": 80,
+        "actionabilityExact": 80,
+        "tp": 42,
+        "fp": 0,
+        "fn": 0,
+        "tn": 38,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "fpIds": [],
+        "fnIds": [],
+        "highMissIds": []
+      },
+      "gateV2BlockerCount": 0,
+      "gateV1BlockerCount": 0
+    },
+    {
+      "mode": "poll",
+      "actualRequestSizeHistogram": {
+        "9": 1,
+        "10": 7
+      },
+      "logicalRequests": [
+        {
+          "batch": true,
+          "cap": 1280,
+          "caseIds": [
+            "HOLDOUT-PI-09",
+            "HOLDOUT-SPAM-12",
+            "HOLDOUT-SAFE-10",
+            "HOLDOUT-SPAM-16",
+            "HOLDOUT-PI-20",
+            "HOLDOUT-PI-16",
+            "HOLDOUT-PI-13",
+            "HOLDOUT-SPAM-11",
+            "HOLDOUT-PI-06",
+            "HOLDOUT-PI-03"
+          ],
+          "ended": 1159647496795416,
+          "failed": false,
+          "inputEstimate": 1414,
+          "number": 1,
+          "requestSha256": "f1c41115c2b0c208497439e5d62c00d0412c97052bf15603aca4e0df2e1f0d79",
+          "started": 1159647485665125
+        },
+        {
+          "batch": true,
+          "cap": 1280,
+          "caseIds": [
+            "HOLDOUT-PI-05",
+            "HOLDOUT-SAFE-01",
+            "HOLDOUT-SPAM-04",
+            "HOLDOUT-SAFE-07",
+            "HOLDOUT-SAFE-12",
+            "HOLDOUT-PI-14",
+            "HOLDOUT-PROFANITY-01",
+            "HOLDOUT-SPAM-08",
+            "HOLDOUT-PROFANITY-02",
+            "HOLDOUT-PROFANITY-18"
+          ],
+          "ended": 1159647538323375,
+          "failed": false,
+          "inputEstimate": 1406,
+          "number": 2,
+          "requestSha256": "5a4dd4891ad3fff84655914f3734df137a9efa6fd5d4dae5b21a5321d802471e",
+          "started": 1159647530327875
+        },
+        {
+          "batch": true,
+          "cap": 1280,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-04",
+            "HOLDOUT-SPAM-13",
+            "HOLDOUT-PI-02",
+            "HOLDOUT-SAFE-02",
+            "HOLDOUT-SAFE-11",
+            "HOLDOUT-SPAM-03",
+            "HOLDOUT-PROFANITY-07",
+            "HOLDOUT-PI-12",
+            "HOLDOUT-SPAM-15",
+            "HOLDOUT-PROFANITY-11"
+          ],
+          "ended": 1159647588331916,
+          "failed": false,
+          "inputEstimate": 1390,
+          "number": 3,
+          "requestSha256": "22a40475a1b133b3f80780088f8c786747212d6a3491faea5dcdbd171a8c2e7f",
+          "started": 1159647579626833
+        },
+        {
+          "batch": true,
+          "cap": 1280,
+          "caseIds": [
+            "HOLDOUT-PI-19",
+            "HOLDOUT-PROFANITY-03",
+            "HOLDOUT-SPAM-01",
+            "HOLDOUT-SPAM-14",
+            "HOLDOUT-SAFE-03",
+            "HOLDOUT-PROFANITY-12",
+            "HOLDOUT-SAFE-16",
+            "HOLDOUT-PI-18",
+            "HOLDOUT-SAFE-08",
+            "HOLDOUT-SAFE-14"
+          ],
+          "ended": 1159647630298541,
+          "failed": false,
+          "inputEstimate": 1398,
+          "number": 4,
+          "requestSha256": "702ca9867669c19270ec3711548b293296e1248a3d6fa1df7ae27df75817179f",
+          "started": 1159647620640083
+        },
+        {
+          "batch": true,
+          "cap": 1280,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-16",
+            "HOLDOUT-PROFANITY-06",
+            "HOLDOUT-SAFE-17",
+            "HOLDOUT-SAFE-15",
+            "HOLDOUT-SPAM-20",
+            "HOLDOUT-SAFE-20",
+            "HOLDOUT-SPAM-19",
+            "HOLDOUT-PROFANITY-05",
+            "HOLDOUT-SPAM-09",
+            "HOLDOUT-PROFANITY-08"
+          ],
+          "ended": 1159647675523041,
+          "failed": false,
+          "inputEstimate": 1396,
+          "number": 5,
+          "requestSha256": "2fbd119bc1cc5b15d31c712be1c7aaf0a32374d2f029ea5174c2665b9325e684",
+          "started": 1159647667087375
+        },
+        {
+          "batch": true,
+          "cap": 1152,
+          "caseIds": [
+            "HOLDOUT-SAFE-04",
+            "HOLDOUT-SPAM-05",
+            "HOLDOUT-SAFE-13",
+            "HOLDOUT-PROFANITY-17",
+            "HOLDOUT-SAFE-05",
+            "HOLDOUT-PI-17",
+            "HOLDOUT-SAFE-19",
+            "HOLDOUT-SPAM-07",
+            "HOLDOUT-SAFE-06"
+          ],
+          "ended": 1159647719324833,
+          "failed": false,
+          "inputEstimate": 1383,
+          "number": 6,
+          "requestSha256": "aef2e91102eeb0f88a9f43b2725e9b02005ea16eda6731f7e9424759b87baf4a",
+          "started": 1159647710700583
+        },
+        {
+          "batch": true,
+          "cap": 1280,
+          "caseIds": [
+            "HOLDOUT-PROFANITY-14",
+            "HOLDOUT-SPAM-17",
+            "HOLDOUT-SAFE-09",
+            "HOLDOUT-PI-07",
+            "HOLDOUT-SPAM-02",
+            "HOLDOUT-PROFANITY-15",
+            "HOLDOUT-PI-15",
+            "HOLDOUT-PROFANITY-10",
+            "HOLDOUT-PROFANITY-20",
+            "HOLDOUT-PI-11"
+          ],
+          "ended": 1159647760242083,
+          "failed": false,
+          "inputEstimate": 1409,
+          "number": 7,
+          "requestSha256": "7f245085de3428d655ee858645b8db752162ca5f911a6af2d6f1cb90b57fa042",
+          "started": 1159647751562416
+        },
+        {
+          "batch": true,
+          "cap": 1280,
+          "caseIds": [
+            "HOLDOUT-SPAM-10",
+            "HOLDOUT-PI-04",
+            "HOLDOUT-SPAM-18",
+            "HOLDOUT-PROFANITY-13",
+            "HOLDOUT-PROFANITY-19",
+            "HOLDOUT-SAFE-18",
+            "HOLDOUT-PROFANITY-09",
+            "HOLDOUT-PI-08",
+            "HOLDOUT-SPAM-06",
+            "HOLDOUT-PI-10"
+          ],
+          "ended": 1159647798293791,
+          "failed": false,
+          "inputEstimate": 1406,
+          "number": 8,
+          "requestSha256": "aaadf879e5523e17dc0d77e34e03c5e83fe79bf98a89eed090c140c5ea8375f2",
+          "started": 1159647789024083
+        }
+      ],
+      "httpAttempts": [
+        {
+          "number": 83,
+          "logical": 1,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          },
+          "reservedNanos": 19968000,
+          "latencyNanos": 3980708,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 84,
+          "logical": 2,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          },
+          "reservedNanos": 19968000,
+          "latencyNanos": 3969292,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 85,
+          "logical": 3,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          },
+          "reservedNanos": 19968000,
+          "latencyNanos": 4001417,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 86,
+          "logical": 4,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          },
+          "reservedNanos": 19968000,
+          "latencyNanos": 3986125,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 87,
+          "logical": 5,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          },
+          "reservedNanos": 19968000,
+          "latencyNanos": 3087000,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 88,
+          "logical": 6,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 180,
+            "total": 1080,
+            "cached": 0
+          },
+          "reservedNanos": 19891200,
+          "latencyNanos": 4009250,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 89,
+          "logical": 7,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          },
+          "reservedNanos": 19968000,
+          "latencyNanos": 3988459,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        },
+        {
+          "number": 90,
+          "logical": 8,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          },
+          "reservedNanos": 19968000,
+          "latencyNanos": 3959583,
+          "contentEncoding": "gzip",
+          "settlement": "SETTLED"
+        }
+      ],
+      "sdkUsage": [
+        {
+          "logical": 1,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 2,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 3,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 4,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 5,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 6,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 180,
+            "total": 1080,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 7,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          }
+        },
+        {
+          "logical": 8,
+          "model": "gpt-4o-mini-2024-07-18",
+          "usage": {
+            "input": 900,
+            "output": 200,
+            "total": 1100,
+            "cached": 0
+          }
+        }
+      ],
+      "result": {
+        "samples": [
+          {
+            "caseId": "HOLDOUT-PI-09",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 0,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647499886375,
+            "returnedNs": 1159647499958708,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-04",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 0,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647590904458,
+            "returnedNs": 1159647590944291,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-04",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 0,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647721520083,
+            "returnedNs": 1159647721552125,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-12",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 1,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647503151583,
+            "returnedNs": 1159647503178208,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-13",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 1,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647593169416,
+            "returnedNs": 1159647593199041,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-01",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 1,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647701924791,
+            "returnedNs": 1159647701956583,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-10",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 2,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647504961166,
+            "returnedNs": 1159647504986541,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-02",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 2,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647595111541,
+            "returnedNs": 1159647595141250,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-05",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 2,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647723532500,
+            "returnedNs": 1159647723554708,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-16",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 3,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647506966541,
+            "returnedNs": 1159647506992583,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 3,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647632739708,
+            "returnedNs": 1159647632777416,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-13",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 3,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647725231833,
+            "returnedNs": 1159647725249916,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 4,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647508692416,
+            "returnedNs": 1159647508713416,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-03",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 4,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647636265333,
+            "returnedNs": 1159647636304750,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 4,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647726690583,
+            "returnedNs": 1159647726705333,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-16",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 5,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647510372333,
+            "returnedNs": 1159647510389916,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-01",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 5,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647638902458,
+            "returnedNs": 1159647638934166,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-05",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 5,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647728120458,
+            "returnedNs": 1159647728134583,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-13",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 6,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647512105708,
+            "returnedNs": 1159647512121750,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-14",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 6,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647642186666,
+            "returnedNs": 1159647642229541,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-14",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 6,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647762432875,
+            "returnedNs": 1159647762454666,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-11",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 7,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647513777708,
+            "returnedNs": 1159647513794166,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-03",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 7,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647644487583,
+            "returnedNs": 1159647644513291,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 7,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647764134916,
+            "returnedNs": 1159647764148958,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-06",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 8,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647515298458,
+            "returnedNs": 1159647515312625,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-12",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 8,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647646655916,
+            "returnedNs": 1159647646688291,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-09",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 8,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647765764083,
+            "returnedNs": 1159647765774666,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-03",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 9,
+            "receivedNs": 1159647471505583,
+            "committedNs": 1159647516796875,
+            "returnedNs": 1159647516811791,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-16",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 9,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647648668125,
+            "returnedNs": 1159647648691708,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-07",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 9,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647767427583,
+            "returnedNs": 1159647767440833,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-05",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 10,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647540722583,
+            "returnedNs": 1159647540755250,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 10,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647650515625,
+            "returnedNs": 1159647650532791,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-02",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 10,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647769108458,
+            "returnedNs": 1159647769126208,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-01",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 11,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647542771500,
+            "returnedNs": 1159647542797541,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-08",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 11,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647652167833,
+            "returnedNs": 1159647652197583,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-15",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 11,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647770980875,
+            "returnedNs": 1159647770993708,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-04",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 12,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647544946250,
+            "returnedNs": 1159647544965750,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-14",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 12,
+            "receivedNs": 1159647609088666,
+            "committedNs": 1159647653823833,
+            "returnedNs": 1159647653846833,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-15",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 12,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647772539750,
+            "returnedNs": 1159647772555625,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-07",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 13,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647546552791,
+            "returnedNs": 1159647546569125,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-16",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 13,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647677981958,
+            "returnedNs": 1159647678019250,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-10",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 13,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647774089333,
+            "returnedNs": 1159647774101291,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-12",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 14,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647548124083,
+            "returnedNs": 1159647548143166,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-06",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 14,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647679868625,
+            "returnedNs": 1159647679891541,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 14,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647775661291,
+            "returnedNs": 1159647775676625,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-14",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 15,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647550126291,
+            "returnedNs": 1159647550145875,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 15,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647682211666,
+            "returnedNs": 1159647682243791,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-11",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 15,
+            "receivedNs": 1159647735315125,
+            "committedNs": 1159647777244750,
+            "returnedNs": 1159647777257041,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-01",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 16,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647551931791,
+            "returnedNs": 1159647551949583,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-15",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 16,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647684151750,
+            "returnedNs": 1159647684174125,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-10",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 16,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647800863041,
+            "returnedNs": 1159647800888666,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-08",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 17,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647553828041,
+            "returnedNs": 1159647553893291,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 17,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647685903750,
+            "returnedNs": 1159647685930916,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-04",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 17,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647802965750,
+            "returnedNs": 1159647802981250,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-02",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 18,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647558856833,
+            "returnedNs": 1159647558901708,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-20",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 18,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647687735166,
+            "returnedNs": 1159647687755958,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 18,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647804642250,
+            "returnedNs": 1159647804657458,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 19,
+            "receivedNs": 1159647518590416,
+            "committedNs": 1159647563943125,
+            "returnedNs": 1159647563991875,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 19,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647689678291,
+            "returnedNs": 1159647689697000,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-13",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 19,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647806716541,
+            "returnedNs": 1159647806732791,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-02",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 20,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647596856416,
+            "returnedNs": 1159647596883500,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-05",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 20,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647691307291,
+            "returnedNs": 1159647691325458,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 20,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647808651500,
+            "returnedNs": 1159647808668833,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-11",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 21,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647598367541,
+            "returnedNs": 1159647598384916,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-09",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 21,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647693264583,
+            "returnedNs": 1159647693287375,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-18",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 2,
+            "offset": 21,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647811122583,
+            "returnedNs": 1159647811149416,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-03",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 22,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647599995000,
+            "returnedNs": 1159647600012583,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-08",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 22,
+            "receivedNs": 1159647655256083,
+            "committedNs": 1159647695311583,
+            "returnedNs": 1159647695337041,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-09",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 22,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647813528541,
+            "returnedNs": 1159647813544000,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-07",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 23,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647601598125,
+            "returnedNs": 1159647601618166,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-17",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 23,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647729423958,
+            "returnedNs": 1159647729440375,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-08",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 23,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647815521000,
+            "returnedNs": 1159647815533541,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-12",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 24,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647603924458,
+            "returnedNs": 1159647603954500,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-19",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 24,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647730775250,
+            "returnedNs": 1159647730788625,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-06",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 24,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647817470666,
+            "returnedNs": 1159647817487041,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-15",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 25,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647605904708,
+            "returnedNs": 1159647605924541,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SPAM-07",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "SPAM"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 1,
+            "offset": 25,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647732693500,
+            "returnedNs": 1159647732707208,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PI-10",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PERSONAL_INFORMATION"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 2,
+            "offset": 25,
+            "receivedNs": 1159647778593125,
+            "committedNs": 1159647819596666,
+            "returnedNs": 1159647819613375,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-11",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 26,
+            "receivedNs": 1159647566579000,
+            "committedNs": 1159647607630750,
+            "returnedNs": 1159647607647166,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          },
+          {
+            "caseId": "HOLDOUT-SAFE-06",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 1,
+            "offset": 26,
+            "receivedNs": 1159647697363250,
+            "committedNs": 1159647733983708,
+            "returnedNs": 1159647733994666,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null
+          }
+        ],
+        "polls": [
+          [
+            "HOLDOUT-PI-09",
+            "HOLDOUT-SPAM-12",
+            "HOLDOUT-SAFE-10",
+            "HOLDOUT-SPAM-16",
+            "HOLDOUT-PI-20",
+            "HOLDOUT-PI-16",
+            "HOLDOUT-PI-13",
+            "HOLDOUT-SPAM-11",
+            "HOLDOUT-PI-06",
+            "HOLDOUT-PI-03"
+          ],
+          [
+            "HOLDOUT-PI-05",
+            "HOLDOUT-SAFE-01",
+            "HOLDOUT-SPAM-04",
+            "HOLDOUT-SAFE-07",
+            "HOLDOUT-SAFE-12",
+            "HOLDOUT-PI-14",
+            "HOLDOUT-PROFANITY-01",
+            "HOLDOUT-SPAM-08",
+            "HOLDOUT-PROFANITY-02",
+            "HOLDOUT-PROFANITY-18"
+          ],
+          [
+            "HOLDOUT-PROFANITY-04",
+            "HOLDOUT-SPAM-13",
+            "HOLDOUT-PI-02",
+            "HOLDOUT-SAFE-02",
+            "HOLDOUT-SAFE-11",
+            "HOLDOUT-SPAM-03",
+            "HOLDOUT-PROFANITY-07",
+            "HOLDOUT-PI-12",
+            "HOLDOUT-SPAM-15",
+            "HOLDOUT-PROFANITY-11"
+          ],
+          [
+            "HOLDOUT-PI-19",
+            "HOLDOUT-PROFANITY-03",
+            "HOLDOUT-SPAM-01",
+            "HOLDOUT-SPAM-14",
+            "HOLDOUT-SAFE-03",
+            "HOLDOUT-PROFANITY-12",
+            "HOLDOUT-SAFE-16",
+            "HOLDOUT-PI-18",
+            "HOLDOUT-SAFE-08",
+            "HOLDOUT-SAFE-14"
+          ],
+          [
+            "HOLDOUT-PROFANITY-16",
+            "HOLDOUT-PROFANITY-06",
+            "HOLDOUT-SAFE-17",
+            "HOLDOUT-SAFE-15",
+            "HOLDOUT-SPAM-20",
+            "HOLDOUT-SAFE-20",
+            "HOLDOUT-SPAM-19",
+            "HOLDOUT-PROFANITY-05",
+            "HOLDOUT-SPAM-09",
+            "HOLDOUT-PROFANITY-08"
+          ],
+          [
+            "HOLDOUT-SAFE-04",
+            "HOLDOUT-PI-01",
+            "HOLDOUT-SPAM-05",
+            "HOLDOUT-SAFE-13",
+            "HOLDOUT-PROFANITY-17",
+            "HOLDOUT-SAFE-05",
+            "HOLDOUT-PI-17",
+            "HOLDOUT-SAFE-19",
+            "HOLDOUT-SPAM-07",
+            "HOLDOUT-SAFE-06"
+          ],
+          [
+            "HOLDOUT-PROFANITY-14",
+            "HOLDOUT-SPAM-17",
+            "HOLDOUT-SAFE-09",
+            "HOLDOUT-PI-07",
+            "HOLDOUT-SPAM-02",
+            "HOLDOUT-PROFANITY-15",
+            "HOLDOUT-PI-15",
+            "HOLDOUT-PROFANITY-10",
+            "HOLDOUT-PROFANITY-20",
+            "HOLDOUT-PI-11"
+          ],
+          [
+            "HOLDOUT-SPAM-10",
+            "HOLDOUT-PI-04",
+            "HOLDOUT-SPAM-18",
+            "HOLDOUT-PROFANITY-13",
+            "HOLDOUT-PROFANITY-19",
+            "HOLDOUT-SAFE-18",
+            "HOLDOUT-PROFANITY-09",
+            "HOLDOUT-PI-08",
+            "HOLDOUT-SPAM-06",
+            "HOLDOUT-PI-10"
+          ]
+        ],
+        "lag": [
+          {
+            "elapsedNs": 256593250,
+            "value": 0
+          },
+          {
+            "elapsedNs": 358754042,
+            "value": 80
+          },
+          {
+            "elapsedNs": 456839792,
+            "value": 70
+          },
+          {
+            "elapsedNs": 559526375,
+            "value": 40
+          },
+          {
+            "elapsedNs": 657772500,
+            "value": 20
+          },
+          {
+            "elapsedNs": 760882917,
+            "value": 0
+          },
+          {
+            "elapsedNs": 856966042,
+            "value": 0
+          },
+          {
+            "elapsedNs": 875363667,
+            "value": 0
+          }
+        ],
+        "finalLag": 0,
+        "finalRows": 80,
+        "unsafeCommits": 0,
+        "saveFailures": 0,
+        "transactionViolations": 0,
+        "dltRecords": 0,
+        "latencyMs": {
+          "publishAckToCommitP95": 377.106333,
+          "receivedToCommitP95": 43.079167,
+          "receivedToCommitP50": 33.098,
+          "publishAckToCommitP50": 258.468292
+        },
+        "offsetCommitObservations": 8
+      },
+      "v1Quality": {
+        "cases": 80,
+        "unresolved": 0,
+        "resultExact": 80,
+        "categoryExact": 80,
+        "riskExact": 80,
+        "actionabilityExact": 80,
+        "tp": 42,
+        "fp": 0,
+        "fn": 0,
+        "tn": 38,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "fpIds": [],
+        "fnIds": [],
+        "highMissIds": []
+      },
+      "gateV2BlockerCount": 0,
+      "gateV1BlockerCount": 0
+    }
+  ],
+  "provenance": {
+    "source": "build/issue68/o0-fake-rehearsal.json",
+    "sourceSha256": "da5924b1ac1ca1330ace85552d25d69a12bc3237a7303fc8038c9e3f5e08025c",
+    "kind": "selected-fields-extract-not-byte-identical-copy",
+    "execution": "full test build --rerun-tasks",
+    "scope": "Loopback Fake HTTP; NOT real OpenAI quality, token usage, latency or billing. Model in SDK entries is Fake response metadata.",
+    "omitted": "repeated per-case Gate detail; source summary offsetCommitObservations is Offset observer invocation count, not DB transaction count"
+  }
+}

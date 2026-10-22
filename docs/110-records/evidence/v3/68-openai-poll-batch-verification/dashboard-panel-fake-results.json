@@ -1,0 +1,1133 @@
+{
+  "scope" : "FREE_FAKE_HTTP_NOT_MODEL_QUALITY_OR_PAID_USAGE",
+  "prometheus" : {
+    "sum(gen_ai_client_operation_seconds_count)" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : { },
+          "value" : [ 1.792639409255E9, "2" ]
+        } ]
+      }
+    },
+    "sum by(gen_ai_token_type)(gen_ai_client_token_usage_total)" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : {
+            "gen_ai_token_type" : "input"
+          },
+          "value" : [ 1.792639409258E9, "1800" ]
+        }, {
+          "metric" : {
+            "gen_ai_token_type" : "output"
+          },
+          "value" : [ 1.792639409258E9, "40" ]
+        }, {
+          "metric" : {
+            "gen_ai_token_type" : "total"
+          },
+          "value" : [ 1.792639409258E9, "1840" ]
+        } ]
+      }
+    },
+    "sum by(route)(bobfull_ai_moderation_route_total)" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : {
+            "route" : "llm"
+          },
+          "value" : [ 1.792639409261E9, "2" ]
+        } ]
+      }
+    },
+    "sum by(status)(bobfull_ai_moderation_final_status_total)" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : {
+            "status" : "SAFE"
+          },
+          "value" : [ 1.792639409264E9, "1" ]
+        }, {
+          "metric" : {
+            "status" : "FLAGGED"
+          },
+          "value" : [ 1.792639409264E9, "1" ]
+        } ]
+      }
+    },
+    "histogram_quantile(0.95,sum by(le)(rate(gen_ai_client_operation_seconds_bucket[5m])))" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : { },
+          "value" : [ 1.792639409267E9, "0.5323969867499999" ]
+        } ]
+      }
+    },
+    "sum by(gen_ai_token_type)(rate(gen_ai_client_token_usage_total[5m]))" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : {
+            "gen_ai_token_type" : "input"
+          },
+          "value" : [ 1.79263940927E9, "4.812" ]
+        }, {
+          "metric" : {
+            "gen_ai_token_type" : "output"
+          },
+          "value" : [ 1.79263940927E9, "0.10693333333333334" ]
+        }, {
+          "metric" : {
+            "gen_ai_token_type" : "total"
+          },
+          "value" : [ 1.79263940927E9, "4.918933333333333" ]
+        } ]
+      }
+    },
+    "sum(bobfull_ai_moderation_kafka_retry_total) or vector(0)" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : { },
+          "value" : [ 1.792639409271E9, "0" ]
+        } ]
+      }
+    },
+    "sum(bobfull_ai_moderation_failure_total) or vector(0)" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : { },
+          "value" : [ 1.792639409273E9, "0" ]
+        } ]
+      }
+    },
+    "sum(okhttp_requests_seconds_count)" : {
+      "status" : "success",
+      "data" : {
+        "resultType" : "vector",
+        "result" : [ {
+          "metric" : { },
+          "value" : [ 1.792639409275E9, "2" ]
+        } ]
+      }
+    }
+  },
+  "partial" : {
+    "startedAtUtc" : "2026-10-22T03:23:25.016741Z",
+    "endedAtUtc" : "2026-10-22T03:23:28.426413Z",
+    "clock" : "monotonic ns within this JVM; wall clock UTC is separate",
+    "cases" : [ {
+      "caseId" : "HOLDOUT-SAFE-01",
+      "partition" : 0,
+      "offset" : 0,
+      "receivedNs" : 1218647243248875,
+      "flushNs" : 1218647604722833,
+      "ackNs" : 1218647130833833,
+      "dbCommittedNs" : 1218647607434583,
+      "returnedNs" : 1218647609028958,
+      "deliveries" : 1,
+      "receivedToCommitMs" : 364.185708,
+      "status" : "SAFE",
+      "actual" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "v1v2" : {
+        "id" : "HOLDOUT-SAFE-01",
+        "v1Blockers" : [ ],
+        "v2Blockers" : [ ],
+        "v2Notes" : [ ],
+        "exactAndReview" : {
+          "decision" : "HUMAN_APPROVAL_REQUIRED",
+          "v1Reasons" : [ ],
+          "draftHoldReasons" : [ ],
+          "resultExact" : true,
+          "categoryExact" : true,
+          "riskExact" : true,
+          "expectedReviewTarget" : false,
+          "actualReviewTarget" : false,
+          "highToMediumReviewPreserved" : false
+        }
+      },
+      "provider" : "OpenAI",
+      "model" : "gpt-4o-mini-2024-07-18",
+      "promptTokens" : 900,
+      "totalTokens" : 920,
+      "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+      "policyVersion" : "moderation-policy-v2"
+    }, {
+      "caseId" : "HOLDOUT-PROFANITY-14",
+      "partition" : 0,
+      "offset" : 1,
+      "receivedNs" : 1218647243248875,
+      "flushNs" : 1218648110104083,
+      "ackNs" : 1218647133179625,
+      "dbCommittedNs" : 1218648111998375,
+      "returnedNs" : 1218648113629000,
+      "deliveries" : 1,
+      "receivedToCommitMs" : 868.7495,
+      "status" : "FLAGGED",
+      "actual" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PROFANITY" ],
+        "riskLevel" : "MEDIUM"
+      },
+      "v1v2" : {
+        "id" : "HOLDOUT-PROFANITY-14",
+        "v1Blockers" : [ "GT_HIGH_DOWNGRADE" ],
+        "v2Blockers" : [ "CRITICAL_RISK_DOWNGRADE" ],
+        "v2Notes" : [ ],
+        "exactAndReview" : {
+          "decision" : "HUMAN_APPROVAL_REQUIRED",
+          "v1Reasons" : [ "GT_HIGH_DOWNGRADE" ],
+          "draftHoldReasons" : [ ],
+          "resultExact" : true,
+          "categoryExact" : true,
+          "riskExact" : false,
+          "expectedReviewTarget" : true,
+          "actualReviewTarget" : true,
+          "highToMediumReviewPreserved" : true
+        }
+      },
+      "provider" : "OpenAI",
+      "model" : "gpt-4o-mini-2024-07-18",
+      "promptTokens" : 900,
+      "totalTokens" : 920,
+      "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+      "policyVersion" : "moderation-policy-v2"
+    } ],
+    "httpAttempts" : [ {
+      "number" : 1,
+      "logical" : 1,
+      "status" : 200,
+      "usage" : {
+        "input" : 900,
+        "output" : 20,
+        "total" : 920,
+        "cached" : 0
+      },
+      "reservedNanos" : 19276800,
+      "latencyNanos" : 20935792,
+      "contentEncoding" : "gzip",
+      "settlement" : "SETTLED"
+    }, {
+      "number" : 2,
+      "logical" : 2,
+      "status" : 200,
+      "usage" : {
+        "input" : 900,
+        "output" : 20,
+        "total" : 920,
+        "cached" : 0
+      },
+      "reservedNanos" : 19276800,
+      "latencyNanos" : 463589125,
+      "contentEncoding" : "gzip",
+      "settlement" : "SETTLED"
+    } ],
+    "sdkUsage" : [ {
+      "logical" : 1,
+      "model" : "gpt-4o-mini-2024-07-18",
+      "usage" : {
+        "input" : 900,
+        "output" : 20,
+        "total" : 920,
+        "cached" : 0
+      }
+    }, {
+      "logical" : 2,
+      "model" : "gpt-4o-mini-2024-07-18",
+      "usage" : {
+        "input" : 900,
+        "output" : 20,
+        "total" : 920,
+        "cached" : 0
+      }
+    } ],
+    "logicalCalls" : [ {
+      "batch" : false,
+      "cap" : 128,
+      "caseIds" : [ "HOLDOUT-SAFE-01" ],
+      "ended" : 1218647593384875,
+      "failed" : false,
+      "inputEstimate" : 1024,
+      "number" : 1,
+      "requestSha256" : "88f2c1c0cfb1b850da5f1c6671501fd99e319a1f51e4cf8e1dcf0e2dd9b56324",
+      "started" : 1218647293246166
+    }, {
+      "batch" : false,
+      "cap" : 128,
+      "caseIds" : [ "HOLDOUT-PROFANITY-14" ],
+      "ended" : 1218648105633416,
+      "failed" : false,
+      "inputEstimate" : 1021,
+      "number" : 2,
+      "requestSha256" : "48cc5d660b716508ded1849b2f9a1e65965624ec7895036e003d4a1f8ed630b5",
+      "started" : 1218647628638583
+    } ],
+    "executionHeld" : true,
+    "meters" : [ {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "NO_SHOW_MARKED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "spring.ai.advisor",
+      "type" : "TIMER",
+      "tags" : [ {
+        "value" : "none",
+        "key" : "error"
+      }, {
+        "value" : "framework",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "spring_ai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "call",
+        "key" : "spring.ai.advisor.name"
+      }, {
+        "value" : "advisor",
+        "key" : "spring.ai.kind"
+      } ],
+      "measurements" : [ {
+        "value" : 2.0,
+        "statistic" : "COUNT"
+      }, {
+        "value" : 0.705801333,
+        "statistic" : "TOTAL_TIME"
+      }, {
+        "value" : 0.473689541,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "spring.ai.chat.client",
+      "type" : "TIMER",
+      "tags" : [ {
+        "value" : "none",
+        "key" : "error"
+      }, {
+        "value" : "framework",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "spring_ai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "false",
+        "key" : "spring.ai.chat.client.stream"
+      }, {
+        "value" : "chat_client",
+        "key" : "spring.ai.kind"
+      } ],
+      "measurements" : [ {
+        "value" : 2.0,
+        "statistic" : "COUNT"
+      }, {
+        "value" : 0.70746075,
+        "statistic" : "TOTAL_TIME"
+      }, {
+        "value" : 0.4739475,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "gen_ai.client.token.usage",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "chat",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "gpt-4o-mini",
+        "key" : "gen_ai.request.model"
+      }, {
+        "value" : "gpt-4o-mini-2024-07-18",
+        "key" : "gen_ai.response.model"
+      }, {
+        "value" : "openai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "input",
+        "key" : "gen_ai.token.type"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 1800.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "AUTH_REISSUE_FAILED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "IMAGE_STORAGE_REQUEST_FAILED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "gen_ai.client.operation",
+      "type" : "TIMER",
+      "tags" : [ {
+        "value" : "none",
+        "key" : "error"
+      }, {
+        "value" : "chat",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "gpt-4o-mini",
+        "key" : "gen_ai.request.model"
+      }, {
+        "value" : "gpt-4o-mini-2024-07-18",
+        "key" : "gen_ai.response.model"
+      }, {
+        "value" : "openai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 2.0,
+        "statistic" : "COUNT"
+      }, {
+        "value" : 0.6885835,
+        "statistic" : "TOTAL_TIME"
+      }, {
+        "value" : 0.473183625,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "bobfull.ai.moderation.route",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "moderation-policy-v2",
+        "key" : "policy_version"
+      }, {
+        "value" : "moderation-prompt-v3-short-fragment-boundary",
+        "key" : "prompt_version"
+      }, {
+        "value" : "llm",
+        "key" : "route"
+      } ],
+      "measurements" : [ {
+        "value" : 2.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "gen_ai.client.token.usage",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "chat",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "gpt-4o-mini",
+        "key" : "gen_ai.request.model"
+      }, {
+        "value" : "gpt-4o-mini-2024-07-18",
+        "key" : "gen_ai.response.model"
+      }, {
+        "value" : "openai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "total",
+        "key" : "gen_ai.token.type"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 1840.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "okhttp.requests.active",
+      "type" : "LONG_TASK_TIMER",
+      "tags" : [ {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "127.0.0.1",
+        "key" : "host"
+      }, {
+        "value" : "POST",
+        "key" : "method"
+      }, {
+        "value" : "UNKNOWN",
+        "key" : "outcome"
+      }, {
+        "value" : "CLIENT_ERROR",
+        "key" : "status"
+      }, {
+        "value" : "127.0.0.1",
+        "key" : "target.host"
+      }, {
+        "value" : "58579",
+        "key" : "target.port"
+      }, {
+        "value" : "http",
+        "key" : "target.scheme"
+      }, {
+        "value" : "none",
+        "key" : "uri"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "ACTIVE_TASKS"
+      }, {
+        "value" : 0.0,
+        "statistic" : "DURATION"
+      }, {
+        "value" : 0.0,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "RECRUITMENT_DEADLINE_FAILED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "UNHANDLED_EXCEPTION",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "spring.ai.advisor.active",
+      "type" : "LONG_TASK_TIMER",
+      "tags" : [ {
+        "value" : "framework",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "spring_ai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "call",
+        "key" : "spring.ai.advisor.name"
+      }, {
+        "value" : "advisor",
+        "key" : "spring.ai.kind"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "ACTIVE_TASKS"
+      }, {
+        "value" : 0.0,
+        "statistic" : "DURATION"
+      }, {
+        "value" : 0.0,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "gen_ai.client.operation.active",
+      "type" : "LONG_TASK_TIMER",
+      "tags" : [ {
+        "value" : "chat",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "gpt-4o-mini",
+        "key" : "gen_ai.request.model"
+      }, {
+        "value" : "none",
+        "key" : "gen_ai.response.model"
+      }, {
+        "value" : "openai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "ACTIVE_TASKS"
+      }, {
+        "value" : 0.0,
+        "statistic" : "DURATION"
+      }, {
+        "value" : 0.0,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "REFUND_COMPLETED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "CHAT_REALTIME_SUBSCRIBE_FAILED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "gen_ai.client.token.usage",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "chat",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "gpt-4o-mini",
+        "key" : "gen_ai.request.model"
+      }, {
+        "value" : "gpt-4o-mini-2024-07-18",
+        "key" : "gen_ai.response.model"
+      }, {
+        "value" : "openai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "output",
+        "key" : "gen_ai.token.type"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 40.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "CHAT_REALTIME_PUBLISH_FAILED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull.ai.moderation.final.status",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "moderation-policy-v2",
+        "key" : "policy_version"
+      }, {
+        "value" : "moderation-prompt-v3-short-fragment-boundary",
+        "key" : "prompt_version"
+      }, {
+        "value" : "SAFE",
+        "key" : "status"
+      } ],
+      "measurements" : [ {
+        "value" : 1.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "REFUND_COMPENSATION_REQUIRED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "PORTONE_WEBHOOK_PROCESSING_FAILED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "spring.ai.chat.client.active",
+      "type" : "LONG_TASK_TIMER",
+      "tags" : [ {
+        "value" : "framework",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "spring_ai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "false",
+        "key" : "spring.ai.chat.client.stream"
+      }, {
+        "value" : "chat_client",
+        "key" : "spring.ai.kind"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "ACTIVE_TASKS"
+      }, {
+        "value" : 0.0,
+        "statistic" : "DURATION"
+      }, {
+        "value" : 0.0,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "PAYMENT_COMPENSATION_REQUIRED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "okhttp.requests",
+      "type" : "TIMER",
+      "tags" : [ {
+        "value" : "none",
+        "key" : "error"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "127.0.0.1",
+        "key" : "host"
+      }, {
+        "value" : "POST",
+        "key" : "method"
+      }, {
+        "value" : "SUCCESS",
+        "key" : "outcome"
+      }, {
+        "value" : "200",
+        "key" : "status"
+      }, {
+        "value" : "127.0.0.1",
+        "key" : "target.host"
+      }, {
+        "value" : "58579",
+        "key" : "target.port"
+      }, {
+        "value" : "http",
+        "key" : "target.scheme"
+      }, {
+        "value" : "none",
+        "key" : "uri"
+      } ],
+      "measurements" : [ {
+        "value" : 2.0,
+        "statistic" : "COUNT"
+      }, {
+        "value" : 0.518987042,
+        "statistic" : "TOTAL_TIME"
+      }, {
+        "value" : 0.471766167,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "spring.kafka.template",
+      "type" : "TIMER",
+      "tags" : [ {
+        "value" : "none",
+        "key" : "exception"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "kafkaTemplate",
+        "key" : "name"
+      }, {
+        "value" : "success",
+        "key" : "result"
+      } ],
+      "measurements" : [ {
+        "value" : 2.0,
+        "statistic" : "COUNT"
+      }, {
+        "value" : 0.200784376,
+        "statistic" : "TOTAL_TIME"
+      }, {
+        "value" : 0.198491834,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "RESTAURANT_INSIGHT_RETRY_EXHAUSTED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "PAYMENT_WEBHOOK_PERMANENT_FAILURE",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "READY_PAYMENT_EXPIRED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "spring.ai.advisor.active",
+      "type" : "LONG_TASK_TIMER",
+      "tags" : [ {
+        "value" : "framework",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "spring_ai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "Tool Calling Advisor",
+        "key" : "spring.ai.advisor.name"
+      }, {
+        "value" : "advisor",
+        "key" : "spring.ai.kind"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "ACTIVE_TASKS"
+      }, {
+        "value" : 0.0,
+        "statistic" : "DURATION"
+      }, {
+        "value" : 0.0,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "PAYMENT_COMPLETED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "CHAT_MODERATION_RETRY_EXHAUSTED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "RESERVATION_CANCELLATION_COMPLETED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "RESERVATION_CONFIRMED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull.ai.moderation.final.status",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "moderation-policy-v2",
+        "key" : "policy_version"
+      }, {
+        "value" : "moderation-prompt-v3-short-fragment-boundary",
+        "key" : "prompt_version"
+      }, {
+        "value" : "FLAGGED",
+        "key" : "status"
+      } ],
+      "measurements" : [ {
+        "value" : 1.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "spring.ai.advisor",
+      "type" : "TIMER",
+      "tags" : [ {
+        "value" : "none",
+        "key" : "error"
+      }, {
+        "value" : "framework",
+        "key" : "gen_ai.operation.name"
+      }, {
+        "value" : "spring_ai",
+        "key" : "gen_ai.system"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      }, {
+        "value" : "Tool Calling Advisor",
+        "key" : "spring.ai.advisor.name"
+      }, {
+        "value" : "advisor",
+        "key" : "spring.ai.kind"
+      } ],
+      "measurements" : [ {
+        "value" : 2.0,
+        "statistic" : "COUNT"
+      }, {
+        "value" : 0.706351291,
+        "statistic" : "TOTAL_TIME"
+      }, {
+        "value" : 0.473851916,
+        "statistic" : "MAX"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "LOGIN_FAILED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    }, {
+      "name" : "bobfull_business_events",
+      "type" : "COUNTER",
+      "tags" : [ {
+        "value" : "CHAT_ROOM_CREATION_REQUIRED",
+        "key" : "event"
+      }, {
+        "value" : "issue68_fake",
+        "key" : "harness_scope"
+      } ],
+      "measurements" : [ {
+        "value" : 0.0,
+        "statistic" : "COUNT"
+      } ]
+    } ],
+    "polls" : [ [ "HOLDOUT-SAFE-01", "HOLDOUT-PROFANITY-14" ] ],
+    "unsafeCommits" : 0,
+    "lag" : 0,
+    "committedOffsets" : [ {
+      "partition" : 0,
+      "offset" : 2
+    } ],
+    "dltCount" : 0
+  },
+  "exposition" : "# HELP bobfull_ai_moderation_final_status_total  \n# TYPE bobfull_ai_moderation_final_status_total counter\nbobfull_ai_moderation_final_status_total{harness_scope=\"issue68_fake\",policy_version=\"moderation-policy-v2\",prompt_version=\"moderation-prompt-v3-short-fragment-boundary\",status=\"FLAGGED\"} 1.0\nbobfull_ai_moderation_final_status_total{harness_scope=\"issue68_fake\",policy_version=\"moderation-policy-v2\",prompt_version=\"moderation-prompt-v3-short-fragment-boundary\",status=\"SAFE\"} 1.0\n# HELP bobfull_ai_moderation_route_total  \n# TYPE bobfull_ai_moderation_route_total counter\nbobfull_ai_moderation_route_total{harness_scope=\"issue68_fake\",policy_version=\"moderation-policy-v2\",prompt_version=\"moderation-prompt-v3-short-fragment-boundary\",route=\"llm\"} 2.0\n# HELP bobfull_business_events_total BobFull business event occurrences\n# TYPE bobfull_business_events_total counter\nbobfull_business_events_total{event=\"AUTH_REISSUE_FAILED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"CHAT_MODERATION_RETRY_EXHAUSTED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"CHAT_REALTIME_PUBLISH_FAILED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"CHAT_REALTIME_SUBSCRIBE_FAILED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"CHAT_ROOM_CREATION_REQUIRED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"IMAGE_STORAGE_REQUEST_FAILED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"LOGIN_FAILED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"NO_SHOW_MARKED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"PAYMENT_COMPENSATION_REQUIRED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"PAYMENT_COMPLETED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"PAYMENT_WEBHOOK_PERMANENT_FAILURE\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"PORTONE_WEBHOOK_PROCESSING_FAILED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"READY_PAYMENT_EXPIRED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"RECRUITMENT_DEADLINE_FAILED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"REFUND_COMPENSATION_REQUIRED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"REFUND_COMPLETED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"RESERVATION_CANCELLATION_COMPLETED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"RESERVATION_CONFIRMED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"RESTAURANT_INSIGHT_RETRY_EXHAUSTED\",harness_scope=\"issue68_fake\"} 0.0\nbobfull_business_events_total{event=\"UNHANDLED_EXCEPTION\",harness_scope=\"issue68_fake\"} 0.0\n# HELP gen_ai_client_operation_active_seconds  \n# TYPE gen_ai_client_operation_active_seconds summary\ngen_ai_client_operation_active_seconds_count{gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"none\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\"} 0\ngen_ai_client_operation_active_seconds_sum{gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"none\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\"} 0.0\n# HELP gen_ai_client_operation_active_seconds_max  \n# TYPE gen_ai_client_operation_active_seconds_max gauge\ngen_ai_client_operation_active_seconds_max{gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"none\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\"} 0.0\n# HELP gen_ai_client_operation_seconds  \n# TYPE gen_ai_client_operation_seconds histogram\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.001\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.001048576\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.001398101\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.001747626\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.002097151\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.002446676\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.002796201\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.003145726\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.003495251\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.003844776\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.004194304\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.005592405\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.006990506\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.008388607\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.009786708\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.011184809\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.01258291\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.013981011\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.015379112\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.016777216\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.022369621\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.027962026\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.033554431\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.039146836\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.044739241\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.050331646\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.055924051\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.061516456\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.067108864\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.089478485\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.111848106\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.134217727\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.156587348\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.178956969\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.20132659\"} 0\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.223696211\"} 1\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.246065832\"} 1\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.268435456\"} 1\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.357913941\"} 1\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.447392426\"} 1\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.536870911\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.626349396\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.715827881\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.805306366\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.894784851\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"0.984263336\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"1.073741824\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"1.431655765\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"1.789569706\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"2.147483647\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"2.505397588\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"2.863311529\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"3.22122547\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"3.579139411\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"3.937053352\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"4.294967296\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"5.726623061\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"7.158278826\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"8.589934591\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"10.021590356\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"11.453246121\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"12.884901886\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"14.316557651\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"15.748213416\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"17.179869184\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"22.906492245\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"28.633115306\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"30.0\"} 2\ngen_ai_client_operation_seconds_bucket{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\",le=\"+Inf\"} 2\ngen_ai_client_operation_seconds_count{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\"} 2\ngen_ai_client_operation_seconds_sum{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\"} 0.6885835\n# HELP gen_ai_client_operation_seconds_max  \n# TYPE gen_ai_client_operation_seconds_max gauge\ngen_ai_client_operation_seconds_max{error=\"none\",gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",harness_scope=\"issue68_fake\"} 0.473183625\n# HELP gen_ai_client_token_usage_total Measures number of input and output tokens used\n# TYPE gen_ai_client_token_usage_total counter\ngen_ai_client_token_usage_total{gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",gen_ai_token_type=\"input\",harness_scope=\"issue68_fake\"} 1800.0\ngen_ai_client_token_usage_total{gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",gen_ai_token_type=\"output\",harness_scope=\"issue68_fake\"} 40.0\ngen_ai_client_token_usage_total{gen_ai_operation_name=\"chat\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_response_model=\"gpt-4o-mini-2024-07-18\",gen_ai_system=\"openai\",gen_ai_token_type=\"total\",harness_scope=\"issue68_fake\"} 1840.0\n# HELP okhttp_requests_active_seconds  \n# TYPE okhttp_requests_active_seconds summary\nokhttp_requests_active_seconds_count{harness_scope=\"issue68_fake\",host=\"127.0.0.1\",method=\"POST\",outcome=\"UNKNOWN\",status=\"CLIENT_ERROR\",target_host=\"127.0.0.1\",target_port=\"58579\",target_scheme=\"http\",uri=\"none\"} 0\nokhttp_requests_active_seconds_sum{harness_scope=\"issue68_fake\",host=\"127.0.0.1\",method=\"POST\",outcome=\"UNKNOWN\",status=\"CLIENT_ERROR\",target_host=\"127.0.0.1\",target_port=\"58579\",target_scheme=\"http\",uri=\"none\"} 0.0\n# HELP okhttp_requests_active_seconds_max  \n# TYPE okhttp_requests_active_seconds_max gauge\nokhttp_requests_active_seconds_max{harness_scope=\"issue68_fake\",host=\"127.0.0.1\",method=\"POST\",outcome=\"UNKNOWN\",status=\"CLIENT_ERROR\",target_host=\"127.0.0.1\",target_port=\"58579\",target_scheme=\"http\",uri=\"none\"} 0.0\n# HELP okhttp_requests_seconds  \n# TYPE okhttp_requests_seconds summary\nokhttp_requests_seconds_count{error=\"none\",harness_scope=\"issue68_fake\",host=\"127.0.0.1\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",target_host=\"127.0.0.1\",target_port=\"58579\",target_scheme=\"http\",uri=\"none\"} 2\nokhttp_requests_seconds_sum{error=\"none\",harness_scope=\"issue68_fake\",host=\"127.0.0.1\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",target_host=\"127.0.0.1\",target_port=\"58579\",target_scheme=\"http\",uri=\"none\"} 0.518987042\n# HELP okhttp_requests_seconds_max  \n# TYPE okhttp_requests_seconds_max gauge\nokhttp_requests_seconds_max{error=\"none\",harness_scope=\"issue68_fake\",host=\"127.0.0.1\",method=\"POST\",outcome=\"SUCCESS\",status=\"200\",target_host=\"127.0.0.1\",target_port=\"58579\",target_scheme=\"http\",uri=\"none\"} 0.471766167\n# HELP spring_ai_advisor_active_seconds  \n# TYPE spring_ai_advisor_active_seconds summary\nspring_ai_advisor_active_seconds_count{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"Tool Calling Advisor\",spring_ai_kind=\"advisor\"} 0\nspring_ai_advisor_active_seconds_sum{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"Tool Calling Advisor\",spring_ai_kind=\"advisor\"} 0.0\nspring_ai_advisor_active_seconds_count{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"call\",spring_ai_kind=\"advisor\"} 0\nspring_ai_advisor_active_seconds_sum{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"call\",spring_ai_kind=\"advisor\"} 0.0\n# HELP spring_ai_advisor_active_seconds_max  \n# TYPE spring_ai_advisor_active_seconds_max gauge\nspring_ai_advisor_active_seconds_max{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"Tool Calling Advisor\",spring_ai_kind=\"advisor\"} 0.0\nspring_ai_advisor_active_seconds_max{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"call\",spring_ai_kind=\"advisor\"} 0.0\n# HELP spring_ai_advisor_seconds  \n# TYPE spring_ai_advisor_seconds summary\nspring_ai_advisor_seconds_count{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"Tool Calling Advisor\",spring_ai_kind=\"advisor\"} 2\nspring_ai_advisor_seconds_sum{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"Tool Calling Advisor\",spring_ai_kind=\"advisor\"} 0.706351291\nspring_ai_advisor_seconds_count{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"call\",spring_ai_kind=\"advisor\"} 2\nspring_ai_advisor_seconds_sum{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"call\",spring_ai_kind=\"advisor\"} 0.705801333\n# HELP spring_ai_advisor_seconds_max  \n# TYPE spring_ai_advisor_seconds_max gauge\nspring_ai_advisor_seconds_max{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"Tool Calling Advisor\",spring_ai_kind=\"advisor\"} 0.473851916\nspring_ai_advisor_seconds_max{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_advisor_name=\"call\",spring_ai_kind=\"advisor\"} 0.473689541\n# HELP spring_ai_chat_client_active_seconds  \n# TYPE spring_ai_chat_client_active_seconds summary\nspring_ai_chat_client_active_seconds_count{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_chat_client_stream=\"false\",spring_ai_kind=\"chat_client\"} 0\nspring_ai_chat_client_active_seconds_sum{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_chat_client_stream=\"false\",spring_ai_kind=\"chat_client\"} 0.0\n# HELP spring_ai_chat_client_active_seconds_max  \n# TYPE spring_ai_chat_client_active_seconds_max gauge\nspring_ai_chat_client_active_seconds_max{gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_chat_client_stream=\"false\",spring_ai_kind=\"chat_client\"} 0.0\n# HELP spring_ai_chat_client_seconds  \n# TYPE spring_ai_chat_client_seconds summary\nspring_ai_chat_client_seconds_count{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_chat_client_stream=\"false\",spring_ai_kind=\"chat_client\"} 2\nspring_ai_chat_client_seconds_sum{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_chat_client_stream=\"false\",spring_ai_kind=\"chat_client\"} 0.70746075\n# HELP spring_ai_chat_client_seconds_max  \n# TYPE spring_ai_chat_client_seconds_max gauge\nspring_ai_chat_client_seconds_max{error=\"none\",gen_ai_operation_name=\"framework\",gen_ai_system=\"spring_ai\",harness_scope=\"issue68_fake\",spring_ai_chat_client_stream=\"false\",spring_ai_kind=\"chat_client\"} 0.4739475\n# HELP spring_kafka_template_seconds KafkaTemplate Timer\n# TYPE spring_kafka_template_seconds summary\nspring_kafka_template_seconds_count{exception=\"none\",harness_scope=\"issue68_fake\",name=\"kafkaTemplate\",result=\"success\"} 2\nspring_kafka_template_seconds_sum{exception=\"none\",harness_scope=\"issue68_fake\",name=\"kafkaTemplate\",result=\"success\"} 0.200784376\n# HELP spring_kafka_template_seconds_max KafkaTemplate Timer\n# TYPE spring_kafka_template_seconds_max gauge\nspring_kafka_template_seconds_max{exception=\"none\",harness_scope=\"issue68_fake\",name=\"kafkaTemplate\",result=\"success\"} 0.198491834\n",
+  "dashboardPanelQueries" : {
+    "LLM Call Count" : {
+      "result" : {
+        "status" : "success",
+        "data" : {
+          "resultType" : "vector",
+          "result" : [ {
+            "metric" : { },
+            "value" : [ 1.792639409279E9, "2" ]
+          } ]
+        }
+      },
+      "expr" : "sum(gen_ai_client_operation_seconds_count)"
+    },
+    "Estimated Cost (USD)" : {
+      "result" : {
+        "status" : "success",
+        "data" : {
+          "resultType" : "vector",
+          "result" : [ {
+            "metric" : { },
+            "value" : [ 1.792639409283E9, "0.000294" ]
+          } ]
+        }
+      },
+      "expr" : "(((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"input\"}) or vector(0)) * 0.15) + ((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"output\"}) or vector(0)) * 0.60)) / 1000000"
+    },
+    "Token Usage" : {
+      "result" : {
+        "status" : "success",
+        "data" : {
+          "resultType" : "vector",
+          "result" : [ {
+            "metric" : {
+              "gen_ai_token_type" : "input"
+            },
+            "value" : [ 1.792639409288E9, "1800" ]
+          }, {
+            "metric" : {
+              "gen_ai_token_type" : "output"
+            },
+            "value" : [ 1.792639409288E9, "40" ]
+          }, {
+            "metric" : {
+              "gen_ai_token_type" : "total"
+            },
+            "value" : [ 1.792639409288E9, "1840" ]
+          } ]
+        }
+      },
+      "expr" : "sum by (gen_ai_token_type) (gen_ai_client_token_usage_total)"
+    },
+    "LLM p95 Latency" : {
+      "result" : {
+        "status" : "success",
+        "data" : {
+          "resultType" : "vector",
+          "result" : [ {
+            "metric" : { },
+            "value" : [ 1.792639409291E9, "0.5323969867499999" ]
+          } ]
+        }
+      },
+      "expr" : "histogram_quantile(0.95, sum by (le) (rate(gen_ai_client_operation_seconds_bucket[5m])))"
+    }
+  }
+}

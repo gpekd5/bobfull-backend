@@ -44,6 +44,10 @@ final class SizeTimeBatchOwnerLoop implements Runnable {
     java.util.function.Consumer<Map<TopicPartition, OffsetAndMetadata>> beforeCommit = offsets -> {};
     java.util.function.Consumer<List<ConsumerRecord<Object, Object>>> beforeExecution = records -> {};
     java.util.function.Consumer<List<ConsumerRecord<Object, Object>>> afterExecution = records -> {};
+    // #68 Live 준비 관측 전용. 기본값은 기존 #65 동작이며 Production에는 적용되지 않는다.
+    java.util.function.Consumer<org.apache.kafka.common.KafkaException> commitFailure = exception -> {};
+    java.util.function.Consumer<RuntimeException> executionFailure = exception -> {};
+    java.util.function.BooleanSupplier haltRequested = () -> false;
     private Consumer<Object, Object> consumer;
     private ConsumerRebalanceListener lifecycle;
     private boolean inWork;
@@ -87,7 +91,7 @@ final class SizeTimeBatchOwnerLoop implements Runnable {
                 }
             };
             owned.subscribe(List.of(topic), lifecycle);
-            while (!stop) {
+            while (!stop && !haltRequested.getAsBoolean()) {
                 retry.pruneCommitted(owned);
                 commitReady();
                 List<Entry> pending = buffer.stream().filter(entry -> !entry.done).toList();
@@ -168,7 +172,7 @@ final class SizeTimeBatchOwnerLoop implements Runnable {
         inWork = true;
         consumer.pause(consumer.assignment());
         try {
-            while (!stop && buffer.containsAll(work)) {
+            while (!stop && !haltRequested.getAsBoolean() && buffer.containsAll(work)) {
                 try {
                     beforeExecution.accept(records);
                     retry.analyze(records, ids -> {
@@ -186,9 +190,13 @@ final class SizeTimeBatchOwnerLoop implements Runnable {
                     work.forEach(entry -> entry.done = true);
                     return;
                 } catch (ChatModerationBatchRetryProcessor.GroupRetryException exception) {
+                    executionFailure.accept(exception);
                     retryCount++;
+                    if (haltRequested.getAsBoolean()) return;
                     pausedBackoff();
                 } catch (BatchListenerFailedException exception) {
+                    executionFailure.accept(exception);
+                    if (haltRequested.getAsBoolean()) return;
                     int index = exception.getIndex();
                     if (index < 0 || index >= records.size()) throw exception;
                     retryCount++;
@@ -238,6 +246,7 @@ final class SizeTimeBatchOwnerLoop implements Runnable {
             buffered = buffer.size();
         } catch (org.apache.kafka.common.KafkaException exception) {
             // DB 성공을 취소하지 않고 미commit 참조를 보존한다. 재전달 완료 Skip은 별도로 검증한다.
+            commitFailure.accept(exception);
         }
     }
 

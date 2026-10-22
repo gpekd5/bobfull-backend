@@ -1,0 +1,403 @@
+{
+  "scope": "FREE_REMAINDER_READINESS_NOT_PAID_EXECUTION_OR_QUALITY_PASS",
+  "executionHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "executionState": "UNCOMMITTED_SOURCE_HASHES_IN_MANIFEST",
+  "manifestSha256": "71d0cb040cfa05dab4f425876031951ff86514403dea9a3afb843ce7537e6168",
+  "paidCallsThisPreparation": 0,
+  "apiKeyReadOrUsed": false,
+  "tests": {
+    "tests": 70,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "classes": [
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkKafkaTest",
+      "tests": 13,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "path": "build/test-results/test/TEST-com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkKafkaTest.xml",
+      "sha256": "a6f9bd7932a832a104591c8b00a7796d7285939e4d9afaf5356acd9fbc048f9a"
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.ai.Issue68UsageBenchmarkRemainderSafetyTest",
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "path": "build/test-results/test/TEST-com.bobfull.chat.infrastructure.ai.Issue68UsageBenchmarkRemainderSafetyTest.xml",
+      "sha256": "044dd8635c153cc5ec629355f7a024693eac79ad2bfb421f59956504e306b901"
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.ai.Issue68UsageBenchmarkSafetyTest",
+      "tests": 20,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "path": "build/test-results/test/TEST-com.bobfull.chat.infrastructure.ai.Issue68UsageBenchmarkSafetyTest.xml",
+      "sha256": "5531538a836080966072022faed209b8c4f3d1554ec2dcff3cc60eca77632750"
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedHttpSafetyTest",
+      "tests": 4,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "path": "build/test-results/test/TEST-com.bobfull.chat.infrastructure.ai.Issue68ExpandedHttpSafetyTest.xml",
+      "sha256": "6a8e79b3248240d9b147a0debfafd356eca6b61228d9b4ff2b1745ac0a3e1a69"
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkLiveTest",
+      "tests": 1,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "path": "build/test-results/test/TEST-com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkLiveTest.xml",
+      "sha256": "16341ae67889385a4eea12674d51d7db25c3e784923a6a85d169f5c101d59113"
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkRemainderLiveTest",
+      "tests": 1,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "path": "build/test-results/test/TEST-com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkRemainderLiveTest.xml",
+      "sha256": "1a2882b9a1695483ac1339807f02be8cf9bf543c2f47cdf956fea48c7653f14a"
+    },
+    {
+      "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedLiveSafetyTest",
+      "tests": 20,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "path": "build/test-results/test/TEST-com.bobfull.chat.infrastructure.ai.Issue68ExpandedLiveSafetyTest.xml",
+      "sha256": "9c742977fdf00a9b2e624e81007f832beaacd63f94ce5efae315a4c262ec61e8"
+    }
+  ],
+  "elapsed": "2m 21s",
+  "compileTestJava": "PASS",
+  "selectedGradleTestTask": "SUCCESS",
+  "rawFakeRegression": {
+    "path": "build/issue68/usage-benchmark-fake-1792667689827.json",
+    "sha256": "366573220900baefe6a8df2e841ceabc2be6f9a0d6738e3c7ad9754526ca754b",
+    "bytes": 2459532
+  },
+  "fakeMatrix": [
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "technicalOk": true,
+      "rows": 20,
+      "lag": 0
+    }
+  ],
+  "wholeBuild": {
+    "reexecuted": false,
+    "reason": "Human requested reuse of completed whole regression/build; only changed-scope tests rerun",
+    "priorEvidence": "usage-benchmark-free-results.json#/verification/full",
+    "priorRoot": {
+      "tests": 1474,
+      "skipped": 93,
+      "failures": 0,
+      "errors": 0
+    },
+    "priorLambda": {
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "priorBuild": "SUCCESS"
+  },
+  "preservation": {
+    "checked": 867,
+    "changes": [],
+    "journalSha256": "8aef3df31bbb897987d827f0736dd30619702348866f7fe4ab76e111828fd3ac"
+  },
+  "journal": {
+    "events": 76,
+    "httpAttempts": 36,
+    "burdenNanoUsd": 25923000,
+    "knownSettledNanoUsd": 6646200,
+    "unknownNanoUsd": 19276800,
+    "pendingNanoUsd": 0,
+    "grossHistoryNanoUsd": 700876800,
+    "benchmarkBurdenNanoUsd": 6041250,
+    "newRemainderScopeOrClaimCreated": false
+  },
+  "monitoring": {
+    "readOnly": true,
+    "mainTarget": "host.docker.internal:8080/actuator/prometheus",
+    "targetHealth": "UP",
+    "mainScrapeSeconds": 15,
+    "grafanaHealth": "OK",
+    "prometheusMainCallCount": 19,
+    "liveHarnessConnected": false,
+    "reason": "Live boundary prohibits Fake-only exporter; separate context lacks a scrape endpoint. No Dashboard/datasource/config changes made.",
+    "screenshots": "NOT_APPLICABLE_TO_UNEXECUTED_LIVE_STAGE"
+  },
+  "resolvedPreparationFailure": "One initial test expected an HTTP200 return for UNKNOWN. The existing fail-closed boundary cancels the request and raises IOException; assertion corrected without weakening the boundary.",
+  "gitDiffCheck": "PASS",
+  "liveRemainder": "NOT_RUN_SEPARATE_HUMAN_APPROVAL_REQUIRED",
+  "historicalGateV1V2": "HOLD_PRESERVED",
+  "productionBatch": "OFF_UNCHANGED"
+}

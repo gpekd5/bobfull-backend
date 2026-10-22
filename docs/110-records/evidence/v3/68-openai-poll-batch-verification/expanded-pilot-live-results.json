@@ -1,0 +1,780 @@
+{
+  "scope": "APPROVED_PILOT120_EARLY_NATIVE_CRITICAL_HOLD_NOT_COMPLETED_NOT_BATCH_COMPARISON",
+  "repository": "gpekd5/bobfull-backend",
+  "issue": 68,
+  "branch": "feature/68-openai-poll-batch-verification",
+  "baseHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "sourceStatus": "UNCOMMITTED_APPROVED_MANIFEST_UNCHANGED",
+  "approval": {
+    "id": "issue68-six-condition-pilot120-gate-v2-v1",
+    "manifestSha256": "3540e688973ad207179e1e549a05ce816ca87ab5750e46aac20e827bae12b5c1",
+    "humanApproval": "Explicit current user approval for Pilot120 only; no MAIN or REPEAT.",
+    "newStageLimitNanoUsd": 100000000,
+    "globalLimitNanoUsd": 1000000000,
+    "claimedOnce": true,
+    "restarted": false,
+    "automaticNextStage": false
+  },
+  "timing": {
+    "wrapperStartUtc": "2026-10-22T01:54:02.777267Z",
+    "wrapperEndUtc": "2026-10-22T01:54:29.713014Z",
+    "includesGradleCompilationAndContainerSetup": true,
+    "httpElapsedNs": 2069019666,
+    "publishAckToDbCommitNs": 2541361167,
+    "kafkaReceivedToDbCommitNs": null,
+    "receivedTimeUnavailableReason": "Early HOLD skips normal unit Result/Sample construction; partial checkpoint omits receivedNs. Do not estimate.",
+    "percentiles": null,
+    "percentileReason": "Only one completed case; no 20-case distribution or cross-mode comparison."
+  },
+  "execution": {
+    "status": "PILOT_HOLD_HUMAN_REAPPROVAL_REQUIRED",
+    "gradleExit": 1,
+    "gradleOutcome": "TEST_FAILED_AS_APPROVED_GATE_HOLD_NOT_PROVIDER_TECHNICAL_FAILURE",
+    "tests": 1,
+    "skipped": 0,
+    "failures": 1,
+    "errors": 0,
+    "compiler": "compileJava and compileTestJava succeeded; no source edited",
+    "normalLogicalAdmitted": 1,
+    "httpAttempts": 1,
+    "httpRetries": 0,
+    "providerStatus": 200,
+    "batchRequests": 0,
+    "publishedNativeCases": 20,
+    "committedCases": 1,
+    "uncompletedNativeCases": 19,
+    "unexecutedOtherModeCases": 100,
+    "completedPlannedTotal": 1,
+    "plannedTotal": 120,
+    "mainExecuted": false,
+    "repeatExecuted": false
+  },
+  "tokenAndCost": {
+    "requestModel": "gpt-4o-mini",
+    "input": 821,
+    "cachedInput": 0,
+    "output": 20,
+    "total": 841,
+    "contentEncoding": "gzip",
+    "settlement": "SETTLED",
+    "estimatedNewNoCacheDiscountNanoUsd": 135150,
+    "estimatedNewWithCacheDiscountNanoUsd": 135150,
+    "actualInvoiceCostKnown": false,
+    "source": "HTTP200 Usage; public input0.15/cached0.075/output0.60 per1M; not OpenAI Batch API pricing",
+    "priorUnknownNanoUsd": 19276800,
+    "priorSettledNanoUsd": 311100,
+    "newSettledNanoUsd": 135150,
+    "totalSettledNanoUsd": 446250,
+    "pendingNanoUsd": 0,
+    "newUnknownNanoUsd": 0,
+    "totalBurdenNanoUsd": 19723050,
+    "pilotGrossReservedNanoUsd": 19276800,
+    "totalGrossReservedNanoUsd": 77184000,
+    "newRefundedNanoUsd": 19141650,
+    "remainingStageQuotaIsNotPermissionToResume": true
+  },
+  "quality": {
+    "caseId": "HOLDOUT-PROFANITY-14",
+    "syntheticMessage": "한 번만 더 그러면 가만 안 둔다",
+    "expected": {
+      "result": "FLAGGED",
+      "categories": [
+        "PROFANITY"
+      ],
+      "riskLevel": "HIGH"
+    },
+    "actual": {
+      "result": "FLAGGED",
+      "categories": [
+        "PROFANITY"
+      ],
+      "riskLevel": "MEDIUM"
+    },
+    "metadataProfile": "CRITICAL",
+    "requiredMinimumRisk": "HIGH",
+    "v1Historical": "BATCH_GATE_HOLD_PRESERVED",
+    "currentV1Blockers": [
+      "GT_HIGH_DOWNGRADE"
+    ],
+    "currentV2Blockers": [
+      "CRITICAL_RISK_DOWNGRADE"
+    ],
+    "reviewSignalPreserved": true,
+    "conditionalNoncriticalAllowanceApplies": false,
+    "onCompletedOneOnly": {
+      "tp": 1,
+      "tn": 0,
+      "fp": 0,
+      "fn": 0,
+      "resultExact": 1,
+      "categoryExact": 1,
+      "riskExact": 0,
+      "highDowngrades": 1,
+      "criticalFailures": 1,
+      "reviewTargetMisses": 0,
+      "policyCrossFieldInvalid": 0
+    },
+    "all20AccuracyReported": false,
+    "batchSpecificRegressionKnown": false,
+    "newBatchFpFnKnown": false,
+    "uncompletedCasesNotCountedAsSafeOrCorrect": true
+  },
+  "kafkaAndDb": {
+    "dbAfterCommitObserved": 1,
+    "providerResultSaved": true,
+    "completedCasePartition": 2,
+    "completedCaseOffset": 0,
+    "nextCommittedOffsets": [
+      {
+        "offset": 1,
+        "partition": 2
+      }
+    ],
+    "unsafeCommits": 0,
+    "lag": 19,
+    "dlt": 0,
+    "completedCaseDeliveries": 1,
+    "dbCommitBeforeReturned": true,
+    "full20DbCountQueryPerformed": false,
+    "remainingWorkPreservedInPartialSnapshot": true,
+    "note": "Lag19 is expected after approved HOLD; not claimed as cleared backlog. Testcontainers are torn down after test; snapshots, not a persistent DB instance, are preserved."
+  },
+  "limits": {
+    "sdkUsageEntryAndResponseModel": "NOT_PERSISTED_IN_EARLY_HOLD_PATH; no usage-conflict checkpoint recorded, but this is not a saved SDK/HTTP equality measurement.",
+    "receivedToCommit": "NOT_AVAILABLE",
+    "normalUnitReports": 0,
+    "interpretation": "No operational savings/quality adoption or Native-vs-Batch conclusion from one Native response."
+  },
+  "preservation": {
+    "historicalEvidenceFiles": 27,
+    "historicalEvidenceHashesUnchanged": true,
+    "priorPrivateOtherThanJournalFiles": 16,
+    "priorPrivateOtherThanJournalHashesUnchanged": true,
+    "sourceAndProductionUnchanged": true,
+    "grafanaAndComposeUnchanged": true,
+    "priorJournalSixLinePrefixSha256": "b2fe9f54ae8441010bebeb3734896b7328d5445586fd7bc1838045d3d510cf5e",
+    "currentJournalSha256": "80607e4746092d22067d61b818e69bd61f493e197f1a6d4d4cc58789c4fa6547",
+    "journalAppendedOnly": [
+      "EXPANDED_LIVE_BEGIN",
+      "RESERVE_attempt4",
+      "SETTLE_attempt4"
+    ],
+    "priorUnknownReleased": false
+  },
+  "raw": {
+    "approvalManifestFileSha256": "ed4e9ccec789b92f9e4af9d7dacf1d09ff5defe34dd9b0c8604712325db8d423",
+    "checkpointRoot": ".issue68-live/issue68-six-condition-pilot120-gate-v2-v1",
+    "checkpointRecords": [
+      {
+        "file": "00001-http-reserved.json",
+        "sha256": "1e88ad37353b7b7619e52986edb6d2d82c420fe693996a1f97da4854369a712c",
+        "recordedFileMtimeUtc": "2026-10-22T01:54:26.678426Z",
+        "record": {
+          "data": {
+            "attempt": 4,
+            "logical": 1
+          },
+          "name": "http-reserved",
+          "newPilotBurdenNanoUsd": 19276800,
+          "scope": "LIVE_PILOT120",
+          "totalBurdenNanoUsd": 38864700
+        }
+      },
+      {
+        "file": "00002-http-completed.json",
+        "sha256": "75619563ba6cc593ff41bccc21e284529a9913e1a91ef99f708156c91bdc301d",
+        "recordedFileMtimeUtc": "2026-10-22T01:54:28.754295Z",
+        "record": {
+          "data": [
+            {
+              "number": 4,
+              "logical": 1,
+              "status": 200,
+              "usage": {
+                "input": 821,
+                "output": 20,
+                "total": 841,
+                "cached": 0
+              },
+              "reservedNanos": 19276800,
+              "latencyNanos": 2069019666,
+              "contentEncoding": "gzip",
+              "settlement": "SETTLED"
+            }
+          ],
+          "name": "http-completed",
+          "newPilotBurdenNanoUsd": 135150,
+          "scope": "LIVE_PILOT120",
+          "totalBurdenNanoUsd": 19723050
+        }
+      },
+      {
+        "file": "00003-gate-progress.json",
+        "sha256": "9746fab017bbda2887e9b6510da41d08dce3c679aa63fbff6600b28b6f844aca",
+        "recordedFileMtimeUtc": "2026-10-22T01:54:28.844393Z",
+        "record": {
+          "data": {
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "MEDIUM"
+            },
+            "caseId": "HOLDOUT-PROFANITY-14",
+            "dbCommitted": true,
+            "executionHolds": {
+              "Unit[stage=PILOT, traffic=BURST, repeat=1, mode=NATIVE]/HOLDOUT-PROFANITY-14": [
+                "CRITICAL_RISK_DOWNGRADE"
+              ]
+            },
+            "v1v2": {
+              "id": "HOLDOUT-PROFANITY-14",
+              "v1Blockers": [
+                "GT_HIGH_DOWNGRADE"
+              ],
+              "v2Blockers": [
+                "CRITICAL_RISK_DOWNGRADE"
+              ],
+              "v2Notes": [],
+              "exactAndReview": {
+                "decision": "HUMAN_APPROVAL_REQUIRED",
+                "v1Reasons": [
+                  "GT_HIGH_DOWNGRADE"
+                ],
+                "draftHoldReasons": [],
+                "resultExact": true,
+                "categoryExact": true,
+                "riskExact": false,
+                "expectedReviewTarget": true,
+                "actualReviewTarget": true,
+                "highToMediumReviewPreserved": true
+              }
+            }
+          },
+          "name": "gate-progress",
+          "newPilotBurdenNanoUsd": 135150,
+          "scope": "LIVE_PILOT120",
+          "totalBurdenNanoUsd": 19723050
+        }
+      },
+      {
+        "file": "00004-db-progress.json",
+        "sha256": "e1f7a34580e562201ad6cdda6ddf665634340ea6d1ecdb71c9d84d1395078aca",
+        "recordedFileMtimeUtc": "2026-10-22T01:54:28.851539Z",
+        "record": {
+          "data": [
+            {
+              "caseId": "HOLDOUT-SAFE-17",
+              "dbCommittedNs": 0,
+              "offset": 0,
+              "partition": 0
+            },
+            {
+              "caseId": "HOLDOUT-PI-05",
+              "dbCommittedNs": 0,
+              "offset": 0,
+              "partition": 1
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-14",
+              "dbCommittedNs": 1213308637928708,
+              "offset": 0,
+              "partition": 2
+            },
+            {
+              "caseId": "HOLDOUT-SPAM-16",
+              "dbCommittedNs": 0,
+              "offset": 1,
+              "partition": 0
+            },
+            {
+              "caseId": "HOLDOUT-SPAM-19",
+              "dbCommittedNs": 0,
+              "offset": 1,
+              "partition": 1
+            },
+            {
+              "caseId": "HOLDOUT-SPAM-08",
+              "dbCommittedNs": 0,
+              "offset": 1,
+              "partition": 2
+            },
+            {
+              "caseId": "HOLDOUT-SAFE-09",
+              "dbCommittedNs": 0,
+              "offset": 2,
+              "partition": 0
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-16",
+              "dbCommittedNs": 0,
+              "offset": 2,
+              "partition": 1
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-01",
+              "dbCommittedNs": 0,
+              "offset": 2,
+              "partition": 2
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-06",
+              "dbCommittedNs": 0,
+              "offset": 3,
+              "partition": 0
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-13",
+              "dbCommittedNs": 0,
+              "offset": 3,
+              "partition": 1
+            },
+            {
+              "caseId": "HOLDOUT-SAFE-01",
+              "dbCommittedNs": 0,
+              "offset": 3,
+              "partition": 2
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-17",
+              "dbCommittedNs": 0,
+              "offset": 4,
+              "partition": 0
+            },
+            {
+              "caseId": "HOLDOUT-SPAM-15",
+              "dbCommittedNs": 0,
+              "offset": 4,
+              "partition": 1
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-15",
+              "dbCommittedNs": 0,
+              "offset": 4,
+              "partition": 2
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-08",
+              "dbCommittedNs": 0,
+              "offset": 5,
+              "partition": 0
+            },
+            {
+              "caseId": "HOLDOUT-SPAM-09",
+              "dbCommittedNs": 0,
+              "offset": 5,
+              "partition": 1
+            },
+            {
+              "caseId": "HOLDOUT-SAFE-10",
+              "dbCommittedNs": 0,
+              "offset": 5,
+              "partition": 2
+            },
+            {
+              "caseId": "HOLDOUT-PROFANITY-05",
+              "dbCommittedNs": 0,
+              "offset": 6,
+              "partition": 0
+            },
+            {
+              "caseId": "HOLDOUT-PI-20",
+              "dbCommittedNs": 0,
+              "offset": 6,
+              "partition": 1
+            }
+          ],
+          "name": "db-progress",
+          "newPilotBurdenNanoUsd": 135150,
+          "scope": "LIVE_PILOT120",
+          "totalBurdenNanoUsd": 19723050
+        }
+      },
+      {
+        "file": "00005-partial-native.json",
+        "sha256": "824bcf5c76ff986acff79771c851fec1ddeea4e20e04e5a507046ba418ac1721",
+        "recordedFileMtimeUtc": "2026-10-22T01:54:29.006282Z",
+        "record": {
+          "data": {
+            "cases": [
+              {
+                "caseId": "HOLDOUT-SAFE-17",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 0,
+                "partition": 0,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PI-05",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 0,
+                "partition": 1,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-14",
+                "dbCommittedNs": 1213308637928708,
+                "deliveries": 1,
+                "offset": 0,
+                "partition": 2,
+                "returnedNs": 1213308652926000
+              },
+              {
+                "caseId": "HOLDOUT-SPAM-16",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 1,
+                "partition": 0,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-SPAM-19",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 1,
+                "partition": 1,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-SPAM-08",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 1,
+                "partition": 2,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-SAFE-09",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 2,
+                "partition": 0,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-16",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 2,
+                "partition": 1,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-01",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 2,
+                "partition": 2,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-06",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 3,
+                "partition": 0,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-13",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 3,
+                "partition": 1,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-SAFE-01",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 3,
+                "partition": 2,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-17",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 4,
+                "partition": 0,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-SPAM-15",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 4,
+                "partition": 1,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-15",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 4,
+                "partition": 2,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-08",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 5,
+                "partition": 0,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-SPAM-09",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 5,
+                "partition": 1,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-SAFE-10",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 5,
+                "partition": 2,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PROFANITY-05",
+                "dbCommittedNs": 0,
+                "deliveries": 0,
+                "offset": 6,
+                "partition": 0,
+                "returnedNs": 0
+              },
+              {
+                "caseId": "HOLDOUT-PI-20",
+                "dbCommittedNs": 0,
+                "deliveries": 1,
+                "offset": 6,
+                "partition": 1,
+                "returnedNs": 0
+              }
+            ],
+            "committedOffsets": [
+              {
+                "offset": 1,
+                "partition": 2
+              }
+            ],
+            "consumer": {
+              "concurrency": 1,
+              "maxPollIntervalMs": 300000,
+              "maxPollRecords": 10,
+              "partitions": 3
+            },
+            "dltCount": 0,
+            "lag": 19,
+            "polls": [
+              [
+                "HOLDOUT-PROFANITY-14",
+                "HOLDOUT-SPAM-08",
+                "HOLDOUT-SAFE-17",
+                "HOLDOUT-PI-05",
+                "HOLDOUT-SPAM-19",
+                "HOLDOUT-PROFANITY-16",
+                "HOLDOUT-PROFANITY-13",
+                "HOLDOUT-SPAM-15",
+                "HOLDOUT-SPAM-09",
+                "HOLDOUT-PI-20"
+              ]
+            ],
+            "publication": [
+              {
+                "ackNs": 1213306096831583,
+                "caseId": "HOLDOUT-SAFE-17",
+                "publishedNs": 1213305892939250,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096852041,
+                "caseId": "HOLDOUT-PI-05",
+                "publishedNs": 1213306084537125,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096567541,
+                "caseId": "HOLDOUT-PROFANITY-14",
+                "publishedNs": 1213306084942125,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306097238666,
+                "caseId": "HOLDOUT-SPAM-16",
+                "publishedNs": 1213306085038250,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096855541,
+                "caseId": "HOLDOUT-SPAM-19",
+                "publishedNs": 1213306085099291,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096762291,
+                "caseId": "HOLDOUT-SPAM-08",
+                "publishedNs": 1213306085159625,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306097249250,
+                "caseId": "HOLDOUT-SAFE-09",
+                "publishedNs": 1213306085209000,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096858791,
+                "caseId": "HOLDOUT-PROFANITY-16",
+                "publishedNs": 1213306085258166,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096769791,
+                "caseId": "HOLDOUT-PROFANITY-01",
+                "publishedNs": 1213306085304208,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306097253750,
+                "caseId": "HOLDOUT-PROFANITY-06",
+                "publishedNs": 1213306085350666,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096862000,
+                "caseId": "HOLDOUT-PROFANITY-13",
+                "publishedNs": 1213306085401208,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096774416,
+                "caseId": "HOLDOUT-SAFE-01",
+                "publishedNs": 1213306085451875,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306097257416,
+                "caseId": "HOLDOUT-PROFANITY-17",
+                "publishedNs": 1213306085498375,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096865125,
+                "caseId": "HOLDOUT-SPAM-15",
+                "publishedNs": 1213306085544208,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096777750,
+                "caseId": "HOLDOUT-PROFANITY-15",
+                "publishedNs": 1213306085589416,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306097260958,
+                "caseId": "HOLDOUT-PROFANITY-08",
+                "publishedNs": 1213306085637041,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096868083,
+                "caseId": "HOLDOUT-SPAM-09",
+                "publishedNs": 1213306086033958,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096780708,
+                "caseId": "HOLDOUT-SAFE-10",
+                "publishedNs": 1213306086106041,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306097264458,
+                "caseId": "HOLDOUT-PROFANITY-05",
+                "publishedNs": 1213306086155416,
+                "targetNs": 1213305892908416
+              },
+              {
+                "ackNs": 1213306096907250,
+                "caseId": "HOLDOUT-PI-20",
+                "publishedNs": 1213306086204500,
+                "targetNs": 1213305892908416
+              }
+            ],
+            "unit": {
+              "stage": "PILOT",
+              "traffic": "BURST",
+              "repeat": 1,
+              "mode": "NATIVE"
+            },
+            "unsafeCommits": 0
+          },
+          "name": "partial-native",
+          "newPilotBurdenNanoUsd": 135150,
+          "scope": "LIVE_PILOT120",
+          "totalBurdenNanoUsd": 19723050
+        }
+      },
+      {
+        "file": "00006-final.json",
+        "sha256": "f8bc3e7fccd7e22bd93bacfefd955ba6e619cad0609170a229b67b21e634e079",
+        "recordedFileMtimeUtc": "2026-10-22T01:54:29.052243Z",
+        "record": {
+          "data": {
+            "automaticNextStage": false,
+            "executionHolds": {
+              "Unit[stage=PILOT, traffic=BURST, repeat=1, mode=NATIVE]/HOLDOUT-PROFANITY-14": [
+                "CRITICAL_RISK_DOWNGRADE"
+              ]
+            },
+            "failureClass": "IllegalStateException",
+            "grossReservedNanoUsd": 77184000,
+            "manifestSha256": "3540e688973ad207179e1e549a05ce816ca87ab5750e46aac20e827bae12b5c1",
+            "newBurdenNanoUsd": 135150,
+            "runs": [],
+            "scope": "LIVE_PILOT120_HISTORICAL_GT_NOT_BLIND_NOT_PRODUCTION",
+            "status": "PILOT_HOLD_HUMAN_REAPPROVAL_REQUIRED",
+            "totalBurdenNanoUsd": 19723050,
+            "v1v2": [
+              {
+                "id": "HOLDOUT-PROFANITY-14",
+                "v1Blockers": [
+                  "GT_HIGH_DOWNGRADE"
+                ],
+                "v2Blockers": [
+                  "CRITICAL_RISK_DOWNGRADE"
+                ],
+                "v2Notes": [],
+                "exactAndReview": {
+                  "decision": "HUMAN_APPROVAL_REQUIRED",
+                  "v1Reasons": [
+                    "GT_HIGH_DOWNGRADE"
+                  ],
+                  "draftHoldReasons": [],
+                  "resultExact": true,
+                  "categoryExact": true,
+                  "riskExact": false,
+                  "expectedReviewTarget": true,
+                  "actualReviewTarget": true,
+                  "highToMediumReviewPreserved": true
+                }
+              }
+            ]
+          },
+          "name": "final",
+          "newPilotBurdenNanoUsd": 135150,
+          "scope": "LIVE_PILOT120",
+          "totalBurdenNanoUsd": 19723050
+        }
+      }
+    ]
+  }
+}

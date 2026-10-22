@@ -1,0 +1,453 @@
+{
+  "scope" : "ISSUE68_LIVE_SMOKE_ONLY_NOT_MATRIX_OR_PRODUCTION",
+  "groundTruthSha256" : "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+  "approval" : "issue68-resume-usage-v1-native1-batch1-2026-10-21",
+  "previousApproval" : "issue68-smoke-native1-batch1-2026-10-21",
+  "maxNewHttpAttempts" : 4,
+  "recordedAt" : "2026-10-21T09:14:01.480655Z",
+  "status" : "BATCH_GATE_HOLD",
+  "modelAccessHttpStatus" : 200,
+  "cases" : [ {
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "contentSha256" : "78fd626bea4286182d12db1fdf40eb1f5c221e8162e9bbfadd7d1d31c8a4f26a",
+    "caseId" : "HOLDOUT-SAFE-01"
+  }, {
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "contentSha256" : "2a96a20dc756928bf2b502d664eb292c971497b062999368b999f3a15575c6d1",
+    "caseId" : "HOLDOUT-PROFANITY-16"
+  } ],
+  "native" : {
+    "mode" : "native",
+    "samples" : [ {
+      "caseId" : "HOLDOUT-SAFE-01",
+      "actual" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "status" : "SAFE",
+      "completed" : true,
+      "partition" : 0,
+      "offset" : 0,
+      "receivedNs" : 1153285018257666,
+      "flushNs" : 1153287843293125,
+      "committedNs" : 1153287846064833,
+      "returnedNs" : 1153287853742541,
+      "ackNs" : 1153284860339791,
+      "deliveries" : 1,
+      "promptTokens" : 824,
+      "totalTokens" : 837,
+      "errorCode" : null,
+      "provider" : "OpenAI",
+      "model" : "gpt-4o-mini-2024-07-18",
+      "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+      "policyVersion" : "moderation-policy-v2"
+    } ],
+    "polls" : [ [ "HOLDOUT-SAFE-01" ] ],
+    "lag" : [ {
+      "elapsedNs" : 2063812291,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2330400458,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2336255375,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2364770250,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2466064666,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2568849833,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2678534041,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2768377625,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2867613166,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2965569625,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3067597375,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3164910458,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3264365291,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3368763125,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3467649083,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3567683333,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3668046250,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3763890541,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3868755791,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3963840291,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4064627541,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4168733875,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4266324916,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4366232916,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4468732208,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4568621541,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4664530208,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4765854458,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4865890208,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4966602666,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5065355916,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5168201583,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5265347625,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5364256500,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5466698708,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5567599916,
+      "value" : 0
+    }, {
+      "elapsedNs" : 5606493375,
+      "value" : 0
+    } ],
+    "finalLag" : 0,
+    "finalRows" : 1,
+    "transactionViolations" : 0,
+    "unsafeCommits" : 0,
+    "saveFailures" : 0,
+    "dltRecords" : 0,
+    "gateReasons" : [ ],
+    "quality" : {
+      "cases" : 1,
+      "unresolved" : 0,
+      "resultExact" : 1,
+      "categoryExact" : 1,
+      "riskExact" : 1,
+      "actionabilityExact" : 1,
+      "tp" : 0,
+      "fp" : 0,
+      "fn" : 0,
+      "tn" : 1,
+      "precision" : 0.0,
+      "recall" : 0.0,
+      "f1" : 0.0,
+      "fpIds" : [ ],
+      "fnIds" : [ ],
+      "highMissIds" : [ ]
+    },
+    "latencyMs" : {
+      "receivedToCommitP50" : 2827.807167,
+      "receivedToCommitP95" : 2827.807167,
+      "publishAckToCommitP95" : 2985.725042,
+      "publishAckToCommitP50" : 2985.725042
+    },
+    "commitObservations" : 1
+  },
+  "nativeSdkHttpUsageMatch" : true,
+  "batch" : {
+    "mode" : "poll",
+    "samples" : [ {
+      "caseId" : "HOLDOUT-SAFE-01",
+      "actual" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "status" : "SAFE",
+      "completed" : true,
+      "partition" : 0,
+      "offset" : 0,
+      "receivedNs" : 1153288493672958,
+      "flushNs" : 1153290322292750,
+      "committedNs" : 1153290323759166,
+      "returnedNs" : 1153290327143000,
+      "ackNs" : 1153288475758583,
+      "deliveries" : 1,
+      "promptTokens" : null,
+      "totalTokens" : null,
+      "errorCode" : null,
+      "provider" : "OpenAI",
+      "model" : "gpt-4o-mini-2024-07-18",
+      "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+      "policyVersion" : "moderation-policy-v2"
+    }, {
+      "caseId" : "HOLDOUT-PROFANITY-16",
+      "actual" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PROFANITY" ],
+        "riskLevel" : "MEDIUM"
+      },
+      "status" : "FLAGGED",
+      "completed" : true,
+      "partition" : 0,
+      "offset" : 1,
+      "receivedNs" : 1153288493672958,
+      "flushNs" : 1153290335532208,
+      "committedNs" : 1153290337574458,
+      "returnedNs" : 1153290341157708,
+      "ackNs" : 1153288477386500,
+      "deliveries" : 1,
+      "promptTokens" : null,
+      "totalTokens" : null,
+      "errorCode" : null,
+      "provider" : "OpenAI",
+      "model" : "gpt-4o-mini-2024-07-18",
+      "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+      "policyVersion" : "moderation-policy-v2"
+    } ],
+    "polls" : [ [ "HOLDOUT-SAFE-01", "HOLDOUT-PROFANITY-16" ] ],
+    "lag" : [ {
+      "elapsedNs" : 314106833,
+      "value" : 0
+    }, {
+      "elapsedNs" : 415685833,
+      "value" : 2
+    }, {
+      "elapsedNs" : 515005958,
+      "value" : 2
+    }, {
+      "elapsedNs" : 618479708,
+      "value" : 2
+    }, {
+      "elapsedNs" : 717764916,
+      "value" : 2
+    }, {
+      "elapsedNs" : 815423041,
+      "value" : 2
+    }, {
+      "elapsedNs" : 914675666,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1015078500,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1119095166,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1217814791,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1316052000,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1418126791,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1515354333,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1616919541,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1716342291,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1815000583,
+      "value" : 2
+    }, {
+      "elapsedNs" : 1917900458,
+      "value" : 2
+    }, {
+      "elapsedNs" : 2019039083,
+      "value" : 2
+    }, {
+      "elapsedNs" : 2117843208,
+      "value" : 2
+    }, {
+      "elapsedNs" : 2214707041,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2315922333,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2384196041,
+      "value" : 0
+    } ],
+    "finalLag" : 0,
+    "finalRows" : 2,
+    "transactionViolations" : 0,
+    "unsafeCommits" : 0,
+    "saveFailures" : 0,
+    "dltRecords" : 0,
+    "gateReasons" : [ "GT_HIGH_DOWNGRADE" ],
+    "quality" : {
+      "cases" : 2,
+      "unresolved" : 0,
+      "resultExact" : 2,
+      "categoryExact" : 2,
+      "riskExact" : 1,
+      "actionabilityExact" : 2,
+      "tp" : 1,
+      "fp" : 0,
+      "fn" : 0,
+      "tn" : 1,
+      "precision" : 1.0,
+      "recall" : 1.0,
+      "f1" : 1.0,
+      "fpIds" : [ ],
+      "fnIds" : [ ],
+      "highMissIds" : [ "HOLDOUT-PROFANITY-16" ]
+    },
+    "latencyMs" : {
+      "receivedToCommitP50" : 1830.086208,
+      "receivedToCommitP95" : 1843.9015,
+      "publishAckToCommitP95" : 1860.187958,
+      "publishAckToCommitP50" : 1848.000583
+    },
+    "commitObservations" : 1
+  },
+  "batchSdkHttpUsageMatch" : true,
+  "actualKafkaBatchConfirmed" : true,
+  "requests" : [ {
+    "batch" : false,
+    "cap" : 128,
+    "caseIds" : [ "HOLDOUT-SAFE-01" ],
+    "ended" : 1153287830876208,
+    "failed" : false,
+    "inputEstimate" : 1024,
+    "number" : 1,
+    "requestSha256" : "88f2c1c0cfb1b850da5f1c6671501fd99e319a1f51e4cf8e1dcf0e2dd9b56324",
+    "started" : 1153285127394375
+  }, {
+    "batch" : true,
+    "cap" : 256,
+    "caseIds" : [ "HOLDOUT-SAFE-01", "HOLDOUT-PROFANITY-16" ],
+    "ended" : 1153290315476041,
+    "failed" : false,
+    "inputEstimate" : 1219,
+    "number" : 2,
+    "requestSha256" : "e4737a4c08f33c81e245e9d16922b872208682f85ab0bcfd90fbb7c599955340",
+    "started" : 1153288504458041
+  } ],
+  "http" : [ {
+    "number" : 2,
+    "logical" : 1,
+    "status" : 200,
+    "usage" : {
+      "input" : 824,
+      "output" : 13,
+      "total" : 837,
+      "cached" : 0
+    },
+    "reservedNanos" : 19276800,
+    "latencyNanos" : 2321661250,
+    "contentEncoding" : "gzip",
+    "settlement" : "SETTLED"
+  }, {
+    "number" : 3,
+    "logical" : 2,
+    "status" : 200,
+    "usage" : {
+      "input" : 986,
+      "output" : 53,
+      "total" : 1039,
+      "cached" : 0
+    },
+    "reservedNanos" : 19353600,
+    "latencyNanos" : 1783474292,
+    "contentEncoding" : "gzip",
+    "settlement" : "SETTLED"
+  } ],
+  "sdkUsage" : [ {
+    "logical" : 1,
+    "model" : "gpt-4o-mini-2024-07-18",
+    "usage" : {
+      "input" : 824,
+      "output" : 13,
+      "total" : 837,
+      "cached" : 0
+    }
+  }, {
+    "logical" : 2,
+    "model" : "gpt-4o-mini-2024-07-18",
+    "usage" : {
+      "input" : 986,
+      "output" : 53,
+      "total" : 1039,
+      "cached" : 0
+    }
+  } ],
+  "priorUnknownReservedNanoUsd" : 19276800,
+  "priorGrossReservedNanoUsd" : 19276800,
+  "newChargedOrUnknownReservedNanoUsd" : 311100,
+  "newGrossReservedNanoUsd" : 38630400,
+  "chargedOrUnknownReservedNanoUsd" : 19587900,
+  "grossReservedNanoUsd" : 57907200,
+  "matrixExecuted" : false,
+  "executionHead" : "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "executionState" : "uncommitted-source-snapshot",
+  "sourceHashes" : {
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java" : "e3220d2f9f95aa7db52b923c23cfdf08ac155d3643504ffdaf3dd80e61abd141",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68BudgetTest.java" : "af471e1cab938cb139a29e4293e31dfe643811e3b506269016957796dff1ceee",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContract.java" : "a1c90d90384533d8f6ecfdeacf52c92201874a4b39624a8bf5497dbf300b786f",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContractTest.java" : "7bae85b1c90c5b19c42794a88ff4258155f5d25ce02440e876e4252abfddabf7",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68FakeOpenAiEndpoint.java" : "35e1204542df15204e60bde09705a4d6b42cd867701b1c1d527a322dcebf4d8a",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java" : "65369d62a077ac7e0b85a8c2747aaafad6bc633db3635a446a9589692e589d5b",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundaryTest.java" : "c5da8121c3e4ebe2eaa8cca1943eea5bdd7b73ac25b8eb4e68c633bfb0ba8cd2",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveReadinessTest.java" : "5e3571bb7caaed474c9a07fcdd64936524c694f09a2a77d837cdfa0251305d5e",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveResumeTest.java" : "28514add0f07566c0a1663d40fbeeb112d09df690a65e889d5189ce3446adc14",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveSession.java" : "0a93e6ad1fb3c2f808c09a31c4ffd0a26d69d22f37e02ea9c5c7fe073eb333bb",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68OpenAiContext.java" : "1ef903d864205c572eabd57295b308bf79af3211c3ce1d9419322a3f80c63f72",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ResponseUsage.java" : "b61f1419837c0795536112a0be1d5059c81275f36b2d2b6220472318fceab1d7",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ResponseUsageTest.java" : "6987ccc8c6087bd62f14887561233a2007575604c1594c4d4902606df9884dfa",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68SdkUsage.java" : "ad82e0e000da88a261cfe0473a7626448e275e08b28ed6dddbc8ed98ebb208b1",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68UsageAccountingTest.java" : "c1eb12391048c73a2184021729503385d6903489c67c3332c5a2779671febdaf",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68LiveSmokeTest.java" : "29e73194b226a73d7e31f14305bc61622d4485d8176f9dcea08b573829d66571",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaHarness.java" : "7dd64892094200c4419379a48a042fedfc4afa58a1a5214c50e9a645ccd3d2d6",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaIntegrationTest.java" : "1c1df260de7a9e0a755cd9505ebea6706fe7d3670c23c4e3f6f41740e5517389"
+  }
+}

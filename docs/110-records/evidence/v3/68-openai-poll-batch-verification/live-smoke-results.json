@@ -1,0 +1,228 @@
+{
+  "scope" : "ISSUE68_LIVE_SMOKE_ONLY_NOT_MATRIX_OR_PRODUCTION",
+  "groundTruthSha256" : "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+  "approval" : "issue68-smoke-native1-batch1-2026-10-21",
+  "recordedAt" : "2026-10-21T08:19:27.759343Z",
+  "status" : "NATIVE_GATE_HOLD",
+  "modelAccessHttpStatus" : 200,
+  "cases" : [ {
+    "caseId" : "HOLDOUT-SAFE-01",
+    "expected" : {
+      "result" : "SAFE",
+      "categories" : [ ],
+      "riskLevel" : "LOW"
+    },
+    "contentSha256" : "78fd626bea4286182d12db1fdf40eb1f5c221e8162e9bbfadd7d1d31c8a4f26a"
+  }, {
+    "caseId" : "HOLDOUT-PROFANITY-16",
+    "expected" : {
+      "result" : "FLAGGED",
+      "categories" : [ "PROFANITY" ],
+      "riskLevel" : "HIGH"
+    },
+    "contentSha256" : "2a96a20dc756928bf2b502d664eb292c971497b062999368b999f3a15575c6d1"
+  } ],
+  "native" : {
+    "mode" : "native",
+    "samples" : [ {
+      "caseId" : "HOLDOUT-SAFE-01",
+      "actual" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "status" : "SAFE",
+      "completed" : true,
+      "partition" : 0,
+      "offset" : 0,
+      "receivedNs" : 1150011027500166,
+      "flushNs" : 1150013870448500,
+      "committedNs" : 1150013873031583,
+      "returnedNs" : 1150013877611458,
+      "ackNs" : 1150010927003416,
+      "deliveries" : 1,
+      "promptTokens" : 824,
+      "totalTokens" : 837,
+      "errorCode" : null,
+      "provider" : "OpenAI",
+      "model" : "gpt-4o-mini-2024-07-18",
+      "promptVersion" : "moderation-prompt-v3-short-fragment-boundary",
+      "policyVersion" : "moderation-policy-v2"
+    } ],
+    "polls" : [ [ "HOLDOUT-SAFE-01" ] ],
+    "lag" : [ {
+      "elapsedNs" : 2041298083,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2188639958,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2243525166,
+      "value" : 0
+    }, {
+      "elapsedNs" : 2345945791,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2442249416,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2546204375,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2646199375,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2744312208,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2846227416,
+      "value" : 1
+    }, {
+      "elapsedNs" : 2946288083,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3045364125,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3143278166,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3244765833,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3346265500,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3445643333,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3546252375,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3646232666,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3745195833,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3846252541,
+      "value" : 1
+    }, {
+      "elapsedNs" : 3945648916,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4046232666,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4142863333,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4245162958,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4342648750,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4446277833,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4542071375,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4642802750,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4744283208,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4844743458,
+      "value" : 1
+    }, {
+      "elapsedNs" : 4943136958,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5041515416,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5146213875,
+      "value" : 1
+    }, {
+      "elapsedNs" : 5245696666,
+      "value" : 0
+    }, {
+      "elapsedNs" : 5325798875,
+      "value" : 0
+    } ],
+    "finalLag" : 0,
+    "finalRows" : 1,
+    "transactionViolations" : 0,
+    "unsafeCommits" : 0,
+    "saveFailures" : 0,
+    "dltRecords" : 0,
+    "gateReasons" : [ "USAGE_UNKNOWN" ],
+    "quality" : {
+      "cases" : 1,
+      "unresolved" : 0,
+      "resultExact" : 1,
+      "categoryExact" : 1,
+      "riskExact" : 1,
+      "actionabilityExact" : 1,
+      "tp" : 0,
+      "fp" : 0,
+      "fn" : 0,
+      "tn" : 1,
+      "precision" : 0.0,
+      "recall" : 0.0,
+      "f1" : 0.0,
+      "fpIds" : [ ],
+      "fnIds" : [ ],
+      "highMissIds" : [ ]
+    },
+    "latencyMs" : {
+      "publishAckToCommitP50" : 2946.028167,
+      "receivedToCommitP50" : 2845.531417,
+      "receivedToCommitP95" : 2845.531417,
+      "publishAckToCommitP95" : 2946.028167
+    },
+    "commitObservations" : 1
+  },
+  "requests" : [ {
+    "batch" : false,
+    "cap" : 128,
+    "caseIds" : [ "HOLDOUT-SAFE-01" ],
+    "ended" : 1150013849651041,
+    "failed" : false,
+    "inputEstimate" : 1024,
+    "number" : 1,
+    "requestSha256" : "88f2c1c0cfb1b850da5f1c6671501fd99e319a1f51e4cf8e1dcf0e2dd9b56324",
+    "started" : 1150011078868375
+  } ],
+  "http" : [ {
+    "number" : 1,
+    "logical" : 1,
+    "status" : 200,
+    "usage" : null,
+    "reservedNanos" : 19276800,
+    "latencyNanos" : 2472322000
+  } ],
+  "chargedOrUnknownReservedNanoUsd" : 19276800,
+  "grossReservedNanoUsd" : 19276800,
+  "matrixExecuted" : false,
+  "executionHead" : "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "executionState" : "uncommitted-source-snapshot",
+  "sourceHashes" : {
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java" : "e3220d2f9f95aa7db52b923c23cfdf08ac155d3643504ffdaf3dd80e61abd141",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68BudgetTest.java" : "af471e1cab938cb139a29e4293e31dfe643811e3b506269016957796dff1ceee",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContract.java" : "a1c90d90384533d8f6ecfdeacf52c92201874a4b39624a8bf5497dbf300b786f",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContractTest.java" : "7bae85b1c90c5b19c42794a88ff4258155f5d25ce02440e876e4252abfddabf7",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68FakeOpenAiEndpoint.java" : "a6c7012c0bb5c65600f62a0d4e47a1c9fa95c5a7e179a17ca7750f2b4077dc38",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java" : "ebd14c077f2cda32b9f53414458706f475cc2928fb7a6fb610f6a516c5027eb2",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundaryTest.java" : "c5da8121c3e4ebe2eaa8cca1943eea5bdd7b73ac25b8eb4e68c633bfb0ba8cd2",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveReadinessTest.java" : "5e3571bb7caaed474c9a07fcdd64936524c694f09a2a77d837cdfa0251305d5e",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveSession.java" : "a8c6135431f9a902244e7dc1d7d7d1bff8e45dc764262515359fe9ab2bedd8e6",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68OpenAiContext.java" : "da8afe39c5448f5b889b252fc6f407665dbe19fdbfba6c7484ece8fd0ad26fc0",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68LiveSmokeTest.java" : "7d6714c8d4d846576a4480004956f0b352b9666b5b5182fdb8b7275d3a42b18b",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaHarness.java" : "7dd64892094200c4419379a48a042fedfc4afa58a1a5214c50e9a645ccd3d2d6",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaIntegrationTest.java" : "c1beb1ab99a3e29f4e38ffe5a92efed106894ee696bfba3eb241b57d6e8e8df5"
+  }
+}

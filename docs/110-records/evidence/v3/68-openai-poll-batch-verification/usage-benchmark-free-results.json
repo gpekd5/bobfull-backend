@@ -1,0 +1,2366 @@
+{
+  "scope": "DERIVED_FREE_FAKE_READINESS_NOT_REAL_OPENAI_USAGE_OR_MODEL_QUALITY",
+  "executionHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "executionState": "uncommitted source hashes in approval manifest",
+  "executedAtUtc": "2026-10-22T07:12:35.285180Z",
+  "manifestSha256": "d61581f2947bda099a4277d0e90745c4fe8922032f61e3e1fa706ba27d68a0a9",
+  "paidApiCalls": 0,
+  "apiKeyReadOrUsed": false,
+  "rawOriginal": {
+    "path": "build/issue68/usage-benchmark-fake-1792653155285.json",
+    "sha256": "d5d08fe52f9b344163d4207c6ab17bd3633ef52dba384bc4adc539e27dea4fd6",
+    "bytes": 2465425,
+    "modified": false,
+    "tracked": false
+  },
+  "matrixUnits": 24,
+  "matrixRecords": 480,
+  "monitoringUnits": 6,
+  "qualityFixture": "SEMANTIC_SAFE deliberate output; FN9 per unit is a Fake fault injection, not new model quality evidence; original GT/Gate and past HOLD unchanged",
+  "matrix": [
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "startedAtUtc": "2026-10-22T07:11:23.871153Z",
+      "endedAtUtc": "2026-10-22T07:11:24.902585Z",
+      "logical": 2,
+      "http": 2,
+      "batchSizeDistribution": {
+        "10": 2
+      },
+      "fillRatioBatchOnly": 1,
+      "nativeLogical": 0,
+      "batchLogical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 223.975792,
+        "receivedToCommitP50": 172.320292,
+        "publishAckToCommitP50": 216.601208,
+        "publishAckToCommitP95": 450.318458
+      },
+      "providerLatencyMs": {
+        "avg": 106.78272899999999,
+        "p50": 106.4245,
+        "p95": 107.140958
+      },
+      "bufferMax": 10,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 2
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "startedAtUtc": "2026-10-22T07:11:24.930069Z",
+      "endedAtUtc": "2026-10-22T07:11:26.175730Z",
+      "logical": 2,
+      "http": 2,
+      "batchSizeDistribution": {
+        "10": 2
+      },
+      "fillRatioBatchOnly": 1,
+      "nativeLogical": 0,
+      "batchLogical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 250.69375,
+        "receivedToCommitP50": 183.637375,
+        "publishAckToCommitP50": 256.177417,
+        "publishAckToCommitP95": 500.289083
+      },
+      "providerLatencyMs": {
+        "avg": 103.9983125,
+        "p50": 103.333625,
+        "p95": 104.663
+      },
+      "bufferMax": 10,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 2
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "startedAtUtc": "2026-10-22T07:11:26.204185Z",
+      "endedAtUtc": "2026-10-22T07:11:27.443084Z",
+      "logical": 2,
+      "http": 2,
+      "batchSizeDistribution": {
+        "10": 2
+      },
+      "fillRatioBatchOnly": 1,
+      "nativeLogical": 0,
+      "batchLogical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 258.007167,
+        "receivedToCommitP50": 181.468334,
+        "publishAckToCommitP50": 270.37325,
+        "publishAckToCommitP95": 502.874083
+      },
+      "providerLatencyMs": {
+        "avg": 108.970875,
+        "p50": 104.700208,
+        "p95": 113.241542
+      },
+      "bufferMax": 10,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 2
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "startedAtUtc": "2026-10-22T07:11:27.462141Z",
+      "endedAtUtc": "2026-10-22T07:11:28.699331Z",
+      "logical": 2,
+      "http": 2,
+      "batchSizeDistribution": {
+        "10": 2
+      },
+      "fillRatioBatchOnly": 1,
+      "nativeLogical": 0,
+      "batchLogical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 253.493167,
+        "receivedToCommitP50": 189.994542,
+        "publishAckToCommitP50": 254.773042,
+        "publishAckToCommitP95": 517.398542
+      },
+      "providerLatencyMs": {
+        "avg": 110.4546875,
+        "p50": 107.17,
+        "p95": 113.739375
+      },
+      "bufferMax": 10,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 2
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "startedAtUtc": "2026-10-22T07:11:28.725870Z",
+      "endedAtUtc": "2026-10-22T07:11:32.060253Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 1331.42125,
+        "receivedToCommitP50": 629.6075,
+        "publishAckToCommitP50": 1360.916,
+        "publishAckToCommitP95": 2556.19375
+      },
+      "providerLatencyMs": {
+        "avg": 115.7819645,
+        "p50": 112.61225,
+        "p95": 126.68425
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "startedAtUtc": "2026-10-22T07:11:32.090219Z",
+      "endedAtUtc": "2026-10-22T07:11:33.254481Z",
+      "logical": 2,
+      "http": 2,
+      "batchSizeDistribution": {
+        "10": 2
+      },
+      "fillRatioBatchOnly": 1,
+      "nativeLogical": 0,
+      "batchLogical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 275.2175,
+        "receivedToCommitP50": 192.627875,
+        "publishAckToCommitP50": 243.658792,
+        "publishAckToCommitP95": 535.235916
+      },
+      "providerLatencyMs": {
+        "avg": 113.89949999999999,
+        "p50": 108.397375,
+        "p95": 119.401625
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 2
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "startedAtUtc": "2026-10-22T07:11:33.332425Z",
+      "endedAtUtc": "2026-10-22T07:11:38.823104Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 136.989916,
+        "receivedToCommitP50": 130.436458,
+        "publishAckToCommitP50": 132.546,
+        "publishAckToCommitP95": 137.938791
+      },
+      "providerLatencyMs": {
+        "avg": 121.04479985,
+        "p50": 122.3625,
+        "p95": 128.008916
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "startedAtUtc": "2026-10-22T07:11:38.855961Z",
+      "endedAtUtc": "2026-10-22T07:11:44.335368Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 135.812583,
+        "receivedToCommitP50": 127.107708,
+        "publishAckToCommitP50": 127.965583,
+        "publishAckToCommitP95": 136.7205
+      },
+      "providerLatencyMs": {
+        "avg": 116.72796255,
+        "p50": 117.398375,
+        "p95": 124.343875
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "startedAtUtc": "2026-10-22T07:11:44.370310Z",
+      "endedAtUtc": "2026-10-22T07:11:49.972471Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 137.682542,
+        "receivedToCommitP50": 130.598667,
+        "publishAckToCommitP50": 131.752125,
+        "publishAckToCommitP95": 138.541584
+      },
+      "providerLatencyMs": {
+        "avg": 119.0762792,
+        "p50": 121.139917,
+        "p95": 127.525083
+      },
+      "bufferMax": 1,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "startedAtUtc": "2026-10-22T07:11:50.010210Z",
+      "endedAtUtc": "2026-10-22T07:11:55.488565Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 162.912542,
+        "receivedToCommitP50": 154.000042,
+        "publishAckToCommitP50": 154.644375,
+        "publishAckToCommitP95": 164.0135
+      },
+      "providerLatencyMs": {
+        "avg": 121.49580825000001,
+        "p50": 121.344583,
+        "p95": 131.635042
+      },
+      "bufferMax": 1,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "startedAtUtc": "2026-10-22T07:11:55.514978Z",
+      "endedAtUtc": "2026-10-22T07:12:01.095652Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 190.656583,
+        "receivedToCommitP50": 184.349708,
+        "publishAckToCommitP50": 185.161791,
+        "publishAckToCommitP95": 192.358083
+      },
+      "providerLatencyMs": {
+        "avg": 123.36526880000001,
+        "p50": 121.353334,
+        "p95": 130.789791
+      },
+      "bufferMax": 1,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "LOW",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "startedAtUtc": "2026-10-22T07:12:01.119543Z",
+      "endedAtUtc": "2026-10-22T07:12:06.708227Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 243.364209,
+        "receivedToCommitP50": 230.570084,
+        "publishAckToCommitP50": 233.654125,
+        "publishAckToCommitP95": 248.402209
+      },
+      "providerLatencyMs": {
+        "avg": 120.14139995000001,
+        "p50": 118.914041,
+        "p95": 127.659833
+      },
+      "bufferMax": 1,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "startedAtUtc": "2026-10-22T07:12:06.728159Z",
+      "endedAtUtc": "2026-10-22T07:12:08.409561Z",
+      "logical": 7,
+      "http": 7,
+      "batchSizeDistribution": {
+        "1": 2,
+        "2": 1,
+        "3": 1,
+        "4": 2,
+        "5": 1
+      },
+      "fillRatioBatchOnly": 0.36,
+      "nativeLogical": 2,
+      "batchLogical": 5,
+      "usage": {
+        "input": 6300,
+        "output": 400,
+        "total": 6700,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 1185000,
+        "costWithCacheNanoUsd": 1185000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 167.45575,
+        "receivedToCommitP50": 134.254625,
+        "publishAckToCommitP50": 373.012,
+        "publishAckToCommitP95": 476.663208
+      },
+      "providerLatencyMs": {
+        "avg": 109.09339285714285,
+        "p50": 107.259583,
+        "p95": 117.361459
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 7
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "startedAtUtc": "2026-10-22T07:12:08.443730Z",
+      "endedAtUtc": "2026-10-22T07:12:10.325150Z",
+      "logical": 7,
+      "http": 7,
+      "batchSizeDistribution": {
+        "1": 2,
+        "2": 1,
+        "3": 1,
+        "4": 2,
+        "5": 1
+      },
+      "fillRatioBatchOnly": 0.36,
+      "nativeLogical": 2,
+      "batchLogical": 5,
+      "usage": {
+        "input": 6300,
+        "output": 400,
+        "total": 6700,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 1185000,
+        "costWithCacheNanoUsd": 1185000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 184.971833,
+        "receivedToCommitP50": 147.818334,
+        "publishAckToCommitP50": 404.606458,
+        "publishAckToCommitP95": 517.610458
+      },
+      "providerLatencyMs": {
+        "avg": 114.29295842857142,
+        "p50": 114.420709,
+        "p95": 124.985916
+      },
+      "bufferMax": 5,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 7
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "startedAtUtc": "2026-10-22T07:12:10.362890Z",
+      "endedAtUtc": "2026-10-22T07:12:12.151071Z",
+      "logical": 5,
+      "http": 5,
+      "batchSizeDistribution": {
+        "1": 1,
+        "4": 2,
+        "5": 1,
+        "6": 1
+      },
+      "fillRatioBatchOnly": 0.475,
+      "nativeLogical": 1,
+      "batchLogical": 4,
+      "usage": {
+        "input": 4500,
+        "output": 400,
+        "total": 4900,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 915000,
+        "costWithCacheNanoUsd": 915000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 235.816459,
+        "receivedToCommitP50": 173.316542,
+        "publishAckToCommitP50": 273.910041,
+        "publishAckToCommitP95": 376.765167
+      },
+      "providerLatencyMs": {
+        "avg": 114.79265840000001,
+        "p50": 117.165542,
+        "p95": 121.9505
+      },
+      "bufferMax": 6,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 5
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "startedAtUtc": "2026-10-22T07:12:12.190435Z",
+      "endedAtUtc": "2026-10-22T07:12:14.073829Z",
+      "logical": 5,
+      "http": 5,
+      "batchSizeDistribution": {
+        "1": 1,
+        "2": 1,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "fillRatioBatchOnly": 0.475,
+      "nativeLogical": 1,
+      "batchLogical": 4,
+      "usage": {
+        "input": 4500,
+        "output": 400,
+        "total": 4900,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 915000,
+        "costWithCacheNanoUsd": 915000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 255.742875,
+        "receivedToCommitP50": 202.585416,
+        "publishAckToCommitP50": 275.139792,
+        "publishAckToCommitP95": 404.627292
+      },
+      "providerLatencyMs": {
+        "avg": 114.56189179999998,
+        "p50": 122.082958,
+        "p95": 124.68175
+      },
+      "bufferMax": 7,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 5
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "startedAtUtc": "2026-10-22T07:12:14.099929Z",
+      "endedAtUtc": "2026-10-22T07:12:15.968099Z",
+      "logical": 4,
+      "http": 4,
+      "batchSizeDistribution": {
+        "1": 1,
+        "3": 1,
+        "7": 1,
+        "9": 1
+      },
+      "fillRatioBatchOnly": 0.6333333333333333,
+      "nativeLogical": 1,
+      "batchLogical": 3,
+      "usage": {
+        "input": 3600,
+        "output": 400,
+        "total": 4000,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 780000,
+        "costWithCacheNanoUsd": 780000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 325.503667,
+        "receivedToCommitP50": 264.373875,
+        "publishAckToCommitP50": 317.595709,
+        "publishAckToCommitP95": 492.374542
+      },
+      "providerLatencyMs": {
+        "avg": 121.987396,
+        "p50": 123.053125,
+        "p95": 134.796042
+      },
+      "bufferMax": 9,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 4
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "INTERVAL",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "startedAtUtc": "2026-10-22T07:12:16.004584Z",
+      "endedAtUtc": "2026-10-22T07:12:19.484330Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 879.208792,
+        "receivedToCommitP50": 279.404709,
+        "publishAckToCommitP50": 1015.450041,
+        "publishAckToCommitP95": 1988.2935
+      },
+      "providerLatencyMs": {
+        "avg": 118.41391860000002,
+        "p50": 118.364875,
+        "p95": 125.912916
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "startedAtUtc": "2026-10-22T07:12:19.512663Z",
+      "endedAtUtc": "2026-10-22T07:12:20.904466Z",
+      "logical": 4,
+      "http": 4,
+      "batchSizeDistribution": {
+        "1": 1,
+        "2": 1,
+        "7": 1,
+        "10": 1
+      },
+      "fillRatioBatchOnly": 0.6333333333333333,
+      "nativeLogical": 1,
+      "batchLogical": 3,
+      "usage": {
+        "input": 3600,
+        "output": 400,
+        "total": 4000,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 780000,
+        "costWithCacheNanoUsd": 780000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 235.488333,
+        "receivedToCommitP50": 162.026958,
+        "publishAckToCommitP50": 311.3605,
+        "publishAckToCommitP95": 690.152667
+      },
+      "providerLatencyMs": {
+        "avg": 111.36710425,
+        "p50": 108.184292,
+        "p95": 123.577
+      },
+      "bufferMax": 11,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 4
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "startedAtUtc": "2026-10-22T07:12:20.939529Z",
+      "endedAtUtc": "2026-10-22T07:12:22.163665Z",
+      "logical": 2,
+      "http": 2,
+      "batchSizeDistribution": {
+        "10": 2
+      },
+      "fillRatioBatchOnly": 1,
+      "nativeLogical": 0,
+      "batchLogical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 229.4985,
+        "receivedToCommitP50": 187.42275,
+        "publishAckToCommitP50": 229.208333,
+        "publishAckToCommitP95": 450.142167
+      },
+      "providerLatencyMs": {
+        "avg": 109.4163125,
+        "p50": 104.791209,
+        "p95": 114.041416
+      },
+      "bufferMax": 10,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 2
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "startedAtUtc": "2026-10-22T07:12:22.203766Z",
+      "endedAtUtc": "2026-10-22T07:12:23.309904Z",
+      "logical": 2,
+      "http": 2,
+      "batchSizeDistribution": {
+        "10": 2
+      },
+      "fillRatioBatchOnly": 1,
+      "nativeLogical": 0,
+      "batchLogical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 220.638,
+        "receivedToCommitP50": 176.79325,
+        "publishAckToCommitP50": 226.426584,
+        "publishAckToCommitP95": 421.573708
+      },
+      "providerLatencyMs": {
+        "avg": 102.076875,
+        "p50": 97.264042,
+        "p95": 106.889708
+      },
+      "bufferMax": 10,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 2
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "startedAtUtc": "2026-10-22T07:12:23.348437Z",
+      "endedAtUtc": "2026-10-22T07:12:26.645735Z",
+      "logical": 20,
+      "http": 20,
+      "batchSizeDistribution": {
+        "1": 20
+      },
+      "fillRatioBatchOnly": 0,
+      "nativeLogical": 20,
+      "batchLogical": 0,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 1236.642125,
+        "receivedToCommitP50": 469.522625,
+        "publishAckToCommitP50": 1328.299375,
+        "publishAckToCommitP95": 2465.299458
+      },
+      "providerLatencyMs": {
+        "avg": 115.92788145,
+        "p50": 115.866167,
+        "p95": 124.040667
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 20
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "startedAtUtc": "2026-10-22T07:12:26.675232Z",
+      "endedAtUtc": "2026-10-22T07:12:28.179726Z",
+      "logical": 4,
+      "http": 4,
+      "batchSizeDistribution": {
+        "1": 1,
+        "2": 1,
+        "7": 1,
+        "10": 1
+      },
+      "fillRatioBatchOnly": 0.6333333333333333,
+      "nativeLogical": 1,
+      "batchLogical": 3,
+      "usage": {
+        "input": 3600,
+        "output": 400,
+        "total": 4000,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 780000,
+        "costWithCacheNanoUsd": 780000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 263.868208,
+        "receivedToCommitP50": 189.160833,
+        "publishAckToCommitP50": 498.492084,
+        "publishAckToCommitP95": 725.483875
+      },
+      "providerLatencyMs": {
+        "avg": 115.191427,
+        "p50": 109.563083,
+        "p95": 122.555583
+      },
+      "bufferMax": null,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 4
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "SHORT",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "startedAtUtc": "2026-10-22T07:12:28.207093Z",
+      "endedAtUtc": "2026-10-22T07:12:29.563772Z",
+      "logical": 4,
+      "http": 4,
+      "batchSizeDistribution": {
+        "1": 1,
+        "2": 1,
+        "7": 1,
+        "10": 1
+      },
+      "fillRatioBatchOnly": 0.6333333333333333,
+      "nativeLogical": 1,
+      "batchLogical": 3,
+      "usage": {
+        "input": 3600,
+        "output": 400,
+        "total": 4000,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 780000,
+        "costWithCacheNanoUsd": 780000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      },
+      "latencyMs": {
+        "receivedToCommitP95": 231.587875,
+        "receivedToCommitP50": 179.262,
+        "publishAckToCommitP50": 459.976709,
+        "publishAckToCommitP95": 669.501584
+      },
+      "providerLatencyMs": {
+        "avg": 115.25713525,
+        "p50": 113.566583,
+        "p95": 119.841417
+      },
+      "bufferMax": 10,
+      "quality": {
+        "cases": 20,
+        "unresolved": 0,
+        "resultExact": 11,
+        "categoryExact": 11,
+        "riskExact": 11,
+        "tp": 0,
+        "fp": 0,
+        "fn": 9,
+        "tn": 11
+      },
+      "historicalQualityStatus": "RECORDED_NOT_PASS_HISTORICAL_V1_V2_HOLD_PRESERVED",
+      "db": {
+        "finalRows": 20,
+        "saveFailures": 0,
+        "transactionViolations": 0
+      },
+      "kafka": {
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "commitObservations": 4
+      }
+    }
+  ],
+  "monitoring": [
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_0"
+      },
+      "queries": {
+        "LLM Call Count": {
+          "promql": "sum(gen_ai_client_operation_seconds_count)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653051.733,
+                    "2"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Estimated Cost (USD)": {
+          "promql": "(((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"input\"}) or vector(0)) * 0.15) + ((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"output\"}) or vector(0)) * 0.60)) / 1000000",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653051.735,
+                    "0.00051"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Token Usage": {
+          "promql": "sum by (gen_ai_token_type) (gen_ai_client_token_usage_total)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {
+                    "gen_ai_token_type": "input"
+                  },
+                  "value": [
+                    1792653051.738,
+                    "1800"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "output"
+                  },
+                  "value": [
+                    1792653051.738,
+                    "400"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "total"
+                  },
+                  "value": [
+                    1792653051.738,
+                    "2200"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "LLM p95 Latency": {
+          "promql": "histogram_quantile(0.95, sum by (le) (rate(gen_ai_client_operation_seconds_bucket[5m])))",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653051.74,
+                    "3.5612437139499997"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "logical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_20"
+      },
+      "queries": {
+        "LLM Call Count": {
+          "promql": "sum(gen_ai_client_operation_seconds_count)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653057.949,
+                    "2"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Estimated Cost (USD)": {
+          "promql": "(((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"input\"}) or vector(0)) * 0.15) + ((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"output\"}) or vector(0)) * 0.60)) / 1000000",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653057.95,
+                    "0.00051"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Token Usage": {
+          "promql": "sum by (gen_ai_token_type) (gen_ai_client_token_usage_total)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {
+                    "gen_ai_token_type": "input"
+                  },
+                  "value": [
+                    1792653057.951,
+                    "1800"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "output"
+                  },
+                  "value": [
+                    1792653057.951,
+                    "400"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "total"
+                  },
+                  "value": [
+                    1792653057.951,
+                    "2200"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "LLM p95 Latency": {
+          "promql": "histogram_quantile(0.95, sum by (le) (rate(gen_ai_client_operation_seconds_bucket[5m])))",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653057.952,
+                    "3.91915765495"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "logical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_50"
+      },
+      "queries": {
+        "LLM Call Count": {
+          "promql": "sum(gen_ai_client_operation_seconds_count)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653064.231,
+                    "2"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Estimated Cost (USD)": {
+          "promql": "(((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"input\"}) or vector(0)) * 0.15) + ((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"output\"}) or vector(0)) * 0.60)) / 1000000",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653064.233,
+                    "0.00051"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Token Usage": {
+          "promql": "sum by (gen_ai_token_type) (gen_ai_client_token_usage_total)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {
+                    "gen_ai_token_type": "input"
+                  },
+                  "value": [
+                    1792653064.236,
+                    "1800"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "output"
+                  },
+                  "value": [
+                    1792653064.236,
+                    "400"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "total"
+                  },
+                  "value": [
+                    1792653064.236,
+                    "2200"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "LLM p95 Latency": {
+          "promql": "histogram_quantile(0.95, sum by (le) (rate(gen_ai_client_operation_seconds_bucket[5m])))",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653064.237,
+                    "3.91915765495"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "logical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "TIME_100"
+      },
+      "queries": {
+        "LLM Call Count": {
+          "promql": "sum(gen_ai_client_operation_seconds_count)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653070.318,
+                    "2"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Estimated Cost (USD)": {
+          "promql": "(((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"input\"}) or vector(0)) * 0.15) + ((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"output\"}) or vector(0)) * 0.60)) / 1000000",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653070.319,
+                    "0.00051"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Token Usage": {
+          "promql": "sum by (gen_ai_token_type) (gen_ai_client_token_usage_total)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {
+                    "gen_ai_token_type": "input"
+                  },
+                  "value": [
+                    1792653070.32,
+                    "1800"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "output"
+                  },
+                  "value": [
+                    1792653070.32,
+                    "400"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "total"
+                  },
+                  "value": [
+                    1792653070.32,
+                    "2200"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "LLM p95 Latency": {
+          "promql": "histogram_quantile(0.95, sum by (le) (rate(gen_ai_client_operation_seconds_bucket[5m])))",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653070.321,
+                    "3.91915765495"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "logical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "NATIVE"
+      },
+      "queries": {
+        "LLM Call Count": {
+          "promql": "sum(gen_ai_client_operation_seconds_count)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653077.527,
+                    "20"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Estimated Cost (USD)": {
+          "promql": "(((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"input\"}) or vector(0)) * 0.15) + ((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"output\"}) or vector(0)) * 0.60)) / 1000000",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653077.529,
+                    "0.00294"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Token Usage": {
+          "promql": "sum by (gen_ai_token_type) (gen_ai_client_token_usage_total)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {
+                    "gen_ai_token_type": "input"
+                  },
+                  "value": [
+                    1792653077.531,
+                    "18000"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "output"
+                  },
+                  "value": [
+                    1792653077.531,
+                    "400"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "total"
+                  },
+                  "value": [
+                    1792653077.531,
+                    "18400"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "LLM p95 Latency": {
+          "promql": "histogram_quantile(0.95, sum by (le) (rate(gen_ai_client_operation_seconds_bucket[5m])))",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653077.533,
+                    "3.5802905961903515"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "logical": 20,
+      "usage": {
+        "input": 18000,
+        "output": 400,
+        "total": 18400,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 2940000,
+        "costWithCacheNanoUsd": 2940000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      }
+    },
+    {
+      "unit": {
+        "stage": "PILOT",
+        "traffic": "BURST",
+        "repeat": 1,
+        "mode": "POLL"
+      },
+      "queries": {
+        "LLM Call Count": {
+          "promql": "sum(gen_ai_client_operation_seconds_count)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653083.647,
+                    "2"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Estimated Cost (USD)": {
+          "promql": "(((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"input\"}) or vector(0)) * 0.15) + ((sum(gen_ai_client_token_usage_total{gen_ai_system=\"openai\",gen_ai_request_model=\"gpt-4o-mini\",gen_ai_token_type=\"output\"}) or vector(0)) * 0.60)) / 1000000",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653083.648,
+                    "0.00051"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "Token Usage": {
+          "promql": "sum by (gen_ai_token_type) (gen_ai_client_token_usage_total)",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {
+                    "gen_ai_token_type": "input"
+                  },
+                  "value": [
+                    1792653083.649,
+                    "1800"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "output"
+                  },
+                  "value": [
+                    1792653083.649,
+                    "400"
+                  ]
+                },
+                {
+                  "metric": {
+                    "gen_ai_token_type": "total"
+                  },
+                  "value": [
+                    1792653083.649,
+                    "2200"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "LLM p95 Latency": {
+          "promql": "histogram_quantile(0.95, sum by (le) (rate(gen_ai_client_operation_seconds_bucket[5m])))",
+          "response": {
+            "status": "success",
+            "data": {
+              "resultType": "vector",
+              "result": [
+                {
+                  "metric": {},
+                  "value": [
+                    1792653083.651,
+                    "3.91915765495"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "logical": 2,
+      "usage": {
+        "input": 1800,
+        "output": 400,
+        "total": 2200,
+        "cached": 0,
+        "costWithoutCacheNanoUsd": 510000,
+        "costWithCacheNanoUsd": 510000,
+        "aggregation": "ONE_PER_HTTP_REQUEST_NEVER_COPIED_TO_CASE_ROWS"
+      }
+    }
+  ],
+  "faults": [
+    {
+      "scope": "FAKE_NATIVE_TECHNICAL_STOP",
+      "fault": "DB",
+      "httpReceived": 1,
+      "holds": null,
+      "burden": null
+    },
+    {
+      "scope": "FAKE_NATIVE_TECHNICAL_STOP",
+      "fault": "OFFSET",
+      "httpReceived": 1,
+      "holds": null,
+      "burden": null
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "COMMIT",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 20136750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "BUDGET",
+      "httpReceived": 0,
+      "holds": {},
+      "burden": 119721750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "RATE_LIMIT",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 39849750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "MAPPING",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 20136750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "VALIDATION",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 20136750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "PARSE",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 20136750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "NO_USAGE",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 39849750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "TRUNCATED",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 20136750
+    },
+    {
+      "scope": "FAKE_FAULT_PRIOR_UNITS_CONTRACT_ONLY_NOT_MEASURED",
+      "fault": "RETRY_KNOWN_USAGE",
+      "httpReceived": 1,
+      "holds": {},
+      "burden": 39849750
+    }
+  ],
+  "verification": {
+    "related": {
+      "tests": 291,
+      "skipped": 7,
+      "failures": 0,
+      "errors": 0,
+      "classes": 34
+    },
+    "full": {
+      "root": {
+        "tests": 1474,
+        "skipped": 93,
+        "failures": 0,
+        "errors": 0,
+        "classes": 283
+      },
+      "lambda": {
+        "tests": 11,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0,
+        "classes": 3
+      },
+      "benchmark": [
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkKafkaTest",
+          "tests": 13,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68UsageBenchmarkSafetyTest",
+          "tests": 20,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68UsageBenchmarkLiveTest",
+          "tests": 1,
+          "skipped": 1,
+          "failures": 0,
+          "errors": 0
+        }
+      ]
+    },
+    "build": {
+      "result": "SUCCESS",
+      "command": "./gradlew build --rerun-tasks --no-daemon --console=plain",
+      "elapsed": "8m 56s",
+      "tasksExecuted": 12
+    },
+    "environment": "Child OPENAI_API_KEY and all ISSUE68_* variables removed; no .env sourcing; paid tests skipped",
+    "compose": {
+      "monitoring": "PASS with unused MYSQL_* placeholders warnings under --env-file /dev/null",
+      "isolatedDashboard": "PASS"
+    },
+    "preservation": {
+      "checked": 497,
+      "changes": []
+    },
+    "resolvedPreparationIssues": [
+      "Initial test helper access/package compile errors corrected before final verification",
+      "Source additions during an early rehearsal invalidated the manifest; sources were frozen and the suite rerun",
+      "Test Prometheus tmpfs initially not writable by uid65534; matched isolated configuration uid/gid/mode and verified all six queries"
+    ],
+    "existingApplicationPrometheus": {
+      "llmCallCount": 19,
+      "readAtUtc": "2026-10-22T07:09:17Z",
+      "scope": "read-only localhost9090; no fake aggregation"
+    },
+    "ci": "NOT_RUN_NO_PUSH_OR_PR",
+    "newGrafanaScreenshot": "NOT_TAKEN_NO_UI_OR_DATASOURCE_CHANGE",
+    "paidBurst": "NOT_RUN_HUMAN_APPROVAL_REQUIRED"
+  }
+}
