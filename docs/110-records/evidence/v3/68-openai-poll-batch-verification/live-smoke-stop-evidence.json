@@ -1,0 +1,73 @@
+{
+  "scope": "ISSUE68_LIVE_STOPPED_NO_BATCH_NO_RETRY_OR_MATRIX",
+  "liveResultSha256": "d32445166ba0ca0706584ac8acef4dac909b4369c0cf0bce74aa0d39e6d2913f",
+  "journalSha256": "a8a259adbc6d559a585bcb821586b266ff18456c42f5aaf526a4618e86ef7cc5",
+  "journalEntries": [
+    {
+      "sha256": "38fae47c0190018582baf2dc98d1cbcd3e47fd51dd6be3e5599be7caff1e31e7",
+      "payload": "{\"event\":\"RESERVE\",\"attempt\":1,\"nanoUsd\":19276800}"
+    },
+    {
+      "sha256": "8490c63a69727bc50c11f6d6694b959e66e4f7390d3852bc376a8fd7ceb13ce2",
+      "payload": "{\"event\":\"UNKNOWN_KEEP\",\"attempt\":1,\"nanoUsd\":19276800}"
+    }
+  ],
+  "partialNative": {
+    "grossReservedNanoUsd": 19276800,
+    "value": {
+      "cases": [
+        {
+          "caseId": "HOLDOUT-SAFE-01",
+          "dbCommittedNs": 1150013873031583,
+          "partition": 0,
+          "deliveries": 1,
+          "offset": 0,
+          "returnedNs": 1150013877611458
+        }
+      ],
+      "polls": [
+        [
+          "HOLDOUT-SAFE-01"
+        ]
+      ],
+      "unsafeCommits": 0,
+      "lag": 0,
+      "committedOffsets": [
+        {
+          "offset": 1,
+          "partition": 0
+        }
+      ],
+      "dltCount": 0
+    },
+    "chargedNanoUsd": 19276800,
+    "recordedAt": "2026-10-21T08:19:34.347384Z"
+  },
+  "sourceHashesMatch": true,
+  "liveTest": {
+    "result": "FAIL_HOLD",
+    "reason": "USAGE_UNKNOWN",
+    "expected": "SMOKE_COMPLETED",
+    "actual": "NATIVE_GATE_HOLD",
+    "command": "./gradlew :test --tests *Issue68LiveSmokeTest --console=plain --no-daemon (approved child environment only)",
+    "duration": "18s"
+  },
+  "localGzipProbe": {
+    "scope": "LOOPBACK_ONLY_NOT_LIVE_ENCODING_PROOF",
+    "result": "PASS",
+    "networkEncoding": "gzip",
+    "networkBodyIsJson": false,
+    "applicationBodyIsJson": true,
+    "liveResponseEncoding": "NOT_CAPTURED",
+    "initialProbe": "classpath missing Kotlin runtime; corrected classpath then PASS, no external API calls"
+  },
+  "tokenInterpretation": {
+    "inputFromSdkPersistedDb": 824,
+    "outputDerivedFromDbTotalMinusInput": 13,
+    "totalFromSdkPersistedDb": 837,
+    "cachedInput": "UNKNOWN",
+    "noCacheEstimatedCostNanoUsd": 131400,
+    "networkUsage": "UNKNOWN_KEEP_FULL_RESERVATION",
+    "billingAmount": "NOT_VERIFIED"
+  }
+}

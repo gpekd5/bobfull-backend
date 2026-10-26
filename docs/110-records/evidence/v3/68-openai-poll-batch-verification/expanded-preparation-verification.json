@@ -1,0 +1,490 @@
+{
+  "issue": 68,
+  "scope": "EXPANDED_MATRIX_FREE_PREPARATION_ONLY_NOT_PAID_APPROVAL",
+  "date": "2026-10-22",
+  "timezone": "Asia/Seoul",
+  "git": {
+    "branch": "feature/68-openai-poll-batch-verification",
+    "head": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+    "sourceState": "uncommitted test-only changes; raw source hashes are execution identity"
+  },
+  "paidApiCalls": 0,
+  "apiKeyRead": false,
+  "productionChanged": false,
+  "oldGateV1": "BATCH_GATE_HOLD preserved",
+  "paidPilot": "HOLD pending separate Human approval AND explicit fixed-journal/HTTPS live binding; new session is temp loopback only",
+  "tests": {
+    "targeted": {
+      "totals": {
+        "tests": 250,
+        "skipped": 2,
+        "failures": 0,
+        "errors": 0
+      },
+      "suites": [
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedBudgetTest",
+          "tests": 9,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.SizeTimeBatchSafetyIntegrationTest",
+          "tests": 14,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedHttpSafetyTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68ExpandedKafkaPreparationTest",
+          "tests": 16,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedPlanTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        }
+      ]
+    },
+    "finalFull": {
+      "root": {
+        "tests": 1332,
+        "skipped": 88,
+        "failures": 0,
+        "errors": 0
+      },
+      "lambda": {
+        "tests": 11,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      "total": {
+        "tests": 1343,
+        "skipped": 88,
+        "failures": 0,
+        "errors": 0
+      },
+      "expanded": [
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedBudgetTest",
+          "tests": 9,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedHttpSafetyTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68ExpandedKafkaPreparationTest",
+          "tests": 16,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ExpandedPlanTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        }
+      ],
+      "owner": [
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.SizeTimeBatchSafetyIntegrationTest",
+          "tests": 14,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        }
+      ]
+    }
+  },
+  "commands": {
+    "focused": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL -u ISSUE68_O0_LIVE_APPROVAL -u ISSUE68_O0_MANIFEST_SHA256 ./gradlew :test --tests '*Issue68Expanded*Test' --no-daemon --console=plain",
+    "related": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL -u ISSUE68_O0_LIVE_APPROVAL -u ISSUE68_O0_MANIFEST_SHA256 ./gradlew :test --tests '*Issue68*Test' --tests '*SizeTimeBatchSafetyIntegrationTest' --tests '*ChatModerationBatch*Test' --tests '*ChatModerationServiceTest' --tests '*SpringAiModerationBatchAdapterTest' --no-daemon --console=plain",
+    "full": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL -u ISSUE68_O0_LIVE_APPROVAL -u ISSUE68_O0_MANIFEST_SHA256 ./gradlew test build --rerun-tasks --no-daemon --console=plain"
+  },
+  "build": {
+    "result": "SUCCESS",
+    "duration": "6m 9s",
+    "tasksExecuted": 12,
+    "rootAndLambdaRerun": true
+  },
+  "environment": {
+    "kafka": "confluentinc/cp-kafka:7.7.1 Testcontainers",
+    "mysql": "mysql:8.4 Testcontainers; real JPA",
+    "sourcePartitions": 3,
+    "concurrency": 1,
+    "maxPollRecords": 10,
+    "bufferMax": 20,
+    "fakeDelayPilotMs": 60,
+    "trafficIntervalMs": {
+      "LOW": 250,
+      "INTERVAL": 40,
+      "BURST": 0,
+      "SHORT": 5
+    },
+    "existingLocalDbUsed": false
+  },
+  "raw": {
+    "source": "build/issue68/expanded-preparation-1792606443453.json",
+    "preserved": "expanded-preparation-results.json",
+    "bytes": 852437,
+    "sha256": "42e64570ec931d7a2f5628ebfe980ae72883e0a4a051fdad985fcbbb65e456cd",
+    "manifestSha256": "0a5e19a725fa9a44719d288ac8182f3c9838206f7e1f8070af169f0e27d67281",
+    "independentRubyMapOrderHashMatches": true,
+    "qualification": "Raw source hashes include final Java source. Sorted map keys and record declaration property order; not an RFC canonical JSON assertion."
+  },
+  "observation": {
+    "manifestSha256": "0a5e19a725fa9a44719d288ac8182f3c9838206f7e1f8070af169f0e27d67281",
+    "rawAt": "2026-10-21T18:14:03.453578Z",
+    "pilot": [
+      {
+        "mode": "NATIVE",
+        "logical": 20,
+        "http": 20,
+        "sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "db": 20,
+        "lag": 0,
+        "dlt": 0,
+        "maxBuffer": null,
+        "threadViolations": null,
+        "input": 18000,
+        "output": 400,
+        "burden": 22527900,
+        "gross": 443443200
+      },
+      {
+        "mode": "POLL",
+        "logical": 2,
+        "http": 2,
+        "sizes": [
+          10,
+          10
+        ],
+        "db": 20,
+        "lag": 0,
+        "dlt": 0,
+        "maxBuffer": null,
+        "threadViolations": null,
+        "input": 1800,
+        "output": 400,
+        "burden": 23037900,
+        "gross": 483379200
+      },
+      {
+        "mode": "TIME_0",
+        "logical": 2,
+        "http": 2,
+        "sizes": [
+          10,
+          10
+        ],
+        "db": 20,
+        "lag": 0,
+        "dlt": 0,
+        "maxBuffer": 10,
+        "threadViolations": 0,
+        "input": 1800,
+        "output": 400,
+        "burden": 23547900,
+        "gross": 523315200
+      },
+      {
+        "mode": "TIME_20",
+        "logical": 3,
+        "http": 3,
+        "sizes": [
+          10,
+          7,
+          3
+        ],
+        "db": 20,
+        "lag": 0,
+        "dlt": 0,
+        "maxBuffer": 17,
+        "threadViolations": 0,
+        "input": 2700,
+        "output": 400,
+        "burden": 24192900,
+        "gross": 582451200
+      },
+      {
+        "mode": "TIME_50",
+        "logical": 2,
+        "http": 2,
+        "sizes": [
+          10,
+          10
+        ],
+        "db": 20,
+        "lag": 0,
+        "dlt": 0,
+        "maxBuffer": 10,
+        "threadViolations": 0,
+        "input": 1800,
+        "output": 400,
+        "burden": 24702900,
+        "gross": 622387200
+      },
+      {
+        "mode": "TIME_100",
+        "logical": 2,
+        "http": 2,
+        "sizes": [
+          10,
+          10
+        ],
+        "db": 20,
+        "lag": 0,
+        "dlt": 0,
+        "maxBuffer": 10,
+        "threadViolations": 0,
+        "input": 1800,
+        "output": 400,
+        "burden": 25212900,
+        "gross": 662323200
+      }
+    ],
+    "faults": [
+      {
+        "fault": "BUDGET",
+        "http": 0,
+        "settlements": [],
+        "lag": 20,
+        "burden": 119427900
+      },
+      {
+        "fault": "COMMIT",
+        "http": 1,
+        "settlements": [
+          "SETTLED"
+        ],
+        "lag": 20,
+        "burden": 19842900
+      },
+      {
+        "fault": "RATE_LIMIT",
+        "http": 1,
+        "settlements": [
+          "UNKNOWN_KEEP"
+        ],
+        "lag": 20,
+        "burden": 39555900
+      },
+      {
+        "fault": "MAPPING",
+        "http": 1,
+        "settlements": [
+          "SETTLED"
+        ],
+        "lag": 20,
+        "burden": 19842900
+      },
+      {
+        "fault": "VALIDATION",
+        "http": 1,
+        "settlements": [
+          "SETTLED"
+        ],
+        "lag": 20,
+        "burden": 19842900
+      },
+      {
+        "fault": "PARSE",
+        "http": 1,
+        "settlements": [
+          "SETTLED"
+        ],
+        "lag": 20,
+        "burden": 19842900
+      },
+      {
+        "fault": "NO_USAGE",
+        "http": 1,
+        "settlements": [
+          "UNKNOWN_KEEP"
+        ],
+        "lag": 20,
+        "burden": 39555900
+      },
+      {
+        "fault": "TRUNCATED",
+        "http": 1,
+        "settlements": [
+          "SETTLED"
+        ],
+        "lag": 20,
+        "burden": 19842900
+      },
+      {
+        "fault": "SEMANTIC_SAFE",
+        "http": 1,
+        "settlements": [
+          "SETTLED"
+        ],
+        "lag": 10,
+        "burden": 19842900
+      },
+      {
+        "fault": "RETRY_KNOWN_USAGE",
+        "http": 1,
+        "settlements": [
+          "UNKNOWN_KEEP"
+        ],
+        "lag": 20,
+        "burden": 39555900
+      }
+    ],
+    "forecast": [
+      {
+        "stage": "PILOT",
+        "messages": 120,
+        "logicalLowShape": 30,
+        "logicalUnderfill": 120,
+        "inputLowShape": 35364,
+        "inputUnderfill": 124914,
+        "outputCap": 15360,
+        "costLowShapeNanoUsd": 14520600,
+        "costUnderfillNanoUsd": 27953100
+      },
+      {
+        "stage": "MAIN",
+        "messages": 1920,
+        "logicalLowShape": 476,
+        "logicalUnderfill": 1896,
+        "inputLowShape": 562700,
+        "inputUnderfill": 1975080,
+        "outputCap": 242688,
+        "costLowShapeNanoUsd": 230017800,
+        "costUnderfillNanoUsd": 441874800
+      },
+      {
+        "stage": "REPEAT",
+        "messages": 960,
+        "logicalLowShape": 238,
+        "logicalUnderfill": 948,
+        "inputLowShape": 281350,
+        "inputUnderfill": 987540,
+        "outputCap": 121344,
+        "costLowShapeNanoUsd": 115008900,
+        "costUnderfillNanoUsd": 220937400
+      }
+    ]
+  },
+  "preservation": {
+    "oldEvidenceFiles": 20,
+    "oldPrivateFiles": 17,
+    "changedExisting": [
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68FakeOpenAiEndpoint.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0Plan.java",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaHarness.java",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/SizeTimeBatchOwnerLoop.java"
+    ],
+    "added": [
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExecutionGate.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedBudgetTest.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedHttpSafetyTest.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedPlan.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedPlanTest.java",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedPreparationSession.java",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedKafkaPreparationTest.java"
+    ]
+  },
+  "accounting": {
+    "actualJournalSha256": "b2fe9f54ae8441010bebeb3734896b7328d5445586fd7bc1838045d3d510cf5e",
+    "actualPriorUnknownNanoUsd": 19276800,
+    "actualPriorSettledNanoUsd": 311100,
+    "actualPriorBurdenNanoUsd": 19587900,
+    "actualPriorGrossNanoUsd": 57907200,
+    "actualJournalAppended": false,
+    "globalExpandedBurdenLimitNanoUsd": 1000000000,
+    "stageBurdenLimitNanoUsd": {
+      "PILOT": 100000000,
+      "MAIN": 500000000,
+      "REPEAT": 250000000
+    },
+    "stageHttpCaps": {
+      "PILOT": 480,
+      "MAIN": 7584,
+      "REPEAT": 3792
+    },
+    "nativeReservationNanoUsd": 19276800,
+    "batch10ReservationNanoUsd": 19968000,
+    "cacheDiscountForGuard": false,
+    "unknownBlocksNextExchange": true,
+    "fixturesOnly": true,
+    "qualification": "Fake fixture reservations/Usage are not actual Provider cost or journal mutations."
+  },
+  "limitations": [
+    "No live expansion/credential entry point was enabled; no HTTPS exchange or paid Pilot.",
+    "Fake GT echo is not a model quality or token-savings result.",
+    "Fault fixtures may prepare prior units by pure contract simulation, not Kafka execution; raw marks this.",
+    "Only Pilot120, one Owner80, four Native traffic80 and fault fixtures were executed; not the entire 3000-case matrix.",
+    "Timer/latency contains instrumentation overhead; provider-only service time not measured.",
+    "Restart is temporary journal reopen; duplicate lock uses same JVM; real JVM kill not tested.",
+    "GitHub label update was rejected by tool safety; no workaround and no Issue mutation."
+  ],
+  "executionNotes": [
+    "First compile attempt failed at Gradle cache lock sandbox boundary; retried with approved execution access.",
+    "One apply_patch validation failure caused no file edits; corrected patch applied.",
+    "Read-only docker ps under default sandbox was denied; approved read-only access checked only names/images/status.",
+    "Earlier focused30 and related250 passed; final full run includes37 new tests on final Java source.",
+    "Original docs/private artifacts retain byte hashes. Build scratch proposal files regenerated by existing regression are not new paid approvals."
+  ],
+  "finalChecks": {
+    "trackedDiffCheck": "PASS",
+    "all16TouchedFilesWhitespace": "PASS; git diff --no-index --check emits no diagnostics (exit1 is normal content difference against /dev/null)",
+    "productionDiff": "EMPTY",
+    "stagedDiff": "EMPTY",
+    "oldEvidence20AndPrivate17Unchanged": true,
+    "executedSourceHashes52Match": true,
+    "independentManifestHashMatches": true,
+    "jsonSyntax": "PASS",
+    "apiKeyRead": false,
+    "paidCalls": 0
+  }
+}

@@ -1,0 +1,384 @@
+{
+  "issue": 68,
+  "scope": "Gate V2 metadata freeze proposal and O0 FAKE preparation only",
+  "date": "2026-10-21",
+  "timezone": "Asia/Seoul",
+  "git": {
+    "branch": "feature/68-openai-poll-batch-verification",
+    "baseHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+    "sourceState": "uncommitted test-only extensions; tested SHA256 below; not a new commit"
+  },
+  "status": {
+    "paidCallsThisStep": 0,
+    "apiKeyRead": false,
+    "productionChanged": false,
+    "oldGateV1": "BATCH_GATE_HOLD preserved",
+    "gateV2": "proposal awaiting metadata/next-unit approval; no model quality PASS or Batch adoption",
+    "o0Live": "HOLD: old HTTPS Smoke entry point unchanged; future O0 approval binding still required"
+  },
+  "environment": {
+    "java": "Temurin 17.0.20.1",
+    "gradle": "9.5.1 (wrapper configuration)",
+    "kafka": "confluentinc/cp-kafka:7.7.1 Testcontainers",
+    "mysql": "mysql:8.4 Testcontainers, isolated real JPA",
+    "provider": "loopback gzip Fake OpenAI HTTP via actual Spring AI/SDK; no real Provider requests"
+  },
+  "tests": {
+    "newFocused": {
+      "suites": [
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68O0KafkaPreparationTest",
+          "tests": 1,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68GateV2Test",
+          "tests": 6,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68O0PreparationTest",
+          "tests": 9,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68O0PlanTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        }
+      ],
+      "totals": {
+        "tests": 20,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    "related": {
+      "suites": [
+        {
+          "name": "com.bobfull.admin.application.service.AdminModerationReportServiceTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68O0KafkaPreparationTest",
+          "tests": 1,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68GateV2Test",
+          "tests": 6,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.application.service.ChatRoomMemberReportServiceTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68UsageAccountingTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68BudgetTest",
+          "tests": 7,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveReadinessTest",
+          "tests": 11,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.admin.infrastructure.repository.query.Issue68ReviewSignalIntegrationTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.admin.infrastructure.repository.query.MemberModerationQueryRepositoryImplTest",
+          "tests": 5,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68EvaluationContractTest",
+          "tests": 5,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ResponseUsageTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68OpenAiKafkaIntegrationTest",
+          "tests": 12,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68O0PreparationTest",
+          "tests": 9,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68LiveResumeTest",
+          "tests": 8,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68O0PlanTest",
+          "tests": 4,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.ModerationHeldoutDatasetTest",
+          "tests": 10,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.kafka.Issue68LiveSmokeTest",
+          "tests": 1,
+          "skipped": 1,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68HttpBoundaryTest",
+          "tests": 6,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        },
+        {
+          "name": "com.bobfull.chat.infrastructure.ai.Issue68ReviewGateDraftTest",
+          "tests": 7,
+          "skipped": 0,
+          "failures": 0,
+          "errors": 0
+        }
+      ],
+      "totals": {
+        "tests": 120,
+        "skipped": 1,
+        "failures": 0,
+        "errors": 0
+      }
+    },
+    "full": {
+      "root": {
+        "tests": 1280,
+        "skipped": 87,
+        "failures": 0,
+        "errors": 0
+      },
+      "lambda": {
+        "tests": 11,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      "total": {
+        "tests": 1291,
+        "skipped": 87,
+        "failures": 0,
+        "errors": 0
+      },
+      "build": "BUILD SUCCESSFUL in 4m48s; 12 tasks executed; root and Lambda rerun",
+      "command": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew test build --rerun-tasks --console=plain --no-daemon"
+    },
+    "reproduceFocused": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew test --tests '*Issue68GateV2Test' --tests '*Issue68O0PreparationTest' --tests '*Issue68O0PlanTest' --tests '*Issue68O0KafkaPreparationTest' --rerun-tasks --console=plain --no-daemon",
+    "paidSmoke": "SKIPPED; no approval/key injected",
+    "diagnosticNote": "A later sandboxed ./gradlew --version diagnostic failed to obtain the wrapper lock; this was not the full build execution. Version above comes from wrapper properties."
+  },
+  "classification": {
+    "critical": 25,
+    "contextDependent": 14,
+    "riskBoundary": 2,
+    "standard": 39,
+    "total": 80,
+    "groundTruthSha256": "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+    "metadataSha256": "a3a424323e5585da1b9a611281ac37174c60c4b946987e541c44ad5981cd40b5",
+    "metadataFile": "gate-v2-metadata-v1.json",
+    "qualification": "metadata proposed from sentence criteria, historical outcomes known; NOT new GT or blind evaluation"
+  },
+  "accounting": {
+    "unit": "nanoUSD",
+    "oneUsd": 1000000000,
+    "originalUnknown": 19276800,
+    "originalSettled": 311100,
+    "originalBurden": 19587900,
+    "originalGross": 57907200,
+    "originalHttpAttempts": 3,
+    "originalLedgerSha256": "b2fe9f54ae8441010bebeb3734896b7328d5445586fd7bc1838045d3d510cf5e",
+    "proposedNewStageBurdenLimit": 100000000,
+    "globalBurdenLimit": 500000000,
+    "stageHttpLimit": 632,
+    "budgetTests": "temporary exact prior-ledger fixture only; no writes to real journal",
+    "uncertainMaxBatchAttempts": 5,
+    "uncertainMaxBatchBurden": 99840000,
+    "sixthUncertainMaxBatch": "blocked before exchange",
+    "noAutoResume": true,
+    "limits": "Internal frozen-price/context accounting, not external account-wide invoice guarantee. Completion of160 inputs under unknown Usage/retries not guaranteed. Live fixed path/manifest approval binding still required."
+  },
+  "finalFakeRehearsal": {
+    "scope": "FAKE_CONTRACT_REHEARSAL_NOT_MODEL_QUALITY_OR_REAL_USAGE",
+    "chargedNanoUsd": 33228900,
+    "grossReservedNanoUsd": 1740441600,
+    "stageChargedNanoUsd": 13641000,
+    "stageHttpAttempts": 87,
+    "contract": {
+      "model": "gpt-4o-mini",
+      "metadataSha256": "a3a424323e5585da1b9a611281ac37174c60c4b946987e541c44ad5981cd40b5",
+      "pollLogicalLimit": 79,
+      "stageOrder": "Native80 -> V2/technical Gate -> Poll80 -> paired Gate; no automatic repeat",
+      "batchSchemaSha256": "6ac8f99e249ceefca8c63302ad1026f51415655d30029c67defc617bd04be924",
+      "nativeLogicalLimit": 79,
+      "totalHttpLimit": 632,
+      "groundTruthSha256": "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+      "orderedInputSha256": "f6c1f9765f1afaf0849387aa541c71b25805ddfb893a50a40d42553880405c97",
+      "newStageBurdenLimitNanoUsd": 100000000,
+      "batchSystemSha256": "5d1fa52b4955d538579b9834eae356745b7f3dd700c2183d8486dc1ed7d0c812",
+      "promptVersion": "moderation-prompt-v3-short-fragment-boundary",
+      "sampling": "provider defaults; no added temperature or seed",
+      "systemSha256": "7540e67d11d342e9b9618204baa8d5868ebfd21a15716a8f41dc5fbcb35249a4",
+      "outputTokensPerItem": 128,
+      "overallBurdenLimitNanoUsd": 500000000,
+      "nativeSchemaSha256": "0a3b3262ad121eb467b2fe00a17d1dd8082a4887268005e8b70e4b14eb33e45f",
+      "policyVersion": "moderation-policy-v2"
+    },
+    "runs": [
+      {
+        "mode": "native",
+        "logicalCount": 79,
+        "httpCount": 79,
+        "actualRequestSizeHistogram": {
+          "1": 79
+        },
+        "finalRows": 80,
+        "commitObservations": 80,
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "saveFailures": 0,
+        "transactionViolations": 0,
+        "unresolved": 0,
+        "latencyMs": {
+          "publishAckToCommitP95": 1269.677208,
+          "receivedToCommitP95": 156.374875,
+          "receivedToCommitP50": 86.611042,
+          "publishAckToCommitP50": 749.848708
+        }
+      },
+      {
+        "mode": "poll",
+        "logicalCount": 8,
+        "httpCount": 8,
+        "actualRequestSizeHistogram": {
+          "9": 1,
+          "10": 7
+        },
+        "finalRows": 80,
+        "commitObservations": 8,
+        "finalLag": 0,
+        "dltRecords": 0,
+        "unsafeCommits": 0,
+        "saveFailures": 0,
+        "transactionViolations": 0,
+        "unresolved": 0,
+        "latencyMs": {
+          "publishAckToCommitP95": 377.106333,
+          "receivedToCommitP95": 43.079167,
+          "receivedToCommitP50": 33.098,
+          "publishAckToCommitP50": 258.468292
+        }
+      }
+    ]
+  },
+  "fakeExtract": "o0-fake-rehearsal-extract.json",
+  "sourceSha256": {
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java": "9277f129567798a31089a4a792abadf437b4518c599d3f19ea4ae48bfce19ae9",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java": "bed1b5036587ae3e67350262404f2e790911b647c57621fd7abcc4f807ea1b06",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68GateV2.java": "d8579683a263b69a7883eab2fe7ad60e221c47796b57b48b58f1e9ea172d5327",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68GateV2Test.java": "2a5ee1a581e9a9d4d7738a8cb34f5fcada950c130aac23704a2eef116556bf98",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0Plan.java": "c40bd1462ffe42a81c1edf7ed46941efe6a1e883d6e0a8c93af6fae89517cc5f",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0PlanTest.java": "384f9aa2bfc6196456c33f9b9904e7b38d5c28b2580f5f2e21a23a751e7cb9c0",
+    "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0PreparationTest.java": "1abe1c31508a41dc0c30f02f9a8ea89746db1970e67b04444eed9e173c28d3da",
+    "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68O0KafkaPreparationTest.java": "3ab956d5603fda146d8fe766818f3663a5252a3e9004f021e709969667e93ec2"
+  },
+  "preservation": {
+    "checkedOriginalFiles": 76,
+    "unchangedOriginalFiles": 74,
+    "originalEvidenceFiles": 38,
+    "originalEvidenceUnchanged": true,
+    "privateJournalClaimCheckpointFiles": 17,
+    "privateFilesUnchanged": true,
+    "modifiedExistingTestFiles": [
+      {
+        "path": "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java",
+        "before": "65369d62a077ac7e0b85a8c2747aaafad6bc633db3635a446a9589692e589d5b",
+        "after": "bed1b5036587ae3e67350262404f2e790911b647c57621fd7abcc4f807ea1b06"
+      },
+      {
+        "path": "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java",
+        "before": "e3220d2f9f95aa7db52b923c23cfdf08ac155d3643504ffdaf3dd80e61abd141",
+        "after": "9277f129567798a31089a4a792abadf437b4518c599d3f19ea4ae48bfce19ae9"
+      }
+    ],
+    "trackedDiffEmpty": true,
+    "originalGtDatasetMainConfigUnchanged": true
+  },
+  "humanDecisions": [
+    "Approve full80 metadata hash/protected attributes for next evaluation, without changing GT",
+    "Keep Native80 -> Gate -> Poll80 or explicitly approve one bounded Native80/Poll80 unit even if Native has noncritical FP; current code stops",
+    "Approve incremental0.10 burden, prior ledger within global0.50, HTTP632/logical79-per-mode and next paid manifest before any Live enablement"
+  ],
+  "nextWork": "No paid execution or key read here. After Human decision, minimal test-only HTTPS O0 approval/manifest integration with free regression is required before actual O0; never reuse consumed Smoke claims.",
+  "finalChecks": {
+    "newEvidenceJsonSyntax": "PASS (3 JSON files)",
+    "untrackedWhitespace": "PASS (27 Issue68 Java files + 4 new Evidence files)",
+    "gitDiffCheck": "PASS; tracked diff empty",
+    "staging": "unchanged, empty",
+    "workingTree": "existing untracked work retained; not clean; no commit"
+  }
+}

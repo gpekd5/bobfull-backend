@@ -1,0 +1,699 @@
+{
+  "version": "issue68-service-gate-v2-proposal-1",
+  "metadataVersion": "issue68-policy-v2-review-metadata-1",
+  "groundTruthSha256": "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+  "metadataSha256": "a3a424323e5585da1b9a611281ac37174c60c4b946987e541c44ad5981cd40b5",
+  "provenance": "historical-outputs-known-not-blind; protection-list-proposal-for-human",
+  "profiles": [
+    {
+      "id": "HOLDOUT-SAFE-01",
+      "contentSha256": "78fd626bea4286182d12db1fdf40eb1f5c221e8162e9bbfadd7d1d31c8a4f26a",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-02",
+      "contentSha256": "a37e288bf964e268702254aea87ebdbb8bd61dd79dfbaf95c6d867a7e78f8ec2",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-03",
+      "contentSha256": "71bcb65c5963599dd23b30c9030889d4fdf99412e700cea77bbdcc935f668de4",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-04",
+      "contentSha256": "85aa6f630a39bc87aab3f3c6c3b53545715958a4432d9d73d803d9d1ef4b26cc",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-05",
+      "contentSha256": "4b7742e31b572e287eaaa23ae9d6e789dcf26556dd9a223db71253d57f2ba437",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-06",
+      "contentSha256": "ade8c47556589bdf92911fa155459b93d5c750bce304fb355164a73b68265821",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-07",
+      "contentSha256": "2d4a6a4a616af1b4cd88a4d5bf0908d08530059cb56238dae631d63551a58a3d",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-08",
+      "contentSha256": "3fa11147f7c14231b2a3abafbb9adf73eb2a22866c500849d86a47c465e55556",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-09",
+      "contentSha256": "ff53549e35fa83a5944f3c646bed6d46ffe41e5dba9253b0dfe37d8a8382e317",
+      "profile": "STANDARD",
+      "reason": "Human 기존 SAFE 유지: 단체 예약 연락처; 공개/개인 소유자를 추가 추정해 라벨을 바꾸지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-10",
+      "contentSha256": "8d03a9e3b2b9eb58fc0a0a476e48866f2467f509d7c876e26e4e7c2742f57de8",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-11",
+      "contentSha256": "cae359ece787672f79cfe62124208cf195260ead32e4a6280c95f08eee0a04f8",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-12",
+      "contentSha256": "70d536a2b2cf98d5a255d3ca3ca2b2e50b87d656d4d02a7175a443880a0c5a0d",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-13",
+      "contentSha256": "c0015b63f2ad69aae0292330a4949e097b91b361f2905811676262341c6b7ca2",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-14",
+      "contentSha256": "d0c012f10140ddc90a31e4e0a88c132c66b5a8a6d53a5fc6b33d4c241bb72418",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-15",
+      "contentSha256": "bef1ac95213dc327f330d79eb944935f7ebcbbf3d8fbe39a494dd5973ec7aece",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-16",
+      "contentSha256": "ba0a3e9054054ed9694664305f2744d491c3769e6a17c123ff975a7862163092",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-17",
+      "contentSha256": "8587d381a2268806595f91de0a82110061238c597d733edea4dee9ab3e8ccc31",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-18",
+      "contentSha256": "6ec9bffa9a366a17402688d7896d3e4f82fe992b0918c63d277a0b79d7e91bbf",
+      "profile": "STANDARD",
+      "reason": "예약/매장 공개 정보 또는 정상 대화; 직접 위험 표현 없음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-19",
+      "contentSha256": "c7ec08351c446bad86c9d5e36ff859605853f1662be840123cd06444f7ac7634",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SAFE-20",
+      "contentSha256": "a40d502d15ee06e6ec1b0a1f7f49c492eb582f199efefb6b87a592e240d79f48",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-01",
+      "contentSha256": "600652c58b4394612a04d0200ba6869cd6c009656cb23d1bcbc336429b9f074e",
+      "profile": "STANDARD",
+      "reason": "문장에 상대방을 향한 직접 모욕/적대 표현이 명시됨",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-02",
+      "contentSha256": "2cc71d8027e6759cb23213b95ee44a181e6d2675dabdb42e4ee6bec958e2221f",
+      "profile": "CRITICAL",
+      "reason": "명시적 강한 욕설/약어/분리 표기 모욕; 최소 Risk는 원래 GT와 동일",
+      "requiredCategories": [
+        "PROFANITY"
+      ],
+      "minimumRisk": "HIGH"
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-03",
+      "contentSha256": "638e9ebf556b5c175b2b9a6cddcd32340d5611419294a996b752911340fe64c7",
+      "profile": "STANDARD",
+      "reason": "문장에 상대방을 향한 직접 모욕/적대 표현이 명시됨",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-04",
+      "contentSha256": "cd0a7fceb58768622a57a81b31c55148626dfa33c234c162dc8d75f002e7b4b7",
+      "profile": "STANDARD",
+      "reason": "문장에 상대방을 향한 직접 모욕/적대 표현이 명시됨",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-05",
+      "contentSha256": "088a21b6e0666a28307f3782223af2e201ee4683a99dce7413312f6680744652",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-06",
+      "contentSha256": "12f94c796c2022f60b60515079bb144b0f5c582987100a365c25a15e603978e4",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-07",
+      "contentSha256": "0c72f5425c19154f75e76a31bacede9a4bb625266b0e96b994181eecc1a49954",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-08",
+      "contentSha256": "b67c31ab95a9397f4cd87bb1469bbe75abb27b25314479e52b8ced16894da257",
+      "profile": "CRITICAL",
+      "reason": "명시적 강한 욕설/약어/분리 표기 모욕; 최소 Risk는 원래 GT와 동일",
+      "requiredCategories": [
+        "PROFANITY"
+      ],
+      "minimumRisk": "HIGH"
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-09",
+      "contentSha256": "13aafc32752bedda9949bd441dcac843aa02880b43046727e4fe8443314c3784",
+      "profile": "CRITICAL",
+      "reason": "명시적 강한 욕설/약어/분리 표기 모욕; 최소 Risk는 원래 GT와 동일",
+      "requiredCategories": [
+        "PROFANITY"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-10",
+      "contentSha256": "b15a2e0d886b91650e3debb533580c9ba17469f2a655cb863dcd182b2245e570",
+      "profile": "CRITICAL",
+      "reason": "명시적 강한 욕설/약어/분리 표기 모욕; 최소 Risk는 원래 GT와 동일",
+      "requiredCategories": [
+        "PROFANITY"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-11",
+      "contentSha256": "7a7535776be165b4b2d56a49f508790b0f9eb53a496a77c172574f39c2b34b48",
+      "profile": "STANDARD",
+      "reason": "문장에 상대방을 향한 직접 모욕/적대 표현이 명시됨",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-12",
+      "contentSha256": "5abb56b63cbb7049a0f8f828e04aa002ff34efe765958f3f74d075d170689d4c",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-13",
+      "contentSha256": "82f3d6ce39842f2f8ddf18b24d817e28ef9c96eedddbfc1eec71a684a324a617",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-14",
+      "contentSha256": "450291fa2a5fd6c6a767d772942e6084eee4b0d812a4f263c418822de7e5a769",
+      "profile": "CRITICAL",
+      "reason": "Human 엄격 보호: 조건부 보복 또는 거주지 추적·방문; 기존 HIGH 유지",
+      "requiredCategories": [
+        "PROFANITY"
+      ],
+      "minimumRisk": "HIGH"
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-15",
+      "contentSha256": "ab50c0d704cd9f5fcaf28c447be33634ac375667d11d2fc72cb561de921ac595",
+      "profile": "CRITICAL",
+      "reason": "Human 엄격 보호: 조건부 보복 또는 거주지 추적·방문; 기존 HIGH 유지",
+      "requiredCategories": [
+        "PROFANITY"
+      ],
+      "minimumRisk": "HIGH"
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-16",
+      "contentSha256": "2a96a20dc756928bf2b502d664eb292c971497b062999368b999f3a15575c6d1",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "위해 행위/의도나 강한 적대감이 명시되지 않은 만남·각오 요구; Human 문맥 의존 지정",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-17",
+      "contentSha256": "43b69dd8bc2763a82f43107d0736c5a821d46dace59e6c47da1aaf21a6fdf042",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-18",
+      "contentSha256": "ab5b66797f60b386dc19b09b0b42778d3f737db65a1d25bdd38547a011510e57",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-19",
+      "contentSha256": "1a66bee351468af5265183c41a87613217bdd2e48bce148b62c9fcec5e440a69",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PROFANITY-20",
+      "contentSha256": "4ec864db1c39efbdecd00f4ca4ba4b3c6cb0ae988cad86c69459739660c0a0c9",
+      "profile": "CONTEXT_DEPENDENT",
+      "reason": "경미한 평가/호칭/농담/칭찬·비유로 해석 가능하며 강한 적대감·위해를 직접 명시하지 않음",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PI-01",
+      "contentSha256": "316b733e6154e098c44cf2b44d66a96eddd441a32772888139736c9f98618c95",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-02",
+      "contentSha256": "dc3266706251367a6ce73523567f6132ada37f4a02acd2cb81bf7e772338147f",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-03",
+      "contentSha256": "306bd29046dd382bfd2bfc3272af8e7253c9843dda9c45db65fdf7fb0e9ecaa0",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-04",
+      "contentSha256": "ec38c6a24d43faab5f7f9134aac913a05348c91538aed19d266de26ec0afac57",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-05",
+      "contentSha256": "453944e16512033b291616c86524d11c3f9adba8a0f66f2ca919be01b0b52ccf",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-06",
+      "contentSha256": "489ea3ab482cf5b11d88e9f22ac73a88e891f606d7545c28b48a6de580f4264f",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-07",
+      "contentSha256": "65a8469ff11b630eb64c696b529ed42719bcb03a00bfea5ecac3e01615e09a2d",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-08",
+      "contentSha256": "2c4efdad46587e49d79a0d639661dce8d9031f42ce070f073e591b011ff0fd2d",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-09",
+      "contentSha256": "b770409170c42793560ed50deebc987cde1c13bfc9e22f24efb98471b0918f78",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-10",
+      "contentSha256": "2784d908c855ba9a5f36c7cfcefe4fc3ff63b14045c811589e01b6f780af0826",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-11",
+      "contentSha256": "e7a5772e78eea156a05ae2598bbd3ac35f3e5be47aedbb854aecb3fb0f2ca9da",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-12",
+      "contentSha256": "6f750f81408d0e52a2ef22465b08f0ab4dc5a8987e99c7d1d0fd8733563e4862",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-13",
+      "contentSha256": "739a44300c14f9ae5f012cc1916121e29bad70080d986ff697b192ad04e415f4",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-14",
+      "contentSha256": "830de01b13f245256178c4967cb121c1d6d1f070d978212a020ff26a57e84a00",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-15",
+      "contentSha256": "046684694e571acdfb9652b638f5d1484e163ee304dd751772f0c84b5a33a622",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-16",
+      "contentSha256": "b4e989bb9f94a09b4d19e9ead5c3f298e97672dcb6d1c28cfb6459d11e11c5a5",
+      "profile": "CRITICAL",
+      "reason": "개인 전화/메일/계좌/메신저 ID가 직접 제시됨; PI Category와 최소 MEDIUM 보호",
+      "requiredCategories": [
+        "PERSONAL_INFORMATION"
+      ],
+      "minimumRisk": "MEDIUM"
+    },
+    {
+      "id": "HOLDOUT-PI-17",
+      "contentSha256": "997f92d2f30eab3cefd9ec87cbca51cb235c4c0ece40261086f06a8c86583ecf",
+      "profile": "STANDARD",
+      "reason": "개인정보 제외 조건인 공개 사업장 연락처 또는 일반 숫자/예약번호",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PI-18",
+      "contentSha256": "b2c7bb232cf7e9acf1df703e8824d188e3e3417f9e6fe506827ea31f738e43f5",
+      "profile": "STANDARD",
+      "reason": "개인정보 제외 조건인 공개 사업장 연락처 또는 일반 숫자/예약번호",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PI-19",
+      "contentSha256": "6351d6a4f17a92b67093ff0ccbd73bf0b6bd27ceb51c37fdd55d0c1198c26453",
+      "profile": "STANDARD",
+      "reason": "개인정보 제외 조건인 공개 사업장 연락처 또는 일반 숫자/예약번호",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-PI-20",
+      "contentSha256": "12882019a9df6a018a143ae413a2aa8c28d163e8dc805101df9ffb149599db52",
+      "profile": "STANDARD",
+      "reason": "개인정보 제외 조건인 공개 사업장 연락처 또는 일반 숫자/예약번호",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-01",
+      "contentSha256": "44b89d93ca76ed531f02520ed24dd907b7d226a0823db06f2b3705b8aa165554",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-02",
+      "contentSha256": "588de1c21c634a20fddfab20d8d68234e5a5f78dd652054cb0f41967f57a13d5",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-03",
+      "contentSha256": "0e094b5865164fb9f388a61d4c95c38ef7970bb87bce79c57a082dfe057ab7f7",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-04",
+      "contentSha256": "ecd7a6255c36300d97ff494fcfff3549eb07d93f32743a7de54ae3f20401f3bb",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-05",
+      "contentSha256": "11f0975797567166ad5ebb818e6021af0cd16af04964c8216cf8dcc9278ff136",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-06",
+      "contentSha256": "601dfc279c7707f20ea06f96b405cfd9989d9d914de838d65a88a80a66f9851e",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-07",
+      "contentSha256": "9b1e3690d71bcc31a2bf2691359f43a61bf5b6b13e59fd3b126ef4bf70a836a9",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-08",
+      "contentSha256": "6924d9a093eab3134c93de8d407d29106e8f7a7a0b894c85a42375e95f85563c",
+      "profile": "CRITICAL",
+      "reason": "투자 리딩방/고수익 부업방/확정 수익 정보방의 명시적 고위험 금전 유도",
+      "requiredCategories": [
+        "SPAM"
+      ],
+      "minimumRisk": "HIGH"
+    },
+    {
+      "id": "HOLDOUT-SPAM-09",
+      "contentSha256": "b49a2c498000a8e960d451101bfdebcf560dc009853c47fd43e6fd8145edd744",
+      "profile": "CRITICAL",
+      "reason": "투자 리딩방/고수익 부업방/확정 수익 정보방의 명시적 고위험 금전 유도",
+      "requiredCategories": [
+        "SPAM"
+      ],
+      "minimumRisk": "HIGH"
+    },
+    {
+      "id": "HOLDOUT-SPAM-10",
+      "contentSha256": "e3adbc83953c73ed05b376b960f5821205f7f30c6bf642c8fa02278612c8be41",
+      "profile": "CRITICAL",
+      "reason": "투자 리딩방/고수익 부업방/확정 수익 정보방의 명시적 고위험 금전 유도",
+      "requiredCategories": [
+        "SPAM"
+      ],
+      "minimumRisk": "HIGH"
+    },
+    {
+      "id": "HOLDOUT-SPAM-11",
+      "contentSha256": "56a80a44790cb126f232b9dcc3762714d51f295d4c3dab7c87882ff9e87f6b11",
+      "profile": "RISK_BOUNDARY",
+      "reason": "Human 위험도 경계 지정; 기존 SPAM/HIGH 유지, 비Critical 하향의 검토 신호 보존 확인",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-12",
+      "contentSha256": "5a96f3e0e70cbf246c37655d290d6c377350522d842b0d9794b5b676d273c6f1",
+      "profile": "STANDARD",
+      "reason": "Human 기존 SPAM/MEDIUM 유지: 신메뉴 안내와 이용 요청의 확정된 홍보 경계",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-13",
+      "contentSha256": "1e62abcf207dacb9d157fe3d7060457034074f120380eae2bd06b73e171a8a15",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-14",
+      "contentSha256": "7607b2a183e78bf8f23ac2fcb02be8c56cfa342861f14490e3419eb1ab8a6bcf",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-15",
+      "contentSha256": "b045d1cedf861c8028ec7dfef4bf71888fc89b12cfa0b16e50617e356974cb83",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-16",
+      "contentSha256": "81a847af1d34fc9156d4f137e65b81b214fe9e8f0212fb375fa70ed0f4a528e9",
+      "profile": "RISK_BOUNDARY",
+      "reason": "Human 위험도 경계 지정; 기존 SPAM/HIGH 유지, 비Critical 하향의 검토 신호 보존 확인",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-17",
+      "contentSha256": "1b80e386bec6140b87cb2fc19d2f8bbbf13d6bd503e7067955964947629ab45a",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-18",
+      "contentSha256": "8361cbbc3a9b560d79fef6cbb5093abe4f586502fe2ea80ce266ac3f7bd63578",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-19",
+      "contentSha256": "20c12f74b279bc6b7ad0136da1d24eb3fa4ac9c0f543bfb76659c621b03d6e6c",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    },
+    {
+      "id": "HOLDOUT-SPAM-20",
+      "contentSha256": "e06463a7df0a86aac0759fbd9cdf1dbc03de54f01121764ee375fa0be2cd6836",
+      "profile": "STANDARD",
+      "reason": "명시적 일반 상업 유인 또는 정책상 정상 추천/후기 경계를 적용",
+      "requiredCategories": [],
+      "minimumRisk": null
+    }
+  ]
+}

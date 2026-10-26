@@ -1,0 +1,325 @@
+{
+  "paidExecutionPerformed" : false,
+  "manifestSha256" : "d61581f2947bda099a4277d0e90745c4fe8922032f61e3e1fa706ba27d68a0a9",
+  "manifest" : {
+    "approvalId" : "issue68-usage-benchmark-burst-v1",
+    "automaticNextStage" : false,
+    "batchSchemaSha256" : "6ac8f99e249ceefca8c63302ad1026f51415655d30029c67defc617bd04be924",
+    "batchSystemSha256" : "5d1fa52b4955d538579b9834eae356745b7f3dd700c2183d8486dc1ed7d0c812",
+    "consumer" : "partition3/concurrency1/maxPoll10/buffer20/autoCommitFalse",
+    "dataset" : [ {
+      "sha256" : "8587d381a2268806595f91de0a82110061238c597d733edea4dee9ab3e8ccc31",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-SAFE-17"
+    }, {
+      "sha256" : "453944e16512033b291616c86524d11c3f9adba8a0f66f2ca919be01b0b52ccf",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PERSONAL_INFORMATION" ],
+        "riskLevel" : "MEDIUM"
+      },
+      "id" : "HOLDOUT-PI-05"
+    }, {
+      "sha256" : "450291fa2a5fd6c6a767d772942e6084eee4b0d812a4f263c418822de7e5a769",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PROFANITY" ],
+        "riskLevel" : "HIGH"
+      },
+      "id" : "HOLDOUT-PROFANITY-14"
+    }, {
+      "sha256" : "81a847af1d34fc9156d4f137e65b81b214fe9e8f0212fb375fa70ed0f4a528e9",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "SPAM" ],
+        "riskLevel" : "HIGH"
+      },
+      "id" : "HOLDOUT-SPAM-16"
+    }, {
+      "sha256" : "20c12f74b279bc6b7ad0136da1d24eb3fa4ac9c0f543bfb76659c621b03d6e6c",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-SPAM-19"
+    }, {
+      "sha256" : "6924d9a093eab3134c93de8d407d29106e8f7a7a0b894c85a42375e95f85563c",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "SPAM" ],
+        "riskLevel" : "HIGH"
+      },
+      "id" : "HOLDOUT-SPAM-08"
+    }, {
+      "sha256" : "ff53549e35fa83a5944f3c646bed6d46ffe41e5dba9253b0dfe37d8a8382e317",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-SAFE-09"
+    }, {
+      "sha256" : "2a96a20dc756928bf2b502d664eb292c971497b062999368b999f3a15575c6d1",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PROFANITY" ],
+        "riskLevel" : "HIGH"
+      },
+      "id" : "HOLDOUT-PROFANITY-16"
+    }, {
+      "sha256" : "600652c58b4394612a04d0200ba6869cd6c009656cb23d1bcbc336429b9f074e",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PROFANITY" ],
+        "riskLevel" : "MEDIUM"
+      },
+      "id" : "HOLDOUT-PROFANITY-01"
+    }, {
+      "sha256" : "12f94c796c2022f60b60515079bb144b0f5c582987100a365c25a15e603978e4",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-PROFANITY-06"
+    }, {
+      "sha256" : "82f3d6ce39842f2f8ddf18b24d817e28ef9c96eedddbfc1eec71a684a324a617",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-PROFANITY-13"
+    }, {
+      "sha256" : "78fd626bea4286182d12db1fdf40eb1f5c221e8162e9bbfadd7d1d31c8a4f26a",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-SAFE-01"
+    }, {
+      "sha256" : "43b69dd8bc2763a82f43107d0736c5a821d46dace59e6c47da1aaf21a6fdf042",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-PROFANITY-17"
+    }, {
+      "sha256" : "b045d1cedf861c8028ec7dfef4bf71888fc89b12cfa0b16e50617e356974cb83",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-SPAM-15"
+    }, {
+      "sha256" : "ab50c0d704cd9f5fcaf28c447be33634ac375667d11d2fc72cb561de921ac595",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PROFANITY" ],
+        "riskLevel" : "HIGH"
+      },
+      "id" : "HOLDOUT-PROFANITY-15"
+    }, {
+      "sha256" : "b67c31ab95a9397f4cd87bb1469bbe75abb27b25314479e52b8ced16894da257",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "PROFANITY" ],
+        "riskLevel" : "HIGH"
+      },
+      "id" : "HOLDOUT-PROFANITY-08"
+    }, {
+      "sha256" : "b49a2c498000a8e960d451101bfdebcf560dc009853c47fd43e6fd8145edd744",
+      "expected" : {
+        "result" : "FLAGGED",
+        "categories" : [ "SPAM" ],
+        "riskLevel" : "HIGH"
+      },
+      "id" : "HOLDOUT-SPAM-09"
+    }, {
+      "sha256" : "8d03a9e3b2b9eb58fc0a0a476e48866f2467f509d7c876e26e4e7c2742f57de8",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-SAFE-10"
+    }, {
+      "sha256" : "088a21b6e0666a28307f3782223af2e201ee4683a99dce7413312f6680744652",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-PROFANITY-05"
+    }, {
+      "sha256" : "12882019a9df6a018a143ae413a2aa8c28d163e8dc805101df9ffb149599db52",
+      "expected" : {
+        "result" : "SAFE",
+        "categories" : [ ],
+        "riskLevel" : "LOW"
+      },
+      "id" : "HOLDOUT-PI-20"
+    } ],
+    "gateExecutionVersion" : "issue68-service-gate-v2-execution-2",
+    "globalBurdenNanoUsd" : 1000000000,
+    "groundTruthSha256" : "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+    "inputContract" : "Production System/Few-shot; Native schema vs unchanged Batch instructions/envelope; no A1",
+    "journal" : ".issue68-live/budget.jsonl; original history retained; no new ledger/reset/automatic restart",
+    "legacyUnitStage" : "PILOT is only the reused diagnostic20 dataset selector, not the old quality Pilot approval",
+    "limits" : {
+      "httpPerLogical" : 4,
+      "stageBurdenNanoUsd" : 100000000,
+      "benchmarkBurdenNanoUsd" : 500000000,
+      "http" : 1920,
+      "logical" : 480,
+      "stageHttp" : 480,
+      "stageLogical" : 120,
+      "globalBurdenNanoUsd" : 1000000000
+    },
+    "matrix" : [ {
+      "stage" : "PILOT",
+      "traffic" : "BURST",
+      "repeat" : 1,
+      "mode" : "TIME_0"
+    }, {
+      "stage" : "PILOT",
+      "traffic" : "BURST",
+      "repeat" : 1,
+      "mode" : "TIME_20"
+    }, {
+      "stage" : "PILOT",
+      "traffic" : "BURST",
+      "repeat" : 1,
+      "mode" : "TIME_50"
+    }, {
+      "stage" : "PILOT",
+      "traffic" : "BURST",
+      "repeat" : 1,
+      "mode" : "TIME_100"
+    }, {
+      "stage" : "PILOT",
+      "traffic" : "BURST",
+      "repeat" : 1,
+      "mode" : "NATIVE"
+    }, {
+      "stage" : "PILOT",
+      "traffic" : "BURST",
+      "repeat" : 1,
+      "mode" : "POLL"
+    } ],
+    "metadataSha256" : "a3a424323e5585da1b9a611281ac37174c60c4b946987e541c44ad5981cd40b5",
+    "model" : "gpt-4o-mini",
+    "nativeSchemaSha256" : "0a3b3262ad121eb467b2fe00a17d1dd8082a4887268005e8b70e4b14eb33e45f",
+    "outputPerItem" : 128,
+    "paidExecutionEnabled" : false,
+    "priorBurdenNanoUsd" : 19881750,
+    "priorGrossReservedNanoUsd" : 96460800,
+    "priorHttpAttempts" : 5,
+    "priorJournalSha256" : "35924fde9b6de4437b5294b9e23daf48322c51daa012c509f08aa15c893e01d0",
+    "priorSettledNanoUsd" : 604950,
+    "priorUnknownNanoUsd" : 19276800,
+    "productionSourceSha256" : {
+      "src/main/java/com/bobfull/chat/application/service/ChatModerationBatchService.java" : "0e0785d21012989aad22e0181022c2804c7a20c96587968c93a23c55f3673039",
+      "src/main/java/com/bobfull/chat/application/service/ChatModerationService.java" : "bda54c7bec70627d91b52ae6bf1ba27f7877439fdc4a449d8d58d605041c0892",
+      "src/main/java/com/bobfull/chat/application/service/ModerationResultValidator.java" : "bb0a878d761e5fb442607b7fe069b82d11b151ff06f6e4046ef8abd3e0604b1e",
+      "src/main/java/com/bobfull/chat/application/service/ModerationRulePolicy.java" : "1c82990da88decff15f4816f6a1af4377f6a2ca381ce71d7a8c6a0dcebac9470",
+      "src/main/java/com/bobfull/chat/application/service/SplitMessageCandidateGate.java" : "7c335675115209b60914eaaf2776b8cb309e9e3cb0928ded2f9a20c93b87c3a0",
+      "src/main/java/com/bobfull/chat/infrastructure/ai/ModerationOpenAiOptions.java" : "6478eb445bdafcb6178a851b891d03090f52f0af5679b57237d8af331ad18487",
+      "src/main/java/com/bobfull/chat/infrastructure/ai/ModerationPrompt.java" : "8a57a13bcccc1e76f17bffa5f39a773abfae8ed06a376d1949def6e0b7d92faf",
+      "src/main/java/com/bobfull/chat/infrastructure/ai/SpringAiModerationAdapter.java" : "d212e3f2b5290ef467a8dd88594572630efdc51752b088df5f340031a9a5279f",
+      "src/main/java/com/bobfull/chat/infrastructure/ai/SpringAiModerationBatchAdapter.java" : "c46aa453b34be72706593bc53bc9eac8866bb8e8181f9ebb87ba6a8063e268d7",
+      "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchConfig.java" : "72f212ec9cf671f74ec0480645d259d01c1a0520a63135b5faf9226026d78304",
+      "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchConsumer.java" : "603fad0c49223cf0d6e875ed1365e51dfd448d0ea73a6d718a5909c6f46ba720",
+      "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchErrorHandler.java" : "bbec906e0960004366fc56e13f236f0dbd2f8c7c282a9e65a03dc5f951ab90a3",
+      "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationBatchRetryProcessor.java" : "226b6b1fbc5a06cd283657024ce0da762bbe835108ebcfdf35c9c6777b25d991",
+      "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationConsumer.java" : "3eeeac05929a9c9cb67238814f40f6da9a464d8ede208758ea1cd3db33523689",
+      "src/main/java/com/bobfull/chat/infrastructure/kafka/ChatModerationDltRecoverer.java" : "ff86e7a420dc442f8dbbd57e8d29928f4df14680c599a1e97eb0226323099dd6"
+    },
+    "quality" : "V1/V2 HOLD preserved; semantic errors recorded, technical errors block next HTTP",
+    "requiresSeparateHumanPaidApproval" : true,
+    "restart" : "audit only; no automatic stage transition or retry of stopped unit",
+    "sampling" : "provider defaults; input order only seed55; no paid warmup",
+    "scope" : "NON_OPERATIONAL_USAGE_ONLY_NOT_QUALITY_PASS_OR_ADOPTION",
+    "sourceSha256" : {
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68A1N1Plan.java" : "438f0ab2e8e24fde671cee2574fbdb91bbd0ab49a63c764d7780f92707301af1",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68A1N1SafetyTest.java" : "f3caf34d29c17950cc364f2703feccf04760b444ff1666732ad9fc65704fa1f0",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68A1N1Session.java" : "f4a027d117a82de8115243b08cb4104317aee421ae2869790444466d621034d9",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java" : "728739da00183204fea59620e4e07a0485cb38e799e9be88dd94cc4681898aa6",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68BudgetTest.java" : "af471e1cab938cb139a29e4293e31dfe643811e3b506269016957796dff1ceee",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68DashboardContractTest.java" : "bf34993c2129e07dba0b6d4c4e75701fafcc8434c4c421e7a02e4b07ea84acf8",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContract.java" : "a1c90d90384533d8f6ecfdeacf52c92201874a4b39624a8bf5497dbf300b786f",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContractTest.java" : "7bae85b1c90c5b19c42794a88ff4258155f5d25ce02440e876e4252abfddabf7",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExecutionGate.java" : "f7a8b2f683678e684652056f2936f24a5580ac872253efd8b6228747fb13f58b",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedBudgetTest.java" : "36a32df4e848e28e840341d28e48cd1e42759bf0399fa66dd78ee27f94e39adf",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedHttpSafetyTest.java" : "a35860e1cd3cc0d5fc885ffe7d13d75f4824127bded04b980d1805b5782f8c4d",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedLiveSafetyTest.java" : "ca676852e1f4bd7a81981e1eaa5edf9ff6d048906dcba6368e4a56f0cc0baf40",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedLiveSession.java" : "49bad78bbdaee07403737b3ab12851ef39103e45147d162c5c5008fab89aeb18",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedPlan.java" : "347def53df29979a7c872ae1c97a4be62d60b80c715982c3421a105fa2867eeb",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedPlanTest.java" : "3b7e5675ee8dff467002ba654bc363533cb7cdf395dd25693c6832226789ee35",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ExpandedPreparationSession.java" : "f6abbf96d998a739aa76a40d50c49d253fa9685ab888d11caf74d65bcdc76c7c",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68FakeOpenAiEndpoint.java" : "1d80f8872183e5b4cc91be798fd3b4669f2ff538e9a55fdd76cf6f6062926884",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68GateV2.java" : "76524c4023b4ef9471bc2dd9c1e863cbf1b6c1bb496773faf025771cbfc2bdb8",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68GateV2Test.java" : "2a5ee1a581e9a9d4d7738a8cb34f5fcada950c130aac23704a2eef116556bf98",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java" : "4597511f55d9b859b1b56d0f2b892abdf075da39c14013d79281fc47150ba9e1",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundaryTest.java" : "c5da8121c3e4ebe2eaa8cca1943eea5bdd7b73ac25b8eb4e68c633bfb0ba8cd2",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveReadinessTest.java" : "5e3571bb7caaed474c9a07fcdd64936524c694f09a2a77d837cdfa0251305d5e",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveResumeTest.java" : "28514add0f07566c0a1663d40fbeeb112d09df690a65e889d5189ce3446adc14",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveSession.java" : "0a93e6ad1fb3c2f808c09a31c4ffd0a26d69d22f37e02ea9c5c7fe073eb333bb",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68MonitoringBridge.java" : "3323c02118f1c3233b64c8584d7e25cebd1a05a5565e64571361316695cb20c3",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68MonitoringBridgeTest.java" : "67eec6c7450b11d00a267126f9d35922ae7582c7f317bdaf2d14a372c839205a",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0Plan.java" : "64c274b04b99c6f255dd9463eb51ee2e9047da072183e6e96acdb23abb4291d9",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0PlanTest.java" : "384f9aa2bfc6196456c33f9b9904e7b38d5c28b2580f5f2e21a23a751e7cb9c0",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0PreparationTest.java" : "1abe1c31508a41dc0c30f02f9a8ea89746db1970e67b04444eed9e173c28d3da",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0SafetyTest.java" : "8e6dccdbfa83657b060b7c06e7f7b941eb4eded3873e3ddc860a3b8fa9093a4e",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68O0Session.java" : "e86ab7898271c86592b20fc05e24fe25f8eb5484c59c9a0d900b613e429ed7ea",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68OpenAiContext.java" : "d6b7308a8bce8c7d5dedc0c5374b73dc8b3b47d96607a77e09c11d98eb041937",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ResponseUsage.java" : "b61f1419837c0795536112a0be1d5059c81275f36b2d2b6220472318fceab1d7",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ResponseUsageTest.java" : "6987ccc8c6087bd62f14887561233a2007575604c1594c4d4902606df9884dfa",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ReviewGateDraft.java" : "a5b42ba9862289ef78b9b287c126c1d01a6b91a585306532bd6a5a54af6ddd13",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ReviewGateDraftTest.java" : "c5666aee59edb84c0afa9b41e19538654bd366428f113adf68f473c662a63325",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68RiskBoundaryPrompt.java" : "e8a2443e70ccfaa23e87e03f98eaea0f70c65144c91c4c49661a74eb84bef0b6",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68RiskBoundaryPromptTest.java" : "dac5c84a374c6cd578935b4763f6788ec882703e044ca72af5cabb485b132ebc",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68SdkUsage.java" : "d01904c2bd35e0145f766e704b3274603460ba38a82e9a18cb3403c68ec1521e",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68UsageAccountingTest.java" : "c1eb12391048c73a2184021729503385d6903489c67c3332c5a2779671febdaf",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68UsageBenchmarkPlan.java" : "36592456a6b44401986d78bce8142646dbad8ca2266986e2c2ddef474eaf8714",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68UsageBenchmarkSafetyTest.java" : "46097618d9a5061bb750896ef91859b638a6fc67b103b90a92d260511ffb1f1d",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68UsageBenchmarkSession.java" : "0d6f3dad00d8a535638c18c1dafe0087b51f55b7a98b75b8bed6ef2b7a2a7673",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68A1N1Execution.java" : "f83aa28aee89d65c379a674fef95fec4f7d10be76087d46a9f6bbf1d8f25adea",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68A1N1KafkaSafetyTest.java" : "40c26b4842e86207c2f4afc6db413b21f02cdab81fc83e97d9b495142a0e93f2",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68A1N1LiveTest.java" : "cfa0393cf5fd2f5260a1d0cdc4c686fddf8e8e777898b79a91950cc577809168",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedKafkaPreparationTest.java" : "b13421ad63cef0d358e529a40a4d160a7812c5b155acc610a3adc415be5f3f76",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedLiveKafkaSafetyTest.java" : "9b662c9749658b7e5e73d0ca51eb96a61847bcb2951f784ebb77532829b7459b",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedPilotExecution.java" : "ce7f78482926f3bd80b43b44310f2850d1f702cc2dc10015a2cde79a6b3df58f",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68ExpandedPilotLiveTest.java" : "288d3faf5aefe770a11fd6357d8af0e78364ba96af5478f2daa54def7610d4b9",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68HoldObservabilityTest.java" : "009e76320ba0541f5119aa91d1ab5a97da6321a8c50579f615af6c320dc7a95a",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68LiveSmokeTest.java" : "29e73194b226a73d7e31f14305bc61622d4485d8176f9dcea08b573829d66571",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68O0KafkaPreparationTest.java" : "1a185fc442199b4516a9530278cfed8cc95b4213ae7765c1ffb4f0e61dff04f0",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68O0LiveTest.java" : "7bb517399e818c079e7008d65545175fdd7cd8dba1c45e3c70259a0d5e4832d3",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaHarness.java" : "cdc4c9c075aeb5d8939aa06434b9547b3fc2af3414c24c6b64082fa5cb7607ee",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaIntegrationTest.java" : "1c1df260de7a9e0a755cd9505ebea6706fe7d3670c23c4e3f6f41740e5517389",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68UsageBenchmarkExecution.java" : "b3359fc54f6ceda5258089ba073f587bceb03eeb6cb08ee58a3adc07ef0f0ca9",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68UsageBenchmarkKafkaTest.java" : "404bb3a8da9c60c5b44afcbc4412f5a3e03c9b184fa82e2daf1952ed40c11085",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68UsageBenchmarkLiveTest.java" : "00bfacd8275156f5872f626709d5b323c204c106113a359200fd2d0079812777",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/SizeTimeBatchOwnerLoop.java" : "9c67b55d2aab9e2e938858aaec80a4c6fd233350c31487866fd7c5ecee3359ab"
+    },
+    "stage" : "BURST",
+    "stage2" : "separate approval required after BURST completion; no automatic transition",
+    "systemSha256" : "7540e67d11d342e9b9618204baa8d5868ebfd21a15716a8f41dc5fbcb35249a4",
+    "trafficIntervalsMs" : {
+      "INTERVAL" : 40,
+      "LOW" : 250,
+      "BURST" : 0,
+      "SHORT" : 5
+    },
+    "transport" : "HTTPS443 api.openai.com/v1/chat/completions POST/noProxy/noRedirect; exchange reservation; UNKNOWN stops all Retry",
+    "version" : "issue68-usage-benchmark-v1"
+  }
+}

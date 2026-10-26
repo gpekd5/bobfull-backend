@@ -1,0 +1,183 @@
+{
+  "issue": 68,
+  "recordedAt": "2026-10-21T10:27:04Z",
+  "branch": "feature/68-openai-poll-batch-verification",
+  "executionHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+  "workingTree": "Existing uncommitted work preserved; new test-only and analysis files remain untracked",
+  "status": {
+    "historicalGateV1": "BATCH_GATE_HOLD_UNCHANGED",
+    "gateV2": "HUMAN_APPROVAL_REQUIRED",
+    "o0": "NOT_READY_NOT_EXECUTED",
+    "productionBatch": "DEFAULT_OFF_UNCHANGED"
+  },
+  "safety": {
+    "newOpenAiCalls": 0,
+    "apiKeyRead": false,
+    "productionChanges": false,
+    "gtChanges": false,
+    "issueOrPrChanges": false,
+    "commitOrPush": false
+  },
+  "dataset": {
+    "source": "heldoutCasesPolicyV2()",
+    "provenance": "historical-human-reviewed-not-independent-blind",
+    "cases": 80,
+    "ruleHits": 1,
+    "llmTargets": 79,
+    "sha256": "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b",
+    "humanReviewCandidates": [
+      "HOLDOUT-PROFANITY-14",
+      "HOLDOUT-PROFANITY-15",
+      "HOLDOUT-PROFANITY-16",
+      "HOLDOUT-SAFE-09",
+      "HOLDOUT-SPAM-11",
+      "HOLDOUT-SPAM-12",
+      "HOLDOUT-SPAM-16"
+    ],
+    "confirmedGtChanges": 0,
+    "unapprovedNew40Included": false
+  },
+  "tests": {
+    "root": {
+      "tests": 1260,
+      "skipped": 87,
+      "failures": 0,
+      "errors": 0
+    },
+    "lambda": {
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "total": {
+      "tests": 1271,
+      "skipped": 87,
+      "failures": 0,
+      "errors": 0
+    },
+    "related": {
+      "tests": 100,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    "newTests": {
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "newSuites": [
+      {
+        "name": "com.bobfull.admin.infrastructure.repository.query.Issue68ReviewSignalIntegrationTest",
+        "tests": 4,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "name": "com.bobfull.chat.infrastructure.ai.Issue68ReviewGateDraftTest",
+        "tests": 7,
+        "skipped": 0,
+        "failures": 0,
+        "errors": 0
+      }
+    ],
+    "sourceSha256": {
+      "src/test/java/com/bobfull/admin/infrastructure/repository/query/Issue68ReviewSignalIntegrationTest.java": "80e43f04020895c0327c32b77d53b69cc211320293efdd06c414d998ec4ca4c8",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ReviewGateDraft.java": "a5b42ba9862289ef78b9b287c126c1d01a6b91a585306532bd6a5a54af6ddd13",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68ReviewGateDraftTest.java": "c5666aee59edb84c0afa9b41e19538654bd366428f113adf68f473c662a63325"
+    }
+  },
+  "commands": {
+    "focused": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew :test --tests '*Issue68ReviewGateDraftTest' --tests '*Issue68ReviewSignalIntegrationTest' --console=plain --no-daemon",
+    "related": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew :test --tests '*Issue68*' --tests '*MemberModeration*' --tests '*AdminModerationReportServiceTest' --tests '*ChatRoomMemberReport*' --tests '*ModerationHeldoutDatasetTest' --console=plain --no-daemon",
+    "full": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew test build --rerun-tasks --console=plain --no-daemon"
+  },
+  "build": {
+    "result": "SUCCESS",
+    "durationSeconds": 265,
+    "tasksExecuted": 12,
+    "lambdaRerun": true,
+    "liveSmokeSkipped": true
+  },
+  "staticVerification": {
+    "jsonSyntax": "PASS",
+    "newFilesWhitespace": "PASS",
+    "newFilesChecked": 5,
+    "gitDiffCheck": "PASS",
+    "trackedDiffFiles": 0,
+    "stagedDiffFiles": 0
+  },
+  "technicalObservations": {
+    "scope": "newReviewGateDraftAndMySqlTests",
+    "mysql": "isolated Testcontainers mysql:8.4",
+    "productionServicesAndRepositories": true,
+    "mockProviderUsed": false,
+    "providerInvoked": false,
+    "highAndMediumBothReachReviewThresholdAt": 3,
+    "safeOrFlaggedLowLeaveReviewCountAt": 2,
+    "reportCreationIndependentOfAiState": [
+      "MISSING",
+      "SAFE",
+      "FLAGGED_LOW"
+    ],
+    "humanReportReviewDoesNotChangeAiResult": true,
+    "unresolvedNeverCountedAsCorrect": true,
+    "v1ReasonsKeptSeparately": true,
+    "noGateV2PassReturned": true
+  },
+  "developmentFailures": [
+    {
+      "phase": "compileTestJava",
+      "runs": 3,
+      "cause": "New test imports (entity/model instead of application.result) and null passed to primitive latencyMillis",
+      "scope": "new files only",
+      "resolved": true
+    },
+    {
+      "phase": "new MySQL fixture context",
+      "tests": 10,
+      "failures": 4,
+      "cause": "Scanning unrelated ReservationRepository without its custom fragments",
+      "fix": "Restrict repository registration and provide actual participant query fragment",
+      "resolved": true
+    }
+  ],
+  "preservation": {
+    "originalFiles": 71,
+    "unchangedFiles": 71,
+    "changed": [],
+    "journalSha256": "b2fe9f54ae8441010bebeb3734896b7328d5445586fd7bc1838045d3d510cf5e"
+  },
+  "budget": {
+    "currency": "USD",
+    "historicalUnknownNanoUsd": 19276800,
+    "newSettlementThisTaskNanoUsd": 0,
+    "previousSettledNanoUsd": 311100,
+    "previousChargedPlusUnknownNanoUsd": 19587900,
+    "cumulativeGrossNanoUsd": 57907200,
+    "smokeGrossLimitNanoUsd": 100000000,
+    "plannedOverallLimitNanoUsd": 500000000,
+    "journalRewritten": false,
+    "approvalClaimReused": false
+  },
+  "futureO0": {
+    "executed": false,
+    "pairedMessages": 160,
+    "nativeLogicalRequests": 79,
+    "pollLogicalRequestsMin": 8,
+    "pollLogicalRequestsMax": 79,
+    "estimatedCostUsdMin": 0.02623005,
+    "estimatedCostUsdMax": 0.0368229,
+    "forecastOnly": true,
+    "retryIncluded": false,
+    "approvalsNeeded": [
+      "Semantic GT review and separately frozen annotations",
+      "Critical protection and conditional downgrade criteria",
+      "FP/category/risk tolerance and evaluation unit",
+      "New stage approval/manifest and cumulative budget/HTTP caps"
+    ]
+  }
+}

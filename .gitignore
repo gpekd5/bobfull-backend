@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Private #68 Live journal, approval claims and execution checkpoints
+/.issue68-live/
+
 # Local Spring configuration
 src/main/resources/application-local.yml
 

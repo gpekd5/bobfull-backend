@@ -1,0 +1,342 @@
+{
+  "root": {
+    "tests": 1224,
+    "skipped": 87,
+    "failures": 0,
+    "errors": 0
+  },
+  "lambda": {
+    "tests": 11,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0
+  },
+  "issue68": {
+    "com.bobfull.chat.infrastructure.ai.Issue68BudgetTest": {
+      "tests": 7,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "com.bobfull.chat.infrastructure.ai.Issue68LiveReadinessTest": {
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "com.bobfull.chat.infrastructure.ai.Issue68EvaluationContractTest": {
+      "tests": 5,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "com.bobfull.chat.infrastructure.kafka.Issue68OpenAiKafkaIntegrationTest": {
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    },
+    "com.bobfull.chat.infrastructure.kafka.Issue68LiveSmokeTest": {
+      "tests": 1,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    "com.bobfull.chat.infrastructure.ai.Issue68HttpBoundaryTest": {
+      "tests": 6,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "rehearsalSourceHashesMatch": true,
+  "phase1EvidenceSha256": "4b00bfb78d6d6a4b86f808426c69506e988eee9ddfc1bd6fb35682186d76f048",
+  "build": {
+    "command": "env -u OPENAI_API_KEY -u ISSUE68_LIVE_APPROVAL ./gradlew test build --rerun-tasks --console=plain --no-daemon",
+    "result": "SUCCESS",
+    "duration": "4m 22s",
+    "executedTasks": 12
+  },
+  "fakeRehearsal": {
+    "executionHead": "8ffb5aabc1df96e0a20d08b0f29eab89ac069807",
+    "recordedAt": "2026-10-21T08:17:14.392527Z",
+    "sourceHashes": {
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68Budget.java": "e3220d2f9f95aa7db52b923c23cfdf08ac155d3643504ffdaf3dd80e61abd141",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68BudgetTest.java": "af471e1cab938cb139a29e4293e31dfe643811e3b506269016957796dff1ceee",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContract.java": "a1c90d90384533d8f6ecfdeacf52c92201874a4b39624a8bf5497dbf300b786f",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68EvaluationContractTest.java": "7bae85b1c90c5b19c42794a88ff4258155f5d25ce02440e876e4252abfddabf7",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68FakeOpenAiEndpoint.java": "a6c7012c0bb5c65600f62a0d4e47a1c9fa95c5a7e179a17ca7750f2b4077dc38",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundary.java": "ebd14c077f2cda32b9f53414458706f475cc2928fb7a6fb610f6a516c5027eb2",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68HttpBoundaryTest.java": "c5da8121c3e4ebe2eaa8cca1943eea5bdd7b73ac25b8eb4e68c633bfb0ba8cd2",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveReadinessTest.java": "5e3571bb7caaed474c9a07fcdd64936524c694f09a2a77d837cdfa0251305d5e",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68LiveSession.java": "a8c6135431f9a902244e7dc1d7d7d1bff8e45dc764262515359fe9ab2bedd8e6",
+      "src/test/java/com/bobfull/chat/infrastructure/ai/Issue68OpenAiContext.java": "da8afe39c5448f5b889b252fc6f407665dbe19fdbfba6c7484ece8fd0ad26fc0",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68LiveSmokeTest.java": "7d6714c8d4d846576a4480004956f0b352b9666b5b5182fdb8b7275d3a42b18b",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaHarness.java": "7dd64892094200c4419379a48a042fedfc4afa58a1a5214c50e9a645ccd3d2d6",
+      "src/test/java/com/bobfull/chat/infrastructure/kafka/Issue68OpenAiKafkaIntegrationTest.java": "c1beb1ab99a3e29f4e38ffe5a92efed106894ee696bfba3eb241b57d6e8e8df5"
+    },
+    "data": {
+      "http": [
+        {
+          "number": 1,
+          "logical": 1,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 20,
+            "total": 920,
+            "cached": 0
+          },
+          "reservedNanos": 19276800,
+          "latencyNanos": 4994250
+        },
+        {
+          "number": 2,
+          "logical": 2,
+          "status": 200,
+          "usage": {
+            "input": 900,
+            "output": 40,
+            "total": 940,
+            "cached": 0
+          },
+          "reservedNanos": 19353600,
+          "latencyNanos": 3950834
+        }
+      ],
+      "grossReservedNanoUsd": 38630400,
+      "batch": {
+        "mode": "poll",
+        "samples": [
+          {
+            "caseId": "HOLDOUT-SAFE-01",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 0,
+            "receivedNs": 1149873846938291,
+            "flushNs": 1149873866269708,
+            "committedNs": 1149873867924916,
+            "returnedNs": 1149873867953416,
+            "ackNs": 1149873821701166,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null,
+            "errorCode": null,
+            "provider": "OpenAI",
+            "model": "gpt-4o-mini-2024-07-18",
+            "promptVersion": "moderation-prompt-v3-short-fragment-boundary",
+            "policyVersion": "moderation-policy-v2"
+          },
+          {
+            "caseId": "HOLDOUT-PROFANITY-16",
+            "actual": {
+              "result": "FLAGGED",
+              "categories": [
+                "PROFANITY"
+              ],
+              "riskLevel": "HIGH"
+            },
+            "status": "FLAGGED",
+            "completed": true,
+            "partition": 0,
+            "offset": 1,
+            "receivedNs": 1149873846938291,
+            "flushNs": 1149873870240541,
+            "committedNs": 1149873871165125,
+            "returnedNs": 1149873871190958,
+            "ackNs": 1149873822486666,
+            "deliveries": 1,
+            "promptTokens": null,
+            "totalTokens": null,
+            "errorCode": null,
+            "provider": "OpenAI",
+            "model": "gpt-4o-mini-2024-07-18",
+            "promptVersion": "moderation-prompt-v3-short-fragment-boundary",
+            "policyVersion": "moderation-policy-v2"
+          }
+        ],
+        "polls": [
+          [
+            "HOLDOUT-SAFE-01",
+            "HOLDOUT-PROFANITY-16"
+          ]
+        ],
+        "lag": [
+          {
+            "elapsedNs": 194960125,
+            "value": 0
+          },
+          {
+            "elapsedNs": 299413084,
+            "value": 0
+          },
+          {
+            "elapsedNs": 399703167,
+            "value": 0
+          },
+          {
+            "elapsedNs": 421421250,
+            "value": 0
+          }
+        ],
+        "finalLag": 0,
+        "finalRows": 2,
+        "transactionViolations": 0,
+        "unsafeCommits": 0,
+        "saveFailures": 0,
+        "dltRecords": 0,
+        "gateReasons": [],
+        "quality": {
+          "cases": 2,
+          "unresolved": 0,
+          "resultExact": 2,
+          "categoryExact": 2,
+          "riskExact": 2,
+          "actionabilityExact": 2,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "tn": 1,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "fpIds": [],
+          "fnIds": [],
+          "highMissIds": []
+        },
+        "latencyMs": {
+          "publishAckToCommitP95": 48.678459,
+          "receivedToCommitP95": 24.226834,
+          "receivedToCommitP50": 20.986625,
+          "publishAckToCommitP50": 46.22375
+        },
+        "commitObservations": 1
+      },
+      "native": {
+        "mode": "native",
+        "samples": [
+          {
+            "caseId": "HOLDOUT-SAFE-01",
+            "actual": {
+              "result": "SAFE",
+              "categories": [],
+              "riskLevel": "LOW"
+            },
+            "status": "SAFE",
+            "completed": true,
+            "partition": 0,
+            "offset": 0,
+            "receivedNs": 1149873224915083,
+            "flushNs": 1149873242800500,
+            "committedNs": 1149873244159666,
+            "returnedNs": 1149873244193250,
+            "ackNs": 1149873207604208,
+            "deliveries": 1,
+            "promptTokens": 900,
+            "totalTokens": 920,
+            "errorCode": null,
+            "provider": "OpenAI",
+            "model": "gpt-4o-mini-2024-07-18",
+            "promptVersion": "moderation-prompt-v3-short-fragment-boundary",
+            "policyVersion": "moderation-policy-v2"
+          }
+        ],
+        "polls": [
+          [
+            "HOLDOUT-SAFE-01"
+          ]
+        ],
+        "lag": [
+          {
+            "elapsedNs": 213311917,
+            "value": 0
+          },
+          {
+            "elapsedNs": 317221792,
+            "value": 0
+          },
+          {
+            "elapsedNs": 418079709,
+            "value": 0
+          },
+          {
+            "elapsedNs": 440139417,
+            "value": 0
+          }
+        ],
+        "finalLag": 0,
+        "finalRows": 1,
+        "transactionViolations": 0,
+        "unsafeCommits": 0,
+        "saveFailures": 0,
+        "dltRecords": 0,
+        "gateReasons": [],
+        "quality": {
+          "cases": 1,
+          "unresolved": 0,
+          "resultExact": 1,
+          "categoryExact": 1,
+          "riskExact": 1,
+          "actionabilityExact": 1,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "tn": 1,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "fpIds": [],
+          "fnIds": [],
+          "highMissIds": []
+        },
+        "latencyMs": {
+          "publishAckToCommitP95": 36.555458,
+          "receivedToCommitP95": 19.244583,
+          "receivedToCommitP50": 19.244583,
+          "publishAckToCommitP50": 36.555458
+        },
+        "commitObservations": 1
+      },
+      "requests": [
+        {
+          "batch": false,
+          "cap": 128,
+          "caseIds": [
+            "HOLDOUT-SAFE-01"
+          ],
+          "ended": 1149873241489875,
+          "failed": false,
+          "inputEstimate": 1024,
+          "number": 1,
+          "requestSha256": "88f2c1c0cfb1b850da5f1c6671501fd99e319a1f51e4cf8e1dcf0e2dd9b56324",
+          "started": 1149873227989083
+        },
+        {
+          "batch": true,
+          "cap": 256,
+          "caseIds": [
+            "HOLDOUT-SAFE-01",
+            "HOLDOUT-PROFANITY-16"
+          ],
+          "ended": 1149873864546000,
+          "failed": false,
+          "inputEstimate": 1219,
+          "number": 2,
+          "requestSha256": "e4737a4c08f33c81e245e9d16922b872208682f85ab0bcfd90fbb7c599955340",
+          "started": 1149873854566666
+        }
+      ]
+    },
+    "gateVersion": "issue68-human-gate-v1",
+    "scope": "FAKE_ENDPOINT_MYSQL_KAFKA_NOT_OPENAI_QUALITY",
+    "provenance": "historical-human-reviewed-policy-v2-not-blind",
+    "executionState": "uncommitted-source-snapshot",
+    "groundTruthSha256": "2892ac234eea3ae79da9a1d13fd10237393393fddb87cb2b24180817a9a7823b"
+  }
+}
