@@ -6,7 +6,7 @@ BobFull(밥풀)은 제주에서 혼자 여행하는 사용자가 식당과 예�
 
 **이 저장소는 4인 팀 프로젝트를 기반으로 개인적으로 코드 구조를 정리하고 AI 검수 기능을 고도화한 백엔드 저장소입니다.** 원본 프로젝트의 공동 작업과 이후 개인 작업은 아래에 구분했습니다.
 
-[팀 프로젝트 원본](https://github.com/bobfull-project/bobfull-backend) | [Frontend](https://github.com/bobfull-project/bobfull-frontend) | [기술 문서](https://github.com/bobfull-project/bobfull-docs) | [System Flow](https://bobfull-project.github.io/bobfull-docs/100-learning/system-flow/v3/operations-system-flow/) | [발표자료](https://drive.google.com/file/d/1erg_wEFZdVDT4VQ8qKs5CZ_1iz2MIUQx/view?usp=sharing)
+[팀 프로젝트 원본](https://github.com/bobfull-project/bobfull-backend) | [Frontend](https://github.com/bobfull-project/bobfull-frontend) | [기술 문서](https://github.com/bobfull-project/bobfull-docs) | [발표자료](https://drive.google.com/file/d/1erg_wEFZdVDT4VQ8qKs5CZ_1iz2MIUQx/view?usp=sharing)
 
 ---
 
@@ -56,7 +56,7 @@ BobFull은 개별 좌석 단위로 합석을 모집하고 예약금과 참여 �
 
 그 밖에 식당 운영자를 위한 예약 관리, 지급 예정 예약금 조회와 관리자 운영 기능을 제공합니다.
 
-[서비스 정책 및 상태 전이](docs/010-product/project-context.md) | [전체 API 명세](docs/020-api/bobfull-api-spec-complete.md) | [실제 백엔드 처리 흐름](https://bobfull-project.github.io/bobfull-docs/100-learning/system-flow/v3/operations-system-flow/)
+[서비스 정책 및 상태 전이](docs/010-product/project-context.md) | [전체 API 명세](docs/020-api/bobfull-api-spec-complete.md)
 
 ---
 
@@ -201,7 +201,6 @@ README에서는 서비스와 핵심 결과를 소개하고, **설계 판단과 �
 | [Troubleshooting](https://github.com/bobfull-project/bobfull-docs/tree/main/troubleshooting) | 개별 오류와 장애 대응 |
 | [Performance](https://github.com/bobfull-project/bobfull-docs/tree/main/performance) | 성능 검증 결과 |
 | [Engineering Records](https://github.com/bobfull-project/bobfull-docs/tree/main/engineering-records) | 배포, 운영 및 모니터링 개선 이력 |
-| [System Flow](https://bobfull-project.github.io/bobfull-docs/100-learning/system-flow/v3/operations-system-flow/) | 백엔드 요청 처리 흐름 탐색 |
 
 <details>
 <summary><strong>개인 포크의 주요 기준 문서와 프로젝트 구조 보기</strong></summary>
